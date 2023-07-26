@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-motel test
+
+
+
 </body>
 </html>
