@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'GangwonEduAll';
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://static.goodchoice.kr/fonts/gangwon/GangwonEduAllLight.woff2") format("woff2"), url("https://static.goodchoice.kr/fonts/gangwon/GangwonEduAllLight.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'GangwonEduAll';
+  font-weight: 700;
+  font-style: normal;
+  src: url("https://static.goodchoice.kr/fonts/gangwon/GangwonEduAllBold.woff2") format("woff2"), url("https://static.goodchoice.kr/fonts/gangwon/GangwonEduAllBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-display: block;
+  src: url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-ExtraBold.woff") format("woff"), url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-ExtraBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: block;
+  src: url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Bold.woff") format("woff"), url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: block;
+  src: url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-SemiBold.woff") format("woff"), url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-style: normal;
+  src: url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Medium.woff2") format("woff2"), url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Regular.woff2") format("woff2"), url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-display: block;
+  src: url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Light.woff") format("woff"), url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  font-display: block;
+  src: url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-ExtraLight.woff") format("woff"), url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-ExtraLight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 100;
+  font-display: block;
+  src: url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Thin.woff") format("woff"), url("https://static.goodchoice.kr/fonts/pretendard/Pretendard-Thin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Campton';
+  font-weight: 500;
+  font-display: swap;
+  src: local('Campton Medium'), url('https://static.goodchoice.kr/fonts/campton/Campton-Medium.woff2') format('woff2'), url('https://static.goodchoice.kr/fonts/campton/Campton-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Campton';
+  font-weight: 600;
+  font-display: swap;
+  src: local('Campton SemiBold'), url('https://static.goodchoice.kr/fonts/campton/Campton-SemiBold.woff2') format('woff2'), url('https://static.goodchoice.kr/fonts/campton/Campton-SemiBold.woff') format('woff');
+}
+/*# sourceMappingURL=font.css.map */

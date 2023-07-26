@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <style type="text/css">
 	a {text-decoration: none; color:black;}
 	ul {padding: 20px;}
@@ -14,23 +15,16 @@
 </div>
 
 <c:url var="context" value="/"/>
+
 <div align="right">
 	<hr>
 	<ul>
-		<li><a href="${context }index">HOME</a></li>
-		<li><a href="${context }register">Register</a></li>
-		<li><a href="${context }login">Login</a></li>
-		<li><a href="${context }memberInfo">MemberInfo</a></li>
-		<li><a href="${context }logout">Logout</a></li>
-		<li><a href="${context }boardForm">Board</a></li>
+		<li><a href="">HOME</a></li>
+		<li><a href="">Register</a></li>
+		<li><a href="">Login</a></li>
+		<li><a href="">MemberInfo</a></li>
+		<li><a href="">Logout</a></li>
+		<li><a href="">Board</a></li>
 	</ul>
 	<hr>
 </div>
-
-
-
-
-
-
-
-
