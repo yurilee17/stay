@@ -36,11 +36,14 @@ function pwCheck(){
 function loginCheck(){
 	let id = document.getElementById('id');
 	let password = document.getElementById('password');
-	
+	const uidError = document.getElementById('uidError');
+	const upwError = document.getElementById('upwError');
 	
 	if(id.value == ""){
+		uidError.style.display = 'block';
 		alert('아이디는 필수 항목입니다.');
 	}else if(password.value == ""){
+		upwError.style.display = 'block';
 		alert('비밀번호는 필수 항목입니다.');
 	}else{
 		var loginForm = document.getElementById('loginForm');

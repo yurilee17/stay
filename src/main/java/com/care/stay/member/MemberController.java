@@ -25,6 +25,7 @@ public class MemberController {
 
 	@PostMapping("loginProc")
 	public String loginProc(MemberDTO member) {
+		System.out.println("cont" + member.getId());
 		String result = service.loginProc(member);
 		if(result.equals("로그인 성공")) {
 			return "redirect:index";
@@ -32,5 +33,9 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	@RequestMapping("notice")
+	public String notice() {
+		return "board/notice";
+	}
 
 }

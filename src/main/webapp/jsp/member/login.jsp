@@ -26,26 +26,26 @@
 			<section>
 				<form id="loginForm"
 					action="loginProc"
-					autocomplete="off" method="post" novalidate="novalidate">
+					method="post">
 					<div class="fix_title">
 						<strong class="logo"><a href="/index">여기어때</a></strong>
 					</div>
-					<button type="button" id="kakao-login-btn"
-						class="btn_start btn_kakao" data-device-type="W">
-						<span><i class="icon-ic_login_kakaotalk"></i>카카오톡으로 로그인</span>
+					<button type="button" id="kakao-login-btn" class="btn_start btn_kakao" data-device-type="W">
+						<span><i><img src="../../resource/img/kakao.png" alt="kakao" width="20" height="20" style="vertical-align: middle"></i>카카오톡으로 로그인</span>
 					</button>
 					<p class="space_or">
 						<span>또는</span>
 					</p>
 					<div class="inp_type_1 ico_email form-errors">
-						<!-- focus / err -->
-						<input type="email" name="uid" placeholder="아이디" required=""
-							class="required" value="" data-msg-required="아이디를 입력해 주세요." id="id">
+						<input type="email" name="id" placeholder="아이디"
+							class="required" data-msg-required="아이디를 입력해 주세요." id="id">
+						<label id="idError" class="help-block" for="id" style="color: red;">아이디를 입력해 주세요.</label> 
 						<button type="button" class="reset_val">초기화</button>
 					</div>
 					<div class="inp_type_1 ico_pw form-errors">
-						<input type="password" name="upw" placeholder="비밀번호" required=""
+						<input type="password" name="password" placeholder="비밀번호"
 							class="required" data-msg-required="비밀번호를 입력해 주세요." id="password">
+						<!-- <label id="upwError" class="error help-block" for="password" style="">비밀번호를 입력해 주세요.</label> -->
 						<button type="button" class="reset_val">초기화</button>
 					</div>
 					<button class="btn_link gra_left_right_red" type="button" onclick="loginCheck()">

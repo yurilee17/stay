@@ -15,6 +15,8 @@ public class MemberService {
 	@Autowired private HttpSession session;
 	
 	public String loginProc(MemberDTO member) {
+		System.out.println("serv" + member.getId());
+		System.out.println("serv" + member.getPassword());
 		if(member.getId() == null || member.getId().isEmpty()) {
 			return "아이디를 입력하세요.";
 		}
@@ -24,18 +26,34 @@ public class MemberService {
 		}
 		
 		MemberDTO result = memberMapper.loginProc(member.getId());
+		
 		if(result != null) {
-			BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
-			
-			if(bpe.matches(member.getPassword(), result.getPassword())) {
-				session.setAttribute("id", result.getId());
-				session.setAttribute("password", result.getPassword());
-				session.setAttribute("moblie", result.getMoblie());
-				session.setAttribute("name", result.getName());
-				session.setAttribute("nickname", result.getNickname());
-				session.setAttribute("authority", result.getAuthority());
-				return "로그인 성공";
+			System.out.println(result.getAuthority());
+			if(result.getAuthority().equals("admin")) {
+				if(member.getPassword().equals(result.getPassword())) {
+					session.setAttribute("id", result.getId());
+					session.setAttribute("password", result.getPassword());
+					session.setAttribute("moblie", result.getMoblie());
+					session.setAttribute("name", result.getName());
+					session.setAttribute("nickname", result.getNickname());
+					session.setAttribute("authority", result.getAuthority());
+					return "로그인 성공";
+				}
 			}
+			if(result.getAuthority().equals("user")) {
+				BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+				
+				if(bpe.matches(member.getPassword(), result.getPassword())) {
+					session.setAttribute("id", result.getId());
+					session.setAttribute("password", result.getPassword());
+					session.setAttribute("moblie", result.getMoblie());
+					session.setAttribute("name", result.getName());
+					session.setAttribute("nickname", result.getNickname());
+					session.setAttribute("authority", result.getAuthority());
+					return "로그인 성공";
+				}
+			}
+			
 		}
 		
 		return "아이디/비밀번호를 확인 후 다시 시도하세요.";

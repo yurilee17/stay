@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script src="../../resource/js/dbQuiz.js"/>
+<script src="dbQuiz.js"></script>
 <header>
 <section>
 	<h1>
@@ -36,6 +36,7 @@
 		</div>
 		<button class="btn_cancel" onclick="srch_close()">취소</button>
 	</div>
+	</section>
 	<!-- //Search -->
 	</header>
 	
@@ -59,4 +60,3 @@
 				</div>
 			</div>
 		</div>
-</section>
