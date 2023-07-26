@@ -11,6 +11,12 @@ public class MemberController {
 		return "member/index";
 	}
 	
+	@RequestMapping("notice")
+	public String notice() {
+		return "board/notice";
+	}
+	
+	
 	@RequestMapping("header")
 	public String header() {
 		return "default/header";
