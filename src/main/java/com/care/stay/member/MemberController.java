@@ -18,6 +18,21 @@ public class MemberController {
 		return "member/index";
 	}
 
+	@RequestMapping("header")
+	public String header() {
+		return "default/header";
+	}
+	
+	@RequestMapping("footer")
+	public String footer() {
+		return "default/footer";
+	}
+	
+	@RequestMapping("main")
+	public String main() {
+		return "default/main";
+	}
+	
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
@@ -25,9 +40,13 @@ public class MemberController {
 
 	@PostMapping("loginProc")
 	public String loginProc(MemberDTO member) {
+		String authority = member.getAuthority();
+		System.out.println("conta" + member.getAuthority());
 		System.out.println("cont" + member.getId());
 		String result = service.loginProc(member);
-		if(result.equals("로그인 성공")) {
+		if(result.equals("admin")) {
+			return "redirect:index?authority=admin";
+		}else if(result.equals("로그인 성공")) {
 			return "redirect:index";
 		}
 		return "member/login";
@@ -37,5 +56,10 @@ public class MemberController {
 	public String notice() {
 		return "board/notice";
 	}
-
+	
+	@GetMapping("register")
+	public String register() {
+		return "member/register";
+	}
+	
 }

@@ -39,15 +39,15 @@
 					<div class="inp_type_1 ico_email form-errors">
 						<input type="email" name="id" placeholder="아이디"
 							class="required" data-msg-required="아이디를 입력해 주세요." id="id">
-						<label id="idError" class="help-block" for="id" style="color: red;">아이디를 입력해 주세요.</label> 
 						<button type="button" class="reset_val">초기화</button>
 					</div>
+					<label id="idError" class="help-block" for="id" style="color: red; display:none;">아이디를 입력해 주세요.</label> 
 					<div class="inp_type_1 ico_pw form-errors">
 						<input type="password" name="password" placeholder="비밀번호"
 							class="required" data-msg-required="비밀번호를 입력해 주세요." id="password">
-						<!-- <label id="upwError" class="error help-block" for="password" style="">비밀번호를 입력해 주세요.</label> -->
 						<button type="button" class="reset_val">초기화</button>
 					</div>
+					<label id="pwError" class="help-block" for="password" style="color: red; display:none;">비밀번호를 입력해 주세요.</label>
 					<button class="btn_link gra_left_right_red" type="button" onclick="loginCheck()">
 						<span>로그인</span>
 					</button>
@@ -56,7 +56,7 @@
 							<a href="/"><span>비밀번호 재설정</span></a>
 						</div>
 						<div>
-							<a href="/"><span>회원가입</span></a>
+							<a href="/register"><span>회원가입</span></a>
 						</div>
 					</div>
 				</form>
