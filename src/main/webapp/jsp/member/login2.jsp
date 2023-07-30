@@ -12,21 +12,21 @@
 
 <!-- CSS -->
 <title>로그인 어때</title>
-<link rel="stylesheet" href="../../resource/css/login.css">
-<!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
+<!-- <link rel="stylesheet" href="../../resource/css/login.css"> -->
+<link rel="stylesheet" href="../../resource/css/common.css">
 </head>
 <body>
 	<!-- Wrap -->
-	<div class="wrap">
+	<div class="wrap show">
 		<!-- Header -->
 		<header></header>
-		<div class="layer_fix login">
+		<div class="layer_fix layer_unfix pop_login pop_mem_reserve">
 			<section>
 				<form id="loginForm"
 					action="loginProc"
 					method="post">
 					<div class="fix_title">
-						<strong class="logo"><a href="/index">저기어때</a></strong>
+						<strong class="logo"><a href="/index">여기어때</a></strong>
 					</div>
 					<button type="button" id="kakao-login-btn" class="btn_start btn_kakao" data-device-type="W">
 						<span><i><img src="../../resource/img/kakao.png" alt="kakao" width="20" height="20" style="vertical-align: middle"></i>카카오톡으로 로그인</span>

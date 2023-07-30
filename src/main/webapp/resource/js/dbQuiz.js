@@ -54,8 +54,7 @@ function loginCheck(){
 	let password = document.getElementById('password');
 	const idError = document.getElementById('idError');
 	const pwError = document.getElementById('pwError');
-			alert('아이디는 필수 항목입니다.');
-			alert('비밀번호는 필수 항목입니다.');
+	
 	if(id.value == "" && password.value == ""){
 		idError.style.display = 'block';
 		pwError.style.display = 'block';
@@ -76,7 +75,8 @@ function loginCheck(){
 	}
 }
 /*
-
+			alert('아이디는 필수 항목입니다.');
+			alert('비밀번호는 필수 항목입니다.');
 function deleteCheck(){
 	let pw = document.getElementById('pw');
 	confirm = document.getElementById('confirm');

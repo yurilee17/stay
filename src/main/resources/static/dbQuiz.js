@@ -32,7 +32,7 @@ function pwCheck(){
 	// window.alert('pwCheck 호출')
 }
 
-*/
+
 function loginCheck(){
 	let id = document.getElementById('id');
 	let password = document.getElementById('password');
@@ -47,7 +47,6 @@ function loginCheck(){
 		loginForm.submit();
 	}
 }
-/*
 
 function deleteCheck(){
 	let pw = document.getElementById('pw');
