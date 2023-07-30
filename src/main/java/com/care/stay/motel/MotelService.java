@@ -14,5 +14,4 @@ public class MotelService {
 	public static void motelform(Model model) {
 
 	}
-
 }
