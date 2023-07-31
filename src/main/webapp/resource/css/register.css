@@ -115,16 +115,13 @@ label{cursor:pointer}
 	text-align: center;
 }
 
-.layer_fix .fix_title strong {
+.register .fix_title strong {
     font-size: 24px;
     font-weight: bold;
-}
-.layer_fix .fix_title strong {
     display: block;
-    /* font-size: 18px; */
     line-height: 44px;
-    /* font-weight: normal; */
 }
+
 /*폰 번호 입력*/
 .phone_confirm {
     margin-top: 16px;
@@ -148,12 +145,8 @@ label{cursor:pointer}
 .inp_wrap {
     border: 1px solid rgba(0,0,0,0.08);
     padding: 8px 14px 8px 16px;
-}
-.inp_wrap {
     position: relative;
-    /* border: 1px solid rgba(0,0,0,0.08); */
     height: 48px;
-    /* padding: 0 40px 0 10px; */
     border-radius: 4px;
 }
 
@@ -164,17 +157,8 @@ label{cursor:pointer}
     margin-top: 5px;
     font-size: 18px;
     color: rgba(0,0,0,0.56);
-}
-
-.inp_wrap input {
-    /* border: none; */
-    /* background: none; */
-    /* width: 100%; */
     height: 20px;
-    /* margin-top: 10px; */
-    /* font-size: 16px; */
     line-height: 1;
-    /* color: rgba(0,0,0,0.56); */
 }
 
 /*인증번호 전송 버튼*/
@@ -349,7 +333,7 @@ label{cursor:pointer}
     color: rgba(0,0,0,0.56);
 }
 
-.pop_login button {
+.register button {
     border: none;
 }
 
