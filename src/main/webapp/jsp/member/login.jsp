@@ -56,7 +56,7 @@
 							<a href="/"><span>비밀번호 재설정</span></a>
 						</div>
 						<div>
-							<a href="/register"><span>회원가입</span></a>
+							<a href="/phoneConfirm"><span>회원가입</span></a>
 						</div>
 					</div>
 				</form>
@@ -64,9 +64,7 @@
 		</div>
 		<!-- Footer -->
 		<footer></footer>
-
 	</div>
 	<!-- //Wrap -->
-
 </body>
 </html>

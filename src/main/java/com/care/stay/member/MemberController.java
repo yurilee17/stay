@@ -60,9 +60,13 @@ public class MemberController {
 		return "board/notice";
 	}
 	
+	@GetMapping("phoneConfirm")
+	public String phoneConfirm() {
+		return "member/phoneConfirm";
+	}
+	
 	@GetMapping("register")
 	public String register() {
 		return "member/register";
 	}
-	
 }
