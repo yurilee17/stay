@@ -25,7 +25,13 @@
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="canonical" href="#">
     <script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
-   
+    
+    <!-- 달력 외부 css -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  	 <script type="text/javascript" src="../../resource/js/hotel.js"></script>
 </head>
 
 
@@ -52,7 +58,7 @@
 <!-- Library -->
 <script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../resource/js/jquery.lazyload.js"></script>
-<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
+<!-- <script type="text/javascript" src="../../resource/js/iscroll.js"></script> -->
 
 <!-- Service -->
 <script type="text/javascript" src="../../resource/js/common.js"></script>
@@ -64,9 +70,9 @@
 <!-- Page Script -->
 <script type="text/javascript" src="../../resource/js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="../../resource/js/swiper.min.js"></script>
-<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
 <script type="text/javascript" src="../../resource/js/main.js"></script>
 <script type="text/javascript" src="../../resource/js/reservation.js"></script>
+
 
 
 
@@ -132,12 +138,16 @@
 				<!-- //Area -->
  	
  	 	<aside>
-                <!-- Filter -->
+ 
+    
+    	      <!--   Filter -->
 				<div class="filter_wrap">
 					<div class = "filter_box">
 					<section class="date_wrap">
 						<h3>날짜</h3><br>
 						<div class="btn_date">
+					
+					  <!--     일정 체크 (체크인 ~ 체크아웃) 
 					
 				<b><input type="date" name="startday" id="startday"></b>
 				<b>~</b>
@@ -154,8 +164,19 @@
 				    document.getElementById("endday").value = getTodayDate();
 				    document.getElementById("endday").setAttribute("min", getTodayDate());
 				    document.getElementById("endday").setAttribute("max", getThreeMonthsLaterDate());
-				  </script>
+				  </script> -->
 				  
+				 	
+									  
+				  
+				  	<!-- <input type='text' class="form-control linkedCalendars" placeholder="날짜 선택"/>
+					<span class="input-group-text calendar-icon">
+					<i data-feather="calendar" class="feather-sm"></i>
+					</span> -->
+					
+				<input type="text" id="demo" name="demo" value="" />
+					
+
 				
 						
 						<em>&nbsp;·&nbsp;1박!!!!!!!!!!!!!!!!</em>
