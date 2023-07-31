@@ -5,4 +5,25 @@
   
 <mapper namespace="com.care.stay.admin.AdminStayMapper">
 
+	<insert id="registerProc" parameterType="com.care.stay.motel.MotelDTO">
+		INSERT INTO motel (mcode, mname, mregion, mdetailregion, maddress, mimage, minfo) 
+		VALUES(code_value.NEXTVAL,,#{mname},#{mregion},#{mdetailregion},CONCAT(#{address}, ' ', #{detailAddress}),#{mimage},#{minfo})
+	</insert>
+	
+<!-- 	<insert id="registerProc" parameterType="com.care.stay.hotel.HotelDTO">
+		INSERT INTO motel VALUES(#{hcode},#{hname},#{hregion},#{hdetailregion},#{haddress},#{himage},#{hinfo})
+	</insert>
+	
+	<insert id="registerProc" parameterType="com.care.stay.pension.PensionDTO">
+		INSERT INTO motel VALUES(#{pcode},#{pname},#{pregion},#{pdetailregion},#{paddress},#{pimage},#{pinfo})
+	</insert>
+	
+	<insert id="registerProc" parameterType="com.care.stay.guesthouse.GuestHouseDTO">
+		INSERT INTO motel VALUES(#{gcode},#{gname},#{gregion},#{gdetailregion},#{gaddress},#{gimage},#{ginfo})
+	</insert>
+	
+	<insert id="registerProc" parameterType="com.care.stay.camping.CampingDTO">
+		INSERT INTO motel VALUES(#{ccode},#{cname},#{cregion},#{cdetailregion},#{caddress},#{cimage},#{cinfo})
+	</insert> -->
+
 </mapper>

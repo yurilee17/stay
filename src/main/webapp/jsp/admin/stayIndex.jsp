@@ -14,28 +14,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
  </head>
- 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	  function execDaumPostcode() {
-	      new daum.Postcode({
-	          oncomplete: function(data) {
-	          		if(data.userSelectedType === 'R') {
-	          			document.getElementById('address').value= data.roadAddress;
-	          		}else{
-	          			document.getElementById('address').value= data.jibunAddress;
-	          		}
-	          		document.getElementById('postcode').value= data.zonecode;
-						/* 				
-						console.log(data.userSelectedType)
-						console.log(data.roadAddress)
-						console.log(data.jibunAddress)
-						console.log(data.zonecode)
-						*/
-	          }
-	      }).open();
-	  }
-</script>
 
  <body>
 	<br>
@@ -46,8 +24,8 @@
 				<ul class="top_nav">
 					<li><a href="#">메인</a></li>
 					<li><a href="#">회원 DB 조회</a></li>
-					<li><a href="#">숙소 DB 등록</a></li>
-					<li><a href="#">숙소 DB 조회</a></li>
+					<li><a href="${context }stayReister">숙소 DB 등록</a></li>
+					<li><a href="${context }stayInfo">숙소 DB 조회</a></li>
 					<li><a href="#">예약 DB 조회</a></li>
 				</ul>
 			</div>
@@ -86,35 +64,61 @@
 						<tr>
 							<th>지역</th>
 							<td>	
-								<select class="form_w30" id="region">
-									<option>서울</option>
-									<option>경기/인천</option>
-									<option>충청/강원/제주</option>
-									<option>경남/경북</option>
-									<option>전남/전북</option>
+								<select class="form_w40" id="region" onchange="showSubMenu()">
+								  <option value="">지역을 선택하세요</option>
+								  <option value="Region">서울</option>
+								  <option value="Region2">경기/인천</option>
+								  <option value="Region3">충청/강원/제주</option>
+								  <option value="Region4">경남/경북</option>
+								  <option value="Region5">전남/전북</option>  
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<th>세부지역</th>
 							<td>
-								<select class="form_w45" id="detailregion">
-									<option>강동 강서 강남 강북</option>
-									<option>경기 인천</option>
-									<option>충청 강원 제주</option>
-									<option>경남 경북</option>
-									<option>전남 전북</option>
+								<select id="detailRegion" class="form_w40 subMenu right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="Region1_1">강동</option>
+								  <option value="Region1_2">강서</option>
+								  <option value="Region1_3">강남</option>
+								  <option value="Region1_4">강북</option>
 								</select>
-							</td>
+								
+								<select id="detailRegion2" class="form_w40 subMenu right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="Region2_1">경기</option>
+								  <option value="Region2_2">인천</option>
+								</select>
+								
+								<select id="detailRegion3" class="form_w40 subMenu right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="Region3_1">충청</option>
+								  <option value="Region3_2">강원</option>
+								  <option value="Region3_3">제주</option>
+								</select>
+								
+								<select id="detailRegion4" class="form_w40 subMenu right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="Region4_1">경남</option>
+								  <option value="Region4_2">경북</option>
+								</select>
+								
+								<select id="detailRegion5" class="form_w40 subMenu right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="Region5_1">전남</option>
+								  <option value="Region5_2">전북</option>
+								</select>
+							</td>																											
 						</tr>
 						<tr>
 							<th>우편번호 찾기</th>
-							<td><input type="text" id="postcode" class="form_w40" name="postcode" placeholder="우편번호">
+							<td><input type="text" id="postcode" class="form_w40" name="postcode" placeholder="우편번호" readonly>
 							<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td><input type="text" id="address" name="address" class="form_w80" placeholder="주소"></td>
+							<td><input type="text" id="address" name="address" class="form_w80" placeholder="주소" readonly></td>
 						</tr>
 						<tr>
 							<th>상세주소</th>
@@ -135,7 +139,7 @@
 
 			<div class="submit">
 				<ul>
-					<li><a href="location.href='stayregister'">등록</a></li>
+					<li><a href="#">등록</a></li>
 				</ul>
 			</div>
 			<!-- //등록 양식 -->

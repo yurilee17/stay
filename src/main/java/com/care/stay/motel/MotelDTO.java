@@ -9,6 +9,21 @@ public class MotelDTO {
 	private String mstayprice;
 	private Number mrating;
 	private String maddress;
+	private String mdetailAddress;
+	private String mtotalAddress;
+	
+	public String getMdetailAddress() {
+		return mdetailAddress;
+	}
+	public void setMdetailAddress(String mdetailAddress) {
+		this.mdetailAddress = mdetailAddress;
+	}
+	public String getMtotalAddress() {
+		return mtotalAddress;
+	}
+	public void setMtotalAddress(String mtotalAddress) {
+		this.mtotalAddress = mtotalAddress;
+	}
 	private String mimage;
 	private String minfo;
 	private String moption;
