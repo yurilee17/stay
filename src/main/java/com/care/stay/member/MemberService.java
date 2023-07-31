@@ -46,6 +46,6 @@ public class MemberService {
 			
 		}
 		
-		return "아이디/비밀번호를 확인 후 다시 시도하세요.";
+		return "실패";
 	}
 }

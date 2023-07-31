@@ -13,7 +13,7 @@
 <!-- CSS -->
 <title>로그인 어때</title>
 <link rel="stylesheet preload" href="../../resource/css/font.css"
-	as="style" type="text/css" crossorigin=""> 
+	as="style" type="text/css" crossorigin="">
 <link rel="stylesheet" href="../../resource/css/login.css">
 <!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
 </head>
@@ -24,31 +24,39 @@
 		<header></header>
 		<div class="login">
 			<section>
-				<form id="loginForm"
-					action="loginProc"
-					method="post">
+				<form id="loginForm" action="loginProc" method="post">
 					<div class="fix_title">
 						<strong class="logo"><a href="/index">저기어때</a></strong>
 					</div>
-					<button type="button" id="kakao-login-btn" class="btn_start btn_kakao" data-device-type="W">
-						<span><i><img src="../../resource/img/kakao.png" alt="kakao" width="20" height="20" style="vertical-align: middle"></i>카카오톡으로 로그인</span>
+					<button type="button" id="kakao-login-btn"
+						class="btn_start btn_kakao" data-device-type="W">
+						<span><i><img src="../../resource/img/kakao.png"
+								alt="kakao" width="20" height="20"
+								style="vertical-align: middle"></i>카카오톡으로 로그인</span>
 					</button>
 					<p class="space_or">
 						<span>또는</span>
 					</p>
-					<div class="inp_type_1 ico_email"> <!-- 선택 시 inp_focus 추가/에러 발생 시 inp_error 추가-->
-						<input type="email" name="id" placeholder="아이디" id="id">
-						<label id="idError" class="help-block" style="color: red; display:none;">아이디를 입력해 주세요.</label> 
-						<button type="button" class="reset_val">초기화</button> <!-- 입력 받으면 show 추가-->
+					<div class="inp_type_1 ico_email">
+						<!-- 선택 시 inp_focus 추가/에러 발생 시 inp_error 추가-->
+						<input type="email" name="id" placeholder="아이디" id="id"> <label
+							id="idError" class="help-block"
+							style="color: red; display: none;">아이디를 입력해 주세요.</label>
+						<button type="button" class="reset_val">초기화</button>
+						<!-- 입력 받으면 show 추가-->
 					</div>
-					
-					<div class="inp_type_1 ico_pw"> <!-- 선택 시 inp_focus 추가/에러 발생 시 inp_error 추가-->
-						<input type="password" name="password" placeholder="비밀번호" id="password">
-						<label id="pwError" class="help-block" style="color: red; display:none;">비밀번호를 입력해 주세요.</label>
-						<button type="button" class="reset_val">초기화</button> <!-- 입력 받으면 show 추가-->
+
+					<div class="inp_type_1 ico_pw">
+						<!-- 선택 시 inp_focus 추가/에러 발생 시 inp_error 추가-->
+						<input type="password" name="password" placeholder="비밀번호"
+							id="password"> <label id="pwError" class="help-block"
+							style="color: red; display: none;">비밀번호를 입력해 주세요.</label>
+						<button type="button" class="reset_val">초기화</button>
+						<!-- 입력 받으면 show 추가-->
 					</div>
-					
-					<button class="btn_link gra_left_right_red" type="button" onclick="loginCheck()">
+
+					<button class="btn_link gra_left_right_red" type="button"
+						onclick="loginCheck()">
 						<span>로그인</span>
 					</button>
 					<div class="link_half">
@@ -67,6 +75,6 @@
 	</div>
 	<!-- //Wrap -->
 	<script src="../../resource/js/login.js"></script>
-	
+
 </body>
 </html>

@@ -44,3 +44,7 @@ function loginCheck() {
 		loginForm.submit();
 	}
 }
+
+function showAlert(text) {
+    alert(text);
+}

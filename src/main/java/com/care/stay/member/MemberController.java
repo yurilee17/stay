@@ -2,6 +2,7 @@ package com.care.stay.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,13 +40,15 @@ public class MemberController {
 	}
 
 	@PostMapping("loginProc")
-	public String loginProc(MemberDTO member) {
+	public String loginProc(MemberDTO member, Model model) {
 		String result = service.loginProc(member);
 		if(result.equals("admin")) {
 			return "redirect:index?authority=admin&id="+member.getId();
 		}else if(result.equals("로그인 성공")) {
 			return "redirect:index?id="+member.getId();
 		}
+		model.addAttribute("alert", result);
+//		return "forward:login";
 		return "member/login";
 	}
 	
