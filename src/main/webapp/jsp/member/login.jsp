@@ -9,6 +9,7 @@
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
+<script src="../../resource/js/login.js"></script>
 <!-- <script src="../../resource/js/dbQuiz.js"></script> -->
 <!-- CSS -->
 <title>로그인 어때</title>
@@ -22,6 +23,9 @@
 	<div class="wrap">
 		<!-- Header -->
 		<header></header>
+		<script>
+			showAlert("${alert}");
+		</script>
 		<div class="login">
 			<section>
 				<form id="loginForm" action="loginProc" method="post">
@@ -29,7 +33,7 @@
 						<strong class="logo"><a href="/index">저기어때</a></strong>
 					</div>
 					<button type="button" id="kakao-login-btn"
-						class="btn_start btn_kakao" data-device-type="W">
+						class="btn_start btn_kakao" onclick="goToKakao()">
 						<span><i><img src="../../resource/img/kakao.png"
 								alt="kakao" width="20" height="20"
 								style="vertical-align: middle"></i>카카오톡으로 로그인</span>
@@ -74,7 +78,7 @@
 		<footer></footer>
 	</div>
 	<!-- //Wrap -->
-	<script src="../../resource/js/login.js"></script>
+
 
 </body>
 </html>

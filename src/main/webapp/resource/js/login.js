@@ -45,6 +45,14 @@ function loginCheck() {
 	}
 }
 
-function showAlert(text) {
-    alert(text);
+function showAlert(message) {
+	if (message === "실패") {
+		alert("아이디/비밀번호를 다시 확인하세요."); 
+	}
+}
+
+/*카카오톡 로그인*/
+function goToKakao() {
+	var urlToGo = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dca763bc3428cc888c8dba870629cb39&redirect_uri=http://localhost/kakaoLogin";
+	window.location.href = urlToGo;
 }

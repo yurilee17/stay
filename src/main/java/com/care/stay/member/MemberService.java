@@ -18,7 +18,6 @@ public class MemberService {
 		MemberDTO result = memberMapper.loginProc(member.getId());
 		
 		if(result != null) {
-			System.out.println("serv" + result.getAuthority());
 			if(result.getAuthority().equals("admin")) {
 				if(member.getPassword().equals(result.getPassword())) {
 					session.setAttribute("id", result.getId());

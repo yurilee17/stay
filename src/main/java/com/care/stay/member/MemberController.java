@@ -47,8 +47,8 @@ public class MemberController {
 		}else if(result.equals("로그인 성공")) {
 			return "redirect:index?id="+member.getId();
 		}
+		System.out.println(result);
 		model.addAttribute("alert", result);
-//		return "forward:login";
 		return "member/login";
 	}
 	
@@ -65,5 +65,12 @@ public class MemberController {
 	@GetMapping("register")
 	public String register() {
 		return "member/register";
+	}
+	
+	@Autowired private KakaoService kakao;
+	@GetMapping("kakaoLogin")
+	public void kakaoLogin(String code) {
+		System.out.println("code : " + code);
+		kakao.getAccessToken(code);
 	}
 }
