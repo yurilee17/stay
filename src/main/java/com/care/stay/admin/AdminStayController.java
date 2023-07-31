@@ -43,6 +43,11 @@ public class AdminStayController {
 	public String stayInfo() {
 		return "admin/stayInfo";
 	}
+	
+	@RequestMapping("stayIndex")
+	public String stayIndex() {
+		return "admin/stayIndex";
+	}
 
 //	@PostMapping("stayregisterProc")
 //	public String stayregisterProc(String stayType, MotelDTO motel, HotelDTO hotel, String confirm) {

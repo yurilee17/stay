@@ -58,6 +58,11 @@
 		    document.getElementById("detailRegion5").style.display = "block";
 		  }
 		}
+	  
+	    function submitForm() {
+	        var form = document.getElementById("stayForm");
+	        form.submit();
+	    }
 </script>
 
  <body>
@@ -69,7 +74,7 @@
 				<ul class="top_nav">
 					<li><a href="#">메인</a></li>
 					<li><a href="#">회원 DB 조회</a></li>
-					<li><a href="${context }stayReister">숙소 DB 등록</a></li>
+					<li><a href="${context }stayRegister">숙소 DB 등록</a></li>
 					<li><a href="${context }stayInfo">숙소 DB 조회</a></li>
 					<li><a href="#">예약 DB 조회</a></li>
 				</ul>
@@ -84,7 +89,7 @@
 
 			<!-- 등록 양식 -->
 			<div class="stay_register">
-				<form action="stayregisterProc" method="post" enctype="multipart/form-data">
+				<form id="stayregisterProc" action="stayregisterProc" method="post" enctype="multipart/form-data">
 					<table class="stay_table">
 						<colgroup>
 							<col width="25%"></col>
@@ -182,7 +187,7 @@
 					
 					<div class="submit">
 						<ul>
-							<li><a href="#">등록</a></li>
+							<li><a href="${context }stayIndex" onclick="submitForm()">등록</a></li>
 						</ul>
 					</div>
 					

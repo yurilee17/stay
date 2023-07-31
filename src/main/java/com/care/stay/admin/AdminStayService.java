@@ -22,6 +22,7 @@ public class AdminStayService {
 		motel.setMname(multi.getParameter("name"));
 		motel.setMregion(multi.getParameter("region"));
 		motel.setMdetailregion(multi.getParameter("detailregion"));
+		motel.setMinfo(multi.getParameter("info"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		if(motel.getMname() == null || motel.getMname().isEmpty()) {
