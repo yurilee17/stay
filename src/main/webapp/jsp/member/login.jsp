@@ -9,7 +9,6 @@
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
-<script src="../../resource/js/login.js"></script>
 <!-- <script src="../../resource/js/dbQuiz.js"></script> -->
 <!-- CSS -->
 <title>로그인 어때</title>
@@ -38,16 +37,14 @@
 						<span>또는</span>
 					</p>
 					<div class="inp_type_1 ico_email"> <!-- 선택 시 inp_focus 추가/에러 발생 시 inp_error 추가-->
-						<input type="email" name="id" placeholder="아이디"
-							class="required" data-msg-required="아이디를 입력해 주세요." id="id">
-						<label id="idError" class="help-block" for="id" style="color: red; display:none;">아이디를 입력해 주세요.</label> 
+						<input type="email" name="id" placeholder="아이디" id="id">
+						<label id="idError" class="help-block" style="color: red; display:none;">아이디를 입력해 주세요.</label> 
 						<button type="button" class="reset_val">초기화</button> <!-- 입력 받으면 show 추가-->
 					</div>
 					
 					<div class="inp_type_1 ico_pw"> <!-- 선택 시 inp_focus 추가/에러 발생 시 inp_error 추가-->
-						<input type="password" name="password" placeholder="비밀번호"
-							class="required" data-msg-required="비밀번호를 입력해 주세요." id="password">
-						<label id="pwError" class="help-block" for="password" style="color: red; display:none;">비밀번호를 입력해 주세요.</label>
+						<input type="password" name="password" placeholder="비밀번호" id="password">
+						<label id="pwError" class="help-block" style="color: red; display:none;">비밀번호를 입력해 주세요.</label>
 						<button type="button" class="reset_val">초기화</button> <!-- 입력 받으면 show 추가-->
 					</div>
 					
@@ -69,5 +66,7 @@
 		<footer></footer>
 	</div>
 	<!-- //Wrap -->
+	<script src="../../resource/js/login.js"></script>
+	
 </body>
 </html>

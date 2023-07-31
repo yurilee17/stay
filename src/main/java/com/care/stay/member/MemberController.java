@@ -37,20 +37,14 @@ public class MemberController {
 	public String login() {
 		return "member/login";
 	}
-	
-	@GetMapping("login2")
-	public String login2() {
-		return "member/login2";
-	}
 
 	@PostMapping("loginProc")
 	public String loginProc(MemberDTO member) {
-		String authority = member.getAuthority();
 		String result = service.loginProc(member);
 		if(result.equals("admin")) {
-			return "redirect:index?authority=admin";
+			return "redirect:index?authority=admin&id="+member.getId();
 		}else if(result.equals("로그인 성공")) {
-			return "redirect:index";
+			return "redirect:index?id="+member.getId();
 		}
 		return "member/login";
 	}

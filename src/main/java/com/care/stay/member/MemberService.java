@@ -15,14 +15,6 @@ public class MemberService {
 	@Autowired private HttpSession session;
 	
 	public String loginProc(MemberDTO member) {
-		if(member.getId() == null || member.getId().isEmpty()) {
-			return "아이디를 입력하세요.";
-		}
-		
-		if(member.getPassword() == null || member.getPassword().isEmpty()) {
-			return "비밀번호를 입력하세요.";
-		}
-		
 		MemberDTO result = memberMapper.loginProc(member.getId());
 		
 		if(result != null) {
