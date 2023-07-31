@@ -10,8 +10,7 @@ ul,ol,li{list-style:none}
 fieldset,img{border:0}
 a{text-decoration:none}
 address,caption,em,var{font-style:normal;font-weight:normal}
-textarea,button,input,select{appearance:none;-webkit-appearance:none;-moz-appearance:none;border-radius:0;font-family:'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;}
-button{padding:0;cursor:pointer}
+textarea,button,input,select{font-family:'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;}
 button:focus,button:active{padding: 0;}
 button span{position: relative;}
 select::-ms-expand{display:none}
@@ -194,7 +193,6 @@ label.label_radio{
 @media all and (min-width:1024px){
 	.select_type_1{height:48px;padding:0 12px;border:1px solid rgba(0,0,0,0.08);border-radius:4px;background:rgb(250,250,250) url('//image.goodchoice.kr/images/web_v3/ico_arr_down.png') right 10px top 50% no-repeat;background-size:25px auto;font-size:18px;color:rgba(0,0,0,0.56);cursor:pointer}
 }
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{-webkit-appearance: none;-moz-appearance: none;appearance: none;margin: 0;} /* Input number arrow remove*/
 
 /* Room - Radio (싱글) */
 input[type=checkbox].inp_room_01 {position:absolute;z-index:-1000;left:-1000px;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}

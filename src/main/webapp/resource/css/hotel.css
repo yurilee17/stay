@@ -8,11 +8,50 @@
 	width: 100%;
 	height: 211px;
 	background-color: #f7323f;
+	
 }
 
 #product > .Hheader > .area_wrap{
-	padding-left: 200px;
+	padding: 100px 0 0 200px;	
 }
+
+#product > .Hheader > .area_wrap > h3{
+	font-size: 35px;
+	color: #ffffff;
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+
+#product > .Hheader > .area_wrap > select > option {
+	color :#848484;
+}
+
+
+#product > .Hheader > .area_wrap > .menu-wrapper {
+  position: relative;
+  display: inline-block; /* 두 개의 셀렉트 박스를 가로로 나열 */
+}
+
+#product > .Hheader > .area_wrap > .menu-wrapper > .right-menu {
+  left: 100%;
+  right: auto;
+}
+
+/* 서브 메뉴 기본적으로 감추기 */
+.right-menu {
+  position: absolute;
+  top: 0;
+  display: none;
+}
+
+/* 마우스가 메뉴 항목 위에 올라갔을 때 서브 메뉴 표시 */
+#mainMenu:hover + .right-menu {
+  display: block;
+}
+
+
+
 
 #product > aside{
 	float: left;
@@ -25,11 +64,51 @@
 	border-width:2px;
   	border-style:solid;
   	border-color:#E6E6E6;
+  	padding:20px 0 0 35px;
 }
 
-#product > aside > .filter_wrap{
-	padding:20px 0 0 35px;
+
+#product > aside > .filter_wrap > .filter_box > .btn_date >  input{
+	
+	width: 120px !important;
+	height: 30px !important;
+	
 }
+
+#product > aside > .filter_wrap > .filter_box > .btn_wrap> button {
+	width:120px;
+	height:40px;
+	font-size: 15px;
+	border-width:1px;
+	border-color: #f2074c;
+	border-radius: 8%;
+	color: #f2074c;
+	background-color: #ffffff;
+	margin-right: 10px;
+	cursor:pointer;
+}
+
+#product > aside > .filter_wrap > .filter_box > .btn_wrap> button:nth-child(2){
+	background-color: #f2074c;
+	color: #ffffff;
+	cursor:pointer;
+}
+
+#product > aside > .filter_wrap > .filter_box > section > ul > li {
+	line-height: 30px;
+}
+
+/*인원*/
+#product > aside > .filter_wrap > .filter_box > section > .cnt_people > button{
+	border:0;
+	background-color: #ffffff;
+	color: #9c9c9c;
+	font-size: 30px;
+	padding: 0 20px;
+	vertical-align: middle;
+	cursor:pointer;
+}
+
 
 
 
@@ -68,7 +147,7 @@
 }
 
  #product > .right >  table {
-    width: 70%;
+    width: 1000px;
     height: 300px;
    	border-width:2px;
   	border-style:solid;
