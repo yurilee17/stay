@@ -1,25 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-
+	
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
     <title>test</title>
-   
     
-<link rel="stylesheet" href="../../resource/css/hotel.css">
-<link rel="stylesheet" href="../../resource/css/reset.css">
-
-</head>
-<body class="pc">
-
-    <!DOCTYPE html>
-<!-- saved from url=(0026)https://www.goodchoice.kr/ -->
-<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,17 +26,29 @@
     <link rel="canonical" href="#">
     <script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
     
-    </head>
+    <!-- 달력 외부 css -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  	 <script type="text/javascript" src="../../resource/js/hotel.js"></script>
+</head>
+
+
+
 <body class="pc">
+
 
 <!-- Wrap -->
 <div class="wrap main_wrap show">
 
     <!-- Header -->
-    	<c:import url="/header"/>
-        <!-- CSS -->
+    <c:import url="/header"/>
+    <!-- CSS -->
     <link rel="stylesheet" href="../../resource/css/swiper.css">
 	<link rel="stylesheet" href="../../resource/css/main.css">
+	<link rel="stylesheet" href="../../resource/css/reset.css">
+	<link rel="stylesheet" href="../../resource/css/hotel.css">
 
 </div>
 
@@ -55,7 +58,7 @@
 <!-- Library -->
 <script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../resource/js/jquery.lazyload.js"></script>
-<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
+<!-- <script type="text/javascript" src="../../resource/js/iscroll.js"></script> -->
 
 <!-- Service -->
 <script type="text/javascript" src="../../resource/js/common.js"></script>
@@ -67,114 +70,143 @@
 <!-- Page Script -->
 <script type="text/javascript" src="../../resource/js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="../../resource/js/swiper.min.js"></script>
-<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
 <script type="text/javascript" src="../../resource/js/main.js"></script>
 <script type="text/javascript" src="../../resource/js/reservation.js"></script>
+
+
+
 
 
 </body>
  <main id="product">
  
+
+ <!-- Area -->
  <!-- hotelheader -->
  
  <div class="Hheader">
+ 	 <div class="area_wrap ">
 				<h3>호텔·리조트</h3>
 				
- <!-- 지역필터 (리조트/캠핑/한옥 클래스추가 area_etc)-->
+ <!-- 지역필터 / 메인지역 -->
+<div class="menu-wrapper">
+  <select id="mainMenu" onchange="showSubMenu()">
+  <option value="">지역을 선택하세요</option>
+  <option value="Main1">서울</option>
+  <option value="Main2">경기/인천</option>
+  <option value="Main3">충청/강원/제주</option>
+  <option value="Main4">경남/경북</option>
+  <option value="Main5">전남/전북</option> 
+</select>
 
-         <div class="area_wrap ">
-             <div class="iscroll_01 depth_01">
-                 <div class="scroller">
-                    <ul class="city"><!-- 지역 고정 클래스 fix / 오버시 on -->
-                     <li>
-                        <a href="https://www.goodchoice.kr/product/search/2/2012" class="fix on">
-                            서울                        </a>
-                    </li>
-                     <li>
-                        <a href="https://www.goodchoice.kr/product/search/2/2061" >
-                            경기/인천                    </a>
-                    </li>
-                    <li>
-                        <a href="https://www.goodchoice.kr/product/search/2/2051" >
-                            충청/강원/제주                </a>
-                    </li>
-                   
-					<li>
-                        <a href="https://www.goodchoice.kr/product/search/2/2101" >
-                            경남/경북                        </a>
-                    </li>
-                                    <li>
-                        <a href="https://www.goodchoice.kr/product/search/2/2112" >
-                            전남/전북                        </a>
-                    </li>
-                    </ul>
-                  </div>
-              </div>
-              
-              <div class="iscroll_02">
-                            <div class="scroller">
-                                <ul class="city_child">
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2012" >강동</a></li>
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2019" >강서</a></li>
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2016" >강남</a></li>
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2014" >강북</a></li>
-                                </ul>
-                                
-                                <ul class="city_child">
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2041" >경기</a></li>
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2043" >인천</a></li>
-                              	</ul>
-                                
-                                <ul class="city_child">
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2051" >충청</a></li>
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2053" >강원</a></li>
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2054" >제주</a></li>
-                                </ul>
-                                
-                                <ul class="city_child">
-                               		<li><a href="https://www.goodchoice.kr/product/search/2/2081" >경남</a></li>
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2084" >경북</a></li>
-                                </ul>
-                                
-                                <ul class="city_child">
-                                	<li><a href="https://www.goodchoice.kr/product/search/2/2061" >전남</a></li>
-                               		<li><a href="https://www.goodchoice.kr/product/search/2/2062" >전북</a></li>
-                                </ul>                    
-							 </div>
-                        </div>
-                    </div>
+ <!-- 지역필터 / 서브지역 -->
+<select id="subMenu" class="subMenu right-menu" style="display: none;">
+  <option value="">상세지역을 선택하세요</option>
+  <option value="Main1_1">강동</option>
+  <option value="Main1_2">강서</option>
+  <option value="Main1_3">강남</option>
+  <option value="Main1_4">강북</option>
+</select>
 
-                </div>
-				<!-- //Area -->
+<select id="subMenu2" class="subMenu right-menu" style="display: none;">
+  <option value="">상세지역을 선택하세요</option>
+  <option value="Main2_1">경기</option>
+  <option value="Main2_2">인천</option>
+</select>
 
- 
- 	
- 	
+<select id="subMenu3" class="subMenu right-menu" style="display: none;">
+  <option value="">상세지역을 선택하세요</option>
+  <option value="Main3_1">충청</option>
+  <option value="Main3_2">강원</option>
+  <option value="Main3_3">제주</option>
+</select>
+
+<select id="subMenu4" class="subMenu right-menu" style="display: none;">
+  <option value="">상세지역을 선택하세요</option>
+  <option value="Main4_1">경남</option>
+  <option value="Main4_2">경북</option>
+</select>
+
+<select id="subMenu5" class="subMenu right-menu" style="display: none;">
+  <option value="">상세지역을 선택하세요</option>
+  <option value="Main5_1">전남</option>
+  <option value="Main5_2">전북</option>
+</select>
+</div>
+
+	</div>
+</div>
+<!-- //Area -->
+<!-- //hotelheader -->
  	
  	 	<aside>
-                <!-- Filter -->
+ 
+    
+    	      <!--   Filter -->
 				<div class="filter_wrap">
-					<div class = filter_box">
+					<div class = "filter_box">
 					<section class="date_wrap">
-						<h3>날짜</h3>
+						<h3>날짜</h3><br>
 						<div class="btn_date">
-						<span class="date_view">
-				!!!!!!!!<b>날짜</b>
-						<em>&nbsp;·&nbsp;1박</em>
-						</span>
-				!!!!!!!!아이콘 애프터
-						</div>
-					</section>
+					
 
-					<h3>상세조건</h3>
+				<input type="text" id="calendars" name="calendars" value="" />
+				
+				
+			<script>
+
+				$(function () {
+	         	   $('#calendars').daterangepicker({
+	         		  "maxSpan": {"days": 7 },
+	                "locale": {
+	                    "format": "YYYY-MM-DD",
+	                    "separator": " ~ ",
+	                    "applyLabel": "확인",
+	                    "cancelLabel": "취소",
+	                    "fromLabel": "From",
+	                    "toLabel": "To",
+	                    "customRangeLabel": "Custom",
+	                    "weekLabel": "W",
+	                    "daysOfWeek": ["일","월", "화", "수", "목", "금", "토" ],
+	                    "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+	                    "firstDay": 1
+		                },
+		               	"minDate":  new Date(),
+		                "maxDate": moment().add(3, 'months').toDate(), 
+		                "startDate": new Date(),
+		                "endDate":new Date(),
+		                "drops": "down"
+			            }, function (start, end, label) {
+			                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+	          		  });
+	         	   
+	         	   // css 변경가능 
+	         	  $("#calendars").on('show.daterangepicker', function (ev, picker) {
+	         		   /*  $(".cancelBtn").css("float", "right"); */
+	         		});
+
+	         	   
+	       		 });
+				
+				</script>	
+					
+
+				
+						
+						<em>&nbsp;·&nbsp;1박!!!!!!!!!!!!!!!!</em>
+						</div> 
+					</section><br>
+
+
+					<h3>상세조건</h3><br>
 					<div class="btn_wrap">
 						<button type="button" onclick="localhost:/hotellist">초기화</button>
 						<button type="submit">적용</button>
 					</div>
 					<br>
                     	
-                    	<section>
-                    		<strong>호텔·리조트 유형</strong>
+                    	<section><br>
+                    		<strong>호텔·리조트 유형</strong><br><br>
                     	<ul>
                     		<li>
                     			<input type="checkbox" id="grade_0" name="grade[]"  class="inp_chk" value="STAR5" />
@@ -189,21 +221,20 @@
                     			<label for="grade_2" class="label_chk">특급</label>
                     		</li>
                     	</ul>
-                    	</section>
+                    	</section><br>
                     	
                     	<section>
                     		<input type="hidden" id="persons" name="persons" value="">
-                    		<strong>인원</strong>
+                    		<strong>인원</strong><br><br>
                     		<div class="cnt_people" data-min="2" data-max="10" data-def="2">                    		
-                    			<button type="button" class="disable dn">-</button>
+                    			<button type="button" class="down">-</button>
                     			<span>2</span>
                     			<button type="button" class=" up">+</button>
                     		</div>
-                    		<br>
-                    	</section>
+                    	</section><br>
                     	
                     	<section>
-                    		<strong>베드 타입</strong>
+                    		<strong>베드 타입</strong><br><br>
                     		<div class="room_type">
                     			<p><input type="checkbox" class="inp_room_01" name="bed_type[0]" id="bed_type_S" value="S" />
                     			<label for="bed_type_S" class="label_room_01">싱글</label></p>
@@ -214,14 +245,13 @@
                     			<p><input type="checkbox" class="inp_room_04" name="bed_type[3]" id="bed_type_O" value="O" />
                     			<label for="bed_type_O" class="label_room_04">온돌</label></p>
                     		</div>
-                    		</section>
+                    		</section><br>
                     		
                     		<section>
-                    			<strong>공용시설</strong>
+                    			<strong>공용시설</strong><br><br>
                     			<ul class="hide_type half">
                     				<li> <input type="checkbox" id="tmino_0" name="tmino[]"  class="inp_chk" value="41" />
-                    					<label for="tmino_0" class="label_chk">피트니스</label>
-                    				</li>
+                    					<label for="tmino_0" class="label_chk">피트니스</label></li>
                     				<li> <input type="checkbox" id="tmino_1" name="tmino[]"  class="inp_chk" value="42" />
                     					<label for="tmino_1" class="label_chk">수영장</label></li>
                     				<li> <input type="checkbox" id="tmino_2" name="tmino[]"  class="inp_chk" value="44" />
@@ -229,10 +259,10 @@
                     				<li><input type="checkbox" id="tmino_3" name="tmino[]"  class="inp_chk" value="45" />
                     					<label for="tmino_3" class="label_chk">골프장</label></li>
                     			</ul>
-                    		</section>
+                    		</section><br>
                     		
                     		<section>
-                    			<strong>객실 내 시설</strong>
+                    			<strong>객실 내 시설</strong><br><br>
                     			<ul class="hide_type half">
                     				<li> <input type="checkbox" id="tmino_24" name="tmino[]"  class="inp_chk" value="43" />
                     					<label for="tmino_24" class="label_chk">객실스파</label></li>
@@ -243,10 +273,10 @@
                     				<li><input type="checkbox" id="tmino_27" name="tmino[]"  class="inp_chk" value="49" />
                     					<label for="tmino_27" class="label_chk">욕실용품</label></li>
                     			</ul>
-                    		</section>
+                    		</section><br>
                     		
                     		<section>
-                    			<strong>기타</strong>
+                    			<strong>기타</strong><br><br>
                     			<ul class="hide_type half">
                     				<li><input type="checkbox" id="tmino_36" name="tmino[]"  class="inp_chk" value="54" />
                     					<label for="tmino_36" class="label_chk">반려견동반</label></li>
@@ -257,7 +287,7 @@
                     				<li><input type="checkbox" id="tmino_39" name="tmino[]"  class="inp_chk" value="53" />
                     					<label for="tmino_39" class="label_chk">발렛파킹</label></li>
                     			</ul>
-                    		</section>				
+                    		</section><br><br>				
                     	</div>			
                    </div>
 				<!-- //Filter -->
@@ -285,22 +315,22 @@
             <%   for(int i =0; i<5; i++){     %>
                 <table>
                 	<tr>
-                        <td><a href="#" class="thumb">
-                            <img src="	https://via.placeholder.com/280x300" alt="상품이미지">
+                        <td  width="270px" height="250px"><a href="#" class="thumb">
+                            <img src="	https://via.placeholder.com/230x250" alt="상품이미지">
                         </a></td>
                         <td>
-                            <h3 class="name">호텔명</h3>
-                            <p>호텔간략설명</p>
+                            <h2 class="name">호텔 인 강남</h2>
+                            <p>강남구</p>
                            	<br>
-                           	<span>별점</span>
+                           	<span>*****</span>
                         </td>
                         <td>
                             <ul>
-                            	<li>
+                            <!-- 	<li>
                                     <del class="org-price">30,000</del>
                                     <span class="discount">10%</span>
-                                </li>
-                                <li><ins class="dis-price">27,000</ins></li>
+                                </li> -->
+                                <li class="dis-price">27,000</li>
                                 
                                 
                             </ul>

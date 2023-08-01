@@ -1,5 +1,18 @@
 /* 상품목록 */
 
+
+input[type="text"]{width:250px; height:35px; border:1px solid #ddd; padding:0 20px; box-sizing:border-box; -webkit-box-sizing:border-box; font-size:16px; color:#222;}
+input[type="text"]::-webkit-input-placeholder {color:#7e7c7c;}
+input[type="text"]:-input-placeholder {color:#7e7c7c;}
+input[type="text"]:-ms-input-placeholder {color:#7e7c7c;}
+input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #f7323f;
+  border-color: transparent;
+  color: #fff;
+}
+
 #product{
 	overflow: hidden;
 }
@@ -147,11 +160,35 @@
 }
 
  #product > .right >  table {
-    width: 1000px;
-    height: 300px;
-   	border-width:2px;
+    width: 800px;
+    height: 250px;
+  	margin-bottom: 10px;
+}
+
+
+ #product > .right > table> tbody> tr {
+    border-width:2px;
   	border-style:solid;
   	border-color:#E6E6E6;
-  	margin-bottom: 10px;
   	padding-left: 50px;
+  	font-size: 20px;
 }
+
+ #product > .right > table> tbody> tr > td:nth-child(2) {
+   padding-bottom:40px;
+   line-height: 145%;
+ 
+}
+
+ #product > .right > table> tbody> tr > td:nth-child(2) > h2 {
+   margin-bottom:10px;
+   font-size:30px;
+}
+
+ #product > .right > table> tbody> tr > td:nth-child(3) {
+   text-align: right;
+   padding-top:120px;
+   padding-right: 60px;
+   line-height: 145%;
+}
+
