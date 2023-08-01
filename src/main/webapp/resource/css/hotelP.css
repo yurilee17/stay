@@ -1,0 +1,91 @@
+/* 상품목록 */
+
+
+input[type="text"]{width:250px; height:35px; border:1px solid #ddd; padding:0 20px; box-sizing:border-box; -webkit-box-sizing:border-box; font-size:16px; color:#222;}
+input[type="text"]::-webkit-input-placeholder {color:#7e7c7c;}
+input[type="text"]:-input-placeholder {color:#7e7c7c;}
+input[type="text"]:-ms-input-placeholder {color:#7e7c7c;}
+input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #f7323f;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pc > .visual{
+	margin: 0 auto;
+}
+
+
+.pc > .visual .hpTop{
+	width: 1024px;
+	height: 450px;
+	padding: 150px 0 0 319px;
+}
+
+.pc > .visual > .hpTop > .hpTLeft,
+.pc > .visual > .hpTop > .hpTRight{
+	overflow:hidden;
+	line-height: 200%;
+}
+
+.pc > .visual > .hpTop  > .hpTLeft {
+	float:left;
+	width:45%;
+	
+}
+
+.pc > .visual > .hpTop  > .hpTRight{
+	float:right;
+	width:45%;
+}
+
+.pc > .visual .hpNav{
+	width: 1024px;
+	height: 55px;
+	margin: 0 0 0 319px;
+	border-bottom:1px solid #c4c4c4;
+}
+
+
+/* 아래는 hpNav detail  */
+
+.hpNav .inner ul{
+	overflow:hidden;
+	position:relative;
+}
+.hpNav .inner ul li{
+	float:left; 
+	padding-left:40px;
+}
+
+.hpNav > .inner > .hpInner > li > a{
+	display:block; 
+	height:55px; 
+	line-height:55px; 
+	font-size:15px; 
+	color:#111; 
+	padding:0 10px;
+}
+
+
+.hpNav .inner ul li a:hover{
+	font-weight:700; 
+	color: #f2074c;
+	border-bottom:2px solid#f2074c;
+}
+.hpNav .inner ul li a.selected{
+	font-weight:700; 
+	color: #f2074c;
+	border-bottom:2px solid#f2074c;
+}
+
+
+
+
+
+
+
+
+

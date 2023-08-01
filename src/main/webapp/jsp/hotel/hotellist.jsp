@@ -52,13 +52,13 @@
 
 </div>
 
-<!-- //Wrap -->
+<!-- //Wrap   여기에서 검색버튼빼고 지우는게 좋겠지?  -->
 
 <!-- Script -->
 <!-- Library -->
 <script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../resource/js/jquery.lazyload.js"></script>
-<!-- <script type="text/javascript" src="../../resource/js/iscroll.js"></script> -->
+<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
 
 <!-- Service -->
 <script type="text/javascript" src="../../resource/js/common.js"></script>
@@ -70,14 +70,13 @@
 <!-- Page Script -->
 <script type="text/javascript" src="../../resource/js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="../../resource/js/swiper.min.js"></script>
+<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
 <script type="text/javascript" src="../../resource/js/main.js"></script>
 <script type="text/javascript" src="../../resource/js/reservation.js"></script>
 
 
 
 
-
-</body>
  <main id="product">
  
 
@@ -139,10 +138,9 @@
 <!-- //Area -->
 <!-- //hotelheader -->
  	
+ 	 	
  	 	<aside>
- 
-    
-    	      <!--   Filter -->
+ 			  <!--   Filter -->
 				<div class="filter_wrap">
 					<div class = "filter_box">
 					<section class="date_wrap">

@@ -22,6 +22,23 @@ function showSubMenu() {
 }
 
 
+/*// 선택되었을때 배경색과 폰트색 변경되는 js 
+  const hpInner = document.querySelector('.hpInner');
+ 
+        function select(ulEl, liEl){
+            Array.from(ulEl.children).forEach(
+                v => v.classList.remove('selected')
+            )
+            if(liEl) liEl.classList.add('selected');
+        }
+ 
+        hpInner.addEventListener('click', e => {
+            const selected = e.target;
+            select(hpInner, selected);
+        })
+
+
+*/
     
     
     

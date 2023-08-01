@@ -7,17 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Hotelcontroller {
 
 	@RequestMapping("hotellist")
-	public String index() {
+	public String hotellist() {
 		return "hotel/hotellist";
 	}
 	
-	@RequestMapping("hotellistT")
-	public String index1() {
-		return "hotel/hotellistT";
+	@RequestMapping("hotelpage")
+	public String hotelpage() {
+		return "hotel/hotelpage";
 	}
-	@RequestMapping("hotellistT2")
-	public String index2() {
-		return "hotel/hotellistT2";
-	}
-
 }
