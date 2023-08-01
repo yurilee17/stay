@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="com.care.stay.motel.MotelDTO" %>    
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -35,6 +37,24 @@
 			<h2>숙소 등록과 관리가 가능한 관리자 페이지입니다.</h2>
 			<p>숙소의 종류와 가격, 수량, 설명, 세부사항 등을 관리하실 수 있습니다.</p>
 			<!-- 설명 -->
+			<br>
+			<br>						
+			<select class="form_w30" name="stayType" id="stayType">
+				<option value="모텔">모텔</option>
+				<option value="호텔·리조트">호텔·리조트</option>
+				<option value="펜션">펜션</option>
+				<option value="게스트하우스">게스트하우스</option>												
+				<option value="캠핑·글램핑">캠핑·글램핑</option>				
+			</select>
+			<br>
+			<br>						
+		<c:choose>
+			<c:when test="${empty motels }">
+				<h3> 등록된 숙소 DB가 없습니다. </h3>
+			</c:when>
+			<br>
+			<br>						
+			<c:otherwise>
 			<table class="db_search">
 				<colgroup>
 					<col width="30%"></col>
@@ -48,39 +68,21 @@
 					<th>지역</th>
 					<th>주소</th>
 				</tr>
-				<tr onclick="location.href='#'" style="cursor:hand">
-					<td>명동 A호텔</td>
-					<td>호텔</td>
-					<td>서울 강북</td>
-					<td>서울시 중구 퇴계로</td>
-					</a>
-				</tr>
-				<tr onclick="location.href='#'" style="cursor:hand">
-					<td>명동 A호텔</td>
-					<td>호텔</td>
-					<td>서울 강북</td>
-					<td>서울시 중구 퇴계로</td>
-					</a>
-				</tr>
-				<tr onclick="location.href='#'" style="cursor:hand">
-					<td>명동 A호텔</td>
-					<td>호텔</td>
-					<td>서울 강북</td>
-					<td>서울시 중구 퇴계로</td>
-					</a>
-				</tr>
-				<tr onclick="location.href='#'" style="cursor:hand">
-					<td>명동 A호텔</td>
-					<td>호텔</td>
-					<td>서울 강북</td>
-					<td>서울시 중구 퇴계로</td>
-					</a>
-				</tr>
+				
+				<c:forEach var="motel" items="${ motels}">
+					<tr onclick="location.href='#'" style="cursor:hand">
+						<td>${motel.mname }</td>
+						<td>모텔</td>
+						<td>${motel.mregion }</td>
+						<td>${motel.maddress }</td>
+					</tr>
+				</c:forEach>
 			</table>
-			
+			</c:otherwise>
+		</c:choose>	
 			<div class="submit">
 				<ul>
-					<li><a href="#">숙소 등록하기</a></li>
+					<li><a href="${context }stayRegister">숙소 등록하기</a></li>
 				</ul>
 			</div>
 		</div>

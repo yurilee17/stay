@@ -46,23 +46,20 @@
 		  }
 
 		  // 선택된 값에 따라 해당 서브 메뉴 표시
-		  if (region.value === "Region1") {
+		  if (region.value === "서울") {
 		    document.getElementById("detailRegion").style.display = "block";
-		  } else if (region.value === "Region2") {
+		  } else if (region.value === "경기/인천") {
 		    document.getElementById("detailRegion2").style.display = "block";
-		  } else if (region.value === "Region3") {
+		  } else if (region.value === "충청/강원/제주") {
 		    document.getElementById("detailRegion3").style.display = "block";
-		  } else if (region.value === "Region4") {
+		  } else if (region.value === "경남/경북") {
 		    document.getElementById("detailRegion4").style.display = "block";
-		  } else if (region.value === "Region5") {
+		  } else if (region.value === "전남/전북") {
 		    document.getElementById("detailRegion5").style.display = "block";
 		  }
 		}
 	  
-	    function submitForm() {
-	        var form = document.getElementById("stayForm");
-	        form.submit();
-	    }
+	   
 </script>
 
  <body>
@@ -89,7 +86,7 @@
 
 			<!-- 등록 양식 -->
 			<div class="stay_register">
-				<form id="stayregisterProc" action="stayregisterProc" method="post" enctype="multipart/form-data">
+				<form id="stayForm" action="stayregisterProc" method="post" enctype="multipart/form-data">
 					<table class="stay_table">
 						<colgroup>
 							<col width="25%"></col>
@@ -97,12 +94,12 @@
 						</colgroup>
 						<tr>
 							<th>숙소 이름</th>
-							<td><input type="text" class="form_w65" id="name"></td>
+							<td><input type="text" class="form_w65" name="name" id="name"></td>
 						</tr>
 						<tr>
 							<th>종류</th>
 							<td>	
-								<select class="form_w30">
+								<select class="form_w30" name="stayType" id="stayType">
 									<option>모텔</option>
 									<option>호텔·리조트</option>
 									<option>펜션</option>
@@ -112,52 +109,59 @@
 							</td>
 						</tr>
 						<tr>
+							<th>숙소 코드</th>
+							<td>	
+								<input type="text" class="form_w40" name="code" id="code">
+							</td>
+						</tr>
+						
+						<tr>
 							<th>지역</th>
 							<td>	
-								<select class="form_w40" id="region" onchange="showSubMenu()">
+								<select class="form_w40" name="region" id="region" onchange="showSubMenu()">
 								  <option value="">지역을 선택하세요</option>
-								  <option value="Region1">서울</option>
-								  <option value="Region2">경기/인천</option>
-								  <option value="Region3">충청/강원/제주</option>
-								  <option value="Region4">경남/경북</option>
-								  <option value="Region5">전남/전북</option>  
+								  <option value="서울">서울</option>
+								  <option value="경기/인천">경기/인천</option>
+								  <option value="충청/강원/제주">충청/강원/제주</option>
+								  <option value="경남/경북">경남/경북</option>
+								  <option value="전남/전북">전남/전북</option>  
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<th>세부지역</th>
 							<td>
-								<select id="detailRegion" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailRegion" name="detailRegion" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
-								  <option value="Region1_1">강동</option>
-								  <option value="Region1_2">강서</option>
-								  <option value="Region1_3">강남</option>
-								  <option value="Region1_4">강북</option>
+								  <option value="강동">강동</option>
+								  <option value="강서">강서</option>
+								  <option value="강남">강남</option>
+								  <option value="강북">강북</option>
 								</select>
 								
-								<select id="detailRegion2" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailRegion2" name="detailRegion" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
-								  <option value="Region2_1">경기</option>
-								  <option value="Region2_2">인천</option>
+								  <option value="경기">경기</option>
+								  <option value="인천">인천</option>
 								</select>
 								
-								<select id="detailRegion3" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailRegion3" name="detailRegion" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
-								  <option value="Region3_1">충청</option>
-								  <option value="Region3_2">강원</option>
-								  <option value="Region3_3">제주</option>
+								  <option value="충청">충청</option>
+								  <option value="강원">강원</option>
+								  <option value="제주">제주</option>
 								</select>
 								
-								<select id="detailRegion4" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailRegion4" name="detailRegion" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
-								  <option value="Region4_1">경남</option>
-								  <option value="Region4_2">경북</option>
+								  <option value="경남">경남</option>
+								  <option value="경북">경북</option>
 								</select>
 								
-								<select id="detailRegion5" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailRegion5" name="detailRegion" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
-								  <option value="Region5_1">전남</option>
-								  <option value="Region5_2">전북</option>
+								  <option value="전남">전남</option>
+								  <option value="전북">전북</option>
 								</select>
 							</td>																											
 						</tr>
@@ -172,22 +176,23 @@
 						</tr>
 						<tr>
 							<th>상세주소</th>
-							<td><input type="text" class="form_w50" placeholder="" id="detailAddress"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress"></td>
 						</tr>
 						<tr>
 							<th>이미지 업로드</th>
-							<td><input type="file" name="imageupload" ></td>
+							<td><input type="file" name="imageupload" id="imageupload" ></td>
 						</tr>
 						<tr>
 							<th>숙소정보</th>
-							<td><textarea rows="4" cols="50" id="info"></textarea></td>
+							<td><textarea rows="4" cols="50" id="info" name="info"></textarea></td>
 						</tr>
 
 					</table>
 					
-					<div class="submit">
+					<div>
 						<ul>
-							<li><a href="${context }stayIndex" onclick="submitForm()">등록</a></li>
+<%-- 							<li><a href="${context }stayIndex" onclick="submitForm()">등록</a></li> --%>
+							<li><input type="submit" value="등록"></li>
 						</ul>
 					</div>
 					

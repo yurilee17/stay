@@ -13,33 +13,42 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.care.stay.hotel.HotelDTO;
 import com.care.stay.motel.MotelDTO;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class AdminStayService {
 	@Autowired private AdminStayMapper adminStayMapper;
+	@Autowired private HttpSession session;
 	
 	public String stayregisterProc(MultipartHttpServletRequest multi) {
 		MotelDTO motel = new MotelDTO();
+		motel.setMcode(multi.getParameter("code"));
 		motel.setMname(multi.getParameter("name"));
 		motel.setMregion(multi.getParameter("region"));
-		motel.setMdetailregion(multi.getParameter("detailregion"));
+		motel.setMdetailregion(multi.getParameter("detailRegion"));
 		motel.setMinfo(multi.getParameter("info"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
+		/*밑에꺼 주석 풀면 submit가 안되고 자꾸 redirect됨*/
 		
-		if(motel.getMname() == null || motel.getMname().isEmpty()) {
-			return "숙소 이름을 입력하세요.";
-		}
-		if(motel.getMregion() == null || motel.getMregion().isEmpty()) {
-			return "지역을 선택하세요.";
-		}
-		if(motel.getMdetailregion() == null || motel.getMdetailregion().isEmpty()) {
-			return "세부지역을 선택하세요.";
-		}		
-		if(motel.getMaddress() == null || motel.getMaddress().isEmpty()) {
-			return "주소를 입력하세요.";
-		}
-		if(motel.getMdetailAddress() == null || motel.getMdetailAddress().isEmpty()) {
-			return "상세주소를 입력하세요.";
-		}
+//		if(motel.getMcode() == null || motel.getMcode().isEmpty()) {
+//			return "코드를 정확하게 입력하세요.";
+//		}
+//		if(motel.getMname() == null || motel.getMname().isEmpty()) {
+//			return "숙소 이름을 입력하세요.";
+//		}
+//		if(motel.getMregion() == null || motel.getMregion().isEmpty()) {
+//			return "지역을 선택하세요.";
+//		}
+//		if(motel.getMdetailregion() == null || motel.getMdetailregion().isEmpty()) {
+//			return "세부지역을 선택하세요.";
+//		}		
+//		if(motel.getMaddress() == null || motel.getMaddress().isEmpty()) {
+//			return "주소를 입력하세요.";
+//		}
+//		if(motel.getMdetailAddress() == null || motel.getMdetailAddress().isEmpty()) {
+//			return "상세주소를 입력하세요.";
+//		}
 		
 		motel.setMimage("");
 		MultipartFile file = multi.getFile("imageupload");
@@ -63,7 +72,7 @@ public class AdminStayService {
 			}
 		}
 		
-		adminStayMapper.stayRegisterProc(motel);
+		adminStayMapper.stayregisterProc(motel);
 		return "게시글 작성 완료";
 		
 	}
@@ -111,10 +120,4 @@ public class AdminStayService {
 //		
 //		return null;
 //	}
-
-	public String stayregisterProc(HotelDTO hotel, String confirm) {
-		
-		return null;
-	}
-
 }

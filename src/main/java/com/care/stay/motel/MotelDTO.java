@@ -7,10 +7,11 @@ public class MotelDTO {
 	private String mdetailregion;
 	private String mdaesilprice;
 	private String mstayprice;
-	private Number mrating;
+	private int mrating;
 	private String maddress;
 	private String mdetailAddress;
-	private String mtotalAddress;
+	private String mimage;
+	private String minfo;
 	
 	public String getMdetailAddress() {
 		return mdetailAddress;
@@ -18,15 +19,6 @@ public class MotelDTO {
 	public void setMdetailAddress(String mdetailAddress) {
 		this.mdetailAddress = mdetailAddress;
 	}
-	public String getMtotalAddress() {
-		return mtotalAddress;
-	}
-	public void setMtotalAddress(String mtotalAddress) {
-		this.mtotalAddress = mtotalAddress;
-	}
-	private String mimage;
-	private String minfo;
-	private String moption;
 	
 	public String getMcode() {
 		return mcode;
@@ -67,7 +59,7 @@ public class MotelDTO {
 	public Number getMrating() {
 		return mrating;
 	}
-	public void setMrating(Number mrating) {
+	public void setMrating(int mrating) {
 		this.mrating = mrating;
 	}
 	public String getMaddress() {
@@ -88,10 +80,5 @@ public class MotelDTO {
 	public void setMinfo(String minfo) {
 		this.minfo = minfo;
 	}
-	public String getMoption() {
-		return moption;
-	}
-	public void setMoption(String moption) {
-		this.moption = moption;
-	}
+
 }

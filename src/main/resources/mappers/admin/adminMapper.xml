@@ -6,8 +6,7 @@
 <mapper namespace="com.care.stay.admin.AdminStayMapper">
 
 	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
-		INSERT INTO motel (mcode, mname, mregion, mdetailregion, maddress, mimage, minfo) 
-		VALUES(code_value.NEXTVAL, #{mname}, #{mregion}, #{mdetailregion}, CONCAT(#{address}, ' ', #{detailAddress}), #{mimage}, #{minfo})
+		INSERT INTO motel VALUES(#{mcode}, #{mname}, #{mregion}, #{mdetailregion}, '0', '0', '0', #{maddress}, #{mdetailAddress}, #{mimage}, #{minfo})
 	</insert>
 	
 <!-- 	<insert id="registerProc" parameterType="com.care.stay.hotel.HotelDTO">
