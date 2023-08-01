@@ -52,25 +52,47 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@RequestMapping("notice")
-	public String notice() {
-		return "board/notice";
-	}
-	
+	/*문자 인증*/
+	@Autowired private PhoneConfirmService phone;
 	@GetMapping("phoneConfirm")
 	public String phoneConfirm() {
 		return "member/phoneConfirm";
 	}
+	
+	@GetMapping("phoneConfirmProc")
+	public String phoneConfirmProc() {
+		return "member/phoneConfirm";
+	}
+	
+	
 	
 	@GetMapping("register")
 	public String register() {
 		return "member/register";
 	}
 	
+	/*카카오톡으로 회원가입 로그인 진입*/
 	@Autowired private KakaoService kakao;
 	@GetMapping("kakaoLogin")
-	public void kakaoLogin(String code) {
+	public String kakaoLogin(String code, Model model) {
 		System.out.println("code : " + code);
 		kakao.getAccessToken(code);
+		MemberDTO member = kakao.getUserInfo();
+		String result = service.loginProc(member);
+		if(result.equals("실패")) {
+			model.addAttribute("account_id",member.getId());
+			System.out.println(member.getId());
+			return "redirect:register";
+		}else {
+			System.out.println(member.getId());
+			return "redirect:index?id="+member.getId();
+		}
+		
+	}
+	
+	@GetMapping("kakaoLogout")
+	public String kakaoLogout() {
+		kakao.unLink();
+		return "redirect:index";
 	}
 }
