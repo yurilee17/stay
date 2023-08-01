@@ -3,13 +3,16 @@ package com.care.stay.admin;
 import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.care.stay.common.PageService;
 import com.care.stay.hotel.HotelDTO;
 import com.care.stay.motel.MotelDTO;
 
@@ -75,6 +78,28 @@ public class AdminStayService {
 		adminStayMapper.stayregisterProc(motel);
 		return "게시글 작성 완료";
 		
+	}
+
+	public void stayInfo(String cp, Model model) {
+		int currentPage = 1;
+		try{
+			currentPage = Integer.parseInt(cp);
+		}catch(Exception e){
+			currentPage = 1;
+		}
+		
+		int pageBlock = 10;
+		int end = pageBlock * currentPage;
+		int begin = end - pageBlock + 1;
+		
+		ArrayList<MotelDTO> motels = adminStayMapper.stayInfo(begin, end);
+		int totalCount = adminStayMapper.count();
+		String url = "stayInfo?currentPage=";
+		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+		
+		model.addAttribute("motels", motels);
+		model.addAttribute("result", result);
+		model.addAttribute("currentPage", currentPage);
 	}
 
 	

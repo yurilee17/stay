@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.stay.hotel.HotelDTO;
@@ -39,16 +40,12 @@ public class AdminStayController {
 		return "admin/stayDetailModify";
 	}
 	
-	@RequestMapping("stayInfo")
-	public String stayInfo() {
-		return "admin/stayInfo";
-	}
-	
 	@RequestMapping("stayIndex")
 	public String stayIndex() {
 		return "admin/stayIndex";
 	}
 
+	/* 일단은 DB 등록부터 하는게 먼저 */
 //	@PostMapping("stayregisterProc")
 //	public String stayregisterProc(String stayType, MotelDTO motel, HotelDTO hotel, String confirm) {
 //		String result;
@@ -71,5 +68,11 @@ public class AdminStayController {
 	}
 	
 	
+	@RequestMapping("stayInfo")
+	public String stayInfo(@RequestParam(value="currentPage", required = false)String cp, 
+			Model model) {
+		service.stayInfo(cp, model);
+		return "admin/stayInfo";
+	}
 
 }

@@ -6,8 +6,19 @@
 <mapper namespace="com.care.stay.admin.AdminStayMapper">
 
 	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
-		INSERT INTO motel VALUES(#{mcode}, #{mname}, #{mregion}, #{mdetailregion}, '0', '0', '0', #{maddress}, #{mdetailAddress}, #{mimage}, #{minfo})
+		INSERT INTO motel VALUES(#{mcode}, #{mname}, #{mregion}, #{mdetailregion}, 0, 0, 0, #{maddress}, #{mdetailAddress}, #{mimage}, #{minfo})
 	</insert>
+	
+	<select id="count">
+	  	SELECT count(no) FROM motel
+	</select>
+	
+	<select id="stayInfo" resultMap="motelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
+		(SELECT mname, mregion, maddress FROM motel ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>
 	
 <!-- 	<insert id="registerProc" parameterType="com.care.stay.hotel.HotelDTO">
 		INSERT INTO motel VALUES(#{hcode},#{hname},#{hregion},#{hdetailregion},#{haddress},#{himage},#{hinfo})
