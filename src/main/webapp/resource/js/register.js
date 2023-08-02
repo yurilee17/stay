@@ -3,10 +3,10 @@ let timer = 0;
 document.addEventListener("DOMContentLoaded", function() {
 	let phone = document.getElementById("phone");
 	let digit = document.getElementById("digit");
-	
+
 	let btnSend = document.querySelector(".btn_send");
 	let btnOk = document.querySelector(".btn_ok");
-	
+
 	let phoneValue = phone.value; // 이전 값 저장용 변수
 	let digitValue = phone.value; // 이전 값 저장용 변수
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 	});
-	
+
 	digit.addEventListener("input", function() {
 
 		if (isNaN(digit.value)) {
@@ -45,6 +45,7 @@ function btnSend() {
 	let phone = document.getElementById("phone");
 	let nemButton = document.getElementById("nemButton");
 	let verificationCode = document.getElementById("verificationCode");
+	
 	if (phone.value.length >= 10 && nemButton.classList.contains('active')) {
 		nemButton.classList.remove("active");
 		nemButton.classList.add("send");
@@ -56,10 +57,10 @@ function btnSend() {
 		const display = document.querySelector(".timer");
 
 		if (timer === 0) {
-			timer = 180;
+			timer = 20;
 			startTimer(display, nemButton);
 		} else {
-			timer = 180;
+			timer = 20;
 		}
 
 
@@ -73,7 +74,7 @@ function btnSend() {
 
 // 타이머 시작 함수
 function startTimer(display, nemButton) {
-
+	let verificationCode = document.getElementById("verificationCode");
 	let minutes, seconds;
 
 	// 타이머 갱신
@@ -88,12 +89,13 @@ function startTimer(display, nemButton) {
 
 		display.textContent = minutes + ":" + seconds;
 
-		if (timer === 120) {
+		if (timer === 10) {
 			nemButton.classList.add("active");
 		}
 		if (--timer < 0) {
 			clearInterval(updateTimer);
 			display.textContent = "00:00";
+			verificationCode.style.display = "none"; // div를 화면에 보이도록 설정
 		}
 
 	}, 1000);

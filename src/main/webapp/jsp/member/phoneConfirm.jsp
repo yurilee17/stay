@@ -48,7 +48,7 @@
 						<section>
 							<div class="inp_wrap remove">
 								<input type="tel" id="digit" minlength="4" maxlength="4">
-								<span class="timer">03:00</span>
+								<span class="timer">00:20</span>
 							</div>
 							<button type="button" class="btn_ok btn_confirm"
 								data-verification-type="call"
