@@ -9,7 +9,10 @@
 	</resultMap>
 
 	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
-		INSERT INTO motel VALUES(#{mcode}, #{mname}, #{mregion}, #{mdetailregion}, 0, 0, 0, #{maddress}, #{mdetailAddress}, #{mimage}, #{minfo})
+		<selectKey order="BEFORE" keyProperty="no" resultType="int">
+			SELECT nvl(max(no),0) + 1 FROM motel
+		</selectKey>
+		INSERT INTO motel VALUES(#{no}, #{mcode}, #{mname}, #{mregion}, #{mdetailregion}, 0, 0, 0, #{maddress}, #{mdetailAddress}, #{mimage}, #{minfo})
 	</insert>
 	
 	<select id="count">

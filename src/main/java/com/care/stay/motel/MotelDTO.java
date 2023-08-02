@@ -10,7 +10,7 @@ public class MotelDTO {
 	private String mstayprice;
 	private int mrating;
 	private String maddress;
-	private String mdetailAddress;
+	private String mdetailaddress;
 	private String mimage;
 	private String minfo;
 	
@@ -22,10 +22,10 @@ public class MotelDTO {
 		this.no = no;
 	}
 	public String getMdetailAddress() {
-		return mdetailAddress;
+		return mdetailaddress;
 	}
 	public void setMdetailAddress(String mdetailAddress) {
-		this.mdetailAddress = mdetailAddress;
+		this.mdetailaddress = mdetailAddress;
 	}
 	public String getMcode() {
 		return mcode;

@@ -90,20 +90,44 @@
 						</colgroup>					
 						<tr>
 							<th>객실 이름</th>
-							<td><input type="text" class="form_w50" placeholder=""></td>
+							<td><input type="text" class="form_w50" name="mroomname" placeholder=""></td>
 						</tr>
 						<tr>
+							<th>객실 코드</th>
+							<td><input type="text" class="form_w30" name="mroomcode" placeholder=""></td>
+						</tr>						
+						<tr>
 							<th>방 개수</th>
-							<td><input type="text" class="form_w30" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mroomnumber" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>대실가격</th>
-							<td><input type="text" class="form_w30" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mdaesilprice" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>숙박가격</th>
-							<td><input type="text" class="form_w30" placeholder=""></td>
-						</tr>						
+							<td><input type="text" class="form_w30" name="mstayprice" placeholder=""></td>
+						</tr>
+						<tr>
+							<th>대실체크인</th>
+							<td><input type="text" class="form_w30" name="mdaesilcheckin" placeholder=""></td>
+						</tr>
+						<tr>
+							<th>대실체크아웃</th>
+							<td><input type="text" class="form_w30" name="mdaesilcheckout" placeholder=""></td>
+						</tr>
+						<tr>
+							<th>대실시간</th>
+							<td><input type="text" class="form_w30" name="mdaesiltime" placeholder=""></td>
+						</tr>
+						<tr>
+							<th>숙박체크인</th>
+							<td><input type="text" class="form_w30" name="mstaycheckin" placeholder=""></td>
+						</tr>		
+						<tr>
+							<th>숙박체크아웃</th>
+							<td><input type="text" class="form_w30" name="mstaycheckout" placeholder=""></td>
+						</tr>																																		
 						<tr>
 							<th>이색테마</th>
 							<td>
