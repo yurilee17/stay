@@ -44,6 +44,11 @@ public class AdminStayController {
 	public String stayIndex() {
 		return "admin/stayIndex";
 	}
+	
+	@GetMapping("stayContent")
+	public String stayContent() {
+		return "admin/stayContent";
+	}
 
 	/* 일단은 DB 등록부터 하는게 먼저 */
 //	@PostMapping("stayregisterProc")
@@ -69,7 +74,8 @@ public class AdminStayController {
 	
 	
 	@RequestMapping("stayInfo")
-	public String stayInfo(@RequestParam(value="currentPage", required = false)String cp, 
+	public String stayInfo(
+			@RequestParam(value="currentPage", required = false)String cp, 
 			Model model) {
 		service.stayInfo(cp, model);
 		return "admin/stayInfo";

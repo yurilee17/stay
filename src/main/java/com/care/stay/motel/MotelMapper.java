@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 
 @Mapper
 public interface MotelMapper {
-	int count();
+
 }

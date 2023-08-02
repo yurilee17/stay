@@ -31,7 +31,15 @@ public class AdminStayService {
 		motel.setMdetailregion(multi.getParameter("detailRegion"));
 		motel.setMinfo(multi.getParameter("info"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+		
+		System.out.println();
+		System.out.println(multi.getParameter("name"));
+		System.out.println(multi.getParameter("code"));
+		System.out.println(multi.getParameter("region"));
+		System.out.println(multi.getParameter("detailRegion"));
+		System.out.println(multi.getParameter("address"));
+		System.out.println(multi.getParameter("detailAddress"));
+		
 		/*밑에꺼 주석 풀면 submit가 안되고 자꾸 redirect됨*/
 		
 //		if(motel.getMcode() == null || motel.getMcode().isEmpty()) {
@@ -62,6 +70,10 @@ public class AdminStayService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 			motel.setMimage(fileName);
+			
+			System.out.println(fileName);
+			System.out.println(multi.getParameter("info"));
+			System.out.println();
 			
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\javas\\upload\\";
@@ -102,8 +114,6 @@ public class AdminStayService {
 		model.addAttribute("currentPage", currentPage);
 	}
 
-	
-	
 //	public String stayregisterProc(MotelDTO motel, String confirm) {
 //		if(motel.getMname() == null || motel.getMname().isEmpty()) {
 //			return "숙소 이름을 입력하세요.";

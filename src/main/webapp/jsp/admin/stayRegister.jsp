@@ -69,7 +69,7 @@
 			<!-- 숙소 탭 -->
 			<div class="stay">
 				<ul class="top_nav">
-					<li><a href="#">메인</a></li>
+					<li><a href="${context }index">메인</a></li>
 					<li><a href="#">회원 DB 조회</a></li>
 					<li><a href="${context }stayRegister">숙소 DB 등록</a></li>
 					<li><a href="${context }stayInfo">숙소 DB 조회</a></li>

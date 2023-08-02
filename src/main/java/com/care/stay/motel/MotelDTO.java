@@ -1,6 +1,7 @@
 package com.care.stay.motel;
 
 public class MotelDTO {
+	private int no;
 	private String mcode;
 	private String mname;
 	private String mregion;
@@ -13,13 +14,19 @@ public class MotelDTO {
 	private String mimage;
 	private String minfo;
 	
+	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getMdetailAddress() {
 		return mdetailAddress;
 	}
 	public void setMdetailAddress(String mdetailAddress) {
 		this.mdetailAddress = mdetailAddress;
 	}
-	
 	public String getMcode() {
 		return mcode;
 	}

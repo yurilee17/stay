@@ -16,13 +16,14 @@ public class PageService {
 		for(int i = 1; i <= totalPage; i++){
 			result += "<a href='" + url + i + "'>[" + i + "] </a>";
 		}
-		
+			
 		if(currentPage >= totalPage) {
 			result += "<a href='" + url + totalPage + "'>[다음] </a>" ;
 		} else {
 			result += "<a href='" + url + (currentPage+1) + "'>[다음] </a>";
 		}
-		
+			
 		return result;
 	}	
 }
+
