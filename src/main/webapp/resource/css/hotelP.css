@@ -142,7 +142,7 @@ main .resPage #calendars{
 
  table {
     width: 1024px;
-    height: 250px;
+    height: 270px;
   	margin-bottom: 20px;
 }
 
@@ -156,7 +156,7 @@ main .resPage #calendars{
 }
 
 table> tbody> tr > td:nth-child(1) img{
-	margin-left: 15px;
+	margin: 0 20px;
 }
 
 table> tbody> tr > td:nth-child(2) {
@@ -167,13 +167,14 @@ table> tbody> tr > td:nth-child(2) {
 }
 
  table> tbody> tr > td:nth-child(2) .room{
+	 height: 120px;
 	 border-bottom:1px solid #ddd;
 	 margin-right:30px;
 	 position: relative;
  }
 
- table> tbody> tr > td:nth-child(2) > h2 {
-   font-size:30px;
+ table> tbody> tr > td:nth-child(2) .room > h2 {
+   font-size:27px;
 }
 
  table> tbody> tr > td:nth-child(2) .room > b > span {
@@ -182,6 +183,7 @@ table> tbody> tr > td:nth-child(2) {
 	bottom: 5px;
     right: 5px;
 	font-size: 22px;
+	padding-bottom:15px;
  }
  
   table> tbody> tr > td:nth-child(2) button {
@@ -195,7 +197,7 @@ table> tbody> tr > td:nth-child(2) {
 	padding:0 10px;
 	position: absolute;
 	left:85px;
-	bottom:15px;
+	bottom:25px;
 	
  }
 

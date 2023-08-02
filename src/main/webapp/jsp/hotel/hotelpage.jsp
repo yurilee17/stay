@@ -245,13 +245,13 @@
                 <table>
                 	<tr>
                         <td  width="300px" height="250px"><a href="#" class="thumb">
-                            <img src="	https://via.placeholder.com/270x230" alt="상품이미지">
+                            <img src="	https://via.placeholder.com/300x230" alt="상품이미지">
                         </a></td>
                         <td>
                            <div class=room>
                              <h2 class="name">[넷플릭스]스탠다드 더블</h2>
 	                            <br><br>
-	                           <b>가격 <span>178,000</span></b>
+	                           <b><span>가격 178,000</span></b>
                            	</div>
                            	<button type="button">예약하기</button>
                         </td>
@@ -261,8 +261,40 @@
              <%   } %>
 		</div>
 		<div class="register_individual" id="informationP" style="display:none;">
-			<h2>두번째페이지</h2>
+		
+			<div class="basicInfo" onclick="clickshow(this,'infoStory')">기본 정보</div>
+   			<div id="infoStory" style="display: none;"> 기본정보 내용이 들어가야겠지? 이거 어떻게 가져오냐...</div>
+   			
+   			<div class="serviceInfo" onclick="clickshow(this,'serviceStory')">편의시설 및 서비스</div>
+   			<div id="serviceStory" style="display: none;"> 편의시설 및 서비스 내용이 들어가야겠지.... 이거 할 수 있을까나..... 흑흑</div>
+   			
 		</div>
+		
+		<script>
+		
+		 	function clickshow(elem,infoStory) {
+				 var menu = document.getElementById(infoStory);
+				 if (elem.className !='basicInfo') {
+				    elem.className = 'basicInfo';
+				    menu.style.display = "none";
+				 } else {
+				    elem.className ='opened';
+				    menu.style.display ="block";
+				}} 
+			
+		 	function clickshow(elem,serviceStory) {
+				 var menu = document.getElementById(serviceStory);
+				 if (elem.className !='serviceInfo') {
+				    elem.className = 'serviceInfo';
+				    menu.style.display = "none";
+				 } else {
+				    elem.className ='opened';
+				    menu.style.display ="block";
+				}} 
+			
+		</script>
+		
+		
 		<div class="register_individual" id="reviewP"  style="display:none;">
 			<h2>세번째페이지</h2>
 		</div>
