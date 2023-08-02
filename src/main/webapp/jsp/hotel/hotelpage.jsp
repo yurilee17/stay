@@ -5,17 +5,14 @@
 <!doctype html>
 <html lang="ko">
 <head>
-	<head>
     <title>호텔이름 | 저기어때</title>
-    
- 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type">
     <meta name="csrf-name" content="yeogi_token">
-
+    
+    
     <link rel="shortcut icon" href="../../resource/img/favicon_170822.ico" type="image/x-icon">
     <link rel="stylesheet preload" href="../../resource/css/font.css" as="style" type="text/css" crossorigin="">
 
@@ -29,12 +26,13 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  	 <script type="text/javascript" src="../../resource/js/hotel.js"></script>
+  	<script type="text/javascript" src="../../resource/js/hotel.js"></script>
+    
+    
 </head>
-
-
-
 <body class="pc">
+
+
 
 
 <!-- Wrap -->
@@ -55,6 +53,7 @@
 
 <!-- Script -->
 <!-- Library -->
+<script type="text/javascript" src="../../resource/js/hotel.js"></script>
 <script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../resource/js/jquery.lazyload.js"></script>
 <script type="text/javascript" src="../../resource/js/iscroll.js"></script>
@@ -94,22 +93,125 @@
 	</div>
 		<div class="hpNav">
 				<div class="inner">
-					<ul class="hpInner">
-						<li><a href="#" class="selected">객실안내/예약</a></li>
-						<li><a href="#">숙소정보</a></li>
-						<li><a href="#">리뷰</a></li>
-					</ul>
+						 <button type="button" class="reserBtn selected" onclick="reserBtn_show()">객실안내/예약</button>
+						 <button type="button" class="infoBtn" onclick="inforBtn_show()">숙소정보</button>
+						 <button type="button" class="revBtn" onclick="revBtn_show()">리뷰</button>
 				</div>
 		</div>
-	
-	
+		
+		
+		
+
+<script>		
+
+ // hpNav script  (혹 나중에 js로 넣을 수 있으면 보내버리기)
+			
+		
+		//객실안내/예약
+		 function reserBtn_show(){
+		   var reservationP = document.getElementById("reservationP");   
+		
+		   if (reservationP.style.display === 'none') {   
+			   informationP.style.display = 'none';
+			   reviewP.style.display = 'none';
+			   reservationP.style.display = 'block';
+			   // 이전에 선택된 메뉴 아이템에서 'selected' 클래스 제거
+			   const previouslySelected = document.querySelector('.hpNav .inner button');
+				if (previouslySelected) {
+				  previouslySelected.classList.remove('selected');
+				}
+				
+		   } else {
+			   informationP.style.display = 'none';
+			   reviewP.style.display = 'none';
+		   }
+		   const btn1 = document.querySelector('.reserBtn');
+		    btn1.classList.add('clicked');
+		
+		   const btn2 = document.querySelector('.infoBtn');
+		    btn2.classList.remove('clicked');
+		   
+		   const btn3 = document.querySelector('.revBtn');
+		    btn3.classList.remove('clicked');
+		}
+		
+		 
+		
+		//숙소정보
+		function inforBtn_show(){
+		   var informationP = document.getElementById("informationP");   
+		   if (informationP.style.display === 'none') { 
+			   informationP.style.display = 'block';
+			   reservationP.style.display = 'none';
+			   reviewP.style.display = 'none';
+			  // 이전에 선택된 메뉴 아이템에서 'selected' 클래스 제거
+			   const previouslySelected = document.querySelector('.hpNav .inner button');
+				if (previouslySelected) {
+				  previouslySelected.classList.remove('selected');
+				}
+				
+		   } else {
+			   reservationP.style.display = 'none';
+			   reviewP.style.display = 'none';
+		   }
+		   const btn1 = document.querySelector('.reserBtn');
+		    btn1.classList.remove('clicked');
+		
+		   const btn2 = document.querySelector('.infoBtn');
+		    btn2.classList.add('clicked');
+		   
+		   const btn3 = document.querySelector('.revBtn');
+		    btn3.classList.remove('clicked');
+		}
+		
+		//리뷰
+		function revBtn_show(){
+			   var reviewP = document.getElementById("reviewP");   
+			   if (reviewP.style.display === 'none') { // 리뷰
+				   reviewP.style.display = 'block';
+				   reservationP.style.display = 'none';
+				   informationP.style.display = 'none';
+				   // 이전에 선택된 메뉴 아이템에서 'selected' 클래스 제거
+				   const previouslySelected = document.querySelector('.hpNav .inner button');
+					if (previouslySelected) {
+					  previouslySelected.classList.remove('selected');
+					}
+				   
+			   } else {
+				   reservationP.style.display = 'none';
+				   informationP.style.display = 'none';
+			   }
+			   const btn1 = document.querySelector('.reserBtn');
+			    btn1.classList.remove('clicked');
+			
+			   const btn2 = document.querySelector('.infoBtn');
+			    btn2.classList.remove('clicked');
+			   
+			   const btn3 = document.querySelector('.revBtn');
+			    btn3.classList.add('clicked');
+			}
+		
+
+		
+</script>	
+
 </div>
 
+	<main class=content>
+		<div class="register_individual" id="reservationP" >
+			<h2>첫번째페이지</h2>
+		</div>
+		<div class="register_individual" id="informationP" style="display:none;">
+			<h2>두번째페이지</h2>
+		</div>
+		<div class="register_individual" id="reviewP"  style="display:none;">
+			<h2>세번째페이지</h2>
+		</div>
+	</main>
+		
 
-<main class=content></main>
 
-
-
+	
 
 
 
