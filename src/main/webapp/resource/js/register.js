@@ -1,6 +1,13 @@
 let timer = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
+
+	inputEvent();
+
+})
+
+/*input 예외 처리*/
+function inputEvent() {
 	let phone = document.getElementById("phone");
 	let digit = document.getElementById("digit");
 
@@ -8,48 +15,55 @@ document.addEventListener("DOMContentLoaded", function() {
 	let btnOk = document.querySelector(".btn_ok");
 
 	let phoneValue = phone.value; // 이전 값 저장용 변수
-	let digitValue = phone.value; // 이전 값 저장용 변수
+	let digitValue = digit.value; // 이전 값 저장용 변수
+
+	var numberPattern = /^[0-9]+$/;
 
 	phone.addEventListener("input", function() {
-
-		if (isNaN(phone.value)) {
-			phone.value = phoneValue;
-		} else {
+		if (phone.value === '') {
+			phoneValue = ''; // 완전히 공백일 때는 이전 값도 공백으로 업데이트
+			btnSend.classList.remove("active");
+		} else if (numberPattern.test(phone.value)) {
 			phoneValue = phone.value;
 			if (phone.value.length >= 10) {
 				btnSend.classList.add("active");
 			} else {
 				btnSend.classList.remove("active");
 			}
+		} else {
+			phone.value = phoneValue;
 		}
 	});
 
 	digit.addEventListener("input", function() {
-
-		if (isNaN(digit.value)) {
-			digit.value = digitValue;
-		} else {
+		if (digit.value === '') {
+			digitValue = ''; // 완전히 공백일 때는 이전 값도 공백으로 업데이트
+			btnOk.classList.remove("active");
+		} else if (numberPattern.test(digit.value)) {
 			digitValue = digit.value;
 			if (digit.value.length >= 4) {
 				btnOk.classList.add("active");
 			} else {
 				btnOk.classList.remove("active");
 			}
+		} else {
+			digit.value = digitValue;
 		}
-	});
-})
 
+	});
+}
 
 /*인증번호 전송, 재전송 선택 시*/
 function btnSend() {
 	let phone = document.getElementById("phone");
-	let nemButton = document.getElementById("nemButton");
+	let btnSend = document.querySelector(".btn_send");
 	let verificationCode = document.getElementById("verificationCode");
-	
-	if (phone.value.length >= 10 && nemButton.classList.contains('active')) {
-		nemButton.classList.remove("active");
-		nemButton.classList.add("send");
-		nemButton.textContent = "재전송";
+
+
+	if (phone.value.length >= 10 && btnSend.classList.contains('active')) {
+		btnSend.classList.remove("active");
+		btnSend.classList.add("send");
+		btnSend.textContent = "재전송";
 
 		verificationCode.style.display = "block"; // div를 화면에 보이도록 설정
 
@@ -57,10 +71,41 @@ function btnSend() {
 		const display = document.querySelector(".timer");
 
 		if (timer === 0) {
-			timer = 20;
+			timer = 5;
+			startTimer(display, btnSend);
+		} else {
+			timer = 5;
+		}
+
+
+	} else if (btnSend.classList.contains('send')) {
+		alert("1분 후에 다시 시도해주세요.");
+	} else {
+		alert("휴대폰 번호를 입력하세요.");
+	}
+	window.location.href = "http://localhost/phoneConfirmProc";
+}
+
+function btnOk() {
+	let digit = document.getElementById("digit");
+	let btnOk = document.querySelector(".btn_ok");
+
+
+	if (digit.value.length >= 4 && nemButton.classList.contains('active')) {
+		btnOk.classList.remove("active");
+		btnOk.classList.add("send");
+		btnOk.textContent = "재전송";
+
+		verificationCode.style.display = "block"; // div를 화면에 보이도록 설정
+
+		// 3분 (180초)으로 타이머 시작
+		const display = document.querySelector(".timer");
+
+		if (timer === 0) {
+			timer = 5;
 			startTimer(display, nemButton);
 		} else {
-			timer = 20;
+			timer = 5;
 		}
 
 
@@ -72,9 +117,11 @@ function btnSend() {
 
 }
 
+
 // 타이머 시작 함수
-function startTimer(display, nemButton) {
-	let verificationCode = document.getElementById("verificationCode");
+function startTimer(display, btnSend) {
+	let digit = document.getElementById("digit");
+	let btnOk = document.querySelector(".btn_ok");
 	let minutes, seconds;
 
 	// 타이머 갱신
@@ -89,13 +136,18 @@ function startTimer(display, nemButton) {
 
 		display.textContent = minutes + ":" + seconds;
 
-		if (timer === 10) {
-			nemButton.classList.add("active");
+		if (timer === 3) {
+			btnSend.classList.add("active");
 		}
 		if (--timer < 0) {
 			clearInterval(updateTimer);
-			display.textContent = "00:00";
-			verificationCode.style.display = "none"; // div를 화면에 보이도록 설정
+			display.textContent = "00:05";
+			digit.value = "";
+			verificationCode.style.display = "none"; // div를 화면에 안 보이도록 설정
+			btnOk.classList.remove("active");
+			alert("인증번호가 만료되었습니다. 재전송 해주시기 바랍니다.");
+			timer = 0;
+
 		}
 
 	}, 1000);

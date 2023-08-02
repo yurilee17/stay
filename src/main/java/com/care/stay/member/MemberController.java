@@ -61,7 +61,7 @@ public class MemberController {
 	
 	@GetMapping("phoneConfirmProc")
 	public String phoneConfirmProc() {
-		return "member/phoneConfirm";
+		return "member/index";
 	}
 	
 	

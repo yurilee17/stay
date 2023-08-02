@@ -48,11 +48,9 @@
 						<section>
 							<div class="inp_wrap remove">
 								<input type="tel" id="digit" minlength="4" maxlength="4">
-								<span class="timer">00:20</span>
+								<span class="timer">00:05</span>
 							</div>
-							<button type="button" class="btn_ok btn_confirm"
-								data-verification-type="call"
-								data-verification-next="joinTemplate">확인</button>
+							<button type="button" class="btn_ok btn_confirm" onclick="btnSend()">확인</button>
 						</section>
 					</div>
 					<input type="hidden" id="phone_certification_point" value="SIGINUP"
