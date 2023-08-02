@@ -67,7 +67,6 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping(value="sendDigit", produces = "text/plain; charset=utf-8")
 	public String sendDigit(@RequestBody(required = false) String digit) {
-		System.out.println(service.sendDigit(digit));
 		return service.sendDigit(digit);
 		
 	}

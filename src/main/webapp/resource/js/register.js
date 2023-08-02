@@ -59,6 +59,37 @@ function btnSend() {
 	let btnSend = document.querySelector(".btn_send");
 	let verificationCode = document.getElementById("verificationCode");
 
+	if (phone.value.length >= 10 && btnSend.classList.contains('active')) {
+		btnSend.classList.remove("active");
+		btnSend.classList.add("send");
+		btnSend.textContent = "재전송";
+
+		verificationCode.style.display = "block"; // div를 화면에 보이도록 설정
+
+		// 3분 (180초)으로 타이머 시작
+		const display = document.querySelector(".timer");
+
+		if (timer === 0) {
+			timer = 180;
+			startTimer(display, btnSend);
+		} else {
+			timer = 180;
+		}
+	} else if (phone.value.length <= 9 && hone.value.length >= 1) {
+		alert("휴대폰 번호 형식이 아닙니다.");
+	} else if (btnSend.classList.contains('send')) {
+		alert("1분 후에 다시 시도해주세요.");
+	} else {
+		alert("휴대폰 번호를 입력하세요.");
+	}
+
+	sendMsg();
+}
+
+function btnSend() {
+	let phone = document.getElementById("phone");
+	let btnSend = document.querySelector(".btn_send");
+	let verificationCode = document.getElementById("verificationCode");
 
 	if (phone.value.length >= 10 && btnSend.classList.contains('active')) {
 		btnSend.classList.remove("active");
@@ -77,17 +108,33 @@ function btnSend() {
 			timer = 180;
 		}
 
-
+		sendMsg();
+	} else if (phone.value.length <= 9 && phone.value.length >= 1) {
+		alert("휴대폰 번호 형식이 아닙니다.");
 	} else if (btnSend.classList.contains('send')) {
 		alert("1분 후에 다시 시도해주세요.");
 	} else {
 		alert("휴대폰 번호를 입력하세요.");
 	}
 
-	sendMsg();
 }
 
+function btnOk() {
+	let digit = document.getElementById("digit");
+	let btnOk = document.querySelector(".btn_ok");
 
+	if (digit.value.length >= 4 && btnOk.classList.contains('active')) {
+		digit.classList.remove("active");
+
+		sendDigit();
+		
+	} else if (digit.value.length <= 3 && digit.value.length >= 1) {
+		alert("인증 번호 형식이 아닙니다.");
+	} else {
+		alert("인증 번호를 입력하세요.");
+	}
+
+}
 // 타이머 시작 함수
 function startTimer(display, btnSend) {
 	let digit = document.getElementById("digit");
@@ -129,32 +176,34 @@ function sendMsg() {
 	xhr = new XMLHttpRequest();
 	xhr.open('post', 'sendMsg')
 	xhr.send(document.getElementById('phone').value)
+	console.log(data.userSelectedType)
 	xhr.onreadystatechange = resProc
 }
 
 function resProc() {
 	if (xhr.readyState === 4 && xhr.status === 200) {
-		alert(xhr.responseText);
+
 	}
 	if (xhr.responseText === '전송 완료') {
-		alert(xhr.responseText);
+
 	}
+	console.log("결과: " + xhr.responseText);
 }
 
-
+/*인증번호 확인*/
 function sendDigit() {
 	xhr.open('post', 'sendDigit');
 	xhr.send(document.getElementById('digit').value);
-	xhr.onreadystatechange = sendAuthProc
+	xhr.onreadystatechange = sendDigitProc
 }
 
-function sendAuthProc() {
-	if (xhr.readyState === 4 && xhr.status === 200) {
-		alert(xhr.responseText);
-	}
+function sendDigitProc() {
 	if (xhr.responseText === '인증 성공') {
+
 		window.location.href = "http://localhost/register";
-	}else{
-		alert(xhr.responseText);
+	} else if (xhr.responseText === '인증 실패') {
+		
+		alert("인증번호와 다르게 입력되었습니다. 재입력해 주시기 바랍니다.");
 	}
+	
 }

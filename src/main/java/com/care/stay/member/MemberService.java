@@ -71,11 +71,6 @@ public class MemberService {
 	
 	//인증번호 확인
 	public String sendDigit(String digit) {
-		if(digit == null || digit.isEmpty())
-			return "인증번호를 입력 후 다시 시도하세요.";
-		
-		if(content == null || content.isEmpty())
-			return "인증번호를 입력 후 다시 시도하세요.";
 		
 		if(digit.equals(content)) {
 			return "인증 성공";
