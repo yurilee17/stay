@@ -71,10 +71,10 @@ function btnSend() {
 		const display = document.querySelector(".timer");
 
 		if (timer === 0) {
-			timer = 5;
+			timer = 180;
 			startTimer(display, btnSend);
 		} else {
-			timer = 5;
+			timer = 180;
 		}
 
 
@@ -83,38 +83,8 @@ function btnSend() {
 	} else {
 		alert("휴대폰 번호를 입력하세요.");
 	}
-	window.location.href = "http://localhost/phoneConfirmProc";
-}
 
-function btnOk() {
-	let digit = document.getElementById("digit");
-	let btnOk = document.querySelector(".btn_ok");
-
-
-	if (digit.value.length >= 4 && nemButton.classList.contains('active')) {
-		btnOk.classList.remove("active");
-		btnOk.classList.add("send");
-		btnOk.textContent = "재전송";
-
-		verificationCode.style.display = "block"; // div를 화면에 보이도록 설정
-
-		// 3분 (180초)으로 타이머 시작
-		const display = document.querySelector(".timer");
-
-		if (timer === 0) {
-			timer = 5;
-			startTimer(display, nemButton);
-		} else {
-			timer = 5;
-		}
-
-
-	} else if (nemButton.classList.contains('send')) {
-		alert("1분 후에 다시 시도해주세요.");
-	} else {
-		alert("휴대폰 번호를 입력하세요.");
-	}
-
+	sendMsg();
 }
 
 
@@ -136,7 +106,7 @@ function startTimer(display, btnSend) {
 
 		display.textContent = minutes + ":" + seconds;
 
-		if (timer === 3) {
+		if (timer === 120) {
 			btnSend.classList.add("active");
 		}
 		if (--timer < 0) {
@@ -153,5 +123,38 @@ function startTimer(display, btnSend) {
 	}, 1000);
 }
 
-/*확인 버튼 선택 시*/
+/* 문자 전송 */
+var xhr;
+function sendMsg() {
+	xhr = new XMLHttpRequest();
+	xhr.open('post', 'sendMsg')
+	xhr.send(document.getElementById('phone').value)
+	xhr.onreadystatechange = resProc
+}
 
+function resProc() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		alert(xhr.responseText);
+	}
+	if (xhr.responseText === '전송 완료') {
+		alert(xhr.responseText);
+	}
+}
+
+
+function sendDigit() {
+	xhr.open('post', 'sendDigit');
+	xhr.send(document.getElementById('digit').value);
+	xhr.onreadystatechange = sendAuthProc
+}
+
+function sendAuthProc() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		alert(xhr.responseText);
+	}
+	if (xhr.responseText === '인증 성공') {
+		window.location.href = "http://localhost/register";
+	}else{
+		alert(xhr.responseText);
+	}
+}

@@ -5,10 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.care.stay.member.MemberService;
-import com.care.stay.member.MemberDTO;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MemberController {
@@ -58,14 +57,22 @@ public class MemberController {
 	public String phoneConfirm() {
 		return "member/phoneConfirm";
 	}
-	
-	@GetMapping("phoneConfirmProc")
-	public String phoneConfirmProc() {
-		return "member/index";
+
+	@ResponseBody
+	@PostMapping(value="sendMsg", produces = "text/plain; charset=utf-8")
+	public String sendEmail(@RequestBody(required = false) String phone) {
+		return service.sendMsg(phone);
 	}
 	
+	@ResponseBody
+	@PostMapping(value="sendDigit", produces = "text/plain; charset=utf-8")
+	public String sendDigit(@RequestBody(required = false) String digit) {
+		System.out.println(service.sendDigit(digit));
+		return service.sendDigit(digit);
+		
+	}
 	
-	
+
 	@GetMapping("register")
 	public String register() {
 		return "member/register";
