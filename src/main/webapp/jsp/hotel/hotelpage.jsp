@@ -29,11 +29,11 @@
   	<script type="text/javascript" src="../../resource/js/hotel.js"></script>
     
     
+    <style>
+    	
+    </style>
 </head>
 <body class="pc">
-
-
-
 
 <!-- Wrap -->
 <div class="wrap main_wrap show">
@@ -198,8 +198,67 @@
 </div>
 
 	<main class=content>
-		<div class="register_individual" id="reservationP" >
-			<h2>첫번째페이지</h2>
+		<div class="resPage" id="reservationP" >
+			
+			<input type="text" id="calendars" name="calendars" value="" />
+				
+				
+			<script>
+
+				$(function () {
+	         	   $('#calendars').daterangepicker({
+	         		  "maxSpan": {"days": 7 },
+	                "locale": {
+	                    "format": "YYYY-MM-DD",
+	                    "separator": " ~ ",
+	                    "applyLabel": "확인",
+	                    "cancelLabel": "취소",
+	                    "fromLabel": "From",
+	                    "toLabel": "To",
+	                    "customRangeLabel": "Custom",
+	                    "weekLabel": "W",
+	                    "daysOfWeek": ["일","월", "화", "수", "목", "금", "토" ],
+	                    "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+	                    "firstDay": 1
+		                },
+		               	"minDate":  new Date(),
+		                "maxDate": moment().add(3, 'months').toDate(), 
+		                "startDate": new Date(),
+		                "endDate":new Date(),
+		                "drops": "down"
+			            }, function (start, end, label) {
+			                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+	          		  });
+	         	   
+	         	   // css 변경가능 
+	         	  $("#calendars").on('show.daterangepicker', function (ev, picker) {
+	         		   /*  $(".cancelBtn").css("float", "right"); */
+	         		});
+
+	         	   
+	       		 });
+				
+				</script>	
+				
+			
+			<%   for(int i =0; i<5; i++){     %>
+                <table>
+                	<tr>
+                        <td  width="300px" height="250px"><a href="#" class="thumb">
+                            <img src="	https://via.placeholder.com/270x230" alt="상품이미지">
+                        </a></td>
+                        <td>
+                           <div class=room>
+                             <h2 class="name">[넷플릭스]스탠다드 더블</h2>
+	                            <br><br>
+	                           <b>가격 <span>178,000</span></b>
+                           	</div>
+                           	<button type="button">예약하기</button>
+                        </td>
+                       
+                    </tr>
+                </table>
+             <%   } %>
 		</div>
 		<div class="register_individual" id="informationP" style="display:none;">
 			<h2>두번째페이지</h2>
@@ -209,9 +268,6 @@
 		</div>
 	</main>
 		
-
-
-	
 
 
 

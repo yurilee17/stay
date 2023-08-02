@@ -14,6 +14,8 @@ button {
   appearance: none;
 }
 
+
+
 .daterangepicker td.active, .daterangepicker td.active:hover {
   background-color: #f7323f;
   border-color: transparent;
@@ -21,7 +23,7 @@ button {
 }
 
 .pc > .visual{
-	/*margin: 0 auto;*/
+	margin: 0 auto;
 }
 
 
@@ -124,7 +126,7 @@ button {
 }
 .revBtn.clicked {
 	font-weight:700;
-	color:#de2e5f; 
+	color:#f7323f; 
 	border-bottom:3px solid #f7323f;
 }
 
@@ -133,6 +135,69 @@ main {
 	margin:0 auto;
 	padding: 50px 0 0 320px;
 }
+
+main .resPage #calendars{
+	margin-bottom:50px;
+}
+
+ table {
+    width: 1024px;
+    height: 250px;
+  	margin-bottom: 20px;
+}
+
+
+ table> tbody> tr {
+    border-width:2px;
+  	border-style:solid;
+  	border-color:#E6E6E6;
+  	padding-left: 50px;
+  	font-size: 20px;
+}
+
+table> tbody> tr > td:nth-child(1) img{
+	margin-left: 15px;
+}
+
+table> tbody> tr > td:nth-child(2) {
+   padding-bottom:40px;
+   line-height: 145%;
+   position: relative;
+ 
+}
+
+ table> tbody> tr > td:nth-child(2) .room{
+	 border-bottom:1px solid #ddd;
+	 margin-right:30px;
+	 position: relative;
+ }
+
+ table> tbody> tr > td:nth-child(2) > h2 {
+   font-size:30px;
+}
+
+ table> tbody> tr > td:nth-child(2) .room > b > span {
+	 display: inline-block;
+	position:absolute;
+	bottom: 5px;
+    right: 5px;
+	font-size: 22px;
+ }
+ 
+  table> tbody> tr > td:nth-child(2) button {
+	 width: 500px;
+	 height:40px;
+	 font-size:20px; 
+	color:#fff; 
+	background-color: #f7323f;
+	border-color:transparent; 
+	border-radius: 5px;
+	padding:0 10px;
+	position: absolute;
+	left:85px;
+	bottom:15px;
+	
+ }
 
 
 

@@ -13,6 +13,7 @@ input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
   color: #fff;
 }
 
+
 #product{
 	overflow: hidden;
 }
@@ -81,12 +82,7 @@ input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
 }
 
 
-#product > aside > .filter_wrap > .filter_box > .btn_date >  input{
-	
-	width: 120px !important;
-	height: 30px !important;
-	
-}
+
 
 #product > aside > .filter_wrap > .filter_box > .btn_wrap> button {
 	width:120px;
@@ -142,7 +138,7 @@ input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
 	text-align: center;
 	display:inline-block; 
 	width: 140px;
-	height:50px;
+	height:20px;
     list-style:none;
     background-color: #fcfcfc;
    	border-width:1px;
@@ -160,7 +156,7 @@ input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
 }
 
  #product > .right >  table {
-    width: 800px;
+    width: 1024px;
     height: 250px;
   	margin-bottom: 10px;
 }
