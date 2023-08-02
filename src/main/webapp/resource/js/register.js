@@ -109,6 +109,7 @@ function btnSend() {
 		}
 
 		sendMsg();
+		
 	} else if (phone.value.length <= 9 && phone.value.length >= 1) {
 		alert("휴대폰 번호 형식이 아닙니다.");
 	} else if (btnSend.classList.contains('send')) {
@@ -176,7 +177,6 @@ function sendMsg() {
 	xhr = new XMLHttpRequest();
 	xhr.open('post', 'sendMsg')
 	xhr.send(document.getElementById('phone').value)
-	console.log(data.userSelectedType)
 	xhr.onreadystatechange = resProc
 }
 

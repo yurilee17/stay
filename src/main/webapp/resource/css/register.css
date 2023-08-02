@@ -1,23 +1,194 @@
 @charset "UTF-8";
 
-*{outline:0}
-html,body{font-family:'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;font-size:14px;line-height:1;color:rgba(0,0,0,0.87);-webkit-text-size-adjust:none} /* 폰트크기 자동조절 제거 */
-input::-ms-clear, input::-ms-reveal{display:none} /* IE - select arrow remove */
-img{border:0;vertical-align:top;-webkit-touch-callout:none} /* 이미지 터치 팝업 제거 */
-a,input,button,div,li,textarea,form,label,select{-webkit-tap-highlight-color:rgba(0,0,0,0)} /* 하이라이트 제거 */
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
-html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;box-sizing: border-box;}
-ul,ol,li{list-style:none}
-fieldset,img{border:0}
-a{text-decoration:none}
-address,caption,em,var{font-style:normal;font-weight:normal}
-textarea,button,input,select{appearance:none;-webkit-appearance:none;-moz-appearance:none;border-radius:0;font-family:'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;}
-button{padding:0;cursor:pointer}
-button:focus,button:active{padding: 0;}
-button span{position: relative;}
-select::-ms-expand{display:none}
-table{border-collapse:collapse;border-spacing:0}
-label{cursor:pointer}
+* {
+	outline: 0
+}
+
+html,
+body {
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+	font-size: 14px;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	-webkit-text-size-adjust: none
+}
+
+/* 폰트크기 자동조절 제거 */
+input::-ms-clear,
+input::-ms-reveal {
+	display: none
+}
+
+/* IE - select arrow remove */
+img {
+	border: 0;
+	vertical-align: top;
+	-webkit-touch-callout: none
+}
+
+/* 이미지 터치 팝업 제거 */
+a,
+input,
+button,
+div,
+li,
+textarea,
+form,
+label,
+select {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+/* 하이라이트 제거 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+	list-style: none
+}
+
+fieldset,
+img {
+	border: 0
+}
+
+a {
+	text-decoration: none
+}
+
+address,
+caption,
+em,
+var {
+	font-style: normal;
+	font-weight: normal
+}
+
+textarea,
+button,
+input,
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border-radius: 0;
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+}
+
+button {
+	padding: 0;
+	cursor: pointer
+}
+
+button:focus,
+button:active {
+	padding: 0;
+}
+
+button span {
+	position: relative;
+}
+
+select::-ms-expand {
+	display: none
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+label {
+	cursor: pointer
+}
 
 /* Common */
 .wrap {
@@ -68,6 +239,7 @@ label{cursor:pointer}
 		width: 320px
 	}
 }
+
 /*전체*/
 .register {
 	font-size: 15px;
@@ -102,6 +274,7 @@ label{cursor:pointer}
 	background: #fff;
 	border-bottom: none;
 }
+
 .fix_title {
 	display: none;
 	top: 0;
@@ -116,255 +289,227 @@ label{cursor:pointer}
 }
 
 .register .fix_title strong {
-    font-size: 24px;
-    font-weight: bold;
-    display: block;
-    line-height: 44px;
+	font-size: 24px;
+	font-weight: bold;
+	display: block;
+	line-height: 44px;
 }
 
 /*폰 번호 입력*/
 .phone_confirm {
-    margin-top: 16px;
+	margin-top: 16px;
 }
 
 .phone_confirm strong {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: normal;
-    color: rgba(0,0,0,0.87);
+	display: block;
+	margin-bottom: 8px;
+	font-size: 16px;
+	font-weight: normal;
+	color: rgba(0, 0, 0, 0.87);
 }
 
 .phone_confirm section {
-    position: relative;
-    margin: 0 0 25px 0;
-    padding-right: 110px;
-    width: 336px;
+	position: relative;
+	margin: 0 0 25px 0;
+	padding-right: 110px;
+	width: 336px;
 }
 
 .inp_wrap {
-    border: 1px solid rgba(0,0,0,0.08);
-    padding: 8px 14px 8px 16px;
-    position: relative;
-    height: 48px;
-    border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	padding: 8px 14px 8px 16px;
+	position: relative;
+	height: 48px;
+	border-radius: 4px;
 }
 
 .inp_wrap input {
-    border: none;
-    background: none;
-    width: 100%;
-    margin-top: 5px;
-    font-size: 18px;
-    color: rgba(0,0,0,0.56);
-    height: 20px;
-    line-height: 1;
+	border: none;
+	background: none;
+	width: 100%;
+	margin-top: 5px;
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.56);
+	height: 20px;
+	line-height: 1;
 }
 
 /*인증번호 전송 버튼*/
 .phone_confirm section .btn_confirm.active {
-    background: #ff0055;
+	background: #ff0055;
 }
 
 .phone_confirm section .btn_confirm {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100px;
-    height: 44px;
-    border: none;
-    border-radius: 4px;
-    background: #ccc;
-    font-size: 14px;
-    font-weight: normal;
-    color: #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100px;
+	height: 44px;
+	border: none;
+	border-radius: 4px;
+	background: #ccc;
+	font-size: 14px;
+	font-weight: normal;
+	color: #fff;
 }
+
 /*제정송 버튼*/
 .phone_confirm section .btn_confirm.active {
-    background: #ff0055;
+	background: #ff0055;
 }
 
 .phone_confirm section .btn_confirm {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100px;
-    height: 44px;
-    border: none;
-    border-radius: 4px;
-    background: #ccc;
-    font-size: 14px;
-    font-weight: normal;
-    color: #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100px;
+	height: 44px;
+	border: none;
+	border-radius: 4px;
+	background: #ccc;
+	font-size: 14px;
+	font-weight: normal;
+	color: #fff;
 }
 
 
 /*인증 번호*/
 .phone_confirm section span {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    right: 10px;
-    height: 48px;
-    line-height: 48px;
-    color: #ff0055;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	height: 48px;
+	line-height: 48px;
+	color: #ff0055;
 }
 
 
 /* 회원 가입 창 */
-.layer_fix.fix_disable {
-    overflow: auto;
-    position: relative;
-    touch-action: auto;
-    font-size: 15px;
-    line-height: 26px;
-    color: rgba(0,0,0,0.87);
+.register {
+	overflow: auto;
+	position: relative;
+	touch-action: auto;
+	font-size: 15px;
+	line-height: 26px;
+	color: rgba(0, 0, 0, 0.87);
 }
 
-.layer_fix section {
-    width: 336px;
-    margin: 100px auto 0 auto;
+.register section {
+	width: 336px;
+	margin: 100px auto 0 auto;
 }
-
-.layer_fix .fix_title {
-    display: block !important;
-    margin-bottom: 16px;
-}
-
-.layer_fix .fix_title {
-    position: relative;
-    /* margin-bottom: 16px; */
-    background: #fff;
-    border-bottom: none;
+/*로고*/
+.register .fix_title {
+	display: block !important;
+	margin-bottom: 16px;
+	position: relative;
+	background: #fff;
+	border-bottom: none;
 }
 
 .fix_title {
-    /* position: fixed; */
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 300;
-    width: 100%;
-    height: 44px;
-    /* background: #fff; */
-    font-size: 18px;
-    line-height: 44px;
-    text-align: center;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 300;
+	width: 100%;
+	height: 44px;
+	font-size: 18px;
+	line-height: 44px;
+	text-align: center;
 }
 
+/*
 .fix_title h1.page_head {
     text-align: center;
 }
-
-.fix_title h1.page_head a {
-    display: inline-block;
-    width: 112px;
-    height: 44px;
-    background: url(//image.goodchoice.kr/images/web_v3/h1_mobile.png) 50% 50% no-repeat;
-    background-size: 112px 23px;
-    text-indent: -9999px;
+*/
+.fix_title a {
+	display: inline-block;
+	width: 112px;
+	height: 44px;
+	background: url(../img/저기어때.png) 50% 50% no-repeat;
+	background-size: 112px 23px;
+	text-indent: -9999px;
 }
 
+/*회원가입 제목*/
 .layer_fix .sub_title {
-    display: block;
-    margin: 30px 0 10px 0;
-    font-size: 18px;
-    text-align: center;
+	display: block;
+	margin: 30px 0 10px 0;
+	font-size: 18px;
+	text-align: center;
 }
 
+/* input 제목 */
 .join b {
-    display: block;
-    margin-bottom: 9px;
-    font-size: 16px;
-    font-weight: bold;
-    color: rgba(0,0,0,0.56);
+	display: block;
+	margin-bottom: 9px;
+	font-size: 16px;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 0.56);
 }
 
-.join > div {
-    margin-bottom: 38px;
-}
-
-.inp_type_2 {
-    padding: 0 10px;
-}
-
-.inp_type_2 {
-    position: relative;
-    height: 48px;
-    /* margin-bottom: 38px; */
-    /* padding: 0 16px; */
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 6px;
-    box-sizing: border-box;
-}
+/* input들 */
+.join>div {margin-bottom: 38px;}
+.inp_type_2 {padding: 0 10px;position: relative;
+	height: 48px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 6px;
+	box-sizing: border-box;}
 
 .inp_type_2 input {
-    position: relative;
-    top: 13px;
-    width: 100%;
-    height: 20px;
-    padding: 0;
-    border: none;
-    font-size: 18px;
-    vertical-align: top;
+	position: relative;
+	top: 13px;
+	width: 100%;
+	height: 20px;
+	padding: 0;
+	border: none;
+	font-size: 18px;
+	vertical-align: top;
 }
 
+/*에러 문구*/
 .validate_msg_label {
-    margin-top: 20px;
-    display: inline-block;
-    font-size: 13px;
-    color: red;
+	margin-top: 20px;
+	display: inline-block;
+	font-size: 13px;
+	color: red;
 }
 
+/*닉네임*/
 .join .btn-add {
-    margin-right: 100px;
+	margin-right: 100px;
 }
-
+/*딴거할래요*/
 .join .btn-add .btn_etc {
-    position: absolute;
-    top: 0;
-    right: -100px;
-    width: 93px;
-    height: 48px;
-    border-radius: 6px;
-    background: #ebebeb;
-    font-size: 14px;
-    font-weight: bold;
-    color: rgba(0,0,0,0.56);
+	position: absolute;
+	top: 0;
+	right: -100px;
+	width: 93px;
+	height: 48px;
+	border-radius: 6px;
+	background: #ebebeb;
+	font-size: 14px;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 0.56);
 }
 
 .register button {
-    border: none;
+	border: none;
 }
 
-.join .gra_left_right_red {
-    margin-bottom: 50px;
-}
-
-.layer_fix .btn_link {
-    height: 56px;
-    font-size: 16px;
-    line-height: 56px;
-}
-
-.layer_fix .btn_link {
-    display: block;
-    width: 100%;
-    /* height: 56px; */
-    margin-top: 16px;
-    border-radius: 6px;
-    /* font-size: 16px; */
-    /* line-height: 56px; */
-    /* color: #fff; */
-    text-align: center;
-    /* border: none; */
-}
+/*가입하기 버튼*/
+.join .gra_left_right_red {margin-bottom: 50px;}
+.register .btn_link { height: 56px; font-size: 16px; line-height: 56px;
+display: block; width: 100%; margin-top: 16px; border-radius: 6px; text-align: center;}
 
 .btn_user_submit {
-    background: #fafafa;
-    color: rgba(0,0,0,0.16);
+	background: #fafafa;
+	color: rgba(0, 0, 0, 0.16);
 }
 
 .gra_left_right_red {
-    background: linear-gradient(to right, rgba(255,0,85,1) 1%,rgba(230,34,67,1) 100%);
+	background: linear-gradient(to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100%);
 }
