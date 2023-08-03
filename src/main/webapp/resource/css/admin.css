@@ -184,64 +184,62 @@ ul,ol,li{list-style:none;}
 	#mainMenu:hover + .right-menu {
 	  display: block;
 	}		 
-			 
+		 
 	
 	/* ---------------------------------------------------------------------------------------------- */	
 
 	/* stayContent의 CSS부분 */	
-	.wrap.stayContent_head {
+
+	.stayContent_head {
 		display:block;
 		box-sizing:border-box;
 		overflow:hidden;
 		width:1024px;
 		height:447px;
+		padding:0 31px 0 31px;
 	}
 
-	.wrap .stayContent_head .pic_view {
+	.stayContent_head .left .pic_view {
 		width:490px;
 		height:348px;
 		text-align:center;
+		position:relative;
+		vertical-align:top;
 	}
 
-	.wrap .stayContent_head .pic_view .lazy {
-		
-	}
-
-	.wrap.stayContent_head.right {
+	.stayContent_head .right {
+		display:inline-block;
+		float:right;
 		width:424px;
 		height:341px;
 	}
 
-	.wrap .stayContent_head .right .info {padding:0}
-	.wrap .stayContent_head .right .info h2{display:inline; margin:9px 0 0 0; font-size:28px}
-	.wrap .stayContent_head .right .info .score{position:relative; clear:both; margin:9px 0 6px 0; font-size:18px}
-	.wrap .stayContent_head .right .info .score span{display:inline-block; position:relative; top:-3px; height:18px; margin-right:7px; padding:0 4px; border-radius:4px; background:rgb(255,167,38); font-size:14px; line-height:17px; color:#fff}
-	.wrap .stayContent_head .right .info .score b{font-weight:normal; color:rgba(0,0,0,0.38)}
-	.wrap .stayContent_head .right .info .score .call{display:none}
-	.wrap .stayContent_head .right .info .address{margin:6px 0 8px 0; font-size:18px}
+	.stayContent_head .left {
+		display:inline-block;
+	}
 
-	.room_info{width:962px;margin:0 auto}
-	.room_info .gallery_m .index{display:block;background:none;text-align:center}
-	.room_info .gallery_m .index p{display:inline-block;height:40px;padding:0 25px;font-size:15px;line-height:40px}
-	.room_info .room{overflow:hidden;position:relative;margin:0 0 24px 0;padding:24px 24px 24px 424px;border:1px solid rgba(0,0,0,0.08);border-radius:4px;background:#fff;box-sizing:border-box}
+
+	.stayContent_head .right .info{padding:0; display:inline-block; margin-top:60px;}
+	.stayContent_head .right .info h2{display:inline; margin:9px 0 0 0; font-size:28px}
+	.stayContent_head .right .info .score{position:relative; clear:both; margin:9px 0 6px 0; font-size:18px}
+	.stayContent_head .right .info .score span{display:inline-block; position:relative; top:-3px; height:18px; margin-right:7px; padding:0 4px; border-radius:4px; background:rgb(255,167,38); font-size:14px; line-height:17px; color:#fff}
+	.stayContent_head .right .info .score b{font-weight:normal; color:rgba(0,0,0,0.38)}
+	.stayContent_head .right .info .score .call{display:none}
+	.stayContent_head .right .info .address{text-align:left; margin:6px 0 8px 0; font-size:18px}
+
+	.room_info {width:962px; margin:0 auto}
+	.room_info .room{overflow:hidden; position:relative; margin:0 0 24px 0; padding:24px 24px 24px 424px; border:1px solid rgba(0,0,0,0.08); border-radius:4px; background:#fff; box-sizing:border-box}
 	.room_info .room .on{height:826px}
-	.room_info .room .on .cal_bg,	.room_info .room.on .pic_wrap{display:block;opacity:0;transition:0.4s}
+	.room_info .room .on .cal_bg,	.room_info .room.on .pic_wrap{display:block; opacity:0; transition:0.4s}
 	.room_info .room .on .cal_bg.visible,.room_info .room.on .pic_wrap.visible{opacity:1}
 	.room_info{background:#fff}
-	.room_info .pic_wrap{display:none;position:absolute;bottom:79px;left:111px;margin:0 !important}
-	.room_info .gallery_m,.room_info .pic_wrap{width:738px;height:417px}
-	.room_info .gallery_m{display:block}
-	.room_info .gallery_m .owl-stage-outer{height:417px}
-	.room_info .btn_date{display:inline-block;position:relative;width:248px;height:40px;margin:32px 0;padding:0 0 0 38px;border:1px solid rgba(0,0,0,0.08);border-radius:4px;background:rgba(250,250,250,0.7) url('//image.goodchoice.kr/images/web_v3/ico_cal_2.png') 3px 50% no-repeat;background-size:32px auto;font-size:18px;line-height:40px;color:rgba(0,0,0,0.87)}
-	.room_info .btn_date strong{display:none}
-	.room_info .btn_date:after{display:inline-block;content:"";position:absolute;top:8px;right:8px;width:24px;height:24px;background:url('//image.goodchoice.kr/images/web_v3/ico_arr_down.png') 0 0 no-repeat;background-size:24px auto}
-	.room_info .room{overflow:hidden;position:relative;margin:0 0 24px 0;background:#fff}
-	.room_info .room .cal_bg{display:none;position:absolute;bottom:23px;left:23px;width:914px;height:528px;background:#f9f9f9}
-	.room_info .room .cal_bg button{display:inline-block;position:absolute;top:0;right:0;width:48px;height:48px;background:url('//image.goodchoice.kr/images/web_v3/ico_close.png') 50% 50% no-repeat;border:none;background-size:24px auto;text-indent:-9999px}
+	.room_info .pic_wrap{display:none; position:absolute; bottom:79px; left:111px; margin:0 !important}
+
+	.room_info .room{overflow:hidden; position:relative; margin:0 0 24px 0; background:#fff}
 	.room_info .pic_view{display:inline-block;position:absolute;top:23px;left:23px;width:376px;height:226px;cursor:pointer}
 	.room_info .pic_view img{width:376px;height:226px}
-	.room_info .pic_view:after{display:inline-block;content:"";position:absolute;bottom:16px;right:16px;z-index:10;width:24px;height:24px;background:url('//image.goodchoice.kr/images/web_v3/ico_picview.png') 0 0 no-repeat;background-size:24px auto}
-	.room_info .pic_view.pic_empty:after {display: none;}
+	.room_info .pic_view:after{display:inline-block; content:""; position:absolute; bottom:16px; right:16px; z-index:10; width:24px; height:24px; background:url('//image.goodchoice.kr/images/web_v3/ico_picview.png') 0 0 no-repeat; background-size:24px auto}
+	.room_info .pic_view .pic_empty:after {display: none;}
 	.room_info .room .title{display:block;height:37px;padding:0;font-size:20px;font-weight:bold;line-height:1}
 	.room_info .room .info{overflow:hidden;margin:0; min-height: 188px}
 	.room_info .info .half{float:left;width:233px}
@@ -257,31 +255,29 @@ ul,ol,li{list-style:none;}
 	.room_info .info .half .price ul{height:64px;padding:11px 0 0 0}
 	.room_info .info .half .price ul li{position:relative;margin-bottom:7px;font-size:16px;text-align:right}
 	.room_info .info .half .price ul li span{position:absolute;top:0;left:0;color:rgba(0,0,0,0.56)}
-	.room_info .info button{display:block;width:100%;height:40px;border:none;border-radius:4px;font-size:16px;font-weight:normal;color:#fff;text-align:center}
+	.room_info .info button{display:block; width:100%; height:40px; border:none; border-radius:4px; font-size:16px; font-weight:normal; color:#fff; text-align:center}
 	.room_info .info .none ul,.room_info .info .none div .through{visibility:hidden}
-	.room_info .info .none div p,	.room_info .info .ended p{color:rgba(0,0,0,0.87);font-weight:bold}	
+	.room_info .info .none div p,	.room_info .info .ended p{color:rgba(0,0,0,0.87); font-weight:bold}	
 
-	.room_info .info .room_info_null .price{position:relative;padding:0;border:none;border-radius:0;border-bottom:none;box-sizing:border-box}
-	.room_info .info .room_info_null .price strong{display:block;border-bottom:1px solid rgba(0,0,0,0.08);height:147px;font-size:18px;line-height:1}
-	.room_info .info .room_info_null .price div{position:absolute;top:76px;right:0;font-size:18px;text-align:right}
-	.room_info .info .room_info_null .price div p b{font-size:20px;color:rgb(255,43,92)}
+	.room_info .info .room_info_null .price{position:relative; padding:0; border:none; border-radius:0; border-bottom:none; box-sizing:border-box}
+	.room_info .info .room_info_null .price strong{display:block; border-bottom:1px solid rgba(0,0,0,0.08); height:147px; font-size:18px; line-height:1}
+	.room_info .info .room_info_null .price div{position:absolute; top:76px; right:0; font-size:18px; text-align:right}
+	.room_info .info .room_info_null .price div p b{font-size:20px; color:rgb(255,43,92)}
 	.room_info .info .room_info_null .through{margin-bottom:6px !important;padding-top:14px !important}
-	.room_info .info .room_info_null ul{overflow:hidden;position:relative;height:65px}
-	.room_info .info .room_info_null ul:after{display:inline-block;content:"";position:absolute;top:12px;left:50%;width:1px;height:16px;margin-top:0;background:rgba(0,0,0,0.08)}
-	.room_info .info .room_info_null ul li{position:relative;float:left;width:50%;padding:11px 24px 13px 24px;font-size:16px;text-align:right}
+	.room_info .info .room_info_null ul{overflow:hidden; position:relative; height:65px}
+	.room_info .info .room_info_null ul:after{display:inline-block; content:""; position:absolute; top:12px; left:50%; width:1px; height:16px; margin-top:0; background:rgba(0,0,0,0.08)}
+	.room_info .info .room_info_null ul li{position:relative; float:left; width:50%; padding:11px 24px 13px 24px; font-size:16px; text-align:right}
 	.room_info .info .room_info_null ul li:last-child{padding-right:0}
 	.room_info .info .room_info_null ul li:last-child span{left:24px}
-	.room_info .info .room_info_null ul li span{display:inline-block;position:absolute;top:11px;left:0;padding-right:0;color:rgba(0,0,0,0.56)}
-	.room_info .info .hotel .price{position:relative;padding:0;border:none;border-radius:0;border-bottom:none;box-sizing:border-box}
-	.room_info .info .hotel .price strong{display:block;padding-top:41px;border-bottom:1px solid rgba(0,0,0,0.08);height:76px;font-size:16px;line-height:1}
+	.room_info .info .room_info_null ul li span{display:inline-block; position:absolute; top:11px; left:0; padding-right:0; color:rgba(0,0,0,0.56)}
+	.room_info .info .hotel .price{position:relative; padding:0; border:none; border-radius:0; border-bottom:none; box-sizing:border-box}
+	.room_info .info .hotel .price strong{display:block; padding-top:41px; border-bottom:1px solid rgba(0,0,0,0.08); height:76px; font-size:16px; line-height:1}
 	.room_info .info .hotel .price div{position:absolute;top:10px;right:0;font-size:18px;text-align:right}
 	.room_info .info .hotel .price div p b{font-size:20px}
-	.room_info .info .hotel .price button{height:48px;margin:12px 0;font-size:16px;line-height:48px}
-	.room_info .info .hotel .through{margin-bottom:6px !important;padding-top:14px !important}
+	.room_info .info .hotel .price button{height:48px; margin:12px 0; font-size:16px; line-height:48px}
+	.room_info .info .hotel .through{margin-bottom:6px !important; padding-top:14px !important}
 
-article{display:none}
-article.on{display:block}
-
+	
 
 
 

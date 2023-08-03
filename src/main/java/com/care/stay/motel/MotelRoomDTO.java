@@ -1,13 +1,14 @@
 package com.care.stay.motel;
 
 public class MotelRoomDTO {
+	private int no;
 	private String mcode;
 	private String mroomcode;
 	private String mroomname;
 	private String mroomimage;
 	private int mroomnumber;
-	private String mdaesilprice;
-	private String mstayprice;
+	private int mdaesilprice;
+	private int mstayprice;
 	private String mdaesilcheckin;
 	private String mdaesilcheckout;
 	private String mdaesiltime;
@@ -15,6 +16,12 @@ public class MotelRoomDTO {
 	private String mstaycheckout;
 	private String moption;
 	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getMcode() {
 		return mcode;
 	}
@@ -45,16 +52,16 @@ public class MotelRoomDTO {
 	public void setMroomnumber(int mroomnumber) {
 		this.mroomnumber = mroomnumber;
 	}
-	public String getMdaesilprice() {
+	public int getMdaesilprice() {
 		return mdaesilprice;
 	}
-	public void setMdaesilprice(String mdaesilprice) {
+	public void setMdaesilprice(int mdaesilprice) {
 		this.mdaesilprice = mdaesilprice;
 	}
-	public String getMstayprice() {
+	public int getMstayprice() {
 		return mstayprice;
 	}
-	public void setMstayprice(String mstayprice) {
+	public void setMstayprice(int mstayprice) {
 		this.mstayprice = mstayprice;
 	}
 	public String getMdaesilcheckin() {

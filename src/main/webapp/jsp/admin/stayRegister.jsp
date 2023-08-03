@@ -26,12 +26,6 @@
 	          			document.getElementById('address').value= data.jibunAddress;
 	          		}
 	          		document.getElementById('postcode').value= data.zonecode;
-						/* 				
-						console.log(data.userSelectedType)
-						console.log(data.roadAddress)
-						console.log(data.jibunAddress)
-						console.log(data.zonecode)
-						*/
 	          }
 	      }).open();
 	  }
@@ -57,6 +51,15 @@
 		  } else if (region.value === "전남/전북") {
 		    document.getElementById("detailRegion5").style.display = "block";
 		  }
+		}
+	  
+	  
+	  function submitForm() {
+		    // form 요소 가져오기
+		    var form = document.getElementById("stayForm");
+
+		    // form submit
+		    form.submit();
 		}
 	  
 	   
@@ -111,7 +114,7 @@
 						<tr>
 							<th>숙소 코드</th>
 							<td>	
-								<input type="text" class="form_w40" name="code" id="code">
+								${motel.mcode} ${motel.no }+1
 							</td>
 						</tr>
 						
@@ -191,8 +194,8 @@
 					
 					<div>
 						<ul>
-<%-- 							<li><a href="${context }stayIndex" onclick="submitForm()">등록</a></li> --%>
-							<li><input type="submit" value="등록"></li>
+							<li><a href="${context }stayInfo" onclick="submitForm()">등록</a></li>
+<!-- 							<li><input type="submit" value="등록"></li> -->
 						</ul>
 					</div>
 					

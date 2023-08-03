@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.stay.hotel.HotelDTO;
 import com.care.stay.motel.MotelDTO;
+import com.care.stay.motel.MotelRoomDTO;
 import com.care.stay.motel.MotelService;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,10 +26,39 @@ public class AdminStayController {
 		return "admin/stayRegister";
 	}
 	
-	@GetMapping("stayDetailRegister")
-	public String stayDetailRegister() {
+//	@GetMapping("stayDetailRegister")
+//	public String stayDetailRegister(
+//			@RequestParam(value="no", required = false)String n, 
+//			Model model) {
+//		
+//		MotelDTO motel = service.stayContent(n);
+//		if(motel == null)
+//			return "redirect:stayInfo";
+//		
+//		model.addAttribute("motel", motel);
+//		return "admin/stayDetailRegister";
+//	}
+	
+	@RequestMapping("stayDetailRegister")
+	public String stayDetailRegister(
+			@RequestParam(value="no", required = false)String n,
+			Model model) {
+		MotelDTO motel = service.stayContent(n);
+		if(motel == null)
+			return "redirect:stayInfo";
+		
+		model.addAttribute("motel", motel);
 		return "admin/stayDetailRegister";
 	}
+	
+	@RequestMapping("stayInfo")
+	public String stayInfo(
+			@RequestParam(value="currentPage", required = false)String cp, 
+			Model model) {
+		service.stayInfo(cp, model);
+		return "admin/stayInfo";
+	}
+	
 	
 	@GetMapping("stayModify")
 	public String stayModify() {
@@ -45,8 +75,17 @@ public class AdminStayController {
 		return "admin/stayIndex";
 	}
 	
-	@GetMapping("stayContent")
-	public String stayContent() {
+	@RequestMapping("stayContent")
+	public String stayContent(
+		@RequestParam(value="no", required = false)String n, 
+		@RequestParam(value="mcode", required = false)String code,
+		Model model) {
+		MotelDTO motel = service.stayContent(n);
+		if(motel == null) {
+			System.out.println("stayContent 게시글 번호 : " + n);
+			return "redirect:stayRegister";
+		}
+		model.addAttribute("motel", motel);
 		return "admin/stayContent";
 	}
 
@@ -62,10 +101,20 @@ public class AdminStayController {
 //		return "admin/stayregister";
 //	}
 	
+	@PostMapping("staydetailregisterProc")
+	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
+		String msg = service.staydetailregisterProc(multi);
+		if(msg.equals("객실 DB 작성 완료"))
+			return "redirect:stayContent";
+		
+		model.addAttribute("msg", msg);
+		return "admin/stayDetailRegister";
+	}
+	
 	@PostMapping("stayregisterProc")
 	public String stayregisterProc(Model model, MultipartHttpServletRequest multi) {
 		String msg = service.stayregisterProc(multi);
-		if(msg.equals("게시글 작성 완료"))
+		if(msg.equals("숙소 DB 작성 완료"))
 			return "redirect:stayInfo";
 		
 		model.addAttribute("msg", msg);
@@ -73,12 +122,6 @@ public class AdminStayController {
 	}
 	
 	
-	@RequestMapping("stayInfo")
-	public String stayInfo(
-			@RequestParam(value="currentPage", required = false)String cp, 
-			Model model) {
-		service.stayInfo(cp, model);
-		return "admin/stayInfo";
-	}
+
 
 }

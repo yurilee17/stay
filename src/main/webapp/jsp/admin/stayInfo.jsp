@@ -70,8 +70,8 @@
 				<c:forEach var="motel" items="${ motels}">
 					<tr>
 						<td>${motel.no }</td>
-						<td>${motel.mcode }</td>
-						<td onclick="location.href='#'">
+						<td>${motel.mcode }${motel.no }</td>
+						<td onclick="location.href='stayContent?no=${motel.no }'">
 							${motel.mname }
 						</td>
 						<td>${motel.mregion }</td>

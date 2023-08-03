@@ -37,6 +37,23 @@
 		    document.getElementById("showDetail5").style.display = "table";
 		  }
 		}
+	 
+     function CheckedCheckboxes() {
+         // HTML에서 체크된 모든 체크박스 요소를 선택합니다.
+         const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+         // 선택된 체크박스의 값을 저장할 배열을 생성합니다.
+         const checkedValues = [];
+
+         // 선택된 체크박스의 값을 배열에 추가합니다.
+         checkedCheckboxes.forEach((checkbox) => {
+             checkedValues.push(checkbox.labels[0].innerText);
+         });
+		
+         
+         // 배열에 추가된 체크박스의 값들을 form action과 함께 전송하기
+     }
+ </script>
 </script>
  
  <body>
@@ -60,15 +77,15 @@
 			<!-- 설명 -->
 
 			<div class="stay_registerdetail">
-				<form action="">
-					<table class="stay_table">
+				<form action="stayDetailForm" action="staydetailregisterProc" method="post">
+					<table class="stay_detailtable">
 						<colgroup>
 							<col width="25%"></col>
 							<col width="*"></col>							
-						</colgroup>
+						</colgroup>													
 						<tr>
 							<th>숙소 이름</th>
-							<td><input type="text" class="form_w50" placeholder=""></td>
+							<td><input type="text" class="form_w50" value="${motel.mname}" }></td>
 						</tr>						
 						<tr>
 							<th>종류</th>
@@ -96,6 +113,10 @@
 							<th>객실 코드</th>
 							<td><input type="text" class="form_w30" name="mroomcode" placeholder=""></td>
 						</tr>						
+						<tr>
+							<th>이미지 업로드</th>
+							<td><input type="file" name="mroomimage" id="mroomimage" ></td>
+						</tr>
 						<tr>
 							<th>방 개수</th>
 							<td><input type="text" class="form_w30" name="mroomnumber" placeholder=""></td>
@@ -578,6 +599,7 @@
 				<ul>
 					<li><a href="#">등록</a></li>
 					<li><a href="${context }stayContent">뒤로가기</a></li>
+					<li><input type="submit" value="등록"></li>
 				</ul>
 			</div>
 		</div>

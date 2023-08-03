@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.care.stay.common.PageService;
 import com.care.stay.hotel.HotelDTO;
 import com.care.stay.motel.MotelDTO;
+import com.care.stay.motel.MotelRoomDTO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -23,22 +24,17 @@ public class AdminStayService {
 	@Autowired private AdminStayMapper adminStayMapper;
 	@Autowired private HttpSession session;
 	
+	
+	/* 숙소 DB 등록 */
 	public String stayregisterProc(MultipartHttpServletRequest multi) {
 		MotelDTO motel = new MotelDTO();
-		motel.setMcode(multi.getParameter("code"));
 		motel.setMname(multi.getParameter("name"));
 		motel.setMregion(multi.getParameter("region"));
-		motel.setMdetailregion(multi.getParameter("detailRegion"));
+		motel.setMdetailRegion(multi.getParameter("detailRegion"));
+		motel.setMaddress(multi.getParameter("address"));
+		motel.setMdetailAddress(multi.getParameter("detailAddress"));
 		motel.setMinfo(multi.getParameter("info"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		System.out.println();
-		System.out.println(multi.getParameter("name"));
-		System.out.println(multi.getParameter("code"));
-		System.out.println(multi.getParameter("region"));
-		System.out.println(multi.getParameter("detailRegion"));
-		System.out.println(multi.getParameter("address"));
-		System.out.println(multi.getParameter("detailAddress"));
 		
 		/*밑에꺼 주석 풀면 submit가 안되고 자꾸 redirect됨*/
 		
@@ -86,12 +82,24 @@ public class AdminStayService {
 				e.printStackTrace();
 			}
 		}
+//		System.out.println();
+//		System.out.println(motel.getMcode());
+//		System.out.println(motel.getMname());
+//		System.out.println(motel.getMregion());
+//		System.out.println(motel.getMdetailRegion());
+//		
+//		System.out.println(motel.getMaddress());
+//		System.out.println(motel.getMimage());
+//		System.out.println(motel.getMinfo());
+//		System.out.println(motel.getMdetailAddress());
+	
 		
 		adminStayMapper.stayregisterProc(motel);
-		return "게시글 작성 완료";
+		return "숙소 DB 작성 완료";
 		
 	}
 
+	/* 객실별 정보 일람 */
 	public void stayInfo(String cp, Model model) {
 		int currentPage = 1;
 		try{
@@ -113,6 +121,99 @@ public class AdminStayService {
 		model.addAttribute("result", result);
 		model.addAttribute("currentPage", currentPage);
 	}
+
+	public MotelDTO stayContent(String n) {
+		int no = 0;
+		try{
+			no = Integer.parseInt(n);
+		}catch(Exception e){
+			return null;
+		}
+		
+		MotelDTO motel = adminStayMapper.stayContent(no);
+		if(motel == null)
+			return null;
+		
+		/* 이미지는 DB 등록이 되야 출력이 해결될듯 */
+		System.out.println("motel.getMimage() : " + motel.getMimage());
+		System.out.println("motel.getMimage() : " + motel.getMimage().isEmpty());
+
+		return motel;
+	}
+	
+	public MotelDTO stayDetailRegister (String n, Model model) {
+		int no = 0;
+		
+		try {
+			no = Integer.parseInt(n);
+		} catch(Exception e) {
+			return null;
+		}
+		
+		MotelDTO motel = adminStayMapper.stayContent(no);
+		if(motel == null)
+			return null;
+		
+		return motel;
+	}
+
+	/*모텔 객실 DB 등록 = 숙소 상세 DB 등록*/
+	public String staydetailregisterProc(MultipartHttpServletRequest multi) {
+		MotelRoomDTO motelroom = new MotelRoomDTO();
+		motelroom.setMroomcode(multi.getParameter("roomcode"));
+		motelroom.setMroomname(multi.getParameter("roomname"));
+		motelroom.setMroomimage(multi.getParameter("roomimage"));
+		motelroom.setMroomnumber(getIntParameter(multi, "roomnumber"));
+		motelroom.setMdaesilprice(getIntParameter(multi, "daesilprice"));
+	    motelroom.setMstayprice(getIntParameter(multi, "stayprice"));
+		motelroom.setMdaesilcheckin(multi.getParameter("daesilcheckin"));
+		motelroom.setMdaesilcheckout(multi.getParameter("daesilcheckout"));
+		motelroom.setMdaesiltime(multi.getParameter("daesiltime"));
+		motelroom.setMstaycheckin(multi.getParameter("staycheckin"));
+		motelroom.setMstaycheckout(multi.getParameter("staycheckout"));
+		motelroom.setMoption(multi.getParameter("option"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		motelroom.setMroomimage("");
+		MultipartFile file = multi.getFile("mroomimage");
+		String fileName = file.getOriginalFilename();
+		if(file.getSize() != 0) {
+			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.
+			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+			Calendar cal = Calendar.getInstance();
+			fileName = sdf.format(cal.getTime()) + fileName;
+			motelroom.setMroomimage(fileName);
+
+			// 업로드 파일 저장 경로
+			String fileLocation = "C:\\javas\\upload\\room\\";
+			File save = new File(fileLocation + fileName);
+			
+			try {
+				// 서버가 저장한 업로드 파일은 임시저장경로에 있는데 개발자가 원하는 경로로 이동
+				file.transferTo(save);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		adminStayMapper.staydetailregisterProc(motelroom);
+		return "객실 DB 작성 완료";
+		
+	}
+	
+	/*Multipart~~로 받아오는 일부 값들을 int형으로 변환하기 위해서*/
+	private int getIntParameter(MultipartHttpServletRequest multi, String paramName) {
+	    String paramValue = multi.getParameter(paramName);
+	    try {
+	        return Integer.parseInt(paramValue);
+	    } catch (NumberFormatException e) {
+	        // 예외 처리: 파라미터 값을 int로 변환할 수 없는 경우 기본값 또는 에러 처리를 하면 됨
+	        return 0; // 예시로 0을 반환
+	    }
+	}
+	
+
+	
 
 //	public String stayregisterProc(MotelDTO motel, String confirm) {
 //		if(motel.getMname() == null || motel.getMname().isEmpty()) {

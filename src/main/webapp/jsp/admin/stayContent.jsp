@@ -37,20 +37,30 @@
 			<!-- 설명 -->
 
 			<div class="stayContent_head">
-				<p class="pic_view"><img class="" src="C:\javas\upload\20230802133307-noname01.jpg"></p>
-				<div class="right">
-					<div class="info">
-						<h2>숙소 이름</h2>
-						<div class="score">평점 / 리뷰</div>
-						<p class="address">주소(주소 + 상세주소)</p>
-						<span>숙소 코드</span>
+				<form id="staydetailForm" action="" method="post">
+					<div class="left">
+						<p class="pic_view"><img class="" src="C:\javas\upload\"${motel.mimage }"""></p>
 					</div>
-				</div>
+					<div class="right">
+						<div class="info">
+							<h2>숙소 이름 : ${motel.mname }</h2>
+							<div class="score">평점 : ${motel.mrating }</div>
+							<p class="address">주소 : ${motel.maddress }  ${motel.mdetailAddress }</p>
+							<span>숙소 코드 : ${motel.mcode }${motel.no }</span>
+							<div class="submit">
+								<ul>
+									<li><a href="${context }stayModify">수정하기</a></li>
+									<li><a href="#">삭제하기</a></li>
+								</ul>
+							</div>	
+						</div>
+					</div>
+				</form>
 			</div>
 
 			<article class="room_info">
 				<div class="room">
-					<p class="pic_view "><img class="lazy" src="C:\Users\hi\Desktop\Motel\명동 밀리오레호텔 _ 여기어때_files/list_none.png"></p>
+					<p class="pic_view "><img class="lazy" src="list_none.png"></p>
 					<strong class="title">객실 이름</strong>
 					
 					<div class="info">
@@ -58,12 +68,11 @@
                             <div class="price">
                                 <strong>대실</strong>
 								<div>
-									<p class="through_none" style="text-decoration: inherit; visibility: hidden;">0</p>
 									<p><b style="color: rgba(0,0,0,1)">30,000원</b> <!-- 표시금액 --></p>                                       
 								</div>
 								<ul>
 									<li><span>마감시간</span>22시까지&nbsp;</li>
-										<span>이용시간</span>최대 5시간&nbsp;</li>
+									<li><span>이용시간</span>최대 5시간&nbsp;</li>
 								</ul>
                             </div>
                         </div>
@@ -72,14 +81,13 @@
 							<div class="price">
 								<strong>숙박</strong>
 								<div>
-									<p class="through_none" style="text-decoration: inherit; visibility: hidden;">0</p>
 									<p><b style="color: rgba(0,0,0,1)">135,000원</b> <!-- 표시금액 --></p>                                        
 								</div>
 								<ul><li>
 									<span>입실시간</span>15시부터&nbsp;
 									</li>
 									<li>
-									<span>퇴실시간</span>익일11시&nbsp;
+									<span>퇴실시간</span>익일 11시&nbsp;
 									</li>
 								</ul>
 							</div>
@@ -90,6 +98,7 @@
 			</article>
 
 			<div class="submit">
+				<button type="button" oneclick="location.href='stayDetailRegister'">상세 DB 등록</button>
 				<ul>
 					<li><a href="${context }stayDetailRegister">상세 DB 등록하기</a></li>
 					<li><a href="${context }stayInfo">숙소 목록</a></li>
