@@ -25,6 +25,8 @@
 	<div class="wrap">
 		<!-- Header -->
 		<header></header>
+		<!-- 로그인 여부 확인을 위한 부분 삭제 필요 -->
+		<h3>${sessionScope.id}</h3>
 		<script>
 			showAlert("${alert}");
 		</script>

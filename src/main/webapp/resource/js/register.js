@@ -4,38 +4,39 @@ let message = "";
 document.addEventListener("DOMContentLoaded", function() {
 
 	inputEvent();
-	unickInput(message);
+	nicknameInput(message);
 })
 
 /*input 예외 처리*/
 function inputEvent() {
 
 	//문자 인증
-	let moblie = document.getElementById("moblie");
+	let mobile = document.getElementById("mobile");
 	let digit = document.getElementById("digit");
 
-	if (moblie != null && digit != null) {
+	if (mobile != null && digit != null) {
 		let btnSend = document.querySelector(".btn_send");
 		let btnOk = document.querySelector(".btn_ok");
 
-		let moblieValue = moblie.value; // 이전 값 저장용 변수
+		let mobileValue = mobile.value; // 이전 값 저장용 변수
 		let digitValue = digit.value; // 이전 값 저장용 변수
 
-		var numberPattern = /^[0-9]+$/;
+		var numberPattern = /^010[0-9]{8}$/;
+		var numberPattern2 = /^[0-9]+$/;
 
-		moblie.addEventListener("input", function() {
-			if (moblie.value === '') {
-				moblieValue = ''; // 완전히 공백일 때는 이전 값도 공백으로 업데이트
+		mobile.addEventListener("input", function() {
+			if (mobile.value === '') {
+				mobileValue = ''; // 완전히 공백일 때는 이전 값도 공백으로 업데이트
 				btnSend.classList.remove("active");
-			} else if (numberPattern.test(moblie.value)) {
-				moblieValue = moblie.value;
-				if (moblie.value.length >= 10) {
+			} else if (numberPattern2.test(mobile.value)) {
+				mobileValue = mobile.value;
+				if (numberPattern.test(mobile.value)) {
 					btnSend.classList.add("active");
 				} else {
 					btnSend.classList.remove("active");
 				}
 			} else {
-				moblie.value = moblieValue;
+				mobile.value = mobileValue;
 			}
 		});
 
@@ -43,7 +44,7 @@ function inputEvent() {
 			if (digit.value === '') {
 				digitValue = ''; // 완전히 공백일 때는 이전 값도 공백으로 업데이트
 				btnOk.classList.remove("active");
-			} else if (numberPattern.test(digit.value)) {
+			} else if (numberPattern2.test(digit.value)) {
 				digitValue = digit.value;
 				if (digit.value.length >= 4) {
 					btnOk.classList.add("active");
@@ -70,6 +71,9 @@ function inputEvent() {
 		let newPwMsg = document.getElementById("new_pw_msg")
 		let newPwReMsg = document.getElementById("new_pw_re_msg")
 
+		const pattern = /^(?=.*[a-zA-Z])(?=.*\d)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d])|(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
+
+
 		id.addEventListener("blur", function() {
 			var message = "";
 			if (id.value === '') {
@@ -80,20 +84,27 @@ function inputEvent() {
 		});
 
 		id.addEventListener("input", function() {
-			if (password.value.length >= 8 && pattern.test(password.value)) {
-				newPwMsg.innerHTML = message;
+			if (!id.value.contains('kakao') &&
+				id.value != '' &&
+				password.value.length >= 8 &&
+				pattern.test(password.value) &&
+				newPwRe.value === password.value) {
+				joinBtn.classList.add("active");
 			} else {
 				joinBtn.classList.remove("active");
 			}
 
 		});
 
-		const pattern = /^(?=.*[a-zA-Z])(?=.*\d)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d])|(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
+
 
 		password.addEventListener("blur", function() {
-			var message = "";
-			if (password.value.length >= 8 && pattern.test(password.value)) {
-				newPwMsg.innerHTML = message;
+			if (!id.value.contains('kakao') &&
+				id.value != '' &&
+				password.value.length >= 8 &&
+				pattern.test(password.value) &&
+				newPwRe.value === password.value) {
+				joinBtn.classList.add("active");
 			} else {
 				joinBtn.classList.remove("active");
 			}
@@ -117,7 +128,11 @@ function inputEvent() {
 
 			}
 			newPwMsg.innerHTML = message;
-			if (id.value != '' && password.value.length >= 8 && pattern.test(password.value) && newPwRe.value === password.value) {
+			if (!id.value.contains('kakao') &&
+				id.value != '' &&
+				password.value.length >= 8 &&
+				pattern.test(password.value) &&
+				newPwRe.value === password.value) {
 				joinBtn.classList.add("active");
 			} else {
 				joinBtn.classList.remove("active");
@@ -134,7 +149,11 @@ function inputEvent() {
 				message = '';
 			}
 			newPwReMsg.innerHTML = message;
-			if (id.value != '' && password.value.length >= 8 && pattern.test(password.value) && newPwRe.value === password.value) {
+			if (!id.value.contains('kakao') &&
+				id.value != '' &&
+				password.value.length >= 8 &&
+				pattern.test(password.value) &&
+				newPwRe.value === password.value) {
 				joinBtn.classList.add("active");
 			} else {
 				joinBtn.classList.remove("active");
@@ -147,11 +166,11 @@ function inputEvent() {
 
 /*인증번호 전송, 재전송 선택 시*/
 function btnSend() {
-	let moblie = document.getElementById("moblie");
+	let mobile = document.getElementById("mobile");
 	let btnSend = document.querySelector(".btn_send");
 	let verificationCode = document.getElementById("verificationCode");
 
-	if (moblie.value.length >= 10 && btnSend.classList.contains('active')) {
+	if (mobile.value.length >= 10 && btnSend.classList.contains('active')) {
 		btnSend.classList.remove("active");
 		btnSend.classList.add("send");
 		btnSend.textContent = "재전송";
@@ -167,7 +186,7 @@ function btnSend() {
 		} else {
 			timer = 180;
 		}
-	} else if (moblie.value.length <= 9 && hone.value.length >= 1) {
+	} else if (mobile.value.length <= 9 && hone.value.length >= 1) {
 		alert("휴대폰 번호 형식이 아닙니다.");
 	} else if (btnSend.classList.contains('send')) {
 		alert("1분 후에 다시 시도해주세요.");
@@ -179,11 +198,13 @@ function btnSend() {
 }
 
 function btnSend() {
-	let moblie = document.getElementById("moblie");
+	let mobile = document.getElementById("mobile");
 	let btnSend = document.querySelector(".btn_send");
 	let verificationCode = document.getElementById("verificationCode");
 
-	if (moblie.value.length >= 10 && btnSend.classList.contains('active')) {
+	var numberPattern = /^010[0-9]{8}$/;
+
+	if (mobile.value.length >= 10 && btnSend.classList.contains('active')) {
 		btnSend.classList.remove("active");
 		btnSend.classList.add("send");
 		btnSend.textContent = "재전송";
@@ -202,7 +223,7 @@ function btnSend() {
 
 		sendMsg();
 
-	} else if (moblie.value.length <= 9 && moblie.value.length >= 1) {
+	} else if (!numberPattern.test(mobile.value)) {
 		alert("휴대폰 번호 형식이 아닙니다.");
 	} else if (btnSend.classList.contains('send')) {
 		alert("1분 후에 다시 시도해주세요.");
@@ -269,7 +290,7 @@ var pro;
 function sendMsg() {
 	xhr = new XMLHttpRequest();
 	xhr.open('post', 'sendMsg')
-	xhr.send(document.getElementById('moblie').value)
+	xhr.send(document.getElementById('mobile').value)
 	xhr.onreadystatechange = resProc
 }
 
@@ -295,8 +316,16 @@ function sendDigitProc() {
 			// 응답을 이미 처리했으면 두 번째 호출 무시
 			pro = true;
 			if (xhr.responseText === '인증 성공') {
-
-				window.location.href = "http://localhost/register";
+				let mobile = document.getElementById('mobile').value; // 전송하고자 하는 값
+				let id = document.getElementById('id').value; // 전송하고자 하는 값
+				let url = '';
+				if(id != ""){
+					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile)+ "&id=" + encodeURIComponent(id);
+				}else{
+					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile);
+				}
+				
+				window.location.href = url;
 			} else if (xhr.responseText === '인증 실패') {
 				alert("인증번호와 다르게 입력되었습니다. 재입력해 주시기 바랍니다.");
 				console.log("test 결과: " + xhr.responseText);
@@ -309,67 +338,99 @@ function sendDigitProc() {
 function joinBtnt() {
 	let joinBtn = document.getElementById("joinBtn");
 
-	let unick = document.getElementById("unick");
+	let nickname = document.getElementById("nickname");
 	const pattern = /^[가-힣]*$/;
 
+
 	if (joinBtn.classList.contains('active')) {
-		if (unick.value === '') {
+		if (nickname.value === '') {
 			alert("*닉네임은(는) 필수입니다.");
-		} else if (unick.value.length >= 15) {
+		} else if (nickname.value.length >= 15) {
 			alert("*닉네임은(는) 최대 14자 이하여야 합니다.");
-		} else if (unick.value.length <= 1) {
+		} else if (nickname.value.length <= 1) {
 			alert("*닉네임은(는) 최소 2자 이상이어야 합니다.");
-		} else if (!pattern.test(unick.value)) {
+		} else if (!pattern.test(nickname.value)) {
 			alert("잘못된 접근입니다.");
 		} else {
 			regForm.submit();
 		}
-
-
 	} else {
-		alert("test");
+
 	}
 }
 
-// 알림 설정
-function showAlert(msg) {
-	if (msg === "닉네임 중복") {
-		let unick = document.getElementById("unick");
-		let error = document.getElementById("unick-error");
-
-
-		unick.classList.add("inp_error");
-		error.innerHTML = "이미 등록된 닉네임입니다.";
-		alert("이미 등록된 닉네임입니다.");
-
-	}
-	
-	if (message === "아이디 중복") {
-		alert("이미 사용중인 아이디입니다."); 
-	}
+/*중복확인*/
+// 아이디 확인
+function sendId() {
+	xhr = new XMLHttpRequest();
+	pro = false;
+	xhr.open('post', 'sendId');
+	xhr.send(document.getElementById('id').value);
+	xhr.onreadystatechange = sendNicknameProc
 }
 
-function textMsg(msg) {
-	message = msg;
+function sendIdProc() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		if (!pro) {
+			// 응답을 이미 처리했으면 두 번째 호출 무시
+			pro = true;
+			if (xhr.responseText === '실패') {
+				sendNickname()
+			} else {
+				let idMsg = document.getElementById("userId_msg");
+
+				idMsg.innerHTML = "이미 등록된 이메일입니다.";
+				alert("이미 사용중인 아이디입니다.");
+			}
+		}
+	}
+}
+// 닉네임 확인
+function sendNickname() {
+	pro = false;
+	xhr.open('post', 'serchNickname');
+	xhr.send(document.getElementById('nickname').value);
+	xhr.onreadystatechange = sendNicknameProc
+}
+
+function sendNicknameProc() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		if (!pro) {
+			// 응답을 이미 처리했으면 두 번째 호출 무시
+			pro = true;
+			if (xhr.responseText === '닉네임 중복') {
+				let nickname = document.getElementById("nickname");
+				let error = document.getElementById("unick-error");
+
+				message = "닉네임 중복";
+				nickname.classList.add("inp_error");
+				error.innerHTML = "이미 등록된 닉네임입니다.";
+				alert("이미 등록된 닉네임입니다.");
+
+			} else {
+				joinBtnt()
+			}
+		}
+	}
 }
 
 //닉네임 오류 시
-function unickInput(message) {
+function nicknameInput(message) {
 	if (message === "닉네임 중복") {
-		let unick = document.getElementById("unick");
+		let nickname = document.getElementById("nickname");
 		let error = document.getElementById("unick-error");
 
 		const pattern = /^[가-힣]*$/;
 
-		unick.addEventListener("input", function() {
+		nickname.addEventListener("input", function() {
 			var message = "";
-			if (unick.value === '') {
+			if (nickname.value === '') {
 				message = "비밀번호를 입력해주세요.";
-			} else if (unick.value.length >= 15) {
+			} else if (nickname.value.length >= 15) {
 				message = "14자를 넘을 수 없습니다.";
-			} else if (unick.value.length <= 1) {
+			} else if (nickname.value.length <= 1) {
 				message = "2자 이상 입력하세요.";
-			} else if (!pattern.test(unick.value)) {
+			} else if (!pattern.test(nickname.value)) {
 				message = "특수문자는 입력 할 수 없습니다.";
 			} else {
 				message = "";

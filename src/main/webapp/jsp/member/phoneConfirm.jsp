@@ -36,7 +36,8 @@
 						<strong>휴대폰 번호</strong>
 						<section>
 							<div class="inp_wrap remove">
-								<input type="tel" id="moblie" name="moblie" maxlength="13">
+								<input type="hidden" id="id" value=${param.id} >
+								<input type="tel" id="mobile" name="mobile" maxlength="13">
 							</div>
 							<button type="button" class="btn_send btn_confirm"
 								name="nemButton" onclick="btnSend()">인증번호 전송</button>

@@ -13,5 +13,7 @@ public interface MemberMapper {
 	MemberDTO loginProc(String id);
 	
 	MemberDTO serchNickname(String nickname);
+	
+	void registerProc(MemberDTO member);
 
 }

@@ -3,11 +3,10 @@ package com.care.stay.member;
 public class MemberDTO {
 	private String id;
 	private String password;
-	private String moblie;
+	private String mobile;
 	private String name;
 	private String nickname;
 	private String authority;
-	
 	public String getId() {
 		return id;
 	}
@@ -20,11 +19,11 @@ public class MemberDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getMoblie() {
-		return moblie;
+	public String getMobile() {
+		return mobile;
 	}
-	public void setMoblie(String moblie) {
-		this.moblie = moblie;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	public String getName() {
 		return name;
@@ -44,6 +43,5 @@ public class MemberDTO {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-
 
 }
