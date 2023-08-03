@@ -195,6 +195,8 @@ label {
 	width: 100%;
 	background: #fff;
 }
+.inp_type_2 input::placeholder {color: rgba(0,0,0,0.24);}
+
 
 /*
 #content {
@@ -241,7 +243,7 @@ label {
 }
 
 /*전체*/
-.register {
+.phoneConfirm {
 	font-size: 15px;
 	line-height: 26px;
 	color: rgba(0, 0, 0, 0.87);
@@ -261,13 +263,13 @@ label {
 }
 
 /* 휴대폰 번호 */
-.register section {
+.phoneConfirm section {
 	width: 336px;
 	margin: 100px auto 0 auto;
 }
 
 /*제목*/
-.register .fix_title {
+.phoneConfirm .fix_title {
 	display: block !important;
 	margin-bottom: 16px;
 	position: relative;
@@ -275,7 +277,7 @@ label {
 	border-bottom: none;
 }
 
-.fix_title {
+.phoneConfirm .fix_title {
 	display: none;
 	top: 0;
 	left: 0;
@@ -288,7 +290,7 @@ label {
 	text-align: center;
 }
 
-.register .fix_title strong {
+.phoneConfirm .fix_title strong {
 	font-size: 24px;
 	font-weight: bold;
 	display: block;
@@ -384,8 +386,9 @@ label {
 	color: #ff0055;
 }
 
+/* ======================== 회원 가입 창 ===========================*/
 
-/* 회원 가입 창 */
+/* 전체 */
 .register {
 	overflow: auto;
 	position: relative;
@@ -421,7 +424,7 @@ label {
 }
 
 /*
-.fix_title h1.page_head {
+.fix_title > h1 {
     text-align: center;
 }
 */
@@ -435,7 +438,7 @@ label {
 }
 
 /*회원가입 제목*/
-.layer_fix .sub_title {
+.register .sub_title {
 	display: block;
 	margin: 30px 0 10px 0;
 	font-size: 18px;
@@ -482,6 +485,11 @@ label {
 .join .btn-add {
 	margin-right: 100px;
 }
+
+/*닉네임 오류*/
+.inp_error {
+    border: 1px solid rgb(230,28,81) !important;
+}
 /*딴거할래요*/
 .join .btn-add .btn_etc {
 	position: absolute;
@@ -502,14 +510,14 @@ label {
 
 /*가입하기 버튼*/
 .join .gra_left_right_red {margin-bottom: 50px;}
+
 .register .btn_link { height: 56px; font-size: 16px; line-height: 56px;
-display: block; width: 100%; margin-top: 16px; border-radius: 6px; text-align: center;}
+display: block; width: 100%; margin-top: 16px; border-radius: 6px; text-align: center;
+background: #fafafa; color: rgba(0, 0, 0, 0.16);}
 
-.btn_user_submit {
-	background: #fafafa;
-	color: rgba(0, 0, 0, 0.16);
+.btn_link.active {
+	background-color: rgb(255, 0, 85);
+    color: rgb(255, 255, 255);
+    border: none;
 }
 
-.gra_left_right_red {
-	background: linear-gradient(to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100%);
-}

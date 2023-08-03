@@ -936,6 +936,7 @@ button.btn_link.gra_red {
 .select_way li input{position: absolute;top: 20px;left: 0;width: 20px;height: 20px;margin: 0;border: 1px solid rgba(0,0,0,0.48);background-color: #fff;border-radius: 100%;}
 .select_way li input:checked{border: 1px solid #f45858;background-color: #f45858;}
 .select_way li:last-child{margin-bottom: 0;}
+
 .select_way li b{display: block;padding-bottom: 4px;font-size: 18px;color: rgba(0,0,0,0.8);font-weight: bold;}
 .select_way li span{font-size: 14px;color: rgba(0,0,0,0.48)}
 

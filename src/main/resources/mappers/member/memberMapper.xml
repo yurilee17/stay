@@ -12,8 +12,13 @@
 		<result column="nickname" property="nickname"/>
 		<result column="authority" property="authority"/>
 	</resultMap>
+	
 	<select id="loginProc" resultMap="memberDto">
 		SELECT * FROM member WHERE id=#{id}
+	</select>
+	
+	<select id="serchNickname" resultMap="memberDto">
+		SELECT * FROM member WHERE nickname=#{nickname}
 	</select>
 	
 </mapper>

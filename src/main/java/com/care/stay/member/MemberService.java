@@ -48,6 +48,8 @@ public class MemberService {
 		return "실패";
 	}
 	
+	//로그인 정보
+	
 	// 문자 전송
 	private String content;
 	
@@ -77,6 +79,17 @@ public class MemberService {
 		}
 		
 		return "인증 실패";
+	}
+	
+	// 닉네임 존재여부 확인
+	public String serchNickname(String nickname) {
+		MemberDTO result = memberMapper.serchNickname(nickname);
+		
+		if(result != null) {
+			return "닉네임 중복";
+		}
+		
+		return "사용 가능";
 	}
 	
 	

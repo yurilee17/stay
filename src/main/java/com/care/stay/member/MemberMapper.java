@@ -11,5 +11,7 @@ import com.care.stay.member.MemberDTO;
 public interface MemberMapper {
 
 	MemberDTO loginProc(String id);
+	
+	MemberDTO serchNickname(String nickname);
 
 }
