@@ -194,8 +194,8 @@
 					
 					<div>
 						<ul>
-							<li><a href="${context }stayInfo" onclick="submitForm()">등록</a></li>
-<!-- 							<li><input type="submit" value="등록"></li> -->
+							<!-- <li><a href="${context }stayInfo" onclick="submitForm()">등록</a></li>-->
+							<li><input type="submit" value="등록"></li> 
 						</ul>
 					</div>
 					

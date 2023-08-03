@@ -30,6 +30,10 @@
 	<select id="stayContent" resultMap="motelDto">
 		SELECT * FROM motel WHERE no=#{no}
 	</select>
+	
+	<select id="stayDetailRegister" resultMap="motelDto">
+		SELECT * FROM motel WHERE no=#{no}
+	</select>
 
 	<select id="count">
 	  	SELECT count(no) FROM motel

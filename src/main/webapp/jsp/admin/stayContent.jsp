@@ -35,9 +35,9 @@
 			<h2>숙소 등록과 관리가 가능한 관리자 페이지입니다.</h2>
 			<p>숙소의 종류와 가격, 수량, 설명, 세부사항 등을 관리하실 수 있습니다.</p>
 			<!-- 설명 -->
-
+			<form id="staydetailForm" action="" method="post">
 			<div class="stayContent_head">
-				<form id="staydetailForm" action="" method="post">
+				
 					<div class="left">
 						<p class="pic_view"><img class="" src="C:\javas\upload\"${motel.mimage }"""></p>
 					</div>
@@ -55,7 +55,6 @@
 							</div>	
 						</div>
 					</div>
-				</form>
 			</div>
 
 			<article class="room_info">
@@ -97,13 +96,17 @@
 				</div>
 			</article>
 
+
 			<div class="submit">
-				<button type="button" oneclick="location.href='stayDetailRegister'">상세 DB 등록</button>
+			
+				<button type="submit" oneclick="location.href='stayDetailRegister?no=${motel.no }'">상세 DB 등록</button>
 				<ul>
-					<li><a href="${context }stayDetailRegister">상세 DB 등록하기</a></li>
+					<!-- <li><input type="submit" value="등록"></li> 
+ -->					<li><a href="${context }stayDetailRegister">상세 DB 등록하기</a></li>
 					<li><a href="${context }stayInfo">숙소 목록</a></li>
 				</ul>
 			</div>
+			</form>
 		</div>
 	</div>
  </body>

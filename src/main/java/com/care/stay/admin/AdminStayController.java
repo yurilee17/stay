@@ -42,6 +42,7 @@ public class AdminStayController {
 	@RequestMapping("stayDetailRegister")
 	public String stayDetailRegister(
 			@RequestParam(value="no", required = false)String n,
+			@RequestParam(value="mname", required = false)String name,
 			Model model) {
 		MotelDTO motel = service.stayContent(n);
 		if(motel == null)
