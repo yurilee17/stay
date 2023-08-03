@@ -12,6 +12,7 @@ button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  cursor:pointer;
 }
 
 
@@ -78,10 +79,11 @@ button {
 }
 
 
-/*.hpNav > .inner*/
+/* hpNav  (서브메뉴) */
+
 
 .reserBtn{
-	cursor:pointer; 
+	/*cursor:pointer; */
 	width:150px; 
 	height:55px; 
 	font-size:20px; 
@@ -98,7 +100,7 @@ button {
 
 
 .infoBtn{
-	cursor:pointer; 
+	/*cursor:pointer;*/ 
 	width:120px; 
 	height:55px; 
 	font-size:20px; 
@@ -115,7 +117,7 @@ button {
 
 
 .revBtn{
-	cursor:pointer; 
+	/*cursor:pointer; */
 	width:100px; 
 	height:55px; 
 	font-size:20px; 
@@ -131,13 +133,19 @@ button {
 }
 
 
+/* 서브메뉴페이지들 */
+
 main {
 	margin:0 auto;
-	padding: 50px 0 0 320px;
+	padding-left:320px;
 }
 
+
+
+/* 첫번쨰페이지 예약 css */
+
 main .resPage #calendars{
-	margin-bottom:50px;
+	margin:30px 0 ;
 }
 
  table {
@@ -201,6 +209,105 @@ table> tbody> tr > td:nth-child(2) {
 	
  }
 
+
+/* 두번째페이지 정보 css  */
+
+#informationP{
+	position: relative;
+}
+
+
+
+#informationP .opened{
+	width:1024px;
+	height:80px;
+	line-height: 80px;
+	padding-left: 16px;
+	border-top:1px solid #ddd;
+	
+}
+	
+
+
+#informationP .basicInfo, .serviceInfo, .emptyInfo{
+	width:1024px;
+	height:80px;
+	line-height: 80px;
+	padding-left: 16px;
+	border-top:1px solid #ddd;
+	margin-right:0;
+}
+
+#informationP #infoStory, #serviceStory {
+	padding: 15px 5px 15px 20px;
+	margin-bottom:20px;
+	width:1020px;
+	background-color: #F2F2F2;
+}
+
+
+/* 세번째페이지 리뷰css */
+
+
+	/*------- 리뷰내용*/
+	
+.review-con{
+	width:1024px;
+	padding:30px 0 15px 30px;
+	border-top: 1px solid #ddd;
+	line-height: 30px;
+}
+
+.review-con:last-child{
+	border-bottom: 1px solid #ddd;
+	margin-bottom:20px; /*아래에 밑줄생기는지 확인하려고 넣어놓음 필요없음 지워도됨*/
+}
+
+.review-con strong{
+	display: inline-block;
+	font-size: 25px;
+}
+
+	/*------- 별점넣기*/
+.star-rating {
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:25px;
+  justify-content:space-around;
+  padding-bottom: 15px;
+  width:6em;
+}
+
+
+.star-rating input {  /*라디오단추안보이게*/
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
+}
+
+.nicname {
+	color:#c4c4c4;
+}
+
+.roomname_review{
+	color:#c4c4c4;
+	padding-bottom: 20px;
+}
+
+
+	
 
 
 

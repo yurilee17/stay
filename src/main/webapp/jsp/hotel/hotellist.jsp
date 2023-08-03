@@ -155,7 +155,7 @@
 
 				$(function () {
 	         	   $('#calendars').daterangepicker({
-	         		  "maxSpan": {"days": 7 },
+	         		  "maxSpan": {"days": 6 },
 	                "locale": {
 	                    "format": "YYYY-MM-DD",
 	                    "separator": " ~ ",
@@ -191,7 +191,7 @@
 
 				
 						
-						<em>&nbsp;·&nbsp;1박!!!!!!!!!!!!!!!!</em>
+						<!-- <em>&nbsp;·&nbsp;1박!!!!!!!!!!!!!!!!</em> -->
 						</div> 
 					</section><br>
 
@@ -317,7 +317,7 @@
                             <img src="	https://via.placeholder.com/230x250" alt="상품이미지">
                         </a></td>
                         <td>
-                            <h2 class="name">호텔 인 강남</h2>
+                            <h2 class="name"></h2>
                             <p>강남구</p>
                            	<br>
                            	<span>*****</span>
