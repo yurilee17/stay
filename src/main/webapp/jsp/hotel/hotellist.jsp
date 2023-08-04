@@ -31,7 +31,7 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  	 <script type="text/javascript" src="../../resource/js/hotel.js"></script>
+  	<script type="text/javascript" src="../../resource/js/hotel.js"></script>
 </head>
 
 
@@ -310,14 +310,15 @@
                         <a href="#">지도</a>
                     </li>
                 </ul>
-            <%   for(int i =0; i<5; i++){     %>
+           <%--  <c:forEach var="hotel" items="${ hotels}">  --%>
+            <% for(int i=0; i<=5; i++){   %> 
                 <table>
                 	<tr>
                         <td  width="270px" height="250px"><a href="#" class="thumb">
                             <img src="	https://via.placeholder.com/230x250" alt="상품이미지">
                         </a></td>
                         <td>
-                            <h2 class="name"></h2>
+                            <h2 class="name">강남 인 호텔 </h2>
                             <p>강남구</p>
                            	<br>
                            	<span>*****</span>
@@ -335,7 +336,8 @@
                         </td>
                     </tr>
                 </table>
-             <%   } %>
+            <%  }  %>    
+        <%--   </c:forEach>  --%>
              
              </div>
                   
