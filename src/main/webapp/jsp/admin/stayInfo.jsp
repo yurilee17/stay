@@ -49,7 +49,7 @@
 			<br>			
 		<c:choose>
 			<c:when test="${empty motels }">
-				<h3> 등록된 숙소 DB가 없습니다. </h3>
+				<h3>등록된 숙소 DB가 없습니다. </h3>
 			</c:when>						
 			<c:otherwise>
 			<table class="db_search">

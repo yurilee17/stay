@@ -1,5 +1,8 @@
 package com.care.stay.admin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,14 +85,25 @@ public class AdminStayController {
 	@RequestMapping("stayContent")
 	public String stayContent(
 		@RequestParam(value="no", required = false)String n, 
-		@RequestParam(value="mcode", required = false)String code,
+		@RequestParam(value="mroomcode", required = false)String roomcode,
 		Model model) {
 		MotelDTO motel = service.stayContent(n);
+		MotelRoomDTO motelroom = service.stayRoomContent(n);
+
 		if(motel == null) {
 			System.out.println("stayContent 게시글 번호 : " + n);
 			return "redirect:stayRegister";
 		}
+		
+		List<MotelRoomDTO> motelrooms = new ArrayList<>();
+		
+		if (motelroom != null) {
+	        motelrooms.add(motelroom);
+	    }
+		
+		
 		model.addAttribute("motel", motel);
+		model.addAttribute("motelrooms", motelrooms);
 		return "admin/stayContent";
 	}
 

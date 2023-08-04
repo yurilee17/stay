@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -39,7 +39,7 @@
 			<div class="stayContent_head">
 				
 					<div class="left">
-						<p class="pic_view"><img class="" src="C:\javas\upload\"${motel.mimage }"""></p>
+						<p class="pic_view"><img class="" src="C:\javas\upload\${motel.mimage }"></p>
 					</div>
 					<div class="right">
 						<div class="info">
@@ -58,42 +58,48 @@
 			</div>
 
 			<article class="room_info">
-				<div class="room">
-					<p class="pic_view "><img class="lazy" src="list_none.png"></p>
-					<strong class="title">객실 이름</strong>
-					
-					<div class="info">
-                        <div class="half ended">
-                            <div class="price">
-                                <strong>대실</strong>
-								<div>
-									<p><b style="color: rgba(0,0,0,1)">30,000원</b> <!-- 표시금액 --></p>                                       
-								</div>
-								<ul>
-									<li><span>마감시간</span>22시까지&nbsp;</li>
-									<li><span>이용시간</span>최대 5시간&nbsp;</li>
-								</ul>
-                            </div>
-                        </div>
-
-                        <div class="half ended">
-							<div class="price">
-								<strong>숙박</strong>
-								<div>
-									<p><b style="color: rgba(0,0,0,1)">135,000원</b> <!-- 표시금액 --></p>                                        
-								</div>
-								<ul><li>
-									<span>입실시간</span>15시부터&nbsp;
-									</li>
-									<li>
-									<span>퇴실시간</span>익일 11시&nbsp;
-									</li>
-								</ul>
+				<c:choose>
+					<c:when test="${empty motelrooms }">
+						<h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="motelroom" items="${ motelrooms}">
+							<div class="room">
+								<p class="pic_view "><img class="lazy" src="list_none.png"></p>
+								<strong class="title">${motelroom.mroomname }</strong>
+								<h4>객실 코드 : ${motelroom.mroomcode }</h4>
+								
+								<div class="info">
+			                        <div class="half ended">
+			                            <div class="price">
+			                                <strong>대실</strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)">${motelroom.mdaesilprice }원</b> <!-- 표시금액 --></p>                                       
+											</div>
+											<ul>
+												<li><span>마감시간</span>${motelroom.mdaesilcheckout }시까지&nbsp;</li>
+												<li><span>이용시간</span>${motelroom.mdaesiltime }&nbsp;</li>
+											</ul>
+			                            </div>
+			                        </div>
+			                        <div class="half ended">
+										<div class="price">
+											<strong>숙박</strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)">${motelroom.mstayprice }원</b> <!-- 표시금액 --></p>                                        
+											</div>
+											<ul>
+												<li><span>입실시간</span>${motelroom.mstaycheckin }시부터&nbsp;</li>
+												<li><span>퇴실시간</span>익일 ${motelroom.mstaycheckout }시까지&nbsp;</li>
+											</ul>
+										</div>
+									</div>
+			                    </div>
 							</div>
-						</div>
-
-                    </div>
-				</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				
 			</article>
 
 
@@ -102,7 +108,7 @@
 				<button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }'">상세 DB 등록</button>
 				<ul>
 					<!-- <li><input type="submit" value="등록"></li> 
- -->					<li><a href="${context }stayDetailRegister">상세 DB 등록하기</a></li>
+					<li><a href="${context }stayDetailRegister">상세 DB 등록하기</a></li> -->
 					<li><a href="${context }stayInfo">숙소 목록</a></li>
 				</ul>
 			</div>

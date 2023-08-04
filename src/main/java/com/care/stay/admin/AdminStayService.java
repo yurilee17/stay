@@ -136,10 +136,25 @@ public class AdminStayService {
 		
 		/* 이미지는 DB 등록이 되야 출력이 해결될듯 */
 		System.out.println("motel.getMimage() : " + motel.getMimage());
-		System.out.println("motel.getMimage() : " + motel.getMimage().isEmpty());
 
 		return motel;
 	}
+	
+	public MotelRoomDTO stayRoomContent(String n) {
+		int no = 0;
+		try{
+			no = Integer.parseInt(n);
+		}catch(Exception e){
+			return null;
+		}
+		
+		MotelRoomDTO motelroom = adminStayMapper.stayRoomContent(no);
+		if(motelroom == null)
+			return null;
+		
+		return motelroom;
+	}
+	
 	
 	public MotelDTO stayDetailRegister (String n) {
 		int no = 0;
