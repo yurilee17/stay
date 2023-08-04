@@ -18,11 +18,12 @@ public class MemberController {
 	@Autowired private HttpSession session;
 	@Autowired private HttpServletRequest request;
 	
+	// 메인 화면
 	@RequestMapping("index")
 	public String index() {
 		return "member/index";
 	}
-
+	
 	@RequestMapping("header")
 	public String header() {
 		return "default/header";
@@ -38,6 +39,8 @@ public class MemberController {
 		return "default/main";
 	}
 	
+	
+	// 로그인
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
@@ -47,7 +50,7 @@ public class MemberController {
 	public String loginProc(MemberDTO member, Model model) {
 		String result = service.loginProc(member);
 		if(result.equals("admin")) {
-			return "redirect:index?authority=admin";
+			return "redirect:stayIndex";
 		}else if(result.equals("로그인 성공")) {
 			return "redirect:index";
 		}
@@ -56,13 +59,14 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	// 로그아웃
 	@RequestMapping("logout")
 	public String logout() {
 		session.invalidate();
 		return "forward:index";
 	}
 	
-	/*문자 인증*/
+	/*======================== 문자 인증 ========================*/
 	@GetMapping("phoneConfirm")
 	public String phoneConfirm() {
 		return "member/phoneConfirm";
@@ -81,13 +85,13 @@ public class MemberController {
 		
 	}
 	
-
+	// 회원가입 
 	@GetMapping("register")
 	public String register() {
 		return "member/register";
 	}
 	
-	// 아이디 확인
+	// 아이디 중복 확인
 	@ResponseBody
 	@PostMapping(value="sendId", produces = "text/plain; charset=utf-8")
 	public String sendId(@RequestBody(required = false) String id) {
@@ -100,7 +104,7 @@ public class MemberController {
 		
 	}
 	
-	// 닉네임 확인
+	// 닉네임 중복 확인
 	@ResponseBody
 	@PostMapping(value="serchNickname", produces = "text/plain; charset=utf-8")
 	public String serchNickname(@RequestBody(required = false) String nickname) {
@@ -109,6 +113,7 @@ public class MemberController {
 		
 	}
 	
+	// 회원가입 버튼 선택
 	@PostMapping("regProc")
 	public String regProc(MemberDTO member, String mobile ,Model model) {
 //		System.out.println("t " + member.getMobile());
@@ -118,7 +123,8 @@ public class MemberController {
 		return "redirect:index";
 	}
 	
-	/*카카오톡으로 회원가입 로그인 진입*/
+	/*======================== 카카오톡 ========================*/
+	//카카오톡으로 회원가입, 로그인 진입
 	@Autowired private KakaoService kakao;
 	@GetMapping("kakaoLogin")
 	public String kakaoLogin(String code, Model model) {
@@ -136,10 +142,17 @@ public class MemberController {
 		}
 		
 	}
-	
+
+	// 카카오톡 연결 끊기
 	@GetMapping("kakaoLogout")
 	public String kakaoLogout() {
 		kakao.unLink();
 		return "redirect:index";
+	}
+	
+	// 로그인에서 비밀번호 재설정
+	@RequestMapping("ddd")
+	public String a() {
+		return "member/index";
 	}
 }

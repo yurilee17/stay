@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -36,8 +37,8 @@
 						<strong>휴대폰 번호</strong>
 						<section>
 							<div class="inp_wrap remove">
-								<input type="hidden" id="id" value=${param.id} >
-								<input type="tel" id="mobile" name="mobile" maxlength="13">
+								<input type="hidden" id="id" value=${param.id} > <input
+									type="tel" id="mobile" name="mobile" maxlength="13">
 							</div>
 							<button type="button" class="btn_send btn_confirm"
 								name="nemButton" onclick="btnSend()">인증번호 전송</button>
@@ -51,7 +52,8 @@
 								<input type="tel" id="digit" minlength="4" maxlength="4">
 								<span class="timer">03:00</span>
 							</div>
-							<button type="button" class="btn_ok btn_confirm" onclick="btnOk()">확인</button>
+							<button type="button" class="btn_ok btn_confirm"
+								onclick="btnOk()">확인</button>
 						</section>
 					</div>
 					<input type="hidden" id="phone_certification_point" value="SIGINUP"
