@@ -310,18 +310,20 @@
                         <a href="#">지도</a>
                     </li>
                 </ul>
-           <%--  <c:forEach var="hotel" items="${ hotels}">  --%>
-            <% for(int i=0; i<=5; i++){   %> 
+            <c:forEach var="hotel" items="${ hotels}"> 
+          <%--   <% for(int i=0; i<=5; i++){   %>  --%>
+          	
                 <table>
                 	<tr>
                         <td  width="270px" height="250px"><a href="#" class="thumb">
                             <img src="	https://via.placeholder.com/230x250" alt="상품이미지">
                         </a></td>
                         <td>
-                            <h2 class="name">강남 인 호텔 </h2>
-                            <p>강남구</p>
+                            <h2 class="name">${hotel.hName }</h2>
+                            <p>${hotel.hDetailregion }</p>
                            	<br>
                            	<span>*****</span>
+                           	
                         </td>
                         <td>
                             <ul>
@@ -336,8 +338,8 @@
                         </td>
                     </tr>
                 </table>
-            <%  }  %>    
-        <%--   </c:forEach>  --%>
+        <%--     <%  }  %>  --%>   
+          </c:forEach> 
              
              </div>
                   

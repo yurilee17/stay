@@ -7,7 +7,7 @@ public class HotelDTO {
 	private String hName;
 	private String hRegion;
 	private String hDetailregion;
-	private int hRationg;
+	private int hRating;
 	private String hAddress;
 	private String hDetailaddress;
 	private String hImage;
@@ -49,11 +49,11 @@ public class HotelDTO {
 	public void sethDetailregion(String hDetailregion) {
 		this.hDetailregion = hDetailregion;
 	}
-	public int gethRationg() {
-		return hRationg;
+	public int gethRating() {
+		return hRating;
 	}
-	public void sethRationg(int hRationg) {
-		this.hRationg = hRationg;
+	public void sethRating(int hRating) {
+		this.hRating = hRating;
 	}
 	public String gethAddress() {
 		return hAddress;
@@ -110,5 +110,9 @@ public class HotelDTO {
 		this.hBedtype = hBedtype;
 	}
 
-
+	
+	
+	
+	
 }
+	

@@ -4,6 +4,36 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.care.stay.hotel.HotelMapper">
+	<resultMap type="com.care.stay.hotel.HotelDTO" id="HotelDto">
+		<id column="no" property="no"/>
+		<result column="hCode" property="hcode"/>
+		<result column="hName" property="hname"/>
+		<result column="hRegion" property="hregion"/>
+		<result column="hDetailregion" property="hdetailregion"/>
+		<result column="hRating" property="hrating"/>
+		<result column="hAddress" property="haddress"/>
+		<result column="hDetailaddress" property="hdetailaddress"/>
+		<result column="hImage" property="himage"/>
+		<result column="hInfo" property="hinfo"/>
+		<result column="hCheckintime" property="hcheckintime"/>
+		<result column="hCheckouttime" property="hcheckouttime"/>
+		<result column="hType" property="htype"/>
+		<result column="hPeople" property="hpeople"/>
+		<result column="hBedtype" property="hbedtype"/>
+	</resultMap> 
+
+	<select id="count">
+	  	SELECT count(no) FROM hotel
+	</select>
+
+	<select id="hotellist" resultMap="HotelDto">  
+		SELECT BBB.* 
+		FROM (SELECT rownum as rn, AAA.* 
+		FROM (SELECT no, 'hcode', 'hname', 'hregion', 'hdetailregion', 'hrating', 'haddress', 'hdetailaddress', 'himage', 'hinfo', 'hcheckintime', 'hcheckouttime', 'htype', 'hpeople', 'hbedtype' 
+		FROM hotel ORDER BY no DESC )AAA)BBB
+	</select>
+	
+
 
 
 </mapper>
