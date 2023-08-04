@@ -3,6 +3,7 @@ package com.care.stay.common;
 public class PageService {
 	public static String printPage(String url, int currentPage, int totalCount, int pageBlock) {
 		String result = "";
+
 		if(currentPage <= 1) {
 			result += "<a href='" + url + "1'>[이전] </a>";
 		} else {
@@ -25,5 +26,5 @@ public class PageService {
 			
 		return result;
 	}	
-}
 
+}
