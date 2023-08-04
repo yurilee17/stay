@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script src="dbQuiz.js"></script>
+
+
+
+<link rel="stylesheet" href="../../resource/css/common.css">
+
 <header>
 <section>
 	<h1>
@@ -24,7 +28,7 @@
 				<li><a href="#">약관 및 정책</a></li>
 			</ul>
 		</li>
-		<li><a href="#"><span>로그인</span></a></li>
+		<li><a href="/login"><span>로그인</span></a></li>
 	</ul>
 
 	<!-- Search -->
@@ -36,6 +40,7 @@
 		</div>
 		<button class="btn_cancel" onclick="srch_close()">취소</button>
 	</div>
+	</section>
 	<!-- //Search -->
 	</header>
 	
@@ -59,4 +64,3 @@
 				</div>
 			</div>
 		</div>
-</section>

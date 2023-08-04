@@ -1,4 +1,5 @@
-/*function allCheck(){
+/*
+function allCheck(){
 	let id = document.getElementById('id');
 	let pw = document.getElementById('pw');
 	confirm = document.getElementById('confirm');
@@ -34,19 +35,18 @@ function pwCheck(){
 
 function loginCheck(){
 	let id = document.getElementById('id');
-	let pw = document.getElementById('pw');
+	let password = document.getElementById('password');
+	
 	
 	if(id.value == ""){
-		alert('아이디는 필수 항목입니다.');	
-	}else if(pw.value == ""){
+		alert('아이디는 필수 항목입니다.');
+	}else if(password.value == ""){
 		alert('비밀번호는 필수 항목입니다.');
-	}else {
-		var f = document.getElementById('f');
-		f.submit();
+	}else{
+		var loginForm = document.getElementById('loginForm');
+		loginForm.submit();
 	}
-	
 }
-
 
 function deleteCheck(){
 	let pw = document.getElementById('pw');
@@ -61,6 +61,5 @@ function deleteCheck(){
 		f.submit();
 	}
 }
-
 */
 
