@@ -154,15 +154,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk1">
+										<input type="checkbox" id="ex_chk1" value="무인텔">
 										<label for="ex_chk1">무인텔</label>&nbsp;
-										<input type="checkbox" id="ex_chk2">
+										<input type="checkbox" id="ex_chk2" value="복층룸">
 										<label for="ex_chk2">복층룸</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk3">
+										<input type="checkbox" id="ex_chk3" value="트윈베드">
 										<label for="ex_chk3">트윈베드</label>&nbsp;
-										<input type="checkbox" id="ex_chk4">
+										<input type="checkbox" id="ex_chk4" value="야외테라스">
 										<label for="ex_chk4">야외테라스</label>&nbsp;
 									</div>
 								</div>
@@ -173,15 +173,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk5">
+										<input type="checkbox" id="ex_chk5" value="스파">
 										<label for="ex_chk5">스파</label>&nbsp;
-										<input type="checkbox" id="ex_chk6">
+										<input type="checkbox" id="ex_chk6" value="사우나">
 										<label for="ex_chk6">사우나</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk7">
+										<input type="checkbox" id="ex_chk7" value="마사지베드">
 										<label for="ex_chk7">마사지베드</label>&nbsp;
-										<input type="checkbox" id="ex_chk8">
+										<input type="checkbox" id="ex_chk8" value="히노끼탕">
 										<label for="ex_chk8">히노끼탕</label>&nbsp;
 									</div>
 								</div>
@@ -192,15 +192,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk9">
+										<input type="checkbox" id="ex_chk9" value="수영장">
 										<label for="ex_chk9">수영장</label>&nbsp;
-										<input type="checkbox" id="ex_chk10">
+										<input type="checkbox" id="ex_chk10" value="노래방">
 										<label for="ex_chk10">노래방</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk11">
+										<input type="checkbox" id="ex_chk11" value="당구장">
 										<label for="ex_chk11">당구장</label>&nbsp;
-										<input type="checkbox" id="ex_chk12">
+										<input type="checkbox" id="ex_chk12" value="게임기">
 										<label for="ex_chk12">게임기</label>&nbsp;
 									</div>
 								</div>
@@ -259,15 +259,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk13">
+										<input type="checkbox" id="ex_chk13" value="수영장">
 										<label for="ex_chk13">수영장</label>&nbsp;
-										<input type="checkbox" id="ex_chk14">
+										<input type="checkbox" id="ex_chk14" value="골프장">
 										<label for="ex_chk14">골프장</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk15">
+										<input type="checkbox" id="ex_chk15" value="스키장">
 										<label for="ex_chk15">스키장</label>&nbsp;
-										<input type="checkbox" id="ex_chk16">
+										<input type="checkbox" id="ex_chk16" value="사우나">
 										<label for="ex_chk16">사우나</label>&nbsp;
 									</div>
 								</div>
@@ -278,15 +278,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk17">
+										<input type="checkbox" id="ex_chk17" value="스파">
 										<label for="ex_chk17">스파</label>&nbsp;
-										<input type="checkbox" id="ex_chk18">
+										<input type="checkbox" id="ex_chk18" value="와이파이">
 										<label for="ex_chk18">와이파이</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk19">
+										<input type="checkbox" id="ex_chk19" value="냉장고">
 										<label for="ex_chk19">냉장고</label>&nbsp;
-										<input type="checkbox" id="ex_chk20">
+										<input type="checkbox" id="ex_chk20" value="에어컨">
 										<label for="ex_chk20">에어컨</label>&nbsp;
 									</div>
 								</div>
@@ -297,15 +297,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk21">
+										<input type="checkbox" id="ex_chk21" value="조식포함">
 										<label for="ex_chk21">조식포함</label>&nbsp;
-										<input type="checkbox" id="ex_chk22">
+										<input type="checkbox" id="ex_chk22" value="발렛파킹">
 										<label for="ex_chk22">발렛파킹</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk23">
+										<input type="checkbox" id="ex_chk23" value="무료주차">
 										<label for="ex_chk23">무료주차</label>&nbsp;
-										<input type="checkbox" id="ex_chk24">
+										<input type="checkbox" id="ex_chk24" value="픽업">
 										<label for="ex_chk24">픽업</label>&nbsp;
 									</div>
 								</div>
@@ -351,15 +351,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk25">
+										<input type="checkbox" id="ex_chk25" value="BBQ">
 										<label for="ex_chk25">BBQ</label>&nbsp;
-										<input type="checkbox" id="ex_chk26">
+										<input type="checkbox" id="ex_chk26" value="공용PC">
 										<label for="ex_chk26">공용PC</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk27">
+										<input type="checkbox" id="ex_chk27" value="수영장">
 										<label for="ex_chk27">수영장</label>&nbsp;
-										<input type="checkbox" id="ex_chk28">
+										<input type="checkbox" id="ex_chk28" value="편의점">
 										<label for="ex_chk28">편의점</label>&nbsp;
 									</div>
 								</div>
@@ -370,15 +370,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk29">
+										<input type="checkbox" id="ex_chk29" value="와이파이">
 										<label for="ex_chk29">와이파이</label>&nbsp;
-										<input type="checkbox" id="ex_chk30">
+										<input type="checkbox" id="ex_chk30" value="스파">
 										<label for="ex_chk30">스파</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk31">
+										<input type="checkbox" id="ex_chk31" value="TV">
 										<label for="ex_chk31">TV</label>&nbsp;
-										<input type="checkbox" id="ex_chk32">
+										<input type="checkbox" id="ex_chk32" value="세면도구">
 										<label for="ex_chk32">세면도구</label>&nbsp;
 									</div>
 								</div>
@@ -389,15 +389,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk33">
+										<input type="checkbox" id="ex_chk33" value="취사">
 										<label for="ex_chk33">취사</label>&nbsp;
-										<input type="checkbox" id="ex_chk34">
+										<input type="checkbox" id="ex_chk34" value="무료주차">
 										<label for="ex_chk34">무료주차</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk35">
+										<input type="checkbox" id="ex_chk35" value="조식포함">
 										<label for="ex_chk35">조식포함</label>&nbsp;
-										<input type="checkbox" id="ex_chk36">
+										<input type="checkbox" id="ex_chk36" value="캠프파이어">
 										<label for="ex_chk36">캠프파이어</label>&nbsp;
 									</div>
 								</div>
@@ -447,15 +447,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk37">
+										<input type="checkbox" id="ex_chk37" value="BBQ">
 										<label for="ex_chk37">BBQ</label>&nbsp;
-										<input type="checkbox" id="ex_chk38">
+										<input type="checkbox" id="ex_chk38" value="공용PC">
 										<label for="ex_chk38">공용PC</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk39">
+										<input type="checkbox" id="ex_chk39" value="주차장">
 										<label for="ex_chk39">주차장</label>&nbsp;
-										<input type="checkbox" id="ex_chk40">
+										<input type="checkbox" id="ex_chk40" value="취사"> 
 										<label for="ex_chk40">취사</label>&nbsp;
 									</div>
 								</div>
@@ -466,15 +466,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk41">
+										<input type="checkbox" id="ex_chk41" value="와이파이">
 										<label for="ex_chk41">와이파이</label>&nbsp;
-										<input type="checkbox" id="ex_chk42">
+										<input type="checkbox" id="ex_chk42" value="개인콘센트">
 										<label for="ex_chk42">개인콘센트</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk43">
+										<input type="checkbox" id="ex_chk43" value="에어컨">
 										<label for="ex_chk43">에어컨</label>&nbsp;
-										<input type="checkbox" id="ex_chk44">
+										<input type="checkbox" id="ex_chk44" value="냉장고">
 										<label for="ex_chk44">냉장고</label>&nbsp;
 									</div>
 								</div>
@@ -485,15 +485,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk45">
+										<input type="checkbox" id="ex_chk45" value="조식포함">
 										<label for="ex_chk45">조식포함</label>&nbsp;
-										<input type="checkbox" id="ex_chk46">
+										<input type="checkbox" id="ex_chk46" value="사물함">
 										<label for="ex_chk46">사물함</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk47">
+										<input type="checkbox" id="ex_chk47" value="반려견동반">
 										<label for="ex_chk47">반려견동반</label>&nbsp;
-										<input type="checkbox" id="ex_chk48">
+										<input type="checkbox" id="ex_chk48" value="무료주차">
 										<label for="ex_chk48">무료주차</label>&nbsp;
 									</div>
 								</div>
@@ -539,15 +539,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk49">
+										<input type="checkbox" id="ex_chk49" value="BBQ">
 										<label for="ex_chk49">BBQ</label>&nbsp;
-										<input type="checkbox" id="ex_chk50">
+										<input type="checkbox" id="ex_chk50" value="편의점">
 										<label for="ex_chk50">편의점</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk51">
+										<input type="checkbox" id="ex_chk51" value="취사">
 										<label for="ex_chk51">취사</label>&nbsp;
-										<input type="checkbox" id="ex_chk52">
+										<input type="checkbox" id="ex_chk52" value="화장실">
 										<label for="ex_chk52">화장실</label>&nbsp;
 									</div>
 								</div>
@@ -558,15 +558,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk53">
+										<input type="checkbox" id="ex_chk53" value="샤워실">
 										<label for="ex_chk53">샤워실</label>&nbsp;
-										<input type="checkbox" id="ex_chk54">
+										<input type="checkbox" id="ex_chk54" value="와이파이">
 										<label for="ex_chk54">와이파이</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk55">
+										<input type="checkbox" id="ex_chk55" value="에어컨">
 										<label for="ex_chk55">에어컨</label>&nbsp;
-										<input type="checkbox" id="ex_chk56">
+										<input type="checkbox" id="ex_chk56" value="냉장고">
 										<label for="ex_chk56">냉장고</label>&nbsp;
 									</div>
 								</div>
@@ -577,15 +577,15 @@
 							<td>
 								<div class="checks small">
 									<div>
-										<input type="checkbox" id="ex_chk57">
+										<input type="checkbox" id="ex_chk57" value="장비대여">
 										<label for="ex_chk57">장비대여</label>&nbsp;
-										<input type="checkbox" id="ex_chk58">
+										<input type="checkbox" id="ex_chk58" value="조식포함">
 										<label for="ex_chk58">조식포함</label>&nbsp;
 									</div>
 									<div>
-										<input type="checkbox" id="ex_chk59">
+										<input type="checkbox" id="ex_chk59" value="반려견동반">
 										<label for="ex_chk59">반려견동반</label>&nbsp;
-										<input type="checkbox" id="ex_chk60">
+										<input type="checkbox" id="ex_chk60" value="캠프파이어">
 										<label for="ex_chk60">캠프파이어</label>&nbsp;
 									</div>
 								</div>
