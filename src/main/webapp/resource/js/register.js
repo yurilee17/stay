@@ -1,10 +1,8 @@
 let timer = 0;
-let message = "";
 
 document.addEventListener("DOMContentLoaded", function() {
 
 	inputEvent();
-	nicknameInput(message);
 })
 
 /*input 예외 처리*/
@@ -15,6 +13,7 @@ function inputEvent() {
 	let digit = document.getElementById("digit");
 
 	if (mobile != null && digit != null) {
+			
 		let btnSend = document.querySelector(".btn_send");
 		let btnOk = document.querySelector(".btn_ok");
 
@@ -84,7 +83,12 @@ function inputEvent() {
 		});
 
 		id.addEventListener("input", function() {
-			if (!id.value.contains('kakao') &&
+			
+			if (id.value.includes('kakao')) {
+				idMsg.innerHTML = "kakao 입력 불가";
+			}
+
+			if (!id.value.includes('kakao') &&
 				id.value != '' &&
 				password.value.length >= 8 &&
 				pattern.test(password.value) &&
@@ -99,7 +103,12 @@ function inputEvent() {
 
 
 		password.addEventListener("blur", function() {
-			if (!id.value.contains('kakao') &&
+			if (pattern.test(password.value)) {
+				newPwMsg.innerHTML = "";
+
+			}
+
+			if (!id.value.includes('kakao') &&
 				id.value != '' &&
 				password.value.length >= 8 &&
 				pattern.test(password.value) &&
@@ -128,7 +137,8 @@ function inputEvent() {
 
 			}
 			newPwMsg.innerHTML = message;
-			if (!id.value.contains('kakao') &&
+
+			if (!id.value.includes('kakao') &&
 				id.value != '' &&
 				password.value.length >= 8 &&
 				pattern.test(password.value) &&
@@ -149,7 +159,8 @@ function inputEvent() {
 				message = '';
 			}
 			newPwReMsg.innerHTML = message;
-			if (!id.value.contains('kakao') &&
+
+			if (!id.value.includes('kakao') &&
 				id.value != '' &&
 				password.value.length >= 8 &&
 				pattern.test(password.value) &&
@@ -319,12 +330,12 @@ function sendDigitProc() {
 				let mobile = document.getElementById('mobile').value; // 전송하고자 하는 값
 				let id = document.getElementById('id').value; // 전송하고자 하는 값
 				let url = '';
-				if(id != ""){
-					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile)+ "&id=" + encodeURIComponent(id);
-				}else{
+				if (id != "") {
+					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile) + "&id=" + encodeURIComponent(id);
+				} else {
 					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile);
 				}
-				
+
 				window.location.href = url;
 			} else if (xhr.responseText === '인증 실패') {
 				alert("인증번호와 다르게 입력되었습니다. 재입력해 주시기 바랍니다.");
@@ -354,28 +365,27 @@ function joinBtnt() {
 		} else {
 			regForm.submit();
 		}
-	} else {
-
 	}
 }
 
 /*중복확인*/
 // 아이디 확인
+var xhrId;
 function sendId() {
-	xhr = new XMLHttpRequest();
+	xhrId = new XMLHttpRequest();
 	pro = false;
-	xhr.open('post', 'sendId');
-	xhr.send(document.getElementById('id').value);
-	xhr.onreadystatechange = sendNicknameProc
+	xhrId.open('post', 'sendId');
+	xhrId.send(document.getElementById('id').value);
+	xhrId.onreadystatechange = sendIdProc
 }
 
 function sendIdProc() {
-	if (xhr.readyState === 4 && xhr.status === 200) {
+	if (xhrId.readyState === 4 && xhrId.status === 200) {
 		if (!pro) {
 			// 응답을 이미 처리했으면 두 번째 호출 무시
 			pro = true;
-			if (xhr.responseText === '실패') {
-				sendNickname()
+			if (xhrId.responseText === '실패') {
+				sendNickname();
 			} else {
 				let idMsg = document.getElementById("userId_msg");
 
@@ -386,37 +396,39 @@ function sendIdProc() {
 	}
 }
 // 닉네임 확인
+var xhrNick;
 function sendNickname() {
+	xhrNick = new XMLHttpRequest();
 	pro = false;
-	xhr.open('post', 'serchNickname');
-	xhr.send(document.getElementById('nickname').value);
-	xhr.onreadystatechange = sendNicknameProc
+	xhrNick.open('post', 'serchNickname');
+	xhrNick.send(document.getElementById('nickname').value);
+	xhrNick.onreadystatechange = sendNicknameProc
 }
 
 function sendNicknameProc() {
-	if (xhr.readyState === 4 && xhr.status === 200) {
+	if (xhrNick.readyState === 4 && xhrNick.status === 200) {
 		if (!pro) {
 			// 응답을 이미 처리했으면 두 번째 호출 무시
 			pro = true;
-			if (xhr.responseText === '닉네임 중복') {
-				let nickname = document.getElementById("nickname");
+			if (xhrNick.responseText === '닉네임 중복') {
+				let btnAdd = document.querySelector(".btn-add");
 				let error = document.getElementById("unick-error");
 
-				message = "닉네임 중복";
-				nickname.classList.add("inp_error");
+				nicknameInput("닉네임 중복");
+				btnAdd.classList.add("inp_error");
 				error.innerHTML = "이미 등록된 닉네임입니다.";
 				alert("이미 등록된 닉네임입니다.");
 
 			} else {
-				joinBtnt()
+				joinBtnt();
 			}
 		}
 	}
 }
 
 //닉네임 오류 시
-function nicknameInput(message) {
-	if (message === "닉네임 중복") {
+function nicknameInput(msg) {
+	if (msg === "닉네임 중복") {
 		let nickname = document.getElementById("nickname");
 		let error = document.getElementById("unick-error");
 
@@ -425,7 +437,7 @@ function nicknameInput(message) {
 		nickname.addEventListener("input", function() {
 			var message = "";
 			if (nickname.value === '') {
-				message = "비밀번호를 입력해주세요.";
+				message = "닉네임을 입력하세요.";
 			} else if (nickname.value.length >= 15) {
 				message = "14자를 넘을 수 없습니다.";
 			} else if (nickname.value.length <= 1) {

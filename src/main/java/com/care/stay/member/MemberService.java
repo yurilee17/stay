@@ -17,6 +17,7 @@ public class MemberService {
 
 	// 로그인
 	public String loginProc(MemberDTO member) {
+
 		MemberDTO result = memberMapper.loginProc(member.getId());
 
 		if (result != null) {
@@ -40,9 +41,11 @@ public class MemberService {
 					session.setAttribute("authority", result.getAuthority());
 					return "로그인 성공";
 				} else {
+
 					BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 
 					if (bpe.matches(member.getPassword(), result.getPassword())) {
+
 						session.setAttribute("id", result.getId());
 						session.setAttribute("password", result.getPassword());
 						session.setAttribute("moblie", result.getMobile());
@@ -56,6 +59,15 @@ public class MemberService {
 
 		}
 
+		return "실패";
+	}
+
+	// 로그인
+	public String searchId(MemberDTO member) {
+		MemberDTO result = memberMapper.loginProc(member.getId());
+		if (result != null) {
+			return "로그인 성공";
+		}
 		return "실패";
 	}
 
@@ -106,19 +118,23 @@ public class MemberService {
 	// 회원가입
 	public String regProc(MemberDTO member) {
 		member.setAuthority("user");
-		
-		System.out.println("id : " + member.getId());
+
+		System.out.println("회원가입 정보");
+		System.out.println("[id : " + member.getId());
 		System.out.println("pw : " + member.getPassword());
 		System.out.println("mobile : " + member.getMobile());
 		System.out.println("inckname : " + member.getNickname());
 		System.out.println("auth : " + member.getAuthority());
-		System.out.println("name : " + "빈 값");
-
+		System.out.println("name : " + "빈 값]");
+		String pw = member.getPassword();
+		
 		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 		String cryptPassword = bpe.encode(member.getPassword());
 		member.setPassword(cryptPassword);
-
+	
 		memberMapper.registerProc(member);
+		// 회원가입을 위해 암호화되지 않은 pw 넣기
+		member.setPassword(pw);
 		return "회원 등록 완료";
 
 	}

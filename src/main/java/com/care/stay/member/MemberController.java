@@ -93,8 +93,9 @@ public class MemberController {
 	public String sendId(@RequestBody(required = false) String id) {
 		MemberDTO member = new MemberDTO();
 		member.setId(id);
-		String result = service.loginProc(member);
+		String result = service.searchId(member);
 		session.invalidate();
+//		System.out.println("아이디 중복: " + result);
 		return result;
 		
 	}
@@ -103,14 +104,16 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping(value="serchNickname", produces = "text/plain; charset=utf-8")
 	public String serchNickname(@RequestBody(required = false) String nickname) {
+//		System.out.println("닉네임 중복: " + service.serchNickname(nickname));
 		return service.serchNickname(nickname);
 		
 	}
 	
 	@PostMapping("regProc")
-	public String regProc(MemberDTO member, Model model) {
-		System.out.println("t " + member.getMobile());
+	public String regProc(MemberDTO member, String mobile ,Model model) {
+//		System.out.println("t " + member.getMobile());
 		service.regProc(member);
+		service.loginProc(member);
 		model.addAttribute("alert", "회원가입 성공");
 		return "redirect:index";
 	}
