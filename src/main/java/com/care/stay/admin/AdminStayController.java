@@ -42,12 +42,15 @@ public class AdminStayController {
 	@RequestMapping("stayDetailRegister")
 	public String stayDetailRegister(
 			@RequestParam(value="no", required = false)String n,
-			@RequestParam(value="mname", required = false)String name,
 			Model model) {
 		MotelDTO motel = service.stayContent(n);
-		if(motel == null)
-			return "redirect:stayInfo";
+		session.setAttribute("no", motel.getNo());
+		session.setAttribute("code", motel.getMcode());
 		
+		if(motel == null) {
+			System.out.println("motel is null");
+			return "redirect:stayInfo";
+		}
 		model.addAttribute("motel", motel);
 		return "admin/stayDetailRegister";
 	}
@@ -106,7 +109,7 @@ public class AdminStayController {
 	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
 		String msg = service.staydetailregisterProc(multi);
 		if(msg.equals("객실 DB 작성 완료"))
-			return "redirect:stayContent";
+			return "redirect:stayInfo";
 		
 		model.addAttribute("msg", msg);
 		return "admin/stayDetailRegister";

@@ -99,7 +99,7 @@
 
 			<div class="submit">
 			
-				<button type="submit" oneclick="location.href='stayDetailRegister?no=${motel.no }'">상세 DB 등록</button>
+				<button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }'">상세 DB 등록</button>
 				<ul>
 					<!-- <li><input type="submit" value="등록"></li> 
  -->					<li><a href="${context }stayDetailRegister">상세 DB 등록하기</a></li>

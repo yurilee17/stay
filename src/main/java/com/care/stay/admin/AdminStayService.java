@@ -141,7 +141,7 @@ public class AdminStayService {
 		return motel;
 	}
 	
-	public MotelDTO stayDetailRegister (String n, Model model) {
+	public MotelDTO stayDetailRegister (String n) {
 		int no = 0;
 		
 		try {
@@ -160,18 +160,23 @@ public class AdminStayService {
 	/*모텔 객실 DB 등록 = 숙소 상세 DB 등록*/
 	public String staydetailregisterProc(MultipartHttpServletRequest multi) {
 		MotelRoomDTO motelroom = new MotelRoomDTO();
-		motelroom.setMroomcode(multi.getParameter("roomcode"));
-		motelroom.setMroomname(multi.getParameter("roomname"));
-		motelroom.setMroomimage(multi.getParameter("roomimage"));
-		motelroom.setMroomnumber(getIntParameter(multi, "roomnumber"));
-		motelroom.setMdaesilprice(getIntParameter(multi, "daesilprice"));
-	    motelroom.setMstayprice(getIntParameter(multi, "stayprice"));
-		motelroom.setMdaesilcheckin(multi.getParameter("daesilcheckin"));
-		motelroom.setMdaesilcheckout(multi.getParameter("daesilcheckout"));
-		motelroom.setMdaesiltime(multi.getParameter("daesiltime"));
-		motelroom.setMstaycheckin(multi.getParameter("staycheckin"));
-		motelroom.setMstaycheckout(multi.getParameter("staycheckout"));
-		motelroom.setMoption(multi.getParameter("option"));
+        int no = (int) session.getAttribute("no");
+        String mcode = (String) session.getAttribute("code");
+	
+		motelroom.setNo(no);
+		motelroom.setMcode(mcode);
+		motelroom.setMroomcode(multi.getParameter("mroomcode"));
+		motelroom.setMroomname(multi.getParameter("mroomname"));
+		motelroom.setMroomimage(multi.getParameter("mroomimage"));
+		motelroom.setMroomnumber(getIntParameter(multi, "mroomnumber"));
+		motelroom.setMdaesilprice(getIntParameter(multi, "mdaesilprice"));
+	    motelroom.setMstayprice(getIntParameter(multi, "mstayprice"));
+		motelroom.setMdaesilcheckin(multi.getParameter("mdaesilcheckin"));
+		motelroom.setMdaesilcheckout(multi.getParameter("mdaesilcheckout"));
+		motelroom.setMdaesiltime(multi.getParameter("mdaesiltime"));
+		motelroom.setMstaycheckin(multi.getParameter("mstaycheckin"));
+		motelroom.setMstaycheckout(multi.getParameter("mstaycheckout"));
+		motelroom.setMoption("0");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		motelroom.setMroomimage("");

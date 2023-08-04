@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>        
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -75,9 +75,9 @@
 			<h2>숙소 등록과 관리가 가능한 관리자 페이지입니다.</h2>
 			<p>숙소의 종류와 가격, 수량, 설명, 세부사항 등을 관리하실 수 있습니다.</p>
 			<!-- 설명 -->
-
+			
+			<form id="staydetailForm" action="staydetailregisterProc" method="post" enctype="multipart/form-data">
 			<div class="stay_registerdetail">
-				<form action="stayDetailForm" action="staydetailregisterProc" method="post">
 					<table class="stay_detailtable">
 						<colgroup>
 							<col width="25%"></col>
@@ -85,7 +85,7 @@
 						</colgroup>													
 						<tr>
 							<th>숙소 이름</th>
-							<td><input type="text" class="form_w50" value="${motel.mname}" }></td>
+							<td><input type="text" class="form_w50" value="${motel.mname}" } readonly></td>
 						</tr>						
 						<tr>
 							<th>종류</th>
@@ -107,11 +107,11 @@
 						</colgroup>					
 						<tr>
 							<th>객실 이름</th>
-							<td><input type="text" class="form_w50" name="mroomname" placeholder=""></td>
+							<td><input type="text" class="form_w50" name="mroomname" id="mroomname" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>객실 코드</th>
-							<td><input type="text" class="form_w30" name="mroomcode" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mroomcode" id="mroomcode" placeholder=""></td>
 						</tr>						
 						<tr>
 							<th>이미지 업로드</th>
@@ -119,35 +119,35 @@
 						</tr>
 						<tr>
 							<th>방 개수</th>
-							<td><input type="text" class="form_w30" name="mroomnumber" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mroomnumber" id="mroomnumber" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>대실가격</th>
-							<td><input type="text" class="form_w30" name="mdaesilprice" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mdaesilprice" id="mdaesilprice" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>숙박가격</th>
-							<td><input type="text" class="form_w30" name="mstayprice" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mstayprice" id="mstayprice" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>대실체크인</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckin" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>대실체크아웃</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckout" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>대실시간</th>
-							<td><input type="text" class="form_w30" name="mdaesiltime" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder=""></td>
 						</tr>
 						<tr>
 							<th>숙박체크인</th>
-							<td><input type="text" class="form_w30" name="mstaycheckin" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder=""></td>
 						</tr>		
 						<tr>
 							<th>숙박체크아웃</th>
-							<td><input type="text" class="form_w30" name="mstaycheckout" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder=""></td>
 						</tr>																																		
 						<tr>
 							<th>이색테마</th>
@@ -592,16 +592,18 @@
 							</td>
 						</tr>
 					</table>																				
-				</form>
+
 			</div>
 
 			<div class="submit">
 				<ul>
-					<li><a href="#">등록</a></li>
+
+<!-- 					<li><a href="#">등록</a></li> -->
 					<li><a href="${context }stayContent">뒤로가기</a></li>
 					<li><input type="submit" value="등록"></li>
 				</ul>
 			</div>
+			</form>
 		</div>
 	</div>
  </body>
