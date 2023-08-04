@@ -1,5 +1,8 @@
 package com.care.stay.hotel;
 
-public class HotelService {
+import org.springframework.stereotype.Service;
 
+@Service
+public class HotelService {
+	
 }

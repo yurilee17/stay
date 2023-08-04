@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<script src="../../resource/js/dbQuiz.js"></script>
+
+
+
+<link rel="stylesheet" href="../../resource/css/common.css">
+
 <header>
 <section>
 	<h1>

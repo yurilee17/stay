@@ -1,5 +1,10 @@
 package com.care.stay.hotel;
 
-public interface HotelMapper {
 
+import org.apache.ibatis.annotations.Mapper;
+
+
+@Mapper
+public interface HotelMapper {
+	
 }

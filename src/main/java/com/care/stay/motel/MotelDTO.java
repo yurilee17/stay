@@ -1,18 +1,32 @@
 package com.care.stay.motel;
 
 public class MotelDTO {
+	private int no;
 	private String mcode;
 	private String mname;
 	private String mregion;
-	private String mdetailregion;
-	private String mdaesilprice;
-	private String mstayprice;
-	private Number mrating;
+	private String mdetailRegion;
+	private String mdaesilPrice;
+	private String mstayPrice;
+	private int mrating;
 	private String maddress;
+	private String mdetailAddress;
 	private String mimage;
 	private String minfo;
-	private String moption;
 	
+	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getMdetailAddress() {
+		return mdetailAddress;
+	}
+	public void setMdetailAddress(String mdetailAddress) {
+		this.mdetailAddress = mdetailAddress;
+	}
 	public String getMcode() {
 		return mcode;
 	}
@@ -31,28 +45,28 @@ public class MotelDTO {
 	public void setMregion(String mregion) {
 		this.mregion = mregion;
 	}
-	public String getMdetailregion() {
-		return mdetailregion;
+	public String getMdetailRegion() {
+		return mdetailRegion;
 	}
-	public void setMdetailregion(String mdetailregion) {
-		this.mdetailregion = mdetailregion;
+	public void setMdetailRegion(String mdetailRegion) {
+		this.mdetailRegion = mdetailRegion;
 	}
 	public String getMdaesilprice() {
-		return mdaesilprice;
+		return mdaesilPrice;
 	}
 	public void setMdaesilprice(String mdaesilprice) {
-		this.mdaesilprice = mdaesilprice;
+		this.mdaesilPrice = mdaesilprice;
 	}
 	public String getMstayprice() {
-		return mstayprice;
+		return mstayPrice;
 	}
 	public void setMstayprice(String mstayprice) {
-		this.mstayprice = mstayprice;
+		this.mstayPrice = mstayprice;
 	}
 	public Number getMrating() {
 		return mrating;
 	}
-	public void setMrating(Number mrating) {
+	public void setMrating(int mrating) {
 		this.mrating = mrating;
 	}
 	public String getMaddress() {
@@ -73,10 +87,5 @@ public class MotelDTO {
 	public void setMinfo(String minfo) {
 		this.minfo = minfo;
 	}
-	public String getMoption() {
-		return moption;
-	}
-	public void setMoption(String moption) {
-		this.moption = moption;
-	}
+
 }
