@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="/img/images/web_v3/favicon_170822.ico" type="image/x-icon">
 
 	<!-- CSS -->
-	<title>취향대로 머물다 여기어때</title>
+	<title>저기어때</title>
 	<link rel="stylesheet" href="/resource/css/common.css" />
 	<!-- <link rel="canonical" href="https://www.goodchoice.kr/"> -->
     <script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
@@ -237,14 +237,14 @@
 					</div>
 
 					<!-- 리스트 -->
-					<div class="tab_each ahn_quelist" style="display:block; margin-bottom: 2rem">
+					<div class="tab_each quelist" style="display:block; margin-bottom: 2rem">
 						<div style="margin-bottom: 2rem" class="userli_add"></div>
 					<!--  -->
 					</div>
 
 
 					<!--문의디테일-->
-					<div class="tab_each ahn_tab_each1">
+					<div class="tab_each tab_each1">
 						<h2 onclick="CloseDetail()" style="display: flex;justify-content: flex-end;font-size: 36px;color: rgb(0 0 0 / 35%);"> x </h2>
 							<input type="hidden" class="qid" alt="문의 id">
 							<div class="alert_top">
