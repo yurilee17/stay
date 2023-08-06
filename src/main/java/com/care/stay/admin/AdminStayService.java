@@ -38,16 +38,14 @@ public class AdminStayService {
 		
 		/*밑에꺼 주석 풀면 submit가 안되고 자꾸 redirect됨*/
 		
-//		if(motel.getMcode() == null || motel.getMcode().isEmpty()) {
-//			return "코드를 정확하게 입력하세요.";
-//		}
-//		if(motel.getMname() == null || motel.getMname().isEmpty()) {
-//			return "숙소 이름을 입력하세요.";
-//		}
+
+		if(motel.getMname() == null || motel.getMname().isEmpty()) {
+			return "숙소 이름을 입력하세요.";
+		}
 //		if(motel.getMregion() == null || motel.getMregion().isEmpty()) {
 //			return "지역을 선택하세요.";
 //		}
-//		if(motel.getMdetailregion() == null || motel.getMdetailregion().isEmpty()) {
+//		if(motel.getMdetailRegion() == null || motel.getMdetailRegion().isEmpty()) {
 //			return "세부지역을 선택하세요.";
 //		}		
 //		if(motel.getMaddress() == null || motel.getMaddress().isEmpty()) {
@@ -55,6 +53,9 @@ public class AdminStayService {
 //		}
 //		if(motel.getMdetailAddress() == null || motel.getMdetailAddress().isEmpty()) {
 //			return "상세주소를 입력하세요.";
+//		}
+//		if(motel.getMinfo() == null || motel.getMinfo().isEmpty()) {
+//			return "숙소의 정보를 입력하세요.";
 //		}
 		
 		motel.setMimage("");
@@ -231,8 +232,28 @@ public class AdminStayService {
 	        return 0; // 예시로 0을 반환
 	    }
 	}
+
+	public int stayCountMotel() {
+		return adminStayMapper.stayCountMotel();
+	}
 	
 
+	
+	public int getStayCount(String stayType) {
+	    if (stayType.equals("모텔")) {
+	        return adminStayMapper.stayCountMotel();
+	    } else if (stayType.equals("호텔·리조트")) {
+	        return adminStayMapper.stayCountHotel();
+	    } else if (stayType.equals("펜션")) {
+	        return adminStayMapper.stayCountPension();
+	    } else if (stayType.equals("게스트하우스")) {
+	        return adminStayMapper.stayCountGuestHouse();
+	    } else if (stayType.equals("캠핑·글램핑")) {
+	        return adminStayMapper.stayCountCamping();
+	    } else {
+	        return 0;
+	    }
+	}
 	
 
 //	public String stayregisterProc(MotelDTO motel, String confirm) {

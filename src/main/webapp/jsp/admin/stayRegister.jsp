@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -62,6 +62,31 @@
 		    form.submit();
 		}
 	  
+	  
+	  document.getElementById('stayType').addEventListener('change', function() {
+		    var selectElement = document.getElementById('stayType');
+		    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+		    
+		    var countElement = document.getElementById('stayCount' + selectedValue);
+		    var nextNo = countElement.textContent;
+		    
+		    var stayCodeElement = document.getElementById('stayCode');
+		    
+		    if (selectedValue === '모텔') {
+		        stayCodeElement.textContent = 'M' + nextNo;
+		    } else if (selectedValue === '호텔·리조트') {
+		        stayCodeElement.textContent = 'H' + nextNo;
+		    } else if (selectedValue === '펜션') {
+		        stayCodeElement.textContent = 'P' + nextNo;
+		    } else if (selectedValue === '게스트하우스') {
+		        stayCodeElement.textContent = 'G' + nextNo;
+		    } else if (selectedValue === '캠핑·글램핑') {
+		        stayCodeElement.textContent = 'C' + nextNo;
+		    } else {
+		        stayCodeElement.textContent = '';
+		    }
+		});
+	  
 	   
 </script>
 
@@ -70,15 +95,8 @@
 	<div id ="wrap">
 		<div class="content">
 			<!-- 숙소 탭 -->
-			<div class="stay">
-				<ul class="top_nav">
-					<li><a href="${context }index">메인</a></li>
-					<li><a href="#">회원 DB 조회</a></li>
-					<li><a href="${context }stayRegister">숙소 DB 등록</a></li>
-					<li><a href="${context }stayInfo">숙소 DB 조회</a></li>
-					<li><a href="#">예약 DB 조회</a></li>
-				</ul>
-			</div>
+			<c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" />
+			<c:import url="${adminHeaderUrl}" />
 			<br>
 			<!-- //숙소 탭 -->
 			<br>
@@ -103,18 +121,19 @@
 							<th>종류</th>
 							<td>	
 								<select class="form_w30" name="stayType" id="stayType">
-									<option>모텔</option>
-									<option>호텔·리조트</option>
-									<option>펜션</option>
-									<option>게스트하우스</option>
-									<option>캠핑·글램핑</option>
+									<option value="모텔">모텔</option>
+						            <option value="호텔·리조트">호텔·리조트</option>
+						            <option value="펜션">펜션</option>
+						            <option value="게스트하우스">게스트하우스</option>
+						            <option value="캠핑·글램핑">캠핑·글램핑</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<th>숙소 코드</th>
 							<td>	
-								${motel.mcode} ${motel.no }+1
+								<span id="stayCode"></span>
+								<%-- M${nextNo} --%>
 							</td>
 						</tr>
 						
@@ -195,7 +214,7 @@
 					<div>
 						<ul>
 							<!-- <li><a href="${context }stayInfo" onclick="submitForm()">등록</a></li>-->
-							<li><input type="submit" value="등록"></li> 
+							<li><button class="submit_button" type="submit"><span>등록</span></button></li> 
 						</ul>
 					</div>
 					

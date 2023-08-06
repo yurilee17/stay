@@ -59,15 +59,8 @@
  <body>
 	<div id ="wrap">
 		<div class="content">
-			<div class="stay">
-				<ul class="top_nav">
-					<li><a href="${context }index">메인</a></li>
-					<li><a href="#">회원 DB 조회</a></li>
-					<li><a href="${context }stayRegister">숙소 DB 등록</a></li>
-					<li><a href="${context }stayInfo">숙소 DB 조회</a></li>
-					<li><a href="#">예약 DB 조회</a></li>
-				</ul>
-			</div>
+			<c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" />
+			<c:import url="${adminHeaderUrl}" />
 			<br>
 			<!-- //숙소 탭 -->
 			<br>

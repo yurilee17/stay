@@ -47,6 +47,26 @@
 	  	SELECT count(no) FROM motel
 	</select>
 	
+	<select id="stayCountMotel" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM motel
+	</select>
+	
+	<select id="stayCountHotel" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM hotel
+	</select>
+	
+	<select id="stayCountPension" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM pension
+	</select>
+	
+	<select id="stayCountGuestHouse" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM guesthouse
+	</select>
+	
+	<select id="stayCountCamping" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM camping
+	</select>
+	
 	<select id="stayInfo" resultMap="motelDto">
 		SELECT BBB.* FROM 
 		(SELECT rownum as rn, AAA.* FROM 

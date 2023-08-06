@@ -11,41 +11,6 @@ ul,ol,li{list-style:none;}
 	.content{width:1200px; margin:0 auto;}
 	.content h2{margin-top:40px; text-align:center;}
 	.content p{margin:30px 0; text-align:center;}
-	
-	/* 왼쪽 메뉴 */
-	.nav{
-		list-style:none;
-		position:fixed;
-		height:80px;
-		padding:0;
-		margin-top:80px;
-	}
-	.nav li{
-		padding:0;
-		line-height:80px;
-		position:relative;
-	}
-	.nav > li{background:#f6323e;}
-	.nav li a{
-		display:block; /*영역만큼 링크주려고*/
-		font-size:16px;
-		font-weight:bold;
-		text-decoration:none;
-		padding:5px 40px;
-		color:#fff;
-	}
-	.nav li a:hover{color:#000;} /*li에 마우스를 올리면 li 글씨가 검은색으로*/
-	.nav li ul{
-		background:#f6323e;
-		padding:0;
-		margin:0;
-		list-style:none;
-		width:80px;
-		position:absolute;
-		left:0;
-		opacity:0;
-	}
-	/* 왼쪽 메뉴 */
 
 	/* 상단 메뉴 */
 	.stay_register{margin-top:30px;}
@@ -152,6 +117,24 @@ ul,ol,li{list-style:none;}
 
 	}
 	.submit li a:hover{color:#000;}
+	
+	
+	.submit_button {
+		background:#f6323e;
+		width:180px;
+		text-align:center;
+		font-size:16px;
+		color:#fff;
+		font-weight:bold;
+		text-decoration:none;
+		padding:10px 30px;
+		line-height:30px;
+		display:inline-block;
+		position:relative;
+		
+	}
+	
+	
 
 	.stay_search{margin-top:30px;}
 	.moteldetail{border-collapse: separate;

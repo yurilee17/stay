@@ -17,6 +17,11 @@ public interface AdminStayMapper {
 	MotelRoomDTO stayRoomContent(int no);
 	MotelDTO stayDetailRegister(int no);
 	void staydetailregisterProc(MotelRoomDTO motelroom);
+	int stayCountMotel();
+	int stayCountHotel();
+	int stayCountPension();
+	int stayCountGuestHouse();
+	int stayCountCamping();
 
 	
 }
