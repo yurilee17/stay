@@ -3,17 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.care.stay.motel.MotelMapper">
+<mapper namespace="com.care.stay.gh.GHMapper">
 
-	<resultMap type="com.care.stay.motel.MotelDTO" id="motelDto">
+	<resultMap type="com.care.stay.gh.GHDTO" id="ghDto">
 		<id column="no" property="no"/>																		
 	</resultMap>
 	
-	<resultMap type="com.care.stay.motel.MotelRoomDTO" id="motelroomDto">
-		<id column="mroomcode" property="mroomcode"/>
+	<resultMap type="com.care.stay.gh.GHRoomDTO" id="ghroomDto">
+		<id column="groomcode" property="groomcode"/>
 	</resultMap>
+	
+	<select id="stayCountGuestHouse" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM guesthouse
+	</select>
 
-	<select id="stayContent" resultMap="motelDto">
+	<!-- <select id="stayContent" resultMap="motelDto">
 		SELECT * FROM motel WHERE no=#{no}
 	</select>
 	
@@ -51,6 +55,6 @@
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.motel.MotelRoomDTO">
 		INSERT INTO motelroom (no, mcode, mroomname, mroomcode, mroomimage, mroomnumber, mdaesilprice, mstayprice, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, moption)
 		VALUES(#{no}, #{mcode}, #{mroomname}, #{mroomcode}, #{mroomimage}, #{mroomnumber}, #{mdaesilprice}, #{mstayprice}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout}, #{moption})
-	</insert>
+	</insert> -->
 	
 </mapper>

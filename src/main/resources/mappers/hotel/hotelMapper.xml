@@ -5,5 +5,17 @@
   
 <mapper namespace="com.care.stay.hotel.HotelMapper">
 
+	<resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
+		<id column="no" property="no"/>																		
+	</resultMap>
+	
+	<resultMap type="com.care.stay.hotel.HotelRoomDTO" id="hotelroomDto">
+		<id column="hroomcode" property="hroomcode"/>
+	</resultMap>
+	
+	<select id="stayCountHotel" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM hotel
+	</select>	
+
 
 </mapper>

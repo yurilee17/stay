@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>모텔</title>
+<title>캠핑·글램핑</title>
 </head>
 <body>
 

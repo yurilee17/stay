@@ -31,9 +31,9 @@
 			<!-- 설명 -->
 			<form id="staydetailForm" action="" method="post">
 			<div class="stayContent_head">
-				
+			
 					<div class="left">
-						<p class="pic_view"><img class="" src="C:\javas\upload\${motel.mimage }"></p>
+						<p class="pic_view"><img class="" src=""></p>
 					</div>
 					<div class="right">
 						<div class="info">
@@ -41,12 +41,12 @@
 							<div class="score">평점 : ${motel.mrating }</div>
 							<p class="address">주소 : ${motel.maddress }  ${motel.mdetailAddress }</p>
 							<span>숙소 코드 : ${motel.mcode }${motel.no }</span>
-							<div class="submit">
+<%-- 							<div class="submit">
 								<ul>
 									<li><a href="${context }stayModify">수정하기</a></li>
 									<li><a href="#">삭제하기</a></li>
 								</ul>
-							</div>	
+							</div>	 --%>
 						</div>
 					</div>
 			</div>
@@ -59,7 +59,7 @@
 					<c:otherwise>
 						<c:forEach var="motelroom" items="${ motelrooms}">
 							<div class="room">
-								<p class="pic_view "><img class="lazy" src="list_none.png"></p>
+								<p class="pic_view "><img class="lazy" src=""></p>
 								<strong class="title">${motelroom.mroomname }</strong>
 								<h4>객실 코드 : ${motelroom.mroomcode }</h4>
 								
@@ -93,12 +93,10 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				
 			</article>
 
 
 			<div class="submit">
-			
 				<button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }'">상세 DB 등록</button>
 				<ul>
 					<!-- <li><input type="submit" value="등록"></li> 

@@ -20,7 +20,6 @@ ul,ol,li{list-style:none;}
 		line-height:40px;
 		width:240px;
 		text-align:center;
-		
 	}
 	.stay ul li a{
 		display:block; 
@@ -35,6 +34,9 @@ ul,ol,li{list-style:none;}
 
 	.stay_table{border-collapse: separate;
 			 border-spacing: 0 15px; width:1000px;}
+	
+	.regContent{border-collapse: separate;
+			 border-spacing: 0 15px; width:1000px;}		 
 			 
 	.showDetail{border-collapse: separate;
 			 border-spacing: 0 15px; width:1000px;}		 
@@ -92,7 +94,7 @@ ul,ol,li{list-style:none;}
 	}
 
 	.submit{
-		margin:50px 0 50px 490px; 
+		margin:0 auto; 
 	}
 
 	.submit li a{
@@ -168,6 +170,16 @@ ul,ol,li{list-style:none;}
 	  display: block;
 	}		 
 		 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/* ---------------------------------------------------------------------------------------------- */	
 

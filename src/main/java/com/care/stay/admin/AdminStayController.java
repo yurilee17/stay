@@ -14,23 +14,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.care.stay.camping.CampingDTO;
+import com.care.stay.camping.CampingService;
+import com.care.stay.gh.GHDTO;
+import com.care.stay.gh.GHService;
 import com.care.stay.hotel.HotelDTO;
+import com.care.stay.hotel.HotelService;
 import com.care.stay.motel.MotelDTO;
 import com.care.stay.motel.MotelRoomDTO;
 import com.care.stay.motel.MotelService;
+import com.care.stay.pension.PensionDTO;
+import com.care.stay.pension.PensionService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminStayController {
 	@Autowired private AdminStayService service;
+	@Autowired private MotelService mservice;
+	@Autowired private HotelService hservice;
+	@Autowired private PensionService pservice;
+	@Autowired private GHService gservice;
+	@Autowired private CampingService cservice;
 	@Autowired private HttpSession session;
 	
 	@GetMapping("stayRegister")
 	public String stayRegister(Model model) {
-		int nextNo = service.stayCountMotel();
-		model.addAttribute("nextNo", nextNo);
-		model.addAttribute("stayTypes", Arrays.asList("모텔", "호텔·리조트", "펜션", "게스트하우스", "캠핑·글램핑"));
+//		int nextNo = service.stayCountMotel();
+//		model.addAttribute("nextNo", nextNo);
+//		model.addAttribute("stayTypes", Arrays.asList("모텔", "호텔·리조트", "펜션", "게스트하우스", "캠핑·글램핑"));
 		return "admin/stayRegister";
 	}
 
@@ -38,54 +50,30 @@ public class AdminStayController {
 	@ResponseBody
 	public String getStayCode(@RequestParam String stayType) {
 	    int nextNo = service.getStayCount(stayType);
-	    String prefix = stayType.equals("모텔") ? "M" :
+	    String stayCode = stayType.equals("모텔") ? "M" :
 	                    stayType.equals("호텔·리조트") ? "H" :
 	                    stayType.equals("펜션") ? "P" :
 	                    stayType.equals("게스트하우스") ? "G" :
 	                    stayType.equals("캠핑·글램핑") ? "C" : "";
 	    
-	    return prefix + nextNo;
+	    return stayCode + nextNo;
 	}
-	
-	
-//	@GetMapping("stayDetailRegister")
-//	public String stayDetailRegister(
-//			@RequestParam(value="no", required = false)String n, 
-//			Model model) {
-//		
-//		MotelDTO motel = service.stayContent(n);
-//		if(motel == null)
-//			return "redirect:stayInfo";
-//		
-//		model.addAttribute("motel", motel);
-//		return "admin/stayDetailRegister";
-//	}
 	
 	@RequestMapping("stayDetailRegister")
 	public String stayDetailRegister(
 			@RequestParam(value="no", required = false)String n,
 			Model model) {
-		MotelDTO motel = service.stayContent(n);
+		MotelDTO motel = mservice.stayContent(n);
 		session.setAttribute("no", motel.getNo());
 		session.setAttribute("code", motel.getMcode());
 		
 		if(motel == null) {
-			System.out.println("motel is null");
 			return "redirect:stayInfo";
 		}
 		model.addAttribute("motel", motel);
 		return "admin/stayDetailRegister";
 	}
-	
-	@RequestMapping("stayInfo")
-	public String stayInfo(
-			@RequestParam(value="currentPage", required = false)String cp, 
-			Model model) {
-		service.stayInfo(cp, model);
-		return "admin/stayInfo";
-	}
-	
-	
+
 	@GetMapping("stayModify")
 	public String stayModify() {
 		return "admin/stayModify";
@@ -106,59 +94,71 @@ public class AdminStayController {
 		@RequestParam(value="no", required = false)String n, 
 		@RequestParam(value="mroomcode", required = false)String roomcode,
 		Model model) {
-		MotelDTO motel = service.stayContent(n);
-		MotelRoomDTO motelroom = service.stayRoomContent(n);
+		MotelDTO motel = mservice.stayContent(n);
+		List<MotelRoomDTO> motelrooms = mservice.stayRoomContent(n);
 
 		if(motel == null) {
 			System.out.println("stayContent 게시글 번호 : " + n);
 			return "redirect:stayRegister";
 		}
 		
-		List<MotelRoomDTO> motelrooms = new ArrayList<>();
-		
-		if (motelroom != null) {
-	        motelrooms.add(motelroom);
-	    }
-		
+//		List<MotelRoomDTO> motelrooms = new ArrayList<>();
+//		
+//		if (motelroom != null) {
+//	        motelrooms.add(motelroom);
+//	    }
 		
 		model.addAttribute("motel", motel);
 		model.addAttribute("motelrooms", motelrooms);
 		return "admin/stayContent";
 	}
 
+	
 	/* 일단은 DB 등록부터 하는게 먼저 */
 //	@PostMapping("stayregisterProc")
-//	public String stayregisterProc(String stayType, MotelDTO motel, HotelDTO hotel, String confirm) {
+//	public String stayregisterProc(String stayType, MotelDTO motel, HotelDTO hotel, 
+//			PensionDTO pension, GHDTO gh, CampingDTO camping, String confirm) {
 //		String result;
 //		if(stayType.equals("모텔")) {
-//			result = service.stayregisterProc(motel, confirm);
+//			result = mservice.stayregisterProc(motel, confirm);
 //		} else if (stayType.equals("호텔·리조트")) {
-//	        result = service.stayregisterProc(hotel, confirm);
+//	        result = hservice.stayregisterProc(hotel, confirm);
+//	    } else if (stayType.equals("펜션")) {
+//	    	result = pservice.stayregisterProc(pension, confirm);
+//	    } else if (stayType.equals("게스트하우스")) {
+//	    	result = gservice.stayregisterProc(gh, confirm);
+//	    } else if (stayType.equals("캠핑·글램핑")) {
+//	    	result = cservice.stayregisterProc(camping, confirm);
+//	    } else {
+//	    	
 //	    }
 //		return "admin/stayregister";
 //	}
 	
-	@PostMapping("staydetailregisterProc")
-	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
-		String msg = service.staydetailregisterProc(multi);
-		if(msg.equals("객실 DB 작성 완료"))
-			return "redirect:stayInfo";
-		
-		model.addAttribute("msg", msg);
-		return "admin/stayDetailRegister";
-	}
-	
 	@PostMapping("stayregisterProc")
-	public String stayregisterProc(Model model, MultipartHttpServletRequest multi) {
-		String msg = service.stayregisterProc(multi);
-		if(msg.equals("숙소 DB 작성 완료"))
-			return "redirect:stayInfo";
+	public String stayregisterProc(MultipartHttpServletRequest multi, 
+			@RequestParam("stayType") String stayType, Model model) {
+		String result;
+		if(stayType.equals("모텔")) {
+			result = mservice.stayregisterProc(multi);
+		} else if (stayType.equals("호텔·리조트")) {
+	        result = hservice.stayregisterProc(multi);
+	    } else if (stayType.equals("펜션")) {
+	    	result = pservice.stayregisterProc(multi);
+	    } else if (stayType.equals("게스트하우스")) {
+	    	result = gservice.stayregisterProc(multi);
+	    } else if (stayType.equals("캠핑·글램핑")) {
+	    	result = cservice.stayregisterProc(multi);
+	    } else {
+	    	result = "숙소 종류가 적합하지 않습니다. 다시 입력하세요.";
+	    }
 		
-		model.addAttribute("msg", msg);
-		return "admin/stayRegister";
+		if (result.equals("숙소 DB 작성 완료")) {
+	        return "redirect:stayInfo";
+	    }
+	    model.addAttribute("msg", result);
+	    return "admin/stayregister";
 	}
 	
-	
-
 
 }
