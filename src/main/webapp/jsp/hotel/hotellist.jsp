@@ -138,9 +138,10 @@
 <!-- //Area -->
 <!-- //hotelheader -->
  	
- 	 	
+ 	  <div class= body_wrap>
  	 	<aside>
  			  <!--   Filter -->
+ 			
 				<div class="filter_wrap">
 					<div class = "filter_box">
 					<section class="date_wrap">
@@ -310,17 +311,23 @@
                         <a href="#">지도</a>
                     </li>
                 </ul>
+          <c:choose>
+    	<c:when test="${not empty hotels}">
+    	
             <c:forEach var="hotel" items="${ hotels}"> 
+            
           <%--   <% for(int i=0; i<=5; i++){   %>  --%>
           	
-                <table>
+          	<a href="#" class="thumb">
+               <table>
                 	<tr>
-                        <td  width="270px" height="250px"><a href="#" class="thumb">
-                            <img src="	https://via.placeholder.com/230x250" alt="상품이미지">
-                        </a></td>
+                        <td  width="300px" height="250px">
+                            <img src= "${hotel.himage} " alt="상품이미지" width="250px" height="230px">
+                        </td>
+                        
                         <td>
-                            <h2 class="name">${hotel.hName }</h2>
-                            <p>${hotel.hDetailregion }</p>
+                            <h2 class="name">${hotel.hname}</h2>
+                            <p>${hotel.hdetailregion }</p>
                            	<br>
                            	<span>*****</span>
                            	
@@ -338,10 +345,18 @@
                         </td>
                     </tr>
                 </table>
+                 </a>
         <%--     <%  }  %>  --%>   
           </c:forEach> 
+            </c:when>
+          <c:otherwise>
+      		  <!-- hotels 변수가 비어있을 때의 처리 -->
+        		<p>No hotel information available.</p>
+    	  </c:otherwise>
+    	  </c:choose>
              
              </div>
+            </div>
                   
               </main>
              </body>

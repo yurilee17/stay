@@ -6,31 +6,64 @@
 <mapper namespace="com.care.stay.hotel.HotelMapper">
 	<resultMap type="com.care.stay.hotel.HotelDTO" id="HotelDto">
 		<id column="no" property="no"/>
-		<result column="hCode" property="hcode"/>
-		<result column="hName" property="hname"/>
-		<result column="hRegion" property="hregion"/>
-		<result column="hDetailregion" property="hdetailregion"/>
-		<result column="hRating" property="hrating"/>
-		<result column="hAddress" property="haddress"/>
-		<result column="hDetailaddress" property="hdetailaddress"/>
-		<result column="hImage" property="himage"/>
-		<result column="hInfo" property="hinfo"/>
-		<result column="hCheckintime" property="hcheckintime"/>
-		<result column="hCheckouttime" property="hcheckouttime"/>
-		<result column="hType" property="htype"/>
-		<result column="hPeople" property="hpeople"/>
-		<result column="hBedtype" property="hbedtype"/>
+		<result column="hcode" property="hcode"/>
+		<result column="hname" property="hname"/>
+		<result column="hregion" property="hregion"/>
+		<result column="hdetailregion" property="hdetailregion"/>
+		<result column="hrating" property="hrating"/>
+		<result column="haddress" property="haddress"/>
+		<result column="hdetailaddress" property="hdetailaddress"/>
+		<result column="himage" property="himage"/>
+		<result column="hinfo" property="hinfo"/>
+		<result column="hcheckintime" property="hcheckintime"/>
+		<result column="hcheckouttime" property="hcheckouttime"/>
+		<result column="htype" property="htype"/>
+		<result column="hpeople" property="hpeople"/>
+		<result column="hbedtype" property="hbedtype"/>
 	</resultMap> 
 
 	<select id="count">
 	  	SELECT count(no) FROM hotel
 	</select>
 
-	<select id="hotellist" resultMap="HotelDto">  
+<!-- 	<select id="hotellist" resultMap="HotelDto">  
 		SELECT BBB.* 
-		FROM (SELECT rownum as rn, AAA.* 
-		FROM (SELECT no, 'hcode', 'hname', 'hregion', 'hdetailregion', 'hrating', 'haddress', 'hdetailaddress', 'himage', 'hinfo', 'hcheckintime', 'hcheckouttime', 'htype', 'hpeople', 'hbedtype' 
+		FROM (SELECT ROWNUM() as rn, AAA.* 
+		FROM (SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype, 
 		FROM hotel ORDER BY no DESC )AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select> -->
+	
+	<select id="hotellist" resultMap="HotelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype FROM hotel ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>
+	
+	
+	<!-- 지역필터  -->
+	
+	<select id="menu-wrapper" resultMap="HotelDto">
+		<choose>
+			<when test="mainMenu == 'Main1'">
+				<when test= "subMenu == 'Main1_1'">
+					  select * from hotel where hregion = 'options[target.selectedIndex].text' and hdetailregion = 'options[target.selectedIndex].text';
+				</when>
+			</when>
+			<when test="select == 'mobile'">
+				SELECT AAA.* FROM 
+				(SELECT rownum as rn, id, pw, user_name, address, mobile 
+				FROM session_quiz WHERE mobile like '%'||#{search}||'%')AAA 
+				WHERE AAA.rn BETWEEN #{begin} AND #{end}
+			</when>
+			<otherwise>
+				SELECT AAA.* FROM 
+				(SELECT rownum as rn, id, pw, user_name, address, mobile  
+				FROM session_quiz )AAA 
+				WHERE AAA.rn BETWEEN #{begin} AND #{end}
+			</otherwise>
+		</choose>
 	</select>
 	
 
