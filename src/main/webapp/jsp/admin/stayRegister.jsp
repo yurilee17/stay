@@ -42,10 +42,11 @@
 							<th>숙소 이름</th>
 							<td><input type="text" class="form_w65" name="name" id="name"></td>
 						</tr>
+
 						<tr>
 							<th>종류</th>
 							<td>	
-								<select class="form_w30" name="stayType" id="stayType" onchange="showRegContent()">
+								<select class="form_w30" name="stayType" id="stayType" onchange="showRegContent(this)">
 								 	<option value="">숙소 종류를 선택하세요</option>								
 									<option value="모텔">모텔</option>
 						            <option value="호텔·리조트">호텔·리조트</option>
@@ -68,7 +69,7 @@
 						<tr>
 							<th>지역</th>
 							<td>	
-								<select class="form_w40" name="region" id="region" onchange="showSubMenu()">
+								<select class="form_w40" name="region" id="region" onchange="showSubMenu(this)">
 								  <option value="">지역을 선택하세요</option>
 								  <option value="서울">서울</option>
 								  <option value="경기/인천">경기/인천</option>
@@ -139,11 +140,11 @@
 
 					</table>
 					
-					<table id="regContent2" class="regContent" style="display: none;">	
+					<!-- <table id="regContent2" class="regContent" style="display: none;">	
 						<tr>
 							<th>지역</th>
 							<td>	
-								<select class="form_w40" name="region" id="region" onchange="showSubMenu()">
+								<select class="form_w40" name="region" id="region" onchange="showSubMenu(this)">
 								  <option value="">지역을 선택하세요</option>
 								  <option value="서울">서울</option>
 								  <option value="경기/인천">경기/인천</option>
@@ -219,7 +220,7 @@
 							<th>체크아웃시간</th>
 							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
 						</tr>						
-					</table>
+					</table> -->
 					
 					<div class="submit">
 						<ul>
@@ -254,7 +255,7 @@
 	  
 		
 		// 모텔이냐 아니냐에 따른 DB 등록 컨텐츠 전환
-	  function showRegContent() {
+/* 	  function showRegContent() {
 		  var stayType = document.getElementById("stayType");
 		  var regContent = document.getElementsByClassName("regContent");
 		  
@@ -269,8 +270,28 @@
 		  } else {
 			  document.getElementById("regContent2").style.display = "table";
 		  }
-	  }
+	  } */
 		
+		
+	  function showRegContent(selectElement) {
+		    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+
+		    var regContent = selectElement.closest("table").querySelector(".detailRegion");
+
+		    // 해당 테이블 내의 모든 detailRegion를 감춥니다.
+		    var detailRegionsInTable = selectElement.closest("table").querySelectorAll(".detailRegion");
+		    for (var i = 0; i < detailRegionsInTable.length; i++) {
+		        detailRegionsInTable[i].style.display = "none";
+		    }
+
+		    // 선택된 값에 따라 해당 테이블 내의 detailRegion 표시
+		    if (selectedValue === "모텔") {
+		        regContent.style.display = "block";
+		    }else {
+		    	regContent2.style.display = "block";
+		    }
+		}
+	
 		
 	  	// 지역에 따른 세부 지역 버튼 나타내기
 	  function showSubMenu() {
@@ -296,7 +317,7 @@
 		  }
 		}
 	  
-	  function updateDetailRegion() {
+	 /*  function updateDetailRegion() {
 		    var regionSelect = document.getElementById("region");
 		    var detailRegionSelect = document.getElementsByName("detailRegion");
 		    var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
@@ -310,7 +331,39 @@
 		    } else if (selectedMotelDetailRegion !== "") {
 		        motel.setMdetailRegion(selectedMotelDetailRegion);
 		    }
+		} */
+		
+		
+		function updateDetailRegion() {
+		    var regionSelect = document.getElementById("region");
+		    var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
+		    
+		    // 모든 detailRegion 요소를 숨깁니다.
+		    var detailRegionElements = document.querySelectorAll(".detailRegion");
+		    for (var i = 0; i < detailRegionElements.length; i++) {
+		        detailRegionElements[i].style.display = "none";
+		    }
+
+		    // 선택한 지역에 해당하는 detailRegion 요소를 표시합니다.
+		    if (selectedRegion === "서울") {
+		        var seoulDetailRegion = document.getElementById("detailRegion");
+		        seoulDetailRegion.style.display = "block";
+		    } else if (selectedRegion === "경기/인천") {
+		        var gyInDetailRegion = document.getElementById("detailRegion2");
+		        gyInDetailRegion.style.display = "block";
+		    } else if (selectedRegion === "충청/강원/제주") {
+		        var ccgjDetailRegion = document.getElementById("detailRegion3");
+		        ccgjDetailRegion.style.display = "block";
+		    } else if (selectedRegion === "경남/경북") {
+		        var gngbDetailRegion = document.getElementById("detailRegion4");
+		        gngbDetailRegion.style.display = "block";
+		    } else if (selectedRegion === "전남/전북") {
+		        var jnjbDetailRegion = document.getElementById("detailRegion5");
+		        jnjbDetailRegion.style.display = "block";
+		    }
 		}
+
+		
 	  
 	  function submitForm() {
 		    // form 요소 가져오기

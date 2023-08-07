@@ -138,19 +138,21 @@ public class AdminStayController {
 	@PostMapping("stayregisterProc")
 	public String stayregisterProc(MultipartHttpServletRequest multi, 
 			@RequestParam("stayType") String stayType, Model model) {
-		String result;
-		if(stayType.equals("모텔")) {
-			result = mservice.stayregisterProc(multi);
-		} else if (stayType.equals("호텔·리조트")) {
+		String result = "";
+		if (stayType == null) {
+	        result = "숙소 종류를 선택하세요.";
+	    } else if (stayType.equals("모텔")) {
+	        result = mservice.stayregisterProc(multi);
+	    } else if (stayType.equals("호텔·리조트")) {
 	        result = hservice.stayregisterProc(multi);
 	    } else if (stayType.equals("펜션")) {
-	    	result = pservice.stayregisterProc(multi);
+	        result = pservice.stayregisterProc(multi);
 	    } else if (stayType.equals("게스트하우스")) {
-	    	result = gservice.stayregisterProc(multi);
+	        result = gservice.stayregisterProc(multi);
 	    } else if (stayType.equals("캠핑·글램핑")) {
-	    	result = cservice.stayregisterProc(multi);
+	        result = cservice.stayregisterProc(multi);
 	    } else {
-	    	result = "숙소 종류가 적합하지 않습니다. 다시 입력하세요.";
+	        result = "숙소 종류가 적합하지 않습니다. 다시 입력하세요.";
 	    }
 		
 		if (result.equals("숙소 DB 작성 완료")) {
