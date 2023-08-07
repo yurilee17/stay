@@ -208,42 +208,6 @@ function btnSend() {
 	sendMsg();
 }
 
-function btnSend() {
-	let mobile = document.getElementById("mobile");
-	let btnSend = document.querySelector(".btn_send");
-	let verificationCode = document.getElementById("verificationCode");
-
-	var numberPattern = /^010[0-9]{8}$/;
-
-	if (mobile.value.length >= 10 && btnSend.classList.contains('active')) {
-		btnSend.classList.remove("active");
-		btnSend.classList.add("send");
-		btnSend.textContent = "재전송";
-
-		verificationCode.style.display = "block"; // div를 화면에 보이도록 설정
-
-		// 3분 (180초)으로 타이머 시작
-		const display = document.querySelector(".timer");
-
-		if (timer === 0) {
-			timer = 180;
-			startTimer(display, btnSend);
-		} else {
-			timer = 180;
-		}
-
-		sendMsg();
-
-	} else if (!numberPattern.test(mobile.value)) {
-		alert("휴대폰 번호 형식이 아닙니다.");
-	} else if (btnSend.classList.contains('send')) {
-		alert("1분 후에 다시 시도해주세요.");
-	} else {
-		alert("휴대폰 번호를 입력하세요.");
-	}
-
-}
-
 function btnOk() {
 	let digit = document.getElementById("digit");
 	let btnOk = document.querySelector(".btn_ok");
@@ -283,7 +247,7 @@ function startTimer(display, btnSend) {
 		}
 		if (--timer < 0) {
 			clearInterval(updateTimer);
-			display.textContent = "00:05";
+			display.textContent = "03:00";
 			digit.value = "";
 			verificationCode.style.display = "none"; // div를 화면에 안 보이도록 설정
 			btnOk.classList.remove("active");

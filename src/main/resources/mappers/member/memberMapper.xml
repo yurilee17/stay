@@ -25,4 +25,8 @@
 		INSERT INTO member VALUES(#{id}, #{password}, #{mobile}, '', #{nickname}, #{authority})
 	</insert>
 	
+	<select id="getMobile" resultMap="memberDto">
+		SELECT mobile FROM member WHERE id=#{id}
+	</select>
+	
 </mapper>

@@ -15,5 +15,7 @@ public interface MemberMapper {
 	MemberDTO serchNickname(String nickname);
 	
 	void registerProc(MemberDTO member);
+	
+	MemberDTO getMobile(String id);
 
 }
