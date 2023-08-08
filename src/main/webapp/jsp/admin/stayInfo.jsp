@@ -15,31 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
  </head>
- <script>
-	 function showStayInfo() {
-		  var stayType = document.getElementById("stayType");
-		  var stayInfo = document.getElementsByClassName("stayInfo");
-	
-		  // 모든 서브 메뉴 감추기
-		  for (var i = 0; i < stayInfo.length; i++) {
-		    stayInfo[i].style.display = "none";
-		  }
-	
-		  // 선택된 값에 따라 해당 서브 메뉴 표시
-		  if (stayType.value === "모텔") {
-		    document.getElementById("stayInfo").style.display = "table";
-		  } else if (stayType.value === "호텔·리조트") {
-		    document.getElementById("stayInfo2").style.display = "table";
-		  } else if (stayType.value === "펜션") {
-		    document.getElementById("stayInfo3").style.display = "table";
-		  } else if (stayType.value === "게스트하우스") {
-		    document.getElementById("stayInfo4").style.display = "table";
-		  } else if (stayType.value === "캠핑·글램핑") {
-		    document.getElementById("stayInfo5").style.display = "table";
-		  }
-		}
- 
- </script>
+
  <body>
 	<br>
 	<div id ="wrap">
@@ -277,4 +253,31 @@
 		</div>
 	</div>
  </body>
+ 
+  <script>
+	 function showStayInfo() {
+		  var stayType = document.getElementById("stayType");
+		  var stayInfo = document.getElementsByClassName("stayInfo");
+	
+		  // 모든 서브 메뉴 감추기
+		  for (var i = 0; i < stayInfo.length; i++) {
+		    stayInfo[i].style.display = "none";
+		  } 
+
+		  // 선택된 값에 따라 해당 서브 메뉴 표시
+		  if (stayType.value === "모텔") {
+		    document.getElementById("stayInfo").style.display = "table";
+		  } else if (stayType.value === "호텔·리조트") {
+		    document.getElementById("stayInfo2").style.display = "table";
+		  } else if (stayType.value === "펜션") {
+		    document.getElementById("stayInfo3").style.display = "table";
+		  } else if (stayType.value === "게스트하우스") {
+		    document.getElementById("stayInfo4").style.display = "table";
+		  } else if (stayType.value === "캠핑·글램핑") {
+		    document.getElementById("stayInfo5").style.display = "table";
+		  }
+		}
+ 
+ </script>
+ 
 </html>

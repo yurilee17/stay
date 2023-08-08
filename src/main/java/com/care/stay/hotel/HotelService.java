@@ -24,12 +24,15 @@ public class HotelService {
 		HotelDTO hotel = new HotelDTO();
 		hotel.setHname(multi.getParameter("name"));
 		hotel.setHregion(multi.getParameter("region"));
-		hotel.setHdetailregion(multi.getParameter("detailRegion"));
+		hotel.setHdetailRegion(multi.getParameter("detailRegion"));
 		hotel.setHaddress(multi.getParameter("address"));
-		hotel.setHdetailaddress(multi.getParameter("detailAddress"));
+		hotel.setHdetailAddress(multi.getParameter("detailAddress"));
 		hotel.setHinfo(multi.getParameter("info"));
-		hotel.setHcheckintime(multi.getParameter("checkintime"));
-		hotel.setHcheckouttime(multi.getParameter("checkouttime"));
+		hotel.setHcheckinTime(multi.getParameter("checkinTime"));
+		hotel.setHcheckoutTime(multi.getParameter("checkoutTime"));
+		hotel.setHtype(multi.getParameter("type"));
+		hotel.setHpeople(0);
+		hotel.setHbedtype(multi.getParameter("bedType"));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -58,16 +61,8 @@ public class HotelService {
 				e.printStackTrace();
 			}
 		}
-//		System.out.println();
-//		System.out.println(motel.getMcode());
-//		System.out.println(motel.getMname());
-//		System.out.println(motel.getMregion());
-		System.out.println("상세 지역 : " + hotel.getHdetailregion());
-//		
-//		System.out.println(motel.getMaddress());
-//		System.out.println(motel.getMimage());
-//		System.out.println(motel.getMinfo());
-//		System.out.println(motel.getMdetailAddress());
+
+		System.out.println("상세 지역 : " + hotel.getHdetailRegion());
 
 		hotelMapper.stayregisterProc(hotel);
 		return "숙소 DB 작성 완료";

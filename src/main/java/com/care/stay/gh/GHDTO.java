@@ -14,7 +14,6 @@ public class GHDTO {
 	private String ginfo;
 	private String gcheckintime;
 	private String gcheckouttime;
-	private String gtype;
 	private int gpeople;
 	private String gbedtype;
 	
@@ -90,12 +89,6 @@ public class GHDTO {
 	}
 	public void setGcheckouttime(String gcheckouttime) {
 		this.gcheckouttime = gcheckouttime;
-	}
-	public String getGtype() {
-		return gtype;
-	}
-	public void setGtype(String gtype) {
-		this.gtype = gtype;
 	}
 	public int getGpeople() {
 		return gpeople;

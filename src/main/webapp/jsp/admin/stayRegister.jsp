@@ -46,7 +46,7 @@
 						<tr>
 							<th>종류</th>
 							<td>	
-								<select class="form_w30" name="stayType" id="stayType" onchange="showRegContent(this)">
+								<select class="form_w30" name="stayType" id="stayType" onchange="showRegContent()">
 								 	<option value="">숙소 종류를 선택하세요</option>								
 									<option value="모텔">모텔</option>
 						            <option value="호텔·리조트">호텔·리조트</option>
@@ -63,155 +63,84 @@
 								<%-- M${nextNo} --%>
 							</td>
 						</tr>
+						<tr>
+							<th>지역</th>
+							<td>	
+								<select class="form_w40" name="region" id="region" onchange="showSubMenu()">
+								  <option value="">지역을 선택하세요</option>
+								  <option value="서울">서울</option>
+								  <option value="경기/인천">경기/인천</option>
+								  <option value="충청/강원/제주">충청/강원/제주</option>
+								  <option value="경남/경북">경남/경북</option>
+								  <option value="전남/전북">전남/전북</option>  
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>세부지역</th>
+							<td>
+								<select id="detailRegion" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="강동">강동</option>
+								  <option value="강서">강서</option>
+								  <option value="강남">강남</option>
+								  <option value="강북">강북</option>
+								</select>
+								
+								<select id="detailRegion2" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="경기">경기</option>
+								  <option value="인천">인천</option>
+								</select>
+								
+								<select id="detailRegion3" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="충청">충청</option>
+								  <option value="강원">강원</option>
+								  <option value="제주">제주</option>
+								</select>
+								
+								<select id="detailRegion4" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="경남">경남</option>
+								  <option value="경북">경북</option>
+								</select>
+								
+								<select id="detailRegion5" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								  <option value="">상세지역을 선택하세요</option>
+								  <option value="전남">전남</option>
+								  <option value="전북">전북</option>
+								</select>
+							</td>																											
+						</tr>
+						<tr>
+							<th>우편번호 찾기</th>
+							<td><input type="text" id="postcode" class="form_w40" name="postcode" placeholder="우편번호" readonly>
+							<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td><input type="text" id="address" name="address" class="form_w80" placeholder="주소" readonly></td>
+						</tr>
+						<tr>
+							<th>상세주소</th>
+							<td><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress"></td>
+						</tr>
+						<tr>
+							<th>이미지 업로드</th>
+							<td><input type="file" name="imageupload" id="imageupload" ></td>
+						</tr>
+						<tr>
+							<th>숙소정보</th>
+							<td><textarea rows="4" cols="50" id="info" name="info"></textarea></td>
+						</tr>
 					</table>	
 						
 					<table id="regContent" class="regContent">	
-						<tr>
-							<th>지역</th>
-							<td>	
-								<select class="form_w40" name="region" id="region" onchange="showSubMenu(this)">
-								  <option value="">지역을 선택하세요</option>
-								  <option value="서울">서울</option>
-								  <option value="경기/인천">경기/인천</option>
-								  <option value="충청/강원/제주">충청/강원/제주</option>
-								  <option value="경남/경북">경남/경북</option>
-								  <option value="전남/전북">전남/전북</option>  
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>세부지역</th>
-							<td>
-								<select id="detailRegion" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="강동">강동</option>
-								  <option value="강서">강서</option>
-								  <option value="강남">강남</option>
-								  <option value="강북">강북</option>
-								</select>
-								
-								<select id="detailRegion2" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="경기">경기</option>
-								  <option value="인천">인천</option>
-								</select>
-								
-								<select id="detailRegion3" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="충청">충청</option>
-								  <option value="강원">강원</option>
-								  <option value="제주">제주</option>
-								</select>
-								
-								<select id="detailRegion4" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="경남">경남</option>
-								  <option value="경북">경북</option>
-								</select>
-								
-								<select id="detailRegion5" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="전남">전남</option>
-								  <option value="전북">전북</option>
-								</select>
-							</td>																											
-						</tr>
-						<tr>
-							<th>우편번호 찾기</th>
-							<td><input type="text" id="postcode" class="form_w40" name="postcode" placeholder="우편번호" readonly>
-							<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
-						</tr>
-						<tr>
-							<th>주소</th>
-							<td><input type="text" id="address" name="address" class="form_w80" placeholder="주소" readonly></td>
-						</tr>
-						<tr>
-							<th>상세주소</th>
-							<td><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress"></td>
-						</tr>
-						<tr>
-							<th>이미지 업로드</th>
-							<td><input type="file" name="imageupload" id="imageupload" ></td>
-						</tr>
-						<tr>
-							<th>숙소정보</th>
-							<td><textarea rows="4" cols="50" id="info" name="info"></textarea></td>
-						</tr>
 
 					</table>
 					
-					<!-- <table id="regContent2" class="regContent" style="display: none;">	
-						<tr>
-							<th>지역</th>
-							<td>	
-								<select class="form_w40" name="region" id="region" onchange="showSubMenu(this)">
-								  <option value="">지역을 선택하세요</option>
-								  <option value="서울">서울</option>
-								  <option value="경기/인천">경기/인천</option>
-								  <option value="충청/강원/제주">충청/강원/제주</option>
-								  <option value="경남/경북">경남/경북</option>
-								  <option value="전남/전북">전남/전북</option>  
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>세부지역</th>
-							<td>
-								<select id="detailRegion" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="강동">강동</option>
-								  <option value="강서">강서</option>
-								  <option value="강남">강남</option>
-								  <option value="강북">강북</option>
-								</select>
-								
-								<select id="detailRegion2" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="경기">경기</option>
-								  <option value="인천">인천</option>
-								</select>
-								
-								<select id="detailRegion3" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="충청">충청</option>
-								  <option value="강원">강원</option>
-								  <option value="제주">제주</option>
-								</select>
-								
-								<select id="detailRegion4" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="경남">경남</option>
-								  <option value="경북">경북</option>
-								</select>
-								
-								<select id="detailRegion5" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
-								  <option value="전남">전남</option>
-								  <option value="전북">전북</option>
-								</select>
-							</td>																											
-						</tr>
-						<tr>
-							<th>우편번호 찾기</th>
-							<td><input type="text" id="postcode" class="form_w40" name="postcode" placeholder="우편번호" readonly>
-							<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"></td>
-						</tr>
-						<tr>
-							<th>주소</th>
-							<td><input type="text" id="address" name="address" class="form_w80" placeholder="주소" readonly></td>
-						</tr>
-						<tr>
-							<th>상세주소</th>
-							<td><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress"></td>
-						</tr>
-						<tr>
-							<th>이미지 업로드</th>
-							<td><input type="file" name="imageupload" id="imageupload" ></td>
-						</tr>
-						<tr>
-							<th>숙소정보</th>
-							<td><textarea rows="4" cols="50" id="info" name="info"></textarea></td>
-						</tr>
+					<table id="regContent2" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
 							<td><input type="text" class="form_w50" placeholder="" id="checkinTime" name="checkinTime"></td>
@@ -219,8 +148,90 @@
 						<tr>
 							<th>체크아웃시간</th>
 							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
-						</tr>						
-					</table> -->
+						</tr>
+						<tr>
+							<th>호텔·리조트 유형</th>
+							<td>
+							<label>
+						  <input type="radio" name="type" value="5성급"> 5성급
+							</label>
+							<label>
+						  <input type="radio" name="type" value="특1급"> 특1급
+							</label>
+							<label>
+						  <input type="radio" name="type" value="특급"> 특급
+							</label>														
+							</td>
+						</tr>	
+						<tr>
+							<th>베드 타입</th>
+							<td>
+							<label><input type="radio" name="bedType" value="싱글"> 싱글</label>
+							<label><input type="radio" name="bedType" value="더블"> 더블</label>
+							<label><input type="radio" name="bedType" value="트윈"> 트윈</label>
+							<label><input type="radio" name="bedType" value="온돌"> 온돌</label>														
+							</td>
+						</tr>																		
+					</table>
+					
+					<table id="regContent3" class="regContent" style="display: none;">	
+						<tr>
+							<th>체크인시간</th>
+							<td><input type="text" class="form_w50" placeholder="" id="checkinTime" name="checkinTime"></td>
+						</tr>
+						<tr>
+							<th>체크아웃시간</th>
+							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
+						</tr>
+						<tr>
+							<th>펜션 유형</th>
+							<td>
+							<label> <input type="radio" name="ptype" value="펜션"> 펜션</label>
+							<label><input type="radio" name="ptype" value="풀빌라"> 풀빌라</label>													
+							</td>
+						</tr>													
+					</table>					
+					
+					<table id="regContent4" class="regContent" style="display: none;">	
+						<tr>
+							<th>체크인시간</th>
+							<td><input type="text" class="form_w50" placeholder="" id="checkinTime" name="checkinTime"></td>
+						</tr>
+						<tr>
+							<th>체크아웃시간</th>
+							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
+						</tr>
+						<tr>
+							<th>베드 타입</th>
+							<td>
+							<label><input type="radio" name="gbedType" value="싱글"> 싱글</label>
+							<label><input type="radio" name="gbedType" value="더블"> 더블</label>
+							<label><input type="radio" name="gbedType" value="트윈"> 트윈</label>
+							<label><input type="radio" name="gbedType" value="온돌"> 온돌</label>														
+							</td>
+						</tr>																		
+					</table>
+					
+					<table id="regContent5" class="regContent" style="display: none;">	
+						<tr>
+							<th>체크인시간</th>
+							<td><input type="text" class="form_w50" placeholder="" id="checkinTime" name="checkinTime"></td>
+						</tr>
+						<tr>
+							<th>체크아웃시간</th>
+							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
+						</tr>
+						<tr>
+							<th>캠핑 유형</th>
+							<td>
+							<label><input type="radio" name="htype" value="오토캠핑"> 오토캠핑</label>
+							<label><input type="radio" name="htype" value="글램핑"> 글램핑</label>
+							<label><input type="radio" name="htype" value="카라반"> 카라반</label>														
+							</td>
+						</tr>																		
+					</table>
+					
+					
 					
 					<div class="submit">
 						<ul>
@@ -253,44 +264,28 @@
 	      }).open();
 	  }
 	  
-		
-		// 모텔이냐 아니냐에 따른 DB 등록 컨텐츠 전환
-/* 	  function showRegContent() {
+	  function showRegContent() {
 		  var stayType = document.getElementById("stayType");
 		  var regContent = document.getElementsByClassName("regContent");
 		  
-		  // 모든 서브 메뉴 감추기		  
 		  for (var i = 0; i < regContent.length; i++) {
-			    regContent[i].style.display = "none";
-			  }
-
-		  // 선택된 값에 따라 서브 메뉴 표시
-		  if (stayType.value === "모텔") {
-			  document.getElementById("regContent").style.display = "table";
-		  } else {
-			  document.getElementById("regContent2").style.display = "table";
+			regContent[i].style.display = "none";  
 		  }
-	  } */
-		
-		
-	  function showRegContent(selectElement) {
-		    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
-
-		    var regContent = selectElement.closest("table").querySelector(".detailRegion");
-
-		    // 해당 테이블 내의 모든 detailRegion를 감춥니다.
-		    var detailRegionsInTable = selectElement.closest("table").querySelectorAll(".detailRegion");
-		    for (var i = 0; i < detailRegionsInTable.length; i++) {
-		        detailRegionsInTable[i].style.display = "none";
-		    }
-
-		    // 선택된 값에 따라 해당 테이블 내의 detailRegion 표시
-		    if (selectedValue === "모텔") {
-		        regContent.style.display = "block";
-		    }else {
-		    	regContent2.style.display = "block";
-		    }
-		}
+		  
+		  if (stayType.value === "모텔") {
+		    document.getElementById("regContent").style.display = "table";
+		  } else if (stayType.value === "호텔·리조트") {
+		    document.getElementById("regContent2").style.display = "table";
+		  } else if (stayType.value === "펜션") {
+		    document.getElementById("regContent3").style.display = "table";
+		  } else if (stayType.value === "게스트하우스") {
+		    document.getElementById("regContent4").style.display = "table";
+		  } else if (stayType.value === "캠핑·글램핑") {
+		    document.getElementById("regContent5").style.display = "table";
+		  }
+		  
+		  
+	  }
 	
 		
 	  	// 지역에 따른 세부 지역 버튼 나타내기
@@ -305,15 +300,15 @@
 
 		  // 선택된 값에 따라 해당 서브 메뉴 표시
 		  if (region.value === "서울") {
-		    document.getElementById("detailRegion").style.display = "block";
+		    document.getElementById("detailRegion").style.display = "table";
 		  } else if (region.value === "경기/인천") {
-		    document.getElementById("detailRegion2").style.display = "block";
+		    document.getElementById("detailRegion2").style.display = "table";
 		  } else if (region.value === "충청/강원/제주") {
-		    document.getElementById("detailRegion3").style.display = "block";
+		    document.getElementById("detailRegion3").style.display = "table";
 		  } else if (region.value === "경남/경북") {
-		    document.getElementById("detailRegion4").style.display = "block";
+		    document.getElementById("detailRegion4").style.display = "table";
 		  } else if (region.value === "전남/전북") {
-		    document.getElementById("detailRegion5").style.display = "block";
+		    document.getElementById("detailRegion5").style.display = "table";
 		  }
 		}
 	  

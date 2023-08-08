@@ -3,6 +3,7 @@ package com.care.stay.motel;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -101,7 +102,6 @@ public class MotelService {
 		
 	}
 
-	
 
 	/*모텔 객실 DB 등록 = 숙소 상세 DB 등록*/
 	public String staydetailregisterProc(MultipartHttpServletRequest multi) {
@@ -122,7 +122,33 @@ public class MotelService {
 		motelroom.setMdaesiltime(multi.getParameter("mdaesiltime"));
 		motelroom.setMstaycheckin(multi.getParameter("mstaycheckin"));
 		motelroom.setMstaycheckout(multi.getParameter("mstaycheckout"));
-		motelroom.setMoption("0");
+		
+		/* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
+		String[] check1 = multi.getParameterValues("check1");
+		String[] check2 = multi.getParameterValues("check2");
+		String[] check3 = multi.getParameterValues("check3");
+		
+		List<String> checks = new ArrayList<>(Arrays.asList(check1));
+		if (check1 != null) {
+		    checks.addAll(Arrays.asList(check1));
+		}
+		if (check2 != null) {
+		    checks.addAll(Arrays.asList(check2));
+		}
+		if (check3 != null) {
+		    checks.addAll(Arrays.asList(check3));
+		}
+		
+//		List<String> checks2 = new ArrayList<>(Arrays.asList(check2));
+//		List<String> checks3 = new ArrayList<>(Arrays.asList(check3));
+//		
+//		checks.addAll(checks2);
+//		checks.addAll(checks3);
+		
+		
+		String moptions = String.join(",", checks);
+		motelroom.setMoption(moptions);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		motelroom.setMroomimage("");
@@ -175,6 +201,7 @@ public class MotelService {
 		model.addAttribute("currentPage", currentPage);
 	}
 	
+	
 	public MotelDTO stayContent(String n) {
 		int no = 0;
 		try{
@@ -193,6 +220,7 @@ public class MotelService {
 		return motel;
 	}
 	
+	
 	public List<MotelRoomDTO> stayRoomContent(String n) {
 		int no = 0;
 		try{
@@ -201,11 +229,17 @@ public class MotelService {
 			return null;
 		}
 		
-		MotelRoomDTO motelroom = motelmapper.stayRoomContent(no);
-		if(motelroom == null)
-			return null;
-		
 		return motelmapper.stayRoomContent(n);
+		
+		
+//		MotelRoomDTO motelroom = motelmapper.stayRoomContent(no);
+//		if(motelroom == null)
+//			return null;
+//		
+//		List<MotelRoomDTO> motelrooms = new ArrayList<>();
+//	    motelrooms.add(motelroom);
+//
+//	    return motelrooms;
 	}
 
 	

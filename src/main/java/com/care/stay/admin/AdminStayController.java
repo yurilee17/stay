@@ -46,6 +46,8 @@ public class AdminStayController {
 		return "admin/stayRegister";
 	}
 
+	
+	/* 회원가입시 자동으로 숙소코드를 알려줌*/
 	@GetMapping("getStayCode")
 	@ResponseBody
 	public String getStayCode(@RequestParam String stayType) {
@@ -55,9 +57,9 @@ public class AdminStayController {
 	                    stayType.equals("펜션") ? "P" :
 	                    stayType.equals("게스트하우스") ? "G" :
 	                    stayType.equals("캠핑·글램핑") ? "C" : "";
-	    
 	    return stayCode + nextNo;
 	}
+	
 	
 	@RequestMapping("stayDetailRegister")
 	public String stayDetailRegister(
@@ -112,28 +114,6 @@ public class AdminStayController {
 		model.addAttribute("motelrooms", motelrooms);
 		return "admin/stayContent";
 	}
-
-	
-	/* 일단은 DB 등록부터 하는게 먼저 */
-//	@PostMapping("stayregisterProc")
-//	public String stayregisterProc(String stayType, MotelDTO motel, HotelDTO hotel, 
-//			PensionDTO pension, GHDTO gh, CampingDTO camping, String confirm) {
-//		String result;
-//		if(stayType.equals("모텔")) {
-//			result = mservice.stayregisterProc(motel, confirm);
-//		} else if (stayType.equals("호텔·리조트")) {
-//	        result = hservice.stayregisterProc(hotel, confirm);
-//	    } else if (stayType.equals("펜션")) {
-//	    	result = pservice.stayregisterProc(pension, confirm);
-//	    } else if (stayType.equals("게스트하우스")) {
-//	    	result = gservice.stayregisterProc(gh, confirm);
-//	    } else if (stayType.equals("캠핑·글램핑")) {
-//	    	result = cservice.stayregisterProc(camping, confirm);
-//	    } else {
-//	    	
-//	    }
-//		return "admin/stayregister";
-//	}
 	
 	@PostMapping("stayregisterProc")
 	public String stayregisterProc(MultipartHttpServletRequest multi, 

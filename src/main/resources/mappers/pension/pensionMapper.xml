@@ -16,45 +16,37 @@
 	<select id="stayCountPension" resultType="int">
 	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM pension
 	</select>
-
-	<!-- <select id="stayContent" resultMap="motelDto">
-		SELECT * FROM motel WHERE no=#{no}
+	
+	<select id="stayContent" resultMap="pensionDto">
+		SELECT * FROM pension WHERE no=#{no}
 	</select>
 	
-	<select id="stayRoomContent" resultMap="motelroomDto">
-		SELECT * FROM motelroom WHERE no=#{no}
+	<select id="stayRoomContent" resultMap="pensionroomDto">
+		SELECT * FROM pensionroom WHERE no=#{no}
 	</select>
 	
-	<select id="stayDetailRegister" resultMap="motelDto">
-		SELECT * FROM motel WHERE no=#{no}
-	</select>
-
-	<select id="count">
-	  	SELECT count(no) FROM motel
-	</select>
-	
-	<select id="stayCountMotel" resultType="int">
-	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM motel
+	<select id="stayDetailRegister" resultMap="pensionDto">
+		SELECT * FROM pension WHERE no=#{no}
 	</select>
 	
 	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
-			SELECT nvl(max(no),0) + 1 FROM motel
+			SELECT nvl(max(no),0) + 1 FROM pension
 		</selectKey>
-		INSERT INTO motel (mcode, mname, mregion, mdetailregion, mrating, maddress, mimage, minfo, mdetailaddress, no) 
-		VALUES('M', #{mname}, #{mregion}, #{mdetailRegion}, 0, #{maddress}, #{mimage}, #{minfo}, #{mdetailAddress}, #{no})
+		INSERT INTO pension (no, pcode, pname, pregion, pdetailregion, prating, paddress, pdetailaddress, pimage, pinfo, pcheckintime, pcheckouttime, ptype, ppeople) 
+		VALUES(#{no}, 'P', #{pname}, #{pregion}, #{pdetailRegion}, 0, #{paddress}, #{pdetailAddress}, #{pimage}, #{pinfo}, #{pcheckintime}, #{pcheckouttime}, #{ptype}, #{ppeople})
 	</insert>
 	
-	<select id="stayInfo" resultMap="motelDto">
+	<select id="stayInfo" resultMap="pensionDto">
 		SELECT BBB.* FROM 
 		(SELECT rownum as rn, AAA.* FROM 
-		(SELECT no, mcode, mname, mregion, maddress FROM motel ORDER BY no DESC)AAA)BBB
+		(SELECT no, pcode, pname, pregion, paddress FROM pension ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>
 
-	<insert id="staydetailregisterProc" parameterType="com.care.stay.motel.MotelRoomDTO">
-		INSERT INTO motelroom (no, mcode, mroomname, mroomcode, mroomimage, mroomnumber, mdaesilprice, mstayprice, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, moption)
-		VALUES(#{no}, #{mcode}, #{mroomname}, #{mroomcode}, #{mroomimage}, #{mroomnumber}, #{mdaesilprice}, #{mstayprice}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout}, #{moption})
-	</insert> -->
-	
+	<insert id="staydetailregisterProc" parameterType="com.care.stay.pension.PensionRoomDTO">
+		INSERT INTO pensionroom (no, pcode, proomcode, proomname, proomimage, proomnumber, pprice, pguide, pcomfort)
+		VALUES(#{no}, #{pcode}, #{proomcode}, #{proomname}, #{proomimage}, #{proomnumber}, #{pprice}, #{pguide}, #{pcomfort})
+	</insert>
+
 </mapper>

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public class Hotelcontroller {
+public class HotelController {
 	@Autowired private HotelService hservice;
 
 	

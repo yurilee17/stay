@@ -17,44 +17,36 @@
 	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM guesthouse
 	</select>
 
-	<!-- <select id="stayContent" resultMap="motelDto">
-		SELECT * FROM motel WHERE no=#{no}
+	<select id="stayContent" resultMap="ghDto">
+		SELECT * FROM guesthouse WHERE no=#{no}
 	</select>
 	
-	<select id="stayRoomContent" resultMap="motelroomDto">
-		SELECT * FROM motelroom WHERE no=#{no}
+	<select id="stayRoomContent" resultMap="ghroomDto">
+		SELECT * FROM guesthouseroom WHERE no=#{no}
 	</select>
 	
-	<select id="stayDetailRegister" resultMap="motelDto">
-		SELECT * FROM motel WHERE no=#{no}
-	</select>
-
-	<select id="count">
-	  	SELECT count(no) FROM motel
+	<select id="stayDetailRegister" resultMap="ghDto">
+		SELECT * FROM guesthouse WHERE no=#{no}
 	</select>
 	
-	<select id="stayCountMotel" resultType="int">
-	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM motel
-	</select>
-	
-	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
+	<insert id="stayregisterProc" parameterType="com.care.stay.gh.GHDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
-			SELECT nvl(max(no),0) + 1 FROM motel
+			SELECT nvl(max(no),0) + 1 FROM guesthouse
 		</selectKey>
-		INSERT INTO motel (mcode, mname, mregion, mdetailregion, mrating, maddress, mimage, minfo, mdetailaddress, no) 
-		VALUES('M', #{mname}, #{mregion}, #{mdetailRegion}, 0, #{maddress}, #{mimage}, #{minfo}, #{mdetailAddress}, #{no})
+		INSERT INTO guesthouse (no, gcode, gname, gregion, gdetailregion, grating, gaddress, gdetailaddress, gimage, ginfo, gcheckintime, gcheckouttime, gpeople) 
+		VALUES(#{no}, 'G', #{gname}, #{gregion}, #{gdetailRegion}, 0, #{gaddress}, #{gdetailAddress}, #{gimage}, #{ginfo}, #{gcheckintime}, #{gcheckouttime}, #{gpeople})
 	</insert>
 	
-	<select id="stayInfo" resultMap="motelDto">
+	<select id="stayInfo" resultMap="ghDto">
 		SELECT BBB.* FROM 
 		(SELECT rownum as rn, AAA.* FROM 
-		(SELECT no, mcode, mname, mregion, maddress FROM motel ORDER BY no DESC)AAA)BBB
+		(SELECT no, gcode, gname, gregion, gaddress FROM guesthouse ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>
 
-	<insert id="staydetailregisterProc" parameterType="com.care.stay.motel.MotelRoomDTO">
-		INSERT INTO motelroom (no, mcode, mroomname, mroomcode, mroomimage, mroomnumber, mdaesilprice, mstayprice, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, moption)
-		VALUES(#{no}, #{mcode}, #{mroomname}, #{mroomcode}, #{mroomimage}, #{mroomnumber}, #{mdaesilprice}, #{mstayprice}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout}, #{moption})
-	</insert> -->
+	<insert id="staydetailregisterProc" parameterType="com.care.stay.gh.GHRoomDTO">
+		INSERT INTO hotelroom (no, gcode, groomcode, groomname, groomimage, groomnumber, gprice, gguide, gcomfort)
+		VALUES(#{no}, #{gcode}, #{groomcode}, #{groomname}, #{groomimage}, #{groomnumber}, #{gprice}, #{gguide}, #{gcomfort})
+	</insert>	
 	
 </mapper>

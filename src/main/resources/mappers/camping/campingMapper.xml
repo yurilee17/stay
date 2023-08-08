@@ -17,44 +17,36 @@
 	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM camping
 	</select>	
 
-	<!-- <select id="stayContent" resultMap="motelDto">
-		SELECT * FROM motel WHERE no=#{no}
+	<select id="stayContent" resultMap="campingDto">
+		SELECT * FROM camping WHERE no=#{no}
 	</select>
 	
-	<select id="stayRoomContent" resultMap="motelroomDto">
-		SELECT * FROM motelroom WHERE no=#{no}
+	<select id="stayRoomContent" resultMap="campingroomDto">
+		SELECT * FROM campingroom WHERE no=#{no}
 	</select>
 	
-	<select id="stayDetailRegister" resultMap="motelDto">
-		SELECT * FROM motel WHERE no=#{no}
-	</select>
-
-	<select id="count">
-	  	SELECT count(no) FROM motel
+	<select id="stayDetailRegister" resultMap="campingDto">
+		SELECT * FROM camping WHERE no=#{no}
 	</select>
 	
-	<select id="stayCountMotel" resultType="int">
-	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM motel
-	</select>
-	
-	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
+	<insert id="stayregisterProc" parameterType="com.care.stay.camping.CampingDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
-			SELECT nvl(max(no),0) + 1 FROM motel
+			SELECT nvl(max(no),0) + 1 FROM camping
 		</selectKey>
-		INSERT INTO motel (mcode, mname, mregion, mdetailregion, mrating, maddress, mimage, minfo, mdetailaddress, no) 
-		VALUES('M', #{mname}, #{mregion}, #{mdetailRegion}, 0, #{maddress}, #{mimage}, #{minfo}, #{mdetailAddress}, #{no})
+		INSERT INTO camping (no, ccode, cname, cregion, cdetailregion, crating, caddress, cdetailaddress, cimage, cinfo, ccheckintime, ccheckouttime, ctype, cpeople) 
+		VALUES(#{no}, 'C', #{cname}, #{cregion}, #{cdetailRegion}, 0, #{caddress}, #{cdetailAddress}, #{cimage}, #{cinfo}, #{ccheckintime}, #{ccheckouttime}, #{ctype}, #{cpeople})
 	</insert>
 	
-	<select id="stayInfo" resultMap="motelDto">
+	<select id="stayInfo" resultMap="campingDto">
 		SELECT BBB.* FROM 
 		(SELECT rownum as rn, AAA.* FROM 
-		(SELECT no, mcode, mname, mregion, maddress FROM motel ORDER BY no DESC)AAA)BBB
+		(SELECT no, ccode, cname, cregion, caddress FROM camping ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>
 
-	<insert id="staydetailregisterProc" parameterType="com.care.stay.motel.MotelRoomDTO">
-		INSERT INTO motelroom (no, mcode, mroomname, mroomcode, mroomimage, mroomnumber, mdaesilprice, mstayprice, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, moption)
-		VALUES(#{no}, #{mcode}, #{mroomname}, #{mroomcode}, #{mroomimage}, #{mroomnumber}, #{mdaesilprice}, #{mstayprice}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout}, #{moption})
-	</insert> -->
+	<insert id="staydetailregisterProc" parameterType="com.care.stay.camping.CampingRoomDTO">
+		INSERT INTO campingroom (no, ccode, croomcode, croomname, croomimage, croomnumber, cprice, cguide, ccomfort)
+		VALUES(#{no}, #{ccode}, #{croomcode}, #{croomname}, #{croomimage}, #{croomnumber}, #{cprice}, #{cguide}, #{ccomfort})
+	</insert>	
 	
 </mapper>
