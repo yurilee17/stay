@@ -17,7 +17,7 @@
 
 <link rel="stylesheet preload" href="../../resource/css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/passwdResetStrat.css">
+<link rel="stylesheet" href="../../resource/css/passwdReset.css">
 <!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
 </head>
 
@@ -28,9 +28,10 @@
 		<header></header>
 		<div class="passwdPhoneConfirm">
 			<section>
-				<form id="PhoneConfirmForm" action="#" autocomplete="off"
-					method="post" novalidate="novalidate">
-					<input type="hidden" name="mobile" value="${mobile}" id="mobile">
+				<form id="PhoneConfirmForm" action="passwdResetNew"
+					autocomplete="off" method="post" novalidate="novalidate">
+					<input type="hidden" name="id" value="${id}" id="id"> <input
+						type="hidden" name="mobile" value="${mobile}" id="mobile">
 
 					<strong class="sub_title">인증번호 입력</strong>
 
@@ -44,19 +45,16 @@
 							<input type="tel" name="digit" id="digit" maxlength="4"
 								placeholder="인증번호를 입력해주세요."> <span class="timer">03:00</span>
 						</div>
-						<script>
-							btnSend()
-						</script>
 						<div class="error-wrap">
 							<span id="error">입력시간을 초과하였습니다.<br>인증번호를 재전송해주세요.
 							</span>
-							<button type="button" id="btnSend" onclick="btnSend()">인증번호
+							<button type="button" id="btnSend" onclick="btnSendd()">인증번호
 								재전송</button>
 						</div>
 					</div>
 
 					<button type="button" class="btn_link gra_left_right_red btn_ok"
-						disabled="">
+						disabled="" onclick="btnOk()">
 						<span>확인</span>
 					</button>
 
@@ -67,5 +65,6 @@
 		<footer></footer>
 		<script src="../../resource/js/passwdReset.js"></script>
 	</div>
+	<!-- //Wrap -->
 </body>
 </html>

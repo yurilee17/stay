@@ -163,9 +163,19 @@ public class MemberController {
 	public String passwdPhoneConfirm(String id, Model model) {
 		String mobile = service.getMobile(id);
 		System.out.println(mobile);
-		service.sendMsg(mobile);
+		model.addAttribute("id", id);
 		model.addAttribute("mobile", mobile);
 		return "member/passwdPhoneConfirm";
 	}
+	
+	// 비밀번호 재설정 확인
+	@RequestMapping("passwdResetNew")
+	public String passwdResetNew(String id, Model model) {
+		String mobile = service.getMobile(id);
+		model.addAttribute("id", id);
+		model.addAttribute("mobile", mobile);
+		return "member/passwdResetNew";
+	}
+	
 
 }

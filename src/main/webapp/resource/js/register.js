@@ -247,7 +247,7 @@ function startTimer(display, btnSend) {
 		}
 		if (--timer < 0) {
 			clearInterval(updateTimer);
-			display.textContent = "03:00";
+			display.textContent = "00:00";
 			digit.value = "";
 			verificationCode.style.display = "none"; // div를 화면에 안 보이도록 설정
 			btnOk.classList.remove("active");

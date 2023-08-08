@@ -17,7 +17,7 @@
 
 <link rel="stylesheet preload" href="../../resource/css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/passwdResetStrat.css">
+<link rel="stylesheet" href="../../resource/css/passwdReset.css">
 <!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
 </head>
 
