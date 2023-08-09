@@ -3,17 +3,12 @@ package com.care.stay.motel;
 public class MotelRoomDTO {
 	private int no;
 	private String mcode;
-	private String mroomcode;
-	private String mroomname;
-	private String mroomimage;
-	private int mroomnumber;
-	private int mdaesilprice;
-	private int mstayprice;
-	private String mdaesilcheckin;
-	private String mdaesilcheckout;
-	private String mdaesiltime;
-	private String mstaycheckin;
-	private String mstaycheckout;
+	private String mroomCode;
+	private String mroomName;
+	private String mroomImage;
+	private int mroomNumber;
+	private int mdaesilPrice;
+	private int mstayPrice;
 	private String moption;
 	
 	public int getNo() {
@@ -28,71 +23,41 @@ public class MotelRoomDTO {
 	public void setMcode(String mcode) {
 		this.mcode = mcode;
 	}
-	public String getMroomcode() {
-		return mroomcode;
+	public String getMroomCode() {
+		return mroomCode;
 	}
-	public void setMroomcode(String mroomcode) {
-		this.mroomcode = mroomcode;
+	public void setMroomCode(String mroomCode) {
+		this.mroomCode = mroomCode;
 	}
-	public String getMroomname() {
-		return mroomname;
+	public String getMroomName() {
+		return mroomName;
 	}
-	public void setMroomname(String mroomname) {
-		this.mroomname = mroomname;
+	public void setMroomName(String mroomName) {
+		this.mroomName = mroomName;
 	}
-	public String getMroomimage() {
-		return mroomimage;
+	public String getMroomImage() {
+		return mroomImage;
 	}
-	public void setMroomimage(String mroomimage) {
-		this.mroomimage = mroomimage;
+	public void setMroomImage(String mroomImage) {
+		this.mroomImage = mroomImage;
 	}
-	public int getMroomnumber() {
-		return mroomnumber;
+	public int getMroomNumber() {
+		return mroomNumber;
 	}
-	public void setMroomnumber(int mroomnumber) {
-		this.mroomnumber = mroomnumber;
+	public void setMroomNumber(int mroomNumber) {
+		this.mroomNumber = mroomNumber;
 	}
-	public int getMdaesilprice() {
-		return mdaesilprice;
+	public int getMdaesilPrice() {
+		return mdaesilPrice;
 	}
-	public void setMdaesilprice(int mdaesilprice) {
-		this.mdaesilprice = mdaesilprice;
+	public void setMdaesilPrice(int mdaesilPrice) {
+		this.mdaesilPrice = mdaesilPrice;
 	}
-	public int getMstayprice() {
-		return mstayprice;
+	public int getMstayPrice() {
+		return mstayPrice;
 	}
-	public void setMstayprice(int mstayprice) {
-		this.mstayprice = mstayprice;
-	}
-	public String getMdaesilcheckin() {
-		return mdaesilcheckin;
-	}
-	public void setMdaesilcheckin(String mdaesilcheckin) {
-		this.mdaesilcheckin = mdaesilcheckin;
-	}
-	public String getMdaesilcheckout() {
-		return mdaesilcheckout;
-	}
-	public void setMdaesilcheckout(String mdaesilcheckout) {
-		this.mdaesilcheckout = mdaesilcheckout;
-	}
-	public String getMdaesiltime() {
-		return mdaesiltime;
-	}
-	public void setMdaesiltime(String mdaesiltime) {
-		this.mdaesiltime = mdaesiltime;
-	}
-	public String getMstaycheckin() {
-		return mstaycheckin;
-	}
-	public void setMstaycheckin(String mstaycheckin) {
-		this.mstaycheckin = mstaycheckin;
-	}
-	public String getMstaycheckout() {
-		return mstaycheckout;
-	}
-	public void setMstaycheckout(String mstaycheckout) {
-		this.mstaycheckout = mstaycheckout;
+	public void setMstayPrice(int mstayPrice) {
+		this.mstayPrice = mstayPrice;
 	}
 	public String getMoption() {
 		return moption;
@@ -100,5 +65,5 @@ public class MotelRoomDTO {
 	public void setMoption(String moption) {
 		this.moption = moption;
 	}
-	
+
 }

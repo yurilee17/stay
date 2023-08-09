@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 public interface MotelMapper {
 	ArrayList<MotelDTO> stayInfo(@Param("begin")int begin, @Param("end")int end);
 	int count();
+	int motelroomcount();
 	void stayregisterProc(MotelDTO motel);
 	MotelDTO stayContent(int no);
 	MotelRoomDTO stayRoomContent(int no);

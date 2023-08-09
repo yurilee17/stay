@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Service
 public class MotelService {
-	@Autowired private MotelMapper motelmapper;
+	@Autowired private MotelMapper motelMapper;
 	@Autowired private HttpSession session;
 	
 	public static void motelform(Model model) {
@@ -34,12 +34,13 @@ public class MotelService {
 		motel.setMaddress(multi.getParameter("address"));
 		motel.setMdetailAddress(multi.getParameter("detailAddress"));
 		motel.setMinfo(multi.getParameter("info"));
+		motel.setMdaesilCheckIn(multi.getParameter("mdaesilcheckin"));
+		motel.setMdaesilCheckOut(multi.getParameter("mdaesilcheckout"));
+		motel.setMdaesilTime(multi.getParameter("mdaesiltime"));
+		motel.setMstayCheckIn(multi.getParameter("mstaycheckin"));
+		motel.setMstayCheckOut(multi.getParameter("mstaycheckout"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		System.out.println("*******************************");
-		System.out.println(multi.getParameter("detailRegion"));
-		
-		
+
 		/*밑에꺼 주석 풀면 submit가 안되고 자꾸 redirect됨*/
 		
 //		if(motel.getMname() == null || motel.getMname().isEmpty()) {
@@ -97,7 +98,7 @@ public class MotelService {
 //		System.out.println(motel.getMinfo());
 //		System.out.println(motel.getMdetailAddress());
 
-		motelmapper.stayregisterProc(motel);
+		motelMapper.stayregisterProc(motel);
 		return "숙소 DB 작성 완료";
 		
 	}
@@ -107,28 +108,25 @@ public class MotelService {
 	public String staydetailregisterProc(MultipartHttpServletRequest multi) {
 		MotelRoomDTO motelroom = new MotelRoomDTO();
         int no = (int) session.getAttribute("no");
-        String mcode = (String) session.getAttribute("code");
-	
+        String mCode = (String) session.getAttribute("code");
+        int roomcount = motelMapper.motelroomcount();
+
 		motelroom.setNo(no);
-		motelroom.setMcode(mcode);
-		motelroom.setMroomcode(multi.getParameter("mroomcode"));
-		motelroom.setMroomname(multi.getParameter("mroomname"));
-		motelroom.setMroomimage(multi.getParameter("mroomimage"));
-		motelroom.setMroomnumber(getIntParameter(multi, "mroomnumber"));
-		motelroom.setMdaesilprice(getIntParameter(multi, "mdaesilprice"));
-	    motelroom.setMstayprice(getIntParameter(multi, "mstayprice"));
-		motelroom.setMdaesilcheckin(multi.getParameter("mdaesilcheckin"));
-		motelroom.setMdaesilcheckout(multi.getParameter("mdaesilcheckout"));
-		motelroom.setMdaesiltime(multi.getParameter("mdaesiltime"));
-		motelroom.setMstaycheckin(multi.getParameter("mstaycheckin"));
-		motelroom.setMstaycheckout(multi.getParameter("mstaycheckout"));
-		
+		motelroom.setMcode(mCode);
+        motelroom.setMroomCode(String.valueOf(roomcount));
+		motelroom.setMroomName(multi.getParameter("mroomname"));
+		motelroom.setMroomImage(multi.getParameter("mroomimage"));
+		motelroom.setMroomNumber(getIntParameter(multi, "mroomnumber"));
+		motelroom.setMdaesilPrice(getIntParameter(multi, "mdaesilprice"));
+	    motelroom.setMstayPrice(getIntParameter(multi, "mstayprice"));
+
 		/* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 		String[] check1 = multi.getParameterValues("check1");
 		String[] check2 = multi.getParameterValues("check2");
 		String[] check3 = multi.getParameterValues("check3");
+
+		List<String> checks = new ArrayList<>();
 		
-		List<String> checks = new ArrayList<>(Arrays.asList(check1));
 		if (check1 != null) {
 		    checks.addAll(Arrays.asList(check1));
 		}
@@ -138,20 +136,13 @@ public class MotelService {
 		if (check3 != null) {
 		    checks.addAll(Arrays.asList(check3));
 		}
-		
-//		List<String> checks2 = new ArrayList<>(Arrays.asList(check2));
-//		List<String> checks3 = new ArrayList<>(Arrays.asList(check3));
-//		
-//		checks.addAll(checks2);
-//		checks.addAll(checks3);
-		
-		
+
 		String moptions = String.join(",", checks);
 		motelroom.setMoption(moptions);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		motelroom.setMroomimage("");
+		motelroom.setMroomImage("");
 		MultipartFile file = multi.getFile("mroomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
@@ -159,7 +150,7 @@ public class MotelService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			motelroom.setMroomimage(fileName);
+			motelroom.setMroomImage(fileName);
 
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\room\\";
@@ -173,7 +164,7 @@ public class MotelService {
 			}
 		}
 
-		motelmapper.staydetailregisterProc(motelroom);
+		motelMapper.staydetailregisterProc(motelroom);
 		return "객실 DB 작성 완료";
 		
 	}
@@ -191,8 +182,8 @@ public class MotelService {
 		int end = pageBlock * currentPage;
 		int begin = end - pageBlock + 1;
 		
-		ArrayList<MotelDTO> motels = motelmapper.stayInfo(begin, end);
-		int totalCount = motelmapper.count();
+		ArrayList<MotelDTO> motels = motelMapper.stayInfo(begin, end);
+		int totalCount = motelMapper.count();
 		String url = "stayInfo?currentPage=";
 		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
 		
@@ -210,12 +201,12 @@ public class MotelService {
 			return null;
 		}
 		
-		MotelDTO motel = motelmapper.stayContent(no);
+		MotelDTO motel = motelMapper.stayContent(no);
 		if(motel == null)
 			return null;
 		
 		/* 이미지는 DB 등록이 되야 출력이 해결될듯 */
-		System.out.println("motel.getMimage() : " + motel.getMimage());
+//		System.out.println("motel.getMimage() : " + motel.getMimage());
 
 		return motel;
 	}
@@ -229,7 +220,7 @@ public class MotelService {
 			return null;
 		}
 		
-		return motelmapper.stayRoomContent(n);
+		return motelMapper.stayRoomContent(n);
 		
 		
 //		MotelRoomDTO motelroom = motelmapper.stayRoomContent(no);
@@ -252,7 +243,7 @@ public class MotelService {
 			return null;
 		}
 		
-		MotelDTO motel = motelmapper.stayContent(no);
+		MotelDTO motel = motelMapper.stayContent(no);
 		if(motel == null)
 			return null;
 		

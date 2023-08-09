@@ -2,6 +2,7 @@ package com.care.stay.hotel;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.care.stay.motel.MotelDTO;
+import com.care.stay.common.PageService;
 
 @Service
 public class HotelService {
@@ -28,12 +29,10 @@ public class HotelService {
 		hotel.setHaddress(multi.getParameter("address"));
 		hotel.setHdetailAddress(multi.getParameter("detailAddress"));
 		hotel.setHinfo(multi.getParameter("info"));
-		hotel.setHcheckinTime(multi.getParameter("checkinTime"));
-		hotel.setHcheckoutTime(multi.getParameter("checkoutTime"));
-		hotel.setHtype(multi.getParameter("type"));
-		hotel.setHpeople(0);
-		hotel.setHbedtype(multi.getParameter("bedType"));
-		
+		hotel.setHcheckInTime(multi.getParameter("checkinTime"));
+		hotel.setHcheckOutTime(multi.getParameter("checkoutTime"));
+		hotel.setHtype(multi.getParameter("htype"));
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		hotel.setHimage("");
@@ -67,6 +66,28 @@ public class HotelService {
 		hotelMapper.stayregisterProc(hotel);
 		return "숙소 DB 작성 완료";
 		
+	}
+	
+	public void stayInfo(String cp, Model model) {
+		int currentPage = 1;
+		try{
+			currentPage = Integer.parseInt(cp);
+		}catch(Exception e){
+			currentPage = 1;
+		}
+		
+		int pageBlock = 10;
+		int end = pageBlock * currentPage;
+		int begin = end - pageBlock + 1;
+		
+		ArrayList<HotelDTO> hotels = hotelMapper.stayInfo(begin, end);
+		int totalCount = hotelMapper.count();
+		String url = "stayInfo?currentPage=";
+		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+		
+		model.addAttribute("hotels", hotels);
+		model.addAttribute("result", result);
+		model.addAttribute("currentPage", currentPage);
 	}
 	
 }

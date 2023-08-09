@@ -10,7 +10,7 @@
 	</resultMap>
 	
 	<resultMap type="com.care.stay.motel.MotelRoomDTO" id="motelroomDto">
-		<id column="mroomcode" property="mroomcode"/>
+		<id column="mroomCode" property="mroomCode"/>
 	</resultMap>
 
 	<select id="stayContent" resultMap="motelDto">
@@ -29,6 +29,10 @@
 	  	SELECT count(no) FROM motel
 	</select>
 	
+	<select id="motelroomcount">
+		SELECT COALESCE(nvl(max(mroomcode),0) + 1, 0) FROM motelroom
+	</select>
+	
 	<select id="stayCountMotel" resultType="int">
 	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM motel
 	</select>
@@ -37,8 +41,8 @@
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM motel
 		</selectKey>
-		INSERT INTO motel (mcode, mname, mregion, mdetailregion, mrating, maddress, mimage, minfo, mdetailaddress, no) 
-		VALUES('M', #{mname}, #{mregion}, #{mdetailRegion}, 0, #{maddress}, #{mimage}, #{minfo}, #{mdetailAddress}, #{no})
+		INSERT INTO motel (no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout ) 
+		VALUES(#{no}, 'M', #{mname}, #{mregion}, #{mdetailRegion}, 0, #{maddress}, #{mdetailAddress}, #{mimage}, #{minfo}, #{mdaesilCheckIn}, #{mdaesilCheckOut}, #{mdaesilTime}, #{mstayCheckIn}, #{mstayCheckOut} )
 	</insert>
 	
 	<select id="stayInfo" resultMap="motelDto">
@@ -49,8 +53,8 @@
 	</select>
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.motel.MotelRoomDTO">
-		INSERT INTO motelroom (no, mcode, mroomname, mroomcode, mroomimage, mroomnumber, mdaesilprice, mstayprice, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, moption)
-		VALUES(#{no}, #{mcode}, #{mroomname}, #{mroomcode}, #{mroomimage}, #{mroomnumber}, #{mdaesilprice}, #{mstayprice}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout}, #{moption})
+		INSERT INTO motelroom (no, mcode, mroomname, mroomcode, mroomimage, mroomnumber, mdaesilprice, mstayprice, moption)
+		VALUES(#{no}, #{mcode}, #{mroomName}, #{mroomCode}, #{mroomImage}, #{mroomNumber}, #{mdaesilPrice}, #{mstayPrice}, #{moption})
 	</insert>
 	
 </mapper>

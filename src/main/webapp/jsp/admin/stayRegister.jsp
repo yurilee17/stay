@@ -137,7 +137,26 @@
 					</table>	
 						
 					<table id="regContent" class="regContent">	
-
+						<tr>
+							<th>대실체크인</th>
+							<td><input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder=""></td>
+						</tr>
+						<tr>
+							<th>대실체크아웃</th>
+							<td><input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder=""></td>
+						</tr>
+						<tr>
+							<th>대실시간</th>
+							<td><input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder=""></td>
+						</tr>
+						<tr>
+							<th>숙박체크인</th>
+							<td><input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder=""></td>
+						</tr>		
+						<tr>
+							<th>숙박체크아웃</th>
+							<td><input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder=""></td>
+						</tr>
 					</table>
 					
 					<table id="regContent2" class="regContent" style="display: none;">	
@@ -152,26 +171,11 @@
 						<tr>
 							<th>호텔·리조트 유형</th>
 							<td>
-							<label>
-						  <input type="radio" name="type" value="5성급"> 5성급
-							</label>
-							<label>
-						  <input type="radio" name="type" value="특1급"> 특1급
-							</label>
-							<label>
-						  <input type="radio" name="type" value="특급"> 특급
-							</label>														
+							<label><input type="radio" name="htype" value="5성급"> 5성급</label>
+							<label><input type="radio" name="htype" value="특1급"> 특1급</label>
+							<label><input type="radio" name="htype" value="특급"> 특급</label>														
 							</td>
-						</tr>	
-						<tr>
-							<th>베드 타입</th>
-							<td>
-							<label><input type="radio" name="bedType" value="싱글"> 싱글</label>
-							<label><input type="radio" name="bedType" value="더블"> 더블</label>
-							<label><input type="radio" name="bedType" value="트윈"> 트윈</label>
-							<label><input type="radio" name="bedType" value="온돌"> 온돌</label>														
-							</td>
-						</tr>																		
+						</tr>																			
 					</table>
 					
 					<table id="regContent3" class="regContent" style="display: none;">	
@@ -200,15 +204,6 @@
 						<tr>
 							<th>체크아웃시간</th>
 							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
-						</tr>
-						<tr>
-							<th>베드 타입</th>
-							<td>
-							<label><input type="radio" name="gbedType" value="싱글"> 싱글</label>
-							<label><input type="radio" name="gbedType" value="더블"> 더블</label>
-							<label><input type="radio" name="gbedType" value="트윈"> 트윈</label>
-							<label><input type="radio" name="gbedType" value="온돌"> 온돌</label>														
-							</td>
 						</tr>																		
 					</table>
 					
@@ -224,15 +219,13 @@
 						<tr>
 							<th>캠핑 유형</th>
 							<td>
-							<label><input type="radio" name="htype" value="오토캠핑"> 오토캠핑</label>
-							<label><input type="radio" name="htype" value="글램핑"> 글램핑</label>
-							<label><input type="radio" name="htype" value="카라반"> 카라반</label>														
+							<label><input type="radio" name="ctype" value="오토캠핑"> 오토캠핑</label>
+							<label><input type="radio" name="ctype" value="글램핑"> 글램핑</label>
+							<label><input type="radio" name="ctype" value="카라반"> 카라반</label>														
 							</td>
 						</tr>																		
 					</table>
-					
-					
-					
+								
 					<div class="submit">
 						<ul>
 							<!-- <li><a href="${context }stayInfo" onclick="submitForm()">등록</a></li>-->
@@ -283,11 +276,9 @@
 		  } else if (stayType.value === "캠핑·글램핑") {
 		    document.getElementById("regContent5").style.display = "table";
 		  }
-		  
-		  
+		 
 	  }
 	
-		
 	  	// 지역에 따른 세부 지역 버튼 나타내기
 	  function showSubMenu() {
 		  var region = document.getElementById("region");

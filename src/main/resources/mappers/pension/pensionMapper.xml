@@ -29,6 +29,10 @@
 		SELECT * FROM pension WHERE no=#{no}
 	</select>
 	
+	<select id="count">
+	  	SELECT count(no) FROM pension
+	</select>
+	
 	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM pension

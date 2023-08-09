@@ -38,22 +38,22 @@
 		  }
 		}
 	 
-     /* function CheckedCheckboxes() {
-         // HTML에서 체크된 모든 체크박스 요소를 선택합니다.
-         const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+	 	document.addEventListener('DOMContentLoaded', function() {
+		    var stayCodeElement = document.getElementById('mroomcode');
 
-         // 선택된 체크박스의 값을 저장할 배열을 생성합니다.
-         const checkedValues = [];
+		    var xhr = new XMLHttpRequest();
+		    xhr.open('GET', '/getMotelRoomCount', true);
+		    xhr.onreadystatechange = function() {
+		        if (xhr.readyState === 4 && xhr.status === 200) {
+		            var dataCount = xhr.responseText;
+		            stayCodeElement.textContent = dataCount;
+		        }
+		    };
+		    xhr.send();
+		});
+	 
+	 
 
-         // 선택된 체크박스의 값을 배열에 추가합니다.
-         checkedCheckboxes.forEach((checkbox) => {
-             checkedValues.push(checkbox.labels[0].innerText);
-         });
-		
-         
-         // 배열에 추가된 체크박스의 값들을 form action과 함께 전송하기
-     } */
- </script>
 </script>
  
  <body>
@@ -104,7 +104,9 @@
 						</tr>
 						<tr>
 							<th>객실 코드</th>
-							<td><input type="text" class="form_w30" name="mroomcode" id="mroomcode" placeholder=""></td>
+							<td><!-- <input type="text" class="form_w30" name="mroomcode" id="mroomcode" placeholder=""> -->
+							<span id="mroomcode">${mroomcode}</span>
+							</td>
 						</tr>						
 						<tr>
 							<th>이미지 업로드</th>
@@ -121,26 +123,6 @@
 						<tr>
 							<th>숙박가격</th>
 							<td><input type="text" class="form_w30" name="mstayprice" id="mstayprice" placeholder=""></td>
-						</tr>
-						<tr>
-							<th>대실체크인</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder=""></td>
-						</tr>
-						<tr>
-							<th>대실체크아웃</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder=""></td>
-						</tr>
-						<tr>
-							<th>대실시간</th>
-							<td><input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder=""></td>
-						</tr>
-						<tr>
-							<th>숙박체크인</th>
-							<td><input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder=""></td>
-						</tr>		
-						<tr>
-							<th>숙박체크아웃</th>
-							<td><input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder=""></td>
 						</tr>																																		
 						<tr>
 							<th>이색테마</th>

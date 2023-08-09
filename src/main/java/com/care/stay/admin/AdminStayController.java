@@ -21,6 +21,7 @@ import com.care.stay.gh.GHService;
 import com.care.stay.hotel.HotelDTO;
 import com.care.stay.hotel.HotelService;
 import com.care.stay.motel.MotelDTO;
+import com.care.stay.motel.MotelMapper;
 import com.care.stay.motel.MotelRoomDTO;
 import com.care.stay.motel.MotelService;
 import com.care.stay.pension.PensionDTO;
@@ -36,6 +37,7 @@ public class AdminStayController {
 	@Autowired private PensionService pservice;
 	@Autowired private GHService gservice;
 	@Autowired private CampingService cservice;
+	@Autowired private MotelMapper motelMapper;
 	@Autowired private HttpSession session;
 	
 	@GetMapping("stayRegister")
@@ -72,7 +74,9 @@ public class AdminStayController {
 		if(motel == null) {
 			return "redirect:stayInfo";
 		}
+		int roomcount = motelMapper.motelroomcount();
 		model.addAttribute("motel", motel);
+		model.addAttribute("mroomcode", roomcount);
 		return "admin/stayDetailRegister";
 	}
 
@@ -94,24 +98,18 @@ public class AdminStayController {
 	@RequestMapping("stayContent")
 	public String stayContent(
 		@RequestParam(value="no", required = false)String n, 
-		@RequestParam(value="mroomcode", required = false)String roomcode,
+		@RequestParam(value="mRoomCode", required = false)String roomCode,
 		Model model) {
 		MotelDTO motel = mservice.stayContent(n);
-		List<MotelRoomDTO> motelrooms = mservice.stayRoomContent(n);
+		List<MotelRoomDTO> motelRooms = mservice.stayRoomContent(n);
 
 		if(motel == null) {
 			System.out.println("stayContent 게시글 번호 : " + n);
 			return "redirect:stayRegister";
 		}
 		
-//		List<MotelRoomDTO> motelrooms = new ArrayList<>();
-//		
-//		if (motelroom != null) {
-//	        motelrooms.add(motelroom);
-//	    }
-		
 		model.addAttribute("motel", motel);
-		model.addAttribute("motelrooms", motelrooms);
+		model.addAttribute("motelRooms", motelRooms);
 		return "admin/stayContent";
 	}
 	
@@ -142,5 +140,19 @@ public class AdminStayController {
 	    return "admin/stayregister";
 	}
 	
+	@RequestMapping("stayInfo")
+	public String stayInfo(
+			@RequestParam(value="currentPage", required = false) String cp,
+			@RequestParam(value="stayType", required = false) String stayType, 
+			Model model) {
+
+			mservice.stayInfo(cp, model);
+			hservice.stayInfo(cp, model);
+			pservice.stayInfo(cp, model);
+			gservice.stayInfo(cp, model);
+			cservice.stayInfo(cp, model);
+
+		return "admin/stayInfo";
+	}
 
 }

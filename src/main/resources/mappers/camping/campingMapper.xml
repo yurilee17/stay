@@ -29,6 +29,10 @@
 		SELECT * FROM camping WHERE no=#{no}
 	</select>
 	
+	<select id="count">
+	  	SELECT count(no) FROM camping
+	</select>		
+	
 	<insert id="stayregisterProc" parameterType="com.care.stay.camping.CampingDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM camping

@@ -53,26 +53,26 @@
 
 			<article class="room_info">
 				<c:choose>
-					<c:when test="${empty motelrooms }">
+					<c:when test="${empty motelRooms }">
 						<h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="motelroom" items="${ motelrooms}">
+						<c:forEach var="motelRoom" items="${ motelRooms}">
 							<div class="room">
 								<p class="pic_view "><img class="lazy" src=""></p>
-								<strong class="title">${motelroom.mroomname }</strong>
-								<h4>객실 코드 : ${motelroom.mroomcode }</h4>
+								<strong class="title">${motelRoom.mroomName }</strong>
+								<h4>객실 코드 : ${motelRoom.mroomCode }</h4>
 								
 								<div class="info">
 			                        <div class="half ended">
 			                            <div class="price">
 			                                <strong>대실</strong>
 											<div>
-												<p><b style="color: rgba(0,0,0,1)">${motelroom.mdaesilprice }원</b> <!-- 표시금액 --></p>                                       
+												<p><b style="color: rgba(0,0,0,1)">${motelRoom.mdaesilPrice }원</b> <!-- 표시금액 --></p>                                       
 											</div>
 											<ul>
-												<li><span>마감시간</span>${motelroom.mdaesilcheckout }시까지&nbsp;</li>
-												<li><span>이용시간</span>${motelroom.mdaesiltime }&nbsp;</li>
+												<li><span>마감시간</span>${motel.mdaesilCheckOut }시까지&nbsp;</li>
+												<li><span>이용시간</span>${motel.mdaesilTime }&nbsp;</li>
 											</ul>
 			                            </div>
 			                        </div>
@@ -80,13 +80,18 @@
 										<div class="price">
 											<strong>숙박</strong>
 											<div>
-												<p><b style="color: rgba(0,0,0,1)">${motelroom.mstayprice }원</b> <!-- 표시금액 --></p>                                        
+												<p><b style="color: rgba(0,0,0,1)">${motelRoom.mstayPrice }원</b> <!-- 표시금액 --></p>                                        
 											</div>
 											<ul>
-												<li><span>입실시간</span>${motelroom.mstaycheckin }시부터&nbsp;</li>
-												<li><span>퇴실시간</span>익일 ${motelroom.mstaycheckout }시까지&nbsp;</li>
+												<li><span>입실시간</span>${motel.mstayCheckIn }시부터&nbsp;</li>
+												<li><span>퇴실시간</span>익일 ${motel.mstayCheckOut }시까지&nbsp;</li>
 											</ul>
 										</div>
+									</div>
+									<div class="option">
+										<ul>
+										<%-- 	<li><span>부대시설 : </span>${motelRoom.moption }</li> --%>
+										</ul>
 									</div>
 			                    </div>
 							</div>

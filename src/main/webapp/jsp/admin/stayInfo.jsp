@@ -40,7 +40,7 @@
 			<br>
 			<br>
 			<br>
-		<table id="stayInfo" class="stayInfo">
+		<table id="stayList" class="stayList">
 		<c:choose>
 			<c:when test="${empty motels }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -81,7 +81,7 @@
 			</c:otherwise>
 		</c:choose>	
 		</table>
-		<table id="stayInfo2" class="stayInfo" style="display: none;">		
+		<table id="stayList2" class="stayList" style="display: none;">		
 		<c:choose>
 			<c:when test="${empty hotels }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -122,7 +122,7 @@
 			</c:otherwise>
 		</c:choose>	
 		</table>
-		<table id="stayInfo3" class="stayInfo" style="display: none;">
+		<table id="stayList3" class="stayList" style="display: none;">
 		<c:choose>
 			<c:when test="${empty pension }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -163,7 +163,7 @@
 			</c:otherwise>
 		</c:choose>			
 		</table>
-		<table id="stayInfo4" class="stayInfo" style="display: none;">
+		<table id="stayList4" class="stayList" style="display: none;">
 		<c:choose>
 			<c:when test="${empty ghs }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -187,12 +187,12 @@
 				<c:forEach var="gh" items="${ ghs}">
 					<tr>
 						<td>${gh.no }</td>
-						<td>${gh.mcode }${gh.no }</td>
+						<td>${gh.gcode }${gh.no }</td>
 						<td onclick="location.href='stayContent?no=${gh.no }'">
-							${gh.mname }
+							${gh.gname }
 						</td>
-						<td>${gh.mregion }</td>
-						<td>${gh.maddress }</td>
+						<td>${gh.gregion }</td>
+						<td>${gh.gaddress }</td>
 					</tr>
 				</c:forEach>
 				<tr>
@@ -204,7 +204,7 @@
 			</c:otherwise>
 		</c:choose>			
 		</table>
-		<table id="stayInfo5" class="stayInfo" style="display: none;">
+		<table id="stayList5" class="stayList" style="display: none;">
 		<c:choose>
 			<c:when test="${empty campings }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -228,12 +228,12 @@
 				<c:forEach var="camping" items="${ campings}">
 					<tr>
 						<td>${camping.no }</td>
-						<td>${camping.mcode }${camping.no }</td>
+						<td>${camping.ccode }${camping.no }</td>
 						<td onclick="location.href='stayContent?no=${camping.no }'">
-							${camping.mname }
+							${camping.cname }
 						</td>
-						<td>${camping.mregion }</td>
-						<td>${camping.maddress }</td>
+						<td>${camping.cregion }</td>
+						<td>${camping.caddress }</td>
 					</tr>
 				</c:forEach>
 				<tr>
@@ -255,29 +255,28 @@
  </body>
  
   <script>
-	 function showStayInfo() {
-		  var stayType = document.getElementById("stayType");
-		  var stayInfo = document.getElementsByClassName("stayInfo");
+ 	 function showStayInfo() {
+		  var stayType = document.getElementById("stayType").value;
+		  var stayLists = document.getElementsByClassName("stayList");
 	
 		  // 모든 서브 메뉴 감추기
-		  for (var i = 0; i < stayInfo.length; i++) {
-		    stayInfo[i].style.display = "none";
+		  for (var i = 0; i < stayLists.length; i++) {
+		    stayLists[i].style.display = "none";
 		  } 
 
 		  // 선택된 값에 따라 해당 서브 메뉴 표시
 		  if (stayType.value === "모텔") {
-		    document.getElementById("stayInfo").style.display = "table";
+		    document.getElementById("stayList").style.display = "table";
 		  } else if (stayType.value === "호텔·리조트") {
-		    document.getElementById("stayInfo2").style.display = "table";
+		    document.getElementById("stayList2").style.display = "table";
 		  } else if (stayType.value === "펜션") {
-		    document.getElementById("stayInfo3").style.display = "table";
+		    document.getElementById("stayList3").style.display = "table";
 		  } else if (stayType.value === "게스트하우스") {
-		    document.getElementById("stayInfo4").style.display = "table";
+		    document.getElementById("stayList4").style.display = "table";
 		  } else if (stayType.value === "캠핑·글램핑") {
-		    document.getElementById("stayInfo5").style.display = "table";
+		    document.getElementById("stayList5").style.display = "table";
 		  }
 		}
- 
  </script>
  
 </html>

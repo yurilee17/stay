@@ -12,11 +12,9 @@ public class HotelDTO {
 	private String hdetailAddress;
 	private String himage;
 	private String hinfo;
-	private String hcheckinTime;
-	private String hcheckoutTime;
+	private String hcheckInTime;
+	private String hcheckOutTime;
 	private String htype;
-	private int hpeople;
-	private String hbedType;
 	
 	
 	public int getNo() {
@@ -79,35 +77,23 @@ public class HotelDTO {
 	public void setHinfo(String hinfo) {
 		this.hinfo = hinfo;
 	}
-	public String getHcheckinTime() {
-		return hcheckinTime;
+	public String getHcheckInTime() {
+		return hcheckInTime;
 	}
-	public void setHcheckinTime(String hcheckinTime) {
-		this.hcheckinTime = hcheckinTime;
+	public void setHcheckInTime(String hcheckInTime) {
+		this.hcheckInTime = hcheckInTime;
 	}
 	public String getHcheckoutTime() {
-		return hcheckoutTime;
+		return hcheckOutTime;
 	}
-	public void setHcheckoutTime(String hcheckoutTime) {
-		this.hcheckoutTime = hcheckoutTime;
+	public void setHcheckOutTime(String hcheckOutTime) {
+		this.hcheckOutTime = hcheckOutTime;
 	}
 	public String getHtype() {
 		return htype;
 	}
 	public void setHtype(String htype) {
 		this.htype = htype;
-	}
-	public int getHpeople() {
-		return hpeople;
-	}
-	public void setHpeople(int hpeople) {
-		this.hpeople = hpeople;
-	}
-	public String getHbedType() {
-		return hbedType;
-	}
-	public void setHbedtype(String hbedType) {
-		this.hbedType = hbedType;
 	}
 
 }

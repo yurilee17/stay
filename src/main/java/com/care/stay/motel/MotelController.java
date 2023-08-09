@@ -21,13 +21,13 @@ public class MotelController {
 		return "board/motel";
 	}
 	
-	@RequestMapping("stayInfo")
-	public String stayInfo(
-			@RequestParam(value="currentPage", required = false)String cp, 
-			Model model) {
-		mservice.stayInfo(cp, model);
-		return "admin/stayInfo";
-	}
+//	@RequestMapping("stayInfo")
+//	public String stayInfo(
+//			@RequestParam(value="currentPage", required = false)String cp, 
+//			Model model) {
+//		mservice.stayInfo(cp, model);
+//		return "admin/stayInfo";
+//	}
 	
 	@PostMapping("staydetailregisterProc")
 	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
