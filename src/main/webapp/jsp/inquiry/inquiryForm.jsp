@@ -4,7 +4,9 @@
 
 <!doctype html>
 <html lang="ko">
-
+	<link rel="stylesheet" href="resource/css/common.css" />
+	<c:import url="/header" />
+	<script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -337,11 +339,11 @@
 									</p>
 								</div>
 
-								<div class="email-block">
+							<!-- 	<div class="email-block">
 									<b>이메일</b>
 									<p class="inp_wrap"><input data-email-validate class="js-email-string qEmail q_emailcheck" type="email"
 															   value="" name="uemail" placeholder="선택사항입니다." /></p>
-								</div>
+								</div>  -->
 
 								<!-- 환불받을 계좌정보 등록 -->
 								<!--								<div class="account-block" data-account-select>-->

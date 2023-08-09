@@ -1,55 +1,33 @@
 package com.care.stay.inquiry;
 
 public class InquiryDTO {
-	private int no;
-	private String title;
+	private String room_type;
+	private String name;
+	private String num;
 	private String content;
-	private String id;
-	private String writeDate;
-	private String fileName;
-	private String list;
-	
-	public int getNo() {
-		return no;
+	public String getRoom_type() {
+		return room_type;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setRoom_type(String roomType) {
+		this.room_type = room_type;
 	}
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
 	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getWriteDate() {
-		return writeDate;
-	}
-	public void setWriteDate(String writeDate) {
-		this.writeDate = writeDate;
-	}
-	public String getFileName() {
-		return fileName;
-	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-	public String getList() {
-		return list;
-	}
-	public void setList(String list) {
-		this.list = list;
 	}
 	
 		
