@@ -167,7 +167,7 @@ public class MemberController {
 		model.addAttribute("mobile", mobile);
 		return "member/passwdPhoneConfirm";
 	}
-	
+
 	// 비밀번호 재설정 확인
 	@RequestMapping("passwdResetNew")
 	public String passwdResetNew(String id, Model model) {
@@ -176,6 +176,12 @@ public class MemberController {
 		model.addAttribute("mobile", mobile);
 		return "member/passwdResetNew";
 	}
-	
+
+	// 비밀번호 재설정 확인
+	@PostMapping("passwdResetProc")
+	public String passwdResetProc(MemberDTO member, Model model) {
+		service.passwdReset(member);
+		return "redirect:login";
+	}
 
 }

@@ -17,5 +17,7 @@ public interface MemberMapper {
 	void registerProc(MemberDTO member);
 	
 	MemberDTO getMobile(String id);
+	
+	void passwdReset(MemberDTO member);
 
 }

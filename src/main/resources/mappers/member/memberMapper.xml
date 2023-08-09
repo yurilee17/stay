@@ -29,4 +29,11 @@
 		SELECT mobile FROM member WHERE id=#{id}
 	</select>
 	
+	<update id="passwdReset"
+		parameterType="com.care.stay.member.MemberDTO">
+		UPDATE member
+		SET password=#{password}
+		WHERE id=#{id}
+	</update>
+	
 </mapper>

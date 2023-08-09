@@ -62,6 +62,84 @@ function inputEvent() {
 
 		});
 	}
+
+	// 비밀번호 재설정
+	let password = document.getElementById("password");
+	let confirmPasswd = document.getElementById("confirm_passwd");
+
+	if (password != null && confirmPasswd != null) {
+		let pwDiv = document.querySelector(".pw");
+		let confirmPwDiv = document.querySelector(".confirmPw");
+		let newPwMsg = document.getElementById("new_pw_msg")
+		let newPwReMsg = document.getElementById("new_pw_re_msg")
+		let btnLink = document.querySelector(".btn_link");
+
+		const pattern = /^(?=.*[a-zA-Z])(?=.*\d)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d])|(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
+
+		password.addEventListener("focus", function() {
+			pwDiv.classList.add("inp_focus");
+		});
+
+		password.addEventListener("blur", function() {
+			pwDiv.classList.remove("inp_focus");
+		});
+
+
+		password.addEventListener("input", function() {
+			var message = "";
+			if (password.value === '') {
+				newPwMsg.style.color = 'red';
+				message = "새 비밀번호를 입력해주세요.";
+			} else if (password.value.length <= 7) {
+				newPwMsg.style.color = 'red';
+				message = "사용불가 : 최소 8자 이상 입력해주세요.";
+			} else if (!pattern.test(password.value)) {
+				newPwMsg.style.color = 'red';
+				message = "사용불가 : 영문,숫자,특수문자 중 2가지 이상을 조합해주세요.";
+			} else if (pattern.test(password.value)) {
+				newPwMsg.style.color = 'blue';
+				message = "사용가능 : 안전한 비밀번호입니다.";
+
+			}
+			newPwMsg.innerHTML = message;
+
+			if (password.value.length >= 8 && pattern.test(password.value) && confirmPasswd.value === password.value) {
+				btnLink.removeAttribute("disabled");
+			} else {
+				btnLink.setAttribute("disabled", "");
+			}
+		});
+
+
+		confirmPasswd.addEventListener("focus", function() {
+			confirmPwDiv.classList.add("inp_focus");
+		});
+
+		confirmPasswd.addEventListener("blur", function() {
+			confirmPwDiv.classList.remove("inp_focus");
+		});
+
+		confirmPasswd.addEventListener("input", function() {
+			var message = "";
+			if (confirmPasswd.value === '') {
+				message = "새 비밀번호를 한번 더 입력해 주세요.";
+			} else if (confirmPasswd.value != password.value) {
+				message = "새 비밀번호가 일치하지 않습니다.";
+			} else {
+				message = '';
+			}
+			newPwReMsg.innerHTML = message;
+
+			if (password.value.length >= 8 && pattern.test(password.value) && confirmPasswd.value === password.value) {
+				btnLink.removeAttribute("disabled");
+			} else {
+				btnLink.setAttribute("disabled", "");
+			}
+		});
+
+
+
+	}
 }
 
 /* 아이디 확인 */
@@ -211,4 +289,11 @@ function sendDigitProc() {
 			}
 		}
 	}
+}
+
+/* 비밀번호 재설정 */
+function changePwSubmit() {
+	alert("비밀번호 변경이 완료되었습니다.");
+	let passwdNewForm = document.getElementById("passwdNewForm");
+	passwdNewForm.submit();
 }

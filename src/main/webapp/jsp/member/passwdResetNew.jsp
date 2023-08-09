@@ -25,36 +25,31 @@
 	<div class="wrap">
 		<!-- Header -->
 		<header></header>
-		<div
-			class="passwdResetNew layer_unfix pop_login pop_mem_reserve new-style-form">
+		<div class="passwdResetNew layer_unfix pop_login">
 			<section>
-				<form id="passwdNewForm" action="login" autocomplete="off" method="post"
-					novalidate="novalidate">
-
+				<form id="passwdNewForm" action="passwdResetProc" autocomplete="off"
+					method="post" novalidate="novalidate">
+					<input type="hidden" name="id" value="${id}" id="id"> <input
+						type="hidden" name="mobile" value="${mobile}" id="mobile">
 					<strong class="sub_title">새 비밀번호 설정</strong>
 
 					<p class="txt_top">
 						인증이 완료되었습니다.<br> 새로운 비밀번호를 입력해주세요.
 					</p>
 
-					<div
-						class="inp_type_1 ico_pw form-errors form-password-rule input-pw-div">
-						<input type="password" name="passwd"
-							placeholder="새 비밀번호(최소 8자 이상)" id="new_pw" aria-invalid="false">
-						<label id="new_pw_msg" class="validate_msg_label"
-							style="color: red;">사용불가 : 최소 8자 이상 입력해주세요.</label>
-						<button type="button" class="reset_val show">초기화</button>
+					<div class="inp_type_1 ico_pw pw">
+						<input type="password" name="password"
+							placeholder="새 비밀번호(최소 8자 이상)" id="password" aria-invalid="false">
+						<label id="new_pw_msg" class="validate_msg_label"></label>
 					</div>
-					<div class="inp_type_1 ico_pw form-errors">
-						<input type="password" name="confirm_passwd" id="new_pw_re"
+					<div class="inp_type_1 ico_pw confirmPw">
+						<input type="password" name="confirm_passwd" id="confirm_passwd"
 							placeholder="새 비밀번호 확인"> <label id="new_pw_re_msg"
-							class="validate_msg_label"></label>
-						<button type="button" class="reset_val">초기화</button>
+							class="validate_msg_label" Style="color: red;"></label>
 					</div>
 
 					<button type="button" onclick="changePwSubmit();"
-						class="btn_link gra_left_right_red btn_user_submit" disabled=""
-						style="background-color: rgb(250, 250, 250); color: rgba(0, 0, 0, 0.16); border: none;">
+						class="btn_link gra_left_right_red btn_user_submit" disabled="">
 						<span>비밀번호 변경</span>
 					</button>
 
@@ -65,5 +60,6 @@
 		<footer></footer>
 	</div>
 	<!-- //Wrap -->
+	<script src="../../resource/js/passwdReset.js"></script>
 </body>
 </html>

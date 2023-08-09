@@ -145,4 +145,16 @@ public class MemberService {
 		return result.getMobile();
 	}
 
+	// 비밀번호 재설정
+	public void passwdReset(MemberDTO member) {
+		String pw = member.getPassword();
+
+		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+		String cryptPassword = bpe.encode(member.getPassword());
+		member.setPassword(cryptPassword);
+		
+		memberMapper.passwdReset(member);
+
+	}
+
 }

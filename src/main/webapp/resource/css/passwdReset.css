@@ -255,7 +255,7 @@ input::placeholder {
 	margin-bottom: 44px;
 }
 
-.inp_type_1 {
+.passwdResetStrat .inp_type_1 {
 	height: 48px;
 	padding: 0 16px 0 46px;
 	position: relative;
@@ -264,7 +264,7 @@ input::placeholder {
 	box-sizing: border-box;
 }
 
-.inp_type_1 input {
+.passwdResetStrat .inp_type_1 input {
 	position: relative;
 	top: 11px;
 	width: 100%;
@@ -492,4 +492,142 @@ input::placeholder {
 	border-radius: 6px;
 	text-align: center;
 	border: none;
+}
+
+
+/* ================================================= passwdResetNew.jsp =================================================*/
+.passwdResetNew {
+	font-size: 15px;
+	line-height: 26px;
+	color: rgba(0, 0, 0, 0.87);
+	display: block;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 400;
+	width: 100%;
+	min-width: 320px;
+	height: 100%;
+	background: #fff;
+	/* font-size: 14px; */
+	/* line-height: 22px; */
+	/* color: rgba(0,0,0,0.87); */
+	touch-action: none;
+}
+
+.passwdResetNew section {
+	width: 336px;
+	margin: 100px auto 0 auto;
+}
+
+/* 문구 */
+.passwdResetNew .sub_title {
+	height: auto;
+	padding-top: 14px;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	display: block;
+	margin: 30px 0 10px 0;
+	text-align: center;
+}
+
+.passwdResetNew .txt_top {
+	margin-top: 16px;
+	margin-bottom: 32px;
+	color: rgba(0, 0, 0, 0.56);
+	text-align: center;
+}
+
+/* 비밀번호 입력들 */
+.passwdResetNew .inp_type_1 {
+	margin-bottom: 16px;
+	margin-top: 30px;
+	padding: 0px;
+	height: 48px;
+	position: relative;
+	border: 1px solid rgba(0, 0, 0, 0.26);
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.passwdResetNew .inp_type_1 input {
+	padding-left: 38px;
+	width: 80%;
+	position: relative;
+	top: 11px;
+	height: 24px;
+	font-size: 18px;
+	border: none;
+	vertical-align: top;
+}
+
+
+/* 비밀번호 아이콘 */
+.passwdResetNew .ico_pw:after,
+.ico_pw.inp_focus:after,
+.ico_pw.inp_error:after {
+	top: 15px;
+	left: 16px;
+}
+
+.passwdResetNew .ico_pw:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 15px;
+	background: url(//image.goodchoice.kr/images/web_v3/ico_inp_pw.png) 50% 0 no-repeat;
+	background-size: 14px auto;
+}
+
+.passwdResetNew .ico_pw.inp_focus:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 15px;
+	background: url('//image.goodchoice.kr/images/web_v3/ico_inp_pw.png') 50% -15px no-repeat;
+	background-size: 14px auto
+}
+
+.passwdResetNew .ico_pw.inp_error:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 15px;
+	background: url('//image.goodchoice.kr/images/web_v3/ico_inp_pw.png') 50% -30px no-repeat;
+	background-size: 14px auto
+}
+
+/* 에러 문구들 */
+.passwdResetNew .validate_msg_label {
+	margin-top: 20px;
+	display: inline-block;
+	font-size: 12px;
+	color: red;
+}
+
+/* 비민번호 변경 버튼 */
+.passwdResetNew .btn_link:disabled {
+	background: #fafafa;
+	color: rgba(0, 0, 0, 0.16);
+}
+
+.passwdResetNew .btn_link {
+	height: 56px;
+	font-size: 16px;
+	line-height: 56px;
+	display: block;
+	width: 100%;
+	border-radius: 6px;
+	color: #fff;
+	text-align: center;
+	border: none;
+	margin-top: 30px !important;
 }
