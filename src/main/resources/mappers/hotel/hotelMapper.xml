@@ -49,8 +49,8 @@
 	</select>
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.hotel.HotelRoomDTO">
-		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hroomimage, hroomnumber, hprice, hguide, hcomfort)
-		VALUES(#{no}, #{hcode}, #{hroomCode}, #{hroomName}, #{hroomImage}, #{hroomNumber}, #{hprice}, #{hguide}, #{hcomfort})
+		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hbedtype, hroomimage, hroomnumber, hprice, hguide, hcomfort)
+		VALUES(#{no}, #{hcode}, #{hroomCode}, #{hroomName}, #{hbedType}, #{hroomImage}, #{hroomNumber}, #{hprice}, #{hguide}, #{hcomfort})
 	</insert>	
 
 

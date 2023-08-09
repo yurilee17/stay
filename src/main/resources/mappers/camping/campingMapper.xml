@@ -37,8 +37,8 @@
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM camping
 		</selectKey>
-		INSERT INTO camping (no, ccode, cname, cregion, cdetailregion, crating, caddress, cdetailaddress, cimage, cinfo, ccheckintime, ccheckouttime, ctype, cpeople) 
-		VALUES(#{no}, 'C', #{cname}, #{cregion}, #{cdetailRegion}, 0, #{caddress}, #{cdetailAddress}, #{cimage}, #{cinfo}, #{ccheckintime}, #{ccheckouttime}, #{ctype}, #{cpeople})
+		INSERT INTO camping (no, ccode, cname, cregion, cdetailregion, crating, caddress, cdetailaddress, cimage, cinfo, ccheckintime, ccheckouttime, ctype) 
+		VALUES(#{no}, 'C', #{cname}, #{cregion}, #{cdetailRegion}, 0, #{caddress}, #{cdetailAddress}, #{cimage}, #{cinfo}, #{ccheckInTime}, #{ccheckOutTime}, #{ctype})
 	</insert>
 	
 	<select id="stayInfo" resultMap="campingDto">

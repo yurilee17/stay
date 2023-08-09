@@ -33,12 +33,12 @@
 	  	SELECT count(no) FROM pension
 	</select>
 	
-	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
+	<insert id="stayregisterProc" parameterType="com.care.stay.pension.PensionDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM pension
 		</selectKey>
-		INSERT INTO pension (no, pcode, pname, pregion, pdetailregion, prating, paddress, pdetailaddress, pimage, pinfo, pcheckintime, pcheckouttime, ptype, ppeople) 
-		VALUES(#{no}, 'P', #{pname}, #{pregion}, #{pdetailRegion}, 0, #{paddress}, #{pdetailAddress}, #{pimage}, #{pinfo}, #{pcheckintime}, #{pcheckouttime}, #{ptype}, #{ppeople})
+		INSERT INTO pension (no, pcode, pname, pregion, pdetailregion, prating, paddress, pdetailaddress, pimage, pinfo, pcheckintime, pcheckouttime, ptype) 
+		VALUES(#{no}, 'P', #{pname}, #{pregion}, #{pdetailRegion}, 0, #{paddress}, #{pdetailAddress}, #{pimage}, #{pinfo}, #{pcheckInTime}, #{pcheckOutTime}, #{ptype})
 	</insert>
 	
 	<select id="stayInfo" resultMap="pensionDto">

@@ -11,5 +11,6 @@ public interface CampingMapper {
 	int stayCountCamping();
 	int count();
 	ArrayList<CampingDTO> stayInfo(@Param("begin")int begin, @Param("end")int end);
+	void stayregisterProc(CampingDTO camping);
 	
 }

@@ -37,8 +37,8 @@
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM guesthouse
 		</selectKey>
-		INSERT INTO guesthouse (no, gcode, gname, gregion, gdetailregion, grating, gaddress, gdetailaddress, gimage, ginfo, gcheckintime, gcheckouttime, gpeople) 
-		VALUES(#{no}, 'G', #{gname}, #{gregion}, #{gdetailRegion}, 0, #{gaddress}, #{gdetailAddress}, #{gimage}, #{ginfo}, #{gcheckintime}, #{gcheckouttime}, #{gpeople})
+		INSERT INTO guesthouse (no, gcode, gname, gregion, gdetailregion, grating, gaddress, gdetailaddress, gimage, ginfo, gcheckintime, gcheckouttime) 
+		VALUES(#{no}, 'G', #{gname}, #{gregion}, #{gdetailRegion}, 0, #{gaddress}, #{gdetailAddress}, #{gimage}, #{ginfo}, #{gcheckInTime}, #{gcheckOutTime})
 	</insert>
 	
 	<select id="stayInfo" resultMap="ghDto">

@@ -6,17 +6,14 @@ public class GHDTO {
 	private String gcode;
 	private String gname;
 	private String gregion;
-	private String gdetailregion;
+	private String gdetailRegion;
 	private int grating;
 	private String gaddress;
-	private String gdetailaddress;
+	private String gdetailAddress;
 	private String gimage;
 	private String ginfo;
-	private String gcheckintime;
-	private String gcheckouttime;
-	private int gpeople;
-	private String gbedtype;
-	
+	private String gcheckInTime;
+	private String gcheckOutTime;
 	
 	public int getNo() {
 		return no;
@@ -42,11 +39,11 @@ public class GHDTO {
 	public void setGregion(String gregion) {
 		this.gregion = gregion;
 	}
-	public String getGdetailregion() {
-		return gdetailregion;
+	public String getGdetailRegion() {
+		return gdetailRegion;
 	}
-	public void setGdetailregion(String gdetailregion) {
-		this.gdetailregion = gdetailregion;
+	public void setGdetailRegion(String gdetailRegion) {
+		this.gdetailRegion = gdetailRegion;
 	}
 	public int getGrating() {
 		return grating;
@@ -60,11 +57,11 @@ public class GHDTO {
 	public void setGaddress(String gaddress) {
 		this.gaddress = gaddress;
 	}
-	public String getGdetailaddress() {
-		return gdetailaddress;
+	public String getGdetailAddress() {
+		return gdetailAddress;
 	}
-	public void setGdetailaddress(String gdetailaddress) {
-		this.gdetailaddress = gdetailaddress;
+	public void setGdetailAddress(String gdetailAddress) {
+		this.gdetailAddress = gdetailAddress;
 	}
 	public String getGimage() {
 		return gimage;
@@ -78,29 +75,17 @@ public class GHDTO {
 	public void setGinfo(String ginfo) {
 		this.ginfo = ginfo;
 	}
-	public String getGcheckintime() {
-		return gcheckintime;
+	public String getGcheckInTime() {
+		return gcheckInTime;
 	}
-	public void setGcheckintime(String gcheckintime) {
-		this.gcheckintime = gcheckintime;
+	public void setGcheckInTime(String gcheckInTime) {
+		this.gcheckInTime = gcheckInTime;
 	}
-	public String getGcheckouttime() {
-		return gcheckouttime;
+	public String getGcheckOutTime() {
+		return gcheckOutTime;
 	}
-	public void setGcheckouttime(String gcheckouttime) {
-		this.gcheckouttime = gcheckouttime;
-	}
-	public int getGpeople() {
-		return gpeople;
-	}
-	public void setGpeople(int gpeople) {
-		this.gpeople = gpeople;
-	}
-	public String getGbedtype() {
-		return gbedtype;
-	}
-	public void setGbedtype(String gbedtype) {
-		this.gbedtype = gbedtype;
+	public void setGcheckOutTime(String gcheckOutTime) {
+		this.gcheckOutTime = gcheckOutTime;
 	}
 
 }

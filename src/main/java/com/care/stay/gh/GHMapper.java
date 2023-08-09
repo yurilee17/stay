@@ -11,6 +11,8 @@ public interface GHMapper {
 	int stayCountGuestHouse();
 
 	ArrayList<GHDTO> stayInfo(@Param("begin")int begin, @Param("end")int end);
-	int count();	
+	int count();
+
+	void stayregisterProc(GHDTO gh);	
 	
 }

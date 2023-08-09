@@ -9,9 +9,8 @@ import org.apache.ibatis.annotations.Param;
 public interface PensionMapper {
 
 	int stayCountPension();
-
 	ArrayList<PensionDTO> stayInfo(@Param("begin")int begin, @Param("end")int end);
-
 	int count();
+	void stayregisterProc(PensionDTO pension);
 	
 }

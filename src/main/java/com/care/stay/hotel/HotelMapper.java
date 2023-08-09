@@ -17,6 +17,8 @@ public interface HotelMapper {
 	int count();
 	void stayregisterProc(HotelDTO hotel);
 	int stayCountHotel();
+	int hotelroomcount();
+	void staydetailregisterProc(HotelRoomDTO hotelroom);
 
 	
 	
