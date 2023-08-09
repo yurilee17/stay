@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>test</title>
+    <title>서울/강동</title>
     
  
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -100,34 +100,34 @@
 </select>
 
  <!-- 지역필터 / 서브지역 -->
-<select id="subMenu" name="subMenu" class="subMenu right-menu"  onchange="getSelectedOption(this.id)" style="display: none;">
+<select id="subMenu" name="subMenu" class="subMenu right-menu"  onchange="if(this.value) location.href=(this.value);" style="display: none;">
   <option value="">상세지역을 선택하세요</option>
-  <option value="Main1_1">강동</option>
+  <option value="Main1_2">강동</option>
   <option value="Main1_2">강서</option>
   <option value="Main1_3">강남</option>
   <option value="Main1_4">강북</option>
 </select>
 
-<select id="subMenu2" class="subMenu right-menu" onchange="getSelectedOption(this.id)" style="display: none;">
+<select id="subMenu2" class="subMenu right-menu" style="display: none;">
   <option value="">상세지역을 선택하세요</option>
   <option value="Main2_1">경기</option>
   <option value="Main2_2">인천</option>
 </select>
 
-<select id="subMenu3" class="subMenu right-menu" onchange="getSelectedOption(this.id)" style="display: none;">
+<select id="subMenu3" class="subMenu right-menu" style="display: none;">
   <option value="">상세지역을 선택하세요</option>
   <option value="Main3_1">충청</option>
   <option value="Main3_2">강원</option>
   <option value="Main3_3">제주</option>
 </select>
 
-<select id="subMenu4" class="subMenu right-menu" onchange="getSelectedOption(this.id)" style="display: none;">
+<select id="subMenu4" class="subMenu right-menu" style="display: none;">
   <option value="">상세지역을 선택하세요</option>
   <option value="Main4_1">경남</option>
   <option value="Main4_2">경북</option>
 </select>
 
-<select id="subMenu5" class="subMenu right-menu" onchange="getSelectedOption(this.id)" style="display: none;">
+<select id="subMenu5" class="subMenu right-menu" style="display: none;">
   <option value="">상세지역을 선택하세요</option>
   <option value="Main5_1">전남</option>
   <option value="Main5_2">전북</option>
@@ -135,21 +135,6 @@
 </div>
 	</div>
 </div>
-
-<script type="text/javascript">
-function getSelectedOption(selectId) {
-	var subMenu = document.getElementById(selectId);
-	var selectedValue = subMenu.value;
-	var selectedText = subMenu.options[subMenu.selectedIndex].text;
-	alert(selectId);
-	alert(selectedText);
-	window.location.href = "http://localhost/Main?hdetailregion=" + selectedText;
-
-	/* var resultElement = document.getElementById("selectedOption");
-	resultElement.textContent = "선택한 옵션: " + selectedOption;*/
-}
-</script>
-
 <!-- //Area -->
 <!-- //hotelheader -->
  	
