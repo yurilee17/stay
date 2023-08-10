@@ -4,9 +4,10 @@ package com.care.stay.hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -27,8 +28,7 @@ public class Hotelcontroller {
 	  @RequestMapping("hotellist") 
 	  	public String hotellist(
 	  
-	  @RequestParam(value="currentPage", required = false)String cp, String
-	  mainMenu, String subMenu, Model model) {
+	  @RequestParam(value="currentPage", required = false)String cp, Model model) {
 	  
 	  System.out.println("hotellist나오는지 알려주세요");
 	  
@@ -37,17 +37,30 @@ public class Hotelcontroller {
 	  	}
 	  
 	  
+		/*
+		 * @GetMapping("/getSelectedText")
+		 * 
+		 * @ResponseBody public String getSelectedText(@RequestParam("selectedText")
+		 * String selectedText) { // 받아온 selectedText 값을 사용하여 작업 수행 String resultText =
+		 * service.processSelectedText(selectedText);
+		 * 
+		 * // 결과를 클라이언트로 반환 return "Processed value: " + selectedText;
+		 */
+	  
+	  
 	  @RequestMapping("Main") 
 	  	public String Main(
 			  
-			  @RequestParam(value="currentPage", required = false)String cp, String mainMenu, 
-			  	String subMenu, Model model) {
+			  @RequestParam(value="currentPage", required = false)  String cp, 
+	  		  @RequestParam(value="hdetailregion" , required = false) String selectedText, Model model)
+	  {
+		  		
+		  		System.out.println("currentPage:" + cp);
+		  		System.out.println("selectedText: " + selectedText);
 			  
-			  System.out.println("Main1_1나오는지 알려주세요");
-			  
-			  service.Main1_1(cp,model); 
-			  	return "hotel/hotellist";
-//			  	return "redirect:hotellistMain1_1"; 
+		  		service.Main(selectedText, cp ,model); 
+			  	
+		  		return "hotel/hotellist";
 			  	}
 	 
 	 

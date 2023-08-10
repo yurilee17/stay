@@ -54,7 +54,7 @@ input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
 	-o-appearance:none;appearance:none;
 }
 
-#product > .Hheader > .area_wrap > .menu-wrapper > #subMenu,#subMenu2,#subMenu3,#subMenu4,#subMenu5{
+#product > .Hheader > .area_wrap >  .menu-wrapper > #subMenu,#subMenu2,#subMenu3,#subMenu4,#subMenu5{
 	width:170px; 
 	height:45px; 
 	border:1px solid #ddd; 

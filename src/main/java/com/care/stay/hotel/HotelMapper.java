@@ -11,7 +11,9 @@ public interface HotelMapper {
 	 ArrayList<HotelDTO> hotellist( @Param("begin")int begin, @Param("end")int end); 
 	 int count(); 
 	 
-	 ArrayList<HotelDTO> Main1_1( @Param("begin")int begin, @Param("end")int end); 
+	 ArrayList<HotelDTO> Main(String selectedText, @Param("begin")int begin, @Param("end")int end); 
+	 
+	 
 
 
 	/*

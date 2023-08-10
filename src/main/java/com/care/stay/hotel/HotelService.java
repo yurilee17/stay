@@ -17,7 +17,7 @@ public class HotelService {
 	@Autowired
 	private HttpSession session;
 
-	//  1차시도!
+	
 	  public void hotellist(String cp,  Model model) { 
 
 	  int currentPage = 1; 
@@ -52,29 +52,9 @@ public class HotelService {
 	  
 	  }
 	 
-	
-	// 2차시도
-	/*
-	 * public void hotellist(String cp, String mainMenu, String subMenu, Model
-	 * model) { if(mainMenu == null){ mainMenu = ""; }
-	 * 
-	 * int currentPage = 1; try{ currentPage = Integer.parseInt(cp);
-	 * }catch(Exception e){ currentPage = 1; }
-	 * 
-	 * int pageBlock = 3; // 한 페이지에 보일 데이터의 수 int end = pageBlock * currentPage; //
-	 * 테이블에서 가져올 마지막 행번호 int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
-	 * 
-	 * ArrayList<HotelDTO> members = hotelMapper.hotellist(begin, end, mainMenu,
-	 * subMenu); int totalCount = hotelMapper.count(mainMenu, subMenu); String url =
-	 * "memberInfo?select="+mainMenu+"&search="+subMenu+"&currentPage="; String
-	 * result = PageService.printPage(url, currentPage, totalCount, pageBlock);
-	 * 
-	 * model.addAttribute("members", members); model.addAttribute("result", result);
-	 * model.addAttribute("currentPage", currentPage); }
-	 */
 	  
-	  
-	  public void Main1_1(String cp,  Model model) { 
+	  // 지역별 호텔리스트 나오게 
+	  public void Main(String selectedText, String cp,  Model model) { 
 
 	  int currentPage = 1; 
 	  
@@ -88,11 +68,13 @@ public class HotelService {
 	  int end = pageBlock * currentPage; //테이블에서 가져올 마지막 행번호 
 	  int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
 	  
-	  ArrayList<HotelDTO> hotels = hotelMapper.Main1_1(begin, end); 
+	  
+	  ArrayList<HotelDTO> hotels = hotelMapper.Main(selectedText, begin, end); 
 	  int totalCount = hotelMapper.count(); 
 	  String url = "hotellist?currentPage=";
 	  String result = PageService.printPage(url, currentPage, totalCount,pageBlock);
 	  
+	  System.out.println("service에서 " + selectedText );
 	  System.out.println("pageBlock " + pageBlock);
 	  System.out.println("totalCount " + totalCount);
 

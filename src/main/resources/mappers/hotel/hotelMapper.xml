@@ -35,24 +35,43 @@
 	</select> -->
 	
 <!--  전체 다 나오는 코드인데 처음부터 지역 지정해서 하는 코드로 바꿔보려함! (아래) -->
- 	<select id="hotellist" resultMap="HotelDto">
+  	<select id="hotellist" resultMap="HotelDto">
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
 		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype 
 		FROM hotel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
-	</select> 
+	</select>  
 	
-		<!-- 강동으로 나오게하기  -->
-		<select id="Main1_1" resultMap="HotelDto">
+		<!-- 지역별로 나오게하기  -->
+ 		<select id="Main" resultMap="HotelDto">
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
 		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype 
-		FROM hotel WHERE hdetailregion = '강동')AAA)BBB
+		FROM hotel WHERE hdetailregion = #{selectedText})AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
-	</select> 
+	</select>  
+	
+	
+	
+	
+	
+<!-- 		<select id="Main" resultMap="HotelDto">
+		<choose>
+			<when test="subMenu == 'Main1_1'">
+				SELECT AAA.* FROM 
+				(SELECT rownum as rn,no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
+				himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype 
+				FROM hotel WHERE hdetailregion = '#{selectedText}')AAA 
+				WHERE AAA.rn BETWEEN #{begin} AND #{end}
+			</when>
+		
+		</choose>
+	</select> -->
+	
+	
 	
 	
 	<!--2차시도 // 잠시보류 -->
