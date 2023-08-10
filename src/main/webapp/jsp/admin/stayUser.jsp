@@ -39,16 +39,18 @@
 			<h3>회원 조회</h3>
 			<!-- 회원 검색 -->
 			<div class="userSearch">
-				<select class="userAuth" name="userAuth" id="userAuth">
+				<select class="userAuth" id="userAuth"
+					onchange="selectAuth(this.value)">
 					<option>전체</option>
 					<option value="user">사용자</option>
 					<option value="admin">관리자</option>
 				</select>
 				<form id="userSearchForm" class="searchForm">
 					<input type="text" id="userSearchInput" placeholder="">
-					<button type="submit">검색</button>
+					<button type="submit" onclick="searchButton()">검색</button>
 				</form>
-				<select class="userSelet" name="userSelet" id="userSelet">
+				<select class="userSelet" id="userSelet"
+					onchange="infoName(this.value)">
 					<option disabled selected value="">검색 조건</option>
 					<option value="id">아이디</option>
 					<option value="mobile">휴대폰번호</option>
@@ -98,5 +100,6 @@
 			<!-- //등록 양식 -->
 		</div>
 	</div>
+	<script src="../../resource/js/stayUser.js"></script>
 </body>
 </html>
