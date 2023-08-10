@@ -130,6 +130,11 @@ public class AdminStayController {
 		return "admin/stayDetailModify";
 	}
 	
+//	@PostMapping("stayModifyProc")
+//	public String stayModifyProc() {
+//		return "redirect:stayContent?no="+motel.getNo()+"&stayType=motel";
+//	}
+	
 	@RequestMapping("stayIndex")
 	public String stayIndex() {
 		return "admin/stayIndex";
