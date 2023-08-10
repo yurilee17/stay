@@ -30,13 +30,16 @@
 			<p>숙소의 종류와 가격, 수량, 설명, 세부사항 등을 관리하실 수 있습니다.</p>
 			<br>
 			<!-- 설명 -->					
-			<select class="form_w30" name="stayType" id="stayType" onchange="showStayInfo()">
-				<option value="모텔">모텔</option>
-				<option value="호텔·리조트">호텔·리조트</option>
-				<option value="펜션">펜션</option>
-				<option value="게스트하우스">게스트하우스</option>												
-				<option value="캠핑·글램핑">캠핑·글램핑</option>				
-			</select>	
+			<form id="stayTypeForm" action="stayInfo" method="GET">
+  			<select class="form_w30" name="stayType" id="stayType" onchange="showStayInfo(this.value);">
+				<option value="motel">모텔</option>
+				<option value="hotel">호텔·리조트</option>
+				<option value="pension">펜션</option>
+				<option value="gh">게스트하우스</option>												
+				<option value="camping">캠핑·글램핑</option>	
+				<input type="submit" value="Submit" style="display: none;">			
+			</select>
+			</form>	
 			<br>
 			<br>
 			<br>
@@ -65,7 +68,7 @@
 					<tr>
 						<td>${motel.no }</td>
 						<td>${motel.mcode }${motel.no }</td>
-						<td onclick="location.href='stayContent?no=${motel.no }'">
+						<td onclick="location.href='stayContent?no=${motel.no }&stayType=motel'">
 							${motel.mname }
 						</td>
 						<td>${motel.mregion }</td>
@@ -106,7 +109,7 @@
 					<tr>
 						<td>${hotel.no }</td>
 						<td>${hotel.hcode }${hotel.no }</td>
-						<td onclick="location.href='stayContent?no=${hotel.no }'">
+						<td onclick="location.href='stayContent?no=${hotel.no }&stayType=hotel'">
 							${hotel.hname }
 						</td>
 						<td>${hotel.hregion }</td>
@@ -124,7 +127,7 @@
 		</table>
 		<table id="stayList3" class="stayList" style="display: none;">
 		<c:choose>
-			<c:when test="${empty pension }">
+			<c:when test="${empty pensions }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
 			</c:when>						
 			<c:otherwise>
@@ -147,7 +150,7 @@
 					<tr>
 						<td>${pension.no }</td>
 						<td>${pension.pcode }${pension.no }</td>
-						<td onclick="location.href='stayContent?no=${pension.no }'">
+						<td onclick="location.href='stayContent?no=${pension.no }&stayType=pension'">
 							${pension.pname }
 						</td>
 						<td>${pension.pregion }</td>
@@ -188,7 +191,7 @@
 					<tr>
 						<td>${gh.no }</td>
 						<td>${gh.gcode }${gh.no }</td>
-						<td onclick="location.href='stayContent?no=${gh.no }'">
+						<td onclick="location.href='stayContent?no=${gh.no }&stayType=gh'">
 							${gh.gname }
 						</td>
 						<td>${gh.gregion }</td>
@@ -229,7 +232,7 @@
 					<tr>
 						<td>${camping.no }</td>
 						<td>${camping.ccode }${camping.no }</td>
-						<td onclick="location.href='stayContent?no=${camping.no }'">
+						<td onclick="location.href='stayContent?no=${camping.no }&stayType=camping'">
 							${camping.cname }
 						</td>
 						<td>${camping.cregion }</td>
@@ -255,8 +258,7 @@
  </body>
  
   <script>
- 	 function showStayInfo() {
-		  var stayType = document.getElementById("stayType").value;
+ 	 function showStayInfo(stayType) {
 		  var stayLists = document.getElementsByClassName("stayList");
 	
 		  // 모든 서브 메뉴 감추기
@@ -265,18 +267,42 @@
 		  } 
 
 		  // 선택된 값에 따라 해당 서브 메뉴 표시
-		  if (stayType.value === "모텔") {
+		  if (stayType === "motel") {
 		    document.getElementById("stayList").style.display = "table";
-		  } else if (stayType.value === "호텔·리조트") {
+		  } else if (stayType === "hotel") {
 		    document.getElementById("stayList2").style.display = "table";
-		  } else if (stayType.value === "펜션") {
+		  } else if (stayType === "pension") {
 		    document.getElementById("stayList3").style.display = "table";
-		  } else if (stayType.value === "게스트하우스") {
+		  } else if (stayType === "gh") {
 		    document.getElementById("stayList4").style.display = "table";
-		  } else if (stayType.value === "캠핑·글램핑") {
+		  } else if (stayType === "camping") {
 		    document.getElementById("stayList5").style.display = "table";
 		  }
+		  
+		  localStorage.setItem("selectedStayType", stayType);
+		  
+		  submitStayType();
 		}
+ 	 
+ 	function submitStayType() {
+ 	    var stayType = document.getElementById("stayType").value;
+ 	    var form = document.getElementById("stayTypeForm");
+ 	    
+ 	    // 선택된 stayType 값을 form에 추가
+ 	    var stayTypeInput = document.createElement("input");
+ 	    stayTypeInput.type = "hidden";
+ 	    stayTypeInput.name = "stayType";
+ 	    stayTypeInput.value = stayType;
+ 	    form.appendChild(stayTypeInput);
+ 	    
+ 	    var existingStayTypeInput = document.getElementsByName("stayType")[0];
+ 	    if (existingStayTypeInput) {
+ 	        form.removeChild(existingStayTypeInput);
+ 	    }
+ 	    
+ 	    // form submit
+ 	    form.submit();
+ 	}
  </script>
  
 </html>

@@ -48,11 +48,11 @@
 							<td>	
 								<select class="form_w30" name="stayType" id="stayType" onchange="showRegContent()">
 								 	<option value="">숙소 종류를 선택하세요</option>								
-									<option value="모텔">모텔</option>
-						            <option value="호텔·리조트">호텔·리조트</option>
-						            <option value="펜션">펜션</option>
-						            <option value="게스트하우스">게스트하우스</option>
-						            <option value="캠핑·글램핑">캠핑·글램핑</option>
+									<option value="motel">모텔</option>
+						            <option value="hotel">호텔·리조트</option>
+						            <option value="pension">펜션</option>
+						            <option value="gh">게스트하우스</option>
+						            <option value="camping">캠핑·글램핑</option>
 								</select>
 							</td>
 						</tr>
@@ -162,11 +162,11 @@
 					<table id="regContent2" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="checkinTime" name="checkinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="hcheckinTime" name="hcheckinTime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="hcheckoutTime" name="hcheckoutTime"></td>
 						</tr>
 						<tr>
 							<th>호텔·리조트 유형</th>
@@ -181,11 +181,11 @@
 					<table id="regContent3" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="checkinTime" name="checkinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="pcheckinTime" name="pcheckinTime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="pcheckoutTime" name="pcheckoutTime"></td>
 						</tr>
 						<tr>
 							<th>펜션 유형</th>
@@ -199,22 +199,22 @@
 					<table id="regContent4" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="checkinTime" name="checkinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="gcheckinTime" name="gcheckinTime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="gcheckoutTime" name="gcheckoutTime"></td>
 						</tr>																		
 					</table>
 					
 					<table id="regContent5" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="checkinTime" name="checkinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="ccheckinTime" name="ccheckinTime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="checkoutTime" name="checkoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="ccheckoutTime" name="ccheckoutTime"></td>
 						</tr>
 						<tr>
 							<th>캠핑 유형</th>
@@ -265,15 +265,15 @@
 			regContent[i].style.display = "none";  
 		  }
 		  
-		  if (stayType.value === "모텔") {
+		  if (stayType.value === "motel") {
 		    document.getElementById("regContent").style.display = "table";
-		  } else if (stayType.value === "호텔·리조트") {
+		  } else if (stayType.value === "hotel") {
 		    document.getElementById("regContent2").style.display = "table";
-		  } else if (stayType.value === "펜션") {
+		  } else if (stayType.value === "pension") {
 		    document.getElementById("regContent3").style.display = "table";
-		  } else if (stayType.value === "게스트하우스") {
+		  } else if (stayType.value === "gh") {
 		    document.getElementById("regContent4").style.display = "table";
-		  } else if (stayType.value === "캠핑·글램핑") {
+		  } else if (stayType.value === "camping") {
 		    document.getElementById("regContent5").style.display = "table";
 		  }
 		 
@@ -291,19 +291,33 @@
 
 		  // 선택된 값에 따라 해당 서브 메뉴 표시
 		  if (region.value === "서울") {
-		    document.getElementById("detailRegion").style.display = "table";
+		    document.getElementById("detailRegion").style.display = "block";
 		  } else if (region.value === "경기/인천") {
-		    document.getElementById("detailRegion2").style.display = "table";
+		    document.getElementById("detailRegion2").style.display = "block";
 		  } else if (region.value === "충청/강원/제주") {
-		    document.getElementById("detailRegion3").style.display = "table";
+		    document.getElementById("detailRegion3").style.display = "block";
 		  } else if (region.value === "경남/경북") {
-		    document.getElementById("detailRegion4").style.display = "table";
+		    document.getElementById("detailRegion4").style.display = "block";
 		  } else if (region.value === "전남/전북") {
-		    document.getElementById("detailRegion5").style.display = "table";
+		    document.getElementById("detailRegion5").style.display = "block";
 		  }
 		}
+	  	
+	  	
+
+	/*   function getSelectedOption(selectId) {
+	  	var subMenu = document.getElementById(selectId);
+	  	var selectedValue = subMenu.value;
+	  	var selectedText = subMenu.options[subMenu.selectedIndex].text;
+	  	alert(selectId);
+	  	alert(selectedText);
+	  	window.location.href = "http://localhost/Main?hdetailregion=" + selectedText; */
+
+	  	/* var resultElement = document.getElementById("selectedOption");
+	  	resultElement.textContent = "선택한 옵션: " + selectedOption;*/
+	  	
 	  
-	 /*  function updateDetailRegion() {
+	 function updateDetailRegion() {
 		    var regionSelect = document.getElementById("region");
 		    var detailRegionSelect = document.getElementsByName("detailRegion");
 		    var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
@@ -317,10 +331,10 @@
 		    } else if (selectedMotelDetailRegion !== "") {
 		        motel.setMdetailRegion(selectedMotelDetailRegion);
 		    }
-		} */
+		} 
 		
 		
-		function updateDetailRegion() {
+	/* 	function updateDetailRegion() {
 		    var regionSelect = document.getElementById("region");
 		    var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
 		    
@@ -348,7 +362,7 @@
 		        jnjbDetailRegion.style.display = "block";
 		    }
 		}
-
+ */
 		
 	  
 	  function submitForm() {

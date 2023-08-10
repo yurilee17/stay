@@ -13,10 +13,6 @@
 		<id column="hroomcode" property="hroomcode"/>
 	</resultMap>
 	
-	<select id="stayCountHotel" resultType="int">
-	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM hotel
-	</select>	
-	
 	<select id="stayContent" resultMap="hotelDto">
 		SELECT * FROM hotel WHERE no=#{no}
 	</select>
@@ -32,6 +28,14 @@
 	<select id="count">
 	  	SELECT count(no) FROM hotel
 	</select>
+	
+	<select id="hotelroomcount">
+		SELECT COALESCE(nvl(max(hroomcode),0) + 1, 0) FROM hotelroom
+	</select>	
+	
+	<select id="stayCountHotel" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM hotel
+	</select>	
 	
 	<insert id="stayregisterProc" parameterType="com.care.stay.hotel.HotelDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
@@ -52,6 +56,5 @@
 		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hbedtype, hroomimage, hroomnumber, hprice, hguide, hcomfort)
 		VALUES(#{no}, #{hcode}, #{hroomCode}, #{hroomName}, #{hbedType}, #{hroomImage}, #{hroomNumber}, #{hprice}, #{hguide}, #{hcomfort})
 	</insert>	
-
 
 </mapper>

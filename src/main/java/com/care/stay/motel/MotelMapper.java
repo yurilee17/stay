@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 @Mapper
 public interface MotelMapper {
@@ -19,6 +18,4 @@ public interface MotelMapper {
 	void staydetailregisterProc(MotelRoomDTO motelroom);
 	int stayCountMotel();
 	List<MotelRoomDTO> stayRoomContent(String n);
-	
-	
 }

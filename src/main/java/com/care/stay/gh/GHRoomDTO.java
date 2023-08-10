@@ -3,14 +3,15 @@ package com.care.stay.gh;
 public class GHRoomDTO {
 	
 	private int no;
-	private String gCode;
-	private String gRoomcode;
-	private String gRoomname;
-	private String gRoomimage;
-	private int gRoomnumber;
-	private String gPrice;
-	private String gGuide;
-	private String gComfort;
+	private String gcode;
+	private String groomCode;
+	private String groomName;
+	private String groomImage;
+	private int groomNumber;
+	private int gprice;
+	private int gpeople;
+	private String gguide;
+	private String gcomfort;
 	
 	
 	public int getNo() {
@@ -19,53 +20,60 @@ public class GHRoomDTO {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String getgCode() {
-		return gCode;
+	public String getGcode() {
+		return gcode;
 	}
-	public void setgCode(String gCode) {
-		this.gCode = gCode;
+	public void setGcode(String gcode) {
+		this.gcode = gcode;
 	}
-	public String getgRoomcode() {
-		return gRoomcode;
+	public String getGroomCode() {
+		return groomCode;
 	}
-	public void setgRoomcode(String gRoomcode) {
-		this.gRoomcode = gRoomcode;
+	public void setGroomCode(String groomCode) {
+		this.groomCode = groomCode;
 	}
-	public String getgRoomname() {
-		return gRoomname;
+	public String getGroomName() {
+		return groomName;
 	}
-	public void setgRoomname(String gRoomname) {
-		this.gRoomname = gRoomname;
+	public void setGroomName(String groomName) {
+		this.groomName = groomName;
 	}
-	public String getgRoomimage() {
-		return gRoomimage;
+	public String getGroomImage() {
+		return groomImage;
 	}
-	public void setgRoomimage(String gRoomimage) {
-		this.gRoomimage = gRoomimage;
+	public void setGroomImage(String groomImage) {
+		this.groomImage = groomImage;
 	}
-	public int getgRoomnumber() {
-		return gRoomnumber;
+	public int getGroomNumber() {
+		return groomNumber;
 	}
-	public void setgRoomnumber(int gRoomnumber) {
-		this.gRoomnumber = gRoomnumber;
+	public void setGroomNumber(int groomNumber) {
+		this.groomNumber = groomNumber;
 	}
-	public String getgPrice() {
-		return gPrice;
+	public int getGprice() {
+		return gprice;
 	}
-	public void setgPrice(String gPrice) {
-		this.gPrice = gPrice;
+	public void setGprice(int gprice) {
+		this.gprice = gprice;
 	}
-	public String getgGuide() {
-		return gGuide;
+	public int getGpeople() {
+		return gpeople;
 	}
-	public void setgGuide(String gGuide) {
-		this.gGuide = gGuide;
+	public void setGpeople(int gpeople) {
+		this.gpeople = gpeople;
 	}
-	public String getgComfort() {
-		return gComfort;
+	public String getGguide() {
+		return gguide;
 	}
-	public void setgComfort(String gComfort) {
-		this.gComfort = gComfort;
+	public void setGguide(String gguide) {
+		this.gguide = gguide;
 	}
-	
+	public String getGcomfort() {
+		return gcomfort;
+	}
+	public void setGcomfort(String gcomfort) {
+		this.gcomfort = gcomfort;
+	}
+
+
 }

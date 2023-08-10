@@ -15,7 +15,6 @@ public class PensionDTO {
 	private String pcheckInTime;
 	private String pcheckOutTime;
 	private String ptype;
-	private int ppeople;
 	
 	
 	public int getNo() {
@@ -96,11 +95,4 @@ public class PensionDTO {
 	public void setPtype(String ptype) {
 		this.ptype = ptype;
 	}
-	public int getPpeople() {
-		return ppeople;
-	}
-	public void setPpeople(int ppeople) {
-		this.ppeople = ppeople;
-	}
-
 }

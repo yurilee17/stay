@@ -11,11 +11,7 @@
 	
 	<resultMap type="com.care.stay.camping.CampingRoomDTO" id="campingroomDto">
 		<id column="croomcode" property="croomcode"/>
-	</resultMap>
-	
-	<select id="stayCountCamping" resultType="int">
-	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM camping
-	</select>	
+	</resultMap>	
 
 	<select id="stayContent" resultMap="campingDto">
 		SELECT * FROM camping WHERE no=#{no}
@@ -33,6 +29,14 @@
 	  	SELECT count(no) FROM camping
 	</select>		
 	
+	<select id="campingroomcount">
+		SELECT COALESCE(nvl(max(croomcode),0) + 1, 0) FROM campingroom
+	</select>	
+	
+	<select id="stayCountCamping" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM camping
+	</select>	
+	
 	<insert id="stayregisterProc" parameterType="com.care.stay.camping.CampingDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM camping
@@ -49,8 +53,8 @@
 	</select>
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.camping.CampingRoomDTO">
-		INSERT INTO campingroom (no, ccode, croomcode, croomname, croomimage, croomnumber, cprice, cguide, ccomfort)
-		VALUES(#{no}, #{ccode}, #{croomcode}, #{croomname}, #{croomimage}, #{croomnumber}, #{cprice}, #{cguide}, #{ccomfort})
+		INSERT INTO campingroom (no, ccode, croomcode, croomname, croomimage, croomnumber, cprice, cpeople, cguide, ccomfort)
+		VALUES(#{no}, #{ccode}, #{croomCode}, #{croomName}, #{croomImage}, #{croomNumber}, #{cprice}, #{cpeople}, #{cguide}, #{ccomfort})
 	</insert>	
 	
 </mapper>

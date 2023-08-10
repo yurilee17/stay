@@ -3,14 +3,15 @@ package com.care.stay.camping;
 public class CampingRoomDTO {
 	
 	private int no;
-	private String cCode;
-	private String cRoomcode;
-	private String cRoomname;
-	private String cRoomimage;
-	private int cRoomnumber;
-	private String cPrice;
-	private String cGuide;
-	private String cComfort;
+	private String ccode;
+	private String croomCode;
+	private String croomName;
+	private String croomImage;
+	private int croomNumber;
+	private String cprice;
+	private int cpeople;
+	private String cguide;
+	private String ccomfort;
 	
 	
 	public int getNo() {
@@ -19,53 +20,59 @@ public class CampingRoomDTO {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String getcCode() {
-		return cCode;
+	public String getCcode() {
+		return ccode;
 	}
-	public void setcCode(String cCode) {
-		this.cCode = cCode;
+	public void setCcode(String ccode) {
+		this.ccode = ccode;
 	}
-	public String getcRoomcode() {
-		return cRoomcode;
+	public String getCroomCode() {
+		return croomCode;
 	}
-	public void setcRoomcode(String cRoomcode) {
-		this.cRoomcode = cRoomcode;
+	public void setCroomCode(String croomCode) {
+		this.croomCode = croomCode;
 	}
-	public String getcRoomname() {
-		return cRoomname;
+	public String getCroomName() {
+		return croomName;
 	}
-	public void setcRoomname(String cRoomname) {
-		this.cRoomname = cRoomname;
+	public void setCroomName(String croomName) {
+		this.croomName = croomName;
 	}
-	public String getcRoomimage() {
-		return cRoomimage;
+	public String getCroomImage() {
+		return croomImage;
 	}
-	public void setcRoomimage(String cRoomimage) {
-		this.cRoomimage = cRoomimage;
+	public void setCroomImage(String croomImage) {
+		this.croomImage = croomImage;
 	}
-	public int getcRoomnumber() {
-		return cRoomnumber;
+	public int getCroomNumber() {
+		return croomNumber;
 	}
-	public void setcRoomnumber(int cRoomnumber) {
-		this.cRoomnumber = cRoomnumber;
+	public void setCroomNumber(int croomNumber) {
+		this.croomNumber = croomNumber;
 	}
-	public String getcPrice() {
-		return cPrice;
+	public String getCprice() {
+		return cprice;
 	}
-	public void setcPrice(String cPrice) {
-		this.cPrice = cPrice;
+	public void setCprice(String cprice) {
+		this.cprice = cprice;
 	}
-	public String getcGuide() {
-		return cGuide;
+	public int getCpeople() {
+		return cpeople;
 	}
-	public void setcGuide(String cGuide) {
-		this.cGuide = cGuide;
+	public void setCpeople(int cpeople) {
+		this.cpeople = cpeople;
 	}
-	public String getcComfort() {
-		return cComfort;
+	public String getCguide() {
+		return cguide;
 	}
-	public void setcComfort(String cComfort) {
-		this.cComfort = cComfort;
+	public void setCguide(String cguide) {
+		this.cguide = cguide;
 	}
-	
+	public String getCcomfort() {
+		return ccomfort;
+	}
+	public void setCcomfort(String ccomfort) {
+		this.ccomfort = ccomfort;
+	}
+
 }

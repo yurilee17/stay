@@ -3,14 +3,15 @@ package com.care.stay.pension;
 public class PensionRoomDTO {
 	
 	private int no;
-	private String pCode;
-	private String pRoomcode;
-	private String pRoomname;
-	private String pRoomimage;
-	private int pRoomnumber;
-	private String pPrice;
-	private String pGuide;
-	private String pComfort;
+	private String pcode;
+	private String proomCode;
+	private String proomName;
+	private String proomImage;
+	private int proomNumber;
+	private String pprice;
+	private int ppeople;
+	private String pguide;
+	private String pcomfort;
 	
 	
 	public int getNo() {
@@ -19,53 +20,59 @@ public class PensionRoomDTO {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String getpCode() {
-		return pCode;
+	public String getPcode() {
+		return pcode;
 	}
-	public void setpCode(String pCode) {
-		this.pCode = pCode;
+	public void setPcode(String pcode) {
+		this.pcode = pcode;
 	}
-	public String getpRoomcode() {
-		return pRoomcode;
+	public String getProomCode() {
+		return proomCode;
 	}
-	public void setpRoomcode(String pRoomcode) {
-		this.pRoomcode = pRoomcode;
+	public void setProomCode(String proomCode) {
+		this.proomCode = proomCode;
 	}
-	public String getpRoomname() {
-		return pRoomname;
+	public String getProomName() {
+		return proomName;
 	}
-	public void setpRoomname(String pRoomname) {
-		this.pRoomname = pRoomname;
+	public void setProomName(String proomName) {
+		this.proomName = proomName;
 	}
-	public String getpRoomimage() {
-		return pRoomimage;
+	public String getProomImage() {
+		return proomImage;
 	}
-	public void setpRoomimage(String pRoomimage) {
-		this.pRoomimage = pRoomimage;
+	public void setProomImage(String proomImage) {
+		this.proomImage = proomImage;
 	}
-	public int getpRoomnumber() {
-		return pRoomnumber;
+	public int getProomNumber() {
+		return proomNumber;
 	}
-	public void setpRoomnumber(int pRoomnumber) {
-		this.pRoomnumber = pRoomnumber;
+	public void setProomNumber(int proomNumber) {
+		this.proomNumber = proomNumber;
 	}
-	public String getpPrice() {
-		return pPrice;
+	public String getPprice() {
+		return pprice;
 	}
-	public void setpPrice(String pPrice) {
-		this.pPrice = pPrice;
+	public void setPprice(String pprice) {
+		this.pprice = pprice;
 	}
-	public String getpGuide() {
-		return pGuide;
+	public int getPpeople() {
+		return ppeople;
 	}
-	public void setpGuide(String pGuide) {
-		this.pGuide = pGuide;
+	public void setPpeople(int ppeople) {
+		this.ppeople = ppeople;
 	}
-	public String getpComfort() {
-		return pComfort;
+	public String getPguide() {
+		return pguide;
 	}
-	public void setpComfort(String pComfort) {
-		this.pComfort = pComfort;
+	public void setPguide(String pguide) {
+		this.pguide = pguide;
+	}
+	public String getPcomfort() {
+		return pcomfort;
+	}
+	public void setPcomfort(String pcomfort) {
+		this.pcomfort = pcomfort;
 	}
 	
 }

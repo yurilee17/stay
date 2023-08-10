@@ -25,15 +25,15 @@
 		  }
 
 		  // 선택된 값에 따라 해당 서브 메뉴 표시
-		  if (stayType.value === "모텔") {
+		  if (stayType.value === "motel") {
 		    document.getElementById("showDetail").style.display = "table";
-		  } else if (stayType.value === "호텔·리조트") {
+		  } else if (stayType.value === "hotel") {
 		    document.getElementById("showDetail2").style.display = "table";
-		  } else if (stayType.value === "펜션") {
+		  } else if (stayType.value === "pension") {
 		    document.getElementById("showDetail3").style.display = "table";
-		  } else if (stayType.value === "게스트하우스") {
+		  } else if (stayType.value === "gh") {
 		    document.getElementById("showDetail4").style.display = "table";
-		  } else if (stayType.value === "캠핑·글램핑") {
+		  } else if (stayType.value === "camping") {
 		    document.getElementById("showDetail5").style.display = "table";
 		  }
 		}
@@ -67,6 +67,7 @@
 			<!-- 설명 -->
 			<h2>숙소 등록과 관리가 가능한 관리자 페이지입니다.</h2>
 			<p>숙소의 종류와 가격, 수량, 설명, 세부사항 등을 관리하실 수 있습니다.</p>
+			숙소 종류는 : ${stayType } 입니다.
 			<!-- 설명 -->
 			
 			<form id="staydetailForm" action="staydetailregisterProc" method="post" enctype="multipart/form-data">
@@ -78,17 +79,23 @@
 						</colgroup>													
 						<tr>
 							<th>숙소 이름</th>
-							<td><input type="text" class="form_w50" value="${motel.mname}" } readonly></td>
+							<td><c:choose>
+ 							<c:when test="${'motel' eq stayType}"><input type="text" class="form_w50" value="${motel.mname}" } readonly></c:when>
+							<c:when test="${'hotel' eq stayType}"><input type="text" class="form_w50" value="${hotel.hname}" } readonly></c:when>
+							<c:when test="${'pension' eq stayType}"><input type="text" class="form_w50" value="${pension.pname}" } readonly></c:when>
+							<c:when test="${'gh' eq stayType}"><input type="text" class="form_w50" value="${gh.gname}" } readonly></c:when>
+							<c:when test="${'camping' eq stayType}"><input type="text" class="form_w50" value="${camping.cname}" } readonly></c:when> 	
+							</c:choose></td>
 						</tr>						
 						<tr>
 							<th>종류</th>
 							<td>
 								<select class="form_w30" id="stayType" onchange="showSubMenu()">
-									<option>모텔</option>
-									<option>호텔·리조트</option>
-									<option>펜션</option>
-									<option>게스트하우스</option>
-									<option>캠핑·글램핑</option>
+									<option value="motel">모텔</option>
+									<option value="hotel">호텔·리조트</option>
+									<option value="pension">펜션</option>
+									<option value="gh">게스트하우스</option>
+									<option value="camping">캠핑·글램핑</option>
 								</select>
 							</td>
 						</tr>
@@ -100,17 +107,42 @@
 						</colgroup>					
 						<tr>
 							<th>객실 이름</th>
-							<td><input type="text" class="form_w50" name="mroomname" id="mroomname" placeholder=""></td>
+							<td><c:choose>
+							<c:when test="${'motel' eq stayType}"><input type="text" class="form_w50" name="mroomname" id="mroomname" placeholder=""></c:when>
+							<c:when test="${'hotel' eq stayType}"><input type="text" class="form_w50" name="hroomname" id="hroomname" placeholder=""></c:when>
+							<c:when test="${'pension' eq stayType}"><input type="text" class="form_w50" name="proomname" id="proomname" placeholder=""></c:when>
+							<c:when test="${'gh' eq stayType}"><input type="text" class="form_w50" name="groomname" id="groomname" placeholder=""></c:when>
+							<c:when test="${'camping' eq stayType}"><input type="text" class="form_w50" name="croomname" id="croomname" placeholder=""></c:when>
+							</c:choose></td>
 						</tr>
 						<tr>
-							<th>객실 코드</th>
-							<td><!-- <input type="text" class="form_w30" name="mroomcode" id="mroomcode" placeholder=""> -->
-							<span id="mroomcode">${mroomcode}</span>
-							</td>
-						</tr>						
+							<th>객실 코드</th> <!-- <input type="text" class="form_w30" name="mroomcode" id="mroomcode" placeholder=""> -->
+							<td><c:choose>
+							<c:when test="${'motel' eq stayType}"><span id="mroomcode">${mroomcode}</span></c:when>
+							<c:when test="${'hotel' eq stayType}"><span id="hroomcode">${hroomcode}</span></c:when>
+							<c:when test="${'pension' eq stayType}"><span id="proomcode">${proomcode}</span></c:when>
+							<c:when test="${'gh' eq stayType}"><span id="groomcode">${groomcode}</span></c:when>
+							<c:when test="${'camping' eq stayType}"><span id="croomcode">${croomcode}</span></c:when>
+							</c:choose></td>
+						</tr>		
+						
+						
+					   <%-- <c:when test="${'motel' eq stayType}"></c:when>
+							<c:when test="${'hotel' eq stayType}"></c:when>
+							<c:when test="${'pension' eq stayType}"></c:when>
+							<c:when test="${'gh' eq stayType}"></c:when>
+							<c:when test="${'camping' eq stayType}"></c:when> --%>
+						
+										
 						<tr>
 							<th>이미지 업로드</th>
-							<td><input type="file" name="mroomimage" id="mroomimage" ></td>
+							<td><c:choose>
+							<c:when test="${'motel' eq stayType}"><input type="file" name="mroomimage" id="mroomimage" ></c:when>
+							<c:when test="${'hotel' eq stayType}"><input type="file" name="hroomimage" id="hroomimage" ></c:when>
+							<c:when test="${'pension' eq stayType}"><input type="file" name="proomimage" id="proomimage" ></c:when>
+							<c:when test="${'gh' eq stayType}"><input type="file" name="groomimage" id="groomimage" ></c:when>
+							<c:when test="${'camping' eq stayType}"><input type="file" name="croomimage" id="croomimage" ></c:when>
+							</c:choose></td>
 						</tr>
 						<tr>
 							<th>방 개수</th>

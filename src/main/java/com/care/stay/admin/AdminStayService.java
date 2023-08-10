@@ -36,15 +36,15 @@ public class AdminStayService {
 	
 	/* 각 테이블에 저장된 no칼럼값의 최대값 + 1을 가져오는*/
 	public int getStayCount(String stayType) {
-	    if (stayType.equals("모텔")) {
+	    if (stayType.equals("motel")) {
 	        return motelMapper.stayCountMotel();
-	    } else if (stayType.equals("호텔·리조트")) {
+	    } else if (stayType.equals("hotel")) {
 	        return hotelMapper.stayCountHotel();
-	    } else if (stayType.equals("펜션")) {
+	    } else if (stayType.equals("pension")) {
 	        return pensionMapper.stayCountPension();
-	    } else if (stayType.equals("게스트하우스")) {
+	    } else if (stayType.equals("gh")) {
 	        return ghMapper.stayCountGuestHouse();
-	    } else if (stayType.equals("캠핑·글램핑")) {
+	    } else if (stayType.equals("camping")) {
 	        return campingMapper.stayCountCamping();
 	    } else {
 	        return 0;

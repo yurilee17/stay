@@ -26,15 +26,5 @@ public class HotelController {
 		hservice.hotelform(model);
 		return "board/hotel";
 	}
-	
-//	@RequestMapping("stayInfo")
-//	public String stayInfo(
-//			@RequestParam(value="currentPage", required = false)String cp, 
-//			Model model) {
-//		hservice.stayInfo(cp, model);
-//		return "admin/stayInfo";
-//	}
-	
-
 
 }

@@ -37,10 +37,39 @@
 					</div>
 					<div class="right">
 						<div class="info">
-							<h2>숙소 이름 : ${motel.mname }</h2>
-							<div class="score">평점 : ${motel.mrating }</div>
-							<p class="address">주소 : ${motel.maddress }  ${motel.mdetailAddress }</p>
-							<span>숙소 코드 : ${motel.mcode }${motel.no }</span>
+							<h2>숙소 이름 : 
+							<c:choose>
+ 							<c:when test="${'motel' eq stayType}">${motel.mname }</c:when>
+							<c:when test="${'hotel' eq stayType}">${hotel.hname }</c:when>
+							<c:when test="${'pension' eq stayType}">${pension.pname }</c:when>
+							<c:when test="${'gh' eq stayType}">${gh.gname }</c:when>
+							<c:when test="${'camping' eq stayType}">${camping.cname }</c:when> 	
+							</c:choose>
+							</h2>
+							<div class="score">평점 :<c:choose>
+							<c:when test="${'motel' eq stayType}">${motel.mrating }</c:when>
+							<c:when test="${'hotel' eq stayType}">${hotel.hrating }</c:when>
+							<c:when test="${'pension' eq stayType}">${pension.prating }</c:when>
+							<c:when test="${'gh' eq stayType}">${gh.grating }</c:when>
+							<c:when test="${'camping' eq stayType}">${camping.crating }</c:when>
+							</c:choose></div>
+							
+							<p class="address">주소 :<c:choose>
+							<c:when test="${'motel' eq stayType}">${motel.maddress }  ${motel.mdetailAddress }</c:when>
+							<c:when test="${'hotel' eq stayType}">${hotel.haddress }  ${hotel.hdetailAddress }</c:when>
+							<c:when test="${'pension' eq stayType}">${pension.paddress }  ${pension.pdetailAddress }</c:when>
+							<c:when test="${'gh' eq stayType}">${gh.gaddress }  ${gh.gdetailAddress }</c:when>
+							<c:when test="${'camping' eq stayType}">${camping.caddress }  ${camping.cdetailAddress }</c:when>
+							</c:choose></p>
+							<span>숙소 코드 : 
+							<c:choose>
+							<c:when test="${'motel' eq stayType}">${motel.mcode }${motel.no }</c:when>
+							<c:when test="${'hotel' eq stayType}">${hotel.hcode }${hotel.no }</c:when>
+							<c:when test="${'pension' eq stayType}">${pension.pcode }${pension.no }</c:when>
+							<c:when test="${'gh' eq stayType}">${gh.gcode }${gh.no }</c:when>
+							<c:when test="${'camping' eq stayType}">${camping.ccode }${camping.no }</c:when>
+							</c:choose>
+							</span>
 <%-- 							<div class="submit">
 								<ul>
 									<li><a href="${context }stayModify">수정하기</a></li>
@@ -102,7 +131,15 @@
 
 
 			<div class="submit">
-				<button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }'">상세 DB 등록</button>
+				<%-- <button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }'">상세 DB 등록</button> --%>
+				
+				<c:choose>
+					<c:when test="${'motel' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }&stayType=motel'">상세 DB 등록</button></c:when>
+					<c:when test="${'hotel' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${hotel.no }&stayType=hotel'">상세 DB 등록</button></c:when>
+					<c:when test="${'pension' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${pension.no }&stayType=pension'">상세 DB 등록</button></c:when>
+					<c:when test="${'gh' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${gh.no }&stayType=gh'">상세 DB 등록</button></c:when>
+					<c:when test="${'camping' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${camping.no }&stayType=camping'">상세 DB 등록</button></c:when>
+				</c:choose>
 				<ul>
 					<!-- <li><input type="submit" value="등록"></li> 
 					<li><a href="${context }stayDetailRegister">상세 DB 등록하기</a></li> -->

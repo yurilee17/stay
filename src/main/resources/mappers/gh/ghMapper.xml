@@ -12,45 +12,49 @@
 	<resultMap type="com.care.stay.gh.GHRoomDTO" id="ghroomDto">
 		<id column="groomcode" property="groomcode"/>
 	</resultMap>
-	
-	<select id="stayCountGuestHouse" resultType="int">
-	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM guesthouse
-	</select>
 
 	<select id="stayContent" resultMap="ghDto">
-		SELECT * FROM guesthouse WHERE no=#{no}
+		SELECT * FROM gh WHERE no=#{no}
 	</select>
 	
 	<select id="stayRoomContent" resultMap="ghroomDto">
-		SELECT * FROM guesthouseroom WHERE no=#{no}
+		SELECT * FROM ghroom WHERE no=#{no}
 	</select>
 	
 	<select id="stayDetailRegister" resultMap="ghDto">
-		SELECT * FROM guesthouse WHERE no=#{no}
+		SELECT * FROM gh WHERE no=#{no}
 	</select>
 	
 	<select id="count">
-	  	SELECT count(no) FROM guesthouse
+	  	SELECT count(no) FROM gh
+	</select>
+	
+	<select id="ghroomcount">
+		SELECT COALESCE(nvl(max(groomcode),0) + 1, 0) FROM ghroom
+	</select>	
+	
+	<select id="stayCountGuestHouse" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM gh
 	</select>	
 	
 	<insert id="stayregisterProc" parameterType="com.care.stay.gh.GHDTO">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
-			SELECT nvl(max(no),0) + 1 FROM guesthouse
+			SELECT nvl(max(no),0) + 1 FROM gh
 		</selectKey>
-		INSERT INTO guesthouse (no, gcode, gname, gregion, gdetailregion, grating, gaddress, gdetailaddress, gimage, ginfo, gcheckintime, gcheckouttime) 
+		INSERT INTO gh (no, gcode, gname, gregion, gdetailregion, grating, gaddress, gdetailaddress, gimage, ginfo, gcheckintime, gcheckouttime) 
 		VALUES(#{no}, 'G', #{gname}, #{gregion}, #{gdetailRegion}, 0, #{gaddress}, #{gdetailAddress}, #{gimage}, #{ginfo}, #{gcheckInTime}, #{gcheckOutTime})
 	</insert>
 	
 	<select id="stayInfo" resultMap="ghDto">
 		SELECT BBB.* FROM 
 		(SELECT rownum as rn, AAA.* FROM 
-		(SELECT no, gcode, gname, gregion, gaddress FROM guesthouse ORDER BY no DESC)AAA)BBB
+		(SELECT no, gcode, gname, gregion, gaddress FROM gh ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.gh.GHRoomDTO">
-		INSERT INTO hotelroom (no, gcode, groomcode, groomname, groomimage, groomnumber, gprice, gguide, gcomfort)
-		VALUES(#{no}, #{gcode}, #{groomcode}, #{groomname}, #{groomimage}, #{groomnumber}, #{gprice}, #{gguide}, #{gcomfort})
+		INSERT INTO ghroom (no, gcode, groomcode, groomname, groomimage, groomnumber, gprice, gpeople, gguide, gcomfort)
+		VALUES(#{no}, #{gcode}, #{groomCode}, #{groomName}, #{groomImage}, #{groomNumber}, #{gprice}, #{gpeople}, #{gguide}, #{gcomfort})
 	</insert>	
 	
 </mapper>

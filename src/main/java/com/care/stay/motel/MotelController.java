@@ -29,15 +29,15 @@ public class MotelController {
 //		return "admin/stayInfo";
 //	}
 	
-	@PostMapping("staydetailregisterProc")
-	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
-		String msg = mservice.staydetailregisterProc(multi);
-		if(msg.equals("객실 DB 작성 완료"))
-			return "redirect:stayInfo";
-		
-		model.addAttribute("msg", msg);
-		return "admin/stayDetailRegister";
-	}
+//	@PostMapping("staydetailregisterProc")
+//	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
+//		String msg = mservice.staydetailregisterProc(multi);
+//		if(msg.equals("객실 DB 작성 완료"))
+//			return "redirect:stayInfo";
+//		
+//		model.addAttribute("msg", msg);
+//		return "admin/stayDetailRegister";
+//	}
 	
 //	@PostMapping("stayregisterProc")
 //	public String stayregisterProc(Model model, MultipartHttpServletRequest multi) {

@@ -9,8 +9,8 @@ public class HotelRoomDTO {
 	private String hbedType;
 	private String hroomImage;
 	private int hroomNumber;
-	private String hprice;
-	private String hpeople;
+	private int hprice;
+	private int hpeople;
 	private String hguide;
 	private String hcomfort;
 	
@@ -56,16 +56,16 @@ public class HotelRoomDTO {
 	public void setHroomNumber(int hroomNumber) {
 		this.hroomNumber = hroomNumber;
 	}
-	public String getHprice() {
+	public int getHprice() {
 		return hprice;
 	}
-	public void setHprice(String hprice) {
+	public void setHprice(int hprice) {
 		this.hprice = hprice;
 	}
-	public String getHpeople() {
+	public int getHpeople() {
 		return hpeople;
 	}
-	public void setHpeople(String hpeople) {
+	public void setHpeople(int hpeople) {
 		this.hpeople = hpeople;
 	}
 	public String getHguide() {

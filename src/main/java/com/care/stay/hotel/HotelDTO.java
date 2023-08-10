@@ -16,7 +16,6 @@ public class HotelDTO {
 	private String hcheckOutTime;
 	private String htype;
 	
-	
 	public int getNo() {
 		return no;
 	}

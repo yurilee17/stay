@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import com.care.stay.common.PageService;
+import com.care.stay.common.AdminPageService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -170,7 +170,7 @@ public class MotelService {
 	}
 	
 
-	public void stayInfo(String cp, Model model) {
+	public void stayInfo(String cp, String stayType, Model model) {
 		int currentPage = 1;
 		try{
 			currentPage = Integer.parseInt(cp);
@@ -185,7 +185,7 @@ public class MotelService {
 		ArrayList<MotelDTO> motels = motelMapper.stayInfo(begin, end);
 		int totalCount = motelMapper.count();
 		String url = "stayInfo?currentPage=";
-		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+		String result = AdminPageService.printPage(url, currentPage, totalCount, pageBlock, stayType);
 		
 		model.addAttribute("motels", motels);
 		model.addAttribute("result", result);
@@ -207,7 +207,6 @@ public class MotelService {
 		
 		/* 이미지는 DB 등록이 되야 출력이 해결될듯 */
 //		System.out.println("motel.getMimage() : " + motel.getMimage());
-
 		return motel;
 	}
 	

@@ -13,8 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.care.stay.common.PageService;
-
+import com.care.stay.common.AdminPageService;
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -34,8 +33,9 @@ public class HotelService {
 		hotel.setHaddress(multi.getParameter("address"));
 		hotel.setHdetailAddress(multi.getParameter("detailAddress"));
 		hotel.setHinfo(multi.getParameter("info"));
-		hotel.setHcheckInTime(multi.getParameter("checkinTime"));
-		hotel.setHcheckOutTime(multi.getParameter("checkoutTime"));
+		
+		hotel.setHcheckInTime(multi.getParameter("hcheckinTime"));
+		hotel.setHcheckOutTime(multi.getParameter("hcheckoutTime"));
 		hotel.setHtype(multi.getParameter("htype"));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -49,11 +49,7 @@ public class HotelService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 			hotel.setHimage(fileName);
-			
-			System.out.println(fileName);
-			System.out.println(multi.getParameter("info"));
-			System.out.println();
-			
+
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
 			File save = new File(fileLocation + fileName);
@@ -66,14 +62,12 @@ public class HotelService {
 			}
 		}
 
-		System.out.println("상세 지역 : " + hotel.getHdetailRegion());
-
 		hotelMapper.stayregisterProc(hotel);
 		return "숙소 DB 작성 완료";
 		
 	}
 	
-	public void stayInfo(String cp, Model model) {
+	public void stayInfo(String cp, String stayType, Model model) {
 		int currentPage = 1;
 		try{
 			currentPage = Integer.parseInt(cp);
@@ -88,7 +82,7 @@ public class HotelService {
 		ArrayList<HotelDTO> hotels = hotelMapper.stayInfo(begin, end);
 		int totalCount = hotelMapper.count();
 		String url = "stayInfo?currentPage=";
-		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+		String result = AdminPageService.printPage(url, currentPage, totalCount, pageBlock, stayType);
 		
 		model.addAttribute("hotels", hotels);
 		model.addAttribute("result", result);
@@ -106,8 +100,8 @@ public class HotelService {
         hotelroom.setHroomCode(String.valueOf(roomcount));
         hotelroom.setHroomName(multi.getParameter("hroomname"));
         hotelroom.setHroomNumber(getIntParameter(multi, "hroomnumber"));
-        hotelroom.setHprice(multi.getParameter("hprice"));
-        hotelroom.setHpeople(multi.getParameter("hpeople"));
+        hotelroom.setHprice(getIntParameter(multi, "hprice"));
+        hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
         hotelroom.setHguide(multi.getParameter("hguide"));
         hotelroom.setHcomfort(multi.getParameter("hcomfort"));
         
@@ -134,7 +128,7 @@ public class HotelService {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		hotelroom.setHroomImage("");
-		MultipartFile file = multi.getFile("mroomimage");
+		MultipartFile file = multi.getFile("hroomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.
@@ -144,7 +138,7 @@ public class HotelService {
 			hotelroom.setHroomImage(fileName);
 
 			// 업로드 파일 저장 경로
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\room\\";
+			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -160,7 +154,6 @@ public class HotelService {
         
 	}
 	
-	
 	/*Multipart~~로 받아오는 일부 값들을 int형으로 변환하기 위해서*/
 	private int getIntParameter(MultipartHttpServletRequest multi, String paramName) {
 	    String paramValue = multi.getParameter(paramName);
@@ -170,6 +163,49 @@ public class HotelService {
 	        // 예외 처리: 파라미터 값을 int로 변환할 수 없는 경우 기본값 또는 에러 처리를 하면 됨
 	        return 0; // 예시로 0을 반환
 	    }
+	}
+
+	public HotelDTO stayContent(String n) {
+		int no = 0;
+		try{
+			no = Integer.parseInt(n);
+		}catch(Exception e){
+			return null;
+		}
+		
+		HotelDTO hotel = hotelMapper.stayContent(no);
+		if(hotel == null)
+			return null;
+
+		System.out.println("호텔 이름 테스트 : " + hotel.getHname());
+		return hotel;
+	}
+
+	public List<HotelRoomDTO> stayRoomContent(String n) {
+		int no = 0;
+		try{
+			no = Integer.parseInt(n);
+		}catch(Exception e){
+			return null;
+		}
+		
+		return hotelMapper.stayRoomContent(n);
+	}
+	
+	public HotelDTO stayDetailRegister (String n) {
+		int no = 0;
+		
+		try {
+			no = Integer.parseInt(n);
+		} catch(Exception e) {
+			return null;
+		}
+		
+		HotelDTO hotel = hotelMapper.stayContent(no);
+		if(hotel == null)
+			return null;
+		
+		return hotel;
 	}
 	
 }
