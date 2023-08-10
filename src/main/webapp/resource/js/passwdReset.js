@@ -154,7 +154,13 @@ function idCheck() {
 
 function idCheckProc() {
 	if (xhr.readyState === 4 && xhr.status === 200) {
-		if (xhr.responseText === '로그인 성공') {
+		if (xhr.responseText === '관리자 로그인 성공') {
+			let btn = document.querySelector(".btn_link");
+
+			alert("관리자 계정은 비밀번호 변경이 불가합니다.\n마스터 관리자에게 문의하세요.");
+			btn.setAttribute("disabled", "");
+			
+		}else if (xhr.responseText === '로그인 성공') {
 			var idSearchForm = document.getElementById('idSearchForm');
 
 			idSearchForm.submit();

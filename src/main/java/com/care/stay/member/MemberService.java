@@ -62,10 +62,13 @@ public class MemberService {
 		return "실패";
 	}
 
-	// 로그인
+	// id 찾기
 	public String searchId(String id) {
 		MemberDTO result = memberMapper.loginProc(id);
 		if (result != null) {
+			if(result.getAuthority().equals("admin")){
+				return "관리자 로그인 성공";
+			}
 			return "로그인 성공";
 		}
 		return "실패";
