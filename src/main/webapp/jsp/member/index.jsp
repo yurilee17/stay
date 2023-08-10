@@ -25,6 +25,7 @@
 <div class="wrap main_wrap show">
 
     <!-- Header -->
+    
 	<c:import url="/header"/>
         <!-- CSS -->
     <link rel="stylesheet" href="../../resource/css/swiper.css">

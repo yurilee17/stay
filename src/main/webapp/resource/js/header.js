@@ -1,28 +1,14 @@
-document.addEventListener("DOMContentLoaded", function() {
-	moreBt()
+window.addEventListener('scroll', function() {
+	const header = document.querySelector('header');
 
-})
-
-function moreBt() {
-	let more = document.getElementById("more");
-	let moreList = document.querySelector(".list_03");
-
-
-	more.addEventListener("mouseover", function() {
-		moreList.style.display = "block";
-	});
-	
-	moreList.addEventListener("mouseover", function() {
-		moreList.style.display = "block";
-	});
+	if (window.scrollY > 1) { // 스크롤이 200px 이상 내려갔을 때
+		header.classList.add('scrolled');
+	} else {
+		header.classList.remove('scrolled');
+	}
+});
 
 
-	moreList.addEventListener("mouseout", function() {
-		moreList.style.display = "none";
-	});
-
-
-	more.addEventListener("mouseout", function() {
-		moreList.style.display = "none";
-	});
+function logoutProc() {
+	window.location.href = "http://localhost/logout";
 }
