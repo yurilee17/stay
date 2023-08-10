@@ -126,6 +126,9 @@ public class AdminStayController {
 	}
 	
 	
-
+	@GetMapping("stayUser")
+	public String stayUser() {
+		return "admin/stayUser";
+	}
 
 }
