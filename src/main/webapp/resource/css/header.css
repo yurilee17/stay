@@ -323,7 +323,7 @@ header .gnb>li>button:hover {
 	color: rgba(255, 255, 255, 1)
 }
 
-header .gnb>li>button:hover {
+header.scrolled .gnb>li>button:hover {
 	color: rgba(0, 0, 0, 0.87);
 }
 
