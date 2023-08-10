@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,25 +36,24 @@
 				</ul>
 			</div>
 			<!-- 문구 -->
-			<h3>
-				<span></span>
-				<p>회원 조회</p>
-			</h3>
+			<h3>회원 조회</h3>
 			<!-- 회원 검색 -->
 			<div class="userSearch">
 				<select class="userAuth" name="userAuth" id="userAuth">
 					<option>전체</option>
-					<option>사용자</option>
-					<option>관리자</option>
+					<option value="user">사용자</option>
+					<option value="admin">관리자</option>
 				</select>
 				<form id="userSearchForm" class="searchForm">
 					<input type="text" id="userSearchInput" placeholder="">
 					<button type="submit">검색</button>
 				</form>
 				<select class="userSelet" name="userSelet" id="userSelet">
-					<option>아이디</option>
-					<option>휴대폰번호</option>
-					<option>닉네임</option>
+					<option disabled selected value="">검색 조건</option>
+					<option value="id">아이디</option>
+					<option value="mobile">휴대폰번호</option>
+					<option value="name">이름</option>
+					<option value="nickname">닉네임</option>
 				</select>
 
 			</div>
@@ -73,15 +73,27 @@
 						<th>닉네임</th>
 						<th>권한</th>
 					</tr>
-					<tr>
-						<td>아이디</td>
-						<td>휴대폰번호</td>
-						<td>이름</td>
-						<td>닉네임</td>
-						<ttdh>권한
-						</td>
-					</tr>
+					<c:choose>
+						<c:when test="${empty members}">
+							<tr>
+								<td colspan="5">등록된 데이터가 존재하지 않습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="member" items="${members}">
+								<tr>
+									<!-- <td onclick="location.href='boardContent?no=${board.no }'">${member.id}</td> -->
+									<td>${member.id}</td>
+									<td>${member.mobile}</td>
+									<td>${member.name}</td>
+									<td>${member.nickname}</td>
+									<td>${member.authority}</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</table>
+				<div>${result }</div>
 			</div>
 			<!-- //등록 양식 -->
 		</div>

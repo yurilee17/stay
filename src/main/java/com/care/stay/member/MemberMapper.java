@@ -19,5 +19,8 @@ public interface MemberMapper {
 	MemberDTO getMobile(String id);
 	
 	void passwdReset(MemberDTO member);
-
+	
+	int count();
+	
+	ArrayList<MemberDTO> stayUser(@Param("begin")int begin, @Param("end")int end);
 }

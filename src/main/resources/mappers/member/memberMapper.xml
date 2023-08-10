@@ -3,37 +3,57 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.care.stay.member.MemberMapper">  
-	<resultMap type="com.care.stay.member.MemberDTO" id="memberDto">
-		<id column="id" property="id"/>
-		<result column="password" property="password"/>
-		<result column="mobile" property="mobile"/>
-		<result column="name" property="name"/>
-		<result column="nickname" property="nickname"/>
-		<result column="authority" property="authority"/>
+<mapper namespace="com.care.stay.member.MemberMapper">
+	<resultMap type="com.care.stay.member.MemberDTO"
+		id="memberDto">
+		<id column="id" property="id" />
+		<result column="password" property="password" />
+		<result column="mobile" property="mobile" />
+		<result column="name" property="name" />
+		<result column="nickname" property="nickname" />
+		<result column="authority" property="authority" />
 	</resultMap>
-	
+
 	<select id="loginProc" resultMap="memberDto">
-		SELECT * FROM member WHERE id=#{id}
+		SELECT * FROM member WHERE
+		id=#{id}
 	</select>
-	
+
 	<select id="serchNickname" resultMap="memberDto">
-		SELECT * FROM member WHERE nickname=#{nickname}
+		SELECT * FROM member WHERE
+		nickname=#{nickname}
 	</select>
-	
-	<insert id="registerProc" parameterType="com.care.stay.member.MemberDTO">
-		INSERT INTO member VALUES(#{id}, #{password}, #{mobile}, '', #{nickname}, #{authority})
+
+	<insert id="registerProc"
+		parameterType="com.care.stay.member.MemberDTO">
+		INSERT INTO member VALUES(#{id}, #{password}, #{mobile},
+		'', #{nickname}, #{authority})
 	</insert>
-	
+
 	<select id="getMobile" resultMap="memberDto">
-		SELECT mobile FROM member WHERE id=#{id}
+		SELECT mobile FROM member WHERE
+		id=#{id}
 	</select>
-	
+
 	<update id="passwdReset"
 		parameterType="com.care.stay.member.MemberDTO">
 		UPDATE member
 		SET password=#{password}
 		WHERE id=#{id}
 	</update>
-	
+
+	<select id="count">
+		SELECT count(id) FROM member
+	</select>
+
+	<select id="stayUser" resultMap="memberDto">
+		SELECT BBB.* FROM
+		(SELECT
+		ROWNUM as rn, AAA.* FROM
+		(SELECT id, mobile, name, nickname,
+		authority FROM member)AAA)BBB
+		WHERE BBB.rn BETWEEN
+		#{begin} AND #{end}
+	</select>
+
 </mapper>

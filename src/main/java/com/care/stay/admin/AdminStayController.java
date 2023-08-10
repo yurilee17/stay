@@ -125,9 +125,11 @@ public class AdminStayController {
 		return "admin/stayRegister";
 	}
 	
-	
+	//회원 정보 조회
 	@GetMapping("stayUser")
-	public String stayUser() {
+	public String stayUser(@RequestParam(value="currentPage", required = false)String cp,
+			Model model) {
+		service.stayUser(cp, model);
 		return "admin/stayUser";
 	}
 
