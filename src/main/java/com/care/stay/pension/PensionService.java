@@ -104,12 +104,10 @@ public class PensionService {
         pensionroom.setNo(no);
         pensionroom.setPcode(pCode);
         pensionroom.setProomCode(String.valueOf(roomcount));
-        pensionroom.setProomName(multi.getParameter("hroomname"));
-        pensionroom.setProomNumber(getIntParameter(multi, "hroomnumber"));
-        pensionroom.setPprice(multi.getParameter("hprice"));
-        pensionroom.setPpeople(getIntParameter(multi, "hpeople"));
-        pensionroom.setPguide(multi.getParameter("hguide"));
-        pensionroom.setPcomfort(multi.getParameter("hcomfort"));
+        pensionroom.setProomName(multi.getParameter("roomname"));
+        pensionroom.setProomNumber(getIntParameter(multi, "roomnumber"));
+        pensionroom.setPprice(multi.getParameter("pprice"));
+        pensionroom.setPpeople(getIntParameter(multi, "ppeople"));
         
         /* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 		String[] check1 = multi.getParameterValues("check1");
@@ -128,13 +126,18 @@ public class PensionService {
 		    checks.addAll(Arrays.asList(check3));
 		}
 
-		String poptions = String.join(",", checks);
+		String poptions;
+		if (checks.isEmpty()) {
+			poptions = "";
+		} else {
+			poptions = String.join(",", checks);
+		}
 		pensionroom.setPcomfort(poptions);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		pensionroom.setProomImage("");
-		MultipartFile file = multi.getFile("proomimage");
+		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.

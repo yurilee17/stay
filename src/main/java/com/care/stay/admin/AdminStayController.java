@@ -84,6 +84,7 @@ public class AdminStayController {
 			session.setAttribute("no", motel.getNo());
 			session.setAttribute("code", motel.getMcode());
 			int roomcount = motelMapper.motelroomcount();
+			model.addAttribute("stayType", stayType);
 			model.addAttribute("motel", motel);
 			model.addAttribute("mroomcode", roomcount);
 	    } else if (stayType.equals("hotel")) {
@@ -91,13 +92,15 @@ public class AdminStayController {
 			session.setAttribute("no", hotel.getNo());
 			session.setAttribute("code", hotel.getHcode());
 			int roomcount = hotelMapper.hotelroomcount();
-			model.addAttribute("hmotel", hotel);
+			model.addAttribute("stayType", stayType);
+			model.addAttribute("hotel", hotel);
 			model.addAttribute("hroomcode", roomcount);
 	    } else if (stayType.equals("pension")) {
 	    	PensionDTO pension = pservice.stayContent(n);
 			session.setAttribute("no", pension.getNo());
 			session.setAttribute("code", pension.getPcode());
 			int roomcount = pensionMapper.pensionroomcount();
+			model.addAttribute("stayType", stayType);
 			model.addAttribute("pension", pension);
 			model.addAttribute("proomcode", roomcount);
 	    } else if (stayType.equals("gh")) {
@@ -105,6 +108,7 @@ public class AdminStayController {
 			session.setAttribute("no", gh.getNo());
 			session.setAttribute("code", gh.getGcode());
 			int roomcount = ghMapper.ghroomcount();
+			model.addAttribute("stayType", stayType);
 			model.addAttribute("gh", gh);
 			model.addAttribute("groomcode", roomcount);
 	    } else if (stayType.equals("camping")) {
@@ -112,6 +116,7 @@ public class AdminStayController {
 			session.setAttribute("no", camping.getNo());
 			session.setAttribute("code", camping.getCcode());
 			int roomcount = campingMapper.campingroomcount();
+			model.addAttribute("stayType", stayType);
 			model.addAttribute("camping", camping);
 			model.addAttribute("croomcode", roomcount);
 	    } else {
@@ -143,7 +148,7 @@ public class AdminStayController {
 	@RequestMapping("stayContent")
 	public String stayContent(
 		@RequestParam(value="no", required = false)String n, 
-		@RequestParam(value="stayType", required = false) String stayType,
+		@RequestParam(value="stayType", required = false)String stayType,
 		@RequestParam(value="mRoomCode", required = false)String roomCode,
 		Model model) {
 		
@@ -244,8 +249,8 @@ public class AdminStayController {
 	}
 	
 	@PostMapping("staydetailregisterProc")
-	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi,
-			@RequestParam("stayType") String stayType) {
+	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
+		String stayType = multi.getParameter("stayType");
 		String msg = "";
 		
 		if (stayType == null) {
@@ -263,7 +268,7 @@ public class AdminStayController {
 		} else {
 			msg = "숙소 종류가 적합하지 않습니다. 다시 입력하세요.";
 		}
-		
+
 		if(msg.equals("객실 DB 작성 완료"))
 			return "redirect:stayInfo";
 		

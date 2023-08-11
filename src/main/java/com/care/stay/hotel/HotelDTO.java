@@ -82,7 +82,7 @@ public class HotelDTO {
 	public void setHcheckInTime(String hcheckInTime) {
 		this.hcheckInTime = hcheckInTime;
 	}
-	public String getHcheckoutTime() {
+	public String getHcheckOutTime() {
 		return hcheckOutTime;
 	}
 	public void setHcheckOutTime(String hcheckOutTime) {

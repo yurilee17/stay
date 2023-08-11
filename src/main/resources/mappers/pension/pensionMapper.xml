@@ -10,7 +10,7 @@
 	</resultMap>
 	
 	<resultMap type="com.care.stay.pension.PensionRoomDTO" id="pensionroomDto">
-		<id column="proomcode" property="proomcode"/>
+		<id column="proomCode" property="proomCode"/>
 	</resultMap>
 	
 	<select id="stayContent" resultMap="pensionDto">
@@ -53,8 +53,8 @@
 	</select>
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.pension.PensionRoomDTO">
-		INSERT INTO pensionroom (no, pcode, proomcode, proomname, proomimage, proomnumber, pprice, ppeople, pguide, pcomfort)
-		VALUES(#{no}, #{pcode}, #{proomCode}, #{proomName}, #{proomImage}, #{proomNumber}, #{pprice}, #{ppeople}, #{pguide}, #{pcomfort})
+		INSERT INTO pensionroom (no, pcode, proomcode, proomname, proomimage, proomnumber, pprice, ppeople, pcomfort)
+		VALUES(#{no}, #{pcode}, #{proomCode}, #{proomName}, #{proomImage}, #{proomNumber}, #{pprice}, #{ppeople}, #{pcomfort})
 	</insert>
 
 </mapper>

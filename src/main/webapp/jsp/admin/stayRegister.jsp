@@ -257,6 +257,8 @@
 	      }).open();
 	  }
 	  
+		
+	    // 숙소 종류에 따라 달라지는 일부 세부메뉴 나타내기
 	  function showRegContent() {
 		  var stayType = document.getElementById("stayType");
 		  var regContent = document.getElementsByClassName("regContent");
@@ -302,6 +304,11 @@
 		    document.getElementById("detailRegion5").style.display = "block";
 		  }
 		}
+	  	
+	  	
+	  	
+	  	
+	  	
 	  	
 	  	
 

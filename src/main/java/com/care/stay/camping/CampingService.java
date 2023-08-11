@@ -102,12 +102,11 @@ public class CampingService {
         campingroom.setNo(no);
         campingroom.setCcode(cCode);
         campingroom.setCroomCode(String.valueOf(roomcount));
-        campingroom.setCroomName(multi.getParameter("hroomname"));
-        campingroom.setCroomNumber(getIntParameter(multi, "hroomnumber"));
-        campingroom.setCprice(multi.getParameter("hprice"));
-        campingroom.setCpeople(getIntParameter(multi, "hpeople"));
-        campingroom.setCguide(multi.getParameter("hguide"));
-        campingroom.setCcomfort(multi.getParameter("hcomfort"));
+        campingroom.setCroomName(multi.getParameter("roomname"));
+        campingroom.setCroomNumber(getIntParameter(multi, "roomnumber"));
+        campingroom.setCprice(multi.getParameter("cprice"));
+        campingroom.setCpeople(getIntParameter(multi, "cpeople"));
+        campingroom.setCcomfort(multi.getParameter("ccomfort"));
         
         /* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 		String[] check1 = multi.getParameterValues("check1");
@@ -126,13 +125,18 @@ public class CampingService {
 		    checks.addAll(Arrays.asList(check3));
 		}
 
-		String cOptions = String.join(",", checks);
-		campingroom.setCcomfort(cOptions);
+		String coptions;
+		if (checks.isEmpty()) {
+			coptions = "";
+		} else {
+			coptions = String.join(",", checks);
+		}
+		campingroom.setCcomfort(coptions);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		campingroom.setCroomImage("");
-		MultipartFile file = multi.getFile("hroomimage");
+		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.

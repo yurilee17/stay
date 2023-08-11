@@ -99,13 +99,13 @@ public class GHService {
         int roomcount = ghMapper.ghroomcount();
         
         ghroom.setNo(no);
+        ghroom.setGcode(gCode);
         ghroom.setGroomCode(String.valueOf(roomcount));
-        ghroom.setGroomName(multi.getParameter("hroomname"));
-        ghroom.setGroomNumber(getIntParameter(multi, "hroomnumber"));
-        ghroom.setGprice(getIntParameter(multi, "hprice"));
-        ghroom.setGpeople(getIntParameter(multi, "hpeople"));
-        ghroom.setGguide(multi.getParameter("hguide"));
-        ghroom.setGcomfort(multi.getParameter("hcomfort"));
+        ghroom.setGroomName(multi.getParameter("roomname"));
+        ghroom.setGbedType(multi.getParameter("gbedtype"));
+        ghroom.setGroomNumber(getIntParameter(multi, "roomnumber"));
+        ghroom.setGprice(getIntParameter(multi, "gprice"));
+        ghroom.setGpeople(getIntParameter(multi, "gpeople"));
         
         /* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 		String[] check1 = multi.getParameterValues("check1");
@@ -124,13 +124,18 @@ public class GHService {
 		    checks.addAll(Arrays.asList(check3));
 		}
 
-		String goptions = String.join(",", checks);
+		String goptions;
+		if (checks.isEmpty()) {
+			goptions = "";
+		} else {
+			goptions = String.join(",", checks);
+		}
 		ghroom.setGcomfort(goptions);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		ghroom.setGroomImage("");
-		MultipartFile file = multi.getFile("hroomimage");
+		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.

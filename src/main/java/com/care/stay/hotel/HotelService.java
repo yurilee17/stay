@@ -98,12 +98,11 @@ public class HotelService {
         hotelroom.setNo(no);
         hotelroom.setHcode(Hcode);
         hotelroom.setHroomCode(String.valueOf(roomcount));
-        hotelroom.setHroomName(multi.getParameter("hroomname"));
-        hotelroom.setHroomNumber(getIntParameter(multi, "hroomnumber"));
+        hotelroom.setHroomName(multi.getParameter("roomname"));
+        hotelroom.setHbedType(multi.getParameter("hbedtype"));
+        hotelroom.setHroomNumber(getIntParameter(multi, "roomnumber"));
         hotelroom.setHprice(getIntParameter(multi, "hprice"));
         hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
-        hotelroom.setHguide(multi.getParameter("hguide"));
-        hotelroom.setHcomfort(multi.getParameter("hcomfort"));
         
         /* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 		String[] check1 = multi.getParameterValues("check1");
@@ -122,13 +121,18 @@ public class HotelService {
 		    checks.addAll(Arrays.asList(check3));
 		}
 
-		String moptions = String.join(",", checks);
-		hotelroom.setHcomfort(moptions);
+		String hoptions;
+		if (checks.isEmpty()) {
+			hoptions = "";
+		} else {
+			hoptions = String.join(",", checks);
+		}
+		hotelroom.setHcomfort(hoptions);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		hotelroom.setHroomImage("");
-		MultipartFile file = multi.getFile("hroomimage");
+		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.
@@ -176,8 +180,7 @@ public class HotelService {
 		HotelDTO hotel = hotelMapper.stayContent(no);
 		if(hotel == null)
 			return null;
-
-		System.out.println("호텔 이름 테스트 : " + hotel.getHname());
+		
 		return hotel;
 	}
 

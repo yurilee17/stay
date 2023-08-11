@@ -10,7 +10,7 @@
 	</resultMap>
 	
 	<resultMap type="com.care.stay.gh.GHRoomDTO" id="ghroomDto">
-		<id column="groomcode" property="groomcode"/>
+		<id column="groomCode" property="groomCode"/>
 	</resultMap>
 
 	<select id="stayContent" resultMap="ghDto">
@@ -53,8 +53,8 @@
 	</select>
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.gh.GHRoomDTO">
-		INSERT INTO ghroom (no, gcode, groomcode, groomname, groomimage, groomnumber, gprice, gpeople, gguide, gcomfort)
-		VALUES(#{no}, #{gcode}, #{groomCode}, #{groomName}, #{groomImage}, #{groomNumber}, #{gprice}, #{gpeople}, #{gguide}, #{gcomfort})
+		INSERT INTO ghroom (no, gcode, groomcode, groomname, gbedtype, groomimage, groomnumber, gprice, gpeople, gcomfort)
+		VALUES(#{no}, #{gcode}, #{groomCode}, #{groomName}, #{gbedType}, #{groomImage}, #{groomNumber}, #{gprice}, #{gpeople}, #{gcomfort})
 	</insert>	
 	
 </mapper>

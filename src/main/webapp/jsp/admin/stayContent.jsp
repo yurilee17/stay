@@ -81,10 +81,11 @@
 			</div>
 
 			<article class="room_info">
+			<c:choose>
+			
+				<c:when test="${'motel' eq stayType}">
 				<c:choose>
-					<c:when test="${empty motelRooms }">
-						<h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3>
-					</c:when>
+					<c:when test="${empty motelRooms }"><h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3></c:when>
 					<c:otherwise>
 						<c:forEach var="motelRoom" items="${ motelRooms}">
 							<div class="room">
@@ -117,16 +118,187 @@
 											</ul>
 										</div>
 									</div>
-									<div class="option">
+<%-- 									<div class="option">
 										<ul>
-										<%-- 	<li><span>부대시설 : </span>${motelRoom.moption }</li> --%>
+											<li><span>부대시설 : </span>${motelRoom.moption }</li>
 										</ul>
+									</div> --%>
+			                    </div>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				</c:when>	
+				
+				<c:when test="${'hotel' eq stayType}">
+				<c:choose>
+					<c:when test="${empty hotelRooms }"><h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3></c:when>
+					<c:otherwise>
+						<c:forEach var="hotelRoom" items="${ hotelRooms}">
+							<div class="room">
+								<p class="pic_view "><img class="lazy" src=""></p>
+								<strong class="title">${hotelRoom.hroomName }</strong>
+								<h4>객실 코드 : ${hotelRoom.hroomCode }</h4>
+								
+								<div class="info">
+			                        <div class="half ended">
+			                            <div class="price">
+			                                <strong> </strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)"> </b> <!-- 표시금액 --></p>                                       
+											</div>
+											<ul>
+												<li><span>최대인원</span>${hotelRoom.hpeople }명&nbsp;</li>
+												<li><span>객실타입</span>${hotelRoom.hbedType }&nbsp;</li>
+											</ul>
+			                            </div>
+			                        </div>
+			                        <div class="half ended">
+										<div class="price">
+											<strong>숙박</strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)">${hotelRoom.hprice }원</b> <!-- 표시금액 --></p>                                        
+											</div>
+											<ul>
+												<li><span>체크인</span>${hotel.hcheckInTime }시부터&nbsp;</li>
+												<li><span>체크아웃</span>익일 ${hotel.hcheckOutTime }시까지&nbsp;</li>
+											</ul>
+										</div>
 									</div>
 			                    </div>
 							</div>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+				</c:when>
+				
+				<c:when test="${'pension' eq stayType}">
+				<c:choose>
+					<c:when test="${empty pensionRooms }"><h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3></c:when>
+					<c:otherwise>
+						<c:forEach var="pensionRoom" items="${ pensionRooms}">
+							<div class="room">
+								<p class="pic_view "><img class="lazy" src=""></p>
+								<strong class="title">${pensionRoom.proomName }</strong>
+								<h4>객실 코드 : ${pensionRoom.proomCode }</h4>
+								
+								<div class="info">
+			                        <div class="half ended">
+			                            <div class="price">
+			                                <strong> </strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)"> </b> <!-- 표시금액 --></p>                                       
+											</div>
+											<ul>
+												<li><span>최대인원</span>${pensionRoom.ppeople }명&nbsp;</li>
+												<li><span></span></li>
+											</ul>
+			                            </div>
+			                        </div>
+			                        <div class="half ended">
+										<div class="price">
+											<strong>숙박</strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)">${pensionRoom.pprice }원</b> <!-- 표시금액 --></p>                                        
+											</div>
+											<ul>
+												<li><span>체크인</span>${pension.pcheckInTime }시부터&nbsp;</li>
+												<li><span>체크아웃</span>익일 ${pension.pcheckOutTime }시까지&nbsp;</li>
+											</ul>
+										</div>
+									</div>
+			                    </div>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				</c:when>
+				
+				<c:when test="${'gh' eq stayType}">
+				<c:choose>
+					<c:when test="${empty ghRooms }"><h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3></c:when>
+					<c:otherwise>
+						<c:forEach var="ghRoom" items="${ ghRooms}">
+							<div class="room">
+								<p class="pic_view "><img class="lazy" src=""></p>
+								<strong class="title">${ghRoom.groomName }</strong>
+								<h4>객실 코드 : ${ghRoom.groomCode }</h4>
+								
+								<div class="info">
+			                        <div class="half ended">
+			                            <div class="price">
+			                                <strong> </strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)"> </b> <!-- 표시금액 --></p>                                       
+											</div>
+											<ul>
+												<li><span>최대인원</span>${ghRoom.gpeople }명&nbsp;</li>
+												<li><span>객실타입</span>${ghRoom.gbedType }&nbsp;</li>
+											</ul>
+			                            </div>
+			                        </div>
+			                        <div class="half ended">
+										<div class="price">
+											<strong>숙박</strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)">${ghRoom.gprice }원</b> <!-- 표시금액 --></p>                                        
+											</div>
+											<ul>
+												<li><span>체크인</span>${gh.gcheckInTime }시부터&nbsp;</li>
+												<li><span>체크아웃</span>익일 ${gh.gcheckOutTime }시까지&nbsp;</li>
+											</ul>
+										</div>
+									</div>
+			                    </div>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				</c:when>
+				
+				<c:when test="${'camping' eq stayType}">
+				<c:choose>
+					<c:when test="${empty campingRooms }"><h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3></c:when>
+					<c:otherwise>
+						<c:forEach var="campingRoom" items="${ campingRooms}">
+							<div class="room">
+								<p class="pic_view "><img class="lazy" src=""></p>
+								<strong class="title">${campingRoom.croomName }</strong>
+								<h4>객실 코드 : ${campingRoom.croomCode }</h4>
+								
+								<div class="info">
+			                        <div class="half ended">
+			                            <div class="price">
+			                                <strong> </strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)"> </b> <!-- 표시금액 --></p>                                       
+											</div>
+											<ul>
+												<li><span>최대인원</span>${campingRoom.cpeople }명&nbsp;</li>
+												<li><span></span>&nbsp;</li>
+											</ul>
+			                            </div>
+			                        </div>
+			                        <div class="half ended">
+										<div class="price">
+											<strong>숙박</strong>
+											<div>
+												<p><b style="color: rgba(0,0,0,1)">${campingRoom.cprice }원</b> <!-- 표시금액 --></p>                                        
+											</div>
+											<ul>
+												<li><span>체크인</span>${camping.ccheckInTime }시부터&nbsp;</li>
+												<li><span>체크아웃</span>익일 ${camping.ccheckOutTime }시까지&nbsp;</li>
+											</ul>
+										</div>
+									</div>
+			                    </div>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+				</c:when>													
+				
+			</c:choose>
 			</article>
 
 

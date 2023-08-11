@@ -10,7 +10,6 @@ public class PensionRoomDTO {
 	private int proomNumber;
 	private String pprice;
 	private int ppeople;
-	private String pguide;
 	private String pcomfort;
 	
 	
@@ -61,12 +60,6 @@ public class PensionRoomDTO {
 	}
 	public void setPpeople(int ppeople) {
 		this.ppeople = ppeople;
-	}
-	public String getPguide() {
-		return pguide;
-	}
-	public void setPguide(String pguide) {
-		this.pguide = pguide;
 	}
 	public String getPcomfort() {
 		return pcomfort;

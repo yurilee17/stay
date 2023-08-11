@@ -10,7 +10,6 @@ public class CampingRoomDTO {
 	private int croomNumber;
 	private String cprice;
 	private int cpeople;
-	private String cguide;
 	private String ccomfort;
 	
 	
@@ -61,12 +60,6 @@ public class CampingRoomDTO {
 	}
 	public void setCpeople(int cpeople) {
 		this.cpeople = cpeople;
-	}
-	public String getCguide() {
-		return cguide;
-	}
-	public void setCguide(String cguide) {
-		this.cguide = cguide;
 	}
 	public String getCcomfort() {
 		return ccomfort;

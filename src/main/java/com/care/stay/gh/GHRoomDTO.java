@@ -6,11 +6,11 @@ public class GHRoomDTO {
 	private String gcode;
 	private String groomCode;
 	private String groomName;
+	private String gbedType;
 	private String groomImage;
 	private int groomNumber;
 	private int gprice;
 	private int gpeople;
-	private String gguide;
 	private String gcomfort;
 	
 	
@@ -38,6 +38,12 @@ public class GHRoomDTO {
 	public void setGroomName(String groomName) {
 		this.groomName = groomName;
 	}
+	public String getGbedType() {
+		return gbedType;
+	}
+	public void setGbedType(String gbedType) {
+		this.gbedType = gbedType;
+	}
 	public String getGroomImage() {
 		return groomImage;
 	}
@@ -61,12 +67,6 @@ public class GHRoomDTO {
 	}
 	public void setGpeople(int gpeople) {
 		this.gpeople = gpeople;
-	}
-	public String getGguide() {
-		return gguide;
-	}
-	public void setGguide(String gguide) {
-		this.gguide = gguide;
 	}
 	public String getGcomfort() {
 		return gcomfort;

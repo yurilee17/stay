@@ -10,7 +10,7 @@
 	</resultMap>
 	
 	<resultMap type="com.care.stay.camping.CampingRoomDTO" id="campingroomDto">
-		<id column="croomcode" property="croomcode"/>
+		<id column="croomCode" property="croomCode"/>
 	</resultMap>	
 
 	<select id="stayContent" resultMap="campingDto">
@@ -53,8 +53,8 @@
 	</select>
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.camping.CampingRoomDTO">
-		INSERT INTO campingroom (no, ccode, croomcode, croomname, croomimage, croomnumber, cprice, cpeople, cguide, ccomfort)
-		VALUES(#{no}, #{ccode}, #{croomCode}, #{croomName}, #{croomImage}, #{croomNumber}, #{cprice}, #{cpeople}, #{cguide}, #{ccomfort})
+		INSERT INTO campingroom (no, ccode, croomcode, croomname, croomimage, croomnumber, cprice, cpeople, ccomfort)
+		VALUES(#{no}, #{ccode}, #{croomCode}, #{croomName}, #{croomImage}, #{croomNumber}, #{cprice}, #{cpeople}, #{ccomfort})
 	</insert>	
 	
 </mapper>

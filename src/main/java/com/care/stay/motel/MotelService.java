@@ -114,12 +114,11 @@ public class MotelService {
 		motelroom.setNo(no);
 		motelroom.setMcode(mCode);
         motelroom.setMroomCode(String.valueOf(roomcount));
-		motelroom.setMroomName(multi.getParameter("mroomname"));
-		motelroom.setMroomImage(multi.getParameter("mroomimage"));
-		motelroom.setMroomNumber(getIntParameter(multi, "mroomnumber"));
+		motelroom.setMroomName(multi.getParameter("roomname"));
+		motelroom.setMroomNumber(getIntParameter(multi, "roomnumber"));
 		motelroom.setMdaesilPrice(getIntParameter(multi, "mdaesilprice"));
 	    motelroom.setMstayPrice(getIntParameter(multi, "mstayprice"));
-
+	    
 		/* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 		String[] check1 = multi.getParameterValues("check1");
 		String[] check2 = multi.getParameterValues("check2");
@@ -137,13 +136,18 @@ public class MotelService {
 		    checks.addAll(Arrays.asList(check3));
 		}
 
-		String moptions = String.join(",", checks);
+		String moptions;
+		if (checks.isEmpty()) {
+			moptions = "";
+		} else {
+			moptions = String.join(",", checks);
+		}
 		motelroom.setMoption(moptions);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		motelroom.setMroomImage("");
-		MultipartFile file = multi.getFile("mroomimage");
+		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.
@@ -220,16 +224,6 @@ public class MotelService {
 		}
 		
 		return motelMapper.stayRoomContent(n);
-		
-		
-//		MotelRoomDTO motelroom = motelmapper.stayRoomContent(no);
-//		if(motelroom == null)
-//			return null;
-//		
-//		List<MotelRoomDTO> motelrooms = new ArrayList<>();
-//	    motelrooms.add(motelroom);
-//
-//	    return motelrooms;
 	}
 
 	

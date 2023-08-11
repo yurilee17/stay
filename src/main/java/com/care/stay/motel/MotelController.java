@@ -21,32 +21,4 @@ public class MotelController {
 		return "board/motel";
 	}
 	
-//	@RequestMapping("stayInfo")
-//	public String stayInfo(
-//			@RequestParam(value="currentPage", required = false)String cp, 
-//			Model model) {
-//		mservice.stayInfo(cp, model);
-//		return "admin/stayInfo";
-//	}
-	
-//	@PostMapping("staydetailregisterProc")
-//	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
-//		String msg = mservice.staydetailregisterProc(multi);
-//		if(msg.equals("객실 DB 작성 완료"))
-//			return "redirect:stayInfo";
-//		
-//		model.addAttribute("msg", msg);
-//		return "admin/stayDetailRegister";
-//	}
-	
-//	@PostMapping("stayregisterProc")
-//	public String stayregisterProc(Model model, MultipartHttpServletRequest multi) {
-//		String msg = mservice.stayregisterProc(multi);
-//		if(msg.equals("숙소 DB 작성 완료"))
-//			return "redirect:stayInfo";
-//		
-//		model.addAttribute("msg", msg);
-//		return "admin/stayRegister";
-//	}
-	
 }
