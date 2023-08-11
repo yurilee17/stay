@@ -41,7 +41,7 @@
 			<div class="userSearch">
 				<select class="userAuth" id="userAuth"
 					onchange="selectAuth(this.value)">
-					<option>전체</option>
+					<option value="">전체</option>
 					<option value="user">사용자</option>
 					<option value="admin">관리자</option>
 				</select>

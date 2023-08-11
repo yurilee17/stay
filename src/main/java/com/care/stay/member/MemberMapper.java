@@ -20,7 +20,13 @@ public interface MemberMapper {
 	
 	void passwdReset(MemberDTO member);
 	
-	int count();
+	// 검색된 부분의 전체 갯수
+	int countAll();
 	
+	int count1(String optionName, String option);
+	
+	int count2(String option1Name, String option1,  String option2Name, String option2);
+	
+	//
 	ArrayList<MemberDTO> stayUser(@Param("begin")int begin, @Param("end")int end);
 }

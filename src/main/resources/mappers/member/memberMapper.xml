@@ -42,18 +42,65 @@
 		WHERE id=#{id}
 	</update>
 
-	<select id="count">
+	<select id="countAll">
 		SELECT count(id) FROM member
+	</select>
+
+	<select id="count1">
+		SELECT count(id) FROM member WHERE
+		#{optionName}=#{option}
+	</select>
+
+	<select id="count2">
+		SELECT count(id) FROM member WHERE
+		(#{option1Name}=#{option1} AND #{option1Name}=#{option1})
+	</select>
+	
+	<select id="count">
+		<choose>
+			<when test="select == 'id'">
+				SELECT count(id) FROM session_exam WHERE id like '%'||#{search}||'%'
+			</when>
+			<when test="select == 'email'">
+				SELECT count(id) FROM session_exam WHERE email like '%'||#{search}||'%'
+			</when>
+			<otherwise>
+				SELECT count(id) FROM session_exam
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="selectAll" resultType="com.care.dbBasic.MemberDTO">
+		<choose>
+			<when test="select == 'id'">
+				SELECT AAA.* FROM
+				(SELECT rownum as rn, id, pw, name,
+				email
+				FROM session_exam WHERE id like '%'||#{search}||'%')AAA
+				WHERE
+				AAA.rn BETWEEN #{begin} AND #{end}
+			</when>
+			<when test="select == 'email'">
+				SELECT AAA.* FROM
+				(SELECT rownum as rn, id, pw, name,
+				email
+				FROM session_exam WHERE email like '%'||#{search}||'%')AAA
+				WHERE AAA.rn BETWEEN #{begin} AND #{end}
+			</when>
+			<otherwise>
+				SELECT AAA.* FROM
+				(SELECT rownum as rn, id, pw, name, email
+				FROM session_exam )AAA
+				WHERE AAA.rn BETWEEN #{begin} AND #{end}
+			</otherwise>
+		</choose>
 	</select>
 
 	<select id="stayUser" resultMap="memberDto">
 		SELECT BBB.* FROM
-		(SELECT
-		ROWNUM as rn, AAA.* FROM
-		(SELECT id, mobile, name, nickname,
-		authority FROM member)AAA)BBB
-		WHERE BBB.rn BETWEEN
-		#{begin} AND #{end}
+		(SELECT ROWNUM
+		as rn, AAA.* FROM (SELECT id, mobile, name, nickname, authority FROM
+		member)AAA)BBB WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>
 
 </mapper>

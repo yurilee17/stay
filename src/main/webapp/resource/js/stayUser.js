@@ -48,3 +48,21 @@ function searchUser() {
 		alert("");
 	}
 }
+
+/* 검색 */
+var xhr;
+var pro;
+function sendMsg() {
+	xhr = new XMLHttpRequest();
+	xhr.open('post', 'stayUser')
+	xhr.send(document.getElementById('mobile').value)
+	xhr.onreadystatechange = resProc
+}
+
+function resProc() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		if (xhr.responseText === '전송 완료') {
+		}
+		console.log("test 결과: " + xhr.responseText);
+	}
+}
