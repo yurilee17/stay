@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* 공통 */
+select, button{
+	cursor: pointer;
+}
+
 .stayUser {
 	display: block;
 	width: 100%;
