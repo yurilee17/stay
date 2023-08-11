@@ -24,7 +24,7 @@ public class Hotelcontroller {
 	//	}
 
 	
-	  //1차시도! 
+	  //hotellist 첫화면 
 	  @RequestMapping("hotellist") 
 	  	public String hotellist(
 	  
@@ -37,17 +37,7 @@ public class Hotelcontroller {
 	  	}
 	  
 	  
-		/*
-		 * @GetMapping("/getSelectedText")
-		 * 
-		 * @ResponseBody public String getSelectedText(@RequestParam("selectedText")
-		 * String selectedText) { // 받아온 selectedText 값을 사용하여 작업 수행 String resultText =
-		 * service.processSelectedText(selectedText);
-		 * 
-		 * // 결과를 클라이언트로 반환 return "Processed value: " + selectedText;
-		 */
-	  
-	  
+	  //hotellist 지역선택 
 	  @RequestMapping("Main") 
 	  	public String Main(
 			  
@@ -62,21 +52,6 @@ public class Hotelcontroller {
 			  	
 		  		return "hotel/hotellist";
 			  	}
-	 
-	 
-	  
-	  
-	  
-	//2차시도!!
-	/*
-	 * @RequestMapping("hotellist") public String hotellist(
-	 * 
-	 * @RequestParam(value="currentPage", required = false)String cp, String
-	 * mainMenu, String subMenu, Model model) { service.hotellist(cp, mainMenu,
-	 * subMenu, model); return "hotel/hotellist"; }
-	 */
-	
-	
 	
 	  
 	@RequestMapping("hotelpage")

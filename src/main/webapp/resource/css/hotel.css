@@ -139,6 +139,7 @@ input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
 }
 
 /*인원*/
+
 #product > .body_wrap > aside > .filter_wrap > .filter_box > section > .cnt_people > button{
 	border:0;
 	background-color: #ffffff;
@@ -147,6 +148,12 @@ input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
 	padding: 0 20px;
 	vertical-align: middle;
 	cursor:pointer;
+}
+
+#product > .body_wrap > aside > .filter_wrap > .filter_box > section > .cnt_people > span{
+	color:#f2074c;
+	font-size: 18px;
+	font-weight: 700;
 }
 
 

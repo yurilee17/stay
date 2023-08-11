@@ -39,7 +39,7 @@
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype 
+		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
 		FROM hotel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
@@ -49,7 +49,7 @@
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype 
+		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
 		FROM hotel WHERE hdetailregion = #{selectedText})AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
