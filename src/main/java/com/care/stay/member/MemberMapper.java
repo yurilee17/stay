@@ -11,22 +11,24 @@ import com.care.stay.member.MemberDTO;
 public interface MemberMapper {
 
 	MemberDTO loginProc(String id);
-	
+
 	MemberDTO serchNickname(String nickname);
-	
+
 	void registerProc(MemberDTO member);
-	
+
 	MemberDTO getMobile(String id);
-	
+
 	void passwdReset(MemberDTO member);
-	
-	// 검색된 부분의 전체 갯수
-	int countAll();
-	
-	int count1(String optionName, String option);
-	
-	int count2(String option1Name, String option1,  String option2Name, String option2);
-	
-	//
-	ArrayList<MemberDTO> stayUser(@Param("begin")int begin, @Param("end")int end);
+
+	int count(@Param("option1Name") String option1Name, @Param("option1") String option1,
+			@Param("option2Name") String option2Name, @Param("option2") String option2);
+
+	ArrayList<MemberDTO> stayUser(@Param("begin") int begin, @Param("end") int end,
+			@Param("option1Name") String option1Name, @Param("option1") String option1,
+			@Param("option2Name") String option2Name, @Param("option2") String option2);
+
+//	ArrayList<MemberDTO> list(@Param("begin") int begin, @Param("end") int end, @Param("select") String select,
+//			@Param("search") String search);
+
+//	int count(@Param("select") String select, @Param("search") String search);
 }

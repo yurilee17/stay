@@ -130,36 +130,11 @@ public class AdminStayController {
 	//회원 정보 조회
 	@GetMapping("stayUser")
 	public String stayUser(@RequestParam(value="currentPage", required = false)String cp,
-			Model model) {
-		service.stayUser(cp, model);
+			String option1Name,  String option1, String option2Name, String option2, Model model) {
+
+		service.stayUser(cp, option1Name, option1, option2Name, option2, model);
 		return "admin/stayUser";
 	}
-	
-	@ResponseBody
-	@PostMapping(value = "getUserInfo", produces = "text/plain; charset=utf-8")
-	public String getUserInfo(@RequestBody(required = false) String phone) {
-		return service.sendMsg(phone);
-	}
-	
-	@ResponseBody
-	@PostMapping(value = "getUserInfo", produces = "text/plain; charset=utf-8")
-	public String getUserInfo(@RequestBody(required = false) String phone) {
-		return service.sendMsg(phone);
-	}
-	
-	@ResponseBody
-	@PostMapping(value = "getUserInfo", produces = "text/plain; charset=utf-8")
-	public String getUserInfo(@RequestBody(required = false) String phone) {
-		return service.sendMsg(phone);
-	}
-	
-	@ResponseBody
-	@PostMapping(value = "getUserInfo", produces = "text/plain; charset=utf-8")
-	public String getUserInfo(@RequestBody(required = false) String phone) {
-		return service.sendMsg(phone);
-	}
-
-
 
 
 }

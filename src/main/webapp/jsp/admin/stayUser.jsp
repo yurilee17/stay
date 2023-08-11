@@ -47,7 +47,7 @@
 				</select>
 				<form id="userSearchForm" class="searchForm">
 					<input type="text" id="userSearchInput" placeholder="">
-					<button type="submit" onclick="searchButton()">검색</button>
+					<button type="button" onclick="searchButton()">검색</button>
 				</form>
 				<select class="userSelet" id="userSelet"
 					onchange="infoName(this.value)">
@@ -95,7 +95,7 @@
 						</c:otherwise>
 					</c:choose>
 				</table>
-				<div>${result }</div>
+				<div class="pageNum">${result }</div>
 			</div>
 			<!-- //등록 양식 -->
 		</div>
