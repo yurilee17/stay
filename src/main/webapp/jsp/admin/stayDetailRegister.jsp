@@ -70,7 +70,7 @@
 			<form id="staydetailForm" action="staydetailregisterProc" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="stayType" value="${stayType}">
 			<div class="stay_registerdetail">
-				<table class="stay_detailtable">
+				<table class="stay_detailtable" id="stay_detailtable">
 					<colgroup>
 						<col width="25%"></col>
 						<col width="*"></col>							
@@ -110,37 +110,6 @@
 						<c:when test="${'camping' eq stayType}"><span id="croomcode">${croomcode}</span></c:when>
 						</c:choose></td>
 					</tr>		
-					
-				   <!-- <select class="form_w30" id="stayType" onchange="showSubMenu()">
-						<option value="motel">모텔</option>
-						<option value="hotel">호텔·리조트</option>
-						<option value="pension">펜션</option>
-						<option value="gh">게스트하우스</option>
-						<option value="camping">캠핑·글램핑</option>
-						</select> -->						
-
-				   <%-- <c:choose>
-						<c:when test="${'motel' eq stayType}"><input type="text" class="form_w50" name="mroomname" id="mroomname" placeholder=""></c:when>
-						<c:when test="${'hotel' eq stayType}"><input type="text" class="form_w50" name="hroomname" id="hroomname" placeholder=""></c:when>
-						<c:when test="${'pension' eq stayType}"><input type="text" class="form_w50" name="proomname" id="proomname" placeholder=""></c:when>
-						<c:when test="${'gh' eq stayType}"><input type="text" class="form_w50" name="groomname" id="groomname" placeholder=""></c:when>
-						<c:when test="${'camping' eq stayType}"><input type="text" class="form_w50" name="croomname" id="croomname" placeholder=""></c:when>
-						</c:choose> --%>
-					
-				   <%-- <c:when test="${'motel' eq stayType}"></c:when>
-						<c:when test="${'hotel' eq stayType}"></c:when>
-						<c:when test="${'pension' eq stayType}"></c:when>
-						<c:when test="${'gh' eq stayType}"></c:when>
-						<c:when test="${'camping' eq stayType}"></c:when> --%>
-						
-				   <%-- <c:choose>
-						<c:when test="${'motel' eq stayType}"><input type="file" name="mroomimage" id="mroomimage" ></c:when>
-						<c:when test="${'hotel' eq stayType}"><input type="file" name="hroomimage" id="hroomimage" ></c:when>
-						<c:when test="${'pension' eq stayType}"><input type="file" name="proomimage" id="proomimage" ></c:when>
-						<c:when test="${'gh' eq stayType}"><input type="file" name="groomimage" id="groomimage" ></c:when>
-						<c:when test="${'camping' eq stayType}"><input type="file" name="croomimage" id="croomimage" ></c:when>
-						</c:choose> --%>
-	
 					<tr>
 						<th>이미지 업로드</th>
 						<td><input type="file" name="roomimage" id="roomimage" ></td>
@@ -152,7 +121,6 @@
 					</table>
 					
 					<c:choose><c:when test="${'motel' eq stayType}">
-					
 					<table id ="showDetail" class="showDetail right-menu">
 					<colgroup>
 						<col width="25%"></col>

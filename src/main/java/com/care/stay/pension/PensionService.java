@@ -25,6 +25,8 @@ public class PensionService {
 
 	}
 
+	/* 펜션 DB 등록 */
+	// 숙소의 종류나 등록양식이 서로 조금씩 달라서 각 숙소별 Service 파일로 분배함
 	public String stayregisterProc(MultipartHttpServletRequest multi) {
 		PensionDTO pension = new PensionDTO();
 		pension.setPname(multi.getParameter("name"));
@@ -215,5 +217,10 @@ public class PensionService {
 			return null;
 		
 		return pension;
+	}
+
+	public String stayModifyProc(MultipartHttpServletRequest multi) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

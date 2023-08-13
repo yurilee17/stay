@@ -17,6 +17,16 @@
 		SELECT * FROM motel WHERE no=#{no}
 	</select>
 	
+	<select id="stayModify" resultMap="motelDto">
+		SELECT * FROM motel WHERE no=#{no}
+	</select>
+	
+	<select id="stayModifyProc" resultMap="motelDto">
+		UPDATE motel SET mname=#{mname}, mregion=#{mregion}, mdetailregion=#{mdetailRegion}, maddress=#{maddress}, mdetailaddress=#{mdetailAddress}, 
+		mimage=#{mimage}, minfo=#{minfo}, mdaesilcheckin=#{mdaesilCheckIn}, mdaesilcheckout=#{mdaesilCheckOut}, mdaeesiltime=#{mdaesilTime}, 
+		mstaycheckin=#{mstayCheckIn}, mstaycheckout=#{mstayCheckOut} WHERE no=#{no}
+	</select>
+	
 	<select id="stayRoomContent" resultMap="motelroomDto">
 		SELECT * FROM motelroom WHERE no=#{no}
 	</select>

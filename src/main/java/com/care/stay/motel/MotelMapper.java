@@ -18,4 +18,5 @@ public interface MotelMapper {
 	void staydetailregisterProc(MotelRoomDTO motelroom);
 	int stayCountMotel();
 	List<MotelRoomDTO> stayRoomContent(String n);
+	void stayModifyProc(MotelDTO motel);
 }

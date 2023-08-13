@@ -215,4 +215,10 @@ public class GHService {
 		return gh;
 	}
 
+	public String stayModifyProc(MultipartHttpServletRequest multi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

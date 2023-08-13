@@ -25,6 +25,8 @@ public class HotelService {
 		
 	}
 	
+	/* 호텔 DB 등록 */
+	// 숙소의 종류나 등록양식이 서로 조금씩 달라서 각 숙소별 Service 파일로 분배함
 	public String stayregisterProc(MultipartHttpServletRequest multi) {
 		HotelDTO hotel = new HotelDTO();
 		hotel.setHname(multi.getParameter("name"));
@@ -44,18 +46,14 @@ public class HotelService {
 		MultipartFile file = multi.getFile("imageupload");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
-			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 			hotel.setHimage(fileName);
-
-			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
 			File save = new File(fileLocation + fileName);
 			
 			try {
-				// 서버가 저장한 업로드 파일은 임시저장경로에 있는데 개발자가 원하는 경로로 이동
 				file.transferTo(save);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -89,6 +87,7 @@ public class HotelService {
 		model.addAttribute("currentPage", currentPage);
 	}
 	
+	/*호텔 객실 DB(숙소 상세 DB) 등록*/
 	public String staydetailregisterProc(MultipartHttpServletRequest multi) {
 		HotelRoomDTO hotelroom = new HotelRoomDTO();
         int no = (int) session.getAttribute("no");
@@ -135,18 +134,15 @@ public class HotelService {
 		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
-			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 			hotelroom.setHroomImage(fileName);
 
-			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
 			File save = new File(fileLocation + fileName);
 			
 			try {
-				// 서버가 저장한 업로드 파일은 임시저장경로에 있는데 개발자가 원하는 경로로 이동
 				file.transferTo(save);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -164,8 +160,8 @@ public class HotelService {
 	    try {
 	        return Integer.parseInt(paramValue);
 	    } catch (NumberFormatException e) {
-	        // 예외 처리: 파라미터 값을 int로 변환할 수 없는 경우 기본값 또는 에러 처리를 하면 됨
-	        return 0; // 예시로 0을 반환
+
+	        return 0;
 	    }
 	}
 
@@ -209,6 +205,11 @@ public class HotelService {
 			return null;
 		
 		return hotel;
+	}
+
+	public String stayModifyProc(MultipartHttpServletRequest multi) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

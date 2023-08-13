@@ -58,7 +58,7 @@ public class AdminStayController {
 		return "admin/stayRegister";
 	}
 
-	/* 회원가입시 자동으로 숙소코드를 알려줌*/
+	/* 회원가입시 DB에서 데이터를 읽어온 다음 숙소코드를 표시함*/
 	@GetMapping("getStayCode")
 	@ResponseBody
 	public String getStayCode(@RequestParam String stayType) {
@@ -71,6 +71,8 @@ public class AdminStayController {
 	    return stayCode + nextNo;
 	}
 	
+	/* 숙소 상세 DB 페이지로 넘어가는 과정. 각 숙소별로 상세페이지가 조금씩 다른데다 
+	   숙소 DB와 달리 종류는 정해진 상태이므로 If를 주고 페이지를 고정된 상태로 출력함 */
 	@RequestMapping("stayDetailRegister")
 	public String stayDetailRegister(
 			@RequestParam(value="no", required = false)String n,
@@ -126,7 +128,45 @@ public class AdminStayController {
 	}
 
 	@GetMapping("stayModify")
-	public String stayModify() {
+	public String stayModify(
+			@RequestParam(value="no", required = false)String n,
+			@RequestParam(value="stayType", required = false)String stayType,
+			Model model) {
+		if (stayType == null) {
+			return "redirect:stayInfo";
+	    } else if (stayType.equals("motel")) {
+	    	MotelDTO motel = mservice.stayContent(n);
+			session.setAttribute("no", motel.getNo());
+			session.setAttribute("code", motel.getMcode());
+			model.addAttribute("stayType", stayType);
+			model.addAttribute("motel", motel);
+	    } else if (stayType.equals("hotel")) {
+	    	HotelDTO hotel = hservice.stayContent(n);
+			session.setAttribute("no", hotel.getNo());
+			session.setAttribute("code", hotel.getHcode());
+			model.addAttribute("stayType", stayType);
+			model.addAttribute("hotel", hotel);
+	    } else if (stayType.equals("pension")) {
+	    	PensionDTO pension = pservice.stayContent(n);
+			session.setAttribute("no", pension.getNo());
+			session.setAttribute("code", pension.getPcode());
+			model.addAttribute("stayType", stayType);
+			model.addAttribute("pension", pension);
+	    } else if (stayType.equals("gh")) {
+	    	GHDTO gh = gservice.stayContent(n);
+			session.setAttribute("no", gh.getNo());
+			session.setAttribute("code", gh.getGcode());
+			model.addAttribute("stayType", stayType);
+			model.addAttribute("gh", gh);
+	    } else if (stayType.equals("camping")) {
+	    	CampingDTO camping = cservice.stayContent(n);
+			session.setAttribute("no", camping.getNo());
+			session.setAttribute("code", camping.getCcode());
+			model.addAttribute("stayType", stayType);
+			model.addAttribute("camping", camping);
+	    } else {
+	        return "redirect:stayInfo";
+	    }
 		return "admin/stayModify";
 	}
 	
@@ -302,5 +342,31 @@ public class AdminStayController {
 	    } 
 		return "admin/stayInfo";
 	}
-
+	
+	@PostMapping("stayModifyProc")
+	public String staymodifyProc(MultipartHttpServletRequest multi, 
+			@RequestParam("stayType") String stayType, Model model) {
+		String result = "";
+		if (stayType == null) {
+	        result = "숙소 종류를 선택하세요.";
+	    } else if (stayType.equals("motel")) {
+	        result = mservice.stayModifyProc(multi);
+	    } else if (stayType.equals("hotel")) {
+	        result = hservice.stayModifyProc(multi);
+	    } else if (stayType.equals("pension")) {
+	        result = pservice.stayModifyProc(multi);
+	    } else if (stayType.equals("gh")) {
+	        result = gservice.stayModifyProc(multi);
+	    } else if (stayType.equals("camping")) {
+	        result = cservice.stayModifyProc(multi);
+	    } else {
+	        result = "적합하지 않은 정보가 있습니다. 다시 입력하세요.";
+	    }
+		
+		if (result.equals("숙소 DB 수정 완료")) {
+	        return "redirect:stayInfo";
+	    }
+	    model.addAttribute("msg", result);
+	    return "admin/stayregister";
+	}
 }

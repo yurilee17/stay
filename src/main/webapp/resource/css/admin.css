@@ -38,6 +38,9 @@ ul,ol,li{list-style:none;}
 	.regContent{border-collapse: separate;
 			 border-spacing: 0 15px; width:1000px;}		 
 			 
+	.stay_detailtable{border-collapse: separate;
+			 border-spacing: 0 15px; width:1000px;}
+			 
 	.showDetail{border-collapse: separate;
 			 border-spacing: 0 15px; width:1000px;}		 
 
@@ -92,13 +95,17 @@ ul,ol,li{list-style:none;}
 		line-height:15px;
 		font-size:10px;
 	}
-
+	
 	.submit{
 		margin:0 auto; 
 	}
 
 	.submit li a{
 		display:block;
+	}
+
+	.submit ul {
+		text-align:center;
 	}
 
 	.submit ul li {
@@ -190,7 +197,7 @@ ul,ol,li{list-style:none;}
 		box-sizing:border-box;
 		overflow:hidden;
 		width:1024px;
-		height:447px;
+		height:520px;
 		padding:0 31px 0 31px;
 	}
 
@@ -198,6 +205,16 @@ ul,ol,li{list-style:none;}
 		width:490px;
 		height:348px;
 		text-align:center;
+		position:relative;
+		vertical-align:top;
+	}
+	
+	.stayContent_head .left .detail_submit {
+		width:490px;
+		height:120px;
+		text-align:center;
+		display:inline-block;
+		float:left;
 		position:relative;
 		vertical-align:top;
 	}

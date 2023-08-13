@@ -42,7 +42,6 @@
 			<br>
 			<br>
 			<br>
-		<c:choose><c:when test="${'motel' eq stayType}">	
 		<table id="stayList" class="stayList">
 		<c:choose>
 			<c:when test="${empty motels }">
@@ -54,8 +53,9 @@
 					<col width="10%"></col>
 					<col width="10%"></col>					
 					<col width="30%"></col>
-					<col width="15%"></col>	
-					<col width="*"></col>						
+					<col width="10%"></col>	
+					<col width="*"></col>
+					<col width="10%"></col>						
 				</colgroup>
 				<tr>
 					<th>No.</th>
@@ -63,6 +63,7 @@
 					<th>숙소 이름</th>
 					<th>지역</th>
 					<th>주소</th>
+					<th></th>					
 				</tr>
 				<c:forEach var="motel" items="${ motels}">
 					<tr>
@@ -73,6 +74,10 @@
 						</td>
 						<td>${motel.mregion }</td>
 						<td>${motel.maddress }</td>
+						<td>
+							<button type="button" onclick="location.href='stayModify?no=${motel.no}&stayType=motel'">수정</button>  
+							<button type="button" onclick="staydeleteCheck()">삭제</button>
+						</td>						
 					</tr>
 				</c:forEach>
 				<tr>
@@ -84,8 +89,6 @@
 			</c:otherwise>
 		</c:choose>	
 		</table>
-		</c:when>
-		<c:when test="${'hotel' eq stayType}">
 		<table id="stayList2" class="stayList" style="display: none;">		
 		<c:choose>
 			<c:when test="${empty hotels }">
@@ -97,8 +100,9 @@
 					<col width="10%"></col>
 					<col width="10%"></col>					
 					<col width="30%"></col>
-					<col width="15%"></col>	
-					<col width="*"></col>						
+					<col width="10%"></col>	
+					<col width="*"></col>
+					<col width="10%"></col>						
 				</colgroup>
 				<tr>
 					<th>No.</th>
@@ -106,6 +110,7 @@
 					<th>숙소 이름</th>
 					<th>지역</th>
 					<th>주소</th>
+					<th></th>					
 				</tr>
 				<c:forEach var="hotel" items="${ hotels}">
 					<tr>
@@ -116,6 +121,10 @@
 						</td>
 						<td>${hotel.hregion }</td>
 						<td>${hotel.haddress }</td>
+						<td>
+							<button type="button" onclick="location.href='stayModify?no=${hotel.no}&stayType=hotel'">수정</button>  
+							<button type="button" onclick="staydeleteCheck()">삭제</button>
+						</td>						
 					</tr>
 				</c:forEach>
 				<tr>
@@ -127,8 +136,6 @@
 			</c:otherwise>
 		</c:choose>	
 		</table>
-		</c:when>
-		<c:when test="${'pension' eq stayType}">
 		<table id="stayList3" class="stayList" style="display: none;"> 
 		<c:choose>
 			<c:when test="${empty pensions }">
@@ -140,8 +147,9 @@
 					<col width="10%"></col>
 					<col width="10%"></col>					
 					<col width="30%"></col>
-					<col width="15%"></col>	
-					<col width="*"></col>						
+					<col width="10%"></col>	
+					<col width="*"></col>
+					<col width="10%"></col>						
 				</colgroup>
 				<tr>
 					<th>No.</th>
@@ -149,6 +157,7 @@
 					<th>숙소 이름</th>
 					<th>지역</th>
 					<th>주소</th>
+					<th></th>
 				</tr>
 				<c:forEach var="pension" items="${ pensions}">
 					<tr>
@@ -159,6 +168,10 @@
 						</td>
 						<td>${pension.pregion }</td>
 						<td>${pension.paddress }</td>
+						<td>
+							<button type="button" onclick="location.href='stayModify?no=${pension.no}&stayType=pension'">수정</button>  
+							<button type="button" onclick="staydeleteCheck()">삭제</button>
+						</td>
 					</tr>
 				</c:forEach>
 				<tr>
@@ -170,8 +183,6 @@
 			</c:otherwise>
 		</c:choose>			
 		</table>
-		</c:when>
-		<c:when test="${'gh' eq stayType}">
 		<table id="stayList4" class="stayList" style="display: none;">
 		<c:choose>
 			<c:when test="${empty ghs }">
@@ -183,8 +194,9 @@
 					<col width="10%"></col>
 					<col width="10%"></col>					
 					<col width="30%"></col>
-					<col width="15%"></col>	
-					<col width="*"></col>						
+					<col width="10%"></col>	
+					<col width="*"></col>
+					<col width="10%"></col>							
 				</colgroup>
 				<tr>
 					<th>No.</th>
@@ -192,6 +204,7 @@
 					<th>숙소 이름</th>
 					<th>지역</th>
 					<th>주소</th>
+					<th></th>					
 				</tr>
 				<c:forEach var="gh" items="${ ghs}">
 					<tr>
@@ -202,6 +215,10 @@
 						</td>
 						<td>${gh.gregion }</td>
 						<td>${gh.gaddress }</td>
+						<td>
+							<button type="button" onclick="location.href='stayModify?no=${gh.no}&stayType=gh'">수정</button>  
+							<button type="button" onclick="staydeleteCheck()">삭제</button>
+						</td>						
 					</tr>
 				</c:forEach>
 				<tr>
@@ -213,8 +230,6 @@
 			</c:otherwise>
 		</c:choose>			
 		</table>
-		</c:when>
-		<c:when test="${'camping' eq stayType}">
 		<table id="stayList5" class="stayList" style="display: none;">
 		<c:choose>
 			<c:when test="${empty campings }">
@@ -226,8 +241,9 @@
 					<col width="10%"></col>
 					<col width="10%"></col>					
 					<col width="30%"></col>
-					<col width="15%"></col>	
-					<col width="*"></col>						
+					<col width="10%"></col>	
+					<col width="*"></col>
+					<col width="10%"></col>							
 				</colgroup>
 				<tr>
 					<th>No.</th>
@@ -235,6 +251,7 @@
 					<th>숙소 이름</th>
 					<th>지역</th>
 					<th>주소</th>
+					<th></th>					
 				</tr>
 				<c:forEach var="camping" items="${ campings}">
 					<tr>
@@ -245,6 +262,10 @@
 						</td>
 						<td>${camping.cregion }</td>
 						<td>${camping.caddress }</td>
+						<td>
+							<button type="button" onclick="location.href='stayModify?no=${camping.no}&stayType=camping'">수정</button>  
+							<button type="button" onclick="staydeleteCheck()">삭제</button>
+						</td>						
 					</tr>
 				</c:forEach>
 				<tr>
@@ -256,7 +277,6 @@
 			</c:otherwise>
 		</c:choose>			
 		</table>	
-		</c:when></c:choose>	
 			<div class="submit">
 				<ul>
 					<li><a href="${context }stayRegister">숙소 등록하기</a></li>
@@ -267,14 +287,13 @@
  </body>
  
   <script>
-	  	document.addEventListener("DOMContentLoaded", function() {
+ 	  	document.addEventListener("DOMContentLoaded", function() {
 		    var stayTypeSelect = document.getElementById("stayType");
-		    stayTypeSelect.addEventListener("change", showStayInfo);
+		    stayType.addEventListener("change", showStayInfo);
 		  });
   
-  
  	 function showStayInfo() {
-		  var stayType = document.getElementById("stayType");
+		  var stayType = document.getElementById("stayType").value;
 		  var stayList = document.getElementsByClassName("stayList");
 	
 		  // 모든 서브 메뉴 감추기

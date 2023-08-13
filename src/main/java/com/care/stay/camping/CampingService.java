@@ -215,4 +215,10 @@ public class CampingService {
 		
 		return camping;
 	}
+
+
+	public String stayModifyProc(MultipartHttpServletRequest multi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

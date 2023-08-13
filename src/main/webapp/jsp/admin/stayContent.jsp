@@ -34,6 +34,12 @@
 			
 					<div class="left">
 						<p class="pic_view"><img class="" src=""></p>
+<%-- 						<div class="detail_submit">
+							<ul>
+								<li><a href="${context }stayModify">수정하기</a></li>
+								<li><a href="#">삭제하기</a></li>
+							</ul>
+						</div> --%>
 					</div>
 					<div class="right">
 						<div class="info">
@@ -70,12 +76,6 @@
 							<c:when test="${'camping' eq stayType}">${camping.ccode }${camping.no }</c:when>
 							</c:choose>
 							</span>
-<%-- 							<div class="submit">
-								<ul>
-									<li><a href="${context }stayModify">수정하기</a></li>
-									<li><a href="#">삭제하기</a></li>
-								</ul>
-							</div>	 --%>
 						</div>
 					</div>
 			</div>
@@ -118,11 +118,11 @@
 											</ul>
 										</div>
 									</div>
-<%-- 									<div class="option">
+									<div class="option">
 										<ul>
 											<li><span>부대시설 : </span>${motelRoom.moption }</li>
 										</ul>
-									</div> --%>
+									</div>
 			                    </div>
 							</div>
 						</c:forEach>
@@ -301,10 +301,10 @@
 			</c:choose>
 			</article>
 
-
 			<div class="submit">
 				<%-- <button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }'">상세 DB 등록</button> --%>
-				
+				<ul>
+				<li>
 				<c:choose>
 					<c:when test="${'motel' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }&stayType=motel'">상세 DB 등록</button></c:when>
 					<c:when test="${'hotel' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${hotel.no }&stayType=hotel'">상세 DB 등록</button></c:when>
@@ -312,7 +312,7 @@
 					<c:when test="${'gh' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${gh.no }&stayType=gh'">상세 DB 등록</button></c:when>
 					<c:when test="${'camping' eq stayType}"><button type="button" onclick="location.href='stayDetailRegister?no=${camping.no }&stayType=camping'">상세 DB 등록</button></c:when>
 				</c:choose>
-				<ul>
+				</li>
 					<!-- <li><input type="submit" value="등록"></li> 
 					<li><a href="${context }stayDetailRegister">상세 DB 등록하기</a></li> -->
 					<li><a href="${context }stayInfo">숙소 목록</a></li>

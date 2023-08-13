@@ -31,7 +31,7 @@
 			<!-- 설명 -->
 
 			<!-- 등록 양식 -->
-			<div class="stay_register">
+			<div class="stay_modify">
 				<form id="stayForm" action="staymodifyProc" method="post" enctype="multipart/form-data">
 					<table class="stay_table">
 						<colgroup>
@@ -40,19 +40,26 @@
 						</colgroup>
 						<tr>
 							<th>숙소 이름</th>
-							<td><input type="text" class="form_w65" name="name" id="name"></td>
+							<td><c:choose>
+							<c:when test="${'motel' eq stayType}"><input type="text" class="form_w65" name="name" id="name" value="${motel.mname }"></c:when>
+							<c:when test="${'hotel' eq stayType}"><input type="text" class="form_w65" name="name" id="name" value="${hotel.hname }"></c:when>
+							<c:when test="${'pension' eq stayType}"><input type="text" class="form_w65" name="name" id="name" value="${pension.pname }"></c:when>
+							<c:when test="${'gh' eq stayType}"><input type="text" class="form_w65" name="name" id="name" value="${gh.gname }"></c:when>
+							<c:when test="${'camping' eq stayType}"><input type="text" class="form_w65" name="name" id="name" value="${camping.cname }"></c:when>
+							</c:choose></td>
 						</tr>
 
 						<tr>
 							<th>종류</th>
 							<td>	
 								<select class="form_w30" name="stayType" id="stayType" onchange="showRegContent()">
-								 	<option value="">숙소 종류를 선택하세요</option>								
-									<option value="motel">모텔</option>
-						            <option value="hotel">호텔·리조트</option>
-						            <option value="pension">펜션</option>
-						            <option value="gh">게스트하우스</option>
-						            <option value="camping">캠핑·글램핑</option>
+								 	<c:choose>	
+								 	<c:when test="${'motel' eq stayType}"><option value="motel">모텔</option></c:when>
+									<c:when test="${'hotel' eq stayType}"><option value="hotel">호텔·리조트</option></c:when>
+									<c:when test="${'pension' eq stayType}"><option value="pension">펜션</option></c:when>
+									<c:when test="${'gh' eq stayType}"><option value="gh">게스트하우스</option></c:when>
+									<c:when test="${'camping' eq stayType}"><option value="camping">캠핑·글램핑</option></c:when>
+									</c:choose>
 								</select>
 							</td>
 						</tr>
@@ -120,53 +127,77 @@
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td><input type="text" id="address" name="address" class="form_w80" placeholder="주소" readonly></td>
+							<td><c:choose>	
+						 	<c:when test="${'motel' eq stayType}"><input type="text" id="address" name="address" class="form_w80" placeholder="주소" value="${motel.maddress }"></c:when>
+							<c:when test="${'hotel' eq stayType}"><input type="text" id="address" name="address" class="form_w80" placeholder="주소" value="${hotel.haddress }"></c:when>
+							<c:when test="${'pension' eq stayType}"><input type="text" id="address" name="address" class="form_w80" placeholder="주소" value="${pension.paddress }"></c:when>
+							<c:when test="${'gh' eq stayType}"><input type="text" id="address" name="address" class="form_w80" placeholder="주소" value="${gh.gaddress }"></c:when>
+							<c:when test="${'camping' eq stayType}"><input type="text" id="address" name="address" class="form_w80" placeholder="주소" value="${camping.caddress }"></c:when>
+							</c:choose></td>
 						</tr>
 						<tr>
 							<th>상세주소</th>
-							<td><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress"></td>
+							<td><c:choose>	
+						 	<c:when test="${'motel' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${motel.mdetailAddress }"></c:when>
+							<c:when test="${'hotel' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${hotel.hdetailAddress }"></c:when>
+							<c:when test="${'pension' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${pension.pdetailAddress }"></c:when>
+							<c:when test="${'gh' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${gh.gdetailAddress }"></c:when>
+							<c:when test="${'camping' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${camping.cdetailAddress }"></c:when>
+							</c:choose></td>
 						</tr>
 						<tr>
 							<th>이미지 업로드</th>
-							<td><input type="file" name="imageupload" id="imageupload" ></td>
+							<td><c:choose>	
+						 	<c:when test="${'motel' eq stayType}"><input type="file" name="imageupload" id="imageupload" >${motel.mimage}</c:when>
+							<c:when test="${'hotel' eq stayType}"><input type="file" name="imageupload" id="imageupload" >${hotel.himage}</c:when>
+							<c:when test="${'pension' eq stayType}"><input type="file" name="imageupload" id="imageupload" >${pension.pimage}</c:when>
+							<c:when test="${'gh' eq stayType}"><input type="file" name="imageupload" id="imageupload" >${gh.gimage}</c:when>
+							<c:when test="${'camping' eq stayType}"><input type="file" name="imageupload" id="imageupload" >${camping.cimage}</c:when>
+							</c:choose></td>
 						</tr>
 						<tr>
 							<th>숙소정보</th>
-							<td><textarea rows="4" cols="50" id="info" name="info"></textarea></td>
+							<td><c:choose>
+						 	<c:when test="${'motel' eq stayType}"><textarea rows="4" cols="50" id="info" name="info" >${motel.minfo }</textarea></c:when>
+							<c:when test="${'hotel' eq stayType}"><textarea rows="4" cols="50" id="info" name="info" >${hotel.hinfo }</textarea></c:when>
+							<c:when test="${'pension' eq stayType}"><textarea rows="4" cols="50" id="info" name="info" >${pension.pinfo }</textarea></c:when>
+							<c:when test="${'gh' eq stayType}"><textarea rows="4" cols="50" id="info" name="info" >${gh.ginfo }</textarea></c:when>
+							<c:when test="${'camping' eq stayType}"><textarea rows="4" cols="50" id="info" name="info" >${camping.cinfo }</textarea></c:when>							
+							</c:choose></td>
 						</tr>
 					</table>	
 						
 					<table id="regContent" class="regContent">	
 						<tr>
 							<th>대실체크인</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder="" value="${motel.mdaesilCheckIn}"></td>
 						</tr>
 						<tr>
 							<th>대실체크아웃</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder="" value="${motel.mdaesilCheckOut}"></td>
 						</tr>
 						<tr>
 							<th>대실시간</th>
-							<td><input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder="" value="${motel.mdaesilTime}"></td>
 						</tr>
 						<tr>
 							<th>숙박체크인</th>
-							<td><input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder="" value="${motel.mstayCheckIn}"></td>
 						</tr>		
 						<tr>
 							<th>숙박체크아웃</th>
-							<td><input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder=""></td>
+							<td><input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder="" value="${motel.mstayCheckOut}"></td>
 						</tr>
 					</table>
 					
 					<table id="regContent2" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="hcheckinTime" name="hcheckinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="hcheckinTime" name="hcheckinTime" value="${hotel.hcheckInTime }"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="hcheckoutTime" name="hcheckoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="hcheckoutTime" name="hcheckoutTime" value="${hotel.hcheckOutTime }"></td>
 						</tr>
 						<tr>
 							<th>호텔·리조트 유형</th>
@@ -302,20 +333,6 @@
 		    document.getElementById("detailRegion5").style.display = "block";
 		  }
 		}
-	  	
-	  	
-
-	/*   function getSelectedOption(selectId) {
-	  	var subMenu = document.getElementById(selectId);
-	  	var selectedValue = subMenu.value;
-	  	var selectedText = subMenu.options[subMenu.selectedIndex].text;
-	  	alert(selectId);
-	  	alert(selectedText);
-	  	window.location.href = "http://localhost/Main?hdetailregion=" + selectedText; */
-
-	  	/* var resultElement = document.getElementById("selectedOption");
-	  	resultElement.textContent = "선택한 옵션: " + selectedOption;*/
-	  	
 	  
 	 function updateDetailRegion() {
 		    var regionSelect = document.getElementById("region");
@@ -332,39 +349,7 @@
 		        motel.setMdetailRegion(selectedMotelDetailRegion);
 		    }
 		} 
-		
-		
-	/* 	function updateDetailRegion() {
-		    var regionSelect = document.getElementById("region");
-		    var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
-		    
-		    // 모든 detailRegion 요소를 숨깁니다.
-		    var detailRegionElements = document.querySelectorAll(".detailRegion");
-		    for (var i = 0; i < detailRegionElements.length; i++) {
-		        detailRegionElements[i].style.display = "none";
-		    }
-
-		    // 선택한 지역에 해당하는 detailRegion 요소를 표시합니다.
-		    if (selectedRegion === "서울") {
-		        var seoulDetailRegion = document.getElementById("detailRegion");
-		        seoulDetailRegion.style.display = "block";
-		    } else if (selectedRegion === "경기/인천") {
-		        var gyInDetailRegion = document.getElementById("detailRegion2");
-		        gyInDetailRegion.style.display = "block";
-		    } else if (selectedRegion === "충청/강원/제주") {
-		        var ccgjDetailRegion = document.getElementById("detailRegion3");
-		        ccgjDetailRegion.style.display = "block";
-		    } else if (selectedRegion === "경남/경북") {
-		        var gngbDetailRegion = document.getElementById("detailRegion4");
-		        gngbDetailRegion.style.display = "block";
-		    } else if (selectedRegion === "전남/전북") {
-		        var jnjbDetailRegion = document.getElementById("detailRegion5");
-		        jnjbDetailRegion.style.display = "block";
-		    }
-		}
- */
-		
-	  
+  
 	  function submitForm() {
 		    // form 요소 가져오기
 		    var form = document.getElementById("stayForm");
@@ -389,6 +374,30 @@
 		    };
 		    xhr.send();
 		});
+	  
+	  
+	  window.onload = function() {
+		  // 서버에서 받아온 stayType 값
+		  const stayType = "${stayType}";
+
+		  if (stayType === "hotel") {
+		    // 서버에서 받아온 htype 값
+		    const htypeValue = "${hotel.htype}";
+
+		    // 라디오 버튼 그룹의 라디오 버튼들을 가져옴
+		    const radioButtons = document.getElementsByName("htype");
+
+		    // htype 값에 따라 선택 상태 설정
+		    for (const radioButton of radioButtons) {
+		      if (radioButton.value === htypeValue) {
+		        radioButton.checked = true;
+		        break;
+		      }
+		    }
+		  }
+		}
+	  
+	  
 </script>
 
 </html>

@@ -8,6 +8,7 @@
   <meta name="Author" content="">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
+  <script src="../../resource/js/admin.js"></script>
   <title>숙소 DB 등록</title>
   <link rel="stylesheet" href="../../resource/css/reset.css" type="text/css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -304,13 +305,7 @@
 		    document.getElementById("detailRegion5").style.display = "block";
 		  }
 		}
-	  	
-	  	
-	  	
-	  	
-	  	
-	  	
-	  	
+		
 
 	/*   function getSelectedOption(selectId) {
 	  	var subMenu = document.getElementById(selectId);
@@ -322,28 +317,14 @@
 
 	  	/* var resultElement = document.getElementById("selectedOption");
 	  	resultElement.textContent = "선택한 옵션: " + selectedOption;*/
+		
+	  	var selectedDetailRegion = "";
 	  	
-	  
-	 function updateDetailRegion() {
-		    var regionSelect = document.getElementById("region");
-		    var detailRegionSelect = document.getElementsByName("detailRegion");
-		    var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
-		    var selectedDetailRegion = detailRegionSelect.options[detailRegionSelect.selectedIndex].value;
-		    
-		    var motelDetailRegionSelect = document.getElementById("detailRegion" + selectedRegion);
-		    var selectedMotelDetailRegion = motelDetailRegionSelect.options[motelDetailRegionSelect.selectedIndex].value;
-		    
-		    if (selectedDetailRegion !== "") {
-		        motel.setMdetailRegion(selectedDetailRegion);
-		    } else if (selectedMotelDetailRegion !== "") {
-		        motel.setMdetailRegion(selectedMotelDetailRegion);
-		    }
-		} 
-		
-		
-	/* 	function updateDetailRegion() {
+		function updateDetailRegion() {
 		    var regionSelect = document.getElementById("region");
 		    var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
+		    
+		    console.log("Selected Region:", selectedRegion);
 		    
 		    // 모든 detailRegion 요소를 숨깁니다.
 		    var detailRegionElements = document.querySelectorAll(".detailRegion");
@@ -355,26 +336,51 @@
 		    if (selectedRegion === "서울") {
 		        var seoulDetailRegion = document.getElementById("detailRegion");
 		        seoulDetailRegion.style.display = "block";
+		        selectedDetailRegion = seoulDetailRegion.value;
 		    } else if (selectedRegion === "경기/인천") {
 		        var gyInDetailRegion = document.getElementById("detailRegion2");
 		        gyInDetailRegion.style.display = "block";
+		        selectedDetailRegion = gyInDetailRegion.value;
 		    } else if (selectedRegion === "충청/강원/제주") {
 		        var ccgjDetailRegion = document.getElementById("detailRegion3");
 		        ccgjDetailRegion.style.display = "block";
+		        selectedDetailRegion = ccgjDetailRegion.value;
 		    } else if (selectedRegion === "경남/경북") {
 		        var gngbDetailRegion = document.getElementById("detailRegion4");
 		        gngbDetailRegion.style.display = "block";
+		        selectedDetailRegion = gngbDetailRegion.value;
 		    } else if (selectedRegion === "전남/전북") {
 		        var jnjbDetailRegion = document.getElementById("detailRegion5");
 		        jnjbDetailRegion.style.display = "block";
+		        selectedDetailRegion = jnjbDetailRegion.value;
 		    }
 		}
- */
+
 		
 	  
-	  function submitForm() {
+	  /* function submitForm() {
 		    // form 요소 가져오기
 		    var form = document.getElementById("stayForm");
+		    
+
+		    // form submit
+		    form.submit();
+		} */
+		
+		function submitForm() {
+		    // form 요소 가져오기
+		    var form = document.getElementById("stayForm");
+		    
+		    // 선택한 detailRegion 값을 폼 데이터에 추가
+		    var selectedDetailRegionInput = document.createElement("input");
+		    selectedDetailRegionInput.type = "hidden"; // 숨겨진 필드로 생성
+		    selectedDetailRegionInput.name = "detailRegion"; // 서버에서 사용할 이름
+		    selectedDetailRegionInput.value = selectedDetailRegion; // 선택한 detailRegion 값
+		    
+		    console.log("Selected Detail Region:", selectedDetailRegion);
+		    
+		    // 폼에 추가
+		    form.appendChild(selectedDetailRegionInput);
 
 		    // form submit
 		    form.submit();
@@ -384,6 +390,8 @@
 		    var selectElement = document.getElementById('stayType');
 		    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
 		    var stayCodeElement = document.getElementById('stayCode');
+		    stayCodeElement.textContent = stayCode;
+		    
 		    
 		    // 서버로부터 stayCode 값을 가져옴
 		    var xhr = new XMLHttpRequest();
