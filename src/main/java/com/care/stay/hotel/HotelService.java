@@ -95,10 +95,10 @@ public class HotelService {
         
         hotelroom.setNo(no);
         hotelroom.setHcode(Hcode);
-        hotelroom.setHroomCode(String.valueOf(roomcount));
-        hotelroom.setHroomName(multi.getParameter("roomname"));
-        hotelroom.setHbedType(multi.getParameter("hbedtype"));
-        hotelroom.setHroomNumber(getIntParameter(multi, "roomnumber"));
+        hotelroom.setHroomcode(String.valueOf(roomcount));
+        hotelroom.setHroomname(multi.getParameter("roomname"));
+        hotelroom.setHbedtype(multi.getParameter("hbedtype"));
+        hotelroom.setHroomnumber(getIntParameter(multi, "roomnumber"));
         hotelroom.setHprice(getIntParameter(multi, "hprice"));
         hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
         
@@ -129,14 +129,14 @@ public class HotelService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		hotelroom.setHroomImage("");
+		hotelroom.setHroomimage("");
 		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			hotelroom.setHroomImage(fileName);
+			hotelroom.setHroomimage(fileName);
 
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
 			File save = new File(fileLocation + fileName);
@@ -284,7 +284,7 @@ public class HotelService {
 	  
 	  
 	  // 체크박스 선택시 조건에 맞게 호텔리스트 나오게 
-	  public void MainCheck(String selectedText, String selectedValues1, String selectedValues2, String selectedValues3, int personCount,  String cp,  Model model) { 
+	  public void MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
 
 	  int currentPage = 1; 
 	  
@@ -299,17 +299,17 @@ public class HotelService {
 	  int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
 	  
 	  
-	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, selectedValues1, selectedValues2, selectedValues3, personCount,  begin, end); 
+	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople,  begin, end); 
 	  int totalCount = hotelMapper.count(); 
 	  String url = "hotellist?currentPage=";
 	  String result = PageService.printPage(url, currentPage, totalCount,pageBlock);
 	  
 	  System.out.println("service에서 " + selectedText );
 	  System.out.println("pageBlock " + pageBlock);
-	  System.out.println("service에서 selectedValues1 " + selectedValues1);
-	  System.out.println("service에서 selectedValues2 " + selectedValues2);
-	  System.out.println("service에서 selectedValues3 " + selectedValues3);
-	  System.out.println("service에서 personCount " + personCount);
+	  System.out.println("service에서 htype " + htype);
+	  System.out.println("service에서 hbedtype " + hbedtype);
+	  System.out.println("service에서 hcomfort " + hcomfort);
+	  System.out.println("service에서 hpeople " + hpeople);
 
 	  
 	  model.addAttribute("hotels", hotels); 

@@ -18,18 +18,28 @@
 		<result column="hcheckintime" property="hcheckintime"/>
 		<result column="hcheckouttime" property="hcheckouttime"/>
 		<result column="htype" property="htype"/>
-		<result column="hpeople" property="hpeople"/>
-		<result column="hbedtype" property="hbedtype"/>
 	</resultMap> 
+	
+<!-- 	 <resultMap type="com.care.stay.hotel.HotelRoomDTO" id="HotelRoomDto">
+        <result  column="no" property="no" />
+        <result  column="hcode" property="hcode" />
+        <result  column="hroomcode" property="hroomcode" />
+        <result  column="hroomname" property="hroomname" />
+        <result  column="hbedtype" property="hbedtype" />
+        <result  column="hroomimage" property="hroomimage" />
+        <result  column="hroomnumber" property="hroomnumber" />
+        <result  column="hprice" property="hprice" />
+        <result  column="hpeople" property="hpeople" />
+        <result  column="hcomfort" property="hcomfort" />
+    </resultMap>
+    
+	 -->
 
-	<select id="count">
-	  	SELECT count(no) FROM hotel
-	</select>
 
 <!-- 	<select id="hotellist" resultMap="HotelDto">  
 		SELECT BBB.* 
 		FROM (SELECT ROWNUM() as rn, AAA.* 
-		FROM (SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype, 
+		FROM (SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype
 		FROM hotel ORDER BY no DESC )AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select> -->
@@ -39,7 +49,7 @@
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
+		himage, hinfo, hcheckintime, hcheckouttime, htype
 		FROM hotel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
@@ -49,26 +59,75 @@
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
+		himage, hinfo, hcheckintime, hcheckouttime, htype
 		FROM hotel WHERE hdetailregion = #{selectedText})AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
 	
 		<!-- 체크박스 선택한 별로 나오게하기    테이블이 hotel과 hotelroom 두개의 컬럼이 다 들어가있음 (수정해야함) -->
 		
-	<select id="MainCheck" resultMap="HotelDto">
+<!-- 	<select id="MainCheck" resultMap="HotelDto">
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
+		himage, hinfo, hcheckintime, hcheckouttime, htype
 		FROM hotel WHERE hdetailregion = #{selectedText} AND (htype = #{selectedValues1} OR hbedtype = #{selectedValues2} OR hcomfort = #{selectedValues3} OR hpeople = #{personCount} ))AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>   -->
+	
+ 	<select id="MainCheck">
+  	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+			hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
+	 FROM hotel h 
+	 JOIN hotelroom hr  ON hr.hcode = h.hcode
+	 WHERE (h.hdetailregion = #{selectedText}
+   	 OR h.htype = #{htype})
+     AND(hr.hbedtype = #{hbedtype}
+     OR hr.hcomfort like CONCAT('%'||#{hcomfort},'%')
+     OR hr.hpeople = #{hpeople})
 	</select>  
 	
 	
+	
+	
+	<!-- 아래에도있음/ 나중에 합칠때 한개는 지워야함  -->
+	<select id="count">
+	  	SELECT count(no) FROM hotel
+	</select>
+	
+<!--  <select id="MainCheck" >
+        SELECT BBB.* FROM 
+        (SELECT ROWNUM as rn, AAA.* FROM 
+        (SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, 
+                h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+                hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort,hr.hpeople
+        FROM hotel h
+        JOIN hotelroom hr ON h.hcode = hr.hcode
+        WHERE
+            <if test="selectedText != null">
+                h.hdetailregion = #{selectedText}
+            </if>
+            <if test="selectedValues1 != null">
+                OR h.htype = #{selectedValues1}
+            </if>
+            <if test="selectedValues2 != null">
+                OR hr.hbedtype = #{selectedValues2}
+            </if>
+            <if test="selectedValues3 != null">
+                OR (hr.hcomfort LIKE CONCAT('%', #{selectedValues3}, '%')
+                    AND hr.hcomfort = #{selectedValues3}
+                )
+               </if>
+            <if test="personCount != null">
+                AND hr.hpeople = #{personCount}
+            </if>
+        ) AAA) BBB
+        WHERE BBB.rn BETWEEN #{begin} AND #{end}
+    </select> -->
+	
 
 
-
+<!-- 
 	<resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
 		<id column="no" property="no"/>																		
 	</resultMap>
@@ -123,6 +182,6 @@
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.hotel.HotelRoomDTO">
 		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hbedtype, hroomimage, hroomnumber, hprice, hpeople, hcomfort)
 		VALUES(#{no}, #{hcode}, #{hroomCode}, #{hroomName}, #{hbedType}, #{hroomImage}, #{hroomNumber}, #{hprice}, #{hpeople}, #{hcomfort})
-	</insert>	
+	</insert>	 -->
 
 </mapper>

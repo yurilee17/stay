@@ -383,40 +383,40 @@
 						    	
 						    	
 						        var values1 = document.getElementsByName("grade[]");
-						        var selectedValues1 = [];        
+						        var htype = [];        
 						        for (var i = 0; i < values1.length; i++) {
 						            if (values1[i].checked) {
-						                selectedValues1.push(values1[i].value);
+						            	htype.push(values1[i].value);
 						            }
 						        }
 						        
 						        var values2 = document.getElementsByName("bed_type[]");
-						        var selectedValues2 = [];        
+						        var hbedtype = [];        
 						        for (var i = 0; i < values2.length; i++) {
 						            if (values2[i].checked) {
-						                selectedValues2.push(values2[i].value);
+						            	hbedtype.push(values2[i].value);
 						            }
 						        }
 						
 						        var values3 = document.getElementsByName("tmino[]");
-						        var selectedValues3 = [];
+						        var hcomfort = [];
 						        
 						        for (var i = 0; i < values3.length; i++) {
 						            if (values3[i].checked) {
-						                selectedValues3.push(values3[i].value);
+						            	hcomfort.push(values3[i].value);
 						            }
 						        }
 						        
-						         var personCount = document.querySelector('.cnt_people span').textContent;      
-						         var selectedText = localStorage.getItem("selectedText"); // selectedText 값을 가져옴 
+						         var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴      
+						         var selectedText = localStorage.getItem("selectedText"); // selectedText 값을 가져옴
 						              
 						                
 						              
 						       var url = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText) +
-				                  "&htype=" + encodeURIComponent(selectedValues1.join(',')) +
-				                  "&hbedtype=" + encodeURIComponent(selectedValues2.join(',')) +
-				                  "&hcomfort=" + encodeURIComponent(selectedValues3.join(',')) + 
-				                  "&hpeople=" + encodeURIComponent(personCount);
+				                  "&htype=" + encodeURIComponent(htype.join(',')) +
+				                  "&hbedtype=" + encodeURIComponent(hbedtype.join(',')) +
+				                  "&hcomfort=" + encodeURIComponent(hcomfort.join(',')) + 
+				                  "&hpeople=" + encodeURIComponent(hpeople);
 						              
 						     	  window.location.href = url;
 						    }

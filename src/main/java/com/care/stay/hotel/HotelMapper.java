@@ -23,7 +23,7 @@ public interface HotelMapper {
 	 
 	 ArrayList<HotelDTO> Main(String selectedText, @Param("begin")int begin, @Param("end")int end); 
 	 
-	 ArrayList<HotelDTO> MainCheck(String selectedText, String selectedValues1, String selectedValues2, String selectedValues3, int personCount, @Param("begin")int begin, @Param("end")int end);
+	 ArrayList<HotelDTO> MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 
 	/*
 	 * ArrayList<HotelDTO> hotellist(

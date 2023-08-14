@@ -1,5 +1,7 @@
 package com.care.stay.hotel;
 
+import java.util.List;
+
 public class HotelDTO {
 	
 	private int no;
@@ -26,9 +28,16 @@ public class HotelDTO {
 	private String hcheckintime;
 	private String hcheckouttime;
 	private String htype;
-	private int hpeople;
 	private String hbedtype;
+	private List<HotelRoomDTO> rooms;
 
+	
+	public List<HotelRoomDTO> getRooms() {
+		return rooms;
+	}
+	public void setRooms(List<HotelRoomDTO> rooms) {
+		this.rooms = rooms;
+	}
 	
 	public int getNo() {
 		return no;
@@ -55,15 +64,9 @@ public class HotelDTO {
 		this.hregion = hregion;
 	}
 
-//	public String getHdetailRegion() {
-//		return hdetailRegion;
-
 	public String getHdetailregion() {
 		return hdetailregion;
 	}
-
-//	public void setHdetailRegion(String hdetailRegion) {
-//		this.hdetailRegion = hdetailRegion;
 
 	public void setHdetailregion(String hdetailregion) {
 		this.hdetailregion = hdetailregion;
@@ -82,16 +85,10 @@ public class HotelDTO {
 		this.haddress = haddress;
 	}
 
-//	public String getHdetailAddress() {
-//		return hdetailAddress;
-
 	public String getHdetailaddress() {
 		return hdetailaddress;
 
 	}
-
-//	public void setHdetailAddress(String hdetailAddress) {
-//		this.hdetailAddress = hdetailAddress;
 
 	public void setHdetailaddress(String hdetailaddress) {
 		this.hdetailaddress = hdetailaddress;
@@ -110,32 +107,21 @@ public class HotelDTO {
 		this.hinfo = hinfo;
 	}
 
-//	public String getHcheckInTime() {
-//		return hcheckInTime;
-
 	public String getHcheckintime() {
 		return hcheckintime;
 
 	}
-
-//	public void setHcheckInTime(String hcheckInTime) {
-//		this.hcheckInTime = hcheckInTime;
 
 	public void setHcheckintime(String hcheckintime) {
 		this.hcheckintime = hcheckintime;
 
 	}
 
-//	public String getHcheckOutTime() {
-//		return hcheckOutTime;
 
 	public String getHcheckouttime() {
 		return hcheckouttime;
 
 	}
-
-//	public void setHcheckOutTime(String hcheckOutTime) {
-//		this.hcheckOutTime = hcheckOutTime;
 
 	public void setHcheckouttime(String hcheckouttime) {
 		this.hcheckouttime = hcheckouttime;
@@ -148,12 +134,6 @@ public class HotelDTO {
 		this.htype = htype;
 	}
 
-	public int getHpeople() {
-		return hpeople;
-	}
-	public void setHpeople(int hpeople) {
-		this.hpeople = hpeople;
-	}
 	public String getHbedtype() {
 		return hbedtype;
 	}
