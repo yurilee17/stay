@@ -62,10 +62,13 @@ public class MemberService {
 		return "실패";
 	}
 
-	// 로그인
-	public String searchId(MemberDTO member) {
-		MemberDTO result = memberMapper.loginProc(member.getId());
+	// id 찾기
+	public String searchId(String id) {
+		MemberDTO result = memberMapper.loginProc(id);
 		if (result != null) {
+			if(result.getAuthority().equals("admin")){
+				return "관리자 로그인 성공";
+			}
 			return "로그인 성공";
 		}
 		return "실패";
@@ -127,15 +130,33 @@ public class MemberService {
 		System.out.println("auth : " + member.getAuthority());
 		System.out.println("name : " + "빈 값]");
 		String pw = member.getPassword();
-		
+
 		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 		String cryptPassword = bpe.encode(member.getPassword());
 		member.setPassword(cryptPassword);
-	
+
 		memberMapper.registerProc(member);
 		// 회원가입을 위해 암호화되지 않은 pw 넣기
 		member.setPassword(pw);
 		return "회원 등록 완료";
+
+	}
+
+	// 회원 아이디로 등록된 번호 가져오기
+	public String getMobile(String id) {
+		MemberDTO result = memberMapper.getMobile(id);
+		return result.getMobile();
+	}
+
+	// 비밀번호 재설정
+	public void passwdReset(MemberDTO member) {
+		String pw = member.getPassword();
+
+		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+		String cryptPassword = bpe.encode(member.getPassword());
+		member.setPassword(cryptPassword);
+		
+		memberMapper.passwdReset(member);
 
 	}
 

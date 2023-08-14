@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -19,6 +21,7 @@
 <link rel="stylesheet" href="../../resource/css/register.css">
 <!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
 </head>
+
 <body>
 	<!-- Wrap -->
 	<div class="wrap">
@@ -119,9 +122,6 @@
 		<!-- footer -->
 		<footer> </footer>
 	</div>
-	<script>
-		
-	</script>
 	<script src="../../resource/js/register.js"></script>
 	<!-- //Wrap -->
 </body>

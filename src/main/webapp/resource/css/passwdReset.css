@@ -1,0 +1,633 @@
+@charset "UTF-8";
+
+* {
+	outline: 0
+}
+
+html,
+body {
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+	font-size: 14px;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	-webkit-text-size-adjust: none
+}
+
+/* 폰트크기 자동조절 제거 */
+input::-ms-clear,
+input::-ms-reveal {
+	display: none
+}
+
+/* IE - select arrow remove */
+img {
+	border: 0;
+	vertical-align: top;
+	-webkit-touch-callout: none
+}
+
+/* 이미지 터치 팝업 제거 */
+a,
+input,
+button,
+div,
+li,
+textarea,
+form,
+label,
+select {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+/* 하이라이트 제거 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+	list-style: none
+}
+
+fieldset,
+img {
+	border: 0
+}
+
+a {
+	text-decoration: none
+}
+
+address,
+caption,
+em,
+var {
+	font-style: normal;
+	font-weight: normal
+}
+
+textarea,
+button,
+input,
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border-radius: 0;
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+}
+
+button {
+	padding: 0;
+	cursor: pointer
+}
+
+button:focus,
+button:active {
+	padding: 0;
+}
+
+button span {
+	position: relative;
+}
+
+select::-ms-expand {
+	display: none
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+label {
+	cursor: pointer
+}
+
+/* ================================================= 공통 =================================================*/
+/*확인 버튼 활성화*/
+.gra_left_right_red {
+	background: linear-gradient(to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100%);
+}
+
+input::placeholder {
+	color: rgba(0, 0, 0, 0.24);
+}
+
+/* ================================================= passwdResetStart.jsp =================================================*/
+.passwdResetStrat {
+	font-size: 15px;
+	line-height: 26px;
+	color: rgba(0, 0, 0, 0.87);
+	display: block;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 400;
+	width: 100%;
+	min-width: 320px;
+	height: 100%;
+	background: #fff;
+	touch-action: none;
+}
+
+.passwdResetStrat section {
+	width: 336px;
+	margin: 100px auto 0 auto;
+}
+
+/*문구*/
+.passwdResetStrat .sub_title {
+	height: auto;
+	padding-top: 14px;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	display: block;
+	margin: 30px 0 10px 0;
+	text-align: center;
+}
+
+.passwdResetStrat .txt_top {
+	margin-top: 16px;
+	margin-bottom: 32px;
+	margin: 12px 0 18px 0;
+	color: rgba(0, 0, 0, 0.56);
+	text-align: center;
+}
+
+/*아이디 입력*/
+.passwdResetStrat .inp_type_1 {
+	margin-bottom: 16px;
+}
+
+.passwdResetStrat .inp_type_1.inp_error {
+	margin-bottom: 44px;
+}
+
+.passwdResetStrat .inp_type_1 {
+	height: 48px;
+	padding: 0 16px 0 46px;
+	position: relative;
+	border: 1px solid rgba(0, 0, 0, 0.26);
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.passwdResetStrat .inp_type_1 input {
+	position: relative;
+	top: 11px;
+	width: 100%;
+	height: 24px;
+	font-size: 18px;
+	padding: 0;
+	border: none;
+	vertical-align: top;
+}
+
+.ico_email:after,
+.ico_email.inp_focus:after,
+.ico_email.inp_error:after {
+	top: 15px;
+	left: 15px;
+}
+
+.inp_error {
+	border: 1px solid rgb(230, 28, 81) !important;
+}
+
+/*아이콘*/
+.ico_email:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 14px;
+	background: url(//image.goodchoice.kr/images/web_v3/ico_inp_mail.png) 0 0 no-repeat;
+	background-size: 18px auto;
+}
+
+.ico_email.inp_focus:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 14px;
+	background: url('//image.goodchoice.kr/images/web_v3/ico_inp_mail.png') 0 -14px no-repeat;
+	background-size: 18px auto
+}
+
+.ico_email.inp_error:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	width: 18px;
+	height: 14px;
+	background: url(//image.goodchoice.kr/images/web_v3/ico_inp_mail.png) 0 -28px no-repeat;
+	background-size: 18px auto;
+}
+
+/*에러 문구*/
+.inp_error span,
+.inp_error label {
+	top: 54px;
+	left: 0;
+	font-size: 15px;
+	display: block !important;
+	position: absolute;
+	line-height: 1;
+}
+
+/*확인 버튼*/
+.passwdResetStrat .btn_link:disabled {
+	background: #fafafa;
+	color: rgba(0, 0, 0, 0.16);
+}
+
+.passwdResetStrat .btn_link {
+	margin-top: 0;
+	height: 56px;
+	font-size: 16px;
+	line-height: 56px;
+	display: block;
+	width: 100%;
+	border-radius: 6px;
+	text-align: center;
+	border: none;
+}
+
+/* ================================================= passwdPhoneConfirm.jsp =================================================*/
+.passwdPhoneConfirm {
+	font-size: 15px;
+	line-height: 26px;
+	color: rgba(0, 0, 0, 0.87);
+	display: block;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 400;
+	width: 100%;
+	min-width: 320px;
+	height: 100%;
+	background: #fff;
+	touch-action: none;
+}
+
+.passwdPhoneConfirm section {
+	width: 336px;
+	margin: 100px auto 0 auto;
+}
+
+/*문구*/
+.passwdPhoneConfirm .sub_title {
+	height: auto;
+	padding-top: 14px;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	display: block;
+	margin: 30px 0 10px 0;
+	text-align: center;
+}
+
+.passwdPhoneConfirm .txt_top {
+	margin-top: 16px;
+	margin-bottom: 32px;
+	margin: 12px 0 18px 0;
+	color: rgba(0, 0, 0, 0.56);
+	text-align: center;
+}
+
+/* 인증 번호 입력 */
+.input-component__type1 {
+	padding-bottom: 16px;
+}
+
+.input-component__type1 strong {
+	display: block;
+	font-size: 14px;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.56);
+	padding-bottom: 9px;
+}
+
+.input-component__type1 .input-wrap {
+	height: 48px;
+	padding: 14px 16px 0 16px;
+	position: relative;
+	width: 100%;
+	/* height: 40px; */
+	/* padding: 11px 16px 0 16px; */
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 6px;
+	background-color: #fff;
+	box-sizing: border-box;
+	line-height: 1;
+}
+
+.input-component__type1 .input-wrap input {
+	width: calc(100% - 100px);
+	font-size: 18px;
+	float: left;
+	/* border: 0; */
+	/* width: calc(100% - 60px); */
+	padding: 0;
+	vertical-align: top;
+	border: 0;
+	/* font-size: 16px; */
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+/*타이머*/
+.input-component__type1 .input-wrap span {
+	padding-top: 4px;
+	font-size: 16px;
+	display: inline-block;
+	float: right;
+	/* padding-top: 2px; */
+	/* font-size: 14px; */
+	color: #f45858;
+}
+
+/* 에러 문구*/
+.input-component__type1 .error-wrap {
+	overflow: hidden;
+	padding: 6px 0 8px 0;
+}
+
+.input-component__type1 .error-wrap span {
+	display: none;
+	float: left;
+	font-size: 13px;
+	color: #f45858;
+	line-height: 1.4;
+}
+
+/* 인증번호 재전송 번튼 */
+.input-component__type1 .error-wrap button {
+	float: right;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background: 0;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 1.4;
+	color: rgba(0, 0, 0, 0.32);
+	text-decoration: underline;
+}
+
+/*확인 버튼*/
+.passwdPhoneConfirm .btn_link:disabled {
+	background: #fafafa;
+	color: rgba(0, 0, 0, 0.16);
+}
+
+
+.passwdPhoneConfirm .btn_link {
+	margin-top: 0;
+	height: 56px;
+	font-size: 16px;
+	line-height: 56px;
+	display: block;
+	color: #fff;
+	width: 100%;
+	border-radius: 6px;
+	text-align: center;
+	border: none;
+}
+
+
+/* ================================================= passwdResetNew.jsp =================================================*/
+.passwdResetNew {
+	font-size: 15px;
+	line-height: 26px;
+	color: rgba(0, 0, 0, 0.87);
+	display: block;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 400;
+	width: 100%;
+	min-width: 320px;
+	height: 100%;
+	background: #fff;
+	/* font-size: 14px; */
+	/* line-height: 22px; */
+	/* color: rgba(0,0,0,0.87); */
+	touch-action: none;
+}
+
+.passwdResetNew section {
+	width: 336px;
+	margin: 100px auto 0 auto;
+}
+
+/* 문구 */
+.passwdResetNew .sub_title {
+	height: auto;
+	padding-top: 14px;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	display: block;
+	margin: 30px 0 10px 0;
+	text-align: center;
+}
+
+.passwdResetNew .txt_top {
+	margin-top: 16px;
+	margin-bottom: 32px;
+	color: rgba(0, 0, 0, 0.56);
+	text-align: center;
+}
+
+/* 비밀번호 입력들 */
+.passwdResetNew .inp_type_1 {
+	margin-bottom: 16px;
+	margin-top: 30px;
+	padding: 0px;
+	height: 48px;
+	position: relative;
+	border: 1px solid rgba(0, 0, 0, 0.26);
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.passwdResetNew .inp_type_1 input {
+	padding-left: 38px;
+	width: 80%;
+	position: relative;
+	top: 11px;
+	height: 24px;
+	font-size: 18px;
+	border: none;
+	vertical-align: top;
+}
+
+
+/* 비밀번호 아이콘 */
+.passwdResetNew .ico_pw:after,
+.ico_pw.inp_focus:after,
+.ico_pw.inp_error:after {
+	top: 15px;
+	left: 16px;
+}
+
+.passwdResetNew .ico_pw:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 15px;
+	background: url(//image.goodchoice.kr/images/web_v3/ico_inp_pw.png) 50% 0 no-repeat;
+	background-size: 14px auto;
+}
+
+.passwdResetNew .ico_pw.inp_focus:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 15px;
+	background: url('//image.goodchoice.kr/images/web_v3/ico_inp_pw.png') 50% -15px no-repeat;
+	background-size: 14px auto
+}
+
+.passwdResetNew .ico_pw.inp_error:after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 15px;
+	background: url('//image.goodchoice.kr/images/web_v3/ico_inp_pw.png') 50% -30px no-repeat;
+	background-size: 14px auto
+}
+
+/* 에러 문구들 */
+.passwdResetNew .validate_msg_label {
+	margin-top: 20px;
+	display: inline-block;
+	font-size: 12px;
+	color: red;
+}
+
+/* 비민번호 변경 버튼 */
+.passwdResetNew .btn_link:disabled {
+	background: #fafafa;
+	color: rgba(0, 0, 0, 0.16);
+}
+
+.passwdResetNew .btn_link {
+	height: 56px;
+	font-size: 16px;
+	line-height: 56px;
+	display: block;
+	width: 100%;
+	border-radius: 6px;
+	color: #fff;
+	text-align: center;
+	border: none;
+	margin-top: 30px !important;
+}

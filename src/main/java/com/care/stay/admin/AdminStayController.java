@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +40,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminStayController {
+
 	@Autowired private AdminStayService service;
 	@Autowired private MotelService mservice;
 	@Autowired private HotelService hservice;
@@ -51,12 +53,13 @@ public class AdminStayController {
 	@Autowired private GHMapper ghMapper;
 	@Autowired private CampingMapper campingMapper;
 	@Autowired private HttpSession session;
-	
+
 	@GetMapping("stayRegister")
 	public String stayRegister(Model model,
 		@RequestParam(value="stayType", required = false)String stayType) {
 		return "admin/stayRegister";
 	}
+
 
 	/* 회원가입시 DB에서 데이터를 읽어온 다음 숙소코드를 표시함*/
 	@GetMapping("getStayCode")
@@ -73,13 +76,30 @@ public class AdminStayController {
 	
 	/* 숙소 상세 DB 페이지로 넘어가는 과정. 각 숙소별로 상세페이지가 조금씩 다른데다 
 	   숙소 DB와 달리 종류는 정해진 상태이므로 If를 주고 페이지를 고정된 상태로 출력함 */
+
+//	@GetMapping("stayDetailRegister")
+//	public String stayDetailRegister(
+//			@RequestParam(value="no", required = false)String n, 
+//			Model model) {
+//		
+//		MotelDTO motel = service.stayContent(n);
+//		if(motel == null)
+//			return "redirect:stayInfo";
+//		
+//		model.addAttribute("motel", motel);
+//		return "admin/stayDetailRegister";
+//	}
+
+
 	@RequestMapping("stayDetailRegister")
+
 	public String stayDetailRegister(
 			@RequestParam(value="no", required = false)String n,
 			@RequestParam(value="stayType", required = false)String stayType,
 			Model model) {
 		
 		if (stayType == null) {
+
 			return "redirect:stayInfo";
 	    } else if (stayType.equals("motel")) {
 	    	MotelDTO motel = mservice.stayContent(n);
@@ -169,22 +189,17 @@ public class AdminStayController {
 	    }
 		return "admin/stayModify";
 	}
-	
+
 	@GetMapping("stayDetailModify")
 	public String stayDetailModify() {
 		return "admin/stayDetailModify";
 	}
-	
-//	@PostMapping("stayModifyProc")
-//	public String stayModifyProc() {
-//		return "redirect:stayContent?no="+motel.getNo()+"&stayType=motel";
-//	}
-	
+
 	@RequestMapping("stayIndex")
 	public String stayIndex() {
 		return "admin/stayIndex";
 	}
-	
+
 	@RequestMapping("stayContent")
 	public String stayContent(
 		@RequestParam(value="no", required = false)String n, 
@@ -256,10 +271,12 @@ public class AdminStayController {
 			model.addAttribute("camping", camping);
 			model.addAttribute("campingRooms", campingRooms);
 			return "admin/stayContent";
+
 		}
 
 		return "admin/stayContent";
 	}
+
 	
 	@PostMapping("stayregisterProc")
 	public String stayregisterProc(MultipartHttpServletRequest multi, 
@@ -288,6 +305,7 @@ public class AdminStayController {
 	    return "admin/stayregister";
 	}
 	
+
 	@PostMapping("staydetailregisterProc")
 	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
 		String stayType = multi.getParameter("stayType");
@@ -310,8 +328,9 @@ public class AdminStayController {
 		}
 
 		if(msg.equals("객실 DB 작성 완료"))
+
 			return "redirect:stayInfo";
-		
+
 		model.addAttribute("msg", msg);
 		return "admin/stayDetailRegister";
 	}
@@ -341,7 +360,9 @@ public class AdminStayController {
 	    	cservice.stayInfo(cp, stayType, model);
 	    } 
 		return "admin/stayInfo";
+
 	}
+
 	
 	@PostMapping("stayModifyProc")
 	public String staymodifyProc(MultipartHttpServletRequest multi, 
@@ -369,4 +390,26 @@ public class AdminStayController {
 	    model.addAttribute("msg", result);
 	    return "admin/stayregister";
 	}
+
+
+	// 회원 정보 조회
+	@GetMapping("stayUser")
+	public String stayUser(@RequestParam(value = "currentPage", required = false) String cp, String option1Name,
+			String option1, String option2Name, String option2, Model model) {
+
+		service.stayUser(cp, option1Name, option1, option2Name, option2, model);
+		return "admin/stayUser";
+	}
+
+//	@ResponseBody
+//	@PostMapping(value = "searchUser", produces = "text/plain; charset=utf-8")
+//	public String searchUser(@RequestBody(required = false) String cp,
+//			@RequestBody(required = false) String option1Name, @RequestBody(required = false) String option1,
+//			@RequestBody(required = false) String option2Name, @RequestBody(required = false) String option2,
+//			Model model) {
+//
+//		return service.searchUser(cp, option1Name, option1, option2Name, option2, model);
+//	}
+
+
 }

@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/* 배경 dimm */
+.alert>.bgDimm {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 410;
+	background: rgba(0, 0, 0, 0.78);
+	touch-action: none;
+}
+
+/* pop_twobtn */
+.alert>.popTwobtn {
+	display: none;
+	position: fixed;
+	width: 360px;
+	margin: 0 0 0 -180px;
+	position: fixed !important;
+	top: 50% !important;
+	left: 50% !important;
+	z-index: 430 !important;
+	bottom: inherit !important;
+	background: #fff;
+	border-radius: 4px;
+	margin-top: -67.5px;
+}
+
+.alert>.popTwobtn .btnText {
+	padding: 30px 38px;
+	font-size: 16px;
+	line-height: 26px;
+}
+
+.alert>.popTwobtn .btn_wrap {
+	padding-right: 15px;
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	text-align: right;
+}
+
+.alert>.popTwobtn .btn_wrap button {
+	height: 48px;
+	padding: 0 15px;
+	font-size: 15px;
+	border: none;
+	background: none;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.colMint {
+	color: rgb(2, 134, 118) !important;
+}
