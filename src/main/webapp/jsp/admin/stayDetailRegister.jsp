@@ -212,7 +212,7 @@
 							<td>
 								<div>
 									<label><input type="radio" name="hbedtype" value="싱글"> 싱글</label>
-									<label><input type="radio" name="hbedtype" value="터블"> 더블</label>
+									<label><input type="radio" name="hbedtype" value="더블"> 더블</label>
 									<label><input type="radio" name="hbedtype" value="트윈"> 트윈</label>	
 									<label><input type="radio" name="hbedtype" value="온돌"> 온돌</label>																		
 								</div>
