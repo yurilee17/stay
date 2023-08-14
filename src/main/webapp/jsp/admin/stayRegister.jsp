@@ -176,7 +176,8 @@
 							<label><input type="radio" name="htype" value="특1급"> 특1급</label>
 							<label><input type="radio" name="htype" value="특급"> 특급</label>														
 							</td>
-						</tr>																			
+						</tr>						
+																			
 					</table>
 					
 					<table id="regContent3" class="regContent" style="display: none;">	
