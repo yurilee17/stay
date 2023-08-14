@@ -230,48 +230,48 @@ public class MotelService {
 	    }
 	}
 	
-	public String stayModifyProc(MultipartHttpServletRequest multi) {
-	    String stayType = multi.getParameter("stayType");
-	    int no = Integer.parseInt(session.getAttribute("no").toString());
-	    String code = session.getAttribute("code").toString();
-		
-		MotelDTO motel = new MotelDTO();
-		motel.setNo(no);
-		motel.setMname(multi.getParameter("name"));
-		motel.setMregion(multi.getParameter("region"));
-		motel.setMdetailRegion(multi.getParameter("detailRegion"));
-		motel.setMaddress(multi.getParameter("address"));
-		motel.setMdetailAddress(multi.getParameter("detailAddress"));
-		motel.setMinfo(multi.getParameter("info"));
-		motel.setMdaesilCheckIn(multi.getParameter("mdaesilcheckin"));
-		motel.setMdaesilCheckOut(multi.getParameter("mdaesilcheckout"));
-		motel.setMdaesilTime(multi.getParameter("mdaesiltime"));
-		motel.setMstayCheckIn(multi.getParameter("mstaycheckin"));
-		motel.setMstayCheckOut(multi.getParameter("mstaycheckout"));
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		motel.setMimage("");
-		MultipartFile file = multi.getFile("imageupload");
-		String fileName = file.getOriginalFilename();
-		if(file.getSize() != 0) {
-			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-			Calendar cal = Calendar.getInstance();
-			fileName = sdf.format(cal.getTime()) + fileName;
-			motel.setMimage(fileName);
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
-			File save = new File(fileLocation + fileName);
-			
-			try {
-				file.transferTo(save);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		System.out.println("상세 지역 : " + motel.getMdetailRegion());
-		motelMapper.stayModifyProc(motel);
-		return "숙소 DB 수정 완료";
-	}
+//	public String stayModifyProc(MultipartHttpServletRequest multi) {
+//	    String stayType = multi.getParameter("stayType");
+//	    int no = Integer.parseInt(session.getAttribute("no").toString());
+//	    String code = session.getAttribute("code").toString();
+//		
+//		MotelDTO motel = new MotelDTO();
+//		motel.setNo(no);
+//		motel.setMname(multi.getParameter("name"));
+//		motel.setMregion(multi.getParameter("region"));
+//		motel.setMdetailRegion(multi.getParameter("detailRegion"));
+//		motel.setMaddress(multi.getParameter("address"));
+//		motel.setMdetailAddress(multi.getParameter("detailAddress"));
+//		motel.setMinfo(multi.getParameter("info"));
+//		motel.setMdaesilCheckIn(multi.getParameter("mdaesilcheckin"));
+//		motel.setMdaesilCheckOut(multi.getParameter("mdaesilcheckout"));
+//		motel.setMdaesilTime(multi.getParameter("mdaesiltime"));
+//		motel.setMstayCheckIn(multi.getParameter("mstaycheckin"));
+//		motel.setMstayCheckOut(multi.getParameter("mstaycheckout"));
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		
+//		motel.setMimage("");
+//		MultipartFile file = multi.getFile("imageupload");
+//		String fileName = file.getOriginalFilename();
+//		if(file.getSize() != 0) {
+//			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+//			Calendar cal = Calendar.getInstance();
+//			fileName = sdf.format(cal.getTime()) + fileName;
+//			motel.setMimage(fileName);
+//			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
+//			File save = new File(fileLocation + fileName);
+//			
+//			try {
+//				file.transferTo(save);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		System.out.println("상세 지역 : " + motel.getMdetailRegion());
+//		motelMapper.stayModifyProc(motel);
+//		return "숙소 DB 수정 완료";
+//	}
 
 	
 }
