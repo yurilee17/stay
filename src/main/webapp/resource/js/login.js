@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	idInput.addEventListener("focus", function() {
 		idDiv.classList.add("inp_focus");
+
 	});
 
 	passwordInput.addEventListener("focus", function() {
@@ -33,7 +34,17 @@ document.addEventListener("DOMContentLoaded", function() {
 			passwordDiv.classList.remove("inp_focus");
 		}
 	});
+	
+	idInput.addEventListener('keydown', handleEnterKey);
+	passwordInput.addEventListener('keydown', handleEnterKey);
 })
+
+function handleEnterKey(event) {
+	if (event.key === 'Enter') {
+		event.preventDefault(); // 기본 엔터 동작을 막습니다.
+		loginCheck(); // Submit 버튼을 클릭합니다.
+	}
+}
 
 function loginCheck() {
 	let id = document.getElementById('id');
@@ -47,7 +58,7 @@ function loginCheck() {
 
 function showAlert(message) {
 	if (message === "실패") {
-		alert("아이디/비밀번호를 다시 확인하세요."); 
+		alert("아이디/비밀번호를 다시 확인하세요.");
 	}
 }
 
