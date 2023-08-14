@@ -25,7 +25,7 @@ public class PageService {
 		}
 			
 		return result;
-	}	
+	}
 
 	public static String printPageStayUser(String url, int currentPage, int totalCount, int pageBlock) {
 		String result = "";

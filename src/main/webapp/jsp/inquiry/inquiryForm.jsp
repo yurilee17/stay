@@ -4,7 +4,9 @@
 
 <!doctype html>
 <html lang="ko">
-
+	<link rel="stylesheet" href="resource/css/common.css" />
+	<c:import url="/header" />
+	<script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -18,7 +20,7 @@
     <link rel="shortcut icon" href="/img/images/web_v3/favicon_170822.ico" type="image/x-icon">
 
 	<!-- CSS -->
-	<title>취향대로 머물다 여기어때</title>
+	<title>저기어때</title>
 	<link rel="stylesheet" href="/resource/css/common.css" />
 	<!-- <link rel="canonical" href="https://www.goodchoice.kr/"> -->
     <script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
@@ -188,7 +190,6 @@
                                 <ul>
                                    <!-- <li><a href="/userindex/notice">공지사항</a></li> -->
                                     <li><a href="/userindex/faq">고객문의</a></li>
-                                    <li><a href="/userindex/terms">약관 및 정책</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -217,9 +218,8 @@
             <nav>
                 <ul>
                     <li><a class="" href="${context }noticeForm">공지사항</a></li>                    
-                    <li><a class="" href="/userindex/faq">자주 묻는 질문</a></li>
+                    <li><a class="" href="${context }faqForm">자주 묻는 질문</a></li>
                     <li><a class="active" href="${context }inquiryForm">1:1 문의</a></li>
-                    <li><a class="" href="/userindex/terms">약관 및 정책</a></li>
                 </ul>
             </nav>
 			<div class="align_rt">
@@ -237,14 +237,14 @@
 					</div>
 
 					<!-- 리스트 -->
-					<div class="tab_each ahn_quelist" style="display:block; margin-bottom: 2rem">
+					<div class="tab_each quelist" style="display:block; margin-bottom: 2rem">
 						<div style="margin-bottom: 2rem" class="userli_add"></div>
 					<!--  -->
 					</div>
 
 
 					<!--문의디테일-->
-					<div class="tab_each ahn_tab_each1">
+					<div class="tab_each tab_each1">
 						<h2 onclick="CloseDetail()" style="display: flex;justify-content: flex-end;font-size: 36px;color: rgb(0 0 0 / 35%);"> x </h2>
 							<input type="hidden" class="qid" alt="문의 id">
 							<div class="alert_top">
@@ -337,11 +337,11 @@
 									</p>
 								</div>
 
-								<div class="email-block">
+							<!-- 	<div class="email-block">
 									<b>이메일</b>
 									<p class="inp_wrap"><input data-email-validate class="js-email-string qEmail q_emailcheck" type="email"
 															   value="" name="uemail" placeholder="선택사항입니다." /></p>
-								</div>
+								</div>  -->
 
 								<!-- 환불받을 계좌정보 등록 -->
 								<!--								<div class="account-block" data-account-select>-->
@@ -600,7 +600,7 @@
 					return false;
 				}
 
-				if (emailInput.val().length > 0 && !emailValidate(emailInput.val())) {
+				if (emailInput.value().length > 0 && !emailValidate(emailInput.value())) {
 					alert_Msg("이메일주소를 확인해주세요");
 					return false;
 				}

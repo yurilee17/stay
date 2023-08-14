@@ -69,5 +69,60 @@
 
 
 
+	<resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
+		<id column="no" property="no"/>																		
+	</resultMap>
+	
+	<resultMap type="com.care.stay.hotel.HotelRoomDTO" id="hotelroomDto">
+		<id column="hroomCode" property="hroomCode"/>
+	</resultMap>
+	
+	<select id="stayContent" resultMap="hotelDto">
+		SELECT * FROM hotel WHERE no=#{no}
+	</select>
+	
+	<select id="stayModify" resultMap="hotelDto">
+		SELECT * FROM hotel WHERE no=#{no}
+	</select>
+	
+	<select id="stayRoomContent" resultMap="hotelroomDto">
+		SELECT * FROM hotelroom WHERE no=#{no}
+	</select>
+	
+	<select id="stayDetailRegister" resultMap="hotelDto">
+		SELECT * FROM hotel WHERE no=#{no}
+	</select>
+	
+	<select id="count">
+	  	SELECT count(no) FROM hotel
+	</select>
+	
+	<select id="hotelroomcount">
+		SELECT COALESCE(nvl(max(hroomcode),0) + 1, 0) FROM hotelroom
+	</select>	
+	
+	<select id="stayCountHotel" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM hotel
+	</select>	
+	
+	<insert id="stayregisterProc" parameterType="com.care.stay.hotel.HotelDTO">
+		<selectKey order="BEFORE" keyProperty="no" resultType="int">
+			SELECT nvl(max(no),0) + 1 FROM hotel
+		</selectKey>
+		INSERT INTO hotel (no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype) 
+		VALUES(#{no}, 'H', #{hname}, #{hregion}, #{hdetailRegion}, 0, #{haddress}, #{hdetailAddress}, #{himage}, #{hinfo}, #{hcheckInTime}, #{hcheckOutTime}, #{htype})
+	</insert>
+	
+	<select id="stayInfo" resultMap="hotelDto">
+		SELECT BBB.* FROM 
+		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT no, hcode, hname, hregion, haddress FROM hotel ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>
+
+	<insert id="staydetailregisterProc" parameterType="com.care.stay.hotel.HotelRoomDTO">
+		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hbedtype, hroomimage, hroomnumber, hprice, hpeople, hcomfort)
+		VALUES(#{no}, #{hcode}, #{hroomCode}, #{hroomName}, #{hbedType}, #{hroomImage}, #{hroomNumber}, #{hprice}, #{hpeople}, #{hcomfort})
+	</insert>	
 
 </mapper>
