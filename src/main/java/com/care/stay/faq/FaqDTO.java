@@ -1,6 +1,6 @@
-package com.care.stay.inquiry;
+package com.care.stay.faq;
 
-public class InquiryDTO {
+public class FaqDTO {
 	private String room_type;
 	private String name;
 	private String num;

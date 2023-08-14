@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="../../resource/css/header.css">
     <link rel="stylesheet preload" href="../../resource/css/font.css" as="style" type="text/css" crossorigin="">
 <header>
+
 	<section>
 		<h1>
 			<a class="" href="index" title="여기어때">여기어때</a>
@@ -19,9 +20,9 @@
 					<span>더보기</span>
 				</button>
 				<ul class="list_03">
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#">자주 묻는 질문</a></li>
-					<li><a href="#">1:1 문의</a></li>
+					<li><a href="${context }noticeForm">공지사항</a></li>
+					<li><a href="${context }faqForm">자주 묻는 질문</a></li>
+					<li><a href="${context }inquiryForm">1:1 문의</a></li>
 					<li><a href="#">약관 및 정책</a></li>
 				</ul>
 			</li>
