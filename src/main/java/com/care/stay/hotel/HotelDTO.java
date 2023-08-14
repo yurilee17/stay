@@ -3,20 +3,20 @@ package com.care.stay.hotel;
 public class HotelDTO {
 	
 	private int no;
-	private String hCode;
-	private String hName;
-	private String hRegion;
-	private String hDetailregion;
-	private int hRationg;
-	private String hAddress;
-	private String hDetailaddress;
-	private String hImage;
-	private String hInfo;
-	private String hCheckintime;
-	private String hCheckouttime;
-	private String hType;
-	private int hPeople;
-	private String hBedtype;
+	private String hcode;
+	private String hname;
+	private String hregion;
+	private String hdetailregion;
+	private int hrating;
+	private String haddress;
+	private String hdetailaddress;
+	private String himage;
+	private String hinfo;
+	private String hcheckintime;
+	private String hcheckouttime;
+	private String htype;
+	private int hpeople;
+	private String hbedtype;
 	
 	
 	public int getNo() {
@@ -25,90 +25,97 @@ public class HotelDTO {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String gethCode() {
-		return hCode;
+	public String getHcode() {
+		return hcode;
 	}
-	public void sethCode(String hCode) {
-		this.hCode = hCode;
+	public void setHcode(String hcode) {
+		this.hcode = hcode;
 	}
-	public String gethName() {
-		return hName;
+	public String getHname() {
+		return hname;
 	}
-	public void sethName(String hName) {
-		this.hName = hName;
+	public void setHname(String hname) {
+		this.hname = hname;
 	}
-	public String gethRegion() {
-		return hRegion;
+	public String getHregion() {
+		return hregion;
 	}
-	public void sethRegion(String hRegion) {
-		this.hRegion = hRegion;
+	public void setHregion(String hregion) {
+		this.hregion = hregion;
 	}
-	public String gethDetailregion() {
-		return hDetailregion;
+	public String getHdetailregion() {
+		return hdetailregion;
 	}
-	public void sethDetailregion(String hDetailregion) {
-		this.hDetailregion = hDetailregion;
+	public void setHdetailregion(String hdetailregion) {
+		this.hdetailregion = hdetailregion;
 	}
-	public int gethRationg() {
-		return hRationg;
+	public int getHrating() {
+		return hrating;
 	}
-	public void sethRationg(int hRationg) {
-		this.hRationg = hRationg;
+	public void setHrating(int hrating) {
+		this.hrating = hrating;
 	}
-	public String gethAddress() {
-		return hAddress;
+	public String getHaddress() {
+		return haddress;
 	}
-	public void sethAddress(String hAddress) {
-		this.hAddress = hAddress;
+	public void setHaddress(String haddress) {
+		this.haddress = haddress;
 	}
-	public String gethDetailaddress() {
-		return hDetailaddress;
+	public String getHdetailaddress() {
+		return hdetailaddress;
 	}
-	public void sethDetailaddress(String hDetailaddress) {
-		this.hDetailaddress = hDetailaddress;
+	public void setHdetailaddress(String hdetailaddress) {
+		this.hdetailaddress = hdetailaddress;
 	}
-	public String gethImage() {
-		return hImage;
+	public String getHimage() {
+		return himage;
 	}
-	public void sethImage(String hImage) {
-		this.hImage = hImage;
+	public void setHimage(String himage) {
+		this.himage = himage;
 	}
-	public String gethInfo() {
-		return hInfo;
+	public String getHinfo() {
+		return hinfo;
 	}
-	public void sethInfo(String hInfo) {
-		this.hInfo = hInfo;
+	public void setHinfo(String hinfo) {
+		this.hinfo = hinfo;
 	}
-	public String gethCheckintime() {
-		return hCheckintime;
+	public String getHcheckintime() {
+		return hcheckintime;
 	}
-	public void sethCheckintime(String hCheckintime) {
-		this.hCheckintime = hCheckintime;
+	public void setHcheckintime(String hcheckintime) {
+		this.hcheckintime = hcheckintime;
 	}
-	public String gethCheckouttime() {
-		return hCheckouttime;
+	public String getHcheckouttime() {
+		return hcheckouttime;
 	}
-	public void sethCheckouttime(String hCheckouttime) {
-		this.hCheckouttime = hCheckouttime;
+	public void setHcheckouttime(String hcheckouttime) {
+		this.hcheckouttime = hcheckouttime;
 	}
-	public String gethType() {
-		return hType;
+	public String getHtype() {
+		return htype;
 	}
-	public void sethType(String hType) {
-		this.hType = hType;
+	public void setHtype(String htype) {
+		this.htype = htype;
 	}
-	public int gethPeople() {
-		return hPeople;
+	public int getHpeople() {
+		return hpeople;
 	}
-	public void sethPeople(int hPeople) {
-		this.hPeople = hPeople;
+	public void setHpeople(int hpeople) {
+		this.hpeople = hpeople;
 	}
-	public String gethBedtype() {
-		return hBedtype;
+	public String getHbedtype() {
+		return hbedtype;
 	}
-	public void sethBedtype(String hBedtype) {
-		this.hBedtype = hBedtype;
+	public void setHbedtype(String hbedtype) {
+		this.hbedtype = hbedtype;
 	}
+	
+	
+	
+	
 
-
+	
+	
+	
 }
+	

@@ -41,7 +41,7 @@
 
 				<li><a href="${context }motel" menu-link="1"><span class="ico_01">&nbsp;</span><p>모텔1</p></a></li>
 
-				<li><a href="#" menu-link="2"><span class="ico_02">&nbsp;</span><p>호텔·리조트</p></a></li>
+				<li><a href="${context }hotellist" menu-link="2"><span class="ico_02">&nbsp;</span><p>호텔·리조트</p></a></li>
 				<li><a href="#" menu-link="3"><span class="ico_03">&nbsp;</span><p>펜션</p></a></li>
 				<li><a href="#" menu-link="6"><span class="ico_04">&nbsp;</span><p>게스트하우스</p></a></li>
 				<li><a href="#" menu-link="5"><span class="ico_05">&nbsp;</span><p>캠핑·글램핑</p></a></li>
