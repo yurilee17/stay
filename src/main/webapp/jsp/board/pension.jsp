@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>모텔</title>
+<title>펜션</title>
 </head>
 <body>
 

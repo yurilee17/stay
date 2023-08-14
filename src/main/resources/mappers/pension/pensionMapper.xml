@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.care.stay.pension.PensionMapper">
+
+	<resultMap type="com.care.stay.pension.PensionDTO" id="pensionDto">
+		<id column="no" property="no"/>																		
+	</resultMap>
+	
+	<resultMap type="com.care.stay.pension.PensionRoomDTO" id="pensionroomDto">
+		<id column="proomCode" property="proomCode"/>
+	</resultMap>
+	
+	<select id="stayContent" resultMap="pensionDto">
+		SELECT * FROM pension WHERE no=#{no}
+	</select>
+	
+	<select id="stayRoomContent" resultMap="pensionroomDto">
+		SELECT * FROM pensionroom WHERE no=#{no}
+	</select>
+	
+	<select id="stayDetailRegister" resultMap="pensionDto">
+		SELECT * FROM pension WHERE no=#{no}
+	</select>
+	
+	<select id="count">
+	  	SELECT count(no) FROM pension
+	</select>
+	
+	<select id="pensionroomcount">
+		SELECT COALESCE(nvl(max(proomcode),0) + 1, 0) FROM pensionroom
+	</select>	
+	
+	<select id="stayCountPension" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM pension
+	</select>
+	
+	<insert id="stayregisterProc" parameterType="com.care.stay.pension.PensionDTO">
+		<selectKey order="BEFORE" keyProperty="no" resultType="int">
+			SELECT nvl(max(no),0) + 1 FROM pension
+		</selectKey>
+		INSERT INTO pension (no, pcode, pname, pregion, pdetailregion, prating, paddress, pdetailaddress, pimage, pinfo, pcheckintime, pcheckouttime, ptype) 
+		VALUES(#{no}, 'P', #{pname}, #{pregion}, #{pdetailRegion}, 0, #{paddress}, #{pdetailAddress}, #{pimage}, #{pinfo}, #{pcheckInTime}, #{pcheckOutTime}, #{ptype})
+	</insert>
+	
+	<select id="stayInfo" resultMap="pensionDto">
+		SELECT BBB.* FROM 
+		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT no, pcode, pname, pregion, paddress FROM pension ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>
+
+	<insert id="staydetailregisterProc" parameterType="com.care.stay.pension.PensionRoomDTO">
+		INSERT INTO pensionroom (no, pcode, proomcode, proomname, proomimage, proomnumber, pprice, ppeople, pcomfort)
+		VALUES(#{no}, #{pcode}, #{proomCode}, #{proomName}, #{proomImage}, #{proomNumber}, #{pprice}, #{ppeople}, #{pcomfort})
+	</insert>
+
+</mapper>
