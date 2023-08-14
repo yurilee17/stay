@@ -48,7 +48,7 @@
 							<th>종류</th>
 							<td>	
 								<select class="form_w30" name="stayType" id="stayType" onchange="showRegContent()">
-								 	<option value="">숙소 종류를 선택하세요</option>								
+								 	<option disabled selected value="">숙소 종류를 선택하세요</option>								
 									<option value="motel">모텔</option>
 						            <option value="hotel">호텔·리조트</option>
 						            <option value="pension">펜션</option>
@@ -68,7 +68,7 @@
 							<th>지역</th>
 							<td>	
 								<select class="form_w40" name="region" id="region" onchange="showSubMenu()">
-								  <option value="">지역을 선택하세요</option>
+								  <option disabled selected value="">지역을 선택하세요</option>
 								  <option value="서울">서울</option>
 								  <option value="경기/인천">경기/인천</option>
 								  <option value="충청/강원/제주">충청/강원/제주</option>
@@ -81,7 +81,7 @@
 							<th>세부지역</th>
 							<td>
 								<select id="detailRegion" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
+								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="강동">강동</option>
 								  <option value="강서">강서</option>
 								  <option value="강남">강남</option>
@@ -89,26 +89,26 @@
 								</select>
 								
 								<select id="detailRegion2" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
+								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="경기">경기</option>
 								  <option value="인천">인천</option>
 								</select>
 								
 								<select id="detailRegion3" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
+								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="충청">충청</option>
 								  <option value="강원">강원</option>
 								  <option value="제주">제주</option>
 								</select>
 								
 								<select id="detailRegion4" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
+								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="경남">경남</option>
 								  <option value="경북">경북</option>
 								</select>
 								
 								<select id="detailRegion5" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
-								  <option value="">상세지역을 선택하세요</option>
+								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="전남">전남</option>
 								  <option value="전북">전북</option>
 								</select>
