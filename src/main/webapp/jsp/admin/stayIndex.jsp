@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -20,15 +20,10 @@
 	<div id ="wrap">
 		<div class="content">
 			<!-- 숙소 탭 -->
-			<div class="stay">
-				<ul class="top_nav">
-					<li><a href="${context }index">메인</a></li>
-					<li><a href="#">회원 DB 조회</a></li>
-					<li><a href="${context }stayRegister">숙소 DB 등록</a></li>
-					<li><a href="${context }stayInfo">숙소 DB 조회</a></li>
-					<li><a href="#">예약 DB 조회</a></li>
-				</ul>
-			</div>
+
+			<c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" />
+			<c:import url="${adminHeaderUrl}" />
+
 		</div>
 	</div>			
  </body>

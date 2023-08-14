@@ -1,17 +1,16 @@
 package com.care.stay.hotel;
 
 public class HotelRoomDTO {
-	
 	private int no;
-	private String hCode;
-	private String hRoomcode;
-	private String hRoomname;
-	private String hRoomimage;
-	private int hRoomnumber;
-	private String hPrice;
-	private String hGuide;
-	private String hComfort;
-	
+	private String hcode;
+	private String hroomCode;
+	private String hroomName;
+	private String hbedType;
+	private String hroomImage;
+	private int hroomNumber;
+	private int hprice;
+	private int hpeople;
+	private String hcomfort;
 	
 	public int getNo() {
 		return no;
@@ -19,56 +18,59 @@ public class HotelRoomDTO {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String gethCode() {
-		return hCode;
+	public String getHcode() {
+		return hcode;
 	}
-	public void sethCode(String hCode) {
-		this.hCode = hCode;
+	public void setHcode(String hcode) {
+		this.hcode = hcode;
 	}
-	public String gethRoomcode() {
-		return hRoomcode;
+	public String getHroomCode() {
+		return hroomCode;
 	}
-	public void sethRoomcode(String hRoomcode) {
-		this.hRoomcode = hRoomcode;
+	public void setHroomCode(String hroomCode) {
+		this.hroomCode = hroomCode;
 	}
-	public String gethRoomname() {
-		return hRoomname;
+	public String getHroomName() {
+		return hroomName;
 	}
-	public void sethRoomname(String hRoomname) {
-		this.hRoomname = hRoomname;
+	public void setHroomName(String hroomName) {
+		this.hroomName = hroomName;
 	}
-	public String gethRoomimage() {
-		return hRoomimage;
+	public String getHbedType() {
+		return hbedType;
 	}
-	public void sethRoomimage(String hRoomimage) {
-		this.hRoomimage = hRoomimage;
+	public void setHbedType(String hbedType) {
+		this.hbedType = hbedType;
 	}
-	public int gethRoomnumber() {
-		return hRoomnumber;
+	public String getHroomImage() {
+		return hroomImage;
 	}
-	public void sethRoomnumber(int hRoomnumber) {
-		this.hRoomnumber = hRoomnumber;
+	public void setHroomImage(String hroomImage) {
+		this.hroomImage = hroomImage;
 	}
-	public String gethPrice() {
-		return hPrice;
+	public int getHroomNumber() {
+		return hroomNumber;
 	}
-	public void sethPrice(String hPrice) {
-		this.hPrice = hPrice;
+	public void setHroomNumber(int hroomNumber) {
+		this.hroomNumber = hroomNumber;
 	}
-	public String gethGuide() {
-		return hGuide;
+	public int getHprice() {
+		return hprice;
 	}
-	public void sethGuide(String hGuide) {
-		this.hGuide = hGuide;
+	public void setHprice(int hprice) {
+		this.hprice = hprice;
 	}
-	public String gethComfort() {
-		return hComfort;
+	public int getHpeople() {
+		return hpeople;
 	}
-	public void sethComfort(String hComfort) {
-		this.hComfort = hComfort;
+	public void setHpeople(int hpeople) {
+		this.hpeople = hpeople;
 	}
-
+	public String getHcomfort() {
+		return hcomfort;
+	}
+	public void setHcomfort(String hcomfort) {
+		this.hcomfort = hcomfort;
+	}
 	
-
-
 }

@@ -11,6 +11,7 @@ fieldset,img{border:0}
 a{text-decoration:none}
 address,caption,em,var{font-style:normal;font-weight:normal}
 textarea,button,input,select{font-family:'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;}
+button {padding: 0; cursor: pointer;}
 button:focus,button:active{padding: 0;}
 button span{position: relative;}
 select::-ms-expand{display:none}
@@ -237,20 +238,6 @@ input[type=checkbox].inp_room_04:checked + label{color:rgba(242,17,76,0.87);}
 @media all and (max-width:320px){ /* Min Width (해상도 320px 이하일때 고정) */
 	.wrap{width:320px}
 } /* Media query Close */
-
-/* Header */
-header{position:relative;z-index:210}
-header section{width:100%}
-h2{font-size:14px;margin-bottom:13px;color:rgba(0,0,0,0.87);font-weight:bold}
-header section{height:44px;background:#fff}
-header section h1{position:absolute;top:12px;left:50%;width:95px;height:20px;margin:0 0 0 -47.5px;background:url('//image.goodchoice.kr/images/web_v3/h1_logo_mo.png') 0 0 no-repeat;background-size:95px auto}
-header section h1 a{display:block;text-indent:-9999px}
-header section .btn_menu{position:absolute;top:2px;left:8px;width:40px;height:40px;border:none;background:url('//image.goodchoice.kr/images/web_v3/ico_menu.png') 50% 50% no-repeat;background-size:24px auto;text-indent:-9999px}
-.mobile header section .btn_srch{position:absolute;top:2px;right:8px !important;width:40px;height:40px;border:none;background:url('//image.goodchoice.kr/images/web_v3/ico_srch.png') 50% 50% no-repeat;background-size:24px auto;text-indent:-9999px}
-.mobile .gnb_pc{display:none !important}
-header,.roll{position:relative;background:#f7323f}
-.fix_title h1.page_head{text-align: center;}
-.fix_title h1.page_head a{display: inline-block;width:112px;height:44px;background:url('//image.goodchoice.kr/images/web_v3/h1_mobile.png') 50% 50% no-repeat;background-size:112px 23px;text-indent:-9999px}
 
 /* GNB - Mobile */
 .gnb_opacity{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:290;background:rgba(0,0,0,0.78)}

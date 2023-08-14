@@ -4,69 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.care.stay.admin.AdminStayMapper">
-	<resultMap type="com.care.stay.motel.MotelDTO" id="motelDto">
-		<id column="no" property="no"/>
-		<result column="mcode" property="mcode" />
-		<result column="mname" property="mname" />
-		<result column="mregion" property="mregion" />
-		<result column="mdetailregion" property="mdetailRegion" />
-		<result column="mdaesilprice" property="mdaesilPrice" />
-		<result column="mstayprice" property="mstayPrice" />
-		<result column="mrating" property="mrating" />
-		<result column="maddress" property="maddress" />
-		<result column="mdetailaddress" property="mdetailAddress" />	
-		<result column="mimage" property="mimage" />
-		<result column="minfo" property="minfo" />																			
-	</resultMap>
 
-	<insert id="stayregisterProc" parameterType="com.care.stay.motel.MotelDTO">
-		<selectKey order="BEFORE" keyProperty="no" resultType="int">
-			SELECT nvl(max(no),0) + 1 FROM motel
-		</selectKey>
-		INSERT INTO motel (mcode, mname, mregion, mdetailregion, mrating, maddress, mimage, minfo, mdetailaddress, no) 
-		VALUES('M', #{mname}, #{mregion}, #{mdetailRegion}, 0, #{maddress}, #{mimage}, #{minfo}, #{mdetailAddress}, #{no})
-	</insert>
-	
-	<select id="stayContent" resultMap="motelDto">
-		SELECT * FROM motel WHERE no=#{no}
-	</select>
-	
-	<select id="stayDetailRegister" resultMap="motelDto">
-		SELECT * FROM motel WHERE no=#{no}
-	</select>
-
-	<select id="count">
-	  	SELECT count(no) FROM motel
-	</select>
-	
-	<select id="stayInfo" resultMap="motelDto">
-		SELECT BBB.* FROM 
-		(SELECT rownum as rn, AAA.* FROM 
-		(SELECT no, mcode, mname, mregion, maddress FROM motel ORDER BY no DESC)AAA)BBB
-		WHERE BBB.rn BETWEEN #{begin} AND #{end}
-	</select>
-
-	
-	<insert id="staydetailregisterProc" parameterType="com.care.stay.motel.MotelRoomDTO">
-		INSERT INTO motelroom (no, mcode, mroomname, mroomcode, mroomimage, mroomnumber, mdaesilprice, mstayprice, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, moption)
-		VALUES(#{no}, #{mcode}, #{mroomname}, #{mroomcode}, #{mroomimage}, #{mroomnumber}, #{mdaesilprice}, #{mstayprice}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout}, #{moption})
-	</insert>
- 
-
-<!-- 	<insert id="registerProc" parameterType="com.care.stay.hotel.HotelDTO">
-		INSERT INTO motel VALUES(#{hcode},#{hname},#{hregion},#{hdetailregion},#{haddress},#{himage},#{hinfo})
-	</insert>
-	
-	<insert id="registerProc" parameterType="com.care.stay.pension.PensionDTO">
-		INSERT INTO motel VALUES(#{pcode},#{pname},#{pregion},#{pdetailregion},#{paddress},#{pimage},#{pinfo})
-	</insert>
-	
-	<insert id="registerProc" parameterType="com.care.stay.guesthouse.GuestHouseDTO">
-		INSERT INTO motel VALUES(#{gcode},#{gname},#{gregion},#{gdetailregion},#{gaddress},#{gimage},#{ginfo})
-	</insert>
-	
-	<insert id="registerProc" parameterType="com.care.stay.camping.CampingDTO">
-		INSERT INTO motel VALUES(#{ccode},#{cname},#{cregion},#{cdetailregion},#{caddress},#{cimage},#{cinfo})
-	</insert> -->
 
 </mapper>

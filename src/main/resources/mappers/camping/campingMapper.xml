@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.care.stay.camping.CampingMapper">
+
+	<resultMap type="com.care.stay.camping.CampingDTO" id="campingDto">
+		<id column="no" property="no"/>																		
+	</resultMap>
+	
+	<resultMap type="com.care.stay.camping.CampingRoomDTO" id="campingroomDto">
+		<id column="croomCode" property="croomCode"/>
+	</resultMap>	
+
+	<select id="stayContent" resultMap="campingDto">
+		SELECT * FROM camping WHERE no=#{no}
+	</select>
+	
+	<select id="stayRoomContent" resultMap="campingroomDto">
+		SELECT * FROM campingroom WHERE no=#{no}
+	</select>
+	
+	<select id="stayDetailRegister" resultMap="campingDto">
+		SELECT * FROM camping WHERE no=#{no}
+	</select>
+	
+	<select id="count">
+	  	SELECT count(no) FROM camping
+	</select>		
+	
+	<select id="campingroomcount">
+		SELECT COALESCE(nvl(max(croomcode),0) + 1, 0) FROM campingroom
+	</select>	
+	
+	<select id="stayCountCamping" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM camping
+	</select>	
+	
+	<insert id="stayregisterProc" parameterType="com.care.stay.camping.CampingDTO">
+		<selectKey order="BEFORE" keyProperty="no" resultType="int">
+			SELECT nvl(max(no),0) + 1 FROM camping
+		</selectKey>
+		INSERT INTO camping (no, ccode, cname, cregion, cdetailregion, crating, caddress, cdetailaddress, cimage, cinfo, ccheckintime, ccheckouttime, ctype) 
+		VALUES(#{no}, 'C', #{cname}, #{cregion}, #{cdetailRegion}, 0, #{caddress}, #{cdetailAddress}, #{cimage}, #{cinfo}, #{ccheckInTime}, #{ccheckOutTime}, #{ctype})
+	</insert>
+	
+	<select id="stayInfo" resultMap="campingDto">
+		SELECT BBB.* FROM 
+		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT no, ccode, cname, cregion, caddress FROM camping ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>
+
+	<insert id="staydetailregisterProc" parameterType="com.care.stay.camping.CampingRoomDTO">
+		INSERT INTO campingroom (no, ccode, croomcode, croomname, croomimage, croomnumber, cprice, cpeople, ccomfort)
+		VALUES(#{no}, #{ccode}, #{croomCode}, #{croomName}, #{croomImage}, #{croomNumber}, #{cprice}, #{cpeople}, #{ccomfort})
+	</insert>	
+	
+</mapper>

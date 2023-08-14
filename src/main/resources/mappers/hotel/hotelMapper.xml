@@ -4,6 +4,125 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.care.stay.hotel.HotelMapper">
+	<resultMap type="com.care.stay.hotel.HotelDTO" id="HotelDto">
+		<id column="no" property="no"/>
+		<result column="hcode" property="hcode"/>
+		<result column="hname" property="hname"/>
+		<result column="hregion" property="hregion"/>
+		<result column="hdetailregion" property="hdetailregion"/>
+		<result column="hrating" property="hrating"/>
+		<result column="haddress" property="haddress"/>
+		<result column="hdetailaddress" property="hdetailaddress"/>
+		<result column="himage" property="himage"/>
+		<result column="hinfo" property="hinfo"/>
+		<result column="hcheckintime" property="hcheckintime"/>
+		<result column="hcheckouttime" property="hcheckouttime"/>
+		<result column="htype" property="htype"/>
+		<result column="hpeople" property="hpeople"/>
+		<result column="hbedtype" property="hbedtype"/>
+	</resultMap> 
 
+	<select id="count">
+	  	SELECT count(no) FROM hotel
+	</select>
+
+<!-- 	<select id="hotellist" resultMap="HotelDto">  
+		SELECT BBB.* 
+		FROM (SELECT ROWNUM() as rn, AAA.* 
+		FROM (SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype, 
+		FROM hotel ORDER BY no DESC )AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select> -->
+	
+<!--  전체 다 나오는 코드인데 처음부터 지역 지정해서 하는 코드로 바꿔보려함! (아래) -->
+  	<select id="hotellist" resultMap="HotelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
+		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
+		FROM hotel ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
+	
+		<!-- 지역별로 나오게하기  -->
+ 	<select id="Main" resultMap="HotelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
+		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
+		FROM hotel WHERE hdetailregion = #{selectedText})AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
+	
+		<!-- 체크박스 선택한 별로 나오게하기    테이블이 hotel과 hotelroom 두개의 컬럼이 다 들어가있음 (수정해야함) -->
+		
+	<select id="MainCheck" resultMap="HotelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
+		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
+		FROM hotel WHERE hdetailregion = #{selectedText} AND (htype = #{selectedValues1} OR hbedtype = #{selectedValues2} OR hcomfort = #{selectedValues3} OR hpeople = #{personCount} ))AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
+	
+	
+
+
+
+	<resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
+		<id column="no" property="no"/>																		
+	</resultMap>
+	
+	<resultMap type="com.care.stay.hotel.HotelRoomDTO" id="hotelroomDto">
+		<id column="hroomCode" property="hroomCode"/>
+	</resultMap>
+	
+	<select id="stayContent" resultMap="hotelDto">
+		SELECT * FROM hotel WHERE no=#{no}
+	</select>
+	
+	<select id="stayModify" resultMap="hotelDto">
+		SELECT * FROM hotel WHERE no=#{no}
+	</select>
+	
+	<select id="stayRoomContent" resultMap="hotelroomDto">
+		SELECT * FROM hotelroom WHERE no=#{no}
+	</select>
+	
+	<select id="stayDetailRegister" resultMap="hotelDto">
+		SELECT * FROM hotel WHERE no=#{no}
+	</select>
+	
+	<select id="count">
+	  	SELECT count(no) FROM hotel
+	</select>
+	
+	<select id="hotelroomcount">
+		SELECT COALESCE(nvl(max(hroomcode),0) + 1, 0) FROM hotelroom
+	</select>	
+	
+	<select id="stayCountHotel" resultType="int">
+	  	SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM hotel
+	</select>	
+	
+	<insert id="stayregisterProc" parameterType="com.care.stay.hotel.HotelDTO">
+		<selectKey order="BEFORE" keyProperty="no" resultType="int">
+			SELECT nvl(max(no),0) + 1 FROM hotel
+		</selectKey>
+		INSERT INTO hotel (no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype) 
+		VALUES(#{no}, 'H', #{hname}, #{hregion}, #{hdetailRegion}, 0, #{haddress}, #{hdetailAddress}, #{himage}, #{hinfo}, #{hcheckInTime}, #{hcheckOutTime}, #{htype})
+	</insert>
+	
+	<select id="stayInfo" resultMap="hotelDto">
+		SELECT BBB.* FROM 
+		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT no, hcode, hname, hregion, haddress FROM hotel ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>
+
+	<insert id="staydetailregisterProc" parameterType="com.care.stay.hotel.HotelRoomDTO">
+		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hbedtype, hroomimage, hroomnumber, hprice, hpeople, hcomfort)
+		VALUES(#{no}, #{hcode}, #{hroomCode}, #{hroomName}, #{hbedType}, #{hroomImage}, #{hroomNumber}, #{hprice}, #{hpeople}, #{hcomfort})
+	</insert>	
 
 </mapper>
