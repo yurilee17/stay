@@ -189,5 +189,12 @@ public class MemberController {
 	public String test() {
 		return "default/test";
 	}
+	
+	/* ======================== 내정보 ======================== */
+
+	@GetMapping("myPage")
+	public String myPage() {
+		return "member/myPage";
+	}
 
 }
