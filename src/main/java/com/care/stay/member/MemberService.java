@@ -25,7 +25,7 @@ public class MemberService {
 				if (member.getPassword().equals(result.getPassword())) {
 					session.setAttribute("id", result.getId());
 					session.setAttribute("password", result.getPassword());
-					session.setAttribute("moblie", result.getMobile());
+					session.setAttribute("mobile", result.getMobile());
 					session.setAttribute("name", result.getName());
 					session.setAttribute("nickname", result.getNickname());
 					session.setAttribute("authority", result.getAuthority());
@@ -35,10 +35,11 @@ public class MemberService {
 			if (result.getAuthority().equals("user")) {
 				if (result.getId().contains("kakao")) {
 					session.setAttribute("id", result.getId());
-					session.setAttribute("moblie", result.getMobile());
+					session.setAttribute("mobile", result.getMobile());
 					session.setAttribute("name", result.getName());
 					session.setAttribute("nickname", result.getNickname());
 					session.setAttribute("authority", result.getAuthority());
+					
 					return "로그인 성공";
 				} else {
 
@@ -48,7 +49,7 @@ public class MemberService {
 
 						session.setAttribute("id", result.getId());
 						session.setAttribute("password", result.getPassword());
-						session.setAttribute("moblie", result.getMobile());
+						session.setAttribute("mobile", result.getMobile());
 						session.setAttribute("name", result.getName());
 						session.setAttribute("nickname", result.getNickname());
 						session.setAttribute("authority", result.getAuthority());

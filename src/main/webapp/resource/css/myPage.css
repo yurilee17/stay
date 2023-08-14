@@ -1,0 +1,494 @@
+@charset "UTF-8";
+
+* {
+	outline: 0
+}
+
+html,
+body {
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+	font-size: 14px;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	-webkit-text-size-adjust: none
+}
+
+/* 폰트크기 자동조절 제거 */
+input::-ms-clear,
+input::-ms-reveal {
+	display: none
+}
+
+/* IE - select arrow remove */
+img {
+	border: 0;
+	vertical-align: top;
+	-webkit-touch-callout: none
+}
+
+/* 이미지 터치 팝업 제거 */
+a,
+input,
+button,
+div,
+li,
+textarea,
+form,
+label,
+select {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+/* 하이라이트 제거 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+	list-style: none
+}
+
+fieldset,
+img {
+	border: 0
+}
+
+a {
+	text-decoration: none
+}
+
+address,
+caption,
+em,
+var {
+	font-style: normal;
+	font-weight: normal
+}
+
+textarea,
+button,
+input,
+select {
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+}
+
+button {
+	padding: 0;
+	cursor: pointer;
+}
+
+button:focus,
+button:active {
+	padding: 0;
+}
+
+button span {
+	position: relative;
+}
+
+select::-ms-expand {
+	display: none
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+label {
+	cursor: pointer
+}
+
+/* 전체 */
+.wrap {
+	opacity: 1;
+	/*visibility: visible;*/
+	width: 100%;
+	background: #fff;
+}
+
+/* 상단 비주얼 */
+.sub_top_wrap {
+	height: 211px;
+	background: #f7323f;
+}
+
+.sub_top {
+	width: 1024px;
+	height: 211px;
+	margin: 0 auto;
+	padding-top: 72px;
+	border-radius: 0;
+	background: none;
+	position: relative;
+}
+
+.sub_top h2 {
+	display: block;
+	margin: 21px 0 0 31px;
+	font-size: 38px;
+	font-weight: normal;
+	letter-spacing: -1px;
+	color: #fff;
+}
+
+/* 콘텐츠*/
+/*
+#content {
+	overflow: hidden;
+}
+*/
+
+.sub_wrap {
+	overflow: hidden;
+	padding-top: 54px;
+	min-height: 390px;
+	width: 1024px !important;
+	margin: 0 auto 0 auto;
+	padding-bottom: 50px;
+}
+
+/* nav */
+.sub_wrap nav {
+	display: block;
+	float: left;
+	width: 238px;
+	padding-left: 31px;
+}
+
+.sub_wrap nav ul li {
+	margin-bottom: 26px;
+}
+
+.sub_wrap nav ul li a {
+	display: block;
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.sub_wrap nav ul li a.active {
+	font-size: 18px;
+	font-weight: bold;
+	color: rgb(230, 28, 81);
+}
+
+/* 내정보 */
+.sub_wrap .align_rt {
+	float: right;
+	width: 724px;
+	margin-right: 31px;
+}
+
+.myPage {
+	border-top: none;
+	padding: 0;
+	font-size: 18px;
+	overflow: hidden;
+}
+
+/* 정보 및 수정 */
+
+.myPage .top_area {
+	padding-top: 0;
+}
+
+.myPage form:first-child .top_area {
+	position: relative;
+	padding-top: 137px;
+}
+
+.myPage strong {
+	padding: 0 0 43px 0;
+	display: block;
+}
+
+.myPage b {
+	margin-bottom: 12px;
+	display: block;
+	font-weight: normal;
+}
+
+.login_info {
+	position: relative;
+	text-align: left;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.login_info div {
+	width: 128px;
+	height: 128px;
+	margin: 0 0 26px 0;
+	display: inline-block;
+	overflow: hidden;
+	border-radius: 100%;
+}
+
+.login_info div img {
+	width: 100%;
+	height: 100%;
+}
+
+.login_info p {
+	padding-bottom: 42px;
+	font-size: 15px;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 0.32);
+}
+
+.myPage .pw_input {
+	position: relative;
+}
+
+.myPage .pw_input__title {
+	padding-right: 240px;
+	overflow: hidden;
+}
+
+.myPage .pw_input__title b {
+	width: 120px;
+	float: left;
+}
+
+.myPage .pw_input__title .title__uinfo {
+	color: rgba(0, 0, 0, 0.56);
+	float: left;
+}
+
+.myPage .pw_input section {
+	position: relative;
+	margin: 0 0 33px 0;
+	padding-right: 110px;
+}
+
+/* 수정 시 발생 */
+.inp_wrap input {
+	border: none;
+	background: none;
+	width: 100%;
+	margin-top: 5px;
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.56);
+	height: 20px;
+	line-height: 1;
+}
+
+.myPage .pw_input section .btn_confirm.active {
+	background: #ff0055;
+}
+
+.myPage .pw_input section .btn_confirm {
+	right: auto;
+	left: 384px;
+	position: absolute;
+	top: 0;
+	width: 100px;
+	height: 44px;
+	border: none;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: normal;
+	color: #fff;
+}
+
+/* 기본 버튼 */
+.myPage .pw_input .pw_input__btns-wrap {
+	display: block;
+	overflow: hidden;
+	margin-bottom: 50px;
+	padding-right: 110px;
+}
+
+.myPage .pw_input__btns-wrap button {
+	width: 144px;
+	display: none;
+	float: left;
+	margin-right: 5%;
+	height: 42px;
+	border-radius: 4px;
+	font-size: 15px;
+	color: rgba(0, 0, 0, 0.87);
+	text-align: center;
+	box-sizing: border-box;
+	vertical-align: top;
+	background-color: #fff;
+}
+
+.myPage .pw_input__btns-wrap button:last-child {
+	margin-right: 0px;
+}
+
+.myPage .pw_input .pw_input__btns-wrap .btns-wrap__edit-btn,
+.myPage .pw_input .pw_input__btns-wrap .btns-wrap__cancel-btn {
+	border: solid 1px #ccc;
+}
+
+.myPage .pw_input .pw_input__btns-wrap .btns-wrap__edit-btn {
+	display: block;
+}
+
+.myPage .pw_input .pw_input__btns-wrap.modifying .btns-wrap__cancel-btn,
+.myPage .pw_input .pw_input__btns-wrap.modifying .btns-wrap__submit-btn {
+	display: block;
+}
+
+.myPage .pw_input__btns-wrap .btns-wrap__submit-btn {
+	border: none;
+	color: #fff;
+	background: linear-gradient(to bottom, #ff0055 0%, #e62243 100%);
+}
+
+
+.myPage .pw_input__btns-wrap .btns-wrap__cancel-btn {
+	background: none;
+	box-sizing: none;
+}
+
+/* 번호 수정 문구 */
+.myPage .safety_txt {
+	clear: both;
+}
+
+.safety_txt {
+	padding-bottom: 14px;
+	font-size: 14px;
+	display: block;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.myPage .bord{border-bottom:1px solid rgba(0,0,0,0.08);}
+
+/* 비밀번호 변경 */
+.myPage .bot_link {
+	margin: 46px 0;
+}
+
+.myPage .bot_link a {
+	display: inline-block;
+	color: rgba(0, 0, 0, 0.87);
+	text-decoration: underline;
+}
+
+/* 로그아웃 탈퇴 */
+.bot_btn {
+	height: 56px;
+	margin-top: 48px;
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	background: none;
+	text-align: left;
+	padding-right: 16px;
+}
+
+.bot_btn p {
+	display: inline-block;
+	padding-top: 23px;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.bot_btn button {
+	height: auto;
+	margin-top: 0;
+	padding: 0 8px;
+	border: none;
+	background: none;
+	font-size: 16px;
+	width: 80px;
+	color: rgba(0, 0, 0, 0.87);
+	text-align: center;
+	text-decoration: underline;
+}
+
+.bot_btn button a {
+	width: 80px;
+	color: rgba(0, 0, 0, 0.87);
+	text-decoration: underline;
+}
