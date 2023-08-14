@@ -230,6 +230,8 @@ public class MotelService {
 	    }
 	}
 	
+	
+	
 	public String stayModifyProc(MultipartHttpServletRequest multi) {
 //	    String stayType = multi.getParameter("stayType");
 //	    int no = Integer.parseInt(session.getAttribute("no").toString());
