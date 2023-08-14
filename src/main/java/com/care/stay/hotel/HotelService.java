@@ -27,39 +27,39 @@ public class HotelService {
 	/* 호텔 DB 등록 */
 	// 숙소의 종류나 등록양식이 서로 조금씩 달라서 각 숙소별 Service 파일로 분배함
 	public String stayregisterProc(MultipartHttpServletRequest multi) {
-//		HotelDTO hotel = new HotelDTO();
-//		hotel.setHname(multi.getParameter("name"));
-//		hotel.setHregion(multi.getParameter("region"));
-//		hotel.setHdetailRegion(multi.getParameter("detailRegion"));
-//		hotel.setHaddress(multi.getParameter("address"));
-//		hotel.setHdetailAddress(multi.getParameter("detailAddress"));
-//		hotel.setHinfo(multi.getParameter("info"));
-//		
-//		hotel.setHcheckInTime(multi.getParameter("hcheckinTime"));
-//		hotel.setHcheckOutTime(multi.getParameter("hcheckoutTime"));
-//		hotel.setHtype(multi.getParameter("htype"));
-//
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		
-//		hotel.setHimage("");
-//		MultipartFile file = multi.getFile("imageupload");
-//		String fileName = file.getOriginalFilename();
-//		if(file.getSize() != 0) {
-//			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-//			Calendar cal = Calendar.getInstance();
-//			fileName = sdf.format(cal.getTime()) + fileName;
-//			hotel.setHimage(fileName);
-//			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
-//			File save = new File(fileLocation + fileName);
-//			
-//			try {
-//				file.transferTo(save);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//
-//		hotelMapper.stayregisterProc(hotel);
+		HotelDTO hotel = new HotelDTO();
+		hotel.setHname(multi.getParameter("name"));
+		hotel.setHregion(multi.getParameter("region"));
+		hotel.setHdetailregion(multi.getParameter("detailRegion"));
+		hotel.setHaddress(multi.getParameter("address"));
+		hotel.setHdetailaddress(multi.getParameter("detailAddress"));
+		hotel.setHinfo(multi.getParameter("info"));
+		
+		hotel.setHcheckintime(multi.getParameter("hcheckinTime"));
+		hotel.setHcheckouttime(multi.getParameter("hcheckoutTime"));
+		hotel.setHtype(multi.getParameter("htype"));
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		hotel.setHimage("");
+		MultipartFile file = multi.getFile("imageupload");
+		String fileName = file.getOriginalFilename();
+		if(file.getSize() != 0) {
+			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+			Calendar cal = Calendar.getInstance();
+			fileName = sdf.format(cal.getTime()) + fileName;
+			hotel.setHimage(fileName);
+			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
+			File save = new File(fileLocation + fileName);
+			
+			try {
+				file.transferTo(save);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		hotelMapper.stayregisterProc(hotel);
 		return "숙소 DB 작성 완료";
 		
 	}

@@ -18,7 +18,7 @@
 		<result column="hcheckintime" property="hcheckintime"/>
 		<result column="hcheckouttime" property="hcheckouttime"/>
 		<result column="htype" property="htype"/>
-		<result column="hpeople" property="hpeople"/>
+<!-- 	<result column="hpeople" property="hpeople"/> -->
 		<result column="hbedtype" property="hbedtype"/>
 	</resultMap> 
 
@@ -39,7 +39,7 @@
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
+		himage, hinfo, hcheckintime, hcheckouttime, htype
 		FROM hotel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
@@ -61,14 +61,10 @@
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
 		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
-		FROM hotel WHERE hdetailregion = #{selectedText} AND (htype = #{selectedValues1} OR hbedtype = #{selectedValues2} OR hcomfort = #{selectedValues3} OR hpeople = #{personCount} ))AAA)BBB
+		FROM hotel WHERE hdetsailregion = #{selectedText} AND (htype = #{selectedValues1} OR hbedtype = #{selectedValues2} OR hcomfort = #{selectedValues3} OR hpeople = #{personCount} ))AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
 	
-	
-
-
-
 	<resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
 		<id column="no" property="no"/>																		
 	</resultMap>
@@ -93,10 +89,6 @@
 		SELECT * FROM hotel WHERE no=#{no}
 	</select>
 	
-	<select id="count">
-	  	SELECT count(no) FROM hotel
-	</select>
-	
 	<select id="hotelroomcount">
 		SELECT COALESCE(nvl(max(hroomcode),0) + 1, 0) FROM hotelroom
 	</select>	
@@ -110,7 +102,7 @@
 			SELECT nvl(max(no),0) + 1 FROM hotel
 		</selectKey>
 		INSERT INTO hotel (no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype) 
-		VALUES(#{no}, 'H', #{hname}, #{hregion}, #{hdetailRegion}, 0, #{haddress}, #{hdetailAddress}, #{himage}, #{hinfo}, #{hcheckInTime}, #{hcheckOutTime}, #{htype})
+		VALUES(#{no}, 'H', #{hname}, #{hregion}, #{hdetailregion}, 0, #{haddress}, #{hdetailaddress}, #{himage}, #{hinfo}, #{hcheckintime}, #{hcheckouttime}, #{htype})
 	</insert>
 	
 	<select id="stayInfo" resultMap="hotelDto">
