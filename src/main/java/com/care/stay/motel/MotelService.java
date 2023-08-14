@@ -230,7 +230,7 @@ public class MotelService {
 	    }
 	}
 	
-//	public String stayModifyProc(MultipartHttpServletRequest multi) {
+	public String stayModifyProc(MultipartHttpServletRequest multi) {
 //	    String stayType = multi.getParameter("stayType");
 //	    int no = Integer.parseInt(session.getAttribute("no").toString());
 //	    String code = session.getAttribute("code").toString();
@@ -271,7 +271,8 @@ public class MotelService {
 //		System.out.println("상세 지역 : " + motel.getMdetailRegion());
 //		motelMapper.stayModifyProc(motel);
 //		return "숙소 DB 수정 완료";
-//	}
+		return "";
+	}
 
 	
 }
