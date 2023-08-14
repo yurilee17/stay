@@ -190,7 +190,6 @@
                                 <ul>
                                    <!-- <li><a href="/userindex/notice">공지사항</a></li> -->
                                     <li><a href="/userindex/faq">고객문의</a></li>
-                                    <li><a href="/userindex/terms">약관 및 정책</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -219,9 +218,8 @@
             <nav>
                 <ul>
                     <li><a class="" href="${context }noticeForm">공지사항</a></li>                    
-                    <li><a class="" href="/userindex/faq">자주 묻는 질문</a></li>
+                    <li><a class="" href="${context }faqForm">자주 묻는 질문</a></li>
                     <li><a class="active" href="${context }inquiryForm">1:1 문의</a></li>
-                    <li><a class="" href="/userindex/terms">약관 및 정책</a></li>
                 </ul>
             </nav>
 			<div class="align_rt">
@@ -602,7 +600,7 @@
 					return false;
 				}
 
-				if (emailInput.val().length > 0 && !emailValidate(emailInput.val())) {
+				if (emailInput.value().length > 0 && !emailValidate(emailInput.value())) {
 					alert_Msg("이메일주소를 확인해주세요");
 					return false;
 				}
