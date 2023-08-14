@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,7 +48,7 @@
 					</p>
 					<div class="inp_type_1 ico_email">
 						<!-- 선택 시 inp_focus 추가/에러 발생 시 inp_error 추가-->
-						<input type="email" name="id" placeholder="아이디" id="id"> <label
+						<input type="text" name="id" placeholder="아이디" id="id"> <label
 							id="idError" class="help-block"
 							style="color: red; display: none;">아이디를 입력해 주세요.</label>
 						<button type="button" class="reset_val">초기화</button>
@@ -69,7 +70,7 @@
 					</button>
 					<div class="link_half">
 						<div>
-							<a href="/"><span>비밀번호 재설정</span></a>
+							<a href="/passwdResetStart"><span>비밀번호 재설정</span></a>
 						</div>
 						<div>
 							<a href="/phoneConfirm"><span>회원가입</span></a>

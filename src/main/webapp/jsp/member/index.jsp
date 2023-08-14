@@ -15,7 +15,7 @@
 
 	<!-- CSS -->
     <title>여행할때 여기어때</title>
-    <link rel="stylesheet" href="../../resource/css/common.css">
+    <!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
     <script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
     
     </head>
@@ -25,6 +25,7 @@
 <div class="wrap main_wrap show">
 
     <!-- Header -->
+    
 	<c:import url="/header"/>
         <!-- CSS -->
     <link rel="stylesheet" href="../../resource/css/swiper.css">

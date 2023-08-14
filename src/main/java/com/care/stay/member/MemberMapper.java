@@ -11,9 +11,24 @@ import com.care.stay.member.MemberDTO;
 public interface MemberMapper {
 
 	MemberDTO loginProc(String id);
-	
+
 	MemberDTO serchNickname(String nickname);
-	
+
 	void registerProc(MemberDTO member);
 
+	MemberDTO getMobile(String id);
+
+	void passwdReset(MemberDTO member);
+
+	int count(@Param("option1Name") String option1Name, @Param("option1") String option1,
+			@Param("option2Name") String option2Name, @Param("option2") String option2);
+
+	ArrayList<MemberDTO> stayUser(@Param("begin") int begin, @Param("end") int end,
+			@Param("option1Name") String option1Name, @Param("option1") String option1,
+			@Param("option2Name") String option2Name, @Param("option2") String option2);
+
+//	ArrayList<MemberDTO> list(@Param("begin") int begin, @Param("end") int end, @Param("select") String select,
+//			@Param("search") String search);
+
+//	int count(@Param("select") String select, @Param("search") String search);
 }

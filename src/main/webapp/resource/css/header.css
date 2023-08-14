@@ -1,0 +1,445 @@
+@charset "UTF-8";
+
+* {
+	outline: 0
+}
+
+html,
+body {
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+	font-size: 14px;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	-webkit-text-size-adjust: none
+}
+
+/* 폰트크기 자동조절 제거 */
+input::-ms-clear,
+input::-ms-reveal {
+	display: none
+}
+
+/* IE - select arrow remove */
+img {
+	border: 0;
+	vertical-align: top;
+	-webkit-touch-callout: none
+}
+
+/* 이미지 터치 팝업 제거 */
+a,
+input,
+button,
+div,
+li,
+textarea,
+form,
+label,
+select {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+/* 하이라이트 제거 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+	list-style: none
+}
+
+fieldset,
+img {
+	border: 0
+}
+
+a {
+	text-decoration: none
+}
+
+address,
+caption,
+em,
+var {
+	font-style: normal;
+	font-weight: normal
+}
+
+textarea,
+button,
+input,
+select {
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+}
+
+button {
+	padding: 0;
+	cursor: pointer;
+}
+
+button:focus,
+button:active {
+	padding: 0;
+}
+
+button span {
+	position: relative;
+}
+
+select::-ms-expand {
+	display: none
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+label {
+	cursor: pointer
+}
+
+/* ================================ alert ================================ */
+/* 로그아웃 알림 창*/
+
+
+
+/* ================================ Header ================================ */
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 72px;
+	transition: 0.4s;
+	z-index: 210;
+	background: #f7323f;
+}
+
+header.scrolled {
+	background: #fff;
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+header section {
+	position: relative;
+	width: 1024px;
+	height: 64px;
+	background: none;
+	margin: 0 auto;
+}
+
+h2 {
+	font-size: 14px;
+	margin-bottom: 13px;
+	color: rgba(0, 0, 0, 0.87);
+	font-weight: bold
+}
+
+header section {
+	position: relative;
+	width: 1024px;
+	height: 64px;
+	background: none;
+}
+
+header section h1 {
+	position: absolute;
+	top: 26px;
+	left: 31px;
+	width: 96px;
+	height: 20px;
+	margin: 0;
+	background: url(../img/저기어때_흰색.png) 0 0 no-repeat;
+	background-size: 96px auto;
+}
+
+header.scrolled h1 {
+	background: url(../img/저기어때.png) 0 0 no-repeat;
+	background-size: 96px auto;
+}
+
+header section h1 a {
+	display: block;
+	text-indent: -9999px;
+}
+
+header section .btn_srch {
+	position: absolute;
+	border: none;
+	text-indent: -9999px;
+	top: 22px;
+	right: 396px;
+	z-index: 10;
+	width: 30px;
+	height: 30px;
+	background: url(//image.goodchoice.kr/images/web_v3/ico_srch_2.png) 50% 50% no-repeat;
+	background-size: 24px auto;
+	opacity: 0.8;
+}
+
+header.scrolled section .btn_srch {
+	background: url(//image.goodchoice.kr/images/web_v3/ico_srch.png) 50% 50% no-repeat;
+	background-size: 24px auto;
+}
+
+/* GNB */
+header .gnb {
+	display: inline-block;
+	position: absolute;
+	top: 27px;
+	right: 31px;
+	width: auto;
+	text-align: right;
+}
+
+header .gnb li {
+	display: inline-block;
+	position: relative;
+	min-width: 53px;
+	min-height: 35px;
+	margin-left: 30px;
+	vertical-align: top;
+}
+
+header .gnb li a {
+	display: inline-block;
+	font-size: 18px;
+	color: rgba(255, 255, 255, 0.8);
+	letter-spacing: 0;
+}
+
+header.scrolled .gnb li a,
+header.scrolled .gnb li button {
+	color: rgba(0, 0, 0, 0.87);
+}
+
+header .gnb>li>a:hover {
+	color: #fff
+}
+
+header.scrolled .gnb>li>a:hover {
+	color: rgba(0, 0, 0, 0.87);
+}
+
+header .gnb li button {
+	border: none;
+	padding: 0;
+	background: none;
+	font-size: 18px;
+	line-height: 1;
+	color: rgba(255, 255, 255, 0.8);
+	letter-spacing: 0;
+}
+
+header .gnb>li>button:hover {
+	color: rgba(255, 255, 255, 1)
+}
+
+header.scrolled .gnb>li>button:hover {
+	color: rgba(0, 0, 0, 0.87);
+}
+
+header .gnb .list_03 {
+	top: 30px;
+	left: -65px;
+	width: 184px;
+}
+
+header .gnb li ul {
+	display: none;
+	position: absolute;
+	border-radius: 5px;
+	padding: 32px;
+	background: #fff;
+	text-align: left;
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+header .gnb li:hover ul {
+	display: block;
+}
+
+header .gnb li ul li {
+	display: block;
+	min-width: auto;
+	min-height: auto;
+	margin: 0 0 14px 0;
+}
+
+header .gnb li ul li:last-child {
+	margin-bottom: 0;
+}
+
+header .gnb li ul li a,
+header .gnb li ul li button {
+	overflow: visible !important;
+	display: block;
+	position: relative !important;
+	top: auto !important;
+	left: auto !important;
+	width: auto !important;
+	height: auto !important;
+	margin: 0;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.87);
+	letter-spacing: 0;
+}
+
+/* 로그인 시 */
+header .gnb .user a {
+	position: absolute;
+	top: -5px;
+	left: 0;
+	overflow: hidden;
+	width: 30px;
+	height: 30px;
+	margin: 0;
+	border-radius: 100%;
+}
+
+header .gnb .user img {
+	width: 100%;
+	height: 100%;
+}
+
+header .gnb .user:after {
+	display: inline-block;
+	content: "";
+	position: absolute;
+	top: 6px;
+	right: 7px;
+	width: 0;
+	height: 0;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #fff;
+	/*   transform: rotate(315deg);*/
+	-ms-transform: rotate(315deg);
+	-webkit-transform: rotate(315deg);
+	-moz-transform: rotate(315deg);
+	-o-transform: rotate(315deg);
+}
+
+header.scrolled .gnb .user:after {
+	display: inline-block;
+	content: "";
+	position: absolute;
+	top: 6px;
+	right: 7px;
+	width: 0;
+	height: 0;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid rgba(0, 0, 0, 0.87);
+	/* transform: rotate(315deg); */
+	-ms-transform: rotate(315deg);
+	-webkit-transform: rotate(315deg);
+	-moz-transform: rotate(315deg);
+	-o-transform: rotate(315deg);
+}
+
+header .gnb .list_04 {
+	top: 30px;
+	left: -90px;
+	width: 213px;
+}
+
+header .gnb li ul li b {
+	display: block;
+	overflow: hidden;
+	padding-bottom: 21px;
+	margin-bottom: 22px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	font-size: 16px;
+	line-height: normal;
+	font-weight: bold;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

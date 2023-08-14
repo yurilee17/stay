@@ -3,26 +3,224 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.care.stay.member.MemberMapper">  
-	<resultMap type="com.care.stay.member.MemberDTO" id="memberDto">
-		<id column="id" property="id"/>
-		<result column="password" property="password"/>
-		<result column="mobile" property="mobile"/>
-		<result column="name" property="name"/>
-		<result column="nickname" property="nickname"/>
-		<result column="authority" property="authority"/>
+<mapper namespace="com.care.stay.member.MemberMapper">
+	<resultMap type="com.care.stay.member.MemberDTO"
+		id="memberDto">
+		<id column="id" property="id" />
+		<result column="password" property="password" />
+		<result column="mobile" property="mobile" />
+		<result column="name" property="name" />
+		<result column="nickname" property="nickname" />
+		<result column="authority" property="authority" />
 	</resultMap>
-	
+
 	<select id="loginProc" resultMap="memberDto">
-		SELECT * FROM member WHERE id=#{id}
+		SELECT * FROM member WHERE
+		id=#{id}
 	</select>
-	
+
 	<select id="serchNickname" resultMap="memberDto">
-		SELECT * FROM member WHERE nickname=#{nickname}
+		SELECT * FROM member WHERE
+		nickname=#{nickname}
 	</select>
-	
-	<insert id="registerProc" parameterType="com.care.stay.member.MemberDTO">
-		INSERT INTO member VALUES(#{id}, #{password}, #{mobile}, '', #{nickname}, #{authority})
+
+	<insert id="registerProc"
+		parameterType="com.care.stay.member.MemberDTO">
+		INSERT INTO member VALUES(#{id}, #{password}, #{mobile},
+		'', #{nickname}, #{authority})
 	</insert>
-	
+
+	<select id="getMobile" resultMap="memberDto">
+		SELECT mobile FROM member WHERE
+		id=#{id}
+	</select>
+
+	<update id="passwdReset"
+		parameterType="com.care.stay.member.MemberDTO">
+		UPDATE member
+		SET password=#{password}
+		WHERE id=#{id}
+	</update>
+
+	<select id="count">
+		<choose>
+			<when test="option1Name == '' and option2Name == ''">
+				SELECT count(id) FROM member
+			</when>
+			<when test="option1Name == '' and option2Name == 'id'">
+				SELECT count(id) FROM member WHERE
+				id like
+				'%'||#{option2}||'%'
+			</when>
+			<when test="option1Name == '' and option2Name == 'mobile'">
+				SELECT count(id) FROM member WHERE
+				mobile like
+				'%'||#{option2}||'%'
+			</when>
+			<when test="option1Name == '' and option2Name == 'name'">
+				SELECT count(id) FROM member WHERE
+				name like
+				'%'||#{option2}||'%'
+			</when>
+			<when test="option1Name == '' and option2Name == 'nickname'">
+				SELECT count(id) FROM member WHERE
+				nickname like
+				'%'||#{option2}||'%'
+			</when>
+			<when test="option1Name != '' and option2Name == ''">
+				SELECT count(id) FROM member WHERE
+				authority=#{option1}
+			</when>
+			<when test="option1Name != '' and option2Name == 'id'">
+				SELECT count(id) FROM member WHERE
+				authority=#{option1}
+				AND
+				id like '%'||#{option2}||'%'
+			</when>
+			<when test="option1Name != '' and option2Name == 'mobile'">
+				SELECT count(id) FROM member WHERE
+				authority=#{option1}
+				AND
+				mobile like '%'||#{option2}||'%'
+			</when>
+			<when test="option1Name != '' and option2Name == 'name'">
+				SELECT count(id) FROM member WHERE
+				authority=#{option1}
+				AND
+				name like '%'||#{option2}||'%'
+			</when>
+			<otherwise>
+				SELECT count(id) FROM member WHERE authority=#{option1}
+				AND
+				nickname like '%'||#{option2}||'%'
+			</otherwise>
+		</choose>
+	</select>
+
+
+
+	<select id="stayUser" resultMap="memberDto">
+		<choose>
+			<when test="option1Name == '' and option2Name == ''">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name, nickname, authority FROM
+				member)AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin} AND #{end}
+			</when>
+			<when test="option1Name == '' and option2Name == 'id'">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE
+				id like
+				'%'||#{option2}||'%')AAA)BBB WHERE BBB.rn BETWEEN #{begin}
+				AND #{end}
+			</when>
+			<when test="option1Name == '' and option2Name == 'mobile'">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE
+				mobile like
+				'%'||#{option2}||'%')AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin} AND #{end}
+			</when>
+			<when test="option1Name == '' and option2Name == 'name'">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE
+				name like
+				'%'||#{option2}||'%')AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin}
+				AND #{end}
+			</when>
+			<when test="option1Name == '' and option2Name == 'nickname'">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE
+				nickname like
+				'%'||#{option2}||'%')AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin}
+				AND #{end}
+			</when>
+			<when test="option1Name != '' and option2Name == ''">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE
+				authority=#{option1})AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin}
+				AND #{end}
+			</when>
+			<when test="option1Name != '' and option2Name == 'id'">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE
+				authority=#{option1}
+				AND
+				id like
+				'%'||#{option2}||'%')AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin}
+				AND #{end}
+			</when>
+			<when test="option1Name != '' and option2Name == 'mobile'">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE
+				authority=#{option1}
+				AND
+				mobile like
+				'%'||#{option2}||'%')AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin}
+				AND #{end}
+			</when>
+			<when test="option1Name != '' and option2Name == 'name'">
+				SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE
+				authority=#{option1}
+				AND
+				name like
+				'%'||#{option2}||'%')AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin}
+				AND #{end}
+			</when>
+			<otherwise>
+			SELECT BBB.* FROM
+				(SELECT ROWNUM
+				as rn, AAA.* FROM
+				(SELECT id, mobile, name,
+				nickname, authority FROM
+				member WHERE authority=#{option1}
+				AND
+				nickname like '%'||#{option2}||'%')AAA)BBB
+				WHERE BBB.rn BETWEEN #{begin}
+				AND #{end}
+			</otherwise>
+		</choose>
+	</select>
+
 </mapper>
