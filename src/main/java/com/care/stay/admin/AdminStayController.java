@@ -20,14 +20,16 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminStayController {
-	@Autowired private AdminStayService service;
-	@Autowired private HttpSession session;
-	
+	@Autowired
+	private AdminStayService service;
+	@Autowired
+	private HttpSession session;
+
 	@GetMapping("stayRegister")
 	public String stayRegister() {
 		return "admin/stayRegister";
 	}
-	
+
 //	@GetMapping("stayDetailRegister")
 //	public String stayDetailRegister(
 //			@RequestParam(value="no", required = false)String n, 
@@ -40,54 +42,47 @@ public class AdminStayController {
 //		model.addAttribute("motel", motel);
 //		return "admin/stayDetailRegister";
 //	}
-	
+
 	@RequestMapping("stayDetailRegister")
-	public String stayDetailRegister(
-			@RequestParam(value="no", required = false)String n,
-			Model model) {
+	public String stayDetailRegister(@RequestParam(value = "no", required = false) String n, Model model) {
 		MotelDTO motel = service.stayContent(n);
 		session.setAttribute("no", motel.getNo());
 		session.setAttribute("code", motel.getMcode());
-		
-		if(motel == null) {
+
+		if (motel == null) {
 			System.out.println("motel is null");
 			return "redirect:stayInfo";
 		}
 		model.addAttribute("motel", motel);
 		return "admin/stayDetailRegister";
 	}
-	
+
 	@RequestMapping("stayInfo")
-	public String stayInfo(
-			@RequestParam(value="currentPage", required = false)String cp, 
-			Model model) {
+	public String stayInfo(@RequestParam(value = "currentPage", required = false) String cp, Model model) {
 		service.stayInfo(cp, model);
 		return "admin/stayInfo";
 	}
-	
-	
+
 	@GetMapping("stayModify")
 	public String stayModify() {
 		return "admin/stayModify";
 	}
-	
+
 	@GetMapping("stayDetailModify")
 	public String stayDetailModify() {
 		return "admin/stayDetailModify";
 	}
-	
+
 	@RequestMapping("stayIndex")
 	public String stayIndex() {
 		return "admin/stayIndex";
 	}
-	
+
 	@RequestMapping("stayContent")
-	public String stayContent(
-		@RequestParam(value="no", required = false)String n, 
-		@RequestParam(value="mcode", required = false)String code,
-		Model model) {
+	public String stayContent(@RequestParam(value = "no", required = false) String n,
+			@RequestParam(value = "mcode", required = false) String code, Model model) {
 		MotelDTO motel = service.stayContent(n);
-		if(motel == null) {
+		if (motel == null) {
 			System.out.println("stayContent 게시글 번호 : " + n);
 			return "redirect:stayRegister";
 		}
@@ -106,35 +101,44 @@ public class AdminStayController {
 //	    }
 //		return "admin/stayregister";
 //	}
-	
+
 	@PostMapping("staydetailregisterProc")
 	public String staydetailregisterProc(Model model, MultipartHttpServletRequest multi) {
 		String msg = service.staydetailregisterProc(multi);
-		if(msg.equals("객실 DB 작성 완료"))
+		if (msg.equals("객실 DB 작성 완료"))
 			return "redirect:stayInfo";
-		
+
 		model.addAttribute("msg", msg);
 		return "admin/stayDetailRegister";
 	}
-	
+
 	@PostMapping("stayregisterProc")
 	public String stayregisterProc(Model model, MultipartHttpServletRequest multi) {
 		String msg = service.stayregisterProc(multi);
-		if(msg.equals("숙소 DB 작성 완료"))
+		if (msg.equals("숙소 DB 작성 완료"))
 			return "redirect:stayInfo";
-		
+
 		model.addAttribute("msg", msg);
 		return "admin/stayRegister";
 	}
-	
-	//회원 정보 조회
+
+	// 회원 정보 조회
 	@GetMapping("stayUser")
-	public String stayUser(@RequestParam(value="currentPage", required = false)String cp,
-			String option1Name,  String option1, String option2Name, String option2, Model model) {
+	public String stayUser(@RequestParam(value = "currentPage", required = false) String cp, String option1Name,
+			String option1, String option2Name, String option2, Model model) {
 
 		service.stayUser(cp, option1Name, option1, option2Name, option2, model);
 		return "admin/stayUser";
 	}
 
+//	@ResponseBody
+//	@PostMapping(value = "searchUser", produces = "text/plain; charset=utf-8")
+//	public String searchUser(@RequestBody(required = false) String cp,
+//			@RequestBody(required = false) String option1Name, @RequestBody(required = false) String option1,
+//			@RequestBody(required = false) String option2Name, @RequestBody(required = false) String option2,
+//			Model model) {
+//
+//		return service.searchUser(cp, option1Name, option1, option2Name, option2, model);
+//	}
 
 }

@@ -64,7 +64,7 @@ function infoName(value) {
 }
 
 function searchButton() {
-	infoName(userSeletValue)
+	/*infoName(userSeletValue)*/
 	let userSearchInput = document.getElementById("userSearchInput")
 	info = userSearchInput.value;
 	
@@ -90,3 +90,32 @@ function searchUser() {
 	}
 	window.location.href = url;
 }
+
+/*
+var xhr;
+function searchUser() {
+	xhr = new XMLHttpRequest();
+	pro = false;
+	xhr.open('post', 'searchUser');
+	if (auth != "" && info != "") {
+		xhr.send("", "authority", auth, infoNmae, info);
+	} else if (auth != "") {
+		xhr.send("", "authority", auth, "", "");
+	} else if (info != "") {
+		xhr.send("", "", "", infoNmae, info);
+	} else {
+		xhr.send("", "", "", "", "");
+	}
+	xhr.onreadystatechange = searchUserProc
+}
+
+function searchUserProc() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		if (!pro) {
+			// 응답을 이미 처리했으면 두 번째 호출 무시
+			pro = true;
+			xhr.responseText === '닉네임 중복'
+		}
+	}
+}*/
+
