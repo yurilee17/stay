@@ -45,7 +45,7 @@
 	</select>  
 	
 		<!-- 지역별로 나오게하기  -->
- 		<select id="Main" resultMap="HotelDto">
+ 	<select id="Main" resultMap="HotelDto">
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
@@ -54,68 +54,19 @@
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
 	
-	
-	
-	
-	
-<!-- 		<select id="Main" resultMap="HotelDto">
-		<choose>
-			<when test="subMenu == 'Main1_1'">
-				SELECT AAA.* FROM 
-				(SELECT rownum as rn,no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-				himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype 
-				FROM hotel WHERE hdetailregion = '#{selectedText}')AAA 
-				WHERE AAA.rn BETWEEN #{begin} AND #{end}
-			</when>
+		<!-- 체크박스 선택한 별로 나오게하기    테이블이 hotel과 hotelroom 두개의 컬럼이 다 들어가있음 (수정해야함) -->
 		
-		</choose>
-	</select> -->
+	<select id="MainCheck" resultMap="HotelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
+		himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople
+		FROM hotel WHERE hdetailregion = #{selectedText} AND (htype = #{selectedValues1} OR hbedtype = #{selectedValues2} OR hcomfort = #{selectedValues3} OR hpeople = #{personCount} ))AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
 	
-	
-	
-	
-	<!--2차시도 // 잠시보류 -->
 	
 
-<!-- <select id="count">
-		<choose>
-	  		<when test="mainMenu == 'Main1'">
-	  			SELECT count(no) FROM hotel WHERE Main1
-	  		</when>
-	  		<when test="mainMenu == 'Main2'">
-	  			SELECT count(no) FROM hotel WHERE Main2
-	  		</when>
-	  		<otherwise>
-	  			SELECT count(no) FROM hotel
-	  		</otherwise>
-		</choose>
-	</select> 
-  
-	<select id="hotellist" resultMap="HotelDto">
-		<choose>
-			<when test="mainMenu == 'Main1'">
-				SELECT AAA.* FROM 
-				(SELECT rownum as rn, no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-				himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype
-				FROM hotel WHERE hdetailregion = '강동')AAA 
-				WHERE AAA.rn BETWEEN #{begin} AND #{end}
-			</when>
-			<when test="mainMenu == 'Main2'">
-				SELECT AAA.* FROM 
-				(SELECT rownum as rn, no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-				himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype
-				FROM hotel WHERE hdetailregion = '인천')AAA 
-				WHERE AAA.rn BETWEEN #{begin} AND #{end}
-			</when>
-			<otherwise>
-				SELECT AAA.* FROM 
-				(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, himage, hinfo, hcheckintime, hcheckouttime, htype, hpeople, hbedtype 
-				FROM hotel )AAA 
-				WHERE AAA.rn BETWEEN #{begin} AND #{end}
-			</otherwise>
-		</choose>
-	</select> -->
-	
 
 
 

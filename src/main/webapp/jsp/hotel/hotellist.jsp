@@ -159,7 +159,7 @@
 					alert(selectId);
 					alert(selectedText);
 					
-					 localStorage.setItem("selectedText", selectedText);
+					 localStorage.setItem("selectedText", selectedText); //selectedText 값 저장해서 넘겨줌 
 					
 					selectedTextUrl = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText);
 					window.location.href = selectedTextUrl;
@@ -407,14 +407,8 @@
 						            }
 						        }
 						        
-						         var personCount = document.querySelector('.cnt_people span').textContent; 
-						
-						       /*  alert("Selected values1: " + selectedValues1.join(', ') + 
-						              "\nSelected values2: " + selectedValues2.join(', ') + 
-						              "\nSelected values3: " + selectedValues3.join(', ') +
-						              "\nPerson Count: " + personCount ); */
-						              
-						         var selectedText = localStorage.getItem("selectedText");
+						         var personCount = document.querySelector('.cnt_people span').textContent;      
+						         var selectedText = localStorage.getItem("selectedText"); // selectedText 값을 가져옴 
 						              
 						                
 						              

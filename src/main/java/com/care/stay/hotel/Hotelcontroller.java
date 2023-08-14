@@ -38,18 +38,47 @@ public class Hotelcontroller {
 	  
 	  
 	  //hotellist 지역선택 
+		/*
+		 * @RequestMapping("Main") public String Main(
+		 * 
+		 * @RequestParam(value="currentPage", required = false) String cp,
+		 * 
+		 * @RequestParam(value="hdetailregion" , required = false) String selectedText,
+		 * Model model) {
+		 * 
+		 * System.out.println("currentPage:" + cp); System.out.println("selectedText: "
+		 * + selectedText);
+		 * 
+		 * service.Main(selectedText, cp ,model);
+		 * 
+		 * return "hotel/hotellist"; }
+		 */
+	  
+	  
 	  @RequestMapping("Main") 
-	  	public String Main(
+	  	public String MainCheck(
 			  
 			  @RequestParam(value="currentPage", required = false)  String cp, 
-	  		  @RequestParam(value="hdetailregion" , required = false) String selectedText, Model model)
+	  		  @RequestParam(value="hdetailregion" , required = false) String selectedText, 
+	  		  @RequestParam(value="htype ", required = false) String selectedValues1,
+	  		  @RequestParam(value="hbedtype ", required = false) String selectedValues2,
+	  		  @RequestParam(value="hcomfort ", required = false) String selectedValues3,
+	  		  @RequestParam(value="hpeople ", required = false) int personCount,Model model)
 	  {
 		  		
-		  		System.out.println("currentPage:" + cp);
 		  		System.out.println("selectedText: " + selectedText);
-			  
-		  		service.Main(selectedText, cp ,model); 
-			  	
+		  		System.out.println("htype: " + selectedValues1);
+		  		System.out.println("hbedtype: " + selectedValues2);
+		  		System.out.println("hcomfort: " + selectedValues3);
+		  		System.out.println("hpeople: " + personCount);
+		  		
+		  		
+		  	   if (selectedValues1 != null || selectedValues2 != null || selectedValues3 != null ) {
+		  	      
+		  		   	service.MainCheck(selectedText, selectedValues1, selectedValues2, selectedValues3, personCount, cp ,model); 
+		  	    } else {
+		  	        service.Main(selectedText, cp ,model);
+		  	    }
 		  		return "hotel/hotellist";
 			  	}
 	
