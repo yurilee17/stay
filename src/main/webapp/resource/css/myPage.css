@@ -194,6 +194,10 @@ label {
 	background: #fff;
 }
 
+input::placeholder {
+	color: rgba(0, 0, 0, 0.24);
+}
+
 /* 상단 비주얼 */
 .sub_top_wrap {
 	height: 211px;
@@ -350,15 +354,11 @@ label {
 }
 
 /* 수정 시 발생 */
-.inp_wrap input {
-	border: none;
-	background: none;
-	width: 100%;
-	margin-top: 5px;
-	font-size: 18px;
-	color: rgba(0, 0, 0, 0.56);
-	height: 20px;
-	line-height: 1;
+
+.myPage .pw_input section {
+	position: relative;
+	margin: 0 0 33px 0;
+	padding-right: 110px;
 }
 
 .myPage .pw_input section .btn_confirm.active {
@@ -377,6 +377,56 @@ label {
 	font-size: 14px;
 	font-weight: normal;
 	color: #fff;
+}
+
+.inp_wrap {
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	padding: 8px 14px 8px 16px;
+	position: relative;
+	height: 48px;
+	border-radius: 4px;
+}
+
+.myPage .inp_wrap {
+	width: 374px;
+	margin-bottom: 20px;
+	margin-top: 15px;
+}
+
+.inp_wrap input {
+	border: none;
+	background: none;
+	width: 100%;
+	margin-top: 5px;
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.56);
+	height: 20px;
+	line-height: 1;
+}
+
+.inp_wrap label {
+	position: absolute;
+	bottom: 0px;
+	padding-top: 0px;
+	font-size: 14px;
+	top: 54px;
+	padding-left: 0px;
+	display: none;
+	padding: 5px 0 0 10px;
+}
+
+.inp_error span,
+.inp_error label {
+
+	left: 0;
+	display: block !important;
+	line-height: 1;
+	color: rgb(230, 28, 81);
+
+}
+
+.inp_error {
+	border: 1px solid rgb(230, 28, 81) !important;
 }
 
 /* 기본 버튼 */
@@ -444,7 +494,9 @@ label {
 	color: rgba(0, 0, 0, 0.56);
 }
 
-.myPage .bord{border-bottom:1px solid rgba(0,0,0,0.08);}
+.myPage .bord {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
 
 /* 비밀번호 변경 */
 .myPage .bot_link {

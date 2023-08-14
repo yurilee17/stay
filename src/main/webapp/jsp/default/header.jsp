@@ -41,7 +41,7 @@
 						</ul></li>
 				</c:when>
 				<c:otherwise>
-					<li class="user"><a href="#"><img
+					<li class="user"><a href="/myPage"><img
 							src="../../resource/img/loginUser.png" alt=""></a>
 						<ul class="list_04">
 							<li><b>${sessionScope.nickname}</b></li>

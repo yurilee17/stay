@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 /* 배경 dimm */
-.alert>.bgDimm {
+.alert>.bgDimm,
+.alert>.bgOneDimm {
 	display: none;
 	position: fixed;
 	top: 0;
@@ -11,6 +12,45 @@
 	z-index: 410;
 	background: rgba(0, 0, 0, 0.78);
 	touch-action: none;
+}
+
+/* pop_onebtn */
+.alert>.popOnebtn {
+	z-index: 430 !important;
+	display: none;
+	width: 368px;
+	margin-left: -184px;
+	border-radius: 4px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: #fff;
+}
+
+.alert>.popOnebtn .btnOneText {
+	padding: 31px 32px 21px 32px;
+	font-size: 18px;
+	line-height: 25px;
+}
+
+.alert>.popOnebtn .btn_wrap {
+	text-align: center;
+}
+
+.alert>.popOnebtn .btn_wrap button {
+	display: inline-block;
+	width: 304px;
+	height: 56px;
+	margin-bottom: 24px;
+	padding: 0;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 16px;
+	line-height: 56px;
+	font-weight: bold;
+	background: linear-gradient(to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100%);
+	border: none;
+
 }
 
 /* pop_twobtn */

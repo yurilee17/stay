@@ -12,12 +12,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
 
-<script src="../../resource/js/test.js"></script>
+<script src="../../resource/js/myPage.js"></script>
+<script src="../../resource/js/alert.js"></script>
 <title>내정보 어때</title>
 
 <link rel="stylesheet preload" href="../../resource/css/font.css"
 	as="style" type="text/css" crossorigin="">
 <link rel="stylesheet" href="../../resource/css/myPage.css">
+<link rel="stylesheet" href="../../resource/css/alert.css">
 
 </head>
 <body>
@@ -63,22 +65,28 @@
 								<div class="pw_input__title">
 									<b>닉네임</b> <span class="title__uinfo">${sessionScope.nickname}</span>
 								</div>
-								<section class="modifying-section" style="display: none;">
+								<section id="section1" class="modifying-section"
+									style="display: none;">
 									<p class="inp_wrap">
-										<input type="text" value="시끌시끌한우동"
+										<input type="text" id="nickname"
+											value="${sessionScope.nickname}"
 											placeholder="체크인시 필요한 정보입니다." data-input="unick"
-											data-msg-required="닉네임을 입력하세요." data-rule-minlength="2"
-											data-rule-maxlength="14" data-rule-spacechar="true"
-											data-rule-specialchar="true">
+											data-rule-minlength="2" data-rule-maxlength="14"
+											data-rule-spacechar="true" data-rule-specialchar="true">
+										<label id="error1" class="error help-block" for="">닉네임을
+											입력하세요.</label>
 									</p>
 									<button type="button" class="btn_confirm active"
 										onclick="changeNickname();">딴거할래요</button>
 									<!-- 활성화 클래스 'active' -->
 								</section>
 								<div class="pw_input__btns-wrap">
-									<button class="btns-wrap__edit-btn" type="button" onclick="">수정</button>
-									<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
-									<button class="btns-wrap__cancel-btn" type="button">수정취소</button>
+									<button id="edit1" class="btns-wrap__edit-btn" type="button"
+										onclick="edit1Bt()">수정</button>
+									<button id="submit1" class="btns-wrap__submit-btn"
+										type="button" onclick="sendNickname()">수정완료</button>
+									<button id="cancel1" class="btns-wrap__cancel-btn"
+										type="button" onclick="cancel1Bt()">수정취소</button>
 								</div>
 							</div>
 						</section>
@@ -90,19 +98,23 @@
 								<div class="pw_input__title">
 									<b>예약자 이름</b> <span class="title__uinfo">${sessionScope.name}</span>
 								</div>
-								<section class="modifying-section" style="display: none;">
+								<section id="section2" class="modifying-section"
+									style="display: none;">
 									<p class="inp_wrap">
-										<input type="text" id="uname" value=""
+										<input type="text" id="name" value=""
 											placeholder="체크인시 필요한 정보입니다." data-input="uname"
 											data-rule-spacechar="true" data-rule-specialchar="true">
+										<label id="error2" class="error help-block" for="">닉네임을
+											입력하세요.</label>
 									</p>
 								</section>
 								<div class="pw_input__btns-wrap">
-									<button class="btns-wrap__edit-btn" type="button"
-										style="android: attr/borderlessButtonStyle">수정</button>
-									<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
-									<button class="btns-wrap__cancel-btn" type="button"
-										style="android: attr/borderlessButtonStyle">수정취소</button>
+									<button id="edit2" class="btns-wrap__edit-btn" type="button"
+										onclick="edit2Bt()">수정</button>
+									<button id="submit2" class="btns-wrap__submit-btn"
+										type="submit">수정완료</button>
+									<button id="cancel2" class="btns-wrap__cancel-btn"
+										type="button" onclick="cancel2Bt()">수정취소</button>
 								</div>
 							</div>
 						</section>
@@ -117,19 +129,19 @@
 									<div class="safety_txt">개인 정보 보호를 위해 내 정보는 모두 안전하게
 										암호화됩니다.</div>
 								</div>
-								<div class="modifying-section" style="display: none;">
+								<div id="section3" class="modifying-section"
+									style="display: none;">
 									<div id="sendCode">
 										<section>
 											<div class="inp_wrap remove form-errors">
-												<input type="tel" id="phone_number" value=""
+												<input type="tel" id="mobile" value=""
 													placeholder="체크인시 필요한 정보입니다." maxlength="13"
 													data-input="uphone" data-msg-required="휴대폰 번호를 인증받으세요."
-													data-rule-phonenumber="true">
-												<button type="button" class="btn_checked">확인</button>
+													data-rule-phonenumber="true"> <label id="error3"
+													class="error help-block" for="">닉네임을 입력하세요.</label>
 											</div>
 											<button type="button" class="btn_send btn_confirm">인증번호
 												전송</button>
-											<!-- 활성화 클래스 'active' -->
 										</section>
 									</div>
 									<div id="verificationCode" style="display: none;">
@@ -148,9 +160,12 @@
 										value="MYPAGE" style="display: none;">
 								</div>
 								<div class="pw_input__btns-wrap">
-									<button class="btns-wrap__edit-btn " type="button">수정</button>
-									<button class="btns-wrap__submit-btn" type="submit">수정완료</button>
-									<button class="btns-wrap__cancel-btn" type="button">수정취소</button>
+									<button id="edit3" class="btns-wrap__edit-btn " type="button"
+										onclick="edit3Bt()">수정</button>
+									<button id="submit3" class="btns-wrap__submit-btn"
+										type="submit">수정완료</button>
+									<button id="cancel3" class="btns-wrap__cancel-btn"
+										type="button" onclick="cancel3Bt()">수정취소</button>
 								</div>
 							</div>
 						</section>
@@ -158,15 +173,13 @@
 					<!-- <button class="btn_submit disabled btn_one" type="submit">저장</button>-->
 
 					<p class="bot_link">
-						<a href="#">비밀번호 변경</a>
-						&gt;
+						<a href="#">비밀번호 변경</a> &gt;
 					</p>
 				</div>
 
 				<div class="bot_btn">
 					<p>여기어때를 이용하고 싶지 않으신가요?</p>
-					<button type="button"
-						onclick="#">로그아웃</button>
+					<button type="button" onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button>
 					<button type="button">
 						<a href="#">회원탈퇴</a>
 					</button>
@@ -177,9 +190,21 @@
 
 		<!-- Footer -->
 		<footer></footer>
+		<!-- 알림 -->
+		<div class="alert">
+			<!-- alert -->
+			<div class="popOnebtn">
+				<div class="btnOneText"></div>
+				<div class="btn_wrap">
+					<button onclick="reset()">확인</button>
+				</div>
+			</div>
+			<!-- Bg Dimm -->
+			<div class="bgOneDimm" onclick="">&nbsp;</div>
 
+		</div>
 	</div>
-
+	<script src="../../resource/js/myPage.js"></script>
 	<!-- //Wrap -->
 </body>
 </html>

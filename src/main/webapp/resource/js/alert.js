@@ -14,6 +14,20 @@ function alerTwoBtn(text, bt) {
 	}
 }
 
+function alerOneBtn(text) {
+	let bgOneDimm = document.querySelector(".bgOneDimm");
+	let popOnebtn = document.querySelector(".popOnebtn");
+	let btnOneText = document.querySelector(".btnOneText");
+
+
+	if (bgOneDimm != null && popOnebtn != null) {
+		bgOneDimm.style.display = 'block';
+		popOnebtn.style.display = 'block';
+		btnOneText.textContent = text;
+	}
+}
+
+
 // 알림 창 닫기
 function closeLayer() {
 	let bgDimm = document.querySelector(".bgDimm");
