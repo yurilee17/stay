@@ -1,15 +1,3 @@
-// 모바일 웹 접속 구분
-function isWebMobile(){
-    var filter = "win16|win32|win64|mac|macintel";
-    if ( navigator.platform ) {
-        if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ){
-            return 'M';
-        }else{
-            return 'W';
-        }
-    }
-}
-
 /* 예약내역 팝업 공통 */
 function pop_reserve(el){
 	var $el = $('.' + el);
@@ -17,29 +5,6 @@ function pop_reserve(el){
 	$('.bg_dimm').fadeIn(150);
 	$el.fadeIn(150);
 	align_verticalAll(el);
-}
-
-/* 쿠폰선택 팝업 Iscroll */
-var iscroll_cp; // 지역카테고리
-
-function iscroll_run_cp () {
-	iscroll_cp = new IScroll('.iscroll_cp',{
-		mouseWheel:true,
-		interactiveScrollbars:true,
-		shrinkScrollbars:'scale',
-		fadeScrollbars:true,
-		click:true
-	});
-}
-
-// 쿠폰팝업 모달
-function pop_coupon(){
-	prevent_on();
-	prevent_scroll();
-	$('.pop_coupon').fadeIn(150);
-	$('.bg_dimm').fadeIn(150);
-	iscroll_run_cp(); // iscroll
-	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
 }
 
 /* 숙소이용규칙 및 취소/환불규정 Iscroll */
@@ -174,25 +139,6 @@ $(function(){
 			}else{
 				$(biztrip).val('N');
 			}
-		});
-	});
-
-	/* 도보,차량 버튼 효과 */
-    var parking = $('#order_form input#reqUser_visitType');
-	$('.visit .parking_type_btn').each(function(e){
-		$(this).click(function(){
-			$('.visit .parking_type_btn').removeClass('on');
-			$(this).addClass('on');
-
-			// 방문방법  차량선택시
-			if($(this).hasClass('car')){
-			    $(parking).val('CAR');
-			    $('#parking_comment span').css("visibility","visible");
-            }else{
-                $(parking).val('WALK');
-				$('#parking_comment span').css("visibility","hidden");
-			}
-
 		});
 	});
 
