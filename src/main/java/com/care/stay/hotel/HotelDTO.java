@@ -28,7 +28,6 @@ public class HotelDTO {
 	private String hcheckintime;
 	private String hcheckouttime;
 	private String htype;
-	private String hbedtype;
 	private List<HotelRoomDTO> rooms;
 
 	
@@ -134,12 +133,6 @@ public class HotelDTO {
 		this.htype = htype;
 	}
 
-	public String getHbedtype() {
-		return hbedtype;
-	}
-	public void setHbedtype(String hbedtype) {
-		this.hbedtype = hbedtype;
-	}
 	
 }
 	

@@ -26,9 +26,7 @@
 <!-- CSS -->
 <title>여행할때 여기어때</title>
 <link rel="stylesheet" href="../../resource/css/common.css">
-<link rel="canonical" href="#">
-<script type="text/javascript"
-	src="../../resource/js/jquery-1.12.4.min.js"></script>
+
 
 <!-- 달력 외부 css -->
 <script type="text/javascript"
@@ -51,10 +49,8 @@
 	<div class="wrap main_wrap show">
 
 		<!-- Header -->
-		<c:import url="/header" />
+		<c:import url="/header" /> 
 		<!-- CSS -->
-		<link rel="stylesheet" href="../../resource/css/swiper.css">
-		<link rel="stylesheet" href="../../resource/css/main.css">
 		<link rel="stylesheet" href="../../resource/css/reset.css">
 		<link rel="stylesheet" href="../../resource/css/hotel.css">
 
@@ -307,19 +303,19 @@
 							<br>
 							<div class="room_type">
 								<p>
-									<input type="checkbox" class="inp_room_01" name="bed_type[]" id="bed_type_S" value="싱글" /> 
+									<input type="checkbox" class="inp_room_01" name="bedtype[]" id="bed_type_S" value="싱글" /> 
 										<label for="bed_type_S" class="label_room_01">싱글</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_02" name="bed_type[]" id="bed_type_D" value="더블" /> 
+									<input type="checkbox" class="inp_room_02" name="bedtype[]" id="bed_type_D" value="더블" /> 
 										<label for="bed_type_D" class="label_room_02">더블</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_03" name="bed_type[]" id="bed_type_T" value="트윈" /> 
+									<input type="checkbox" class="inp_room_03" name="bedtype[]" id="bed_type_T" value="트윈" /> 
 									<label for="bed_type_T" class="label_room_03">트윈</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_04" name="bed_type[]" id="bed_type_O" value="온돌" /> 
+									<input type="checkbox" class="inp_room_04" name="bedtype[]" id="bed_type_O" value="온돌" /> 
 										<label for="bed_type_O" class="label_room_04">온돌</label>
 								</p>
 							</div>
@@ -390,7 +386,7 @@
 						            }
 						        }
 						        
-						        var values2 = document.getElementsByName("bed_type[]");
+						        var values2 = document.getElementsByName("bedtype[]");
 						        var hbedtype = [];        
 						        for (var i = 0; i < values2.length; i++) {
 						            if (values2[i].checked) {
@@ -408,7 +404,7 @@
 						        }
 						        
 						         var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴      
-						         var selectedText = localStorage.getItem("selectedText"); // selectedText 값을 가져옴
+						         var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
 						              
 						                
 						              

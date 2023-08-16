@@ -298,11 +298,11 @@ public class HotelService {
 	  int end = pageBlock * currentPage; //테이블에서 가져올 마지막 행번호 
 	  int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
 	  
-	  
-	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople,  begin, end); 
+	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin, end); 
 	  int totalCount = hotelMapper.count(); 
 	  String url = "hotellist?currentPage=";
 	  String result = PageService.printPage(url, currentPage, totalCount,pageBlock);
+	
 	  
 	  System.out.println("service에서 " + selectedText );
 	  System.out.println("pageBlock " + pageBlock);
