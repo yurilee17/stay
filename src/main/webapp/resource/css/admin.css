@@ -37,7 +37,7 @@ ul,ol,li{list-style:none;}
 	.stay_table{border-collapse: separate;
 			 border-spacing: 0 15px; width:1000px;}
 	
-	.regContent{border-collapse: separate;
+	.regcontent{border-collapse: separate;
 			 border-spacing: 0 15px; width:1000px;}		 
 			 
 	.stay_detailtable{border-collapse: separate;
@@ -142,10 +142,7 @@ ul,ol,li{list-style:none;}
 		line-height:30px;
 		display:inline-block;
 		position:relative;
-		
 	}
-	
-	
 
 	.stay_search{margin-top:30px;}
 	.moteldetail{border-collapse: separate;
@@ -158,8 +155,80 @@ ul,ol,li{list-style:none;}
 	.stay_search.search span{position:absolute; right:20px; top:13px;}
 	.stay_search.search span button{background:url(../image/search.jpg) no-repeat; width:30px; height:23px; border:0; cursor:pointer;}
 
-	.db_search{width:1200px; border-collapse: separate;
-			 border-spacing: 0 15px;}
+
+
+form .stayType{
+	margin-top: 2.5px;
+	float: left;
+	width: 120px;
+	height: 30px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 0 10px;
+	background: url(../img/arrow.jpg) no-repeat 95% 50%;
+	background-color: #fafafa;
+	font-size: 16px;
+	color: #222;
+}
+
+.db_search{
+	width:1200px; border-collapse: separate;
+	border-spacing: 0 15px;
+}
+
+.db_search tr{
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #ddd;	
+}
+
+.db_search tr:first-child{
+	box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
+.db_search tr, th,
+.db_search tr, td{
+	position: relative;
+	height: 100%;
+}
+
+.db_search tr, th{
+	padding-bottom:5px;
+}
+
+.db_search tr td::after {
+	content: "";
+	position: absolute;
+	bottom: 15px;
+	right: 0;
+	width: 1px;
+	height: 20px;
+	background-color: #eee;
+	/* 선의 색상 */
+}
+
+.db_search tr td:last-child:after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	/* 선의 색상 */
+}
+
+.db_search tr td {
+	text-align: center;
+    /* padding-left: 50px; */
+
+}
+
+
+.stayList .pageNum{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 20px;
+	text-align: center;
+}
 	
 	/* 서브 메뉴 기본적으로 감추기 */
 	.stay_table.tr.td.right-menu {
@@ -180,7 +249,20 @@ ul,ol,li{list-style:none;}
 	}		 
 		 
 	
-	
+	.select1, .select2, .select3{
+		outline: 0;
+		font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+		box-sizing: border-box;
+		padding: 8px 14px 8px 16px;
+		height: 48px;
+		border: 1px solid rgba(0,0,0,.08);
+		border-radius: 4px;
+		font-weight: 400;
+		font-size: 18px;
+		color: rgba(0,0,0,.56);
+		margin-right: 12px;
+		width: calc(100% - 110px);	
+	}
 	
 	
 	

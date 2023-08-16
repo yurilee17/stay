@@ -135,7 +135,7 @@
 			<ul>
 				<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
 				<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
-			</ul>ㄴ
+			</ul>
 		</section> <!----> 
 		<button type="button" class="btn_pay gra_left_right_red">결제하기</button>
 	</div>

@@ -18,7 +18,7 @@
 
  <body>
 	<br>
-	<div id ="wrap">
+	<div id ="wrap" class="stayInfo">
 		<div class="content">
 			<!-- 숙소 탭 -->
 			<c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" />
@@ -31,7 +31,7 @@
 			<br>
 			<!-- 설명 -->					
 			<form id="stayTypeForm" action="stayInfo" method="GET">
-  			<select class="form_w30" name="stayType" id="stayType" onchange="showStayInfo()">
+  			<select class="form_w20 stayType" name="stayType" id="stayType" onchange="showStayInfo()">
 				<option value="motel">모텔</option>
 				<option value="hotel">호텔·리조트</option>
 				<option value="pension">펜션</option>
@@ -42,53 +42,51 @@
 			<br>
 			<br>
 			<br>
+			
 		<table id="stayList" class="stayList">
-		<c:choose>
-			<c:when test="${empty motels }">
-				<h3>등록된 숙소 DB가 없습니다. </h3>
-			</c:when>						
-			<c:otherwise>
-			<table class="db_search">
-				<colgroup>
-					<col width="10%"></col>
-					<col width="10%"></col>					
-					<col width="30%"></col>
-					<col width="10%"></col>	
-					<col width="*"></col>
-					<col width="10%"></col>						
-				</colgroup>
-				<tr>
-					<th>No.</th>
-					<th>숙소 코드</th>
-					<th>숙소 이름</th>
-					<th>지역</th>
-					<th>주소</th>
-					<th></th>					
-				</tr>
-				<c:forEach var="motel" items="${ motels}">
+			<c:choose>
+				<c:when test="${empty motels }">
+					<h3>등록된 숙소 DB가 없습니다. </h3>
+				</c:when>						
+				<c:otherwise>
+				<table class="db_search">
+					<colgroup>
+						<col width="10%"></col>
+						<col width="10%"></col>					
+						<col width="30%"></col>
+						<col width="10%"></col>	
+						<col width="*"></col>
+						<col width="10%"></col>						
+					</colgroup>
 					<tr>
-						<td>${motel.no }</td>
-						<td>${motel.mcode }${motel.no }</td>
-						<td onclick="location.href='stayContent?no=${motel.no }&stayType=motel'">
-							${motel.mname }
-						</td>
-						<td>${motel.mregion }</td>
-						<td>${motel.maddress }</td>
-						<td>
-							<button type="button" onclick="location.href='stayModify?no=${motel.no}&stayType=motel'">수정</button>  
-							<button type="button" onclick="staydeleteCheck()">삭제</button>
-						</td>						
+						<th>No.</th>
+						<th>숙소 코드</th>
+						<th>숙소 이름</th>
+						<th>지역</th>
+						<th>주소</th>
+						<th></th>					
 					</tr>
-				</c:forEach>
-				<tr>
-					<td colspan="4">
-						${result }
-					</td>
-				</tr>
-			</table>
-			</c:otherwise>
-		</c:choose>	
+					<c:forEach var="motel" items="${ motels}">
+						<tr>
+							<td>${motel.no }</td>
+							<td>${motel.mcode }${motel.no }</td>
+							<td onclick="location.href='stayContent?no=${motel.no }&stayType=motel'">
+								${motel.mname }
+							</td>
+							<td>${motel.mregion }</td>
+							<td>${motel.maddress }</td>
+							<td>
+								<button type="button" onclick="location.href='stayModify?no=${motel.no}&stayType=motel'">수정</button>  
+								<button type="button" onclick="staydeleteCheck()">삭제</button>
+							</td>						
+						</tr>
+					</c:forEach>
+				</table>
+				<div class="pageNum">${result }</div>
+				</c:otherwise>
+			</c:choose>	
 		</table>
+		
 		<table id="stayList2" class="stayList" style="display: none;">		
 		<c:choose>
 			<c:when test="${empty hotels }">
@@ -287,13 +285,13 @@
  </body>
  
   <script>
- 	  	document.addEventListener("DOMContentLoaded", function() {
-		    var stayTypeSelect = document.getElementById("stayType");
-		    stayType.addEventListener("change", showStayInfo);
-		  });
-  
+ 	  	  document.addEventListener("DOMContentLoaded", function() {
+ 	  	    var stayTypeSelect = document.getElementById("stayType");
+ 	  	    stayTypeSelect.addEventListener("change", showStayInfo); // "stayType" -> "stayTypeSelect"
+ 	  	  });
+ 	  	  
  	 function showStayInfo() {
-		  var stayType = document.getElementById("stayType").value;
+		  var stayType = document.getElementById("stayType");
 		  var stayList = document.getElementsByClassName("stayList");
 	
 		  // 모든 서브 메뉴 감추기
@@ -314,7 +312,10 @@
 		    document.getElementById("stayList5").style.display = "table";
 		  }
 
-		}
+		} 
+		
+		 
+		
  </script>
  
 </html>

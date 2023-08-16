@@ -11,6 +11,7 @@
   <script src="../../resource/js/admin.js"></script>
   <title>숙소 DB 등록</title>
   <link rel="stylesheet" href="../../resource/css/reset.css" type="text/css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -47,7 +48,7 @@
 						<tr>
 							<th>종류</th>
 							<td>	
-								<select class="form_w30" name="stayType" id="stayType" onchange="showRegContent()">
+								<select class="form_w30 select1" name="stayType" id="stayType" onchange="showRegContent()">
 								 	<option disabled selected value="">숙소 종류를 선택하세요</option>								
 									<option value="motel">모텔</option>
 						            <option value="hotel">호텔·리조트</option>
@@ -67,7 +68,7 @@
 						<tr>
 							<th>지역</th>
 							<td>	
-								<select class="form_w40" name="region" id="region" onchange="showSubMenu()">
+								<select class="form_w40 select2" name="region" id="region" onchange="showSubMenu()">
 								  <option disabled selected value="">지역을 선택하세요</option>
 								  <option value="서울">서울</option>
 								  <option value="경기/인천">경기/인천</option>
@@ -80,7 +81,7 @@
 						<tr>
 							<th>세부지역</th>
 							<td>
-								<select id="detailregion" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu select3" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="강동">강동</option>
 								  <option value="강서">강서</option>
@@ -88,26 +89,26 @@
 								  <option value="강북">강북</option>
 								</select>
 								
-								<select id="detailregion2" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion2" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu select3" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="경기">경기</option>
 								  <option value="인천">인천</option>
 								</select>
 								
-								<select id="detailregion3" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion3" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu select3" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="충청">충청</option>
 								  <option value="강원">강원</option>
 								  <option value="제주">제주</option>
 								</select>
 								
-								<select id="detailregion4" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion4" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu select3" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="경남">경남</option>
 								  <option value="경북">경북</option>
 								</select>
 								
-								<select id="detailregion5" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion5" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu select3" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="전남">전남</option>
 								  <option value="전북">전북</option>
@@ -137,7 +138,11 @@
 						</tr>
 					</table>	
 						
-					<table id="regContent" class="regContent">	
+					<table id="regcontent" class="regcontent">	
+						<colgroup>
+							<col width="25%"></col>
+							<col width="*"></col>							
+						</colgroup>
 						<tr>
 							<th>대실체크인</th>
 							<td><input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder=""></td>
@@ -160,7 +165,11 @@
 						</tr>
 					</table>
 					
-					<table id="regContent2" class="regContent" style="display: none;">	
+					<table id="regcontent2" class="regcontent" style="display: none;">	
+						<colgroup>
+							<col width="25%"></col>
+							<col width="*"></col>							
+						</colgroup>
 						<tr>
 							<th>체크인시간</th>
 							<td><input type="text" class="form_w50" placeholder="" id="hcheckintime" name="hcheckintime"></td>
@@ -180,7 +189,11 @@
 																			
 					</table>
 					
-					<table id="regContent3" class="regContent" style="display: none;">	
+					<table id="regcontent3" class="regcontent" style="display: none;">	
+						<colgroup>
+							<col width="25%"></col>
+							<col width="*"></col>							
+						</colgroup>
 						<tr>
 							<th>체크인시간</th>
 							<td><input type="text" class="form_w50" placeholder="" id="pcheckintime" name="pcheckintime"></td>
@@ -198,7 +211,11 @@
 						</tr>													
 					</table>					
 					
-					<table id="regContent4" class="regContent" style="display: none;">	
+					<table id="regcontent4" class="regcontent" style="display: none;">	
+						<colgroup>
+							<col width="25%"></col>
+							<col width="*"></col>							
+						</colgroup>	
 						<tr>
 							<th>체크인시간</th>
 							<td><input type="text" class="form_w50" placeholder="" id="gcheckintime" name="gcheckintime"></td>
@@ -209,7 +226,11 @@
 						</tr>																		
 					</table>
 					
-					<table id="regContent5" class="regContent" style="display: none;">	
+					<table id="regcontent5" class="regcontent" style="display: none;">	
+						<colgroup>
+							<col width="25%"></col>
+							<col width="*"></col>							
+						</colgroup>
 						<tr>
 							<th>체크인시간</th>
 							<td><input type="text" class="form_w50" placeholder="" id="ccheckintime" name="ccheckintime"></td>
@@ -263,22 +284,22 @@
 	    // 숙소 종류에 따라 달라지는 일부 세부메뉴 나타내기
 	  function showRegContent() {
 		  var stayType = document.getElementById("stayType");
-		  var regContent = document.getElementsByClassName("regContent");
+		  var regContent = document.getElementsByClassName("regcontent");
 		  
 		  for (var i = 0; i < regContent.length; i++) {
 			regContent[i].style.display = "none";  
 		  }
 		  
 		  if (stayType.value === "motel") {
-		    document.getElementById("regContent").style.display = "table";
+		    document.getElementById("regcontent").style.display = "table";
 		  } else if (stayType.value === "hotel") {
-		    document.getElementById("regContent2").style.display = "table";
+		    document.getElementById("regcontent2").style.display = "table";
 		  } else if (stayType.value === "pension") {
-		    document.getElementById("regContent3").style.display = "table";
+		    document.getElementById("regcontent3").style.display = "table";
 		  } else if (stayType.value === "gh") {
-		    document.getElementById("regContent4").style.display = "table";
+		    document.getElementById("regcontent4").style.display = "table";
 		  } else if (stayType.value === "camping") {
-		    document.getElementById("regContent5").style.display = "table";
+		    document.getElementById("regcontent5").style.display = "table";
 		  }
 		 
 	  }
@@ -295,17 +316,46 @@
 
 		  // 선택된 값에 따라 해당 서브 메뉴 표시
 		  if (region.value === "서울") {
-		    document.getElementById("detailRegion").style.display = "block";
+		    document.getElementById("detailregion").style.display = "block";
 		  } else if (region.value === "경기/인천") {
-		    document.getElementById("detailRegion2").style.display = "block";
+		    document.getElementById("detailregion2").style.display = "block";
 		  } else if (region.value === "충청/강원/제주") {
-		    document.getElementById("detailRegion3").style.display = "block";
+		    document.getElementById("detailregion3").style.display = "block";
 		  } else if (region.value === "경남/경북") {
-		    document.getElementById("detailRegion4").style.display = "block";
+		    document.getElementById("detailregion4").style.display = "block";
 		  } else if (region.value === "전남/전북") {
-		    document.getElementById("detailRegion5").style.display = "block";
+		    document.getElementById("detailregion5").style.display = "block";
 		  }
 		}
+	  	
+	  	
+	  document.addEventListener("DOMContentLoaded", function() {
+		  var submitButton = document.getElementById("submitButton");
+
+		  submitButton.addEventListener("click", function(event) {
+		    event.preventDefault(); // 기본 폼 제출 동작 방지
+
+		    var selectedDetailRegion = getSelectedDetailRegion();
+
+		    // AJAX 요청을 보내는 부분
+		    var xhr = new XMLHttpRequest();
+		    xhr.open("POST", "admin/stayInfo", true);
+		    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		    xhr.onreadystatechange = function() {
+		      if (xhr.readyState === XMLHttpRequest.DONE) {
+		        if (xhr.status === 200) {
+		          // AJAX 요청이 성공적으로 처리되었을 때의 동작
+		          console.log("서버로 데이터 전송 완료");
+		          // 원하는 동작 (예: 페이지 리로딩)
+		        } else {
+		          // AJAX 요청이 실패했을 때의 동작
+		          console.error("서버로 데이터 전송 실패");
+		        }
+		      }
+		    };
+		    xhr.send("detailregion=" + encodeURIComponent(selectedDetailRegion));
+		  });
+		});
 		
 
 	/*   function getSelectedOption(selectId) {
@@ -319,7 +369,7 @@
 	  	/* var resultElement = document.getElementById("selectedOption");
 	  	resultElement.textContent = "선택한 옵션: " + selectedOption;*/
 		
-	  	var selectedDetailRegion = "";
+	  	/* 	var selectedDetailRegion = "";
 	  	
 		function updateDetailRegion() {
 		    var regionSelect = document.getElementById("region");
@@ -355,38 +405,8 @@
 		        jnjbDetailRegion.style.display = "block";
 		        selectedDetailRegion = jnjbDetailRegion.value;
 		    }
-		}
-
-		
-	  
-	  /* function submitForm() {
-		    // form 요소 가져오기
-		    var form = document.getElementById("stayForm");
-		    
-
-		    // form submit
-		    form.submit();
 		} */
-		
-		function submitForm() {
-		    // form 요소 가져오기
-		    var form = document.getElementById("stayForm");
-		    
-		    // 선택한 detailRegion 값을 폼 데이터에 추가
-		    var selectedDetailRegionInput = document.createElement("input");
-		    selectedDetailRegionInput.type = "hidden"; // 숨겨진 필드로 생성
-		    selectedDetailRegionInput.name = "detailregion"; // 서버에서 사용할 이름
-		    selectedDetailRegionInput.value = selectedDetailRegion; // 선택한 detailRegion 값
-		    
-		    console.log("Selected Detail Region:", selectedDetailRegion);
-		    
-		    // 폼에 추가
-		    form.appendChild(selectedDetailRegionInput);
-
-		    // form submit
-		    form.submit();
-		}
-	  
+  
 	  document.getElementById('stayType').addEventListener('change', function() {
 		    var selectElement = document.getElementById('stayType');
 		    var selectedValue = selectElement.options[selectElement.selectedIndex].value;

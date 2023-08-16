@@ -52,7 +52,7 @@
 			SELECT nvl(max(no),0) + 1 FROM motel
 		</selectKey>
 		INSERT INTO motel (no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout ) 
-		VALUES(#{no}, 'M', #{mname}, #{mregion}, #{mdetailregion}, 0, #{maddress}, #{mdetailaddress}, #{mimage}, #{minfo}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstayCheckOut} )
+		VALUES(#{no}, 'M', #{mname}, #{mregion}, #{mdetailregion}, 0, #{maddress}, #{mdetailaddress}, #{mimage}, #{minfo}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout} )
 	</insert>
 	
 	<select id="stayInfo" resultMap="motelDto">

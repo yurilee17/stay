@@ -515,8 +515,8 @@
 				<ul>
 
 <!-- 					<li><a href="#">등록</a></li> -->
-					<li><a href="${context }stayContent">뒤로가기</a></li>
 					<li><input type="submit" value="등록"></li>
+					<li><a href="${context }stayContent">뒤로가기</a></li>
 				</ul>
 			</div>
 			</form>
