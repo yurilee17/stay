@@ -60,22 +60,22 @@ public class Hotelcontroller {
 			  
 			  @RequestParam(value="currentPage", required = false)  String cp, 
 	  		  @RequestParam(value="hdetailregion" , required = false) String selectedText, 
-	  		  @RequestParam(value="htype ", required = false) String selectedValues1,
-	  		  @RequestParam(value="hbedtype ", required = false) String selectedValues2,
-	  		  @RequestParam(value="hcomfort ", required = false) String selectedValues3,
-	  		  @RequestParam(value="hpeople ", required = false) int personCount,Model model)
+	  		  @RequestParam(value="htype", required = false) String htype,
+	  		  @RequestParam(value="hbedtype", required = false) String hbedtype,
+	  		  @RequestParam(value="hcomfort", required = false) String hcomfort,
+	  		  @RequestParam(value="hpeople", required = false) String hpeople, Model model)
 	  {
 		  		
 		  		System.out.println("selectedText: " + selectedText);
-		  		System.out.println("htype: " + selectedValues1);
-		  		System.out.println("hbedtype: " + selectedValues2);
-		  		System.out.println("hcomfort: " + selectedValues3);
-		  		System.out.println("hpeople: " + personCount);
+		  		System.out.println("htype: " + htype);
+		  		System.out.println("hbedtype: " + hbedtype);
+		  		System.out.println("hcomfort: " + hcomfort);
+		  		System.out.println("hpeople: " + hpeople);
 		  		
 		  		
-		  	   if (selectedValues1 != null || selectedValues2 != null || selectedValues3 != null ) {
+		  	   if (htype != null || hbedtype != null || hcomfort != null  || hpeople != null ) {
 		  	      
-		  		   	service.MainCheck(selectedText, selectedValues1, selectedValues2, selectedValues3, personCount, cp ,model); 
+		  		   	service.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, cp ,model); 
 		  	    } else {
 		  	        service.Main(selectedText, cp ,model);
 		  	    }
