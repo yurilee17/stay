@@ -1,5 +1,7 @@
 package com.care.stay.member;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -177,7 +179,7 @@ public class MemberController {
 		return "member/passwdResetNew";
 	}
 
-	// 비밀번호 재설정 확인
+	// 비밀번호 재설정 진행
 	@PostMapping("passwdResetProc")
 	public String passwdResetProc(MemberDTO member, Model model) {
 		service.passwdReset(member);
@@ -189,12 +191,72 @@ public class MemberController {
 	public String test() {
 		return "default/test";
 	}
-	
+
 	/* ======================== 내정보 ======================== */
 
 	@GetMapping("myPage")
 	public String myPage() {
-		return "member/myPage";
+		if (session.getAttribute("id") != null) {
+			return "member/myPage";
+		} else {
+			return "member/index";
+		}
+	}
+
+	@GetMapping("myPagePwCh")
+	public String myPagePwCh() {
+		if (session.getAttribute("id") != null) {
+			return "member/myPagePwCh";
+		} else {
+			return "member/index";
+		}
+	}
+
+	@GetMapping("withdraw")
+	public String withdraw() {
+		if (session.getAttribute("id") != null) {
+			return "member/withdraw";
+		} else {
+			return "member/index";
+		}
+	}
+
+	// 닉네임 수정
+	@PostMapping("updateNicknameProc")
+	public String updateNicknameProc(MemberDTO member, Model model) {
+		service.updateNickname(member);
+		return "redirect:myPage";
+	}
+
+	// 이름 수정
+	@PostMapping("updateNameProc")
+	public String updateNameProc(MemberDTO member, Model model) {
+		service.updateName(member);
+		return "redirect:myPage";
+	}
+
+	// 휴대폰 번호 수정
+	@PostMapping("updateMobileProc")
+	public String updateMobile(MemberDTO member, Model model) {
+		System.out.println(member.getId() + member.getMobile());
+		service.updateMobile(member);
+		return "redirect:myPage";
+	}
+
+	// 기존 비밀번호 확인
+	@ResponseBody
+	@PostMapping(value = "pwCon", produces = "text/plain; charset=utf-8")
+	public String pwCon(@RequestBody Map<String, String> reqData) {
+		System.out.println(reqData.get("id") + reqData.get("originalPw"));
+		return service.pwCon(reqData.get("id"), reqData.get("originalPw"));
+
+	}
+
+	// 비밀번호 수정
+	@PostMapping("newPasswdProc")
+	public String newPasswdProc(MemberDTO member, Model model) {
+		service.passwdReset(member);
+		return "redirect:myPage";
 	}
 
 }

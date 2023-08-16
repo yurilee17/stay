@@ -41,6 +41,27 @@
 		SET password=#{password}
 		WHERE id=#{id}
 	</update>
+	
+	<update id="updateNickname"
+		parameterType="com.care.stay.member.MemberDTO">
+		UPDATE member
+		SET nickname=#{nickname}
+		WHERE id=#{id}
+	</update>
+	
+	<update id="updateName"
+		parameterType="com.care.stay.member.MemberDTO">
+		UPDATE member
+		SET name=#{name}
+		WHERE id=#{id}
+	</update>
+		
+	<update id="updateMobile"
+		parameterType="com.care.stay.member.MemberDTO">
+		UPDATE member
+		SET mobile=#{mobile}
+		WHERE id=#{id}
+	</update>
 
 	<select id="count">
 		<choose>

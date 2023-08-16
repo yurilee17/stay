@@ -39,7 +39,7 @@ public class MemberService {
 					session.setAttribute("name", result.getName());
 					session.setAttribute("nickname", result.getNickname());
 					session.setAttribute("authority", result.getAuthority());
-					
+
 					return "로그인 성공";
 				} else {
 
@@ -67,7 +67,7 @@ public class MemberService {
 	public String searchId(String id) {
 		MemberDTO result = memberMapper.loginProc(id);
 		if (result != null) {
-			if(result.getAuthority().equals("admin")){
+			if (result.getAuthority().equals("admin")) {
 				return "관리자 로그인 성공";
 			}
 			return "로그인 성공";
@@ -156,9 +156,44 @@ public class MemberService {
 		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
 		String cryptPassword = bpe.encode(member.getPassword());
 		member.setPassword(cryptPassword);
-		
+
 		memberMapper.passwdReset(member);
 
 	}
 
+	// 닉네임 수정
+	public void updateNickname(MemberDTO member) {
+
+		memberMapper.updateNickname(member);
+		session.setAttribute("nickname", member.getNickname());
+
+	}
+
+	// 이름 수정
+	public void updateName(MemberDTO member) {
+
+		memberMapper.updateName(member);
+		session.setAttribute("name", member.getName());
+
+	}
+
+	// 휴대폰 번호 수정
+	public void updateMobile(MemberDTO member) {
+
+		memberMapper.updateMobile(member);
+		session.setAttribute("mobile", member.getMobile());
+
+	}
+
+	// 비밀번호 확인
+	public String pwCon(String id, String originalPw) {
+		MemberDTO result = memberMapper.loginProc(id);
+
+		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+
+		if (bpe.matches(originalPw, result.getPassword())) {
+			return "비밀번호 일치";
+		}
+		return "비밀번호 불일치";
+	}
 }

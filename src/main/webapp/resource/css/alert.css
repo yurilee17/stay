@@ -16,13 +16,13 @@
 
 /* pop_onebtn */
 .alert>.popOnebtn {
+	position: fixed;
 	z-index: 430 !important;
 	display: none;
 	width: 368px;
 	margin-left: -184px;
 	border-radius: 4px;
-	position: absolute;
-	top: 50%;
+	top: 40%;
 	left: 50%;
 	background: #fff;
 }

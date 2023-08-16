@@ -346,6 +346,7 @@ input::placeholder {
 	border-radius: 6px;
 	text-align: center;
 	border: none;
+	color: #fff;
 }
 
 /* ================================================= passwdPhoneConfirm.jsp =================================================*/

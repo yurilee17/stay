@@ -19,6 +19,12 @@ public interface MemberMapper {
 	MemberDTO getMobile(String id);
 
 	void passwdReset(MemberDTO member);
+	
+	void updateNickname(MemberDTO member);
+	
+	void updateName(MemberDTO member);
+	
+	void updateMobile(MemberDTO member);
 
 	int count(@Param("option1Name") String option1Name, @Param("option1") String option1,
 			@Param("option2Name") String option2Name, @Param("option2") String option2);
@@ -31,4 +37,6 @@ public interface MemberMapper {
 //			@Param("search") String search);
 
 //	int count(@Param("select") String select, @Param("search") String search);
+	
+	
 }
