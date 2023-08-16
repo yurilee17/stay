@@ -112,36 +112,6 @@ $(function(){
         alert_Msg($('.alert_msg_content').html());
     }
 
-	/* 여행 유형 옆에 ? 버튼 */
-	$('.list_wrap .question_mark').click(function(){
-		var content = '<p class="pop_add box_shadow">"업무" : 회사 관리자 예약 내역 확인 가능<br>"개인" : 본인만 예약 내역 확인 가능<br>'
-			+ '<span class="emphasis">여기어때 앱 접속 후 "내 정보 > 예약/구매 내역"에서 선택하신 여행유형을 변경하실 수 있습니다.</span></p>';
-		$(this).append(content);
-		$('.pop_add').stop().fadeIn(200);
-		setTimeout(function(){
-			$('.pop_add').fadeOut(200);
-			setTimeout(function(){
-				$('.pop_add').remove();
-			},200);
-		},1000);
-	});
-
-	/* 여행 유형 버튼 효과 */
-	var biztrip = $('#order_form input[name=biztrip]');
-	$("#travel_type button").each(function(e){
-		$(this).click(function() {
-			$('#travel_type button').removeClass('on');
-			$(this).addClass('on');
-
-			// 여행유형 업무선택시
-			if($(this).hasClass('business')){
-				$(biztrip).val('Y');
-			}else{
-				$(biztrip).val('N');
-			}
-		});
-	});
-
 	/* 이용시간 */
     var idx = 0;
     var start_hash = '';
@@ -194,7 +164,7 @@ $(function(){
         var use_stime = $item_obj.find('.item').attr("times");
         var use_etime = $item_obj.next().find('.item').attr("times");
 
-        // 무한대실 이요일 경우 시간 늘리기
+        // 무한대실 이용?일 경우 시간 늘리기
         var unlimit_msg = '';
         if(Number($('#maxUnlimitedRentHour').val())>0){
             if(Number($('#availableUnlimitedRentEndHour').val()) >= Number($item_obj.find('.item').attr("times"))){
@@ -298,13 +268,6 @@ $(function(){
         }
     });
 
-
-    /*$('.select_type_1').on('change', function () {
-        if(Number($('.select_type_1').val()) == 5) {
-            alert_Msg('휴대폰 결제는 점검중입니다. <br>다른 결제수단을 이용해 주세요.');
-            return false;
-        }
-    })*/
 });
 // Main ---------------------------------------------------------------------------------------------------------------E
 
@@ -658,46 +621,6 @@ function validate(){
 						}
 					}
 
-					/*
-					if($("#facilityCategory").val() === 'MOTEL') {
-							refundMessage += "<li class='dot_txt'>숙소 사정에 의해 취소 발생 시 100% 환불이 가능합니다.</li>";
-
-							if (resValidOrder.isCancelableFacility) { // 취소 가능 제휴점
-								if (resValidOrder.isAfterCheckinTime) { // 입실 시간 지났을 때
-									refundMessage += "<li class='dot_txt'>입실 시간이 이미 지났기 때문에 <b style='color: red;'>지금 예약하면 예약 후 15분 이내에만 취소 가능합니다.</b></li>";
-								} else {
-									if (resValidOrder.isEarlybird) { // 미리 예약
-										refundMessage += "<li class='dot_txt'>미리예약은 <b style='color: red;'>체크인 기준 1일 전까지 취소 가능합니다. (모텔은 예약 후 1시간 이내에는 무조건 취소 가능합니다. 단, 입실시간 후에는 취소불가)</b></li>";
-									} else {
-										if (resValidOrder.isCancelableTime) { // 취소 가능 기간
-											refundMessage += "<li class='dot_txt'>당일예약은 <b style='color: red;'>체크인 시간 기준 3시간 전까지 취소 가능합니다. (모텔은 예약 후 1시간 이내에는 무조건 취소 가능합니다. 단, 입실시간 후에는 취소불가)</b></li>";
-										} else {
-											refundMessage += "<li class='dot_txt'>체크인 시간까지 채 3시간이 남지 않았기 때문에 <b style='color: red;'>지금 예약하면 예약 후 1시간 이내에만 취소 가능합니다. (단, 입실 시간 후에는 취소 불가)</b></li>";
-										}
-									}
-								}
-							} else { // 취소 불가 제츄점
-								refundMessage += "<li class='dot_txt'>[취소 불가 업소] <b style='color: red;'>취소/환불이 불가합니다.</b></li>";
-							}
-						} else { // 비모텔이면
-							if(resValidOrder.confirmationType > 0) { // 업체가 예약확정하는 상품
-								refundMessage += "<li class='dot_txt'>해당 예약은 숙소 승인 후 예약 확정 됩니다. <b style='color: red;'>확정대기</b> 상태에서는 예약취소 및 객실이용이 불가능하며, 예약이 확정되면 문자로 알려드립니다.</li>";
-							}
-
-							refundMessage += "<li class='dot_txt'>19세 미만 청소년은 보호자 동반 시 투숙이 가능합니다.</li>";
-
-							if (resValidOrder.isCancelableProduct) { // 취소 가능한 상품
-								if (resValidOrder.isCancelableFacility) { // 앱내취소 허용업체
-									refundMessage += "<li class='dot_txt'><b style='color: red;'>취소/환불 규정</b>에 따라 앱내에서 예약취소 가능한 상품입니다. 예약취소 시 취소수수료가 발생할 수 있습니다.</li>";
-								} else {
-									refundMessage += "<li class='dot_txt'><b style='color: red;'>앱내취소 불가한 숙소 입니다.<br/>취소가 필요한 경우 고객행복센터 전화를 통해진행할 수 있습니다. </b></li>" +
-										"<li class='dot_txt'><b style='color: red;'>취소/환불 규정</b>에 따라 취소수수료가 발생할 수 있습니다.</li>";
-								}
-							} else {
-								refundMessage += "<li class='dot_txt'><b style='color: red;'>취소 및 환불이 불가한 상품입니다.</b></li>";
-							}
-						}
-					 */
 						$("#refund_policy").append(refundMessage);
 						$('#chkin_print_date').html("<span>체크인</span> <b> "+ chkinDateFormat('MDKR',new Date(data.result.resValidOrder.checkinDate.replace('T', ' ').replace(/-/g, '/')))+"</b>");
 						$('#chkout_print_date').html("<span>체크아웃</span> <b> "+chkinDateFormat('MDKR',new Date(data.result.resValidOrder.checkoutDate.replace('T', ' ').replace(/-/g, '/')))+"</b>");
@@ -1233,159 +1156,7 @@ function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// 쿠폰 선택시 적용
-function coupon_item_select(cpnis_no,cpn_benefit){
-    var type='coupon';
-    var typeObj = {'point':'point','mileage':'mileage','coupon':'coupon'};
-    var type_str = {'point':'포인트 사용','mileage':'숙소 마일리지 사용','coupon':'사용 가능 쿠폰'};
-    var sales_button = $('#'+typeObj[type]+'Btn');								// 할인 버튼
-    var sales_val = $('#'+typeObj[type]+'Val');									// 할인 금액 노출 element
-    var payment_value_view = $('.in_price');									// 총 결제 금액/ 구매 총액 element
-    var sales_price = $('#order_form input[name=fix_do_use_'+typeObj[type]+']').val();		// 결제 폼 - 할인 금액 input
-    var payment_price = $('#order_form input[name=payment_price]').val();					// 결제 폼 - 결제금액 input
-    var fix_payment_price = $('#order_form input[name=fix_payment_price]').val();			// 고정 결제금액 ( 취소시 사용 )
-    var fix_sales_price = $('#order_form input[name=fix_do_use_'+typeObj[type]+']').val();	// 고정 할인금액 ( 취소시 사용 )
 
-    // 쿠폰할인 으로 이미 사용일 경우 처리
-    var alreadyUseChk = Object.keys(typeObj);
-    var alreadyState = false;
-
-	var os_type = $('input[name=escrow_os_type]').val();
-
-	if(os_type){
-		payment_value_view = $('.in_price_app');
-	}
-    for(var i = 0; i < alreadyUseChk.length;i++){
-        if($('#order_config_form input[name=use_'+alreadyUseChk[i]+']').val() && Number(payment_price)==0 && sales_button.text()!='사용취소'){
-            alreadyState = true;
-        }
-    }
-    if(alreadyState)return false;
-
-    close_layer();
-
-    // 사용 취소
-    if(sales_button.text()=='사용취소'){
-        var buymoney = $('#order_form input[name=do_use_'+typeObj[type]+']').val();
-        var viewmoney = payment_value_view.text().replace("원","").replace(",","");
-
-        sales_val.text("-");																// 할인금액 사용 text "-" 으로 초기화
-        sales_button.html(type_str[type]+" "+cust_number_format(fix_sales_price));		// 할인 버튼 변경
-        $('#order_form input[name=payment_price]').val(Number(buymoney)+Number(viewmoney));					//결제 폼 결제금액 복구
-        $('#order_form input[name=do_use_'+typeObj[type]+']').val(0);						//결제 폼 포인트 복구
-        payment_value_view.text(cust_number_format(Number(buymoney)+Number(viewmoney))+"원");				//결제금액 노출 text 복구
-        $('#order_form input[name=pay_type]').val(11);										//결제수단 초기화 포인트/마일리지/쿠폰(6) -> 신용카드-nicepay(11)
-        $("#pay_form input[name='stamp_coupon']").val('N');
-        $("#order_form input[name='stamp_coupon']").val('N');
-        $("#order_form input[name='do_cpnis_no']").val('');
-        $('.pay_select').show();
-        $('#order_config_form input[name=use_'+typeObj[type]+']').val(false);
-        // 사용
-    }else{
-        $.ajax({
-            type : 'POST',
-            url : '/reservation/getCouponInfo_non',
-            data : {'uno' : $('#order_form input[name=uno]').val(), 'cpnis_no' : cpnis_no, 'cpn_benefit' : cpn_benefit},
-            dataType : 'json',
-            success : function(data){
-                if(data.rtv == true){
-                    var info = data.info;
-                    if(info.overcnt > 0){
-                        alert_Msg('쿠폰은 1일 1회 사용 가능합니다.');
-                        return false;
-                    }
-                    if(info.cpn_benefit == "0"){ // [스탬프] 최종결제금액을 0원을 만든다
-                        $("#pay_form input[name='stamp_coupon']").val('Y');
-                        $("#order_form input[name='stamp_coupon']").val('Y');
-                        $("#order_form input[name='do_cpnis_no']").val(info.cpnis_no);
-                        $("#pay_form input[name='stamp_coupon_no']").val(info.cpnis_no);
-                        sales_price = Number(payment_price);
-                        payment_price = 0;
-                        $('#order_form input[name=pay_type]').val(6);
-                        $('.pay_select').hide();
-                    }else if(info.cpn_benefit == "2"){ // 할인율할인
-                        cpn_dc_rate = Number(info.cpn_dc_rate);
-                        sales_price = Math.floor( ( payment_price * cpn_dc_rate / 100) / 10) * 10;
-                        cpn_max_price = Number(info.cpn_max_price);
-                        if(cpn_max_price > 0 && sales_price > info.cpn_max_price){
-                            sales_price = info.cpn_max_price;
-                        }
-                        $("#order_form input[name='do_cpnis_no']").val(info.cpnis_no);
-                    }else{
-                        sales_price = info.cpn_dc_price;
-                        $("#order_form input[name='do_cpnis_no']").val(info.cpnis_no);
-                    }
-
-                    // 결제금액 초과일경우
-                    if(Number(payment_price)<=Number(sales_price) && info.cpn_benefit != "0"){
-                        sales_price = Number(payment_price);
-                        payment_price = 0;
-                        $('#order_form input[name=pay_type]').val(6);
-                        $('.pay_select').hide();
-                        // 할인금액이 결제금액 이하일경우
-                    }else if(Number(payment_price)>Number(sales_price)){
-                        payment_price = Number(payment_price)-Number(sales_price);
-                    }
-
-                    sales_val.text("-"+cust_number_format(sales_price)+"P");
-                    $('#order_form input[name=payment_price]').val(payment_price);
-                    $('#order_form input[name=do_use_'+typeObj[type]+']').val(sales_price);
-                    payment_value_view.text(cust_number_format(payment_price)+"원");
-                    sales_button.text('사용취소');
-                }else{
-                    alert_Msg('다시 시도해주세요.');
-                    return false;
-                }
-
-            },
-            error : function(){
-                alert_Msg('다시 시도해주세요.');
-            }
-        });
-    }
-}
-
-/*이니시스*/
-function fnInicisSubmit(inicis_action) {
-    var order_form = document.inicis_pay;
-    order_form.method = 'POST';
-    order_form.action = inicis_action;
-    order_form.submit();
-}
-
-/*모빌리언스*/
-function fnMobiliansSubmit(){
-    //아래와 같이 ext_inc_comm.js에 선언되어 있는 함수를 호출
-    MCASH_PAYMENT(document.mobilians_pay);
-    return false;
-}
-
-/*나이스페이*/
-function fnNiceCardSubmit(){
-    document.charset = 'euc-kr';
-    document.nice_card_pay_form.method = "post";
-    document.nice_card_pay_form.action = "https://web.nicepay.co.kr/smart/paySmart.jsp"; // 모바일
-    document.nice_card_pay_form.submit();
-    return false;
-}
-
-/*나이스페이PC*/
-function nicepayStart(){
-    //document.nice_card_pay_form.target = "_blank"; // PC[새창]
-    document.nice_card_pay_form.action = "/reservation/getNicepayReturn"; // PC
-    goPay(document.nice_card_pay_form);
-    return false;
-}
-
-function nicepaySubmit(){
-    document.nice_card_pay_form.submit();
-}
-
-function nicepayClose(){
-    close_layer();
-    $("input[name=pay_process]").val("N");
-    //alert_Msg("결제가 취소되었습니다.");
-}
 
 /*카카오페이 submit */
 var submitFunc = function cnspaySubmit(data){
@@ -1464,76 +1235,8 @@ function cnspay() {
     }
 }
 
-/* 페이코 결제  */
-function payCoSubmit(){
 
-    var deviceType = isWebMobile();
 
-    /*if(deviceType=='W'){
-        $("#payco_pay_form").attr('action', '/reservation/payco_reserve_non');
-        $("#payco_pay_form").submit();
-        return false;
-    }*/
-
-    $("#payco_pay_form input[name=deviceType]").val(deviceType);
-
-    // localhost 로 테스트 시 크로스 도메인 문제로 발생하는 오류
-    $.support.cors = true;
-    $.ajax({
-        type: "POST",
-        url: "/reservation/payco_reserve_non",
-        data: $("#payco_pay_form").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        success:function(data){
-            var rs = JSON.parse(data);
-
-            if(rs.code == '0') {
-                $('#order_num').val(rs.result.reserveOrderNo);
-                $('#order_url').val(rs.result.orderSheetUrl);
-                payCoUpdateNo();
-            }
-        },
-        error: function(request,status,error) {
-            console.log("err :: "+error );
-            //에러코드
-            alert_Msg("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            return false;
-        }
-    });
-}
-/* 페이코 결제  */
-function payCoUpdateNo(){
-    $.ajax({
-        type: "POST",
-        url: "/reservation/payco_updateNo_non",
-        data: $("#payco_pay_form").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-
-        success:function(data){
-            order();
-        },
-        error: function(request,status,error) {
-            //에러코드
-            alert_Msg("code:"+request.status+"<br>"+"message:"+request.responseText+"<br>"+"error:"+error);
-            return false;
-        }
-    });
-}
-
-// 페이코 결제 오류
-function order(){
-    var order_Url = $('#order_url').val();
-
-    if(order_Url){
-        location.href = order_Url;
-        /*if(isWebMobile()=='W'){
-            window.open(order_Url, 'popupPayco', 'top=100, left=300, width=727px, height=512px, resizble=no, scrollbars=yes');
-        }else{
-            location.href = order_Url;
-        }*/
-    }
-    else alert_Msg("결제과정에서 장애가 발생했습니다. 다시 이용해 주세요.");
-}
 
 /* 네이버페이 결제  */
 function naverPaySubmit(mode){
@@ -1565,48 +1268,6 @@ function naverPaySubmit(mode){
             return false;
         }
     });
-}
-
-function list_show(){ // 숙박서비스 제공업체 리스트 팝업 - show
-    $('.business_pop').fadeIn(200);
-    $(window).bind("touchmove",function(e){e.preventDefault();}); // 모바일 스크롤 억제
-
-    new Vue({
-        el: '#ajax_ad_list',
-        created: function () {
-            var settings = {
-                page: 1
-            };
-
-            settings = this.searchTerm(settings);
-            get_no_total_pagination(settings, this, '#pagination', false);
-        },
-        data: function () {
-            return {
-                result: [],
-                page: 1
-            }
-        },
-        methods: {
-            searchTerm: function (settings) {
-                var _self = this
-
-                $.xResponse('/more/get_term_ad_list_non', settings).done(function (data) {
-                    _self.result = $.extend({}, data.result);
-                    _self.page = settings.page;
-
-                    settings['total_page'] = data.total_page;
-                });
-
-                return settings;
-            }
-        }
-    });
-}
-
-function list_close(){ // 숙박서비스 제공업체 리스트 팝업 - close
-    $('.business_pop').fadeOut(200);
-    $(window).unbind("touchmove"); // 모바일 스크롤 해제
 }
 
 // 약관 동의 전체 체크

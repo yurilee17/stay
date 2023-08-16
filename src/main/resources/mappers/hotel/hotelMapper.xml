@@ -18,7 +18,6 @@
 		<result column="hcheckintime" property="hcheckintime"/>
 		<result column="hcheckouttime" property="hcheckouttime"/>
 		<result column="htype" property="htype"/>
-<!-- 	<result column="hpeople" property="hpeople"/> -->
 		<result column="hbedtype" property="hbedtype"/>
 	</resultMap> 
 
@@ -70,7 +69,7 @@
 	</resultMap>
 	
 	<resultMap type="com.care.stay.hotel.HotelRoomDTO" id="hotelroomDto">
-		<id column="hroomCode" property="hroomCode"/>
+		<id column="hroomcode" property="hroomcode"/>
 	</resultMap>
 	
 	<select id="stayContent" resultMap="hotelDto">
@@ -83,6 +82,10 @@
 	
 	<select id="stayRoomContent" resultMap="hotelroomDto">
 		SELECT * FROM hotelroom WHERE no=#{no}
+	</select>
+	
+	<select id="stayReservation" resultMap="hotelroomDto">
+		SELECT * FROM hotelroom WHERE hroomcode=#{hroomcode}
 	</select>
 	
 	<select id="stayDetailRegister" resultMap="hotelDto">
@@ -114,7 +117,7 @@
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.hotel.HotelRoomDTO">
 		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hbedtype, hroomimage, hroomnumber, hprice, hpeople, hcomfort)
-		VALUES(#{no}, #{hcode}, #{hroomCode}, #{hroomName}, #{hbedType}, #{hroomImage}, #{hroomNumber}, #{hprice}, #{hpeople}, #{hcomfort})
+		VALUES(#{no}, #{hcode}, #{hroomcode}, #{hroomname}, #{hbedtype}, #{hroomimage}, #{hroomnumber}, #{hprice}, #{hpeople}, #{hcomfort})
 	</insert>	
 
 </mapper>

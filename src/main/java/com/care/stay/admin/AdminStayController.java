@@ -203,12 +203,12 @@ public class AdminStayController {
 	public String stayContent(
 		@RequestParam(value="no", required = false)String n, 
 		@RequestParam(value="stayType", required = false)String stayType,
-		@RequestParam(value="mRoomCode", required = false)String roomCode,
+
 		Model model) {
 		
 		if("motel".equals(stayType)) {
 			MotelDTO motel = mservice.stayContent(n);
-			List<MotelRoomDTO> motelRooms = mservice.stayRoomContent(n);
+			List<MotelRoomDTO> motelrooms = mservice.stayRoomContent(n);
 
 			if(motel == null) {
 				System.out.println("stayContent 게시글 번호 : " + n);
@@ -216,12 +216,12 @@ public class AdminStayController {
 			}
 			model.addAttribute("stayType", stayType);
 			model.addAttribute("motel", motel);
-			model.addAttribute("motelRooms", motelRooms);
+			model.addAttribute("motelrooms", motelrooms);
 			return "admin/stayContent";
 			
 		} else if("hotel".equals(stayType)) {
 			HotelDTO hotel = hservice.stayContent(n);
-			List<HotelRoomDTO> hotelRooms = hservice.stayRoomContent(n);
+			List<HotelRoomDTO> hotelrooms = hservice.stayRoomContent(n);
 
 			if(hotel == null) {
 				System.out.println("stayContent 게시글 번호 : " + n);
@@ -229,12 +229,12 @@ public class AdminStayController {
 			}
 			model.addAttribute("stayType", stayType);
 			model.addAttribute("hotel", hotel);
-			model.addAttribute("hotelRooms", hotelRooms);
+			model.addAttribute("hotelrooms", hotelrooms);
 			return "admin/stayContent";
 					
 		} else if("pension".equals(stayType)) {
 			PensionDTO pension = pservice.stayContent(n);
-			List<PensionRoomDTO> pensionRooms = pservice.stayRoomContent(n);
+			List<PensionRoomDTO> pensionrooms = pservice.stayRoomContent(n);
 
 			if(pension == null) {
 				System.out.println("stayContent 게시글 번호 : " + n);
@@ -242,12 +242,12 @@ public class AdminStayController {
 			}
 			model.addAttribute("stayType", stayType);
 			model.addAttribute("pension", pension);
-			model.addAttribute("pensionRooms", pensionRooms);
+			model.addAttribute("pensionrooms", pensionrooms);
 			return "admin/stayContent";
 			
 		} else if("gh".equals(stayType)) {
 			GHDTO gh = gservice.stayContent(n);
-			List<GHRoomDTO> ghRooms = gservice.stayRoomContent(n);
+			List<GHRoomDTO> ghrooms = gservice.stayRoomContent(n);
 
 			if(gh == null) {
 				System.out.println("stayContent 게시글 번호 : " + n);
@@ -255,12 +255,12 @@ public class AdminStayController {
 			}
 			model.addAttribute("stayType", stayType);
 			model.addAttribute("gh", gh);
-			model.addAttribute("ghRooms", ghRooms);
+			model.addAttribute("ghrooms", ghrooms);
 			return "admin/stayContent";
 			
 		} else if("camping".equals(stayType)) {
 			CampingDTO camping = cservice.stayContent(n);
-			List<CampingRoomDTO> campingRooms = cservice.stayRoomContent(n);
+			List<CampingRoomDTO> campingrooms = cservice.stayRoomContent(n);
 
 			if(camping == null) {
 				System.out.println("stayContent 게시글 번호 : " + n);
@@ -268,7 +268,7 @@ public class AdminStayController {
 			}
 			model.addAttribute("stayType", stayType);
 			model.addAttribute("camping", camping);
-			model.addAttribute("campingRooms", campingRooms);
+			model.addAttribute("campingrooms", campingrooms);
 			return "admin/stayContent";
 
 		}

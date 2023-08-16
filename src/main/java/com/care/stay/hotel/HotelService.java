@@ -30,13 +30,13 @@ public class HotelService {
 		HotelDTO hotel = new HotelDTO();
 		hotel.setHname(multi.getParameter("name"));
 		hotel.setHregion(multi.getParameter("region"));
-		hotel.setHdetailregion(multi.getParameter("detailRegion"));
+		hotel.setHdetailregion(multi.getParameter("detailregion"));
 		hotel.setHaddress(multi.getParameter("address"));
-		hotel.setHdetailaddress(multi.getParameter("detailAddress"));
+		hotel.setHdetailaddress(multi.getParameter("detailaddress"));
 		hotel.setHinfo(multi.getParameter("info"));
 		
-		hotel.setHcheckintime(multi.getParameter("hcheckinTime"));
-		hotel.setHcheckouttime(multi.getParameter("hcheckoutTime"));
+		hotel.setHcheckintime(multi.getParameter("hcheckintime"));
+		hotel.setHcheckouttime(multi.getParameter("hcheckouttime"));
 		hotel.setHtype(multi.getParameter("htype"));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -95,10 +95,10 @@ public class HotelService {
         
         hotelroom.setNo(no);
         hotelroom.setHcode(Hcode);
-        hotelroom.setHroomCode(String.valueOf(roomcount));
-        hotelroom.setHroomName(multi.getParameter("roomname"));
-        hotelroom.setHbedType(multi.getParameter("hbedtype"));
-        hotelroom.setHroomNumber(getIntParameter(multi, "roomnumber"));
+        hotelroom.setHroomcode(String.valueOf(roomcount));
+        hotelroom.setHroomname(multi.getParameter("roomname"));
+        hotelroom.setHbedtype(multi.getParameter("hbedtype"));
+        hotelroom.setHroomnumber(getIntParameter(multi, "roomnumber"));
         hotelroom.setHprice(getIntParameter(multi, "hprice"));
         hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
         
@@ -129,14 +129,14 @@ public class HotelService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		hotelroom.setHroomImage("");
+		hotelroom.setHroomimage("");
 		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			hotelroom.setHroomImage(fileName);
+			hotelroom.setHroomimage(fileName);
 
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
 			File save = new File(fileLocation + fileName);
@@ -178,6 +178,23 @@ public class HotelService {
 		
 		return hotel;
 	}
+	
+	
+	public HotelRoomDTO stayReservation(String rc) {
+		int hroomcode = 0;
+		try {
+			hroomcode = Integer.parseInt(rc);
+		}catch(Exception e) {
+			return null;
+		}
+		
+		HotelRoomDTO hotelroom = hotelMapper.stayReservation(hroomcode);
+		if(hotelroom == null)
+			return null;
+		
+		return hotelroom;
+	}
+	
 
 	public List<HotelRoomDTO> stayRoomContent(String n) {
 		int no = 0;
@@ -189,6 +206,8 @@ public class HotelService {
 		
 		return hotelMapper.stayRoomContent(n);
 	}
+	
+	
 	
 	public HotelDTO stayDetailRegister (String n) {
 		int no = 0;
@@ -319,6 +338,4 @@ public class HotelService {
 	  
 	  }
 	  
-	  
-	
 }

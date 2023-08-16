@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.care.stay.common.AdminPageService;
+import com.care.stay.common.PageService;
+import com.care.stay.hotel.HotelDTO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -31,15 +33,15 @@ public class MotelService {
 		MotelDTO motel = new MotelDTO();
 		motel.setMname(multi.getParameter("name"));
 		motel.setMregion(multi.getParameter("region"));
-		motel.setMdetailRegion(multi.getParameter("detailRegion"));
+		motel.setMdetailregion(multi.getParameter("detailregion"));
 		motel.setMaddress(multi.getParameter("address"));
-		motel.setMdetailAddress(multi.getParameter("detailAddress"));
+		motel.setMdetailaddress(multi.getParameter("detailaddress"));
 		motel.setMinfo(multi.getParameter("info"));
-		motel.setMdaesilCheckIn(multi.getParameter("mdaesilcheckin"));
-		motel.setMdaesilCheckOut(multi.getParameter("mdaesilcheckout"));
-		motel.setMdaesilTime(multi.getParameter("mdaesiltime"));
-		motel.setMstayCheckIn(multi.getParameter("mstaycheckin"));
-		motel.setMstayCheckOut(multi.getParameter("mstaycheckout"));
+		motel.setMdaesilcheckin(multi.getParameter("mdaesilcheckin"));
+		motel.setMdaesilcheckout(multi.getParameter("mdaesilcheckout"));
+		motel.setMdaesiltime(multi.getParameter("mdaesiltime"));
+		motel.setMstaycheckin(multi.getParameter("mstaycheckin"));
+		motel.setMstaycheckout(multi.getParameter("mstaycheckout"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 //		if(motel.getMname() == null || motel.getMname().isEmpty()) {
@@ -79,7 +81,7 @@ public class MotelService {
 			}
 		}
 
-		System.out.println("상세 지역 : " + motel.getMdetailRegion());
+		System.out.println("상세 지역 : " + motel.getMdetailregion());
 		motelMapper.stayregisterProc(motel);
 		return "숙소 DB 작성 완료";
 	}
@@ -94,11 +96,11 @@ public class MotelService {
 
 		motelroom.setNo(no);
 		motelroom.setMcode(mCode);
-        motelroom.setMroomCode(String.valueOf(roomcount));
-		motelroom.setMroomName(multi.getParameter("roomname"));
-		motelroom.setMroomNumber(getIntParameter(multi, "roomnumber"));
-		motelroom.setMdaesilPrice(getIntParameter(multi, "mdaesilprice"));
-	    motelroom.setMstayPrice(getIntParameter(multi, "mstayprice"));
+        motelroom.setMroomcode(String.valueOf(roomcount));
+		motelroom.setMroomname(multi.getParameter("roomname"));
+		motelroom.setMroomnumber(getIntParameter(multi, "roomnumber"));
+		motelroom.setMdaesilprice(getIntParameter(multi, "mdaesilprice"));
+	    motelroom.setMstayprice(getIntParameter(multi, "mstayprice"));
 	    
 		/* option값(기타 부대시설)들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 		String[] check1 = multi.getParameterValues("check1");
@@ -129,14 +131,14 @@ public class MotelService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		motelroom.setMroomImage("");
+		motelroom.setMroomimage("");
 		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			motelroom.setMroomImage(fileName);
+			motelroom.setMroomimage(fileName);
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\room\\";
 			File save = new File(fileLocation + fileName);
 			
@@ -274,6 +276,38 @@ public class MotelService {
 //		motelMapper.stayModifyProc(motel);
 //		return "숙소 DB 수정 완료";
 		return "";
+	}
+
+	public void motellist(String cp, Model model) {
+			int currentPage = 1; 
+		  
+		  try{ 
+			  currentPage = Integer.parseInt(cp);
+		  }catch(Exception e){
+			  currentPage = 1; 
+			  }
+		  
+		  int pageBlock = 6; // 한 페이지에 보일 데이터의 수 
+		  int end = pageBlock * currentPage; //테이블에서 가져올 마지막 행번호 
+		  int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+		  
+		  ArrayList<MotelDTO> motels = motelMapper.motellist(begin, end); 
+			/* ArrayList<HotelDTO> hotels = hotelMapper.hotellist(); */
+		  int totalCount = motelMapper.count(); String url = "motellist?currentPage=";
+		  String result = PageService.printPage(url, currentPage,
+		  totalCount,pageBlock);
+		  
+		  System.out.println("pageBlock " + pageBlock);
+		  System.out.println("totalCount " + totalCount);
+			/*
+			 * System.out.println("mainMenu " + mainMenu); 
+			 * System.out.println("subMenu "+ subMenu);
+			 */
+		  
+		  model.addAttribute("motels", motels); 
+		  model.addAttribute("result", result);
+		  model.addAttribute("currentPage", currentPage);
+		
 	}
 
 	

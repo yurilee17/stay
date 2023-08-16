@@ -21,4 +21,12 @@ public class MotelController {
 		return "board/motel";
 	}
 	
+	@RequestMapping("motellist")
+	public String motellist(
+		@RequestParam(value="currentPage", required = false)String cp, Model model) { 
+		  mservice.motellist(cp, model); 
+		  return "motel/motellist";  
+	}
+		  
+		
 }

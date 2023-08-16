@@ -80,7 +80,7 @@
 						<tr>
 							<th>세부지역</th>
 							<td>
-								<select id="detailRegion" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="강동">강동</option>
 								  <option value="강서">강서</option>
@@ -88,26 +88,26 @@
 								  <option value="강북">강북</option>
 								</select>
 								
-								<select id="detailRegion2" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion2" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="경기">경기</option>
 								  <option value="인천">인천</option>
 								</select>
 								
-								<select id="detailRegion3" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion3" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="충청">충청</option>
 								  <option value="강원">강원</option>
 								  <option value="제주">제주</option>
 								</select>
 								
-								<select id="detailRegion4" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion4" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="경남">경남</option>
 								  <option value="경북">경북</option>
 								</select>
 								
-								<select id="detailRegion5" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion5" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option disabled selected value="">상세지역을 선택하세요</option>
 								  <option value="전남">전남</option>
 								  <option value="전북">전북</option>
@@ -125,7 +125,7 @@
 						</tr>
 						<tr>
 							<th>상세주소</th>
-							<td><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="detailaddress" name="detailaddress"></td>
 						</tr>
 						<tr>
 							<th>이미지 업로드</th>
@@ -163,11 +163,11 @@
 					<table id="regContent2" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="hcheckinTime" name="hcheckinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="hcheckintime" name="hcheckintime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="hcheckoutTime" name="hcheckoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="hcheckouttime" name="hcheckouttime"></td>
 						</tr>
 						<tr>
 							<th>호텔·리조트 유형</th>
@@ -183,11 +183,11 @@
 					<table id="regContent3" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="pcheckinTime" name="pcheckinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="pcheckintime" name="pcheckintime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="pcheckoutTime" name="pcheckoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="pcheckouttime" name="pcheckouttime"></td>
 						</tr>
 						<tr>
 							<th>펜션 유형</th>
@@ -201,22 +201,22 @@
 					<table id="regContent4" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="gcheckinTime" name="gcheckinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="gcheckintime" name="gcheckintime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="gcheckoutTime" name="gcheckoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="gcheckouttime" name="gcheckouttime"></td>
 						</tr>																		
 					</table>
 					
 					<table id="regContent5" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="ccheckinTime" name="ccheckinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="ccheckintime" name="ccheckintime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="ccheckoutTime" name="ccheckoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="ccheckouttime" name="ccheckouttime"></td>
 						</tr>
 						<tr>
 							<th>캠핑 유형</th>
@@ -335,23 +335,23 @@
 
 		    // 선택한 지역에 해당하는 detailRegion 요소를 표시합니다.
 		    if (selectedRegion === "서울") {
-		        var seoulDetailRegion = document.getElementById("detailRegion");
+		        var seoulDetailRegion = document.getElementById("detailregion");
 		        seoulDetailRegion.style.display = "block";
 		        selectedDetailRegion = seoulDetailRegion.value;
 		    } else if (selectedRegion === "경기/인천") {
-		        var gyInDetailRegion = document.getElementById("detailRegion2");
+		        var gyInDetailRegion = document.getElementById("detailregion2");
 		        gyInDetailRegion.style.display = "block";
 		        selectedDetailRegion = gyInDetailRegion.value;
 		    } else if (selectedRegion === "충청/강원/제주") {
-		        var ccgjDetailRegion = document.getElementById("detailRegion3");
+		        var ccgjDetailRegion = document.getElementById("detailregion3");
 		        ccgjDetailRegion.style.display = "block";
 		        selectedDetailRegion = ccgjDetailRegion.value;
 		    } else if (selectedRegion === "경남/경북") {
-		        var gngbDetailRegion = document.getElementById("detailRegion4");
+		        var gngbDetailRegion = document.getElementById("detailregion4");
 		        gngbDetailRegion.style.display = "block";
 		        selectedDetailRegion = gngbDetailRegion.value;
 		    } else if (selectedRegion === "전남/전북") {
-		        var jnjbDetailRegion = document.getElementById("detailRegion5");
+		        var jnjbDetailRegion = document.getElementById("detailregion5");
 		        jnjbDetailRegion.style.display = "block";
 		        selectedDetailRegion = jnjbDetailRegion.value;
 		    }
@@ -375,7 +375,7 @@
 		    // 선택한 detailRegion 값을 폼 데이터에 추가
 		    var selectedDetailRegionInput = document.createElement("input");
 		    selectedDetailRegionInput.type = "hidden"; // 숨겨진 필드로 생성
-		    selectedDetailRegionInput.name = "detailRegion"; // 서버에서 사용할 이름
+		    selectedDetailRegionInput.name = "detailregion"; // 서버에서 사용할 이름
 		    selectedDetailRegionInput.value = selectedDetailRegion; // 선택한 detailRegion 값
 		    
 		    console.log("Selected Detail Region:", selectedDetailRegion);

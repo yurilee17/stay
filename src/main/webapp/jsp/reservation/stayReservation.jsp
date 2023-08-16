@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,20 +14,22 @@
 		<script src="../../resource/js/stayreservation.js"></script>
 		<link rel="preload" href="../../resource/css/common.css" as="style">
         <link rel="stylesheet" href="../../resource/css/common.css">
-
-		<script data-n-head="ssr" src="../../resource/js/stayreservation.js.다운로드"></script>
-		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/common.js.다운로드" defer=""></script>
-		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/iscroll.js.다운로드" defer=""></script>
-=		<script type="text/javascript" async="" src="../../resource/js"></script>
-		<script type="text/javascript" async="" src="../../resource/js/analytics.js.다운로드"></script>
-		<script type="text/javascript" async="" src="./숙박예약_files/js(1)"></script>
-		<script async="" src="../../resource/js/gtm.js.다운로드"></script>
-		<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js.다운로드"></script>
-		<script type="text/javascript" src="../../resource/js/jquery.cookie.js.다운로드"></script>
-		<script data-n-head="ssr" src="../../resource/js/owl.carousel.min.js.다운로드"></script>
+		<link data-n-head="ssr" rel="stylesheet" href="../../resource/js/owl.carousel.css">
+		
+		<script data-n-head="ssr" src="../../resource/js/stayreservation.js"></script>
+		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/common.js" defer=""></script>
+		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/iscroll.js" defer=""></script>
+		<script type="text/javascript" async="" src="../../resource/js"></script>
+		<script type="text/javascript" async="" src="../../resource/js/analytics.js"></script>
+		<script type="text/javascript" async="" src="../../resource/js/js(1)"></script>
+		<script async="" src="../../resource/js/gtm.js"></script>
+		<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
+		<script data-n-head="ssr" src="../../resource/js/owl.carousel.min.js"></script>
+		<!-- <script src="../../resource/js/reservation.js"></script> -->
 		
 		
-   <!-- <link data-n-head="ssr" rel="stylesheet" href="./숙박예약_files/owl.carousel.css">
+   <!-- 
 		<script data-n-head="ssr" src="./숙박예약_files/nicepay_tr_utf.js.다운로드"></script>
 		<script src="./숙박예약_files/niceUtil.js.다운로드" language="javascript"></script>
 		<link rel="preload" href="./숙박예약_files/fca2520.js.다운로드" as="script">
@@ -40,6 +41,79 @@
 		<link rel="preload" href="./숙박예약_files/23e777a.js.다운로드" as="script">
 		<link rel="preload" href="./숙박예약_files/71f8331.js.다운로드" as="script">
 		<link rel="preload" href="./숙박예약_files/271632e.js.다운로드" as="script"> -->
+		
+		<!-- 결제 관련 JS 라이브러리, 함수 모음 -->
+		<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+	    <!-- jQuery -->
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	    <!-- iamport.payment.js -->
+	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+		
+		<script>
+        var IMP = window.IMP; 
+    	IMP.init('imp34502552');
+      
+        var today = new Date();   
+        var hours = today.getHours(); // 시
+        var minutes = today.getMinutes();  // 분
+        var seconds = today.getSeconds();  // 초
+        var milliseconds = today.getMilliseconds();
+        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+        
+		// 카카오페이 결제
+        function requestPay() {
+            IMP.request_pay({
+				pg: "kakaopay.{TC0ONETIME}",
+                pay_method : 'card',
+                merchant_uid: "IMP"+makeMerchantUid, 
+                name : '당근 10kg',
+                amount : 1004,
+                buyer_email : 'Iamport@chai.finance',
+                buyer_name : '아임포트 기술지원팀',
+                buyer_tel : '010-1234-5678',
+                buyer_addr : '서울특별시 강남구 삼성동',
+                buyer_postcode : '123-456'             
+                
+            }, function (rsp) { // callback
+            	 if (rsp.success) {
+            	      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+            	      // jQuery로 HTTP 요청
+            	      jQuery.ajax({
+            	        url: "reservation/paymentComplete", 
+            	        method: "POST",
+            	        headers: { "Content-Type": "application/json" },
+            	        data: {
+            	          imp_uid: rsp.imp_uid,            // 결제 고유번호
+            	          merchant_uid: rsp.merchant_uid   // 주문번호
+            	        }
+            	      }).done(function (data) {
+            	        // 가맹점 서버 결제 API 성공시 로직
+            	      })
+            	    } else {
+            	      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+            	    }
+            });
+        }
+		
+		/* 카카오페이가 아니면 requestPay 함수가 실행되지 않도록.... 해야되는데 안 됨*/
+        document.addEventListener("DOMContentLoaded", function() {
+            const paymentSelect = document.getElementById("payment-select");
+            const payButton = document.querySelector(".btn_pay");
+
+            payButton.addEventListener("click", function() {
+                const selectedPayment = paymentSelect.value;
+                if (selectedPayment === "KAKAO") {
+                    requestPay(); // 결제 수단이 "KAKAO"인 경우에만 requestPay() 함수 실행
+                } else {
+                    // 다른 결제 수단에 대한 처리를 추가할 수 있습니다.
+                    console.log("선택한 결제 수단이 KAKAO가 아닙니다.");
+                }
+            });
+        });
+		
+    	</script>
+		
+		<!-- 결제 관련 JS 라이브러리 모음 -->		
 
  </head>
  <body>
@@ -48,7 +122,7 @@
 	<div class="right">
 		<section class="info">
 			<p class="name"><strong>숙소이름</strong>${hotel.hname}</p> 
-			<p><strong>객실타입/기간</strong>${hotelroom.hroomname}</p> 
+			<p><strong>객실타입/기간</strong>${hotelroom.hroomname} / </p> 
 			<p><strong>체크인</strong>${hotel.hcheckintime}</p> 
 			<p><strong>체크아웃</strong>${hotel.hcheckouttime}</p>
 		</section> 	
@@ -61,10 +135,12 @@
 			<ul>
 				<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
 				<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
-			</ul>
+			</ul>ㄴ
 		</section> <!----> 
 		<button type="button" class="btn_pay gra_left_right_red">결제하기</button>
 	</div>
+	
+<!-- 	onclick="requestPay()" -->
   
 	<div class="left">
 		<section class="info_chkin">
@@ -81,7 +157,7 @@
 					<div class="input-box">
 						<input type="tel" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="input validation-required-input">
 					</div> 
-					<button type="button" class="btn_send btn_confirm phone-auth-btn">인증번호 전송</button> 
+					<button type="button" class="btn_send btn_confirm phone-auth-btn" onclick="btnSend()">인증번호 전송</button> 
 					<p data-show="tel" class="alert_txt error-message" style="">휴대폰 번호를 확인해 주세요.</p> 
 					<div id="verificationCode" style="display:none; height:48px">
 						<strong class="mt_09">인증 번호</strong> 

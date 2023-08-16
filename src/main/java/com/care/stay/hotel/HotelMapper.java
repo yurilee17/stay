@@ -14,6 +14,7 @@ public interface HotelMapper {
 	HotelDTO stayContent(int no);
 	HotelRoomDTO stayRoomContent(int no);
 	HotelDTO stayDetailRegister(int no);
+	HotelRoomDTO stayReservation(int roomcode);
 	void staydetailregisterProc(HotelRoomDTO hotelroom);
 	int stayCountHotel();
 	List<HotelRoomDTO> stayRoomContent(String n);
@@ -23,7 +24,8 @@ public interface HotelMapper {
 	 
 	 ArrayList<HotelDTO> Main(String selectedText, @Param("begin")int begin, @Param("end")int end); 
 	 
-	 ArrayList<HotelDTO> MainCheck(String selectedText, String selectedValues1, String selectedValues2, String selectedValues3, int personCount, @Param("begin")int begin, @Param("end")int end);
+	ArrayList<HotelDTO> MainCheck(String selectedText, String selectedValues1, String selectedValues2, String selectedValues3, int personCount, @Param("begin")int begin, @Param("end")int end);
+
 
 	/*
 	 * ArrayList<HotelDTO> hotellist(

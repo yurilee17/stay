@@ -86,7 +86,7 @@
 						<tr>
 							<th>세부지역</th>
 							<td>
-								<select id="detailRegion" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
 								  <option value="강동">강동</option>
 								  <option value="강서">강서</option>
@@ -94,26 +94,26 @@
 								  <option value="강북">강북</option>
 								</select>
 								
-								<select id="detailRegion2" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion2" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
 								  <option value="경기">경기</option>
 								  <option value="인천">인천</option>
 								</select>
 								
-								<select id="detailRegion3" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion3" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
 								  <option value="충청">충청</option>
 								  <option value="강원">강원</option>
 								  <option value="제주">제주</option>
 								</select>
 								
-								<select id="detailRegion4" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion4" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
 								  <option value="경남">경남</option>
 								  <option value="경북">경북</option>
 								</select>
 								
-								<select id="detailRegion5" name="detailRegion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
+								<select id="detailregion5" name="detailregion" onchange="updateDetailRegion()" class="form_w40 detailRegion right-menu" style="display: none;">
 								  <option value="">상세지역을 선택하세요</option>
 								  <option value="전남">전남</option>
 								  <option value="전북">전북</option>
@@ -138,11 +138,11 @@
 						<tr>
 							<th>상세주소</th>
 							<td><c:choose>	
-						 	<c:when test="${'motel' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${motel.mdetailAddress }"></c:when>
-							<c:when test="${'hotel' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${hotel.hdetailAddress }"></c:when>
-							<c:when test="${'pension' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${pension.pdetailAddress }"></c:when>
-							<c:when test="${'gh' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${gh.gdetailAddress }"></c:when>
-							<c:when test="${'camping' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailAddress" name="detailAddress" value="${camping.cdetailAddress }"></c:when>
+						 	<c:when test="${'motel' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailaddress" name="detailaddress" value="${motel.mdetailaddress }"></c:when>
+							<c:when test="${'hotel' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailaddress" name="detailaddress" value="${hotel.hdetailaddress }"></c:when>
+							<c:when test="${'pension' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailaddress" name="detailaddress" value="${pension.pdetailaddress }"></c:when>
+							<c:when test="${'gh' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailaddress" name="detailaddress" value="${gh.gdetailaddress }"></c:when>
+							<c:when test="${'camping' eq stayType}"><input type="text" class="form_w50" placeholder="" id="detailaddress" name="detailaddress" value="${camping.cdetailaddress }"></c:when>
 							</c:choose></td>
 						</tr>
 						<tr>
@@ -170,34 +170,34 @@
 					<table id="regContent" class="regContent">	
 						<tr>
 							<th>대실체크인</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder="" value="${motel.mdaesilCheckIn}"></td>
+							<td><input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder="" value="${motel.mdaesilcheckin}"></td>
 						</tr>
 						<tr>
 							<th>대실체크아웃</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder="" value="${motel.mdaesilCheckOut}"></td>
+							<td><input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder="" value="${motel.mdaesilcheckout}"></td>
 						</tr>
 						<tr>
 							<th>대실시간</th>
-							<td><input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder="" value="${motel.mdaesilTime}"></td>
+							<td><input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder="" value="${motel.mdaesiltime}"></td>
 						</tr>
 						<tr>
 							<th>숙박체크인</th>
-							<td><input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder="" value="${motel.mstayCheckIn}"></td>
+							<td><input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder="" value="${motel.mstaycheckin}"></td>
 						</tr>		
 						<tr>
 							<th>숙박체크아웃</th>
-							<td><input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder="" value="${motel.mstayCheckOut}"></td>
+							<td><input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder="" value="${motel.mstaycheckout}"></td>
 						</tr>
 					</table>
 					
 					<table id="regContent2" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="hcheckinTime" name="hcheckinTime" value="${hotel.hcheckInTime }"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="hcheckintime" name="hcheckintime" value="${hotel.hcheckintime }"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="hcheckoutTime" name="hcheckoutTime" value="${hotel.hcheckOutTime }"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="hcheckouttime" name="hcheckouttime" value="${hotel.hcheckouttime }"></td>
 						</tr>
 						<tr>
 							<th>호텔·리조트 유형</th>
@@ -212,11 +212,11 @@
 					<table id="regContent3" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="pcheckinTime" name="pcheckinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="pcheckintime" name="pcheckintime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="pcheckoutTime" name="pcheckoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="pcheckouttime" name="pcheckouttime"></td>
 						</tr>
 						<tr>
 							<th>펜션 유형</th>
@@ -230,22 +230,22 @@
 					<table id="regContent4" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="gcheckinTime" name="gcheckinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="gcheckintime" name="gcheckintime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="gcheckoutTime" name="gcheckoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="gcheckouttime" name="gcheckouttime"></td>
 						</tr>																		
 					</table>
 					
 					<table id="regContent5" class="regContent" style="display: none;">	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="ccheckinTime" name="ccheckinTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="ccheckintime" name="ccheckintime"></td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="ccheckoutTime" name="ccheckoutTime"></td>
+							<td><input type="text" class="form_w50" placeholder="" id="ccheckouttime" name="ccheckouttime"></td>
 						</tr>
 						<tr>
 							<th>캠핑 유형</th>
@@ -322,25 +322,25 @@
 
 		  // 선택된 값에 따라 해당 서브 메뉴 표시
 		  if (region.value === "서울") {
-		    document.getElementById("detailRegion").style.display = "block";
+		    document.getElementById("detailregion").style.display = "block";
 		  } else if (region.value === "경기/인천") {
-		    document.getElementById("detailRegion2").style.display = "block";
+		    document.getElementById("detailregion2").style.display = "block";
 		  } else if (region.value === "충청/강원/제주") {
-		    document.getElementById("detailRegion3").style.display = "block";
+		    document.getElementById("detailregion3").style.display = "block";
 		  } else if (region.value === "경남/경북") {
-		    document.getElementById("detailRegion4").style.display = "block";
+		    document.getElementById("detailregion4").style.display = "block";
 		  } else if (region.value === "전남/전북") {
-		    document.getElementById("detailRegion5").style.display = "block";
+		    document.getElementById("detailregion5").style.display = "block";
 		  }
 		}
 	  
 	 function updateDetailRegion() {
 		    var regionSelect = document.getElementById("region");
-		    var detailRegionSelect = document.getElementsByName("detailRegion");
+		    var detailRegionSelect = document.getElementsByName("detailregion");
 		    var selectedRegion = regionSelect.options[regionSelect.selectedIndex].value;
 		    var selectedDetailRegion = detailRegionSelect.options[detailRegionSelect.selectedIndex].value;
 		    
-		    var motelDetailRegionSelect = document.getElementById("detailRegion" + selectedRegion);
+		    var motelDetailRegionSelect = document.getElementById("detailregion" + selectedRegion);
 		    var selectedMotelDetailRegion = motelDetailRegionSelect.options[motelDetailRegionSelect.selectedIndex].value;
 		    
 		    if (selectedDetailRegion !== "") {
