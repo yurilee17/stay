@@ -43,7 +43,7 @@
 			<!-- Nav -->
 			<nav>
 				<ul>
-					<li><a class="" href="#">예약 내역</a></li>
+					<li><a class="" href="/reservationList">예약 내역</a></li>
 					<li><a class="active" href="/myPage">내 정보 관리</a></li>
 				</ul>
 			</nav>

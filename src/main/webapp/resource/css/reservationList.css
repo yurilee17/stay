@@ -1,0 +1,489 @@
+@charset "UTF-8";
+
+* {
+	outline: 0
+}
+
+html,
+body {
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+	font-size: 14px;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.87);
+	-webkit-text-size-adjust: none
+}
+
+/* 폰트크기 자동조절 제거 */
+input::-ms-clear,
+input::-ms-reveal {
+	display: none
+}
+
+/* IE - select arrow remove */
+img {
+	border: 0;
+	vertical-align: top;
+	-webkit-touch-callout: none
+}
+
+/* 이미지 터치 팝업 제거 */
+a,
+input,
+button,
+div,
+li,
+textarea,
+form,
+label,
+select {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+/* 하이라이트 제거 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+	list-style: none
+}
+
+fieldset,
+img {
+	border: 0
+}
+
+a {
+	text-decoration: none
+}
+
+address,
+caption,
+em,
+var {
+	font-style: normal;
+	font-weight: normal
+}
+
+textarea,
+button,
+input,
+select {
+	font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+}
+
+button {
+	padding: 0;
+	cursor: pointer;
+}
+
+button:focus,
+button:active {
+	padding: 0;
+}
+
+button span {
+	position: relative;
+}
+
+select::-ms-expand {
+	display: none
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+label {
+	cursor: pointer
+}
+
+/* 전체 */
+.wrap {
+	opacity: 1;
+	/*visibility: visible;*/
+	width: 100%;
+	background: #fff;
+}
+
+input::placeholder {
+	color: rgba(0, 0, 0, 0.24);
+}
+
+/* 상단 비주얼 */
+.sub_top_wrap {
+	height: 211px;
+	background: #f7323f;
+}
+
+.sub_top {
+	width: 1024px;
+	height: 211px;
+	margin: 0 auto;
+	padding-top: 72px;
+	border-radius: 0;
+	background: none;
+	position: relative;
+}
+
+.sub_top h2 {
+	display: block;
+	margin: 21px 0 0 31px;
+	font-size: 38px;
+	font-weight: normal;
+	letter-spacing: -1px;
+	color: #fff;
+}
+
+.sub_wrap {
+	overflow: hidden;
+	padding-top: 54px;
+	min-height: 390px;
+	width: 1024px !important;
+	margin: 0 auto 0 auto;
+	padding-bottom: 50px;
+}
+
+/* nav */
+.sub_wrap nav {
+	display: block;
+	float: left;
+	width: 238px;
+	padding-left: 31px;
+}
+
+.sub_wrap nav ul li {
+	margin-bottom: 26px;
+}
+
+.sub_wrap nav ul li a {
+	display: block;
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.sub_wrap nav ul li a.active {
+	font-size: 18px;
+	font-weight: bold;
+	color: rgb(230, 28, 81);
+}
+
+#content {
+	overflow: hidden;
+}
+
+/* 예약 내역 */
+
+.sub_wrap .align_rt {
+	float: right;
+	width: 724px;
+	margin-right: 31px;
+}
+
+.reservationList {
+	padding: 0;
+	border: none;
+	margin: 0;
+	/* padding: 0; */
+	/* border: 0; */
+	box-sizing: border-box;
+}
+
+.reservationList section {
+	clear: both;
+	border-bottom: none;
+	padding-top: 35px;
+}
+
+.reservationList section:first-child {
+	padding-top: 0;
+}
+
+.reservationList section:last-child {
+	border-bottom: none;
+}
+
+.reservationList h3 {
+	display: block;
+	padding: 0 0 20px 0;
+	font-size: 18px;
+}
+
+.list_wrap {
+	overflow: hidden;
+}
+
+ul,
+ol,
+li {
+	list-style: none;
+}
+
+/* 내역이 있을 경우 설정 */
+/* 내역 하나 */
+.reservationList li {
+	position: relative;
+	float: left;
+	width: 354px;
+	height: auto;
+	margin: 0 16px 16px 0;
+}
+
+/* 사진 딤 처리 */
+.reservationList li:after {
+    display: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 148px;
+    background: rgba(0, 0, 0, 0.38);
+}
+
+.list_cancel li:after {
+    display: block;
+    height: 184px;
+    border-radius: 2px 2px 0 0;
+}
+
+.list_cancel li:after {
+	display: block;
+	height: 184px;
+	border-radius: 2px 2px 0 0;
+}
+
+/* X 버튼 */
+.reservationList .btn_del {
+	display: inline-block;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	z-index: 30;
+	width: 24px;
+	height: 24px;
+	border: none;
+	background: url(https://image.goodchoice.kr/images/web_v3/ico_close_2.png) 50% 50% no-repeat;
+	background-size: 24px auto;
+	text-indent: -9999px;
+}
+
+/* 이미지 부분 */
+.reservationList li .pic {
+	height: 184px;
+	border-radius: 2px 2px 0 0;
+	overflow: hidden;
+	position: relative;
+	z-index: 10;
+	width: 100%;
+}
+
+.reservationList li .align {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+/* 예약정보 부분 */
+.reservationList li a {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 20;
+	width: 100%;
+	height: 148px;
+	padding: 26px 0 0 0;
+	line-height: normal;
+	color: #fff;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.reservationList li a.product-title {
+	display: block;
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: auto;
+	padding: 0;
+	border: 1px solid rgba(0, 0, 0, .08);
+	border-top: none;
+	border-radius: 0 0 2px 2px;
+	background: none;
+	color: rgba(0, 0, 0, .87);
+}
+
+.reservationList li a i {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 24px;
+    padding: 1px;
+    font-size: 14px;
+    font-style: normal;
+    color: #fff;
+    background: rgb(255, 43, 92);
+}
+
+/* 예약 취소 문구 */
+.reservationList .bg_w {
+    background: rgb(235, 235, 235);
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.reservationList li a strong {
+    font-size: 20px;
+        display: block;
+}
+
+.reservationList li a span {
+    padding: 0 0 20px 0;
+    font-size: 18px;
+    display: block;
+}
+
+.reservationList li a b {
+    display: none;
+}
+
+/* 다시예약 부분 */
+.reservationList li .btn_re {
+	width: 100%;
+	height: auto;
+	padding-bottom: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-top: none;
+	border-radius: 0 0 4px 4px;
+	background: #fff;
+	text-align: center;
+}
+
+.reservationList li a {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: auto;
+    padding: 0 0;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: none;
+    border-radius: 0 0 2px 2px;
+    background: none;
+    color: rgba(0, 0, 0, 0.87);
+        text-align: center;
+    box-sizing: border-box;
+}
+
+.reservationList li .btn_re a {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: 19px;
+    font-size: 16px;
+    line-height: normal;
+    color: #00796b;
+}
+
+.list_cancel a {
+    border-bottom: none !important;
+}

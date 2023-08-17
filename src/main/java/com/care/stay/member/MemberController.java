@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -190,29 +191,29 @@ public class MemberController {
 
 	@GetMapping("myPage")
 	public String myPage() {
-		if (session.getAttribute("id") != null) {
-			return "member/myPage";
-		} else {
-			return "member/index";
-		}
+//		if (session.getAttribute("id") != null) {
+		return "member/myPage";
+//		} else {
+//			return "member/index";
+//		}
 	}
 
 	@GetMapping("myPagePwCh")
 	public String myPagePwCh() {
-		if (session.getAttribute("id") != null) {
-			return "member/myPagePwCh";
-		} else {
-			return "member/index";
-		}
+//		if (session.getAttribute("id") != null) {
+		return "member/myPagePwCh";
+//		} else {
+//			return "member/index";
+//		}
 	}
 
 	@GetMapping("withdraw")
 	public String withdraw() {
-		if (session.getAttribute("id") != null) {
-			return "member/withdraw";
-		} else {
-			return "member/index";
-		}
+//		if (session.getAttribute("id") != null) {
+		return "member/withdraw";
+//		} else {
+//			return "member/index";
+//		}
 	}
 
 	// 닉네임 수정
@@ -252,14 +253,27 @@ public class MemberController {
 		service.passwdReset(member);
 		return "redirect:myPage";
 	}
-	
+
 	// 탈퇴하기
 	@PostMapping("withdrawProc")
 	public String withdrawProc(MemberDTO member, Model model) {
-		System.out.println(member.getPassword()+member.getId());
+		System.out.println(member.getPassword() + member.getId());
 		service.withdraw(member);
 		session.invalidate();
 		return "redirect:login";
+	}
+
+	/* ======================== 예약 내역 ======================== */
+	// 예약 내역 리스트
+	@GetMapping("reservationList")
+	public String reservationList(Model model) {
+//		if (session.getAttribute("id") != null) {
+		String userId = (String) session.getAttribute("id");
+//		service.reservationList(userId, model);
+		return "member/reservationList";
+//		} else {
+//			return "member/index";
+//		}
 	}
 
 }
