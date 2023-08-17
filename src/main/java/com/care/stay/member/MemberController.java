@@ -186,12 +186,6 @@ public class MemberController {
 		return "redirect:login";
 	}
 
-	// test 헤더
-	@RequestMapping("test")
-	public String test() {
-		return "default/test";
-	}
-
 	/* ======================== 내정보 ======================== */
 
 	@GetMapping("myPage")
