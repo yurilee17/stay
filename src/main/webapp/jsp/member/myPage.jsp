@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -144,8 +145,8 @@
 													data-rule-phonenumber="true"> <label id="error3"
 													class="error help-block" for=""></label>
 											</div>
-											<button type="button" class="btn_send btn_confirm" onclick="btnSend()">인증번호
-												전송</button>
+											<button type="button" class="btn_send btn_confirm"
+												onclick="btnSend()">인증번호 전송</button>
 										</section>
 									</div>
 									<div id="verificationCode" style="display: none;">
@@ -174,12 +175,15 @@
 						</section>
 					</form>
 					<!-- <button class="btn_submit disabled btn_one" type="submit">저장</button>-->
-
-					<p class="bot_link">
-						<a href="/myPagePwCh">비밀번호 변경</a> &gt;
-					</p>
+					<c:choose>
+						<c:when test="${fn:contains(sessionScope.id, 'kakao')}"></c:when>
+						<c:otherwise>
+							<p class="bot_link">
+								<a href="/myPagePwCh">비밀번호 변경</a> &gt;
+							</p>
+						</c:otherwise>
+					</c:choose>
 				</div>
-
 				<div class="bot_btn">
 					<p>여기어때를 이용하고 싶지 않으신가요?</p>
 					<button type="button" onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button>

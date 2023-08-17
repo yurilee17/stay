@@ -62,6 +62,10 @@
 		SET mobile=#{mobile}
 		WHERE id=#{id}
 	</update>
+	
+	<delete id="delete">
+		DELETE FROM member WHERE id=#{id}
+	</delete>
 
 	<select id="count">
 		<choose>

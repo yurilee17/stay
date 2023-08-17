@@ -25,6 +25,8 @@ public interface MemberMapper {
 	void updateName(MemberDTO member);
 	
 	void updateMobile(MemberDTO member);
+	
+	void delete(MemberDTO member);
 
 	int count(@Param("option1Name") String option1Name, @Param("option1") String option1,
 			@Param("option2Name") String option2Name, @Param("option2") String option2);

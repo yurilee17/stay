@@ -221,6 +221,24 @@ function inputEvent() {
 		});
 
 	}
+
+	let withdrawPw = document.getElementById("password");
+	let withdrawBt = document.querySelector(".button-areaButton");
+
+	if (withdrawPw != null && withdrawBt != null) {
+
+		withdrawPw.addEventListener("input", function() {
+
+			if (withdrawPw.value.length >= 4) {
+				withdrawBt.removeAttribute("disabled");
+			} else {
+				withdrawBt.setAttribute("disabled", "");
+			}
+
+		});
+
+	}
+
 }
 
 /* 수정 부분 출력&숨김 */
@@ -487,7 +505,7 @@ function sendPw() {
 	var reqData = { id: id, originalPw: originalPw }
 	reqData = JSON.stringify(reqData)
 
-	pro = false;
+	pro2 = false;
 	sendPwxhr = new XMLHttpRequest();
 	sendPwxhr.open('post', 'pwCon');
 	sendPwxhr.setRequestHeader('content-type', 'application/json');
@@ -497,9 +515,9 @@ function sendPw() {
 
 function sendPwProc() {
 	if (sendPwxhr.readyState === 4 && sendPwxhr.status === 200) {
-		if (!pro) {
+		if (!pro2) {
 			// 응답을 이미 처리했으면 두 번째 호출 무시
-			pro = true;
+			pro2 = true;
 			if (sendPwxhr.responseText === '비밀번호 일치') {
 				newPw();
 			} else if (sendPwxhr.responseText === '비밀번호 불일치') {
@@ -512,12 +530,14 @@ function sendPwProc() {
 	}
 }
 
+/* 비밀번호 변경 */
 function newPw() {
 	let originalPw = document.getElementById("originalPw");
 	let password = document.getElementById("password");
 
 	let newPwMsg = document.getElementById("new_pw_msg")
 	if (originalPw.value === password.value) {
+		newPwMsg.style.color = 'red';
 		newPwMsg.innerHTML = "기존 비밀번호와 다른 비밀번호를 입력해주세요.";
 	} else {
 		alerOneBtn('비밀번호 변경이 완료되었습니다');
@@ -525,6 +545,7 @@ function newPw() {
 	}
 }
 
+/* 알림 발생 후  */
 function alerOne() {
 	mypageForm.submit();
 };
@@ -532,4 +553,43 @@ function alerOne() {
 /* 알림 발생 후 리셋 */
 function reset() {
 	window.location.href = "http://localhost/myPage";
+}
+
+
+/*withdraw 비밀번호 확인*/
+var withdrawxhr;
+var pro3;
+function withdrawSendPw() {
+	let password = document.getElementById('password').value;
+	let id = document.getElementById('id').value;
+	var reqData = { id: id, originalPw: password }
+	reqData = JSON.stringify(reqData)
+
+	pro3 = false;
+	withdrawxhr = new XMLHttpRequest();
+	withdrawxhr.open('post', 'pwCon');
+	withdrawxhr.setRequestHeader('content-type', 'application/json');
+	withdrawxhr.send(reqData);
+	withdrawxhr.onreadystatechange = withdrawSendProc
+}
+
+function withdrawSendProc() {
+	if (withdrawxhr.readyState === 4 && withdrawxhr.status === 200) {
+		if (!pro3) {
+			// 응답을 이미 처리했으면 두 번째 호출 무시
+			pro3 = true;
+			if (withdrawxhr.responseText === '비밀번호 일치') {
+				withdrawForm.submit();
+			alert("일치");
+			} else if (withdrawxhr.responseText === '비밀번호 불일치') {
+				alert("비밀번호가 일치하지 않습니다.");
+
+			}
+		}
+	}
+}
+
+/* 페이지 뒤로가기 */
+function goBack() {
+	window.history.back();
 }

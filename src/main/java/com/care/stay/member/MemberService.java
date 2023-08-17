@@ -187,6 +187,7 @@ public class MemberService {
 
 	// 비밀번호 확인
 	public String pwCon(String id, String originalPw) {
+		System.out.println("test" + id + originalPw);
 		MemberDTO result = memberMapper.loginProc(id);
 
 		BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
@@ -195,5 +196,16 @@ public class MemberService {
 			return "비밀번호 일치";
 		}
 		return "비밀번호 불일치";
+	}
+
+	@Autowired
+	private KakaoService kakao;
+
+	// 탈퇴하기
+	public void withdraw(MemberDTO member) {
+		if (member.getId().contains("kakao")) {
+			kakao.unLink();
+		}
+		memberMapper.delete(member);
 	}
 }

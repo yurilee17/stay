@@ -147,12 +147,12 @@ public class MemberController {
 
 	}
 
-	// 카카오톡 연결 끊기
-	@GetMapping("kakaoLogout")
-	public String kakaoLogout() {
-		kakao.unLink();
-		return "redirect:index";
-	}
+//	// 카카오톡 연결 끊기
+//	@GetMapping("kakaoLogout")
+//	public String kakaoLogout() {
+//		kakao.unLink();
+//		return "redirect:index";
+//	}
 
 	// 비밀번호 재설정
 	@RequestMapping("passwdResetStart")
@@ -257,6 +257,15 @@ public class MemberController {
 	public String newPasswdProc(MemberDTO member, Model model) {
 		service.passwdReset(member);
 		return "redirect:myPage";
+	}
+	
+	// 탈퇴하기
+	@PostMapping("withdrawProc")
+	public String withdrawProc(MemberDTO member, Model model) {
+		System.out.println(member.getPassword()+member.getId());
+		service.withdraw(member);
+		session.invalidate();
+		return "redirect:login";
 	}
 
 }
