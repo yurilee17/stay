@@ -26,7 +26,7 @@
 		<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
 		<script data-n-head="ssr" src="../../resource/js/owl.carousel.min.js"></script>
-		<!-- <script src="../../resource/js/reservation.js"></script> -->
+
 		
 		
    <!-- 
@@ -48,71 +48,7 @@
 	    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	    <!-- iamport.payment.js -->
 	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-		
-		<script>
-        var IMP = window.IMP; 
-    	IMP.init('imp34502552');
-      
-        var today = new Date();   
-        var hours = today.getHours(); // 시
-        var minutes = today.getMinutes();  // 분
-        var seconds = today.getSeconds();  // 초
-        var milliseconds = today.getMilliseconds();
-        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
-        
-		// 카카오페이 결제
-        function requestPay() {
-            IMP.request_pay({
-				pg: "kakaopay.{TC0ONETIME}",
-                pay_method : 'card',
-                merchant_uid: "IMP"+makeMerchantUid, 
-                name : '당근 10kg',
-                amount : 1004,
-                buyer_email : 'Iamport@chai.finance',
-                buyer_name : '아임포트 기술지원팀',
-                buyer_tel : '010-1234-5678',
-                buyer_addr : '서울특별시 강남구 삼성동',
-                buyer_postcode : '123-456'             
-                
-            }, function (rsp) { // callback
-            	 if (rsp.success) {
-            	      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-            	      // jQuery로 HTTP 요청
-            	      jQuery.ajax({
-            	        url: "reservation/paymentComplete", 
-            	        method: "POST",
-            	        headers: { "Content-Type": "application/json" },
-            	        data: {
-            	          imp_uid: rsp.imp_uid,            // 결제 고유번호
-            	          merchant_uid: rsp.merchant_uid   // 주문번호
-            	        }
-            	      }).done(function (data) {
-            	        // 가맹점 서버 결제 API 성공시 로직
-            	      })
-            	    } else {
-            	      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
-            	    }
-            });
-        }
-		
-		/* 카카오페이가 아니면 requestPay 함수가 실행되지 않도록.... 해야되는데 안 됨*/
-        document.addEventListener("DOMContentLoaded", function() {
-            const paymentSelect = document.getElementById("payment-select");
-            const payButton = document.querySelector(".btn_pay");
 
-            payButton.addEventListener("click", function() {
-                const selectedPayment = paymentSelect.value;
-                if (selectedPayment === "KAKAO") {
-                    requestPay(); // 결제 수단이 "KAKAO"인 경우에만 requestPay() 함수 실행
-                } else {
-                    // 다른 결제 수단에 대한 처리를 추가할 수 있습니다.
-                    console.log("선택한 결제 수단이 KAKAO가 아닙니다.");
-                }
-            });
-        });
-		
-    	</script>
-		
 		<!-- 결제 관련 JS 라이브러리 모음 -->		
 
  </head>
@@ -122,7 +58,7 @@
 	<div class="right">
 		<section class="info">
 			<p class="name"><strong>숙소이름</strong>${hotel.hname}</p> 
-			<p><strong>객실타입/기간</strong>${hotelroom.hroomname} / </p> 
+			<p><strong>객실타입/기간</strong>${hotelroom.htype} / </p> 
 			<p><strong>체크인</strong>${hotel.hcheckintime}</p> 
 			<p><strong>체크아웃</strong>${hotel.hcheckouttime}</p>
 		</section> 	
@@ -137,17 +73,16 @@
 				<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
 			</ul>
 		</section> <!----> 
-		<button type="button" class="btn_pay gra_left_right_red">결제하기</button>
+		<button type="button" onclick="payment_confirm()" class="btn_pay gra_left_right_red">결제하기</button>
 	</div>
-	
-<!-- 	onclick="requestPay()" -->
-  
+	<!-- onclick="requestPay()" -->
+
 	<div class="left">
 		<section class="info_chkin">
 			<h3 style="margin-top:0;">예약자 정보</h3> 
 			<strong>예약자 이름</strong> 
 			<p class="inp_wrap remove">
-				<input type="text" name="userName"p laceholder="체크인시 필요한 정보입니다." maxlength="20">
+				<input type="text" name="userName" placeholder="체크인시 필요한 정보입니다." maxlength="20">
 			</p> 
 			<p data-show="name" class="alert_txt" style="visibility: hidden">한글, 영문, 숫자만 입력 가능. (문자 사이 공백은 1칸만 입력 가능)</p> 
 			<div>
@@ -155,7 +90,7 @@
 				<span class="safety_txt">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span> 
 				<div class="phone_confirm guest-phone">
 					<div class="input-box">
-						<input type="tel" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="input validation-required-input">
+						<input type="tel" id="userPhone" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="input validation-required-input">
 					</div> 
 					<button type="button" class="btn_send btn_confirm phone-auth-btn" onclick="btnSend()">인증번호 전송</button> 
 					<p data-show="tel" class="alert_txt error-message" style="">휴대폰 번호를 확인해 주세요.</p> 
@@ -164,6 +99,7 @@
 						<section>
 							<div class="input-box">
 								<input id="digit" type="tel" name="userPhone" minlength="4" maxlength="4" value="" class="input validation-required-input">
+								<span class="timer">03:00</span>								
 							</div> 
 							<button type="button" class="btn_ok btn_confirm phone-auth-btn">확인</button>
 						</section>
@@ -269,7 +205,7 @@
 					
 				<div class="btn">
 					<button onclick="close_layer();">취소</button> 
-					<button class="payment">동의 후 결제</button>
+					<button class="payment" onclick="requestPay">동의 후 결제</button>
 				</div>
 			</div> 
 				
@@ -434,19 +370,10 @@
 					</div>
 				</div>
 			</div> 
-				
-			<div class="business_pop">
-				<div class="list">
-					<h4>숙박서비스 제공업체 리스트</h4> 
-					<button onclick="list_close();" class="btn_close">닫기</button> 
-					<div>
-						<ul id="ajax_ad_list"></ul> 
-						<div id="pagination"></div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
+			<!-- <script src="../../resource/js/payment.js"></script> -->
+	<script src="../../resource/js/reservation.js"></script>
  </body>
 </html>

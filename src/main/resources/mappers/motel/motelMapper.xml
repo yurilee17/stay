@@ -31,6 +31,10 @@
 		SELECT * FROM motelroom WHERE no=#{no}
 	</select>
 	
+	<select id="stayReservation" resultMap="motelroomDto">
+		SELECT * FROM motelroom WHERE mroomcode=#{mroomcode}
+	</select>	
+	
 	<select id="stayDetailRegister" resultMap="motelDto">
 		SELECT * FROM motel WHERE no=#{no}
 	</select>

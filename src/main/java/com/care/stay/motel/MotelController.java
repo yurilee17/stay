@@ -27,6 +27,11 @@ public class MotelController {
 		  mservice.motellist(cp, model); 
 		  return "motel/motellist";  
 	}
+	
+	@RequestMapping("motelpage")
+	public String motelpage() {
+		return "motel/motelpage";
+	}
 		  
 		
 }

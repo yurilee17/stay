@@ -69,6 +69,9 @@ function pop_agree_04(){ // 만 14세 이상 확인
 	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
 }
 
+
+
+
 /* 연박구매총액 팝업 */
 var iscroll_price;
 
@@ -269,6 +272,13 @@ $(function(){
     });
 
 });
+
+
+
+
+
+
+
 // Main ---------------------------------------------------------------------------------------------------------------E
 
 // #1.결제하기
@@ -276,11 +286,10 @@ function payment_confirm(){
     //var regName =  /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
     var regName = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
     var regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-    var buyer = $('input[name=do_user_name]');
-    var buyer_phone = $('input[name=do_user_tel]');
-    var login_on = $('#order_form input[name=uno]').val() ? true : false;
-    var parkingChk = $('.visit .parking_type_btn.on').hasClass('on');
-    var adcno = $('#order_form input[name=adcno]').val();
+    var buyer = $('input[name=userName]');
+    var buyer_phone = $('input[name=userPhone]');
+    //var login_on = $('#order_form input[name=uno]').val() ? true : false;
+    //var adcno = $('#order_form input[name=adcno]').val();
     //var parkingUse = $('input[name=park_access]').val();
 
     /*if(Number($('.select_type_1').val()) == 5) {
@@ -325,20 +334,8 @@ function payment_confirm(){
         }
     }
 
-	if($("#travel_type").length != 0 && !$('#travel_type').find('button').hasClass('on')){
-		alert_Msg('여행 유형을 선택해 주세요.');
-		return false;
-	}
-
     buyer_phone.val(buyer_phone.val().replace(/\-/ig, ''));
 
-    // 도보 체크
-    /*if(adcno==1 && parkingUse!=undefined){
-        if(!parkingChk){
-            alert_Msg('<b>방문 방법</b>을 선택해주세요.<br> 도보 / 차량');
-            return false;
-        }
-    }*/
     if(!categorySaleTimeCheck()){
         return false;
     }
@@ -365,8 +362,8 @@ function payment_confirm(){
 // #2. 결제진행
 function payment_run(){
 
-    var buyer = $('input[name=do_user_name]').val();
-    var buyer_phone = $('input[name=do_user_tel]').val();
+    var buyer = $('input[name=userName]').val();
+    var buyer_phone = $('input[name=userPhone]').val();
     var oneDay1stCancel = $('input[name=oneDay1stCancel]').val();
     var pay_type_array = [2,5,6,10,11,12,14];						// payment type 2 : 이니시스, 5 : 모빌리언스, 6 : 포인트/쿠폰, 10 : 카카오페이, 11 : 나이스페이, 12 : PAYCO, 14 : 네이버페이
     $('#order_form input[name=buyer]').val(buyer);

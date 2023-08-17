@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.care.stay.hotel.HotelDTO;
 import com.care.stay.hotel.HotelRoomDTO;
 import com.care.stay.hotel.HotelService;
+import com.care.stay.motel.MotelDTO;
+import com.care.stay.motel.MotelRoomDTO;
+import com.care.stay.motel.MotelService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -19,6 +22,7 @@ import jakarta.servlet.http.HttpSession;
 public class ReservationController {
 	@Autowired private HttpSession session;
 	@Autowired private HotelService hservice;
+	@Autowired private MotelService mservice;
 
 	@RequestMapping("stayReservation")
 	public String stayReservation(
@@ -46,12 +50,39 @@ public class ReservationController {
 		model.addAttribute("stayType", stayType);
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("hotelroom", hotelroom);
-		
-		
-		
+
 		return "reservation/stayReservation";
 	}
 	
+
+	@RequestMapping("daesilReservation")
+	public String daesilReservation(
+			/*임시로 연결만 해놓은거라 정보 없이도 넘어갈 수 있게*/
+			@RequestParam(value="no", required = false)String n,
+			@RequestParam(value="stayType", required = false)String stayType,
+			@RequestParam(value="mroomcode", required = false)String rc,
+			@RequestParam(value="mprice", required = false)String price,
+			Model model) {
+		/*
+
+		String loginId = (String) session.getAttribute("id");
+		
+		if (loginId == null || loginId.isEmpty()) {
+			return "redirect:login";
+		} 
+		*/
+		System.out.println("");
+		System.out.println(rc + "는 객실 번호입니다.");
+		
+		MotelDTO motel = mservice.stayContent(n);
+		MotelRoomDTO motelroom = mservice.daesilReservation(rc);
+		
+		model.addAttribute("stayType", stayType);
+		model.addAttribute("motel", motel);
+		model.addAttribute("motelroom", motelroom);
+
+		return "reservation/daesilReservation";
+	}	
 	
 	
 	@RequestMapping("paymentPractice")

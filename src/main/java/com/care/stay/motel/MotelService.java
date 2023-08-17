@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.care.stay.common.AdminPageService;
 import com.care.stay.common.PageService;
 import com.care.stay.hotel.HotelDTO;
+import com.care.stay.hotel.HotelRoomDTO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -70,8 +71,8 @@ public class MotelService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			motel.setMimage(fileName);
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
+			motel.setMimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -308,6 +309,21 @@ public class MotelService {
 		  model.addAttribute("result", result);
 		  model.addAttribute("currentPage", currentPage);
 		
+	}
+
+	public MotelRoomDTO daesilReservation(String rc) {
+		int mroomcode = 0;
+		try {
+			mroomcode = Integer.parseInt(rc);
+		}catch(Exception e) {
+			return null;
+		}
+		
+		MotelRoomDTO motelroom = motelMapper.stayReservation(mroomcode);
+		if(motelroom == null)
+			return null;
+		
+		return motelroom;
 	}
 
 	

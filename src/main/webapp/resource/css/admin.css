@@ -192,8 +192,8 @@ form .stayType{
 	height: 100%;
 }
 
-.db_search tr, th{
-	padding-bottom:5px;
+.db_search tr th{
+	padding-bottom:15px;
 }
 
 .db_search tr td::after {

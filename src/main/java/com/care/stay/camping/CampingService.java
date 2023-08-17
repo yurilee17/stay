@@ -48,16 +48,16 @@ public class CampingService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			camping.setCimage(fileName);
-			
+
 			System.out.println(fileName);
 			System.out.println(multi.getParameter("info"));
 			System.out.println();
 			
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
+			camping.setCimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
-			
+
 			try {
 				// 서버가 저장한 업로드 파일은 임시저장경로에 있는데 개발자가 원하는 경로로 이동
 				file.transferTo(save);

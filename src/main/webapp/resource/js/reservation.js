@@ -5,9 +5,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	inputEvent();
 })
 
+
+
 /*인증번호 전송, 재전송 선택 시*/
 function btnSend() {
-	let mobile = document.getElementById("mobile");
+	let mobile = document.getElementById("userPhone");
 	let btnSend = document.querySelector(".btn_send");
 	let verificationCode = document.getElementById("verificationCode");
 
