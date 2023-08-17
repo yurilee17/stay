@@ -67,19 +67,19 @@
 	<!-- 지역과 체크박스별로 나오게하기   -->
  	<!--   1차시도  -->
 
- 	<select id="MainCheck">
+<!--  	<select id="MainCheck">
   	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
 			hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
 	 FROM hotel h 
 	 JOIN hotelroom hr  ON hr.hcode = h.hcode
 	 WHERE (h.hdetailregion = #{selectedText}
-   	 AND h.htype = #{htype})
+   	 OR h.htype = #{htype})
      AND( hr.hbedtype = #{hbedtype}
-     OR hr.hcomfort like CONCAT('%', #{hcomfort}, '%')
+     OR hr.hcomfort like CONCAT('%'|| #{hcomfort}, '%')
      OR hr.hpeople = #{hpeople})
      
 	</select>   
-	
+	 -->
 	
 	
 <!-- 2차시도	
@@ -134,10 +134,77 @@
     </if>
 </select>
 	 -->
+	 
+<!-- 	 <select id="MainCheck">
+     SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+        hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
+     FROM hotel h 
+     JOIN hotelroom hr ON hr.hcode = h.hcode
+     WHERE (h.hdetailregion = #{selectedText} OR h.htype = #{htype})
+     AND (
+         hr.hbedtype = #{hbedtype} OR
+         hr.hcomfort LIKE CONCAT('%'||#{hcomfort}, '%') OR
+         hr.hpeople = #{hpeople} OR
+        (#{hbedtype} IS NULL AND #{hcomfort} IS NULL AND #{hpeople} IS NULL)
+     )
+</select> -->
+
+<!--  <select id="MainCheck">
+  	WITH LIST_TXT AS (SELECT #{hcomfort} hcomfort FROM hotelroom)
+   	SELECT TRIM(REGEXP_SUBSTR(hcomfort,'[^,]+',1,LEVEL)) AS  LIST_TO_ROW
+    FROM LIST_TXT
+	CONNECT BY INSTR(hcomfort, ',' , 1, LEVEL - 1 ) > 0
+	</select> -->
 	
+<!-- 	<select id="MainCheck">
+  	 SELECT h.*, hr.*
+	 FROM hotel h 
+	 JOIN hotelroom hr  ON h.no = hr.no AND hr.hcode = h.hcode
+	 WHERE (h.hdetailregion = #{selectedText}
+
+   	 OR h.htype = #{htype})
+   	 
+     AND( hr.hbedtype like CONCAT('%'|| #{hbedtype}, '%')
+     
+  	 AND hr.hcomfort like CONCAT('%'|| #{hcomfort}, '%')
 	
+     OR hr.hpeople = #{hpeople})
+     
+ 	</select>  -->
+ 	
+ 	
+ 	
+ 	<select id="MainCheck">
+  	 SELECT h.*, hr.* rs.*
+	 FROM hotel h hotelroom hr reservation rs
+	 WHERE (h.hdetailregion = #{selectedText}
+
+   	 OR h.htype = #{htype})
+   	 
+   	 AND(rs.checkindate = #{checkindate} AND rs.checkoutdate = #{checkoutdate})
+   	 
+     AND(hr.hbedtype like CONCAT('%'|| #{hbedtype}, '%')
+     
+  	 AND hr.hcomfort like CONCAT('%'|| #{hcomfort}, '%')
 	
+     OR hr.hpeople = #{hpeople})
+     
+ 	</select> 
 	
+	<!--	 	<select id="MainCheck">
+  	 SELECT h.*, hr.*
+	 FROM hotel h 
+	 JOIN hotelroom hr  ON h.no = hr.no AND hr.hcode = h.hcode
+	 WHERE (h.hdetailregion = #{selectedText}
+
+     <foreach collection="array" item="arr" open="(" close=")" separator=",">
+  		OR hr.hcomfort like CONCAT('%'|| #{arr}, '%')
+	</foreach>
+
+     
+	</select>   
+	
+	 -->
 	
 	<!-- 아래에도있음/ 나중에 합칠때 한개는 지워야함  -->
 	<select id="count">
@@ -176,7 +243,7 @@
 	
 
 
-<!-- 
+<!-- 아래는 지우면 안됨! 나중에는 주석 풀ㄹ어야함! 
 	<resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
 		<id column="no" property="no"/>																		
 	</resultMap>

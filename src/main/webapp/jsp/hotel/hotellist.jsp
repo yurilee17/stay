@@ -185,11 +185,13 @@
 
 
 								<input type="text" id="calendars" name="calendars" value="" />
-
-
-								<script>
-
-				$(function () {
+				
+				<script>
+				
+				var selectedStartDate;
+			    var selectedEndDate;	
+				
+					$(function () {
 	         	   $('#calendars').daterangepicker({
 	         		  "maxSpan": {"days": 6 },
 	                "locale": {
@@ -212,7 +214,11 @@
 		                "drops": "down"
 			            }, function (start, end, label) {
 			                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-	          		  });
+			                
+			                selectedStartDate = start.format('YYYY-MM-DD');
+				            selectedEndDate = end.format('YYYY-MM-DD');
+			            
+			            });
 	         	   
 	         	   // css 변경가능 
 	         	  $("#calendars").on('show.daterangepicker', function (ev, picker) {
@@ -223,6 +229,27 @@
 	       		 });
 				
 				</script>
+				
+				<script type="text/javascript">
+		
+		 		var selectedDate = "";		
+		
+				function selectedStartDate() {
+					var subMenu = document.getElementById(selectId);
+					var selectedValue = subMenu.value;
+					selectedText = subMenu.options[subMenu.selectedIndex].text;
+					
+					alert(selectId);
+					alert(selectedText);
+					
+					 localStorage.setItem("selectedText", selectedText); //selectedText 값 저장해서 넘겨줌 
+					
+					selectedTextUrl = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText);
+					window.location.href = selectedTextUrl;
+				}
+								
+		</script>
+		
 
 
 
@@ -403,16 +430,20 @@
 						            }
 						        }
 						        
+						         var checkindate = selectedStartDate;
+						         var checkoutdate = selectedEndDate; 
 						         var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴      
 						         var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
 						              
 						                
 						              
-						       var url = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText) +
-				                  "&htype=" + encodeURIComponent(htype.join(',')) +
+						       var url = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText) +				                  
+						    	  "&htype=" + encodeURIComponent(htype.join(',')) +
 				                  "&hbedtype=" + encodeURIComponent(hbedtype.join(',')) +
 				                  "&hcomfort=" + encodeURIComponent(hcomfort.join(',')) + 
-				                  "&hpeople=" + encodeURIComponent(hpeople);
+				                  "&hpeople=" + encodeURIComponent(hpeople) +
+						       	  "&checkindate=" + encodeURIComponent(checkindate) +
+						    	  "&checkoutdate=" + encodeURIComponent(checkoutdate);
 						              
 						     	  window.location.href = url;
 						    }

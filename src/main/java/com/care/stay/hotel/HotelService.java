@@ -282,9 +282,112 @@ public class HotelService {
 	  
 	  }
 	  
+	  //---------------------
+	  
+	  // 중복체크 (부모테이블 하나만 나오게하기) 
+	  public String DuplicateCheck(String hcomfort) {
+		 
+		  
+		  HotelDTO hotelDTO = null;
+		  HotelRoomDTO hotelroomDTO = null;
+		  
+		  if(hotelDTO.getHcode().equals(hotelroomDTO.getHcode())){
+			  if (hcomfort == null || hcomfort.isEmpty()) {
+				  return  hcomfort;
+			  }
+				  String[] comfortList = hcomfort.split(",");
+			      String longComfort = comfortList[0];
+			      
+			     for (String comfort : comfortList) {
+			          if (comfort.trim().length() > longComfort.trim().length()) {
+			        	  longComfort = comfort.trim();
+			     }   
+		}
+			  
+			 return  longComfort;
+	}
+		return null;
+}
+	  
+	  
+	  //htype 선택시 작동되는 값 
+	  
+	  public String typeList(String htype) {
+		 
+
+		  
+			  if (htype == null || htype.isEmpty()) {
+				  return  htype;
+			  }
+				  String[] hTlist = htype.split(",");
+				  List<String> selectedhTypes = new ArrayList<>();
+			      
+				  
+				    for (String hT : hTlist) {
+				    	selectedhTypes.add(hT);
+				        }
+				    
+			  
+				  return  String.join(",", selectedhTypes);
+	}
+	  
+	  
+	  
+	  
+	  // bedtype 선택시 작동되는 값 
+	  public String bedtypeList(String hbedtype) {
+		 
+		 
+		  
+			  if (hbedtype == null || hbedtype.isEmpty()) {
+				  return  hbedtype;
+			  }
+				  String[] bedTlist = hbedtype.split(",");
+				  List<String> selectedBedTypes = new ArrayList<>();
+			      
+				  
+				    for (String bedT : bedTlist) {
+				            selectedBedTypes.add(bedT);
+				        }
+				    
+			  
+				  return  String.join(",", selectedBedTypes);
+	}
+	  
+	  
+	  
+	  // comfort 선택시 작동되는 값 
+	  public String comfortList(String hcomfort) {
+		 
+		 
+		  
+			  if (hcomfort == null || hcomfort.isEmpty()) {
+				  return  hcomfort;
+			  }
+				  String[] comfortlist = hcomfort.split(",");
+				  List<String> selectedcomfortTypes = new ArrayList<>();
+			      
+				  
+				    for (String comfortT : comfortlist) {
+				    	selectedcomfortTypes.add(comfortT);
+				        }
+				    
+			  
+				  return  String.join(",", selectedcomfortTypes);
+	}
+	  
+
+
+	  //-------------------------------------
+	  
+	  
+	  
+	  
+	  
+	  
 	  
 	  // 체크박스 선택시 조건에 맞게 호텔리스트 나오게 
-	  public void MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
+	  public void MainCheck(String selectedText, String checkindate, String checkoutdate,  String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
 
 	  int currentPage = 1; 
 	  
@@ -298,11 +401,11 @@ public class HotelService {
 	  int end = pageBlock * currentPage; //테이블에서 가져올 마지막 행번호 
 	  int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
 	  
-	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin, end); 
+	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText,checkindate, checkoutdate,  htype, hbedtype, hcomfort, hpeople, begin, end); 
 	  int totalCount = hotelMapper.count(); 
 	  String url = "hotellist?currentPage=";
 	  String result = PageService.printPage(url, currentPage, totalCount,pageBlock);
-	
+	  
 	  
 	  System.out.println("service에서 " + selectedText );
 	  System.out.println("pageBlock " + pageBlock);
@@ -310,15 +413,21 @@ public class HotelService {
 	  System.out.println("service에서 hbedtype " + hbedtype);
 	  System.out.println("service에서 hcomfort " + hcomfort);
 	  System.out.println("service에서 hpeople " + hpeople);
+	  System.out.println("service에서 checkindate " + checkindate);
+	  System.out.println("service에서 checkoutdate " + hpeople);
+	  
 
 	  
 	  model.addAttribute("hotels", hotels); 
 	  model.addAttribute("result", result);
 	  model.addAttribute("currentPage", currentPage);
 	  
-	  
 	  }
 	  
 	  
+
+	       
+	    }
+	  
+	  
 	
-}

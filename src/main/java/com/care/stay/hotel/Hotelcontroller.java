@@ -60,6 +60,8 @@ public class Hotelcontroller {
 			  
 			  @RequestParam(value="currentPage", required = false)  String cp, 
 	  		  @RequestParam(value="hdetailregion" , required = false) String selectedText, 
+	  		  @RequestParam(value="checkindate", required = false) String checkindate,
+	  		  @RequestParam(value="checkoutdate", required = false) String checkoutdate,
 	  		  @RequestParam(value="htype", required = false) String htype,
 	  		  @RequestParam(value="hbedtype", required = false) String hbedtype,
 	  		  @RequestParam(value="hcomfort", required = false) String hcomfort,
@@ -75,7 +77,7 @@ public class Hotelcontroller {
 		  		
 		  	   if (htype != null || hbedtype != null || hcomfort != null  || hpeople != null ) {
 		  	      
-		  		   	service.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, cp ,model); 
+		  		   	service.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, hpeople, cp ,model); 
 		  	    } else {
 		  	        service.Main(selectedText, cp ,model);
 		  	    }
