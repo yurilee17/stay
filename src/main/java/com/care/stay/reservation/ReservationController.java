@@ -23,37 +23,71 @@ public class ReservationController {
 	@Autowired private HttpSession session;
 	@Autowired private HotelService hservice;
 	@Autowired private MotelService mservice;
+	@Autowired private ReservationService rservice;
 
 	@RequestMapping("stayReservation")
 	public String stayReservation(
-			/*임시로 연결만 해놓은거라 정보 없이도 넘어갈 수 있게*/
-			@RequestParam(value="no", required = false)String n,
-			@RequestParam(value="stayType", required = false)String stayType,
-			@RequestParam(value="hroomcode", required = false)String rc,
-			@RequestParam(value="hprice", required = false)String price,
-			/*여기에 선택된 체크인날짜, 체크아웃날짜도 숙소리스트에서 추가로 불러올것*/
-			Model model) {
-		/*
+//			/*임시로 연결만 해놓은거라 정보 없이도 넘어갈 수 있게*/
+//			@RequestParam(value="no", required = false)String n,
+//			@RequestParam(value="stayType", required = false)String stayType,
+//			@RequestParam(value="hroomcode", required = false)String rc,
+//			@RequestParam(value="hprice", required = false)String price,
+//			/*여기에 선택된 체크인날짜, 체크아웃날짜도 숙소리스트에서 추가로 불러올것*/
+//			Model model) {
+//		/*
+//
+//		String loginId = (String) session.getAttribute("id");
+//		
+//		if (loginId == null || loginId.isEmpty()) {
+//			return "redirect:login";
+//		} 
+//		*/
+//		System.out.println("");
+//		System.out.println(rc + "는 객실 번호입니다.");
+//		
+//		HotelDTO hotel = hservice.stayContent(n);
+//		HotelRoomDTO hotelroom = hservice.stayReservation(rc);
+//		
+//		model.addAttribute("stayType", stayType);
+//		model.addAttribute("hotel", hotel);
+//		model.addAttribute("hotelroom", hotelroom);
+//
+//		return "reservation/stayReservation";
+			
+        @RequestParam(value = "no", required = false) String n,
+        @RequestParam(value = "stayType", required = false) String stayType,
+        @RequestParam(value = "mroomcode", required = false) String mroomcode,
+        @RequestParam(value = "hroomcode", required = false) String hroomcode,
+        @RequestParam(value = "proomcode", required = false) String proomcode,
+        @RequestParam(value = "groomcode", required = false) String groomcode,
+        @RequestParam(value = "croomcode", required = false) String croomcode,
+        Model model) {
 
-		String loginId = (String) session.getAttribute("id");
-		
-		if (loginId == null || loginId.isEmpty()) {
-			return "redirect:login";
-		} 
-		*/
-		System.out.println("");
-		System.out.println(rc + "는 객실 번호입니다.");
-		
-		HotelDTO hotel = hservice.stayContent(n);
-		HotelRoomDTO hotelroom = hservice.stayReservation(rc);
-		
-		model.addAttribute("stayType", stayType);
-		model.addAttribute("hotel", hotel);
-		model.addAttribute("hotelroom", hotelroom);
+        model.addAttribute("stayType", stayType);
 
-		return "reservation/stayReservation";
+        if ("motel".equals(stayType)) {
+        	rservice.stayAndRoomInfo(stayType, n, mroomcode, model);
+            rservice.getmroomCode(mroomcode, model);
+            
+            System.out.println("mroomcode in Model: " + model.getAttribute("roomCode"));
+            System.out.println("Motel DTO in Model: " + model.getAttribute("motel"));
+            System.out.println("MotelRoom DTO in Model: " + model.getAttribute("motelroom"));
+            
+        } else if ("hotel".equals(stayType)) {
+        	rservice.stayAndRoomInfo(stayType, n, hroomcode, model);
+            rservice.gethroomCode(hroomcode, model);
+        } else if ("pension".equals(stayType)) {
+            rservice.getproomCode(proomcode, model);
+        } else if ("gh".equals(stayType)) {
+            rservice.getgroomCode(groomcode, model);
+        } else if ("camping".equals(stayType)) {
+            rservice.getcroomCode(croomcode, model);
+        }
+
+        return "reservation/stayReservation";	
 	}
 	
+
 
 	@RequestMapping("daesilReservation")
 	public String daesilReservation(

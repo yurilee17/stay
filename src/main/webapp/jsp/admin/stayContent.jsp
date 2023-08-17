@@ -90,6 +90,7 @@
                   </c:when>
                   <c:otherwise>
                     <c:forEach var="motelroom" items="${ motelrooms}">
+                    <a href="#" onclick="location.href='stayReservation?no=${motel.no}&stayType=motel&roomcode=${motelroom.mroomcode}&price=${motelroom.mstayprice}'">
                       <div class="room">
                         <p class="pic_view ">
                           <img class="lazy" src="">
@@ -144,6 +145,7 @@
                           </div>
                         </div>
                       </div>
+                    </a>
                     </c:forEach>
                   </c:otherwise>
                 </c:choose>

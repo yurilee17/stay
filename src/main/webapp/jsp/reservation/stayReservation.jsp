@@ -58,7 +58,7 @@
 	<div class="right">
 		<section class="info">
 			<p class="name"><strong>숙소이름</strong>${hotel.hname}</p> 
-			<p><strong>객실타입/기간</strong>${hotelroom.htype} / </p> 
+			<p><strong>객실타입/기간</strong>${hotelroom.hbedtype} / </p> 
 			<p><strong>체크인</strong>${hotel.hcheckintime}</p> 
 			<p><strong>체크아웃</strong>${hotel.hcheckouttime}</p>
 		</section> 	

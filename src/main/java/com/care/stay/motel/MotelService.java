@@ -193,6 +193,21 @@ public class MotelService {
 		return motel;
 	}
 	
+	public MotelRoomDTO roomContent(String rc) {
+		int mroomcode = 0;
+		try{
+			mroomcode = Integer.parseInt(rc);
+		}catch(Exception e){
+			return null;
+		}
+		
+		MotelRoomDTO motelroom = motelMapper.stayReservation(mroomcode);
+		if(motelroom == null)
+			return null;
+		return motelroom;
+		
+	}
+	
 	
 	public List<MotelRoomDTO> stayRoomContent(String n) {
 		int no = 0;

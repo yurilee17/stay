@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.care.stay.common.AdminPageService;
 import jakarta.servlet.http.HttpSession;
 import com.care.stay.common.PageService;
+import com.care.stay.motel.MotelRoomDTO;
 
 @Service
 public class HotelService {
@@ -338,5 +339,19 @@ public class HotelService {
 	  
 	  
 	  }
+
+	public HotelRoomDTO roomContent(String rc) {
+		int hroomcode = 0;
+		try{
+			hroomcode = Integer.parseInt(rc);
+		}catch(Exception e){
+			return null;
+		}
+		
+		HotelRoomDTO hotelroom = hotelMapper.stayReservation(hroomcode);
+		if(hotelroom == null)
+			return null;
+		return hotelroom;
+	}
 	  
 }
