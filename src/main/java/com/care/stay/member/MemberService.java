@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.care.stay.common.PageService;
+import com.care.stay.reservation.ReservationDTO;
+import com.care.stay.reservation.ReservationMapper;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -213,36 +215,31 @@ public class MemberService {
 		memberMapper.delete(member);
 	}
 
-//	@Autowired
-//	private ReservationMapper reservationMapper;
+	@Autowired
+	private ReservationMapper reservationMapper;
 
 	// 예약 내역 리스트
-//	public void reservationList(String id, Model model) {
-//
-//		ArrayList</* reservationDTO */> members = reservationMapper.reservationList(id);
-//		int totalCount = memberMapper.count(option1Name, option1, option2Name, option2);
-//		String url = "stayUser?option1Name=" + option1Name + "&option1=" + option1 + "&option2Name=" + option2Name
-//				+ "&option2=" + option2 + "&currentPage=";
-//		String result = PageService.printPageStayUser(url, currentPage, totalCount, pageBlock);
-//
-//		model.addAttribute("members", members);
-//		model.addAttribute("result", result);
-//		model.addAttribute("currentPage", currentPage);
-//	}
-	/* ReservationMapper.java에 추가 필요 
-	 * 
-	 *  ArrayList<MemberDTO> reservationList(String id);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
+	public void reservationList(String id, Model model) {
+
+		ArrayList<ReservationDTO> resConfirmeds = reservationMapper.resConfirmed(id);
+		ArrayList<ReservationDTO> resCompleteds = reservationMapper.resCompleted(id);
+		ArrayList<ReservationDTO> resCancellations = reservationMapper.resCancellation(id);
+
+//		System.out.println(resConfirmeds);
+//		System.out.println(resCompleteds);
+//		System.out.println(resCancellations);
+		
+		model.addAttribute("resConfirmeds", resConfirmeds);
+		model.addAttribute("resCompleteds", resCompleteds);
+		model.addAttribute("resCancellations", resCancellations);
+	}
+
+	// 예약 내역 리스트
+		public void reserDeleteProc(String no) {
+			
+			reservationMapper.delete(no);
+			
+		}
+
 
 }

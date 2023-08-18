@@ -317,23 +317,27 @@ li {
 	margin: 0 16px 16px 0;
 }
 
+.reservationList li:nth-child(even) {
+	margin: 0;
+}
+
 /* 사진 딤 처리 */
 .reservationList li:after {
-    display: none;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    width: 100%;
-    height: 148px;
-    background: rgba(0, 0, 0, 0.38);
+	display: none;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: 148px;
+	background: rgba(0, 0, 0, 0.38);
 }
 
 .list_cancel li:after {
-    display: block;
-    height: 184px;
-    border-radius: 2px 2px 0 0;
+	display: block;
+	height: 184px;
+	border-radius: 2px 2px 0 0;
 }
 
 .list_cancel li:after {
@@ -368,15 +372,16 @@ li {
 }
 
 .reservationList li .align {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	width: 100%;
 }
 
-fieldset, img {
-    border: 0;
+fieldset,
+img {
+	border: 0;
 }
 
 /* 예약정보 부분 */
@@ -412,39 +417,42 @@ fieldset, img {
 }
 
 .reservationList li a i {
-    display: inline-block;
-    margin-bottom: 10px;
-    margin-top: 24px;
-    padding: 1px;
-    font-size: 14px;
-    font-style: normal;
-    color: #fff;
-    background: rgb(255, 43, 92);
+	display: inline-block;
+	margin-bottom: 10px;
+	margin-top: 24px;
+	padding: 1px;
+	font-size: 14px;
+	font-style: normal;
+	color: #fff;
+	background: rgb(255, 43, 92);
 }
 
 /* 예약 취소 문구 */
 .reservationList .bg_w {
-    background: rgb(235, 235, 235);
-    color: rgba(0, 0, 0, 0.87);
+	background: rgb(235, 235, 235);
+	color: rgba(0, 0, 0, 0.87);
 }
 
 .reservationList li a strong {
-    font-size: 20px;
-        display: block;
+	font-size: 20px;
+	display: block;
 }
 
 .reservationList li a span {
-    padding: 0 0 20px 0;
-    font-size: 18px;
-    display: block;
+	padding: 0 0 20px 0;
+	font-size: 18px;
+	display: block;
 }
 
 .reservationList li a b {
-    display: none;
+	display: none;
 }
 
 /* 다시예약 부분 */
 .reservationList li .btn_re {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	height: auto;
 	padding-bottom: 20px;
@@ -456,34 +464,78 @@ fieldset, img {
 }
 
 .reservationList li a {
-    display: block;
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    width: 100%;
-    height: auto;
-    padding: 0 0;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-top: none;
-    border-radius: 0 0 2px 2px;
-    background: none;
-    color: rgba(0, 0, 0, 0.87);
-        text-align: center;
-    box-sizing: border-box;
+	display: block;
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: auto;
+	padding: 0 0;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-top: none;
+	border-radius: 0 0 2px 2px;
+	background: none;
+	color: rgba(0, 0, 0, 0.87);
+	text-align: center;
+	box-sizing: border-box;
 }
 
 .reservationList li .btn_re a {
-    display: block;
-    position: relative;
-    padding: 0;
-    margin: 0;
-    height: 19px;
-    font-size: 16px;
-    line-height: normal;
-    color: #00796b;
+	display: block;
+	position: relative;
+	padding: 0;
+	margin: 0;
+	height: 19px;
+	font-size: 16px;
+	line-height: normal;
+	color: #00796b;
+}
+
+.reservationList li .btn_re a.review {
+	color: rgba(0, 0, 0, 0.87);
 }
 
 .list_cancel a {
-    border-bottom: none !important;
+	border-bottom: none !important;
+}
+
+/* ==== 리스트 없을 경우 ==== */
+
+.list_none {
+	background: none;
+	padding-top: 125px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	height: 373px;
+}
+
+.list_none b {
+	font-size: 18px;
+	line-height: 24px;
+	display: block;
+	padding-top: 16px;
+	font-weight: normal;
+}
+
+.btn_red {
+	display: inline-block;
+	border: 1px solid rgb(242, 17, 76);
+	border-radius: 4px;
+	background: #fff;
+	font-size: 16px;
+	font-weight: normal;
+	color: rgb(230, 28, 81);
+	text-align: center;
+	box-sizing: border-box;
+	vertical-align: top;
+}
+
+.list_none p a {
+	width: 200px;
+	height: 48px;
+	margin-top: 44px;
+	line-height: 48px;
+	background: none;
 }

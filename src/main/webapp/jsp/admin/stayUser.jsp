@@ -30,7 +30,7 @@
 			<c:import url="${adminHeaderUrl}" />
 			<!-- 문구 -->
 			<h3>회원 조회</h3>
-			<!-- 회원 검색 -->
+			<!-- <!-- 회원 검색 
 			<div class="userSearch">
 				<select class="userAuth" id="userAuth"
 					onchange="selectAuth(this.value)">
@@ -51,7 +51,7 @@
 					<option value="nickname">닉네임</option>
 				</select>
 
-			</div>
+			</div> -->
 			<div clss="list">
 				<table class="userInfo">
 					<colgroup>

@@ -191,29 +191,29 @@ public class MemberController {
 
 	@GetMapping("myPage")
 	public String myPage() {
-//		if (session.getAttribute("id") != null) {
-		return "member/myPage";
-//		} else {
-//			return "member/index";
-//		}
+		if (session.getAttribute("id") != null) {
+			return "member/myPage";
+		} else {
+			return "member/index";
+		}
 	}
 
 	@GetMapping("myPagePwCh")
 	public String myPagePwCh() {
-//		if (session.getAttribute("id") != null) {
-		return "member/myPagePwCh";
-//		} else {
-//			return "member/index";
-//		}
+		if (session.getAttribute("id") != null) {
+			return "member/myPagePwCh";
+		} else {
+			return "member/index";
+		}
 	}
 
 	@GetMapping("withdraw")
 	public String withdraw() {
-//		if (session.getAttribute("id") != null) {
-		return "member/withdraw";
-//		} else {
-//			return "member/index";
-//		}
+		if (session.getAttribute("id") != null) {
+			return "member/withdraw";
+		} else {
+			return "member/index";
+		}
 	}
 
 	// 닉네임 수정
@@ -264,16 +264,37 @@ public class MemberController {
 	}
 
 	/* ======================== 예약 내역 ======================== */
+
 	// 예약 내역 리스트
 	@GetMapping("reservationList")
 	public String reservationList(Model model) {
-//		if (session.getAttribute("id") != null) {
-		String userId = (String) session.getAttribute("id");
-//		service.reservationList(userId, model);
-		return "member/reservationList";
-//		} else {
-//			return "member/index";
-//		}
+		if (session.getAttribute("id") != null) {
+			String userId = (String) session.getAttribute("id");
+			service.reservationList(userId, model);
+			return "member/reservationList";
+		} else {
+			return "member/index";
+		}
 	}
+
+	@GetMapping("resDetail")
+	public String resDetail() {
+		if (session.getAttribute("id") != null) {
+			return "member/resDetail";
+		} else {
+			return "member/index";
+		}
+	}
+	
+	@GetMapping("reserDeleteProc")
+	public String reserDeleteProc(String no) {
+		if (session.getAttribute("id") != null) {
+			service.reserDeleteProc(no);
+			return "member/resDetail";
+		} else {
+			return "member/index";
+		}
+	}
+
 
 }
