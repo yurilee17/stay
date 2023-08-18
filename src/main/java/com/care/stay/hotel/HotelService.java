@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.care.stay.common.AdminPageService;
 import jakarta.servlet.http.HttpSession;
 import com.care.stay.common.PageService;
+import com.care.stay.reservation.ReservationDTO;
 
 @Service
 public class HotelService {
@@ -95,10 +96,10 @@ public class HotelService {
         
         hotelroom.setNo(no);
         hotelroom.setHcode(Hcode);
-        hotelroom.setHroomcode(String.valueOf(roomcount));
-        hotelroom.setHroomname(multi.getParameter("roomname"));
-        hotelroom.setHbedtype(multi.getParameter("hbedtype"));
-        hotelroom.setHroomnumber(getIntParameter(multi, "roomnumber"));
+        hotelroom.setHroomCode(String.valueOf(roomcount));
+        hotelroom.setHroomName(multi.getParameter("roomname"));
+        hotelroom.setHbedType(multi.getParameter("hbedtype"));
+        hotelroom.setHroomNumber(getIntParameter(multi, "roomnumber"));
         hotelroom.setHprice(getIntParameter(multi, "hprice"));
         hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
         
@@ -129,14 +130,14 @@ public class HotelService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		hotelroom.setHroomimage("");
+		hotelroom.setHroomImage("");
 		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			hotelroom.setHroomimage(fileName);
+			hotelroom.setHroomImage(fileName);
 
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
 			File save = new File(fileLocation + fileName);
@@ -235,8 +236,8 @@ public class HotelService {
 	  String result = PageService.printPage(url, currentPage,
 	  totalCount,pageBlock);
 	  
-	  System.out.println("pageBlock " + pageBlock);
-	  System.out.println("totalCount " + totalCount);
+	  System.out.println("SHageBlock " + pageBlock);
+	  System.out.println("SHtotalCount " + totalCount);
 		/*
 		 * System.out.println("mainMenu " + mainMenu); 
 		 * System.out.println("subMenu "+ subMenu);
@@ -251,7 +252,7 @@ public class HotelService {
 	 
 	  
 	  // 지역별 호텔리스트 나오게 
-	  public void Main(String selectedText, String cp,  Model model) { 
+	  public void Main(String selectedText, String checkindate, String checkoutdate, String cp,  Model model) { 
 
 	  int currentPage = 1; 
 	  
@@ -263,29 +264,154 @@ public class HotelService {
 	  
 	  int pageBlock = 6; // 한 페이지에 보일 데이터의 수 
 	  int end = pageBlock * currentPage; //테이블에서 가져올 마지막 행번호 
-	  int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+	  int begin = end -pageBlock + 1; // 테이블에서 가져올 시작 행번호
+		 	  
 	  
-	  
-	  ArrayList<HotelDTO> hotels = hotelMapper.Main(selectedText, begin, end); 
 	  int totalCount = hotelMapper.count(); 
 	  String url = "hotellist?currentPage=";
-	  String result = PageService.printPage(url, currentPage, totalCount,pageBlock);
+	  String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
 	  
+	  System.out.println("----여기는 서비스 Main -----" );
 	  System.out.println("service에서 " + selectedText );
 	  System.out.println("pageBlock " + pageBlock);
 	  System.out.println("totalCount " + totalCount);
+	  System.out.println("----여기는 서비스 Main  // -----" );
 
-	  model.addAttribute("hotels", hotels); 
-	  model.addAttribute("result", result);
-	  model.addAttribute("currentPage", currentPage);
+
 	  
+	  if(selectedText != null && checkindate == null) {
+		  ArrayList<HotelDTO> hotels = hotelMapper.Main(selectedText, begin, end);
+		  model.addAttribute("hotels", hotels);
+		  model.addAttribute("result", result);
+		  model.addAttribute("currentPage", currentPage);
+	  }else if (selectedText == null && checkindate != null) {
+		  ArrayList<ReservationDTO> hotels = hotelMapper.MainDate(selectedText, checkindate, checkoutdate, begin, end); 		
+		  model.addAttribute("hotels", hotels);
+		  model.addAttribute("result", result);
+		  model.addAttribute("currentPage", currentPage);
+		} 
 	  
+	  		/*
+			 * else { ArrayList<HotelDTO> hotels = hotelMapper.Main(checkindate,
+			 * checkoutdate, begin, end); model.addAttribute("hotels", hotels);
+			 * model.addAttribute("result", result); model.addAttribute("currentPage",
+			 * currentPage);
+			 * 
+			 * }
+			 */
+	 
 	  }
+	  
+	  //---------------------
+	  
+	  // 중복체크 (부모테이블 하나만 나오게하기) 
+	  public String DuplicateCheck(String hcomfort) {
+		 
+		  
+		  HotelDTO hotelDTO = null;
+		  HotelRoomDTO hotelroomDTO = null;
+		  
+		  if(hotelDTO.getHcode().equals(hotelroomDTO.getHcode())){
+			  if (hcomfort == null || hcomfort.isEmpty()) {
+				  return  hcomfort;
+			  }
+				  String[] comfortList = hcomfort.split(",");
+			      String longComfort = comfortList[0];
+			      
+			     for (String comfort : comfortList) {
+			          if (comfort.trim().length() > longComfort.trim().length()) {
+			        	  longComfort = comfort.trim();
+			     }   
+		}
+			  
+			 return  longComfort;
+	}
+		return null;
+}
+	  
+	  
+	  //htype 선택시 작동되는 값 
+	  
+	  public String typeList(String htype) {
+		 
+
+		  
+			  if (htype == null || htype.isEmpty()) {
+				  return  htype;
+			  }
+				  String[] hTlist = htype.split(",");
+				  List<String> selectedhTypes = new ArrayList<>();
+			      
+				  
+				    for (String hT : hTlist) {
+				    	selectedhTypes.add(hT);
+				        }
+				    
+			  
+				  return  String.join(",", selectedhTypes);
+	}
+	  
+	  
+	  
+	  
+	  // bedtype 선택시 작동되는 값 
+	  public String bedtypeList(String hbedtype) {
+		 
+		 
+		  
+			  if (hbedtype == null || hbedtype.isEmpty()) {
+				  return  hbedtype;
+			  }
+				  String[] bedTlist = hbedtype.split(",");
+				  List<String> selectedBedTypes = new ArrayList<>();
+			      
+				  
+				    for (String bedT : bedTlist) {
+				            selectedBedTypes.add(bedT);
+				        }
+				    
+			  
+				  return  String.join(",", selectedBedTypes);
+	}
+	  
+	  
+	  
+	  // comfort 선택시 작동되는 값 
+	  public String comfortList(String hcomfort) {
+		 
+		 
+		  
+			  if (hcomfort == null || hcomfort.isEmpty()) {
+				  return  hcomfort;
+			  }
+				  String[] comfortlist = hcomfort.split(",");
+				  List<String> selectedcomfortTypes = new ArrayList<>();
+			      
+				  
+				    for (String comfortT : comfortlist) {
+				    	selectedcomfortTypes.add(comfortT);
+				        }
+				    
+			  
+				  return  String.join(",", selectedcomfortTypes);
+	}
+	  
+
+
+	  //-------------------------------------
+	  
+	  
+	  
+	  
+	  
 	  
 	  
 	  // 체크박스 선택시 조건에 맞게 호텔리스트 나오게 
-	  public void MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
+	  public void MainCheck(String selectedText, String checkindate, String checkoutdate,  String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
 
+
+		  System.out.println("----여기는 서비스 MainCheck -----" );
+		  System.out.println(selectedText + checkindate + checkoutdate + htype +hbedtype +hcomfort+hpeople+cp+model);
 	  int currentPage = 1; 
 	  
 	  try{ 
@@ -298,27 +424,42 @@ public class HotelService {
 	  int end = pageBlock * currentPage; //테이블에서 가져올 마지막 행번호 
 	  int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
 	  
-	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin, end); 
+
+	  
+	  //ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText,checkindate, checkoutdate,  htype, hbedtype, hcomfort, hpeople, begin, end); 
+	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin, end);  //checkin,out 빠진거
+	  //ArrayList<HotelRoomDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin, end);  //checkin,out 빠진거
+	 // ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, begin, end);  //hpeople 빠진거
+	  //ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText,  htype, begin, end);  //hotel로 들어갔을떄
+	  //ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, hbedtype, hcomfort, hpeople, begin, end); //hotelroom으로들어갔을때
 	  int totalCount = hotelMapper.count(); 
 	  String url = "hotellist?currentPage=";
 	  String result = PageService.printPage(url, currentPage, totalCount,pageBlock);
-	
 	  
+	  
+	  System.out.println("----여기는 서비스 MainCheck -----" );
 	  System.out.println("service에서 " + selectedText );
 	  System.out.println("pageBlock " + pageBlock);
 	  System.out.println("service에서 htype " + htype);
 	  System.out.println("service에서 hbedtype " + hbedtype);
 	  System.out.println("service에서 hcomfort " + hcomfort);
 	  System.out.println("service에서 hpeople " + hpeople);
+	  System.out.println("service에서 checkindate " + checkindate);
+	  System.out.println("service에서 checkoutdate " + checkoutdate);
+	  System.out.println("----여기는 서비스 MainCheck  // -----" );
+	  
 
 	  
 	  model.addAttribute("hotels", hotels); 
 	  model.addAttribute("result", result);
 	  model.addAttribute("currentPage", currentPage);
 	  
-	  
 	  }
 	  
 	  
+
+	       
+	    }
+	  
+	  
 	
-}
