@@ -3,15 +3,14 @@ package com.care.stay.hotel;
 public class HotelRoomDTO {
 	private int no;
 	private String hcode;
-	private String hroomcode;
-	private String hroomname;
-	private String hbedtype;
-	private String hroomimage;
-	private int hroomnumber;
+	private String hroomCode;
+	private String hroomName;
+	private String hbedType;
+	private String hroomImage;
+	private int hroomNumber;
 	private int hprice;
 	private int hpeople;
 	private String hcomfort;
-	
 	
 	public int getNo() {
 		return no;
@@ -25,35 +24,35 @@ public class HotelRoomDTO {
 	public void setHcode(String hcode) {
 		this.hcode = hcode;
 	}
-	public String getHroomcode() {
-		return hroomcode;
+	public String getHroomCode() {
+		return hroomCode;
 	}
-	public void setHroomcode(String hroomcode) {
-		this.hroomcode = hroomcode;
+	public void setHroomCode(String hroomCode) {
+		this.hroomCode = hroomCode;
 	}
-	public String getHroomname() {
-		return hroomname;
+	public String getHroomName() {
+		return hroomName;
 	}
-	public void setHroomname(String hroomname) {
-		this.hroomname = hroomname;
+	public void setHroomName(String hroomName) {
+		this.hroomName = hroomName;
 	}
-	public String getHbedtype() {
-		return hbedtype;
+	public String getHbedType() {
+		return hbedType;
 	}
-	public void setHbedtype(String hbedtype) {
-		this.hbedtype = hbedtype;
+	public void setHbedType(String hbedType) {
+		this.hbedType = hbedType;
 	}
-	public String getHroomimage() {
-		return hroomimage;
+	public String getHroomImage() {
+		return hroomImage;
 	}
-	public void setHroomimage(String hroomimage) {
-		this.hroomimage = hroomimage;
+	public void setHroomImage(String hroomImage) {
+		this.hroomImage = hroomImage;
 	}
-	public int getHroomnumber() {
-		return hroomnumber;
+	public int getHroomNumber() {
+		return hroomNumber;
 	}
-	public void setHroomnumber(int hroomnumber) {
-		this.hroomnumber = hroomnumber;
+	public void setHroomNumber(int hroomNumber) {
+		this.hroomNumber = hroomNumber;
 	}
 	public int getHprice() {
 		return hprice;
@@ -73,7 +72,5 @@ public class HotelRoomDTO {
 	public void setHcomfort(String hcomfort) {
 		this.hcomfort = hcomfort;
 	}
-	
-	
 	
 }

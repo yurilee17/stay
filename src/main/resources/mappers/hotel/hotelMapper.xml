@@ -34,6 +34,30 @@
     </resultMap>
     
 	 -->
+	 
+	 
+	  <resultMap type="com.care.stay.reservation.ReservationDTO" id= "ReservationDto">
+        <result  column="no" property="no" />
+        <result  column="stayno" property="stayno" />
+        <result  column="stayname" property="stayname" />
+        <result  column="roomname" property="roomname" />
+        <result  column="code" property="code" />
+        <result  column="roomcode" property="roomcode" />
+        <result  column="roomimage" property="roomimage" />
+        <result  column="checkindate" property="checkindate" />
+        <result  column="checkoutdate" property="checkoutdate" />
+        <result  column="checkintime" property="checkintime" />
+        <result  column="checkouttime" property="checkouttime" />
+        <result  column="id" property="id" />
+        <result  column="name" property="name" />
+        <result  column="price" property="price" />
+        <result  column="paymethod" property="paymethod" />
+        <result  column="status" property="status" />
+    </resultMap>
+	 
+	 
+	 
+	 
 
 
 <!-- 	<select id="hotellist" resultMap="HotelDto">  
@@ -64,12 +88,41 @@
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
 	
+	<!-- 날짜별로 나오게하기  -->
+ <!-- 		<select id="MainDate" resultMap="ReservationDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT reservation.*
+		FROM reservation WHERE checkindate = #{checkindate} AND checkoutdate = #{checkoutdate} )AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
+	 -->
+	
+	
 	<!-- 지역과 체크박스별로 나오게하기   -->
  	<!--   1차시도  -->
 
-<!--  	<select id="MainCheck">
-  	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-			hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
+ <!-- 	<select id="MainCheck">
+  	 SELECT h.*, hr.*, rs.*
+	 FROM hotel h 
+	 JOIN hotelroom hr  
+	 	ON hr.hcode = h.hcode
+	 JOIN reservation rs
+	 	ON hr.hroomname = rs.roomname
+	 WHERE (h.hdetailregion = #{selectedText}
+	 OR rs.checkindate = #{checkindate}
+	 OR rs.checkoutdate = #{checkoutdate}
+   	 OR h.htype = #{htype})
+     AND( hr.hbedtype = #{hbedtype}
+     OR hr.hcomfort like CONCAT('%'|| #{hcomfort}, '%')
+     OR hr.hpeople = #{hpeople})
+     
+	</select>    -->
+	
+	
+	<!-- checkin out 제외  -->
+<!-- 	<select id="MainCheck">
+  	 SELECT h.*, hr.*
 	 FROM hotel h 
 	 JOIN hotelroom hr  ON hr.hcode = h.hcode
 	 WHERE (h.hdetailregion = #{selectedText}
@@ -78,29 +131,38 @@
      OR hr.hcomfort like CONCAT('%'|| #{hcomfort}, '%')
      OR hr.hpeople = #{hpeople})
      
-	</select>   
-	 -->
+	</select> -->
 	
 	
-<!-- 2차시도	
+	<!-- 호텔룸 컬럼은 제외  -->
+<!-- 	<select id="MainCheck">
+  	 SELECT h.*, hr.*
+	 FROM hotel h 
+	 JOIN hotelroom hr  ON hr.hcode = h.hcode
+	 WHERE (h.hdetailregion = #{selectedText}
+   	 OR h.htype = #{htype})
+     
+     
+	</select> -->
+	
+
+
+
+	
+	
+ <!-- 2차시도 -->	
 	<select id="MainCheck">
   	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
 			hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
 	 FROM hotel h 
 	 JOIN hotelroom hr  ON hr.hcode = h.hcode
 	   WHERE (h.hdetailregion = #{selectedText} OR h.htype = #{htype})
-    <if test="hbedtype != null and hbedtype != ''">
+   
         AND hr.hbedtype = #{hbedtype}
-    </if>
-    <if test="hcomfort != null and hcomfort.size() > 0">
-        AND (
-           hr.hcomfort LIKE CONCAT('%', #{hcomfort}, '%')
-    
-    </if>
-    <if test="hpeople != null and hpeople != ''">
-        AND hr.hpeople = #{hpeople}
-    </if>
-	</select> -->
+        AND (hr.hcomfort LIKE CONCAT('%', #{hcomfort}, '%')
+       OR hr.hpeople = #{hpeople}
+ 
+	</select> 
 	
 	
 <!-- 	<select id="MainCheck" >
@@ -156,26 +218,40 @@
 	CONNECT BY INSTR(hcomfort, ',' , 1, LEVEL - 1 ) > 0
 	</select> -->
 	
-<!-- 	<select id="MainCheck">
-  	 SELECT h.*, hr.*
+<!--  	<select id="MainCheck">
+  	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+     	   hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
 	 FROM hotel h 
-	 JOIN hotelroom hr  ON h.no = hr.no AND hr.hcode = h.hcode
+	 JOIN hotelroom hr  
+	 	ON h.no = hr.no AND hr.hcode = h.hcode
 	 WHERE (h.hdetailregion = #{selectedText}
 
    	 OR h.htype = #{htype})
    	 
-     AND( hr.hbedtype like CONCAT('%'|| #{hbedtype}, '%')
+     AND( hr.hbedtype = #{hbedtype} )
      
-  	 AND hr.hcomfort like CONCAT('%'|| #{hcomfort}, '%')
+  	 AND hr.hcomfort like CONCAT('%',#{hcomfort}, '%')
 	
      OR hr.hpeople = #{hpeople})
      
- 	</select>  -->
+ 	</select>   -->
  	
  	
+<!--  	<select id="MainCheck">
+  	 SELECT  hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
+	 FROM hotelroom hr
+	 WHERE  hr.hbedtype  #{hbedtype} 
+     
+  	 AND ( hr.hcomfort like CONCAT('%'|| #{hcomfort}, '%'
+	
+     OR hr.hpeople = #{hpeople})
+     
+ 	</select> 
+ 	 -->
  	
- 	<select id="MainCheck">
-  	 SELECT h.*, hr.* rs.*
+ 	
+<!-- 	<select id="MainCheck">
+  	 SELECT h.*, hr.*, rs.*
 	 FROM hotel h hotelroom hr reservation rs
 	 WHERE (h.hdetailregion = #{selectedText}
 
@@ -189,7 +265,7 @@
 	
      OR hr.hpeople = #{hpeople})
      
- 	</select> 
+ 	</select>  -->
 	
 	<!--	 	<select id="MainCheck">
   	 SELECT h.*, hr.*
@@ -243,7 +319,7 @@
 	
 
 
-<!-- 아래는 지우면 안됨! 나중에는 주석 풀ㄹ어야함! 
+<!-- 아래는 지우면 안됨! 나중에는 주석 풀어야함! 
 	<resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
 		<id column="no" property="no"/>																		
 	</resultMap>

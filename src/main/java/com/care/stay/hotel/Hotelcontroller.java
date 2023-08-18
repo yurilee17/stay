@@ -37,24 +37,6 @@ public class Hotelcontroller {
 	  	}
 	  
 	  
-	  //hotellist 지역선택 
-		/*
-		 * @RequestMapping("Main") public String Main(
-		 * 
-		 * @RequestParam(value="currentPage", required = false) String cp,
-		 * 
-		 * @RequestParam(value="hdetailregion" , required = false) String selectedText,
-		 * Model model) {
-		 * 
-		 * System.out.println("currentPage:" + cp); System.out.println("selectedText: "
-		 * + selectedText);
-		 * 
-		 * service.Main(selectedText, cp ,model);
-		 * 
-		 * return "hotel/hotellist"; }
-		 */
-	  
-	  
 	  @RequestMapping("Main") 
 	  	public String MainCheck(
 			  
@@ -65,7 +47,7 @@ public class Hotelcontroller {
 	  		  @RequestParam(value="htype", required = false) String htype,
 	  		  @RequestParam(value="hbedtype", required = false) String hbedtype,
 	  		  @RequestParam(value="hcomfort", required = false) String hcomfort,
-	  		  @RequestParam(value="hpeople", required = false) String hpeople, Model model)
+	  		  @RequestParam(value="hpeople", required = false) String hpeople,Model model )
 	  {
 		  		
 		  		System.out.println("selectedText: " + selectedText);
@@ -73,14 +55,22 @@ public class Hotelcontroller {
 		  		System.out.println("hbedtype: " + hbedtype);
 		  		System.out.println("hcomfort: " + hcomfort);
 		  		System.out.println("hpeople: " + hpeople);
+		  		System.out.println("checkindate: " + checkindate);
+		  		System.out.println("checkoutdate: " + checkoutdate);
 		  		
+		  	
+		        
 		  		
-		  	   if (htype != null || hbedtype != null || hcomfort != null  || hpeople != null ) {
-		  	      
-		  		   	service.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, hpeople, cp ,model); 
-		  	    } else {
-		  	        service.Main(selectedText, cp ,model);
+		  	   if (checkindate != null || htype != null || hbedtype != null || hcomfort != null ) {
+		  		   	
+		  		   service.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, hpeople, cp ,model); 
+		  		  // service.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, cp ,model); 
+		  		   	
+		  	    } 
+		  	   else if(selectedText != null || checkindate != null && checkoutdate != null ) {
+		  	        service.Main(selectedText, checkindate, checkoutdate, cp ,model);
 		  	    }
+		  	   
 		  		return "hotel/hotellist";
 			  	}
 	
