@@ -4,15 +4,14 @@ public class GHRoomDTO {
 	
 	private int no;
 	private String gcode;
-	private String groomCode;
-	private String groomName;
-	private String gbedType;
-	private String groomImage;
-	private int groomNumber;
+	private String groomcode;
+	private String groomname;
+	private String gbedtype;
+	private String groomimage;
+	private int groomnumber;
 	private int gprice;
 	private int gpeople;
 	private String gcomfort;
-	
 	
 	public int getNo() {
 		return no;
@@ -26,35 +25,35 @@ public class GHRoomDTO {
 	public void setGcode(String gcode) {
 		this.gcode = gcode;
 	}
-	public String getGroomCode() {
-		return groomCode;
+	public String getGroomcode() {
+		return groomcode;
 	}
-	public void setGroomCode(String groomCode) {
-		this.groomCode = groomCode;
+	public void setGroomcode(String groomcode) {
+		this.groomcode = groomcode;
 	}
-	public String getGroomName() {
-		return groomName;
+	public String getGroomname() {
+		return groomname;
 	}
-	public void setGroomName(String groomName) {
-		this.groomName = groomName;
+	public void setGroomname(String groomname) {
+		this.groomname = groomname;
 	}
-	public String getGbedType() {
-		return gbedType;
+	public String getGbedtype() {
+		return gbedtype;
 	}
-	public void setGbedType(String gbedType) {
-		this.gbedType = gbedType;
+	public void setGbedtype(String gbedtype) {
+		this.gbedtype = gbedtype;
 	}
-	public String getGroomImage() {
-		return groomImage;
+	public String getGroomimage() {
+		return groomimage;
 	}
-	public void setGroomImage(String groomImage) {
-		this.groomImage = groomImage;
+	public void setGroomimage(String groomimage) {
+		this.groomimage = groomimage;
 	}
-	public int getGroomNumber() {
-		return groomNumber;
+	public int getGroomnumber() {
+		return groomnumber;
 	}
-	public void setGroomNumber(int groomNumber) {
-		this.groomNumber = groomNumber;
+	public void setGroomnumber(int groomnumber) {
+		this.groomnumber = groomnumber;
 	}
 	public int getGprice() {
 		return gprice;
@@ -74,6 +73,7 @@ public class GHRoomDTO {
 	public void setGcomfort(String gcomfort) {
 		this.gcomfort = gcomfort;
 	}
-
+	
+	
 
 }

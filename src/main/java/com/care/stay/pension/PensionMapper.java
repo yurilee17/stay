@@ -18,4 +18,5 @@ public interface PensionMapper {
 	void staydetailregisterProc(PensionRoomDTO pensionroom);
 	int stayCountPension();
 	List<PensionRoomDTO> stayRoomContent(String n);
+	PensionRoomDTO roomContent(int no);
 }

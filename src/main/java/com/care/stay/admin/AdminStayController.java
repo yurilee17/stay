@@ -203,7 +203,6 @@ public class AdminStayController {
 	public String stayContent(
 		@RequestParam(value="no", required = false)String n, 
 		@RequestParam(value="stayType", required = false)String stayType,
-
 		Model model) {
 		
 		if("motel".equals(stayType)) {

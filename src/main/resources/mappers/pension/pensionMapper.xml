@@ -10,12 +10,16 @@
 	</resultMap>
 	
 	<resultMap type="com.care.stay.pension.PensionRoomDTO" id="pensionroomDto">
-		<id column="proomCode" property="proomCode"/>
+		<id column="proomcode" property="proomcode"/>
 	</resultMap>
 	
 	<select id="stayContent" resultMap="pensionDto">
 		SELECT * FROM pension WHERE no=#{no}
 	</select>
+	
+	<select id="roomContent" resultMap="pensionroomDto">
+		SELECT * FROM pensionroom WHERE proomcode=#{proomcode}
+	</select>	
 	
 	<select id="stayRoomContent" resultMap="pensionroomDto">
 		SELECT * FROM pensionroom WHERE no=#{no}
@@ -42,7 +46,7 @@
 			SELECT nvl(max(no),0) + 1 FROM pension
 		</selectKey>
 		INSERT INTO pension (no, pcode, pname, pregion, pdetailregion, prating, paddress, pdetailaddress, pimage, pinfo, pcheckintime, pcheckouttime, ptype) 
-		VALUES(#{no}, 'P', #{pname}, #{pregion}, #{pdetailRegion}, 0, #{paddress}, #{pdetailAddress}, #{pimage}, #{pinfo}, #{pcheckInTime}, #{pcheckOutTime}, #{ptype})
+		VALUES(#{no}, 'P', #{pname}, #{pregion}, #{pdetailregion}, 0, #{paddress}, #{pdetailaddress}, #{pimage}, #{pinfo}, #{pcheckintime}, #{pcheckouttime}, #{ptype})
 	</insert>
 	
 	<select id="stayInfo" resultMap="pensionDto">
@@ -54,7 +58,7 @@
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.pension.PensionRoomDTO">
 		INSERT INTO pensionroom (no, pcode, proomcode, proomname, proomimage, proomnumber, pprice, ppeople, pcomfort)
-		VALUES(#{no}, #{pcode}, #{proomCode}, #{proomName}, #{proomImage}, #{proomNumber}, #{pprice}, #{ppeople}, #{pcomfort})
+		VALUES(#{no}, #{pcode}, #{proomcode}, #{proomname}, #{proomimage}, #{proomnumber}, #{pprice}, #{ppeople}, #{pcomfort})
 	</insert>
 
 </mapper>

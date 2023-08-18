@@ -68,19 +68,17 @@ public class ReservationController {
         if ("motel".equals(stayType)) {
         	rservice.stayAndRoomInfo(stayType, n, mroomcode, model);
             rservice.getmroomCode(mroomcode, model);
-            
-            System.out.println("mroomcode in Model: " + model.getAttribute("roomCode"));
-            System.out.println("Motel DTO in Model: " + model.getAttribute("motel"));
-            System.out.println("MotelRoom DTO in Model: " + model.getAttribute("motelroom"));
-            
         } else if ("hotel".equals(stayType)) {
         	rservice.stayAndRoomInfo(stayType, n, hroomcode, model);
             rservice.gethroomCode(hroomcode, model);
         } else if ("pension".equals(stayType)) {
+        	rservice.stayAndRoomInfo(stayType, n, proomcode, model);        	
             rservice.getproomCode(proomcode, model);
         } else if ("gh".equals(stayType)) {
+        	rservice.stayAndRoomInfo(stayType, n, groomcode, model);
             rservice.getgroomCode(groomcode, model);
         } else if ("camping".equals(stayType)) {
+        	rservice.stayAndRoomInfo(stayType, n, croomcode, model);
             rservice.getcroomCode(croomcode, model);
         }
 

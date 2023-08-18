@@ -77,7 +77,7 @@
 	</select>
 	
 	<select id="roomContent" resultMap="hotelroomDto">
-		SELECT * FROM hotelroom WHERE no=#{no}
+		SELECT * FROM hotelroom WHERE hroomcode=#{hroomcode}
 	</select>
 	
 	<select id="stayModify" resultMap="hotelDto">

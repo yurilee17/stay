@@ -55,24 +55,127 @@
  <body>
  	<c:import url="/header" />
 <div class="reserve">
+	<form id="reservationForm" action="reservationProc" method="post">
 	<div class="right">
-		<section class="info">
-			<p class="name"><strong>숙소이름</strong>${hotel.hname}</p> 
-			<p><strong>객실타입/기간</strong>${hotelroom.hbedtype} / </p> 
-			<p><strong>체크인</strong>${hotel.hcheckintime}</p> 
-			<p><strong>체크아웃</strong>${hotel.hcheckouttime}</p>
-		</section> 	
-
-		<section class="total_price_pc">
-			<p>
-				<strong><b>총 결제 금액</b>(VAT포함)</strong>
-				<span class="in_price">${hotelroom.hprice}</span>
-			</p> 
-			<ul>
-				<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
-				<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
-			</ul>
-		</section> <!----> 
+		<c:choose>
+			<c:when test="${'motel' eq stayType }">
+			<section class="info">
+				<p class="name"><strong>숙소이름</strong>${motel.mname}</p> 
+				<p><strong>객실타입/기간</strong>${motelroom.mroomname} / </p> 
+				<p><strong>체크인</strong>${motel.mstaycheckin}</p> 
+				<p><strong>체크아웃</strong>${motel.mstaycheckout}</p>
+			</section> 	
+			<section class="total_price_pc">
+				<p>
+					<strong><b>총 결제 금액</b>(VAT포함)</strong>
+					<span class="in_price">${motelroom.mstayprice}</span>
+				</p> 
+				<ul>
+					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
+					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+					<input type="hidden" name="stayno" value="${motel.no }">					
+					<input type="hidden" name="code" value="${motel.mcode }">
+					<input type="hidden" name="roomcode" value="${motelroom.mroomcode }">
+					<input type="hidden" name="roomimage" value="${motelroom.mimage }">
+					<input type="hidden" name="stayname" value="${motel.mname}">
+					<input type="hidden" name="roomname" value="${motelroom.mroomname}">
+					<input type="hidden" name="checkindate" value="${motel.mstaycheckin}">
+					<input type="hidden" name="checkoutdate" value="${motel.mstaycheckout}">
+					<input type="hidden" name="checkintime" value="">
+					<input type="hidden" name="checkouttime" value="">
+					<input type="hidden" name="id" value="test">
+					<input type="hidden" name="name" value="테스트">
+					<input type="hidden" name="price" value="${motelroom.mstayprice}">
+					<input type="hidden" name="paymethod" value="kakaopay">
+					<input type="hidden" name="status" value="예약확정">
+				</ul>
+			</section>
+			</c:when>
+		</c:choose>
+		<c:choose>
+			<c:when test="${'hotel' eq stayType }">
+			<section class="info">
+				<p class="name"><strong>숙소이름</strong>${hotel.hname}</p> 
+				<p><strong>객실타입/기간</strong>${hotelroom.hbedtype} / </p> 
+				<p><strong>체크인</strong>${hotel.hcheckintime}</p> 
+				<p><strong>체크아웃</strong>${hotel.hcheckouttime}</p>
+			</section> 	
+	
+			<section class="total_price_pc">
+				<p>
+					<strong><b>총 결제 금액</b>(VAT포함)</strong>
+					<span class="in_price">${hotelroom.hprice}</span>
+				</p> 
+				<ul>
+					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
+					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+				</ul>
+			</section>
+			</c:when>
+		</c:choose>
+		<c:choose>
+			<c:when test="${'camping' eq stayType }">
+			<section class="info">
+				<p class="name"><strong>숙소이름</strong>${camping.cname}</p> 
+				<p><strong>객실타입/기간</strong>${campingroom.croomname} / </p> 
+				<p><strong>체크인</strong>${camping.ccheckintime}</p> 
+				<p><strong>체크아웃</strong>${camping.ccheckouttime}</p>
+			</section> 	
+	
+			<section class="total_price_pc">
+				<p>
+					<strong><b>총 결제 금액</b>(VAT포함)</strong>
+					<span class="in_price">${campingroom.cprice}</span>
+				</p> 
+				<ul>
+					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
+					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+				</ul>
+			</section>
+			</c:when>
+		</c:choose>
+		<c:choose>
+			<c:when test="${'gh' eq stayType }">
+			<section class="info">
+				<p class="name"><strong>숙소이름</strong>${gh.gname}</p> 
+				<p><strong>객실타입/기간</strong>${ghroom.gbedtype} / </p> 
+				<p><strong>체크인</strong>${gh.gcheckintime}</p> 
+				<p><strong>체크아웃</strong>${gh.gcheckouttime}</p>
+			</section> 	
+	
+			<section class="total_price_pc">
+				<p>
+					<strong><b>총 결제 금액</b>(VAT포함)</strong>
+					<span class="in_price">${ghroom.gprice}</span>
+				</p> 
+				<ul>
+					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
+					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+				</ul>
+			</section>
+			</c:when>
+		</c:choose>
+		<c:choose>
+			<c:when test="${'pension' eq stayType }">
+			<section class="info">
+				<p class="name"><strong>숙소이름</strong>${pension.pname}</p> 
+				<p><strong>객실타입/기간</strong>${pentionroom.proomname} / </p> 
+				<p><strong>체크인</strong>${pention.pcheckintime}</p> 
+				<p><strong>체크아웃</strong>${pention.pcheckouttime}</p>
+			</section> 	
+	
+			<section class="total_price_pc">
+				<p>
+					<strong><b>총 결제 금액</b>(VAT포함)</strong>
+					<span class="in_price">${pentionroom.pprice}</span>
+				</p> 
+				<ul>
+					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
+					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+				</ul>
+			</section>
+			</c:when>
+		</c:choose> <!----> 
 		<button type="button" onclick="payment_confirm()" class="btn_pay gra_left_right_red">결제하기</button>
 	</div>
 	<!-- onclick="requestPay()" -->
@@ -165,6 +268,7 @@
 		</section> 
 
 	</div>
+	</form>
 		
 <!-- 		<div id="pay_background">
 			<div id="pay_box">

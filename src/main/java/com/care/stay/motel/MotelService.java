@@ -82,7 +82,6 @@ public class MotelService {
 			}
 		}
 
-		System.out.println("상세 지역 : " + motel.getMdetailregion());
 		motelMapper.stayregisterProc(motel);
 		return "숙소 DB 작성 완료";
 	}
@@ -201,7 +200,7 @@ public class MotelService {
 			return null;
 		}
 		
-		MotelRoomDTO motelroom = motelMapper.stayReservation(mroomcode);
+		MotelRoomDTO motelroom = motelMapper.roomContent(mroomcode);
 		if(motelroom == null)
 			return null;
 		return motelroom;

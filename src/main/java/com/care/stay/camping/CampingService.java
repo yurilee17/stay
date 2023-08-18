@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.stay.common.AdminPageService;
+import com.care.stay.motel.MotelRoomDTO;
+
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -29,13 +31,13 @@ public class CampingService {
 		CampingDTO camping = new CampingDTO();
 		camping.setCname(multi.getParameter("name"));
 		camping.setCregion(multi.getParameter("region"));
-		camping.setCdetailRegion(multi.getParameter("detailRegion"));
+		camping.setCdetailregion(multi.getParameter("detailregion"));
 		camping.setCaddress(multi.getParameter("address"));
-		camping.setCdetailAddress(multi.getParameter("detailAddress"));
+		camping.setCdetailaddress(multi.getParameter("detailaddress"));
 		camping.setCinfo(multi.getParameter("info"));
 		
-		camping.setCcheckInTime(multi.getParameter("ccheckinTime"));
-		camping.setCcheckOutTime(multi.getParameter("ccheckoutTime"));
+		camping.setCcheckintime(multi.getParameter("ccheckintime"));
+		camping.setCcheckouttime(multi.getParameter("ccheckouttime"));
 		camping.setCtype(multi.getParameter("ctype"));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -48,10 +50,6 @@ public class CampingService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-
-			System.out.println(fileName);
-			System.out.println(multi.getParameter("info"));
-			System.out.println();
 			
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
@@ -101,9 +99,9 @@ public class CampingService {
         
         campingroom.setNo(no);
         campingroom.setCcode(cCode);
-        campingroom.setCroomCode(String.valueOf(roomcount));
-        campingroom.setCroomName(multi.getParameter("roomname"));
-        campingroom.setCroomNumber(getIntParameter(multi, "roomnumber"));
+        campingroom.setCroomcode(String.valueOf(roomcount));
+        campingroom.setCroomname(multi.getParameter("roomname"));
+        campingroom.setCroomnumber(getIntParameter(multi, "roomnumber"));
         campingroom.setCprice(multi.getParameter("cprice"));
         campingroom.setCpeople(getIntParameter(multi, "cpeople"));
         campingroom.setCcomfort(multi.getParameter("ccomfort"));
@@ -135,7 +133,7 @@ public class CampingService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		campingroom.setCroomImage("");
+		campingroom.setCroomimage("");
 		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
@@ -143,10 +141,11 @@ public class CampingService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			campingroom.setCroomImage(fileName);
+
 
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\camping\\room\\";
+			campingroom.setCroomimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -187,6 +186,21 @@ public class CampingService {
 			return null;
 
 		return camping;
+	}
+	
+	public CampingRoomDTO roomContent(String rc) {
+		int croomcode = 0;
+		try{
+			croomcode = Integer.parseInt(rc);
+		}catch(Exception e){
+			return null;
+		}
+		
+		CampingRoomDTO campingroom = campingMapper.roomContent(croomcode);
+		if(campingroom == null)
+			return null;
+		return campingroom;
+		
 	}
 
 	public List<CampingRoomDTO> stayRoomContent(String n) {

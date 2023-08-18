@@ -48,7 +48,7 @@
 						<tr>
 							<th>종류</th>
 							<td>	
-								<select class="form_w30 select1" name="stayType" id="stayType" onchange="showRegContent()">
+								<select class="form_w40 select1" name="stayType" id="stayType" onchange="showRegContent()">
 								 	<option disabled selected value="">숙소 종류를 선택하세요</option>								
 									<option value="motel">모텔</option>
 						            <option value="hotel">호텔·리조트</option>

@@ -138,9 +138,9 @@ public class HotelService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			hotelroom.setHroomimage(fileName);
 
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
+			hotelroom.setHroomimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -348,7 +348,7 @@ public class HotelService {
 			return null;
 		}
 		
-		HotelRoomDTO hotelroom = hotelMapper.stayReservation(hroomcode);
+		HotelRoomDTO hotelroom = hotelMapper.roomContent(hroomcode);
 		if(hotelroom == null)
 			return null;
 		return hotelroom;
