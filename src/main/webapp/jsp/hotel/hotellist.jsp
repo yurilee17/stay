@@ -469,7 +469,7 @@
 						            }
 						        }
 						         
-						         if (htype.length === 0) {
+						      /*    if (htype.length === 0) {
 						             htype.push('null');
 						         }
 						         if (hbedtype.length === 0) {
@@ -480,7 +480,7 @@
 						             
 					             
 						             
-						         }
+						         } */
 						              
 						         /* 선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침 */
 						            addDataToURL(htype, hbedtype, hcomfort, hpeople);
@@ -527,7 +527,7 @@
 								        if (hcomfort.length > 0 && hcomfort[0] !== "null") {
 								            updatedURL += "&hcomfort=" + encodeURIComponent(hcomfort.join(','));
 								        }
-								        if (hpeople !== null) {
+								        if (hpeople.length > 0 && hcomfort[0] !== "null") {
 								            updatedURL += "&hpeople=" + encodeURIComponent(hpeople);
 								        }  
 								        

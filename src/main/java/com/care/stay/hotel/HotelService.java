@@ -409,6 +409,9 @@ public class HotelService {
 	  // 체크박스 선택시 조건에 맞게 호텔리스트 나오게 
 	  public void MainCheck(String selectedText, String checkindate, String checkoutdate,  String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
 
+
+		  System.out.println("----여기는 서비스 MainCheck -----" );
+		  System.out.println(selectedText + checkindate + checkoutdate + htype +hbedtype +hcomfort+hpeople+cp+model);
 	  int currentPage = 1; 
 	  
 	  try{ 
@@ -425,6 +428,7 @@ public class HotelService {
 	  
 	  //ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText,checkindate, checkoutdate,  htype, hbedtype, hcomfort, hpeople, begin, end); 
 	  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin, end);  //checkin,out 빠진거
+	  //ArrayList<HotelRoomDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin, end);  //checkin,out 빠진거
 	 // ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, begin, end);  //hpeople 빠진거
 	  //ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText,  htype, begin, end);  //hotel로 들어갔을떄
 	  //ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, hbedtype, hcomfort, hpeople, begin, end); //hotelroom으로들어갔을때

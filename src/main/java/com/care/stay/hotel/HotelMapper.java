@@ -35,6 +35,7 @@ public interface HotelMapper {
 	// ArrayList<HotelDTO> MainCheck(String selectedText, String checkindate, String checkoutdate, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 	 //ArrayList<HotelDTO> MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 	 ArrayList<HotelDTO> MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
+	// ArrayList<HotelRoomDTO> MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 	// ArrayList<HotelDTO> MainCheck(String selectedText, String htype, @Param("begin")int begin, @Param("end")int end);
 	// ArrayList<HotelDTO> MainCheck(String selectedText, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 
