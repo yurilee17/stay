@@ -139,7 +139,7 @@
 
 											<li class="reservation-detail"><div>
 													<button type="button" class="btn_del"
-														onclick="reserDelete()">삭제</button>
+														onclick="reserDelete(${resCompleted.no})">삭제</button>
 													<p class="pic">
 														<!-- src="${resCompleted.roomimage}" -->
 														<img loading="lazy"
@@ -189,8 +189,7 @@
 
 
 											<li class="reservation-detail"><div>
-													<button type="button" data-order-number="23072414001B62YE1"
-														data-target-list="canceledList" class="btn_del">삭제</button>
+													<button type="button" class="btn_del" onclick="reserDelete(${resCancellation.no})">삭제</button>
 													<p class="pic">
 														<!-- src="${resCancellation.roomimage}" -->
 														<img loading="lazy"
@@ -227,11 +226,12 @@
 		<!-- 알림 -->
 		<div class="alert">
 			<!-- alert -->
-			<div class="popTwobtn">
-				<div class="btnText"></div>
+			<div class="popTwobtn2">
+				<div class="btnText2"></div>
 				<div class="btn_wrap">
 					<button onclick="closeLayer()">취소</button>
-					<button onclick="reserDeleteProc(${resCancellation.no})" class="colMint"></button>
+					<button onclick="reserDeleteProc()" class="colMint2"></button>
+					<input type="hidden" id="value1" value="">
 				</div>
 			</div>
 			<!-- Bg Dimm -->

@@ -235,7 +235,7 @@ public class MemberService {
 	}
 
 	// 예약 내역 리스트
-		public void reserDeleteProc(String no) {
+		public void reserDeleteProc(int no) {
 			
 			reservationMapper.delete(no);
 			

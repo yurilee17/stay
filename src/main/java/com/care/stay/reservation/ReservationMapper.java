@@ -18,6 +18,6 @@ public interface ReservationMapper {
 	ArrayList<ReservationDTO> resCancellation(String id);
 
 	// 예약 삭제
-	void delete(String no);
+	void delete(int no);
 
 }
