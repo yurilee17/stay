@@ -48,7 +48,7 @@
     text-align: left;
 	}
 
-.reserve .right .info p{
+.reserve .right .info p span{
     margin: 0;
     padding: 0;
     position: relative;

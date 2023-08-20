@@ -139,7 +139,7 @@
                           <div class="option">
                             <ul>
                               <li>
-                                <span>부대시설 : </span>${motelRoom.moption }
+                                <span>부대시설 : </span>${motelroom.moption }
                               </li>
                             </ul>
                           </div>
@@ -221,7 +221,7 @@
                         <p class="pic_view ">
                           <img class="lazy" src="">
                         </p>
-                        <strong class="title">${pensionRoom.proomname }</strong>
+                        <strong class="title">${pensionroom.proomname }</strong>
                         <h4>객실 코드 : ${pensionroom.proomcode }</h4>
                         <div class="info">
                           <div class="half ended">

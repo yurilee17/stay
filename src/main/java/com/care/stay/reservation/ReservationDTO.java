@@ -6,7 +6,7 @@ public class ReservationDTO {
 	private String stayname;
 	private String roomname;
 	private String code;
-	private String roomcode;
+	private int roomcode;
 	private String roomimage;
 	private String checkindate;
 	private String checkoutdate;
@@ -48,10 +48,10 @@ public class ReservationDTO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getRoomcode() {
+	public int getRoomcode() {
 		return roomcode;
 	}
-	public void setRoomcode(String roomcode) {
+	public void setRoomcode(int roomcode) {
 		this.roomcode = roomcode;
 	}
 	public String getRoomimage() {

@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.stay.camping.CampingMapper;
+import com.care.stay.common.AdminPageService;
 import com.care.stay.common.PageService;
 import com.care.stay.gh.GHMapper;
 import com.care.stay.hotel.HotelDTO;
@@ -57,66 +58,6 @@ public class AdminStayService {
 	        return 0;
 	    }
 	}
-//
-//	public MotelDTO stayDetailRegister(String n) {
-//		int no = 0;
-//
-//		try {
-//			no = Integer.parseInt(n);
-//		} catch (Exception e) {
-//			return null;
-//		}
-//
-//		MotelDTO motel = adminStayMapper.stayContent(no);
-//		if (motel == null)
-//			return null;
-//
-//		return motel;
-//	}
-
-
-
-//	public String stayregisterProc(MotelDTO motel, String confirm) {
-//		if(motel.getMname() == null || motel.getMname().isEmpty()) {
-//			return "숙소 이름을 입력하세요.";
-//		}
-//		if(motel.getMregion() == null || motel.getMregion().isEmpty()) {
-//			return "지역을 선택하세요.";
-//		}
-//		if(motel.getMdetailregion() == null || motel.getMdetailregion().isEmpty()) {
-//			return "세부지역을 선택하세요.";
-//		}		
-//		if(motel.getMaddress() == null || motel.getMaddress().isEmpty()) {
-//			return "주소를 입력하세요.";
-//		}
-//		if(motel.getMdetailAddress() == null || motel.getMdetailAddress().isEmpty()) {
-//			return "상세주소를 입력하세요.";
-//		}
-//		
-//		motel.setFileName("");
-//		MultipartFile file = multi.getFile("uploadImage");
-//		String fileName = file.getOriginalFilename();
-//		if(file.getSize() != 0) {
-//			// 파일의 중복을 해결하기 위해 시간의 데이터를 파일이름으로 구성함.
-//			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-//			Calendar cal = Calendar.getInstance();
-//			fileName = sdf.format(cal.getTime()) + fileName;
-//			board.setFileName(fileName);
-//			
-//			// 업로드 파일 저장 경로
-//			String fileLocation = "C:\\javas\\upload\\";
-//			File save = new File(fileLocation + fileName);
-//			
-//			try {
-//				// 서버가 저장한 업로드 파일은 임시저장경로에 있는데 개발자가 원하는 경로로 이동
-//				file.transferTo(save);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		return null;
-//	}
 
 	// 회원 정보 조회
 	public void stayUser(String cp, String option1Name, String option1, String option2Name, String option2,
@@ -154,6 +95,60 @@ public class AdminStayService {
 		model.addAttribute("members", members);
 		model.addAttribute("result", result);
 		model.addAttribute("currentPage", currentPage);
+	}
+
+	public void stayInfo(String cp, String stayType, String stayName, String region, String address, Model model) {
+		// TODO Auto-generated method stub
+		
+		int currentPage = 1;
+		try{
+			currentPage = Integer.parseInt(cp);
+		}catch(Exception e){
+			currentPage = 1;
+		}
+		
+		int pageBlock = 10;
+		int end = pageBlock * currentPage;
+		int begin = end - pageBlock + 1; 
+		
+		if (stayType.equals("motel")) {
+			ArrayList<MotelDTO> motels = motelMapper.stayInfo(begin, end);
+			int totalCount = motelMapper.count();
+			String url = "stayInfo?stayType=" + stayType + "&currentPage=";
+			String result = AdminPageService.printPage(url, currentPage, totalCount, pageBlock, stayType);
+			
+			model.addAttribute("motels", motels);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);
+			
+		} else if (stayType.equals("hotel")) {
+			ArrayList<HotelDTO> hotels = hotelMapper.stayInfo(begin, end);
+			int totalCount = hotelMapper.count();
+			String url = "stayInfo?currentPage=";
+			String result = AdminPageService.printPage(url, currentPage, totalCount, pageBlock, stayType);
+			
+			model.addAttribute("hotels", hotels);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);
+			
+		} else if (stayType.equals("pension")) {
+			
+		} else if (stayType.equals("gh")) {
+			
+		} else if (stayType.equals("camping")) {
+			
+		} else {
+			ArrayList<MotelDTO> motels = motelMapper.stayInfo(begin, end);
+			int totalCount = motelMapper.count();
+			String url = "stayInfo?stayType=" + stayType + "&currentPage=";
+			String result = AdminPageService.printPage(url, currentPage, totalCount, pageBlock, stayType);
+			
+			model.addAttribute("motels", motels);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);			
+			
+		}
+		
 	}
 
 }

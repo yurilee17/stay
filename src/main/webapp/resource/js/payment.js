@@ -10,17 +10,21 @@
         
 		// 카카오페이 결제
         function requestKakao() {
+			
+		var stayname = document.querySelector('.stayname').textContent;
+		var roomname = document.querySelector('.roomname').textContent;
+		var stayprice = parseInt(document.querySelector('.in_price').textContent);
+			
             IMP.request_pay({
 				pg: "kakaopay.{TC0ONETIME}",
                 pay_method : 'card',
                 merchant_uid: "IMP"+makeMerchantUid, 
-                name : '당근 10kg',
-                amount : 1004,
+                name : stayname + " " + roomname,
+                amount : stayprice,
                 buyer_email : 'Iamport@chai.finance',
                 buyer_name : '아임포트 기술지원팀',
                 buyer_tel : '010-1234-5678',
-                buyer_addr : '서울특별시 강남구 삼성동',
-                buyer_postcode : '123-456'             
+           
                 
             }, function (rsp) { // callback
             	 if (rsp.success) {
@@ -37,6 +41,7 @@
             	      }).done(function (data) {
             	        // 가맹점 서버 결제 API 성공시 로직
             	      })
+            	      document.getElementById('reservationForm').submit();
             	    } else {
             	      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
             	    }

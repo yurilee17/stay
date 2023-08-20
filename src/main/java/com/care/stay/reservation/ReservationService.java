@@ -23,6 +23,7 @@ import com.care.stay.pension.PensionRoomDTO;
 import com.care.stay.pension.PensionService;
 import com.care.stay.motel.MotelService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -90,26 +91,26 @@ public class ReservationService {
     }
     
     
-//    public String stayReservationProc() {
-//    	ReservationDTO reservation = new ReservationDTO();
-//    	reservation.setStayno();
-//    	reservation.setCode();
-//    	reservation.setRoomcode();
-//    	reservation.setRoomimage();
-//    	reservation.setStayname();
-//    	reservation.setRoomname();
-//    	reservation.setCheckindate();
-//    	reservation.setCheckoutdate();
-//    	reservation.setCheckintime();
-//    	reservation.setCheckouttime();
-//    	reservation.setId();
-//    	reservation.setName();
-//    	reservation.setPrice();
-//    	reservation.setPaymethod();
-//    	reservation.setStatus();
-//    	
-//    	reservationMapper.reservationProc(reservation);
-//    	
+    public String stayReservationProc(HttpServletRequest request) {
+    	ReservationDTO reservation = new ReservationDTO();
+    	reservation.setStayno(Integer.parseInt(request.getParameter("stayno")));
+    	reservation.setStayname(request.getParameter("stayname"));
+    	reservation.setRoomname(request.getParameter("roomname"));
+    	reservation.setCode(request.getParameter("code"));
+    	reservation.setRoomcode(Integer.parseInt(request.getParameter("roomcode")));
+    	reservation.setRoomimage(request.getParameter("roomimage"));
+    	reservation.setCheckindate(request.getParameter("checkindate"));
+    	reservation.setCheckoutdate(request.getParameter("checkoutdate"));
+    	reservation.setCheckintime(request.getParameter("checkintime"));
+    	reservation.setCheckouttime(request.getParameter("checkouttime"));
+    	reservation.setId(request.getParameter("id"));
+    	reservation.setName(request.getParameter("name"));
+    	reservation.setPrice(Integer.parseInt(request.getParameter("price")));
+    	reservation.setPaymethod(request.getParameter("paymethod"));
+    	reservation.setStatus(request.getParameter("status"));
+    	
+    	reservationMapper.reservationProc(reservation);
+    	
 //    	if("motel".equals(stayType)) {
 //    		
 //    	} else if("hotel".equals(stayType)) {
@@ -124,9 +125,9 @@ public class ReservationService {
 //    	} else if("camping".equals(stayType)) {  
 //    
 //    	}
-//    	
-//    	
-//    	return "예약 DB 등록 완료";
-//		}
-
+    	
+    	
+    	return "예약 DB 등록 완료";
+    	
+		}
 }

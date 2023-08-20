@@ -50,7 +50,7 @@ public class HotelService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
+			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
 			hotel.setHimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 
@@ -77,6 +77,8 @@ public class HotelService {
 		int pageBlock = 10;
 		int end = pageBlock * currentPage;
 		int begin = end - pageBlock + 1;
+		
+		System.out.println("현재 stayType은 : " + stayType + "입니다.");
 		
 		ArrayList<HotelDTO> hotels = hotelMapper.stayInfo(begin, end);
 		int totalCount = hotelMapper.count();
@@ -139,7 +141,7 @@ public class HotelService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
+			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
 			hotelroom.setHroomimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 			

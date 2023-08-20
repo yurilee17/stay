@@ -71,7 +71,7 @@ public class MotelService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
+			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
 			motel.setMimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 			
@@ -139,7 +139,7 @@ public class MotelService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 			motelroom.setMroomimage(fileName);
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\room\\";
+			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\room\\";
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -166,6 +166,8 @@ public class MotelService {
 		int pageBlock = 10;
 		int end = pageBlock * currentPage;
 		int begin = end - pageBlock + 1;
+		
+		System.out.println("현재 stayType은 : " + stayType + "입니다.");
 		
 		ArrayList<MotelDTO> motels = motelMapper.stayInfo(begin, end);
 		int totalCount = motelMapper.count();
@@ -250,47 +252,69 @@ public class MotelService {
 	
 	
 	public String stayModifyProc(MultipartHttpServletRequest multi) {
-//	    String stayType = multi.getParameter("stayType");
-//	    int no = Integer.parseInt(session.getAttribute("no").toString());
-//	    String code = session.getAttribute("code").toString();
-//		
-//		MotelDTO motel = new MotelDTO();
-//		motel.setNo(no);
-//		motel.setMname(multi.getParameter("name"));
-//		motel.setMregion(multi.getParameter("region"));
-//		motel.setMdetailRegion(multi.getParameter("detailRegion"));
-//		motel.setMaddress(multi.getParameter("address"));
-//		motel.setMdetailAddress(multi.getParameter("detailAddress"));
-//		motel.setMinfo(multi.getParameter("info"));
-//		motel.setMdaesilCheckIn(multi.getParameter("mdaesilcheckin"));
-//		motel.setMdaesilCheckOut(multi.getParameter("mdaesilcheckout"));
-//		motel.setMdaesilTime(multi.getParameter("mdaesiltime"));
-//		motel.setMstayCheckIn(multi.getParameter("mstaycheckin"));
-//		motel.setMstayCheckOut(multi.getParameter("mstaycheckout"));
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		
-//		motel.setMimage("");
-//		MultipartFile file = multi.getFile("imageupload");
-//		String fileName = file.getOriginalFilename();
-//		if(file.getSize() != 0) {
-//			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-//			Calendar cal = Calendar.getInstance();
-//			fileName = sdf.format(cal.getTime()) + fileName;
-//			motel.setMimage(fileName);
-//			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
-//			File save = new File(fileLocation + fileName);
-//			
-//			try {
-//				file.transferTo(save);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//
-//		System.out.println("상세 지역 : " + motel.getMdetailRegion());
-//		motelMapper.stayModifyProc(motel);
-//		return "숙소 DB 수정 완료";
-		return "";
+	    String stayType = multi.getParameter("stayType");
+		
+		MotelDTO motel = new MotelDTO();
+		motel.setMname(multi.getParameter("name"));
+		motel.setMregion(multi.getParameter("region"));
+		motel.setMdetailregion(multi.getParameter("detailregion"));
+		motel.setMaddress(multi.getParameter("address"));
+		motel.setMdetailaddress(multi.getParameter("detailaddress"));
+		motel.setMinfo(multi.getParameter("info"));
+		motel.setMdaesilcheckin(multi.getParameter("mdaesilcheckin"));
+		motel.setMdaesilcheckout(multi.getParameter("mdaesilcheckout"));
+		motel.setMdaesiltime(multi.getParameter("mdaesiltime"));
+		motel.setMstaycheckin(multi.getParameter("mstaycheckin"));
+		motel.setMstaycheckout(multi.getParameter("mstaycheckout"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		motel.setMimage("");
+		MultipartFile file = multi.getFile("imageupload");
+		String fileName = file.getOriginalFilename();
+		if(file.getSize() != 0 && file != null) {
+			
+			// 새로운 사진 파일을 업로드시 기존 파일을 지우는 과정이 필요
+			
+			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+			Calendar cal = Calendar.getInstance();
+			fileName = sdf.format(cal.getTime()) + fileName;
+			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
+			motel.setMimage(fileLocation + fileName);
+			File save = new File(fileLocation + fileName);
+			
+			try {
+				file.transferTo(save);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+
+		motelMapper.stayModifyProc(motel);
+		return "숙소 DB 수정 완료";
+	}
+	
+	public String stayDeleteProc(String n) {
+		int no = 0;
+		try {
+			no = Integer.parseInt(n);
+		} catch(Exception e) {
+			return "숙소 번호에 문제가 생겼습니다.";
+		}
+		
+		MotelDTO motel = motelMapper.stayContent(no);
+		if(motel == null)
+			return "숙소 번호에 문제가 생겼습니다.";
+		
+		motelMapper.stayDeleteProc(no);
+		
+		String path = motel.getMimage();
+		File file = new File(path);
+		if(file.exists() == true) {
+			file.delete();
+		}
+		
+		return "숙소 정보 삭제 완료";
 	}
 
 	public void motellist(String cp, Model model) {

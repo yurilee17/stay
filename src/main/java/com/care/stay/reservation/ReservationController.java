@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,6 +17,7 @@ import com.care.stay.motel.MotelDTO;
 import com.care.stay.motel.MotelRoomDTO;
 import com.care.stay.motel.MotelService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -123,8 +125,11 @@ public class ReservationController {
 	}
 	
 	
-	@GetMapping("paymentComplete")
-	public String paymentComplete() {
+	@PostMapping("reservationProc")
+	public String stayreservationProc(HttpServletRequest request) {
+		
+		rservice.stayReservationProc(request);
+		
 		return "reservation/paymentComplete";
 	}
 }

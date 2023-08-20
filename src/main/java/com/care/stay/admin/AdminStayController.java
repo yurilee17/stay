@@ -74,6 +74,18 @@ public class AdminStayController {
 	    return stayCode + nextNo;
 	}
 	
+	@GetMapping("currentStayCode")
+	@ResponseBody
+	public String currentStayCode(@RequestParam String stayType, @RequestParam int stayNo) {
+	    String stayCode = stayType.equals("motel") ? "M" :
+	                    stayType.equals("hotel") ? "H" :
+	                    stayType.equals("pension") ? "P" :
+	                    stayType.equals("gh") ? "G" :
+	                    stayType.equals("camping") ? "C" : "";
+	    return stayType + stayNo;
+	}
+	
+	
 	/* 숙소 상세 DB 페이지로 넘어가는 과정. 각 숙소별로 상세페이지가 조금씩 다른데다 
 	   숙소 DB와 달리 종류는 정해진 상태이므로 If를 주고 페이지를 고정된 상태로 출력함 */
 
@@ -337,26 +349,39 @@ public class AdminStayController {
 	public String stayInfo(
 			@RequestParam(value="currentPage", required = false) String cp,
 			@RequestParam(value="stayType", required = false) String stayType, 
+			String stayName, String region, String address,
 			Model model) {
 		
+		System.out.println("현재 stayType은 : " + stayType + "입니다.");
+		
+		stayType = "motel";
+		
 		if (stayType == null) {
-			mservice.stayInfo(cp, stayType, model);
-	    } else if (stayType.equals("motel")) {
-	    	model.addAttribute("stayType", stayType);
-	    	mservice.stayInfo(cp, stayType, model);
-	    } else if (stayType.equals("hotel")) {
-	    	model.addAttribute("stayType", stayType);
-	    	hservice.stayInfo(cp, stayType, model);
-	    } else if (stayType.equals("pension")) {
-	    	model.addAttribute("stayType", stayType);
-	    	pservice.stayInfo(cp, stayType, model);
-	    } else if (stayType.equals("gh")) {
-	    	model.addAttribute("stayType", stayType);
-	    	gservice.stayInfo(cp, stayType, model);
-	    } else if (stayType.equals("camping")) {
-	    	model.addAttribute("stayType", stayType);
-	    	cservice.stayInfo(cp, stayType, model);
-	    } 
+		service.stayInfo(cp, stayType, stayName, region, address, model);		
+		} else {
+			model.addAttribute("stayType", stayType);
+			service.stayInfo(cp, stayType, stayName, region, address, model);			
+		}
+		
+		
+//		if (stayType == null) {
+//			mservice.stayInfo(cp, stayType, model);
+//	    } else if (stayType.equals("motel")) {
+//	    	model.addAttribute("stayType", stayType);
+//	    	mservice.stayInfo(cp, stayType, model);
+//	    } else if (stayType.equals("hotel")) {
+//	    	model.addAttribute("stayType", stayType);
+//	    	hservice.stayInfo(cp, stayType, model);
+//	    } else if (stayType.equals("pension")) {
+//	    	model.addAttribute("stayType", stayType);
+//	    	pservice.stayInfo(cp, stayType, model);
+//	    } else if (stayType.equals("gh")) {
+//	    	model.addAttribute("stayType", stayType);
+//	    	gservice.stayInfo(cp, stayType, model);
+//	    } else if (stayType.equals("camping")) {
+//	    	model.addAttribute("stayType", stayType);
+//	    	cservice.stayInfo(cp, stayType, model);
+//	    } 
 		return "admin/stayInfo";
 
 	}
@@ -387,6 +412,21 @@ public class AdminStayController {
 	    }
 	    model.addAttribute("msg", result);
 	    return "admin/stayregister";
+	}
+	
+	
+	@GetMapping("stayDeleteProc")
+	public String stayDeleteProc(@RequestParam(value="no", required = false)String n,
+			@RequestParam(value="stayType", required = false)String stayType) {
+		String result = "";
+		if (stayType.equals("motel")) {
+			result = mservice.stayDeleteProc(n);
+		}
+		
+		if (result.equals("숙소 정보 삭제 완료")) {
+	        return "redirect:stayInfo";
+	    }
+		return "redirect:stayInfo";
 	}
 
 

@@ -43,7 +43,7 @@
 			<br>
 			<br>
 			
-		<table id="stayList" class="stayList">
+		<table id="stayList" class="stayList stayTable" data-stay-type="motel">
 			<c:choose>
 				<c:when test="${empty motels }">
 					<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -87,7 +87,7 @@
 			</c:choose>	
 		</table>
 		
-		<table id="stayList2" class="stayList" style="display: none;">		
+		<table id="stayList2" class="stayList stayTable" style="display: none;" data-stay-type="hotel">		
 		<c:choose>
 			<c:when test="${empty hotels }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -95,10 +95,10 @@
 			<c:otherwise>
 			<table class="db_search">
 				<colgroup>
-					<col width="10%"></col>
+					<col width="5%"></col>
 					<col width="10%"></col>					
 					<col width="30%"></col>
-					<col width="10%"></col>	
+					<col width="15%"></col>	
 					<col width="*"></col>
 					<col width="10%"></col>						
 				</colgroup>
@@ -134,7 +134,7 @@
 			</c:otherwise>
 		</c:choose>	
 		</table>
-		<table id="stayList3" class="stayList" style="display: none;"> 
+		<table id="stayList3" class="stayList stayTable" style="display: none;" data-stay-type="pension"> 
 		<c:choose>
 			<c:when test="${empty pensions }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -181,7 +181,7 @@
 			</c:otherwise>
 		</c:choose>			
 		</table>
-		<table id="stayList4" class="stayList" style="display: none;">
+		<table id="stayList4" class="stayList stayTable" style="display: none;" data-stay-type="gh">
 		<c:choose>
 			<c:when test="${empty ghs }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -228,7 +228,7 @@
 			</c:otherwise>
 		</c:choose>			
 		</table>
-		<table id="stayList5" class="stayList" style="display: none;">
+		<table id="stayList5" class="stayList stayTable" style="display: none;" data-stay-type="camping">
 		<c:choose>
 			<c:when test="${empty campings }">
 				<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -291,31 +291,29 @@
  	  	  });
  	  	  
  	 function showStayInfo() {
-		  var stayType = document.getElementById("stayType");
-		  var stayList = document.getElementsByClassName("stayList");
 	
-		  // 모든 서브 메뉴 감추기
-		  for (var i = 0; i < stayList.length; i++) {
-		    stayList[i].style.display = "none";
-		  } 
+		  const stayType = document.getElementById('stayType').value;
+		  const stayTables = document.querySelectorAll('.stayTable');
 
-		  // 선택된 값에 따라 해당 서브 메뉴 표시
-		  if (stayType.value === "motel") {
-		    document.getElementById("stayList").style.display = "table";
-		  } else if (stayType.value === "hotel") {
-		    document.getElementById("stayList2").style.display = "table";
-		  } else if (stayType.value === "pension") {
-		    document.getElementById("stayList3").style.display = "table";
-		  } else if (stayType.value === "gh") {
-		    document.getElementById("stayList4").style.display = "table";
-		  } else if (stayType.value === "camping") {
-		    document.getElementById("stayList5").style.display = "table";
+		  stayTables.forEach((table) => {
+		    table.style.display = 'none'; // 모든 테이블을 숨김
+		  });
+
+		  const targetTable = document.querySelector(`.stayTable[data-stay-type="${stayType}"]`);
+
+		  if (targetTable) {
+		    targetTable.style.display = 'table'; // 선택된 숙소 유형의 테이블을 보이게 함
 		  }
 
-		} 
-		
-		 
-		
+		}  
+	
+ 	 
+ 	function staydeleteCheck(){
+		result = confirm('진짜로 삭제하겠습니까?');
+		if(result == true){
+			location.href='stayDeleteProc?no=${motel.no}&stayType=motel'
+		}
+	}
  </script>
  
 </html>

@@ -5,7 +5,175 @@ document.addEventListener("DOMContentLoaded", function() {
 	inputEvent();
 })
 
+/*input 예외 처리*/
+function inputEvent() {
 
+	//문자 인증
+	let mobile = document.getElementById("mobile");
+	let digit = document.getElementById("digit");
+
+	if (mobile != null && digit != null) {
+			
+		let btnSend = document.querySelector(".btn_send");
+		let btnOk = document.querySelector(".btn_ok");
+
+		let mobileValue = mobile.value; // 이전 값 저장용 변수
+		let digitValue = digit.value; // 이전 값 저장용 변수
+
+		var numberPattern = /^010[0-9]{8}$/;
+		var numberPattern2 = /^[0-9]+$/;
+
+		mobile.addEventListener("input", function() {
+			if (mobile.value === '') {
+				mobileValue = ''; // 완전히 공백일 때는 이전 값도 공백으로 업데이트
+				btnSend.classList.remove("active");
+			} else if (numberPattern2.test(mobile.value)) {
+				mobileValue = mobile.value;
+				if (numberPattern.test(mobile.value)) {
+					btnSend.classList.add("active");
+				} else {
+					btnSend.classList.remove("active");
+				}
+			} else {
+				mobile.value = mobileValue;
+			}
+		});
+
+		digit.addEventListener("input", function() {
+			if (digit.value === '') {
+				digitValue = ''; // 완전히 공백일 때는 이전 값도 공백으로 업데이트
+				btnOk.classList.remove("active");
+			} else if (numberPattern2.test(digit.value)) {
+				digitValue = digit.value;
+				if (digit.value.length >= 4) {
+					btnOk.classList.add("active");
+				} else {
+					btnOk.classList.remove("active");
+				}
+			} else {
+				digit.value = digitValue;
+			}
+
+		});
+	}
+
+	//회원가입
+	let id = document.getElementById("id");
+	let password = document.getElementById("password");
+	let newPwRe = document.getElementById("newPwRe");
+
+	let joinBtn = document.getElementById("joinBtn");
+
+
+	if (id != null && password != null) {
+		let idMsg = document.getElementById("userId_msg");
+		let newPwMsg = document.getElementById("new_pw_msg")
+		let newPwReMsg = document.getElementById("new_pw_re_msg")
+
+		const pattern = /^(?=.*[a-zA-Z])(?=.*\d)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d])|(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
+
+
+		id.addEventListener("blur", function() {
+			var message = "";
+			if (id.value === '') {
+				message = "아이디를 입력해주세요.";
+			}
+			idMsg.innerHTML = message;
+
+		});
+
+		id.addEventListener("input", function() {
+			
+			if (id.value.includes('kakao')) {
+				idMsg.innerHTML = "kakao 입력 불가";
+			}
+
+			if (!id.value.includes('kakao') &&
+				id.value != '' &&
+				password.value.length >= 8 &&
+				pattern.test(password.value) &&
+				newPwRe.value === password.value) {
+				joinBtn.classList.add("active");
+			} else {
+				joinBtn.classList.remove("active");
+			}
+
+		});
+
+
+
+		password.addEventListener("blur", function() {
+			if (pattern.test(password.value)) {
+				newPwMsg.innerHTML = "";
+
+			}
+
+			if (!id.value.includes('kakao') &&
+				id.value != '' &&
+				password.value.length >= 8 &&
+				pattern.test(password.value) &&
+				newPwRe.value === password.value) {
+				joinBtn.classList.add("active");
+			} else {
+				joinBtn.classList.remove("active");
+			}
+
+		});
+
+		password.addEventListener("input", function() {
+			var message = "";
+			if (password.value === '') {
+				newPwMsg.style.color = 'red';
+				message = "비밀번호를 입력해주세요.";
+			} else if (password.value.length <= 7) {
+				newPwMsg.style.color = 'red';
+				message = "사용불가 : 최소 8자 이상 입력해주세요.";
+			} else if (!pattern.test(password.value)) {
+				newPwMsg.style.color = 'red';
+				message = "사용불가 : 영문,숫자,특수문자 중 2가지 이상을 조합해주세요.";
+			} else if (pattern.test(password.value)) {
+				newPwMsg.style.color = 'blue';
+				message = "사용가능 : 안전한 비밀번호입니다.";
+
+			}
+			newPwMsg.innerHTML = message;
+
+			if (!id.value.includes('kakao') &&
+				id.value != '' &&
+				password.value.length >= 8 &&
+				pattern.test(password.value) &&
+				newPwRe.value === password.value) {
+				joinBtn.classList.add("active");
+			} else {
+				joinBtn.classList.remove("active");
+			}
+		});
+
+		newPwRe.addEventListener("input", function() {
+			var message = "";
+			if (newPwRe.value === '') {
+				message = "비밀번호를 한번 더 입력해 주세요.";
+			} else if (newPwRe.value != password.value) {
+				message = "비밀번호가 일치하지 않습니다.";
+			} else {
+				message = '';
+			}
+			newPwReMsg.innerHTML = message;
+
+			if (!id.value.includes('kakao') &&
+				id.value != '' &&
+				password.value.length >= 8 &&
+				pattern.test(password.value) &&
+				newPwRe.value === password.value) {
+				joinBtn.classList.add("active");
+			} else {
+				joinBtn.classList.remove("active");
+			}
+		});
+
+	}
+
+}
 
 /*인증번호 전송, 재전송 선택 시*/
 function btnSend() {
@@ -29,7 +197,7 @@ function btnSend() {
 		} else {
 			timer = 180;
 		}
-	} else if (mobile.value.length <= 9 && hone.value.length >= 1) {
+	} else if (mobile.value.length <= 9 && mobile.value.length >= 1) {
 		alert("휴대폰 번호 형식이 아닙니다.");
 	} else if (btnSend.classList.contains('send')) {
 		alert("1분 후에 다시 시도해주세요.");

@@ -225,6 +225,8 @@ $(function(){
             body_text = chkinDateFormat('YMDPERIOD',refund_can_date)+"이후 <br>취소 및 환불 불가합니다.";
             //if(agree_reserve_keep=='Y')body_text = chkinDateFormat('YMDPERIOD',refund_can_date)+"이후 <br>취소 시 쿠폰 교환 가능(1일1회).";		//예약연기
         }
+        
+        
         // 당일,미리예약 체크
         var alReady = false;
         var nowDate = new Date();
@@ -237,10 +239,7 @@ $(function(){
         if(agree=='N'){
             body_text = "<b>취소 및 환불이 불가한 숙소입니다.</b>";
         }
-        // 비회원
-        if(!join){
-            body_text = "<b>비회원이므로 결제 시 취소 및 환불이 불가합니다.</b>";
-        }
+
         // 페이백
         if(room_service_type==2)body_text = "<b>취소 및 환불이 불가한 숙소입니다.</b>";
 
@@ -283,19 +282,11 @@ $(function(){
 
 // #1.결제하기
 function payment_confirm(){
-    //var regName =  /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
     var regName = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
     var regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
     var buyer = $('input[name=userName]');
     var buyer_phone = $('input[name=userPhone]');
-    //var login_on = $('#order_form input[name=uno]').val() ? true : false;
-    //var adcno = $('#order_form input[name=adcno]').val();
-    //var parkingUse = $('input[name=park_access]').val();
 
-    /*if(Number($('.select_type_1').val()) == 5) {
-        alert_Msg('휴대폰 결제는 점검중입니다. <br>다른 결제수단을 이용해 주세요.');
-        return false;
-    }*/
     if(!buyer.val()) {
         alert_Msg('예약자 이름을 입력해주세요.');
         return false;
@@ -309,7 +300,7 @@ function payment_confirm(){
         alert_Msg('예약자 이름은 20자 이하로 입력해주세요.');
         return false;
     }
-    if(!buyer_phone.val()){
+/*    if(!buyer_phone.val()){
         alert_Msg('휴대폰 번호를 입력해 주세요.');
         return false;
     }
@@ -325,7 +316,7 @@ function payment_confirm(){
             alert_Msg('휴대폰 번호 미인증 되었습니다.');
             return false;
         }
-    }
+    }*/
 
     if($('#order_form').find('input[name=checkin_type]').val()==1){
         if($('input[name=dayuse_select]').val()=="N"){
@@ -517,7 +508,7 @@ function validate(){
 		alert_Msg('예약자 이름은 20자 이하로 입력해주세요.');
 		return false;
 	}
-	if(!buyer_phone.val()){
+/*	if(!buyer_phone.val()){
 		alert_Msg('휴대폰 번호를 입력해 주세요.');
 		return false;
 	}
@@ -532,20 +523,7 @@ function validate(){
 			alert_Msg('휴대폰 번호 미인증 되었습니다.');
 			return false;
 		}
-	}
-
-	if($("div.visit").find('.parking_type_btn').length != 0 && !$('div.visit').find('.parking_type_btn').hasClass('on')){
-		alert_Msg('<b>방문 방법</b>을 선택해주세요.<br> 도보 / 차량');
-		return false;
-	}
-
-	if($("#travel_type").length != 0) {
-		if(!$('#travel_type').find('button').hasClass('on')){
-			alert_Msg('여행 유형을 선택해 주세요.');
-			return false;
-		}
-		$("#reqUser_biztrip").val($('#travel_type button.on').hasClass('business') ? 'true' : 'false');
-	}
+	}*/
 
 	buyer_phone.val(buyer_phone.val().replace(/\-/ig, ''));
 

@@ -24,6 +24,7 @@ public interface MotelMapper {
 	ArrayList<MotelDTO> motellist(@Param("begin")int begin, @Param("end")int end);
 	MotelRoomDTO stayReservation(int mroomcode);
 	MotelRoomDTO roomContent(int mroomcode);
+	void stayDeleteProc(int no);
 	
 	
 }

@@ -15,6 +15,7 @@
 		<result column="checkindate" property="checkindate" />
 		<result column="checkoutdate" property="checkoutdate" />
 		<result column="checkintime" property="checkintime" />
+		<result column="checkouttime" property="checkouttime" />
 		<result column="id" property="id" />
 		<result column="name" property="name" />
 		<result column="price" property="price" />
@@ -30,7 +31,8 @@
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM reservation
 		</selectKey>
-		INSERT INTO reservation VALUES(#{no}, #{stayno}, #{stayname}, #{roomname}, #{code}, #{roomcode}, #{roomimage}, #{checkindate}, #{checkoutdate}, #{checkouttime}, #{id}, #{name}, #{price}, #{paymethod}, #{status})
+		INSERT INTO reservation (no, stayno, stayname, roomname, code, roomcode, roomimage, checkindate, checkoutdate, checkouttime, id, name, price, paymethod, status)
+		VALUES(#{no}, #{stayno}, #{stayname}, #{roomname}, #{code}, #{roomcode}, #{roomimage}, #{checkindate}, #{checkoutdate}, #{checkouttime}, #{id}, #{name}, #{price}, #{paymethod}, #{status})
 	</insert>
 
 </mapper>

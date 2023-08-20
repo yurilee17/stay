@@ -11,12 +11,13 @@
   <title>취향대로 머물다 저기어때</title>
 
 		<link rel="stylesheet" href="../../resource/css/reservation.css">
-		<script src="../../resource/js/stayreservation.js"></script>
+<!-- 		<script src="../../resource/js/stayreservation.js"></script> -->
 		<link rel="preload" href="../../resource/css/common.css" as="style">
         <link rel="stylesheet" href="../../resource/css/common.css">
 		<link data-n-head="ssr" rel="stylesheet" href="../../resource/js/owl.carousel.css">
 		
-		<script data-n-head="ssr" src="../../resource/js/stayreservation.js"></script>
+		<!-- <script src="../../resource/js/reservation.js"></script> 
+		<script data-n-head="ssr" src="../../resource/js/stayreservation.js"></script> -->
 		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/common.js" defer=""></script>
 		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/iscroll.js" defer=""></script>
 		<script type="text/javascript" async="" src="../../resource/js"></script>
@@ -26,8 +27,6 @@
 		<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
 		<script data-n-head="ssr" src="../../resource/js/owl.carousel.min.js"></script>
-
-		
 		
    <!-- 
 		<script data-n-head="ssr" src="./숙박예약_files/nicepay_tr_utf.js.다운로드"></script>
@@ -60,10 +59,10 @@
 		<c:choose>
 			<c:when test="${'motel' eq stayType }">
 			<section class="info">
-				<p class="name"><strong>숙소이름</strong>${motel.mname}</p> 
-				<p><strong>객실타입/기간</strong>${motelroom.mroomname} / </p> 
-				<p><strong>체크인</strong>${motel.mstaycheckin}</p> 
-				<p><strong>체크아웃</strong>${motel.mstaycheckout}</p>
+				<p class="name"><strong>숙소이름</strong><span class="stayname">${motel.mname}</span></p> 
+				<p><strong>객실타입/기간</strong><span class="roomname">${motelroom.mroomname}</span><span> / </span></p> 
+				<p><strong>체크인</strong><span>${motel.mstaycheckin}</span></p> 
+				<p><strong>체크아웃</strong><span>${motel.mstaycheckout}</span></p>
 			</section> 	
 			<section class="total_price_pc">
 				<p>
@@ -76,15 +75,15 @@
 					<input type="hidden" name="stayno" value="${motel.no }">					
 					<input type="hidden" name="code" value="${motel.mcode }">
 					<input type="hidden" name="roomcode" value="${motelroom.mroomcode }">
-					<input type="hidden" name="roomimage" value="${motelroom.mimage }">
+					<input type="hidden" name="roomimage" value="${motelroom.mroomimage }">
 					<input type="hidden" name="stayname" value="${motel.mname}">
 					<input type="hidden" name="roomname" value="${motelroom.mroomname}">
 					<input type="hidden" name="checkindate" value="${motel.mstaycheckin}">
 					<input type="hidden" name="checkoutdate" value="${motel.mstaycheckout}">
 					<input type="hidden" name="checkintime" value="">
 					<input type="hidden" name="checkouttime" value="">
-					<input type="hidden" name="id" value="test">
-					<input type="hidden" name="name" value="테스트">
+					<input type="hidden" name="id" value="${sessionScope.id}">
+					<input type="hidden" name="name" value="${sessionScope.userName}">
 					<input type="hidden" name="price" value="${motelroom.mstayprice}">
 					<input type="hidden" name="paymethod" value="kakaopay">
 					<input type="hidden" name="status" value="예약확정">
@@ -195,8 +194,8 @@
 					<div class="input-box">
 						<input type="tel" id="userPhone" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="input validation-required-input">
 					</div> 
-					<button type="button" class="btn_send btn_confirm phone-auth-btn" onclick="btnSend()">인증번호 전송</button> 
-					<p data-show="tel" class="alert_txt error-message" style="">휴대폰 번호를 확인해 주세요.</p> 
+					<button type="button" class="btn_send btn_confirm phone-auth-btn" onclick="btnSend()">인증번호 전송</button>
+					<p data-show="tel" class="alert_txt error-message" style="">휴대폰 번호를 확인해 주세요.</p>
 					<div id="verificationCode" style="display:none; height:48px">
 						<strong class="mt_09">인증 번호</strong> 
 						<section>
@@ -340,7 +339,7 @@
 								<li>객실요금은 2인 기준이며, 파티룸 등 대형객실의 경우 입실 인원은 숙소에 문의해주세요. (3인이상 혼숙불가)</li> 
 								<li>미성년자 혼숙은 법적으로 불가하며, 이에 대한숙소의 입실 거부 시 취소/환불이 불가합니다.</li> 
 								<li>미성년자 예약에 대한 숙소의 입실 거부 시 취소/환불이 불가하오니, 예약 전 반드시 숙소에 확인하시기 바랍니다.</li> 
-								<li>업체 현장에서 객실 컨디션 및 서비스로 인해 발생된 분쟁은 여기어때에서 책임지지 않습니다.</li>
+								<li>업체 현장에서 객실 컨디션 및 서비스로 인해 발생된 분쟁은 저기어때에서 책임지지 않습니다.</li>
 							</ul> 
 							<strong>취소/환불규정</strong> 
 							<ul class="dot_txt">
@@ -451,7 +450,7 @@
 					<div class="scroller">
 						<div class="txt">
 							<strong>만 14세 이상 확인</strong> 
-							<p class="subtitle">여기어때는 <b>만 14세 미만 아동</b>의 <b>서비스 이용을 제한</b>하고 있습니다.</p> 
+							<p class="subtitle">저기어때는 <b>만 14세 미만 아동</b>의 <b>서비스 이용을 제한</b>하고 있습니다.</p> 
 							<p>정보통신망 이용촉진 및 정보보호 등에 관한 법률에는 만 14세 미만 아동의 개인정보 수집 시 법정대리인 동의를 받도록 규정하고 있으며,
 							<i>만 14세 미만 아동이 법정대리인 동의없이 서비스 이용이 확인된 경우 서비스 이용이 제한될 수 있음을 알려드립니다.</i></p>
 						</div>
@@ -467,7 +466,7 @@
 					<div class="scroller">
 						<div class="txt">
 							<strong>만 14세 이상 확인</strong> 
-							<p class="subtitle">여기어때는 <b>만 14세 미만 아동</b>의 <b>서비스 이용을 제한</b>하고 있습니다.</p> 
+							<p class="subtitle">저기어때는 <b>만 14세 미만 아동</b>의 <b>서비스 이용을 제한</b>하고 있습니다.</p> 
 							<p>정보통신망 이용촉진 및 정보보호 등에 관한 법률에는 만 14세 미만 아동의 개인정보 수집 시 법정대리인 동의를 받도록 규정하고 있으며,
 							<i>만 14세 미만 아동이 법정대리인 동의없이 서비스이용이 확인된 경우 서비스 이용이 제한될 수 있음을 알려드립니다.</i></p>
 						</div>
@@ -477,7 +476,7 @@
 		</div>
 	</div>
 </div>
-			<!-- <script src="../../resource/js/payment.js"></script> -->
-	<script src="../../resource/js/reservation.js"></script>
+			<script src="../../resource/js/payment.js"></script>
+
  </body>
 </html>

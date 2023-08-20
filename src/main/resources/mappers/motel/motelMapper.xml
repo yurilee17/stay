@@ -25,11 +25,23 @@
 		SELECT * FROM motel WHERE no=#{no}
 	</select>
 	
-	<select id="stayModifyProc" resultMap="motelDto">
+	<select id="stayModifyProc" parameterType="com.care.stay.motel.MotelDTO">
 		UPDATE motel SET mname=#{mname}, mregion=#{mregion}, mdetailregion=#{mdetailregion}, maddress=#{maddress}, mdetailaddress=#{mdetailaddress}, 
 		mimage=#{mimage}, minfo=#{minfo}, mdaesilcheckin=#{mdaesilcheckin}, mdaesilcheckout=#{mdaesilcheckout}, mdaeesiltime=#{mdaesiltime}, 
-		mstaycheckin=#{mstayCheckIn}, mstaycheckout=#{mstayCheckOut} WHERE no=#{no}
+		mstaycheckin=#{mstaycheckin}, mstaycheckout=#{mstaycheckout} WHERE no=#{no}
 	</select>
+	
+	<update id="stayDetailModifyProc" parameterType="com.care.stay.motel.MotelRoomDTO">
+	
+	</update>
+	
+	<delete id="stayDetailDeleteProc">
+		DELETE FROM motelroom WHERE mroomcode=#{mroomcode}
+	</delete>
+	
+	<delete id="stayDeleteProc">
+		DELETE FROM motel WHERE no=#{no}
+	</delete>	
 	
 	<select id="stayRoomContent" resultMap="motelroomDto">
 		SELECT * FROM motelroom WHERE no=#{no}
