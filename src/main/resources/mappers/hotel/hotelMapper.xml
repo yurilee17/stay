@@ -20,7 +20,7 @@
 		<result column="htype" property="htype"/>
 	</resultMap> 
 	
-<!-- 	 <resultMap type="com.care.stay.hotel.HotelRoomDTO" id="HotelRoomDto">
+ 	 <resultMap type="com.care.stay.hotel.HotelRoomDTO" id="HotelRoomDto">
         <result  column="no" property="no" />
         <result  column="hcode" property="hcode" />
         <result  column="hroomcode" property="hroomcode" />
@@ -33,7 +33,7 @@
         <result  column="hcomfort" property="hcomfort" />
     </resultMap>
     
-	 -->
+
 	 
 	 
 	  <resultMap type="com.care.stay.reservation.ReservationDTO" id= "ReservationDto">
@@ -135,121 +135,90 @@
 	
 	
 	<!-- 호텔룸 컬럼은 제외  -->
-<!-- 	<select id="MainCheck">
+ <!-- 	<select id="MainCheck">
   	 SELECT h.*, hr.*
 	 FROM hotel h 
 	 JOIN hotelroom hr  ON hr.hcode = h.hcode
-	 WHERE (h.hdetailregion = #{selectedText}
-   	 OR h.htype = #{htype})
+	   WHERE (h.hdetailregion = #{selectedText} OR h.htype = #{htype})
+   	   AND hr.hbedtype = #{hbedtype}
+       AND (hr.hcomfort LIKE CONCAT('%', #{hcomfort}, '%')
+       OR hr.hpeople = #{hpeople}
      
      
-	</select> -->
+	</select>  -->
 	
 
-
-
-	
-	
- <!-- 2차시도 -->	
-	<select id="MainCheck">
+ <!-- 2차시도  이거! -->	
+<!-- 	 <select id="MainCheck">
   	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-			hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hpeople, hr.hcomfort
+			hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
 	 FROM hotel h 
 	 JOIN hotelroom hr  ON hr.hcode = h.hcode
 	   WHERE (h.hdetailregion = #{selectedText} OR h.htype = #{htype})
-   
-        AND hr.hbedtype = #{hbedtype}
-        AND (hr.hcomfort LIKE CONCAT('%', #{hcomfort}, '%')
-       OR hr.hpeople = #{hpeople}
+        AND (hr.hbedtype = #{hbedtype}
+        AND hr.hcomfort LIKE CONCAT('%'|| #{hcomfort}, '%')
+       OR hr.hpeople = #{hpeople})
  
-	</select> 
+	</select>   -->
+	
+
 	
 	
-<!-- 	<select id="MainCheck" >
-    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-			hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
-    FROM hotel h 
-    JOIN hotelroom hr ON hr.hcode = h.hcode
-    WHERE (h.hdetailregion = #{selectedText} AND h.htype = #{htype})
-    AND hr.hbedtype = #{hbedtype}
-        <foreach item="hcomfort" collection="hbedtypeArray" open=" AND (" separator=" OR " close=")">
-            hr.hcomfort LIKE CONCAT('%', #{hcomfort}, '%')
-        </foreach>
-    <if test="hpeople != null and hpeople != ''">
-        OR hr.hpeople = #{hpeople}
-    </if>
-</select> -->
-
-
-<!-- <select id="MainCheck" >
-    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-            hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
-    FROM hotel h 
-    JOIN hotelroom hr ON hr.hcode = h.hcode
-    WHERE (h.hdetailregion = #{selectedText} AND h.htype = #{htype})
-    AND hr.hbedtype = #{hbedtype}
-    <foreach item="hcomfort" collection="hbedtypeArray" open=" AND (" separator=" OR " close=")">
-        hr.hcomfort LIKE CONCAT('%', #{hcomfort}, '%')
-    </foreach>
-    <if test="hpeople != null and hpeople != ''">
-        OR hr.hpeople = #{hpeople}
-    </if>
-</select>
-	 -->
-	 
-<!-- 	 <select id="MainCheck">
-     SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-        hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
-     FROM hotel h 
-     JOIN hotelroom hr ON hr.hcode = h.hcode
-     WHERE (h.hdetailregion = #{selectedText} OR h.htype = #{htype})
-     AND (
-         hr.hbedtype = #{hbedtype} OR
-         hr.hcomfort LIKE CONCAT('%'||#{hcomfort}, '%') OR
-         hr.hpeople = #{hpeople} OR
-        (#{hbedtype} IS NULL AND #{hcomfort} IS NULL AND #{hpeople} IS NULL)
-     )
-</select> -->
-
-<!--  <select id="MainCheck">
-  	WITH LIST_TXT AS (SELECT #{hcomfort} hcomfort FROM hotelroom)
-   	SELECT TRIM(REGEXP_SUBSTR(hcomfort,'[^,]+',1,LEVEL)) AS  LIST_TO_ROW
-    FROM LIST_TXT
-	CONNECT BY INSTR(hcomfort, ',' , 1, LEVEL - 1 ) > 0
-	</select> -->
-	
-<!--  	<select id="MainCheck">
+ <!-- 3차시도  이건 조건에 안걸림 -->	
+	<!--  <select id="MainCheck">
   	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-     	   hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
+			hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
 	 FROM hotel h 
-	 JOIN hotelroom hr  
-	 	ON h.no = hr.no AND hr.hcode = h.hcode
-	 WHERE (h.hdetailregion = #{selectedText}
+	 JOIN hotelroom hr  ON hr.hcode = h.hcode
+	   WHERE (h.hdetailregion = #{selectedText} OR h.htype IN #{htype})
+        AND (hr.hbedtype IN #{hbedtype}
+        AND hr.hcomfort IN #{hcomfort}
+       OR hr.hpeople = #{hpeople})
+ 
+	</select>  -->
+	
+	
+	
+<!-- 4차시도  foreach 사용하기    오류가생김  -->	
+<!-- <select id="MainCheck">
+    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+           hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
+    FROM hotel h 
+    JOIN hotelroom hr ON hr.hcode = h.hcode
+    WHERE (h.hdetailregion = #{selectedText}  OR h.htype IN #{htype})
+    AND hr.hbedtype IN
+        <foreach item="item" index="index" collection="hbedtype" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+   	AND hr.hcomfort IN #{hcomfort}
+    AND hr.hpeople = #{hpeople}
+</select> -->
 
-   	 OR h.htype = #{htype})
-   	 
-     AND( hr.hbedtype = #{hbedtype} )
-     
-  	 AND hr.hcomfort like CONCAT('%',#{hcomfort}, '%')
-	
-     OR hr.hpeople = #{hpeople})
-     
- 	</select>   -->
- 	
- 	
-<!--  	<select id="MainCheck">
-  	 SELECT  hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort, hr.hpeople
-	 FROM hotelroom hr
-	 WHERE  hr.hbedtype  #{hbedtype} 
-     
-  	 AND ( hr.hcomfort like CONCAT('%'|| #{hcomfort}, '%'
-	
-     OR hr.hpeople = #{hpeople})
-     
- 	</select> 
- 	 -->
- 	
- 	
+
+
+<!-- <select id="MainCheck" parameterType="HotelParameters" resultMap="결과_매핑_지정">
+    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+           hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
+    FROM hotel h 
+    JOIN hotelroom hr ON hr.hcode = h.hcode
+    WHERE (h.hdetailregion = #{selectedText} OR h.htype IN
+        <foreach item="type" collection="htype" open="(" separator="," close=")">
+            #{type}
+        </foreach>
+    )
+    AND hr.hbedtype IN
+        <foreach item="bedType" collection="hbedtype" open="(" separator="," close=")">
+            #{bedType}
+        </foreach>
+    AND hr.hcomfort IN
+        <foreach item="comfort" collection="hcomfort" open="(" separator="," close=")">
+            #{comfort}
+        </foreach>
+    AND hr.hpeople = #{hpeople}
+</select> -->
+
+
+<!-- 3개테이블 합치려는 시도 -->
 <!-- 	<select id="MainCheck">
   	 SELECT h.*, hr.*, rs.*
 	 FROM hotel h hotelroom hr reservation rs
@@ -265,7 +234,7 @@
 	
      OR hr.hpeople = #{hpeople})
      
- 	</select>  -->
+ 	</select>   -->
 	
 	<!--	 	<select id="MainCheck">
   	 SELECT h.*, hr.*
@@ -281,41 +250,74 @@
 	</select>   
 	
 	 -->
+	 
+	 <!--  조건마다 쿼리 나누기  -->
+	 
+	 <!-- htye 처리 -->
+	 <select id="MainCheck_htype"  resultMap="HotelDto">
+    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype
+           <!-- hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort -->
+    FROM hotel h 
+  <!--   JOIN hotelroom hr ON hr.hcode = h.hcode -->
+    WHERE (h.hdetailregion = #{selectedText})
+    <if test="htype != null and htype.size() > 0">
+        AND h.htype IN
+        <foreach item="type" collection="htype" open="(" separator="," close=")">
+            #{type}
+	        </foreach>
+	    </if>
+	</select>
+
+	 <!-- hbedtype 처리 -->
+	<select id="MainCheck_hbedtype"  >
+	    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+	           hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
+	    FROM hotel h 
+	    JOIN hotelroom hr ON hr.hcode = h.hcode
+	    WHERE (h.hdetailregion = #{selectedText})
+	    <if test="hbedtype != null and hbedtype.size() > 0">
+	        AND hr.hbedtype IN
+	        <foreach item="bedType" collection="hbedtype" open="(" separator="," close=")">
+	            #{bedType}
+	        </foreach>
+	    </if>
+	</select>
+	
+	
+		 <!-- hcomfort 처리 -->
+	<select id="MainCheck_hcomfort"  >
+	    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+	           hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
+	    FROM hotel h 
+	    JOIN hotelroom hr ON hr.hcode = h.hcode
+	    WHERE (h.hdetailregion = #{selectedText})
+	    <if test="hcomfort != null and hcomfort.size() > 0">
+	        AND hr.hcomfort IN
+	        <foreach item="comfort" collection="hcomfort" open="(" separator="," close=")">
+	            #{comfort}
+	        </foreach>
+	    </if>
+	</select>
+		
+		 <!-- hpeople 처리 -->
+	<select id="MainCheck_hpeople"  >
+	    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+	           hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
+	    FROM hotel h 
+	    JOIN hotelroom hr ON hr.hcode = h.hcode
+	    WHERE (h.hdetailregion = #{selectedText}) 
+	    <if test="#{hpeople} > 0">
+	        And hr.hpeople = #{hpeople, jdbcType=INTEGER}
+	    </if>
+	</select>
+		 
+	 
+
 	
 	<!-- 아래에도있음/ 나중에 합칠때 한개는 지워야함  -->
 	<select id="count">
 	  	SELECT count(no) FROM hotel
 	</select>
-	
-<!--  <select id="MainCheck" >
-        SELECT BBB.* FROM 
-        (SELECT ROWNUM as rn, AAA.* FROM 
-        (SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, 
-                h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-                hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort,hr.hpeople
-        FROM hotel h
-        JOIN hotelroom hr ON h.hcode = hr.hcode
-        WHERE
-            <if test="selectedText != null">
-                h.hdetailregion = #{selectedText}
-            </if>
-            <if test="selectedValues1 != null">
-                OR h.htype = #{selectedValues1}
-            </if>
-            <if test="selectedValues2 != null">
-                OR hr.hbedtype = #{selectedValues2}
-            </if>
-            <if test="selectedValues3 != null">
-                OR (hr.hcomfort LIKE CONCAT('%', #{selectedValues3}, '%')
-                    AND hr.hcomfort = #{selectedValues3}
-                )
-               </if>
-            <if test="personCount != null">
-                AND hr.hpeople = #{personCount}
-            </if>
-        ) AAA) BBB
-        WHERE BBB.rn BETWEEN #{begin} AND #{end}
-    </select> -->
 	
 
 

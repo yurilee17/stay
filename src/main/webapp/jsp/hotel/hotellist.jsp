@@ -164,11 +164,6 @@
 		</script>
 		
 
-				
-				
-				
-
-
 		<!-- //Area -->
 		<!-- //hotelheader -->
 
@@ -186,7 +181,7 @@
 
 								<input type="text" id="calendars" name="calendars" value="" />
 				
-				<script>
+		<script>
 				
 				var checkindate ;
 			    var checkoutdate ;	
@@ -254,16 +249,13 @@
 				        localStorage.setItem("checkindate", checkindate);
 				        localStorage.setItem("checkoutdate", checkoutdate);
 				        
-				       /*   var updatedURL = currentURL + "?checkindate=" + checkindate + "&checkoutdate=" + checkoutdate;  */
 				         var updatedURL =  "http://localhost/Main?checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
 				      
 				        // 페이지 새로고침
 				        window.location.href = updatedURL;
 				    }
-				
-			
-				</script>
 
+		</script>
 
 
 
@@ -414,7 +406,7 @@
 						<br>
 					
 				
-   					  <script type="text/javascript">
+			 	 <script type="text/javascript">
    					  		
    					  // 중복파라미터를 자동으로 제거 
 	   					 function removeDuplicateParams(url) {
@@ -459,7 +451,7 @@
 						            	hbedtype.push(values2[i].value);
 						            }
 						        }
-						
+	
 						        var values3 = document.getElementsByName("tmino[]");
 						        var hcomfort = [];
 						        
@@ -468,44 +460,22 @@
 						            	hcomfort.push(values3[i].value);
 						            }
 						        }
-						         
-						      /*    if (htype.length === 0) {
-						             htype.push('null');
-						         }
-						         if (hbedtype.length === 0) {
-						             hbedtype.push('null');
-						         }
-						         if (hcomfort.length === 0) {
-						             hcomfort.push('null');
-						             
-					             
-						             
-						         } */
-						              
+
+						        
 						         /* 선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침 */
 						            addDataToURL(htype, hbedtype, hcomfort, hpeople);
-						         // 중복 파라미터 제거 후 업데이트된 URL 생성
+						         
 							       
 						          var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
 						     	  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
+						     	  
 						    }  
-						                      
-						     /*   var url = 
-						    	  "&htype=" + encodeURIComponent(htype.join(',')) +
-				                  "&hbedtype=" + encodeURIComponent(hbedtype.join(',')) +
-				                  "&hcomfort=" + encodeURIComponent(hcomfort.join(',')) + 
-				                  "&hpeople=" + encodeURIComponent(hpeople)
-						       	  
-						              
-						     	  window.location.href = url; */  
-						       
-						       
-						       
+ 
 						   	<!--  선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침하는 함수 -->
-						     	   function addDataToURL(htype, hbedtype, hcomfort, hpeople) {
+						     	    function addDataToURL(htype, hbedtype, hcomfort, hpeople) {
 						     		   
 						     		  var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
-						     		  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
+						     		  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴 
 						       
 							   
 						     		  // 현재 페이지 URL 가져오기
@@ -516,116 +486,61 @@
 								        
 								        
 								        
-								        var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText);
-								        // 각 파라미터에 대한 값을 할당하여 URL에 추가
-								        if (htype.length > 0 && htype[0] !== "null") {
+							 	        var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText);
+							 	        
+							 	        
+							 	       htype = htype.map(function(value) {
+							 	            return value.trim();
+							 	        });
+
+							 	        hbedtype = hbedtype.map(function(value) {
+							 	            return value.trim();
+							 	        });
+
+							 	        hcomfort = hcomfort.map(function(value) {
+							 	            return value.trim();
+							 	        });
+							 	        
+							 	       // 각 변수가 빈 문자열이 아니면 encodeURIComponent 적용
+							 	        var htypeParam = htype.length > 0 ? encodeURIComponent(htype.join(',')) : "";
+							 	        var hbedtypeParam = hbedtype.length > 0 ? encodeURIComponent(hbedtype.join(',')) : "";
+							 	        var hcomfortParam = hcomfort.length > 0 ? encodeURIComponent(hcomfort.join(',')) : "";
+							 	        var hpeopleParam = hpeople !== null && hpeople !== "" ? encodeURIComponent(hpeople) : "";
+
+							 	        // 각 파라미터에 대한 값을 할당하여 URL에 추가
+							 	        updatedURL += "&htype=" + htypeParam;
+							 	        updatedURL += "&hbedtype=" + hbedtypeParam;
+							 	        updatedURL += "&hcomfort=" + hcomfortParam;
+							 	        updatedURL += "&hpeople=" + hpeopleParam;
+
+							 	        // 페이지 새로고침
+							 	        window.location.href = updatedURL;
+							 	    }
+							 	
+							 	        
+								/*         // 각 파라미터에 대한 값을 할당하여 URL에 추가
+								        if (htype.length > 0 ) {
 								            updatedURL +="&htype=" + encodeURIComponent(htype.join(','));
 								        }
-								        if (hbedtype.length > 0 && hbedtype[0] !== "null") {
+								        if (hbedtype.length > 0 ) {
 								            updatedURL +="&hbedtype=" + encodeURIComponent(hbedtype.join(','));
 								        }
-								        if (hcomfort.length > 0 && hcomfort[0] !== "null") {
+								        if (hcomfort.length > 0 ) {
 								            updatedURL += "&hcomfort=" + encodeURIComponent(hcomfort.join(','));
 								        }
-								        if (hpeople.length > 0 && hcomfort[0] !== "null") {
+								        if (hpeople.length > 0 ) {
 								            updatedURL += "&hpeople=" + encodeURIComponent(hpeople);
 								        }  
-								        
-								      /*   updatedURL +=
-								        "?htype=" + encodeURIComponent(htype.join(',')) + 
-								        "&hbedtype=" + encodeURIComponent(hbedtype.join(',')) +
-								        "&hcomfort=" + encodeURIComponent(hcomfort.join(',')) + 
-								        "&hpeople=" + encodeURIComponent(hpeople)
-								         */
-								        
-								     
 								        // 페이지 새로고침
 								        window.location.href = updatedURL;
 								    
-								    
-								    }
-							    
-								</script> <!--  1차  -->
-						
-						
-						
-					 <!--  2차  -->
-<!-- 	<script type="text/javascript">
-    function removeDuplicateParams(url) {
-        var urlParts = url.split('?');
-        if (urlParts.length > 1) {
-            var baseUrl = urlParts[0];
-            var queryParams = urlParts[1].split('&');
-            var paramObj = {};
+								    }  */
+		     	  </script> 
 
-            queryParams.forEach(function(param) {
-                var paramName = param.split('=')[0];
-                if (!paramObj[paramName]) {
-                    paramObj[paramName] = true;
-                }
-            });
-
-            var filteredParams = Object.keys(paramObj).map(function(paramName) {
-                return paramName;
-            });
-
-            return baseUrl + '?' + filteredParams.join('&');
-        }
-
-        return url;
-    }
-
-    function comfort() {
-        var values1 = document.getElementsByName("grade[]");
-        var htype = [];
-
-        for (var i = 0; i < values1.length; i++) {
-            if (values1[i].checked) {
-                htype.push(values1[i].value);
-            }
-        }
-
-        var values2 = document.getElementsByName("bedtype[]");
-        var hbedtype = [];
-
-        for (var i = 0; i < values2.length; i++) {
-            if (values2[i].checked) {
-                hbedtype.push(values2[i].value);
-            }
-        }
-
-        var values3 = document.getElementsByName("tmino[]");
-        var hcomfort = [];
-
-        for (var i = 0; i < values3.length; i++) {
-            if (values3[i].checked) {
-                hcomfort.push(values3[i].value);
-            }
-        }
-
-        var hpeople = document.querySelector('.cnt_people span').textContent;
-        var currentURL = window.location.href;
-        
-        // 중복 파라미터 제거 후 업데이트된 URL 생성
-        var updatedURL = currentURL +
-            "?htype=" + encodeURIComponent(htype.join(',')) +
-            "&hbedtype=" + encodeURIComponent(hbedtype.join(',')) +
-            "&hcomfort=" + encodeURIComponent(hcomfort.join(',')) +
-            "&hpeople=" + encodeURIComponent(hpeople);
-
-        updatedURL = removeDuplicateParams(updatedURL);
-
-        // 페이지 새로고침
-        window.location.href = updatedURL;
-    }
-</script>  --> <!-- 2차끝 -->
-   					 
-   					 
-
-					</div>
-				</div>
-				<!-- //Filter -->
-			</aside>
+			</div>
+		</div>
+		<!-- //Filter -->
+	</aside>
 
 
 
