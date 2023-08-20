@@ -539,3 +539,88 @@ img {
 	line-height: 48px;
 	background: none;
 }
+
+/* ==== 리스트 상세 ==== */
+
+.resDetail {
+	background: #fff;
+}
+
+.resDetail .info {
+	position: relative;
+	height: auto;
+	padding: 0 0 20px 0;
+	border-bottom: none;
+	background: none;
+	background-image: none !important;
+}
+
+.resDetail .info div {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: auto;
+	padding: 0;
+	border-bottom: none;
+	background: #fff;
+	text-align: left;
+}
+
+.resDetail .info div i {
+	display: inline-block;
+	margin-bottom: 9px;
+	padding: 2px;
+	font-size: 16px;
+	color: #fff;
+	background: rgb(255, 43, 92);
+	font-style: normal;
+}
+
+.resDetail .info div strong {
+	display: block;
+	margin-bottom: 9px;
+	font-size: 24px;
+	color: rgba(0, 0, 0, 0.87);
+	font-weight: normal;
+}
+
+.resDetail .info div span {
+	display: block;
+	font-size: 20px;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+/* 상세 내용 */
+.resDetail section {
+	padding: 0;
+	background: #fff;
+}
+
+.resDetail div {
+	padding: 15px px 0;
+	border: none;
+}
+
+.reserve_detail div p {
+	position: relative;
+	margin: 0 0 13px 0;
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.87);
+	text-align: left;
+}
+.reserve_detail div p:last-child {
+    margin-bottom: 0;
+}
+
+.reserve_detail div p strong {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 150px;
+    font-weight: normal;
+    line-height: normal;
+    color: rgba(0, 0, 0, 0.56);
+}

@@ -1,5 +1,3 @@
-<%@page import="java.time.temporal.ChronoUnit"%>
-<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -45,7 +43,7 @@
 		<!-- Sub Top -->
 		<div class="sub_top_wrap">
 			<div class="sub_top">
-				<h2>예약 내역</h2>
+				<h2>내정보</h2>
 			</div>
 		</div>
 		<!-- //Sub Top -->
@@ -106,7 +104,7 @@
 															</c:when>
 															<c:otherwise>
 																<span> 체크인: ${resConfirmed.checkindate}
-																	${resConfirmed.checkintime} • ${daysDifference}일</span>
+																	${resConfirmed.checkintime} • ${daysDifference}박</span>
 															</c:otherwise>
 														</c:choose> <b>예약 상세 &gt;</b></a>
 												</div></li>
@@ -156,7 +154,7 @@
 															</c:when>
 															<c:otherwise>
 																<span> ${resCompleted.checkindate} ~
-																	${resCompleted.checkoutdate} • ${daysDifference}일</span>
+																	${resCompleted.checkoutdate} • ${daysDifference}박</span>
 															</c:otherwise>
 														</c:choose> <b>예약 상세 &gt;</b></a>
 													<p class="btn_re">
@@ -206,7 +204,7 @@
 															</c:when>
 															<c:otherwise>
 																<span> ${resCancellation.checkindate} ~
-																	${resCancellation.checkoutdate} • ${daysDifference}일 </span>
+																	${resCancellation.checkoutdate} • ${daysDifference}박</span>
 															</c:otherwise>
 														</c:choose> <b>예약 상세 &gt;</b></a>
 													<p class="btn_re">
@@ -236,7 +234,6 @@
 			</div>
 			<!-- Bg Dimm -->
 			<div class="bgDimm" onclick="closeLayer();">&nbsp;</div>
-
 		</div>
 		<footer> </footer>
 	</div>
