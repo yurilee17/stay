@@ -1,6 +1,8 @@
 package com.care.stay.member;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -228,18 +230,69 @@ public class MemberService {
 //		System.out.println(resConfirmeds);
 //		System.out.println(resCompleteds);
 //		System.out.println(resCancellations);
-		
+
 		model.addAttribute("resConfirmeds", resConfirmeds);
 		model.addAttribute("resCompleteds", resCompleteds);
 		model.addAttribute("resCancellations", resCancellations);
 	}
 
-	// 예약 내역 리스트
-		public void reserDeleteProc(int no) {
-			
-			reservationMapper.delete(no);
-			
-		}
+	// 예약 내역 삭제
+	public void reserDeleteProc(int no) {
 
+		reservationMapper.delete(no);
+
+	}
+
+	// 예약 내역 리스트
+	public void resDetail(int no, Model model) {
+		ReservationDTO detail = reservationMapper.resDetail(no);
+
+		if (detail.getStatus() != "예약확정") {
+			// 이름 * 처리
+			String name = detail.getName();
+			int middle = name.length() / 2;
+			String firstHalf;
+			String secondHalf;
+			String maskedName;
+			if (name.length() <= 4) {
+				firstHalf = name.substring(0, (int) Math.floor(middle));
+				secondHalf = name.substring((int) Math.ceil(middle + 1));
+				maskedName = firstHalf + "*" + secondHalf;
+			} else {
+				firstHalf = name.substring(0, (int) Math.floor(middle - 1));
+				secondHalf = name.substring((int) Math.ceil(middle + 2));
+
+				maskedName = firstHalf + "***" + secondHalf;
+			}
+
+			detail.setName(maskedName);
+
+			// 번호 * 처리
+			String mobile = detail.getMobile();
+			String maskedName2;
+			String firstHalf2;
+			firstHalf2 = mobile.substring(0, mobile.length() - 4);
+			maskedName2 = firstHalf2 + "****";
+
+			detail.setMobile(maskedName2);
+
+		}
+		
+		// 금액에 천단위로 쉼표를 추가
+		int number = detail.getPrice();
+		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+		String formattedNumber = numberFormat.format(number);
+
+		model.addAttribute("detail", detail);
+		model.addAttribute("price", formattedNumber);
+
+	}
+	
+	// 예약 내역 삭제
+		public void resUpdate(int no) {
+
+			reservationMapper.resUpdate(no);
+
+		}
 
 }

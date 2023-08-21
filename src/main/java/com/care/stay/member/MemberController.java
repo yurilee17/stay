@@ -279,7 +279,6 @@ public class MemberController {
 
 	@GetMapping("reserDeleteProc")
 	public String reserDeleteProc(@RequestParam int no) {
-		System.out.println(no);
 		if (session.getAttribute("id") != null) {
 			service.reserDeleteProc(no);
 			return "redirect:reservationList";
@@ -289,9 +288,21 @@ public class MemberController {
 	}
 	
 	@GetMapping("resDetail")
-	public String resDetail() {
+	public String resDetail(@RequestParam int no, Model model) {
 		if (session.getAttribute("id") != null) {
+			service.resDetail(no, model);
 			return "member/resDetail";
+		} else {
+			return "member/index";
+		}
+	}
+	
+	@GetMapping("resUpdate")
+	public String resUpdate(@RequestParam int no, Model model) {
+		System.out.println(no +"test");
+		if (session.getAttribute("id") != null) {
+			service.resUpdate(no);
+			return "redirect:resDetail?no="+no;
 		} else {
 			return "member/index";
 		}

@@ -18,6 +18,7 @@
 		<result column="checkouttime" property="checkouttime" />
 		<result column="id" property="id" />
 		<result column="name" property="name" />
+		<result column="mobile" property="mobile" />
 		<result column="price" property="price" />
 		<result column="paymethod" property="paymethod" />
 		<result column="status" property="status" />	
@@ -57,6 +58,19 @@
 	<delete id="delete">
 		DELETE FROM reservation WHERE no=#{no}
 	</delete>
+	
+	<select id="resDetail" resultMap="ReservationDto">
+		SELECT * FROM reservation
+		WHERE
+		no=#{no}
+	</select>
+	
+	<update id="resUpdate">
+		UPDATE reservation
+		SET status='예약취소'
+		WHERE no=#{no}
+	</update>
+	
 
 </mapper>
 
