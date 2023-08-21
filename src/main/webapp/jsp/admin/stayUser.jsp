@@ -26,18 +26,11 @@
 	<div id="wrap" class="stayUser">
 		<div class="content">
 			<!-- 숙소 탭 -->
-			<div class="stay">
-				<ul class="top_nav">
-					<li><a href="${context }index">메인</a></li>
-					<li><a href="/stayUser">회원 DB 조회</a></li>
-					<li><a href="${context }stayRegister">숙소 DB 등록</a></li>
-					<li><a href="${context }stayInfo">숙소 DB 조회</a></li>
-					<li><a href="#">예약 DB 조회</a></li>
-				</ul>
-			</div>
+			<c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" />
+			<c:import url="${adminHeaderUrl}" />
 			<!-- 문구 -->
 			<h3>회원 조회</h3>
-			<!-- 회원 검색 -->
+			<!-- <!-- 회원 검색 
 			<div class="userSearch">
 				<select class="userAuth" id="userAuth"
 					onchange="selectAuth(this.value)">
@@ -58,7 +51,7 @@
 					<option value="nickname">닉네임</option>
 				</select>
 
-			</div>
+			</div> -->
 			<div clss="list">
 				<table class="userInfo">
 					<colgroup>

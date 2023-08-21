@@ -6,14 +6,14 @@ public class PensionDTO {
 	private String pcode;
 	private String pname;
 	private String pregion;
-	private String pdetailRegion;
+	private String pdetailregion;
 	private int prating;
 	private String paddress;
-	private String pdetailAddress;
+	private String pdetailaddress;
 	private String pimage;
 	private String pinfo;
-	private String pcheckInTime;
-	private String pcheckOutTime;
+	private String pcheckintime;
+	private String pcheckouttime;
 	private String ptype;
 	
 	
@@ -41,11 +41,11 @@ public class PensionDTO {
 	public void setPregion(String pregion) {
 		this.pregion = pregion;
 	}
-	public String getPdetailRegion() {
-		return pdetailRegion;
+	public String getPdetailregion() {
+		return pdetailregion;
 	}
-	public void setPdetailRegion(String pdetailRegion) {
-		this.pdetailRegion = pdetailRegion;
+	public void setPdetailregion(String pdetailregion) {
+		this.pdetailregion = pdetailregion;
 	}
 	public int getPrating() {
 		return prating;
@@ -59,11 +59,11 @@ public class PensionDTO {
 	public void setPaddress(String paddress) {
 		this.paddress = paddress;
 	}
-	public String getPdetailAddress() {
-		return pdetailAddress;
+	public String getPdetailaddress() {
+		return pdetailaddress;
 	}
-	public void setPdetailAddress(String pdetailAddress) {
-		this.pdetailAddress = pdetailAddress;
+	public void setPdetailaddress(String pdetailaddress) {
+		this.pdetailaddress = pdetailaddress;
 	}
 	public String getPimage() {
 		return pimage;
@@ -77,17 +77,17 @@ public class PensionDTO {
 	public void setPinfo(String pinfo) {
 		this.pinfo = pinfo;
 	}
-	public String getPcheckInTime() {
-		return pcheckInTime;
+	public String getPcheckintime() {
+		return pcheckintime;
 	}
-	public void setPcheckInTime(String pcheckInTime) {
-		this.pcheckInTime = pcheckInTime;
+	public void setPcheckintime(String pcheckintime) {
+		this.pcheckintime = pcheckintime;
 	}
-	public String getPcheckOutTime() {
-		return pcheckOutTime;
+	public String getPcheckouttime() {
+		return pcheckouttime;
 	}
-	public void setPcheckOutTime(String pcheckOutTime) {
-		this.pcheckOutTime = pcheckOutTime;
+	public void setPcheckouttime(String pcheckouttime) {
+		this.pcheckouttime = pcheckouttime;
 	}
 	public String getPtype() {
 		return ptype;
@@ -95,4 +95,5 @@ public class PensionDTO {
 	public void setPtype(String ptype) {
 		this.ptype = ptype;
 	}
+
 }

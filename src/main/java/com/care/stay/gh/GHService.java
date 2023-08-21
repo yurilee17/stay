@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.stay.common.AdminPageService;
+import com.care.stay.motel.MotelRoomDTO;
+
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -29,13 +31,13 @@ public class GHService {
 		GHDTO gh = new GHDTO();
 		gh.setGname(multi.getParameter("name"));
 		gh.setGregion(multi.getParameter("region"));
-		gh.setGdetailRegion(multi.getParameter("detailRegion"));
+		gh.setGdetailregion(multi.getParameter("detailregion"));
 		gh.setGaddress(multi.getParameter("address"));
-		gh.setGdetailAddress(multi.getParameter("detailAddress"));
+		gh.setGdetailaddress(multi.getParameter("detailaddress"));
 		gh.setGinfo(multi.getParameter("info"));
 		
-		gh.setGcheckInTime(multi.getParameter("gcheckinTime"));
-		gh.setGcheckOutTime(multi.getParameter("gcheckoutTime"));
+		gh.setGcheckintime(multi.getParameter("gcheckintime"));
+		gh.setGcheckouttime(multi.getParameter("gcheckouttime"));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -47,16 +49,12 @@ public class GHService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			gh.setGimage(fileName);
-			
-			System.out.println(fileName);
-			System.out.println(multi.getParameter("info"));
-			System.out.println();
-			
+
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\gh\\";
+			gh.setGimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
-			
+
 			try {
 				// 서버가 저장한 업로드 파일은 임시저장경로에 있는데 개발자가 원하는 경로로 이동
 				file.transferTo(save);
@@ -100,10 +98,10 @@ public class GHService {
         
         ghroom.setNo(no);
         ghroom.setGcode(gCode);
-        ghroom.setGroomCode(String.valueOf(roomcount));
-        ghroom.setGroomName(multi.getParameter("roomname"));
-        ghroom.setGbedType(multi.getParameter("gbedtype"));
-        ghroom.setGroomNumber(getIntParameter(multi, "roomnumber"));
+        ghroom.setGroomcode(getIntParameter(multi, "roomcount"));
+        ghroom.setGroomname(multi.getParameter("roomname"));
+        ghroom.setGbedtype(multi.getParameter("gbedtype"));
+        ghroom.setGroomnumber(getIntParameter(multi, "roomnumber"));
         ghroom.setGprice(getIntParameter(multi, "gprice"));
         ghroom.setGpeople(getIntParameter(multi, "gpeople"));
         
@@ -134,7 +132,7 @@ public class GHService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		ghroom.setGroomImage("");
+		ghroom.setGroomimage("");
 		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
@@ -142,10 +140,11 @@ public class GHService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			ghroom.setGroomImage(fileName);
+
 
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\gh\\room\\";
+			ghroom.setGroomimage(fileLocation + fileName);			
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -186,6 +185,21 @@ public class GHService {
 			return null;
 
 		return gh;
+	}
+	
+	public GHRoomDTO roomContent(String rc) {
+		int groomcode = 0;
+		try{
+			groomcode = Integer.parseInt(rc);
+		}catch(Exception e){
+			return null;
+		}
+		
+		GHRoomDTO ghroom = ghMapper.roomContent(groomcode);
+		if(ghroom == null)
+			return null;
+		return ghroom;
+		
 	}
 
 	public List<GHRoomDTO> stayRoomContent(String n) {

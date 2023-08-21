@@ -4,10 +4,10 @@ public class CampingRoomDTO {
 	
 	private int no;
 	private String ccode;
-	private String croomCode;
-	private String croomName;
-	private String croomImage;
-	private int croomNumber;
+	private int croomcode;
+	private String croomname;
+	private String croomimage;
+	private int croomnumber;
 	private String cprice;
 	private int cpeople;
 	private String ccomfort;
@@ -25,29 +25,29 @@ public class CampingRoomDTO {
 	public void setCcode(String ccode) {
 		this.ccode = ccode;
 	}
-	public String getCroomCode() {
-		return croomCode;
+	public int getCroomcode() {
+		return croomcode;
 	}
-	public void setCroomCode(String croomCode) {
-		this.croomCode = croomCode;
+	public void setCroomcode(int croomcode) {
+		this.croomcode = croomcode;
 	}
-	public String getCroomName() {
-		return croomName;
+	public String getCroomname() {
+		return croomname;
 	}
-	public void setCroomName(String croomName) {
-		this.croomName = croomName;
+	public void setCroomname(String croomname) {
+		this.croomname = croomname;
 	}
-	public String getCroomImage() {
-		return croomImage;
+	public String getCroomimage() {
+		return croomimage;
 	}
-	public void setCroomImage(String croomImage) {
-		this.croomImage = croomImage;
+	public void setCroomimage(String croomimage) {
+		this.croomimage = croomimage;
 	}
-	public int getCroomNumber() {
-		return croomNumber;
+	public int getCroomnumber() {
+		return croomnumber;
 	}
-	public void setCroomNumber(int croomNumber) {
-		this.croomNumber = croomNumber;
+	public void setCroomnumber(int croomnumber) {
+		this.croomnumber = croomnumber;
 	}
 	public String getCprice() {
 		return cprice;

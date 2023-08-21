@@ -4,10 +4,10 @@ public class PensionRoomDTO {
 	
 	private int no;
 	private String pcode;
-	private String proomCode;
-	private String proomName;
-	private String proomImage;
-	private int proomNumber;
+	private int proomcode;
+	private String proomname;
+	private String proomimage;
+	private int proomnumber;
 	private String pprice;
 	private int ppeople;
 	private String pcomfort;
@@ -25,29 +25,29 @@ public class PensionRoomDTO {
 	public void setPcode(String pcode) {
 		this.pcode = pcode;
 	}
-	public String getProomCode() {
-		return proomCode;
+	public int getProomcode() {
+		return proomcode;
 	}
-	public void setProomCode(String proomCode) {
-		this.proomCode = proomCode;
+	public void setProomcode(int proomcode) {
+		this.proomcode = proomcode;
 	}
-	public String getProomName() {
-		return proomName;
+	public String getProomname() {
+		return proomname;
 	}
-	public void setProomName(String proomName) {
-		this.proomName = proomName;
+	public void setProomname(String proomname) {
+		this.proomname = proomname;
 	}
-	public String getProomImage() {
-		return proomImage;
+	public String getProomimage() {
+		return proomimage;
 	}
-	public void setProomImage(String proomImage) {
-		this.proomImage = proomImage;
+	public void setProomimage(String proomimage) {
+		this.proomimage = proomimage;
 	}
-	public int getProomNumber() {
-		return proomNumber;
+	public int getProomnumber() {
+		return proomnumber;
 	}
-	public void setProomNumber(int proomNumber) {
-		this.proomNumber = proomNumber;
+	public void setProomnumber(int proomnumber) {
+		this.proomnumber = proomnumber;
 	}
 	public String getPprice() {
 		return pprice;

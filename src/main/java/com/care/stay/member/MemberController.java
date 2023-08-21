@@ -1,5 +1,7 @@
 package com.care.stay.member;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -65,7 +68,7 @@ public class MemberController {
 	@RequestMapping("logout")
 	public String logout() {
 		session.invalidate();
-		return "forward:index";
+		return "redirect:index";
 	}
 
 	/* ======================== 문자 인증 ======================== */
@@ -145,12 +148,12 @@ public class MemberController {
 
 	}
 
-	// 카카오톡 연결 끊기
-	@GetMapping("kakaoLogout")
-	public String kakaoLogout() {
-		kakao.unLink();
-		return "redirect:index";
-	}
+//	// 카카오톡 연결 끊기
+//	@GetMapping("kakaoLogout")
+//	public String kakaoLogout() {
+//		kakao.unLink();
+//		return "redirect:index";
+//	}
 
 	// 비밀번호 재설정
 	@RequestMapping("passwdResetStart")
@@ -177,17 +180,122 @@ public class MemberController {
 		return "member/passwdResetNew";
 	}
 
-	// 비밀번호 재설정 확인
+	// 비밀번호 재설정 진행
 	@PostMapping("passwdResetProc")
 	public String passwdResetProc(MemberDTO member, Model model) {
 		service.passwdReset(member);
 		return "redirect:login";
 	}
 
-	// test 헤더
-	@RequestMapping("test")
-	public String test() {
-		return "default/test";
+	/* ======================== 내정보 ======================== */
+
+	@GetMapping("myPage")
+	public String myPage() {
+		if (session.getAttribute("id") != null) {
+			return "member/myPage";
+		} else {
+			return "member/index";
+		}
 	}
+
+	@GetMapping("myPagePwCh")
+	public String myPagePwCh() {
+		if (session.getAttribute("id") != null) {
+			return "member/myPagePwCh";
+		} else {
+			return "member/index";
+		}
+	}
+
+	@GetMapping("withdraw")
+	public String withdraw() {
+		if (session.getAttribute("id") != null) {
+			return "member/withdraw";
+		} else {
+			return "member/index";
+		}
+	}
+
+	// 닉네임 수정
+	@PostMapping("updateNicknameProc")
+	public String updateNicknameProc(MemberDTO member, Model model) {
+		service.updateNickname(member);
+		return "redirect:myPage";
+	}
+
+	// 이름 수정
+	@PostMapping("updateNameProc")
+	public String updateNameProc(MemberDTO member, Model model) {
+		service.updateName(member);
+		return "redirect:myPage";
+	}
+
+	// 휴대폰 번호 수정
+	@PostMapping("updateMobileProc")
+	public String updateMobile(MemberDTO member, Model model) {
+		System.out.println(member.getId() + member.getMobile());
+		service.updateMobile(member);
+		return "redirect:myPage";
+	}
+
+	// 기존 비밀번호 확인
+	@ResponseBody
+	@PostMapping(value = "pwCon", produces = "text/plain; charset=utf-8")
+	public String pwCon(@RequestBody Map<String, String> reqData) {
+		System.out.println(reqData.get("id") + reqData.get("originalPw"));
+		return service.pwCon(reqData.get("id"), reqData.get("originalPw"));
+
+	}
+
+	// 비밀번호 수정
+	@PostMapping("newPasswdProc")
+	public String newPasswdProc(MemberDTO member, Model model) {
+		service.passwdReset(member);
+		return "redirect:myPage";
+	}
+
+	// 탈퇴하기
+	@PostMapping("withdrawProc")
+	public String withdrawProc(MemberDTO member, Model model) {
+		System.out.println(member.getPassword() + member.getId());
+		service.withdraw(member);
+		session.invalidate();
+		return "redirect:login";
+	}
+
+	/* ======================== 예약 내역 ======================== */
+
+	// 예약 내역 리스트
+	@GetMapping("reservationList")
+	public String reservationList(Model model) {
+		if (session.getAttribute("id") != null) {
+			String userId = (String) session.getAttribute("id");
+			service.reservationList(userId, model);
+			return "member/reservationList";
+		} else {
+			return "member/index";
+		}
+	}
+
+	@GetMapping("reserDeleteProc")
+	public String reserDeleteProc(@RequestParam int no) {
+		System.out.println(no);
+		if (session.getAttribute("id") != null) {
+			service.reserDeleteProc(no);
+			return "redirect:reservationList";
+		} else {
+			return "member/index";
+		}
+	}
+	
+	@GetMapping("resDetail")
+	public String resDetail() {
+		if (session.getAttribute("id") != null) {
+			return "member/resDetail";
+		} else {
+			return "member/index";
+		}
+	}
+	
 
 }
