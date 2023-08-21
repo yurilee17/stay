@@ -81,7 +81,7 @@ public class AdminStayController {
 //	public String stayDetailRegister(
 //			@RequestParam(value="no", required = false)String n, 
 //			Model model) {
-//		
+//			
 //		MotelDTO motel = service.stayContent(n);
 //		if(motel == null)
 //			return "redirect:stayInfo";

@@ -22,9 +22,6 @@
 		<result column="hbedtype" property="hbedtype"/>
 	</resultMap> 
 
-	<select id="count">
-	  	SELECT count(no) FROM hotel
-	</select>
 
 <!-- 	<select id="hotellist" resultMap="HotelDto">  
 		SELECT BBB.* 

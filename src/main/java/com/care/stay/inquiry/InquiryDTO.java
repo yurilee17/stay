@@ -1,15 +1,16 @@
 package com.care.stay.inquiry;
 
 public class InquiryDTO {
-	private String room_type;
+	private String category_type;
 	private String name;
-	private String num;
+	private String phone_number;
+	private String email;
 	private String content;
-	public String getRoom_type() {
-		return room_type;
+	public String getCategory_type() {
+		return category_type;
 	}
-	public void setRoom_type(String roomType) {
-		this.room_type = room_type;
+	public void setCategory_type(String category_type) {
+		this.category_type = category_type;
 	}
 	public String getName() {
 		return name;
@@ -17,11 +18,17 @@ public class InquiryDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getNum() {
-		return num;
+	public String getPhone_number() {
+		return phone_number;
 	}
-	public void setNum(String num) {
-		this.num = num;
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getContent() {
 		return content;
@@ -29,6 +36,7 @@ public class InquiryDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 	
 		
 }
