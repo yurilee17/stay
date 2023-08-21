@@ -367,7 +367,7 @@ public class HotelService {
 	  
 	  
 	  // 체크박스 선택시 조건에 맞게 호텔리스트 나오게 
-/*	 // public void MainCheck(String selectedText, String checkindate, String checkoutdate,  String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
+	  // public void MainCheck(String selectedText, String checkindate, String checkoutdate,  String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
 	  	public void MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople,  String cp,  Model model) { 
 
 		  System.out.println("----여기는 서비스 MainCheck -----" );
@@ -406,7 +406,7 @@ public class HotelService {
 	  model.addAttribute("result", result);
 	  model.addAttribute("currentPage", currentPage);
 	  
-	  } */
+	  } 
 	  
 	  
 	  // 나눠서 처리하기!!!
@@ -414,8 +414,8 @@ public class HotelService {
 	  
 	  // htype!!
 	
-	 // public void typeList(String selectedText, String htype, String cp,  Model model) { 
-	  public void typeList(String selectedText, ArrayList<String> htype, String cp,  Model model) { 
+	 // public void typeList(String selectedText, List<String> htype, String cp,  Model model) { 
+	/* public void typeList(String selectedText, String htype, String cp,  Model model) { 
 
 	  int currentPage = 1; 
 	  
@@ -434,26 +434,26 @@ public class HotelService {
 	  String url = "hotellist?currentPage=";
 	  String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
 	  
+	  
+	 
+	  if(htype != null ) {  
+		  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck_htype(selectedText, htype, begin, end);
+		  model.addAttribute("hotels", hotels);
+		  model.addAttribute("result", result);
+		  model.addAttribute("currentPage", currentPage);
+		  }
+
 	  System.out.println("----여기는 서비스 Main.typeList -----" );
 	  System.out.println("service typeList에서 " + selectedText );
 	  System.out.println("service typeList에서 pageBlock " + pageBlock);
 	  System.out.println("service typeList에서 totalCount " + totalCount);
 	  System.out.println("service typeList에서 htype " + htype);
 	  System.out.println("----여기는 서비스 Main.typeList  // -----" );
-	  
-	  
-	  if(htype != null ) {
-		  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck_htype(selectedText,htype, begin, end);
-		  model.addAttribute("hotels", hotels);
-		  model.addAttribute("result", result);
-		  model.addAttribute("currentPage", currentPage);
-		  }
-	  
 	  } 
 	  
-	  
-	//  public void bedtypeList(String selectedText, String hbedtype, String cp,  Model model) { 
-	  	public void bedtypeList(String selectedText, ArrayList<String> hbedtype, String cp,  Model model) { 
+	 
+	  	//public void bedtypeList(String selectedText, List<String> hbedtype, String cp,  Model model) { 
+	  	public void bedtypeList(String selectedText, String hbedtype, String cp,  Model model) { 
 		 
 		  int currentPage = 1; 
 		  
@@ -481,7 +481,8 @@ public class HotelService {
 		  
 		  
 		  if(hbedtype != null ) {
-			  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck_hbedtype(selectedText,hbedtype, begin, end);
+			  
+			  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck_hbedtype(selectedText, hbedtype, begin, end);
 			  model.addAttribute("hotels", hotels);
 			  model.addAttribute("result", result);
 			  model.addAttribute("currentPage", currentPage);
@@ -489,7 +490,8 @@ public class HotelService {
 		  } 
 		  
 	  
-	  public void comfortList(String selectedText, ArrayList<String> hcomfort, String cp,  Model model) { 
+	  	//public void comfortList(String selectedText, List<String> hcomfort, String cp,  Model model) { 
+	  	public void comfortList(String selectedText, String hcomfort , String cp,  Model model) { 
 
 		  int currentPage = 1; 
 		  
@@ -515,7 +517,7 @@ public class HotelService {
 		  System.out.println("service bedtypeList에서 hcomfort " + hcomfort);
 		  System.out.println("----여기는 서비스 Main.comfortList  // -----" );
 		  
-		  
+
 		  if(hcomfort != null ) {
 			  ArrayList<HotelDTO> hotels = hotelMapper.MainCheck_hcomfort(selectedText,hcomfort, begin, end);
 			  model.addAttribute("hotels", hotels);
@@ -548,6 +550,11 @@ public class HotelService {
 		  String url = "hotellist?currentPage=";
 		  String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
 		  
+		  
+		  
+		  
+		  
+		  
 		  int hpeople=2;
 		  
 		  if (hpeopleString != null && !hpeopleString.isEmpty()) {
@@ -569,18 +576,7 @@ public class HotelService {
 		  System.out.println("service bedtypeList에서 hpeople " + hpeople);
 		  System.out.println("----여기는 서비스 Main.MainCheck_hpeople  // -----" );
 		  
-		  
-		/*  if(hpeople.length() > 0 ) {
-			  if (hpeople != null && !hpeople.isEmpty()) {
-			  ArrayList<HotelRoomDTO> hotels = hotelMapper.MainCheck_hpeople(selectedText,hpeople, begin, end);
-			  model.addAttribute("hotels", hotels);
-			  model.addAttribute("result", result);
-			  model.addAttribute("currentPage", currentPage);  
-			  */
-			  
-		  
-		
-		  } 
+		  } */
 	  
 	  
 	  
