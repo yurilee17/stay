@@ -354,11 +354,7 @@
 	<select id="stayDetailRegister" resultMap="hotelDto">
 		SELECT * FROM hotel WHERE no=#{no}
 	</select>
-	
-	<select id="count">
-	  	SELECT count(no) FROM hotel
-	</select>
-	
+
 	<select id="hotelroomcount">
 		SELECT COALESCE(nvl(max(hroomcode),0) + 1, 0) FROM hotelroom
 	</select>	

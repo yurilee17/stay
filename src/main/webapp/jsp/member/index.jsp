@@ -23,7 +23,6 @@
 
 <!-- Wrap -->
 <div class="wrap main_wrap show">
-
     <!-- Header -->
     
 	<c:import url="/header"/>

@@ -786,20 +786,7 @@ function pop_licence(){
 	window.open(url, "communicationViewPopup", "width=750, height=700;");
 }
 
-/* GNB 배경 */
-function chk_gnb(){
-	var scroll_val = $(window).scrollTop();
-	if (scroll_val == 0){
-		$('header').removeClass('scroll');
-	}else if (scroll_val > 400){
-		$('header').addClass('scroll');
-		$('.btn_go_top').fadeIn(200);
-	}else{
-		$('header').addClass('scroll');
-		$('.btn_go_top').fadeOut(200);
-	}
-}
-chk_gnb();
+
 
 /* Jquery */
 $(function(){
@@ -880,10 +867,7 @@ $(function(){
 		}
 	});
 
-	/* 헤더 스크롤 효과 */
-	$(window).scroll(function(){
-		chk_gnb();
-	});
+
 
 	/* 필터 접기,모두 보기 버튼 효과 */
 	$('.filter_wrap section strong button').each(function(){
