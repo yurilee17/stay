@@ -17,5 +17,6 @@ public interface GHMapper {
 	GHDTO stayDetailREgister(int no);
 	void staydetailregisterProc(GHRoomDTO ghroom);
 	int stayCountGuestHouse();	
-	List<GHRoomDTO> stayRoomContent(String n);	
+	List<GHRoomDTO> stayRoomContent(String n);
+	GHRoomDTO roomContent(int groomcode);	
 }

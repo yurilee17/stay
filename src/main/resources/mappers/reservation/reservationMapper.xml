@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.care.stay.reservation.ReservationMapper">
+	<resultMap type="com.care.stay.reservation.ReservationDTO" id="ReservationDto">
+		<id column="no" property="no"/>
+		<result column="stayno" property="stayno" />
+		<result column="stayname" property="stayname" />
+		<result column="roomname" property="roomname" />
+		<result column="code" property="code" />
+		<result column="roomcode" property="roomcode" />
+		<result column="roomimage" property="roomimage" />
+		<result column="checkindate" property="checkindate" />
+		<result column="checkoutdate" property="checkoutdate" />
+		<result column="checkintime" property="checkintime" />
+		<result column="checkouttime" property="checkouttime" />
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="price" property="price" />
+		<result column="paymethod" property="paymethod" />
+		<result column="status" property="status" />	
+	</resultMap>
+	
+	<select id="reservationcount">
+		SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM reservation
+	</select>
+
+	<insert id="reservationProc" parameterType="com.care.stay.reservation.ReservationDTO">
+		<selectKey order="BEFORE" keyProperty="no" resultType="int">
+			SELECT nvl(max(no),0) + 1 FROM reservation
+		</selectKey>
+		INSERT INTO reservation (no, stayno, stayname, roomname, code, roomcode, roomimage, checkindate, checkoutdate, checkouttime, id, name, price, paymethod, status)
+		VALUES(#{no}, #{stayno}, #{stayname}, #{roomname}, #{code}, #{roomcode}, #{roomimage}, #{checkindate}, #{checkoutdate}, #{checkouttime}, #{id}, #{name}, #{price}, #{paymethod}, #{status})
+	</insert>
+
+</mapper>

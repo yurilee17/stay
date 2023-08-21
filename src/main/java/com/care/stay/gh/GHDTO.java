@@ -6,14 +6,14 @@ public class GHDTO {
 	private String gcode;
 	private String gname;
 	private String gregion;
-	private String gdetailRegion;
+	private String gdetailregion;
 	private int grating;
 	private String gaddress;
-	private String gdetailAddress;
+	private String gdetailaddress;
 	private String gimage;
 	private String ginfo;
-	private String gcheckInTime;
-	private String gcheckOutTime;
+	private String gcheckintime;
+	private String gcheckouttime;
 	
 	public int getNo() {
 		return no;
@@ -39,11 +39,11 @@ public class GHDTO {
 	public void setGregion(String gregion) {
 		this.gregion = gregion;
 	}
-	public String getGdetailRegion() {
-		return gdetailRegion;
+	public String getGdetailregion() {
+		return gdetailregion;
 	}
-	public void setGdetailRegion(String gdetailRegion) {
-		this.gdetailRegion = gdetailRegion;
+	public void setGdetailregion(String gdetailregion) {
+		this.gdetailregion = gdetailregion;
 	}
 	public int getGrating() {
 		return grating;
@@ -57,11 +57,11 @@ public class GHDTO {
 	public void setGaddress(String gaddress) {
 		this.gaddress = gaddress;
 	}
-	public String getGdetailAddress() {
-		return gdetailAddress;
+	public String getGdetailaddress() {
+		return gdetailaddress;
 	}
-	public void setGdetailAddress(String gdetailAddress) {
-		this.gdetailAddress = gdetailAddress;
+	public void setGdetailaddress(String gdetailaddress) {
+		this.gdetailaddress = gdetailaddress;
 	}
 	public String getGimage() {
 		return gimage;
@@ -75,17 +75,17 @@ public class GHDTO {
 	public void setGinfo(String ginfo) {
 		this.ginfo = ginfo;
 	}
-	public String getGcheckInTime() {
-		return gcheckInTime;
+	public String getGcheckintime() {
+		return gcheckintime;
 	}
-	public void setGcheckInTime(String gcheckInTime) {
-		this.gcheckInTime = gcheckInTime;
+	public void setGcheckintime(String gcheckintime) {
+		this.gcheckintime = gcheckintime;
 	}
-	public String getGcheckOutTime() {
-		return gcheckOutTime;
+	public String getGcheckouttime() {
+		return gcheckouttime;
 	}
-	public void setGcheckOutTime(String gcheckOutTime) {
-		this.gcheckOutTime = gcheckOutTime;
+	public void setGcheckouttime(String gcheckouttime) {
+		this.gcheckouttime = gcheckouttime;
 	}
-
+	
 }

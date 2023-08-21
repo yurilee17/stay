@@ -10,11 +10,15 @@
 	</resultMap>
 	
 	<resultMap type="com.care.stay.gh.GHRoomDTO" id="ghroomDto">
-		<id column="groomCode" property="groomCode"/>
+		<id column="groomcode" property="groomcode"/>
 	</resultMap>
 
 	<select id="stayContent" resultMap="ghDto">
 		SELECT * FROM gh WHERE no=#{no}
+	</select>
+	
+	<select id="roomContent" resultMap="ghroomDto">
+		SELECT * FROM ghroom WHERE groomcode=#{groomcode}
 	</select>
 	
 	<select id="stayRoomContent" resultMap="ghroomDto">
@@ -42,7 +46,7 @@
 			SELECT nvl(max(no),0) + 1 FROM gh
 		</selectKey>
 		INSERT INTO gh (no, gcode, gname, gregion, gdetailregion, grating, gaddress, gdetailaddress, gimage, ginfo, gcheckintime, gcheckouttime) 
-		VALUES(#{no}, 'G', #{gname}, #{gregion}, #{gdetailRegion}, 0, #{gaddress}, #{gdetailAddress}, #{gimage}, #{ginfo}, #{gcheckInTime}, #{gcheckOutTime})
+		VALUES(#{no}, 'G', #{gname}, #{gregion}, #{gdetailregion}, 0, #{gaddress}, #{gdetailaddress}, #{gimage}, #{ginfo}, #{gcheckintime}, #{gcheckouttime})
 	</insert>
 	
 	<select id="stayInfo" resultMap="ghDto">
@@ -54,7 +58,7 @@
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.gh.GHRoomDTO">
 		INSERT INTO ghroom (no, gcode, groomcode, groomname, gbedtype, groomimage, groomnumber, gprice, gpeople, gcomfort)
-		VALUES(#{no}, #{gcode}, #{groomCode}, #{groomName}, #{gbedType}, #{groomImage}, #{groomNumber}, #{gprice}, #{gpeople}, #{gcomfort})
+		VALUES(#{no}, #{gcode}, #{groomcode}, #{groomname}, #{gbedtype}, #{groomimage}, #{groomnumber}, #{gprice}, #{gpeople}, #{gcomfort})
 	</insert>	
 	
 </mapper>

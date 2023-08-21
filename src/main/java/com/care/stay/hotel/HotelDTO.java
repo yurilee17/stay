@@ -133,6 +133,6 @@ public class HotelDTO {
 		this.htype = htype;
 	}
 
-	
+
 }
 

@@ -10,26 +10,46 @@
 	</resultMap>
 	
 	<resultMap type="com.care.stay.motel.MotelRoomDTO" id="motelroomDto">
-		<id column="mroomCode" property="mroomCode"/>
+		<id column="mroomcode" property="mroomcode"/>
 	</resultMap>
 
 	<select id="stayContent" resultMap="motelDto">
 		SELECT * FROM motel WHERE no=#{no}
 	</select>
 	
+	<select id="roomContent" resultMap="motelroomDto">
+		SELECT * FROM motelroom WHERE mroomcode=#{mroomcode}
+	</select>
+	
 	<select id="stayModify" resultMap="motelDto">
 		SELECT * FROM motel WHERE no=#{no}
 	</select>
 	
-	<select id="stayModifyProc" resultMap="motelDto">
-		UPDATE motel SET mname=#{mname}, mregion=#{mregion}, mdetailregion=#{mdetailRegion}, maddress=#{maddress}, mdetailaddress=#{mdetailAddress}, 
-		mimage=#{mimage}, minfo=#{minfo}, mdaesilcheckin=#{mdaesilCheckIn}, mdaesilcheckout=#{mdaesilCheckOut}, mdaeesiltime=#{mdaesilTime}, 
-		mstaycheckin=#{mstayCheckIn}, mstaycheckout=#{mstayCheckOut} WHERE no=#{no}
+	<select id="stayModifyProc" parameterType="com.care.stay.motel.MotelDTO">
+		UPDATE motel SET mname=#{mname}, mregion=#{mregion}, mdetailregion=#{mdetailregion}, maddress=#{maddress}, mdetailaddress=#{mdetailaddress}, 
+		mimage=#{mimage}, minfo=#{minfo}, mdaesilcheckin=#{mdaesilcheckin}, mdaesilcheckout=#{mdaesilcheckout}, mdaeesiltime=#{mdaesiltime}, 
+		mstaycheckin=#{mstaycheckin}, mstaycheckout=#{mstaycheckout} WHERE no=#{no}
 	</select>
+	
+	<update id="stayDetailModifyProc" parameterType="com.care.stay.motel.MotelRoomDTO">
+	
+	</update>
+	
+	<delete id="stayDetailDeleteProc">
+		DELETE FROM motelroom WHERE mroomcode=#{mroomcode}
+	</delete>
+	
+	<delete id="stayDeleteProc">
+		DELETE FROM motel WHERE no=#{no}
+	</delete>	
 	
 	<select id="stayRoomContent" resultMap="motelroomDto">
 		SELECT * FROM motelroom WHERE no=#{no}
 	</select>
+	
+	<select id="stayReservation" resultMap="motelroomDto">
+		SELECT * FROM motelroom WHERE mroomcode=#{mroomcode}
+	</select>	
 	
 	<select id="stayDetailRegister" resultMap="motelDto">
 		SELECT * FROM motel WHERE no=#{no}
@@ -52,7 +72,7 @@
 			SELECT nvl(max(no),0) + 1 FROM motel
 		</selectKey>
 		INSERT INTO motel (no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout ) 
-		VALUES(#{no}, 'M', #{mname}, #{mregion}, #{mdetailRegion}, 0, #{maddress}, #{mdetailAddress}, #{mimage}, #{minfo}, #{mdaesilCheckIn}, #{mdaesilCheckOut}, #{mdaesilTime}, #{mstayCheckIn}, #{mstayCheckOut} )
+		VALUES(#{no}, 'M', #{mname}, #{mregion}, #{mdetailregion}, 0, #{maddress}, #{mdetailaddress}, #{mimage}, #{minfo}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout} )
 	</insert>
 	
 	<select id="stayInfo" resultMap="motelDto">
@@ -64,7 +84,16 @@
 
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.motel.MotelRoomDTO">
 		INSERT INTO motelroom (no, mcode, mroomname, mroomcode, mroomimage, mroomnumber, mdaesilprice, mstayprice, moption)
-		VALUES(#{no}, #{mcode}, #{mroomName}, #{mroomCode}, #{mroomImage}, #{mroomNumber}, #{mdaesilPrice}, #{mstayPrice}, #{moption})
+		VALUES(#{no}, #{mcode}, #{mroomname}, #{mroomcode}, #{mroomimage}, #{mroomnumber}, #{mdaesilprice}, #{mstayprice}, #{moption})
 	</insert>
+	
+  	<select id="motellist" resultMap="motelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, 
+		mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout
+		FROM motel ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  	
 	
 </mapper>

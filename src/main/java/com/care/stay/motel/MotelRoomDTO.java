@@ -3,14 +3,13 @@ package com.care.stay.motel;
 public class MotelRoomDTO {
 	private int no;
 	private String mcode;
-	private String mroomCode;
-	private String mroomName;
-	private String mroomImage;
-	private int mroomNumber;
-	private int mdaesilPrice;
-	private int mstayPrice;
+	private String mroomcode;
+	private String mroomname;
+	private String mroomimage;
+	private int mroomnumber;
+	private int mdaesilprice;
+	private int mstayprice;
 	private String moption;
-	
 	public int getNo() {
 		return no;
 	}
@@ -23,41 +22,41 @@ public class MotelRoomDTO {
 	public void setMcode(String mcode) {
 		this.mcode = mcode;
 	}
-	public String getMroomCode() {
-		return mroomCode;
+	public String getMroomcode() {
+		return mroomcode;
 	}
-	public void setMroomCode(String mroomCode) {
-		this.mroomCode = mroomCode;
+	public void setMroomcode(String mroomcode) {
+		this.mroomcode = mroomcode;
 	}
-	public String getMroomName() {
-		return mroomName;
+	public String getMroomname() {
+		return mroomname;
 	}
-	public void setMroomName(String mroomName) {
-		this.mroomName = mroomName;
+	public void setMroomname(String mroomname) {
+		this.mroomname = mroomname;
 	}
-	public String getMroomImage() {
-		return mroomImage;
+	public String getMroomimage() {
+		return mroomimage;
 	}
-	public void setMroomImage(String mroomImage) {
-		this.mroomImage = mroomImage;
+	public void setMroomimage(String mroomimage) {
+		this.mroomimage = mroomimage;
 	}
-	public int getMroomNumber() {
-		return mroomNumber;
+	public int getMroomnumber() {
+		return mroomnumber;
 	}
-	public void setMroomNumber(int mroomNumber) {
-		this.mroomNumber = mroomNumber;
+	public void setMroomnumber(int mroomnumber) {
+		this.mroomnumber = mroomnumber;
 	}
-	public int getMdaesilPrice() {
-		return mdaesilPrice;
+	public int getMdaesilprice() {
+		return mdaesilprice;
 	}
-	public void setMdaesilPrice(int mdaesilPrice) {
-		this.mdaesilPrice = mdaesilPrice;
+	public void setMdaesilprice(int mdaesilprice) {
+		this.mdaesilprice = mdaesilprice;
 	}
-	public int getMstayPrice() {
-		return mstayPrice;
+	public int getMstayprice() {
+		return mstayprice;
 	}
-	public void setMstayPrice(int mstayPrice) {
-		this.mstayPrice = mstayPrice;
+	public void setMstayprice(int mstayprice) {
+		this.mstayprice = mstayprice;
 	}
 	public String getMoption() {
 		return moption;
@@ -65,5 +64,6 @@ public class MotelRoomDTO {
 	public void setMoption(String moption) {
 		this.moption = moption;
 	}
-
+	
+	
 }

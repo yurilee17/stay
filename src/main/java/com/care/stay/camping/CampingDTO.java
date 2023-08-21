@@ -6,16 +6,16 @@ public class CampingDTO {
 	private String ccode;
 	private String cname;
 	private String cregion;
-	private String cdetailRegion;
+	private String cdetailregion;
 	private int crating;
 	private String caddress;
-	private String cdetailAddress;
+	private String cdetailaddress;
 	private String cimage;
 	private String cinfo;
-	private String ccheckInTime;
-	private String ccheckOutTime;
+	private String ccheckintime;
+	private String ccheckouttime;
 	private String ctype;
-	private int cpeople;
+
 	
 	public int getNo() {
 		return no;
@@ -41,11 +41,11 @@ public class CampingDTO {
 	public void setCregion(String cregion) {
 		this.cregion = cregion;
 	}
-	public String getCdetailRegion() {
-		return cdetailRegion;
+	public String getCdetailregion() {
+		return cdetailregion;
 	}
-	public void setCdetailRegion(String cdetailRegion) {
-		this.cdetailRegion = cdetailRegion;
+	public void setCdetailregion(String cdetailregion) {
+		this.cdetailregion = cdetailregion;
 	}
 	public int getCrating() {
 		return crating;
@@ -59,11 +59,11 @@ public class CampingDTO {
 	public void setCaddress(String caddress) {
 		this.caddress = caddress;
 	}
-	public String getCdetailAddress() {
-		return cdetailAddress;
+	public String getCdetailaddress() {
+		return cdetailaddress;
 	}
-	public void setCdetailAddress(String cdetailAddress) {
-		this.cdetailAddress = cdetailAddress;
+	public void setCdetailaddress(String cdetailaddress) {
+		this.cdetailaddress = cdetailaddress;
 	}
 	public String getCimage() {
 		return cimage;
@@ -77,17 +77,17 @@ public class CampingDTO {
 	public void setCinfo(String cinfo) {
 		this.cinfo = cinfo;
 	}
-	public String getCcheckInTime() {
-		return ccheckInTime;
+	public String getCcheckintime() {
+		return ccheckintime;
 	}
-	public void setCcheckInTime(String ccheckInTime) {
-		this.ccheckInTime = ccheckInTime;
+	public void setCcheckintime(String ccheckintime) {
+		this.ccheckintime = ccheckintime;
 	}
-	public String getCcheckOutTime() {
-		return ccheckOutTime;
+	public String getCcheckouttime() {
+		return ccheckouttime;
 	}
-	public void setCcheckOutTime(String ccheckOutTime) {
-		this.ccheckOutTime = ccheckOutTime;
+	public void setCcheckouttime(String ccheckouttime) {
+		this.ccheckouttime = ccheckouttime;
 	}
 	public String getCtype() {
 		return ctype;

@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.stay.common.AdminPageService;
+import com.care.stay.motel.MotelRoomDTO;
+
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -31,13 +33,13 @@ public class PensionService {
 		PensionDTO pension = new PensionDTO();
 		pension.setPname(multi.getParameter("name"));
 		pension.setPregion(multi.getParameter("region"));
-		pension.setPdetailRegion(multi.getParameter("detailRegion"));
+		pension.setPdetailregion(multi.getParameter("detailregion"));
 		pension.setPaddress(multi.getParameter("address"));
-		pension.setPdetailAddress(multi.getParameter("detailAddress"));
+		pension.setPdetailaddress(multi.getParameter("detailaddress"));
 		pension.setPinfo(multi.getParameter("info"));
 		
-		pension.setPcheckInTime(multi.getParameter("pcheckinTime"));
-		pension.setPcheckOutTime(multi.getParameter("pcheckoutTime"));
+		pension.setPcheckintime(multi.getParameter("pcheckintime"));
+		pension.setPcheckouttime(multi.getParameter("pcheckouttime"));
 		pension.setPtype(multi.getParameter("ptype"));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -51,7 +53,6 @@ public class PensionService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			pension.setPimage(fileName);
 			
 			System.out.println(fileName);
 			System.out.println(multi.getParameter("info"));
@@ -59,8 +60,9 @@ public class PensionService {
 			
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\pension\\";
+			pension.setPimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
-			
+
 			try {
 				// 서버가 저장한 업로드 파일은 임시저장경로에 있는데 개발자가 원하는 경로로 이동
 				file.transferTo(save);
@@ -105,9 +107,9 @@ public class PensionService {
         
         pensionroom.setNo(no);
         pensionroom.setPcode(pCode);
-        pensionroom.setProomCode(String.valueOf(roomcount));
-        pensionroom.setProomName(multi.getParameter("roomname"));
-        pensionroom.setProomNumber(getIntParameter(multi, "roomnumber"));
+        pensionroom.setProomcode(String.valueOf(roomcount));
+        pensionroom.setProomname(multi.getParameter("roomname"));
+        pensionroom.setProomnumber(getIntParameter(multi, "roomnumber"));
         pensionroom.setPprice(multi.getParameter("pprice"));
         pensionroom.setPpeople(getIntParameter(multi, "ppeople"));
         
@@ -138,7 +140,7 @@ public class PensionService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		pensionroom.setProomImage("");
+		pensionroom.setProomimage("");
 		MultipartFile file = multi.getFile("roomimage");
 		String fileName = file.getOriginalFilename();
 		if(file.getSize() != 0) {
@@ -146,10 +148,11 @@ public class PensionService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			pensionroom.setProomImage(fileName);
+
 
 			// 업로드 파일 저장 경로
 			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\pension\\room\\";
+			pensionroom.setProomimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -191,6 +194,25 @@ public class PensionService {
 
 		return pension;
 	}
+	
+	
+	public PensionRoomDTO roomContent(String rc) {
+		int proomcode = 0;
+		try{
+			proomcode = Integer.parseInt(rc);
+		}catch(Exception e){
+			return null;
+		}
+		
+		PensionRoomDTO pensionroom = pensionMapper.roomContent(proomcode);
+		if(pensionroom == null)
+			return null;
+		return pensionroom;
+		
+	}
+	
+	
+	
 
 	public List<PensionRoomDTO> stayRoomContent(String n) {
 		int no = 0;
