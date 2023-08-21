@@ -3,7 +3,7 @@ package com.care.stay.motel;
 public class MotelRoomDTO {
 	private int no;
 	private String mcode;
-	private String mroomcode;
+	private int mroomcode;
 	private String mroomname;
 	private String mroomimage;
 	private int mroomnumber;
@@ -22,10 +22,10 @@ public class MotelRoomDTO {
 	public void setMcode(String mcode) {
 		this.mcode = mcode;
 	}
-	public String getMroomcode() {
+	public int getMroomcode() {
 		return mroomcode;
 	}
-	public void setMroomcode(String mroomcode) {
+	public void setMroomcode(int mroomcode) {
 		this.mroomcode = mroomcode;
 	}
 	public String getMroomname() {

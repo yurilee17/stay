@@ -101,7 +101,7 @@ public class HotelService {
         
         hotelroom.setNo(no);
         hotelroom.setHcode(Hcode);
-        hotelroom.setHroomcode(String.valueOf(roomcount));
+        hotelroom.setHroomcode(getIntParameter(multi, "roomcount"));
         hotelroom.setHroomname(multi.getParameter("roomname"));
         hotelroom.setHbedtype(multi.getParameter("hbedtype"));
         hotelroom.setHroomnumber(getIntParameter(multi, "roomnumber"));

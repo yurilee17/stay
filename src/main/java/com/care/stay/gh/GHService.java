@@ -98,7 +98,7 @@ public class GHService {
         
         ghroom.setNo(no);
         ghroom.setGcode(gCode);
-        ghroom.setGroomcode(String.valueOf(roomcount));
+        ghroom.setGroomcode(getIntParameter(multi, "roomcount"));
         ghroom.setGroomname(multi.getParameter("roomname"));
         ghroom.setGbedtype(multi.getParameter("gbedtype"));
         ghroom.setGroomnumber(getIntParameter(multi, "roomnumber"));

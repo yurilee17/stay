@@ -4,7 +4,7 @@ public class PensionRoomDTO {
 	
 	private int no;
 	private String pcode;
-	private String proomcode;
+	private int proomcode;
 	private String proomname;
 	private String proomimage;
 	private int proomnumber;
@@ -25,10 +25,10 @@ public class PensionRoomDTO {
 	public void setPcode(String pcode) {
 		this.pcode = pcode;
 	}
-	public String getProomcode() {
+	public int getProomcode() {
 		return proomcode;
 	}
-	public void setProomcode(String proomcode) {
+	public void setProomcode(int proomcode) {
 		this.proomcode = proomcode;
 	}
 	public String getProomname() {

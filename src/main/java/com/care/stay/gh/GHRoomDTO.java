@@ -4,7 +4,7 @@ public class GHRoomDTO {
 	
 	private int no;
 	private String gcode;
-	private String groomcode;
+	private int groomcode;
 	private String groomname;
 	private String gbedtype;
 	private String groomimage;
@@ -25,10 +25,10 @@ public class GHRoomDTO {
 	public void setGcode(String gcode) {
 		this.gcode = gcode;
 	}
-	public String getGroomcode() {
+	public int getGroomcode() {
 		return groomcode;
 	}
-	public void setGroomcode(String groomcode) {
+	public void setGroomcode(int groomcode) {
 		this.groomcode = groomcode;
 	}
 	public String getGroomname() {

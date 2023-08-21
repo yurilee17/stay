@@ -867,8 +867,6 @@ $(function(){
 		}
 	});
 
-
-
 	/* 필터 접기,모두 보기 버튼 효과 */
 	$('.filter_wrap section strong button').each(function(){
 		$(this).click(function(){

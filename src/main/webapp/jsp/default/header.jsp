@@ -22,6 +22,16 @@
 				<c:when test="${'admin' == sessionScope.authority }">
 				</c:when>
 				<c:otherwise>
+					<li><a href="/reservationList">예약내역</a></li>					
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${empty sessionScope.id }">
+					<li><a href="/login">예약내역</a></li>
+				</c:when>
+				<c:when test="${'admin' == sessionScope.authority }">
+				</c:when>
+				<c:otherwise>
 					<li><a href="/reservationList">예약내역</a></li>
 				</c:otherwise>
 			</c:choose>
