@@ -1,6 +1,8 @@
 
 package com.care.stay.hotel;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +17,6 @@ import jakarta.servlet.http.HttpSession;
 public class Hotelcontroller {
 	@Autowired private HotelService service;
 	@Autowired private HttpSession session;
-
-	// 아무것도 지정하지 않았을때 
-	//	@RequestMapping("hotellist")
-	//	public String hotellist() {
-	//				
-	//		return "hotel/hotellist";
-	//	}
-
 	
 	  //hotellist 첫화면 
 	  @RequestMapping("hotellist") 
@@ -36,49 +30,69 @@ public class Hotelcontroller {
 	  	return "hotel/hotellist"; 
 	  	}
 	  
-	  
-	  //hotellist 지역선택 
-		/*
-		 * @RequestMapping("Main") public String Main(
-		 * 
-		 * @RequestParam(value="currentPage", required = false) String cp,
-		 * 
-		 * @RequestParam(value="hdetailregion" , required = false) String selectedText,
-		 * Model model) {
-		 * 
-		 * System.out.println("currentPage:" + cp); System.out.println("selectedText: "
-		 * + selectedText);
-		 * 
-		 * service.Main(selectedText, cp ,model);
-		 * 
-		 * return "hotel/hotellist"; }
-		 */
-	  
-	  
+	  // 뭔가를 선택했을 때 나오는 화면 
 	  @RequestMapping("Main") 
 	  	public String MainCheck(
 			  
 			  @RequestParam(value="currentPage", required = false)  String cp, 
 	  		  @RequestParam(value="hdetailregion" , required = false) String selectedText, 
-	  		  @RequestParam(value="htype ", required = false) String selectedValues1,
-	  		  @RequestParam(value="hbedtype ", required = false) String selectedValues2,
-	  		  @RequestParam(value="hcomfort ", required = false) String selectedValues3,
-	  		  @RequestParam(value="hpeople ", required = false) int personCount,Model model)
+	  		  @RequestParam(value="checkindate", required = false) String checkindate,
+	  		  @RequestParam(value="checkoutdate", required = false) String checkoutdate,
+	  		  @RequestParam(value="htype", required = false) ArrayList<String> htype,
+	  		  @RequestParam(value="hbedtype", required = false) ArrayList<String> hbedtype,
+	  		  @RequestParam(value="hcomfort", required = false) ArrayList<String> hcomfort,
+	  		  @RequestParam(value="hpeople", required = false) String hpeopleString ,Model model )
 	  {
 		  		
 		  		System.out.println("selectedText: " + selectedText);
-		  		System.out.println("htype: " + selectedValues1);
-		  		System.out.println("hbedtype: " + selectedValues2);
-		  		System.out.println("hcomfort: " + selectedValues3);
-		  		System.out.println("hpeople: " + personCount);
+		  		System.out.println("htype: " + htype);
+		  		System.out.println("hbedtype: " + hbedtype);
+		  		System.out.println("hcomfort: " + hcomfort);
+		  		System.out.println("hpeople: " + hpeopleString);
+		  		System.out.println("checkindate: " + checkindate);
+		  		System.out.println("checkoutdate: " + checkoutdate);
 		  		
+		  	
+		        
 		  		
-		  	   if (selectedValues1 != null || selectedValues2 != null || selectedValues3 != null ) {
-		  	      
-		  		   	service.MainCheck(selectedText, selectedValues1, selectedValues2, selectedValues3, personCount, cp ,model); 
-		  	    } else {
+//		  	   if (checkindate != null || htype != null || hbedtype != null || hcomfort != null ) {
+		  		   	
+//		  		   service.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
+//		  	    } 
+//		  	   else if(selectedText != null || checkindate != null && checkoutdate != null ) {
+//		  	        service.Main(selectedText, checkindate, checkoutdate, cp ,model);
+//		  	    }
+		  	   
+		  	  //아래내용을 변경하기 
+		/*	   if (checkindate != null || htype != null || hbedtype != null || hcomfort != null ) {
+		  		   	
+		  		   service.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
+		  	    } 
+		  	   else if(selectedText != null ) {
 		  	        service.Main(selectedText, cp ,model);
-		  	    }
+		  	    }   */
+		  		
+		  		
+		  		if(selectedText != null) {
+		  			 service.Main(selectedText, cp ,model);
+		  		}
+		  		if(htype != null) {
+		  			service.typeList(selectedText,htype,cp ,model);
+		  		}
+		  		if(hbedtype != null) {
+		  			service.bedtypeList(selectedText,hbedtype,cp ,model);
+		  		}
+		  		if(hcomfort != null) {
+		  			service.comfortList(selectedText,hcomfort,cp ,model);
+		  		}
+		  		if(hpeopleString != null) {
+		  			service.MainCheck_hpeople(selectedText,hpeopleString,cp ,model);
+		  		}
+		  		
+		  		
+		  		
+		  		
+		  	   
 		  		return "hotel/hotellist";
 			  	}
 	

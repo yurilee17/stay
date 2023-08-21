@@ -46,7 +46,7 @@
 						<ul class="list_04">
 							<li><b>${sessionScope.nickname}</b></li>
 							<li><a href="/stayIndex">관리하는거 어때</a></li>
-							<li><button type="button" class="pop_logout_open"
+							<li><button type="button" class="poplogoutopen"
 									onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button></li>
 						</ul></li>
 				</c:when>
@@ -55,6 +55,7 @@
 							src="../../resource/img/loginUser.png" alt=""></a>
 						<ul class="list_04">
 							<li><b>${sessionScope.nickname}</b></li>
+
 							<li><a href="/myPage">내정보</a></li>
 							<li><a href="/reservationList">예약내역<!-- span>0건</span --></a></li>
 							<li><button type="button" class="pop_logout_open"

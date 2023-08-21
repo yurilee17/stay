@@ -1,5 +1,6 @@
 package com.care.stay.reservation;
 
+
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -8,6 +9,9 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface ReservationMapper {
 
+	int reservationcount();
+	void reservationProc(ReservationDTO reservation);
+	
 	// 예약확정 가져오기
 	ArrayList<ReservationDTO> resConfirmed(String id);
 

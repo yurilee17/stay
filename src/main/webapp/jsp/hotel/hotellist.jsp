@@ -26,9 +26,7 @@
 <!-- CSS -->
 <title>여행할때 여기어때</title>
 <link rel="stylesheet" href="../../resource/css/common.css">
-<link rel="canonical" href="#">
-<script type="text/javascript"
-	src="../../resource/js/jquery-1.12.4.min.js"></script>
+
 
 <!-- 달력 외부 css -->
 <script type="text/javascript"
@@ -51,10 +49,8 @@
 	<div class="wrap main_wrap show">
 
 		<!-- Header -->
-		<c:import url="/header" />
+		<c:import url="/header" /> 
 		<!-- CSS -->
-		<link rel="stylesheet" href="../../resource/css/swiper.css">
-		<link rel="stylesheet" href="../../resource/css/main.css">
 		<link rel="stylesheet" href="../../resource/css/reset.css">
 		<link rel="stylesheet" href="../../resource/css/hotel.css">
 
@@ -168,11 +164,6 @@
 		</script>
 		
 
-				
-				
-				
-
-
 		<!-- //Area -->
 		<!-- //hotelheader -->
 
@@ -189,11 +180,21 @@
 
 
 								<input type="text" id="calendars" name="calendars" value="" />
+				
+		<script>
+				
+				var checkindate ;
+			    var checkoutdate ;	
+				
+					$(function () {
+						
+			 var storedStartDate = localStorage.getItem("storedStartDate");
+		     var storedEndDate = localStorage.getItem("storedEndDate");
 
-
-								<script>
-
-				$(function () {
+	         var checkindate = storedStartDate || new Date().toISOString().split('T')[0];
+		     var checkoutdate = storedEndDate || moment().add(7, 'days').toISOString().split('T')[0];
+						
+		     
 	         	   $('#calendars').daterangepicker({
 	         		  "maxSpan": {"days": 6 },
 	                "locale": {
@@ -216,18 +217,45 @@
 		                "drops": "down"
 			            }, function (start, end, label) {
 			                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-	          		  });
+			                
+			                checkindate = start.format('YYYY-MM-DD');
+			                checkoutdate = end.format('YYYY-MM-DD');
+			                
+			               /* 선택한 날짜 값을 로컬 스토리지에 저장 */
+			                localStorage.setItem("storedStartDate", checkindate);
+			                localStorage.setItem("storedEndDate", checkoutdate);
+			                
+				            
+				          /* 선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침 */
+				            addDatesToURL(checkindate, checkoutdate);
+			            
+			            });
 	         	   
 	         	   // css 변경가능 
 	         	  $("#calendars").on('show.daterangepicker', function (ev, picker) {
 	         		   /*  $(".cancelBtn").css("float", "right"); */
+	         		   
 	         		});
 
-	         	   
 	       		 });
 				
-				</script>
+					<!--  선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침하는 함수 -->
+				    function addDatesToURL(checkindate, checkoutdate) {
+				        // 현재 페이지 URL 가져오기
+				        var currentURL = window.location.href;
+				
+				        // URL에 시작 날짜와 끝 날짜를 파라미터로 추가
+				        
+				        localStorage.setItem("checkindate", checkindate);
+				        localStorage.setItem("checkoutdate", checkoutdate);
+				        
+				         var updatedURL =  "http://localhost/Main?checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
+				      
+				        // 페이지 새로고침
+				        window.location.href = updatedURL;
+				    }
 
+		</script>
 
 
 
@@ -307,19 +335,19 @@
 							<br>
 							<div class="room_type">
 								<p>
-									<input type="checkbox" class="inp_room_01" name="bed_type[]" id="bed_type_S" value="싱글" /> 
+									<input type="checkbox" class="inp_room_01" name="bedtype[]" id="bed_type_S" value="싱글" /> 
 										<label for="bed_type_S" class="label_room_01">싱글</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_02" name="bed_type[]" id="bed_type_D" value="더블" /> 
+									<input type="checkbox" class="inp_room_02" name="bedtype[]" id="bed_type_D" value="더블" /> 
 										<label for="bed_type_D" class="label_room_02">더블</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_03" name="bed_type[]" id="bed_type_T" value="트윈" /> 
+									<input type="checkbox" class="inp_room_03" name="bedtype[]" id="bed_type_T" value="트윈" /> 
 									<label for="bed_type_T" class="label_room_03">트윈</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_04" name="bed_type[]" id="bed_type_O" value="온돌" /> 
+									<input type="checkbox" class="inp_room_04" name="bedtype[]" id="bed_type_O" value="온돌" /> 
 										<label for="bed_type_O" class="label_room_04">온돌</label>
 								</p>
 							</div>
@@ -378,57 +406,141 @@
 						<br>
 					
 				
-   					 <script type="text/javascript">
+			 	 <script type="text/javascript">
+   					  		
+   					  // 중복파라미터를 자동으로 제거 
+	   					 function removeDuplicateParams(url) {
+	   				        var urlParts = url.split('?');
+	   				        if (urlParts.length > 1) {
+	   				            var baseUrl = urlParts[0];
+	   				            var queryParams = urlParts[1].split('&');
+	   				            var filteredParams = [];
+	   				            var paramNames = [];
+	
+	   				            queryParams.forEach(function(param) {
+	   				                var paramName = param.split('=')[0];
+	   				                if (!paramNames.includes(paramName)) {
+	   				                    filteredParams.push(param);
+	   				                    paramNames.push(paramName);
+	   				                }
+	   				            });
+	
+	   				            return baseUrl + '?' + filteredParams.join('&');
+	   				        }
+	   				        
+	   				        return url;
+	   				    }
+   					  	
+   					  
+   					  
 						    function comfort() {
 						    	
 						    	
 						        var values1 = document.getElementsByName("grade[]");
-						        var selectedValues1 = [];        
+						        var htype = [];        
 						        for (var i = 0; i < values1.length; i++) {
 						            if (values1[i].checked) {
-						                selectedValues1.push(values1[i].value);
+						            	htype.push(values1[i].value);
 						            }
 						        }
 						        
-						        var values2 = document.getElementsByName("bed_type[]");
-						        var selectedValues2 = [];        
+						        var values2 = document.getElementsByName("bedtype[]");
+						        var hbedtype = [];        
 						        for (var i = 0; i < values2.length; i++) {
 						            if (values2[i].checked) {
-						                selectedValues2.push(values2[i].value);
+						            	hbedtype.push(values2[i].value);
 						            }
 						        }
-						
+	
 						        var values3 = document.getElementsByName("tmino[]");
-						        var selectedValues3 = [];
+						        var hcomfort = [];
 						        
 						        for (var i = 0; i < values3.length; i++) {
 						            if (values3[i].checked) {
-						                selectedValues3.push(values3[i].value);
+						            	hcomfort.push(values3[i].value);
 						            }
 						        }
-						        
-						         var personCount = document.querySelector('.cnt_people span').textContent;      
-						         var selectedText = localStorage.getItem("selectedText"); // selectedText 값을 가져옴 
-						              
-						                
-						              
-						       var url = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText) +
-				                  "&htype=" + encodeURIComponent(selectedValues1.join(',')) +
-				                  "&hbedtype=" + encodeURIComponent(selectedValues2.join(',')) +
-				                  "&hcomfort=" + encodeURIComponent(selectedValues3.join(',')) + 
-				                  "&hpeople=" + encodeURIComponent(personCount);
-						              
-						     	  window.location.href = url;
-						    }
-					    
-						</script>
-   					 
-   					 
 
-					</div>
-				</div>
-				<!-- //Filter -->
-			</aside>
+						        
+						         /* 선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침 */
+						            addDataToURL(htype, hbedtype, hcomfort, hpeople);
+						         
+							       
+						          var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
+						     	  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
+						     	  
+						    }  
+ 
+						   	<!--  선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침하는 함수 -->
+						     	    function addDataToURL(htype, hbedtype, hcomfort, hpeople) {
+						     		   
+						     		  var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
+						     		  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴 
+						       
+							   
+						     		  // 현재 페이지 URL 가져오기
+								        var currentURL = window.location.href;
+									   
+								  	   
+								        var updatedURL = removeDuplicateParams(currentURL);
+								        
+								        
+								        
+							 	        var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText);
+							 	        
+							 	        
+							 	       htype = htype.map(function(value) {
+							 	            return value.trim();
+							 	        });
+
+							 	        hbedtype = hbedtype.map(function(value) {
+							 	            return value.trim();
+							 	        });
+
+							 	        hcomfort = hcomfort.map(function(value) {
+							 	            return value.trim();
+							 	        });
+							 	        
+							 	       // 각 변수가 빈 문자열이 아니면 encodeURIComponent 적용
+							 	        var htypeParam = htype.length > 0 ? encodeURIComponent(htype.join(',')) : "";
+							 	        var hbedtypeParam = hbedtype.length > 0 ? encodeURIComponent(hbedtype.join(',')) : "";
+							 	        var hcomfortParam = hcomfort.length > 0 ? encodeURIComponent(hcomfort.join(',')) : "";
+							 	        var hpeopleParam = hpeople !== null && hpeople !== "" ? encodeURIComponent(hpeople) : "";
+
+							 	        // 각 파라미터에 대한 값을 할당하여 URL에 추가
+							 	        updatedURL += "&htype=" + htypeParam;
+							 	        updatedURL += "&hbedtype=" + hbedtypeParam;
+							 	        updatedURL += "&hcomfort=" + hcomfortParam;
+							 	        updatedURL += "&hpeople=" + hpeopleParam;
+
+							 	        // 페이지 새로고침
+							 	        window.location.href = updatedURL;
+							 	    }
+							 	
+							 	        
+								/*         // 각 파라미터에 대한 값을 할당하여 URL에 추가
+								        if (htype.length > 0 ) {
+								            updatedURL +="&htype=" + encodeURIComponent(htype.join(','));
+								        }
+								        if (hbedtype.length > 0 ) {
+								            updatedURL +="&hbedtype=" + encodeURIComponent(hbedtype.join(','));
+								        }
+								        if (hcomfort.length > 0 ) {
+								            updatedURL += "&hcomfort=" + encodeURIComponent(hcomfort.join(','));
+								        }
+								        if (hpeople.length > 0 ) {
+								            updatedURL += "&hpeople=" + encodeURIComponent(hpeople);
+								        }  
+								        // 페이지 새로고침
+								        window.location.href = updatedURL;
+								    
+								    }  */
+		     	  </script> 
+
+			</div>
+		</div>
+		<!-- //Filter -->
+	</aside>
 
 
 

@@ -1,23 +1,23 @@
 package com.care.stay.reservation;
 
 public class ReservationDTO {
-	private int no; //일련번호
-	private int stayno; //숙소번호
-	private String stayname; //숙소이름
-	private String roomname; //객실이름
-	private String code; //숙소코드
-	private String roomcode; //객실코드
-	private String roomimage; //객실이미지
-	private String checkindate; //체크인날짜
-	private String checkoutdate; //체크아웃날짜
-	private String checkintime; //입실시간
-	private String checkouttime; //퇴실시간
-	private String id; //아이디
-	private String name; //이름
-	private int price; //가격
-	private String paymethod; //결제방법
-	private String status; //예약상태
-
+	private int no;
+	private int stayno;
+	private String stayname;
+	private String roomname;
+	private String code;
+	private int roomcode;
+	private String roomimage;
+	private String checkindate;
+	private String checkoutdate;
+	private String checkintime;
+	private String checkouttime;
+	private String id;
+	private String name;
+	private int price;
+	private String paymethod;
+	private String status;
+	
 	public int getNo() {
 		return no;
 	}
@@ -48,10 +48,10 @@ public class ReservationDTO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getRoomcode() {
+	public int getRoomcode() {
 		return roomcode;
 	}
-	public void setRoomcode(String roomcode) {
+	public void setRoomcode(int roomcode) {
 		this.roomcode = roomcode;
 	}
 	public String getRoomimage() {
