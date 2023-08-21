@@ -33,7 +33,7 @@
 	  	SELECT count(no) FROM gh
 	</select>
 	
-	<select id="ghroomcount">
+	<select id="ghroomcount" resultType="int">
 		SELECT COALESCE(nvl(max(groomcode),0) + 1, 0) FROM ghroom
 	</select>	
 	

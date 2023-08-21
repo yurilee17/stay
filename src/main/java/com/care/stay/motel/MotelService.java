@@ -71,7 +71,7 @@ public class MotelService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
+			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
 			motel.setMimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 			
@@ -96,7 +96,7 @@ public class MotelService {
 
 		motelroom.setNo(no);
 		motelroom.setMcode(mCode);
-        motelroom.setMroomcode(getIntParameter(multi, "roomcount"));
+        motelroom.setMroomcode(roomcount);
 		motelroom.setMroomname(multi.getParameter("roomname"));
 		motelroom.setMroomnumber(getIntParameter(multi, "roomnumber"));
 		motelroom.setMdaesilprice(getIntParameter(multi, "mdaesilprice"));
@@ -139,7 +139,7 @@ public class MotelService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 			motelroom.setMroomimage(fileName);
-			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\room\\";
+			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\room\\";
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -347,6 +347,21 @@ public class MotelService {
 		  model.addAttribute("result", result);
 		  model.addAttribute("currentPage", currentPage);
 		
+	}
+	
+	public MotelDTO motelpage(String n) {
+		int no = 0;
+		try{
+			no = Integer.parseInt(n);
+		}catch(Exception e){
+			return null;
+		}
+		
+		MotelDTO motel = motelMapper.stayContent(no);
+		if(motel == null)
+			return null;
+		
+		return motel;
 	}
 
 	public MotelRoomDTO daesilReservation(String rc) {

@@ -33,7 +33,7 @@
 	  	SELECT count(no) FROM pension
 	</select>
 	
-	<select id="pensionroomcount">
+	<select id="pensionroomcount" resultType="int">
 		SELECT COALESCE(nvl(max(proomcode),0) + 1, 0) FROM pensionroom
 	</select>	
 	

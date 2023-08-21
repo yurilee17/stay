@@ -104,30 +104,14 @@ public class ReservationService {
     	reservation.setCheckintime(request.getParameter("checkintime"));
     	reservation.setCheckouttime(request.getParameter("checkouttime"));
     	reservation.setId(request.getParameter("id"));
-    	reservation.setName(request.getParameter("name"));
+    	reservation.setName(request.getParameter("userName"));
+    	reservation.setMobile(request.getParameter("userPhone"));
     	reservation.setPrice(Integer.parseInt(request.getParameter("price")));
     	reservation.setPaymethod(request.getParameter("paymethod"));
     	reservation.setStatus(request.getParameter("status"));
-    	
     	reservationMapper.reservationProc(reservation);
-    	
-//    	if("motel".equals(stayType)) {
-//    		
-//    	} else if("hotel".equals(stayType)) {
-//    		
-//
-//    	} else if("pension".equals(stayType)) {  
-//    		
-//    		
-//    	} else if("gh".equals(stayType)) {  
-//    		
-//    		
-//    	} else if("camping".equals(stayType)) {  
-//    
-//    	}
-    	
-    	
+    
     	return "예약 DB 등록 완료";
-    	
-		}
+	}
+ 
 }

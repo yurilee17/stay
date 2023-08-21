@@ -45,7 +45,7 @@
 	<link rel="stylesheet" href="../../resource/css/main.css">
 	<link rel="stylesheet" href="../../resource/css/reset.css">
 	<link rel="stylesheet" href="../../resource/css/hotel.css">
-	<link rel="stylesheet" href="../../resource/css/hotelP.css">
+	<link rel="stylesheet" href="../../resource/css/motelP.css">
 
 </div>
 
@@ -84,10 +84,10 @@
 		</div>
 		<div class="hpTRight">
 			  <td>
-               	<h2 class="name">호텔 인 강남</h2>
-                <p>서울 강남구 삼성동 91-28 (상세주소)</p>
+               	<h2 class="name">${motel.mname }</h2>
+                <p>${motel.maddress } ${motel.mdetailaddress }</p>
                	<br>
-               	<span>***** (별점평균이 들어가야함)</span>
+               	<span>***** ${motel.mrating }</span>
               </td>
 		</div>
 	</div>
@@ -239,26 +239,66 @@
 	       		 });
 				
 				</script>	
-				
-			
-			<%   for(int i =0; i<5; i++){     %>
-                <table>
-                	<tr>
-                        <td  width="300px" height="250px"><a href="#" class="thumb">
-                            <img src="	https://via.placeholder.com/300x230" alt="상품이미지">
-                        </a></td>
-                        <td>
-                           <div class=room>
-                             <h2 class="name">[넷플릭스]스탠다드 더블</h2>
-	                            <br><br>
-	                           <b><span>가격 178,000</span></b>
-                           	</div>
-                           	<button type="button">예약하기</button>
-                        </td>
-                       
-                    </tr>
-                </table>
-             <%   } %>
+          <article class="room_info">             
+             <c:choose>
+                  <c:when test="${empty motelrooms }">
+                    <h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3>
+                  </c:when>
+                  <c:otherwise>
+                    <c:forEach var="motelroom" items="${ motelrooms}">
+                      <div class="room">
+                        <p class="pic_view ">
+                          <img class="lazy" src="">
+                        </p>
+                        <strong class="title">${motelroom.mroomname } &nbsp; &nbsp;</strong>
+                        
+                        <div class="info">
+                          <div class="half ended">
+                            <div class="price">
+                              <strong>대실</strong>
+                              <div>
+                                <p>
+                                  <b style="color: rgba(0,0,0,1)">${motelroom.mdaesilprice }원</b>
+                                  <!-- 표시금액 -->
+                                </p>
+                              </div>
+                              <ul>
+                                <li>
+                                  <span>마감시간</span>${motel.mdaesilcheckout }시까지&nbsp;
+                                </li>
+                                <li>
+                                  <span>이용시간</span>${motel.mdaesiltime }시간&nbsp;
+                                </li>
+                              </ul>
+								<button type="button" onclick="location.href='daesilReservation?no=${motel.no}&stayType=motel&mroomcode=${motelroom.mroomcode}&price=${motelroom.mdaesilprice}'">대실 예약</button>                              
+                            </div>
+                          </div>
+                          <div class="half ended">
+                            <div class="price">
+                              <strong>숙박</strong>
+                              <div>
+                                <p>
+                                  <b style="color: rgba(0,0,0,1)">${motelroom.mstayprice }원</b>
+                                  <!-- 표시금액 -->
+                                </p>
+                              </div>
+                              <ul>
+                                <li>
+                                  <span>입실시간</span>${motel.mstaycheckin }시부터&nbsp;
+                                </li>
+                                <li>
+                                  <span>퇴실시간</span>익일 ${motel.mstaycheckout }시까지&nbsp;
+                                </li>
+                              </ul>
+								<button type="button" onclick="location.href='stayReservation?no=${motel.no}&stayType=motel&mroomcode=${motelroom.mroomcode}&price=${motelroom.mstayprice}'">숙박 예약</button>                          
+                            </div>
+                          </div>
+                        </div>                      
+                      </div>
+                    </c:forEach>
+                  </c:otherwise>
+                </c:choose>
+                </article>
 		</div>
 		<div id="informationP" style="display:none;">
 		

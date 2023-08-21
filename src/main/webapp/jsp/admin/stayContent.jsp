@@ -95,8 +95,11 @@
                         <p class="pic_view ">
                           <img class="lazy" src="">
                         </p>
-                        <strong class="title">${motelroom.mroomname }</strong>
-                        <h4>객실 코드 : ${motelroom.mroomcode }</h4>
+                        <strong class="title">
+	                        ${motelroom.mroomname } &nbsp; &nbsp;
+	                        <span>객실 코드 : ${motelroom.mroomcode }</span>
+                        </strong>
+                        
                         <div class="info">
                           <div class="half ended">
                             <div class="price">
@@ -112,7 +115,7 @@
                                   <span>마감시간</span>${motel.mdaesilcheckout }시까지&nbsp;
                                 </li>
                                 <li>
-                                  <span>이용시간</span>${motel.mdaesiltime }&nbsp;
+                                  <span>이용시간</span>${motel.mdaesiltime }시간&nbsp;
                                 </li>
                               </ul>
                             </div>
@@ -136,14 +139,14 @@
                               </ul>
                             </div>
                           </div>
+                        </div>
                           <div class="option">
                             <ul>
                               <li>
                                 <span>부대시설 : </span>${motelroom.moption }
                               </li>
                             </ul>
-                          </div>
-                        </div>
+                          </div>                        
                       </div>
                     </a>
                     </c:forEach>

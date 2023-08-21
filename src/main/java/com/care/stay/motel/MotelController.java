@@ -1,5 +1,7 @@
 package com.care.stay.motel;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +31,15 @@ public class MotelController {
 	}
 	
 	@RequestMapping("motelpage")
-	public String motelpage() {
+	public String motelpage(
+		@RequestParam(value="no", required = false)String n,
+		Model model) {
+		
+		MotelDTO motel = mservice.stayContent(n);
+		List<MotelRoomDTO> motelrooms = mservice.stayRoomContent(n);
+		
+		model.addAttribute("motel", motel);
+		model.addAttribute("motelrooms", motelrooms);
 		return "motel/motelpage";
 	}
 		  

@@ -59,7 +59,7 @@
 	  	SELECT count(no) FROM motel
 	</select>
 	
-	<select id="motelroomcount">
+	<select id="motelroomcount" resultType="int">
 		SELECT COALESCE(nvl(max(mroomcode),0) + 1, 0) FROM motelroom
 	</select>
 	
@@ -91,7 +91,7 @@
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, 
-		mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout
+		mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, minprice, mindaesilprice
 		FROM motel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  	

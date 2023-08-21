@@ -92,11 +92,10 @@ public class ReservationController {
 	@RequestMapping("daesilReservation")
 	public String daesilReservation(
 			/*임시로 연결만 해놓은거라 정보 없이도 넘어갈 수 있게*/
-			@RequestParam(value="no", required = false)String n,
-			@RequestParam(value="stayType", required = false)String stayType,
-			@RequestParam(value="mroomcode", required = false)String rc,
-			@RequestParam(value="mprice", required = false)String price,
-			Model model) {
+	        @RequestParam(value = "no", required = false) String n,
+	        @RequestParam(value = "stayType", required = false) String stayType,
+	        @RequestParam(value = "mroomcode", required = false) String mroomcode,
+	        Model model) {
 		/*
 
 		String loginId = (String) session.getAttribute("id");
@@ -105,15 +104,18 @@ public class ReservationController {
 			return "redirect:login";
 		} 
 		*/
-		System.out.println("");
-		System.out.println(rc + "는 객실 번호입니다.");
 		
-		MotelDTO motel = mservice.stayContent(n);
-		MotelRoomDTO motelroom = mservice.daesilReservation(rc);
+        model.addAttribute("stayType", stayType);
+        rservice.stayAndRoomInfo(stayType, n, mroomcode, model);
+        rservice.getmroomCode(mroomcode, model);
+        
 		
-		model.addAttribute("stayType", stayType);
-		model.addAttribute("motel", motel);
-		model.addAttribute("motelroom", motelroom);
+//		MotelDTO motel = mservice.stayContent(n);
+//		MotelRoomDTO motelroom = mservice.daesilReservation(mroomcode);
+//		
+//		model.addAttribute("stayType", stayType);
+//		model.addAttribute("motel", motel);
+//		model.addAttribute("motelroom", motelroom);
 
 		return "reservation/daesilReservation";
 	}	
@@ -132,4 +134,5 @@ public class ReservationController {
 		
 		return "reservation/paymentComplete";
 	}
+	
 }

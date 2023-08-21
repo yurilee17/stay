@@ -355,7 +355,7 @@
 		SELECT * FROM hotel WHERE no=#{no}
 	</select>
 
-	<select id="hotelroomcount">
+	<select id="hotelroomcount" resultType="int">
 		SELECT COALESCE(nvl(max(hroomcode),0) + 1, 0) FROM hotelroom
 	</select>	
 	

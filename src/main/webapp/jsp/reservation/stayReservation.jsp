@@ -34,7 +34,6 @@
 	    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	    <!-- iamport.payment.js -->
 	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
 		<!-- 결제 관련 JS 라이브러리 모음 -->		
 
  </head>
@@ -47,14 +46,14 @@
 			<c:when test="${'motel' eq stayType }">
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${motel.mname}</span></p> 
-				<p><strong>객실타입/기간</strong><span class="roomname">${motelroom.mroomname}</span><span> / </span></p> 
-				<p><strong>체크인</strong><span name="checkindate">${motel.mstaycheckin}</span></p> 
-				<p><strong>체크아웃</strong><span>${motel.mstaycheckout}</span></p>
+				<p><strong>객실타입/기간</strong><span class="roomname">${motelroom.mroomname}</span> / </p> 
+				<p><strong>체크인</strong>${motel.mstaycheckin}</p> 
+				<p><strong>체크아웃</strong>${motel.mstaycheckout}</p>
 			</section> 	
 			<section class="total_price_pc">
 				<p>
 					<strong><b>총 결제 금액</b>(VAT포함)</strong>
-					<span class="in_price">${motelroom.mstayprice}</span>
+					<span class="in_price" name="price">${motelroom.mstayprice}</span>
 				</p> 
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
@@ -65,15 +64,13 @@
 					<input type="hidden" name="roomimage" value="${motelroom.mroomimage }">
 					<input type="hidden" name="stayname" value="${motel.mname}">
 					<input type="hidden" name="roomname" value="${motelroom.mroomname}">
-<%-- 					<input type="hidden" name="checkindate" value="${motel.mstaycheckin}"> --%>
-					<input type="hidden" name="checkoutdate" value="${motel.mstaycheckout}">
-					<input type="hidden" name="checkintime" value="">
-					<input type="hidden" name="checkouttime" value="">
+					<input type="hidden" name="checkindate" value="">
+					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkintime" value="${motel.mstaycheckin}">
+					<input type="hidden" name="checkouttime" value="${motel.mstaycheckout}">
 					<input type="hidden" name="id" value="${sessionScope.id}">
-					<input type="hidden" name="name" value="${sessionScope.userName}">
 					<input type="hidden" name="price" value="${motelroom.mstayprice}">
 					<input type="hidden" name="paymethod" value="kakaopay">
-					<input type="hidden" name="status" value="예약확정">
 				</ul>
 			</section>
 			</c:when>
@@ -81,8 +78,8 @@
 		<c:choose>
 			<c:when test="${'hotel' eq stayType }">
 			<section class="info">
-				<p class="name"><strong>숙소이름</strong>${hotel.hname}</p> 
-				<p><strong>객실타입/기간</strong>${hotelroom.hbedtype} / </p> 
+				<p class="name"><strong>숙소이름</strong><span class="stayname">${hotel.hname}</p> 
+				<p><strong>객실타입/기간</strong><span class="roomname">${hotelroom.hbedtype}</span> / </p> 
 				<p><strong>체크인</strong>${hotel.hcheckintime}</p> 
 				<p><strong>체크아웃</strong>${hotel.hcheckouttime}</p>
 			</section> 	
@@ -95,6 +92,19 @@
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
 					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+					<input type="hidden" name="stayno" value="${hotel.no }">					
+					<input type="hidden" name="code" value="${hotel.hcode }">
+					<input type="hidden" name="roomcode" value="${hotelroom.hroomcode }">
+					<input type="hidden" name="roomimage" value="${hotelroom.hroomimage }">
+					<input type="hidden" name="stayname" value="${hotel.hname}">
+					<input type="hidden" name="roomname" value="${hotelroom.hroomname}">
+					<input type="hidden" name="checkindate" value="">
+					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkintime" value="${hotel.hcheckintime}">
+					<input type="hidden" name="checkouttime" value="${hotel.hcheckouttime}">
+					<input type="hidden" name="id" value="${sessionScope.id}">
+					<input type="hidden" name="price" value="${hotelroom.hprice}">
+					<input type="hidden" name="paymethod" value="kakaopay">					
 				</ul>
 			</section>
 			</c:when>
@@ -102,8 +112,8 @@
 		<c:choose>
 			<c:when test="${'camping' eq stayType }">
 			<section class="info">
-				<p class="name"><strong>숙소이름</strong>${camping.cname}</p> 
-				<p><strong>객실타입/기간</strong>${campingroom.croomname} / </p> 
+				<p class="name"><strong>숙소이름</strong><span class="stayname">${camping.cname}</p> 
+				<p><strong>객실타입/기간</strong><span class="roomname">${campingroom.croomname}</span> / </p> 
 				<p><strong>체크인</strong>${camping.ccheckintime}</p> 
 				<p><strong>체크아웃</strong>${camping.ccheckouttime}</p>
 			</section> 	
@@ -116,6 +126,20 @@
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
 					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+					<input type="hidden" name="stayno" value="${camping.no }">					
+					<input type="hidden" name="code" value="${camping.ccode }">
+					<input type="hidden" name="roomcode" value="${campingroom.croomcode }">
+					<input type="hidden" name="roomimage" value="${campingroom.croomimage }">
+					<input type="hidden" name="stayname" value="${camping.cname}">
+					<input type="hidden" name="roomname" value="${campingroom.croomname}">
+					<input type="hidden" name="checkindate" value="">
+					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkintime" value="${camping.ccheckintime}">
+					<input type="hidden" name="checkouttime" value="${camping.ccheckouttime}">
+					<input type="hidden" name="id" value="${sessionScope.id}">
+					<input type="hidden" name="name" value="${sessionScope.name}">
+					<input type="hidden" name="price" value="${campingroom.cprice}">
+					<input type="hidden" name="paymethod" value="kakaopay">								
 				</ul>
 			</section>
 			</c:when>
@@ -123,8 +147,8 @@
 		<c:choose>
 			<c:when test="${'gh' eq stayType }">
 			<section class="info">
-				<p class="name"><strong>숙소이름</strong>${gh.gname}</p> 
-				<p><strong>객실타입/기간</strong>${ghroom.gbedtype} / </p> 
+				<p class="name"><strong>숙소이름</strong><span class="stayname">${gh.gname}</p> 
+				<p><strong>객실타입/기간</strong><span class="roomname">${ghroom.gbedtype}</span> / </p> 
 				<p><strong>체크인</strong>${gh.gcheckintime}</p> 
 				<p><strong>체크아웃</strong>${gh.gcheckouttime}</p>
 			</section> 	
@@ -137,6 +161,20 @@
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
 					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+					<input type="hidden" name="stayno" value="${gh.no }">					
+					<input type="hidden" name="code" value="${gh.gcode }">
+					<input type="hidden" name="roomcode" value="${gh.groomcode }">
+					<input type="hidden" name="roomimage" value="${ghroom.groomimage }">
+					<input type="hidden" name="stayname" value="${gh.gname}">
+					<input type="hidden" name="roomname" value="${ghroom.groomname}">
+					<input type="hidden" name="checkindate" value="">
+					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkintime" value="${gh.gcheckintime}">
+					<input type="hidden" name="checkouttime" value="${gh.gcheckouttime}">
+					<input type="hidden" name="id" value="${sessionScope.id}">
+					<input type="hidden" name="name" value="${sessionScope.name}">
+					<input type="hidden" name="price" value="${ghroom.gprice}">
+					<input type="hidden" name="paymethod" value="kakaopay">								
 				</ul>
 			</section>
 			</c:when>
@@ -144,8 +182,8 @@
 		<c:choose>
 			<c:when test="${'pension' eq stayType }">
 			<section class="info">
-				<p class="name"><strong>숙소이름</strong>${pension.pname}</p> 
-				<p><strong>객실타입/기간</strong>${pentionroom.proomname} / </p> 
+				<p class="name"><strong>숙소이름</strong><span class="stayname">${pension.pname}</p> 
+				<p><strong>객실타입/기간</strong><span class="roomname">${pentionroom.proomname}</span> / </p> 
 				<p><strong>체크인</strong>${pention.pcheckintime}</p> 
 				<p><strong>체크아웃</strong>${pention.pcheckouttime}</p>
 			</section> 	
@@ -158,6 +196,20 @@
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
 					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+					<input type="hidden" name="stayno" value="${pension.no }">					
+					<input type="hidden" name="code" value="${pension.pcode }">
+					<input type="hidden" name="roomcode" value="${pensionroom.proomcode }">
+					<input type="hidden" name="roomimage" value="${pensionroom.proomimage }">
+					<input type="hidden" name="stayname" value="${pension.pname}">
+					<input type="hidden" name="roomname" value="${pensionroom.proomname}">
+					<input type="hidden" name="checkindate" value="">
+					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkintime" value="${pension.pcheckintime}">
+					<input type="hidden" name="checkouttime" value="${pension.pcheckouttime}">
+					<input type="hidden" name="id" value="${sessionScope.id}">
+					<input type="hidden" name="name" value="${sessionScope.name}">
+					<input type="hidden" name="price" value="${pensionroom.pprice}">
+					<input type="hidden" name="paymethod" value="kakaopay">								
 				</ul>
 			</section>
 			</c:when>
@@ -171,7 +223,7 @@
 			<h3 style="margin-top:0;">예약자 정보</h3> 
 			<strong>예약자 이름</strong> 
 			<p class="inp_wrap remove">
-				<input type="text" name="userName" placeholder="체크인시 필요한 정보입니다." maxlength="20">
+				<input type="text" name="userName" placeholder="체크인시 필요한 정보입니다." maxlength="20" value="${sessionScope.name}">
 			</p> 
 			<p data-show="name" class="alert_txt" style="visibility: hidden">한글, 영문, 숫자만 입력 가능. (문자 사이 공백은 1칸만 입력 가능)</p> 
 			<div>
@@ -179,7 +231,7 @@
 				<span class="safety_txt">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span> 
 				<div class="phone_confirm guest-phone">
 					<div class="input-box">
-						<input type="tel" id="userPhone" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="input validation-required-input">
+						<input type="tel" id="userPhone" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="${sessionScope.mobile}" class="input validation-required-input">
 					</div> 
 					<button type="button" class="btn_send btn_confirm phone-auth-btn" onclick="btnSend()">인증번호 전송</button>
 					<p data-show="tel" class="alert_txt error-message" style="">휴대폰 번호를 확인해 주세요.</p>
@@ -268,8 +320,29 @@
 				<strong>예약내역 확인</strong> 
 				<div class="content">
 					<div>
-						<p class="name ellip">${hotel.hname}</p> 
-						<p class="reservname">${hotelroom.hroomname}/1박</p> 
+						<c:choose>
+							<c:when test="${'motel' eq stayType }">
+								<p class="name ellip">${motel.mname}</p> 
+								<p class="reservname">${motelroom.mroomname}/1박</p> 
+							</c:when>
+							<c:when test="${'hotel' eq stayType }">
+								<p class="name ellip">${hotel.hname}</p> 
+								<p class="reservname">${hotelroom.hroomname}/1박</p> 
+							</c:when>
+							<c:when test="${'pension' eq stayType }">
+								<p class="name ellip">${pension.pname}</p> 
+								<p class="reservname">${pensionroom.proomname}/1박</p> 
+							</c:when>
+							<c:when test="${'gh' eq stayType }">
+								<p class="name ellip">${gh.gname}</p> 
+								<p class="reservname">${ghroom.groomname}/1박</p> 
+							</c:when>
+							<c:when test="${'camping' eq stayType }">
+								<p class="name ellip">${camping.cname}</p> 
+								<p class="reservname">${campingroom.croomname}/1박</p> 
+							</c:when>														
+						</c:choose>
+
 						<p id="chkin_print_date" class="date mt_align"><span>체크인</span><b>08.14</b></p> 
 						<p id="chkout_print_date" class="date"><span>체크아웃</span><b>08.15</b></p> 
 						<ul id="refund_policy" class="policy01">
