@@ -7,13 +7,16 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface HotelMapper {
+	
+	HotelRoomDTO roomContent(int no);
 
 	ArrayList<HotelDTO> stayInfo(@Param("begin")int begin, @Param("end")int end);
 	int hotelroomcount();
 	void stayregisterProc(HotelDTO hotel);
 	HotelDTO stayContent(int no);
-	HotelRoomDTO stayRoomContent(int no);
+	HotelRoomDTO stayRoomContent(int hroomcode);
 	HotelDTO stayDetailRegister(int no);
+	HotelRoomDTO stayReservation(int hroomcode);
 	void staydetailregisterProc(HotelRoomDTO hotelroom);
 	int stayCountHotel();
 	List<HotelRoomDTO> stayRoomContent(String n);
@@ -23,7 +26,9 @@ public interface HotelMapper {
 	 
 	 ArrayList<HotelDTO> Main(String selectedText, @Param("begin")int begin, @Param("end")int end); 
 	 
-	 ArrayList<HotelDTO> MainCheck(String selectedText, String selectedValues1, String selectedValues2, String selectedValues3, int personCount, @Param("begin")int begin, @Param("end")int end);
+	ArrayList<HotelDTO> MainCheck(String selectedText, String selectedValues1, String selectedValues2, String selectedValues3, int personCount, @Param("begin")int begin, @Param("end")int end);
+
+
 
 	/*
 	 * ArrayList<HotelDTO> hotellist(

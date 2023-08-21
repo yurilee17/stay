@@ -15,10 +15,7 @@ public class HotelDTO {
 	private String hcheckintime;
 	private String hcheckouttime;
 	private String htype;
-	private int hpeople;
-	private String hbedtype;
 
-	
 	public int getNo() {
 		return no;
 	}
@@ -98,18 +95,6 @@ public class HotelDTO {
 	public void setHtype(String htype) {
 		this.htype = htype;
 	}
-	public int getHpeople() {
-		return hpeople;
-	}
-	public void setHpeople(int hpeople) {
-		this.hpeople = hpeople;
-	}
-	public String getHbedtype() {
-		return hbedtype;
-	}
-	public void setHbedtype(String hbedtype) {
-		this.hbedtype = hbedtype;
-	}
-	
+
 }
 	

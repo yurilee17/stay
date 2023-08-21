@@ -18,4 +18,5 @@ public interface CampingMapper {
 	void staydetailregisterProc(CampingRoomDTO campingroom);
 	int stayCountCamping();	
 	List<CampingRoomDTO> stayRoomContent(String n);
+	CampingRoomDTO roomContent(int croomcode);
 }

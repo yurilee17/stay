@@ -3,11 +3,11 @@ package com.care.stay.hotel;
 public class HotelRoomDTO {
 	private int no;
 	private String hcode;
-	private String hroomCode;
-	private String hroomName;
-	private String hbedType;
-	private String hroomImage;
-	private int hroomNumber;
+	private String hroomcode;
+	private String hroomname;
+	private String hbedtype;
+	private String hroomimage;
+	private int hroomnumber;
 	private int hprice;
 	private int hpeople;
 	private String hcomfort;
@@ -24,35 +24,35 @@ public class HotelRoomDTO {
 	public void setHcode(String hcode) {
 		this.hcode = hcode;
 	}
-	public String getHroomCode() {
-		return hroomCode;
+	public String getHroomcode() {
+		return hroomcode;
 	}
-	public void setHroomCode(String hroomCode) {
-		this.hroomCode = hroomCode;
+	public void setHroomcode(String hroomcode) {
+		this.hroomcode = hroomcode;
 	}
-	public String getHroomName() {
-		return hroomName;
+	public String getHroomname() {
+		return hroomname;
 	}
-	public void setHroomName(String hroomName) {
-		this.hroomName = hroomName;
+	public void setHroomname(String hroomname) {
+		this.hroomname = hroomname;
 	}
-	public String getHbedType() {
-		return hbedType;
+	public String getHbedtype() {
+		return hbedtype;
 	}
-	public void setHbedType(String hbedType) {
-		this.hbedType = hbedType;
+	public void setHbedtype(String hbedtype) {
+		this.hbedtype = hbedtype;
 	}
-	public String getHroomImage() {
-		return hroomImage;
+	public String getHroomimage() {
+		return hroomimage;
 	}
-	public void setHroomImage(String hroomImage) {
-		this.hroomImage = hroomImage;
+	public void setHroomimage(String hroomimage) {
+		this.hroomimage = hroomimage;
 	}
-	public int getHroomNumber() {
-		return hroomNumber;
+	public int getHroomnumber() {
+		return hroomnumber;
 	}
-	public void setHroomNumber(int hroomNumber) {
-		this.hroomNumber = hroomNumber;
+	public void setHroomnumber(int hroomnumber) {
+		this.hroomnumber = hroomnumber;
 	}
 	public int getHprice() {
 		return hprice;
@@ -72,5 +72,5 @@ public class HotelRoomDTO {
 	public void setHcomfort(String hcomfort) {
 		this.hcomfort = hcomfort;
 	}
-	
+
 }
