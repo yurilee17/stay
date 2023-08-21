@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Hotelcontroller {
-	@Autowired private HotelService service;
+	@Autowired private HotelService hotelService;
 	@Autowired private HttpSession session;
 	
 	  //hotellist 첫화면 
@@ -27,7 +27,7 @@ public class Hotelcontroller {
 	  
 	  System.out.println("hotellist나오는지 알려주세요");
 	  
-	  service.hotellist(cp,model); 
+	  hotelService.hotellist(cp,model); 
 	  	return "hotel/hotellist"; 
 	  	}
 	  
@@ -70,27 +70,27 @@ public class Hotelcontroller {
 		  	  //아래내용을 변경하기 
 			   if (checkindate != null || htype != null || hbedtype != null || hcomfort != null ) {
 		  		   	
-		  		   service.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
+				 hotelService.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
 		  	    } 
 		  	   else if(selectedText != null ) {
-		  	        service.Main(selectedText, cp ,model);
+		  		 hotelService.Main(selectedText, cp ,model);
 		  	    }   
 		  		
 		  		
 		/*  	if(selectedText != null) {
-		  			service.Main(selectedText, cp ,model);
+		  			hotelService.Main(selectedText, cp ,model);
 		  		}
 		  		if(htype != null) {
-		  			service.typeList(selectedText,htype,cp ,model);
+		  			hotelService.typeList(selectedText,htype,cp ,model);
 		  		}
 		  		if(hbedtype != null) {
-		  			service.bedtypeList(selectedText,hbedtype,cp ,model);
+		  			hotelService.bedtypeList(selectedText,hbedtype,cp ,model);
 		  		}
 		  		if(hcomfort != null) {
-		  			service.comfortList(selectedText,hcomfort,cp ,model);
+		  			hotelService.comfortList(selectedText,hcomfort,cp ,model);
 		  		}
 		  		if(hpeopleString != null) {
-		  			service.MainCheck_hpeople(selectedText,hpeopleString,cp ,model);
+		  			hotelService.MainCheck_hpeople(selectedText,hpeopleString,cp ,model);
 		  		}
 		  		*/
 		  		
@@ -99,11 +99,23 @@ public class Hotelcontroller {
 			  	}
 	
 	  
-	@RequestMapping("hotelpage")
+	  
+/*	@RequestMapping("hotelpage")
 	public String hotelpage() {
 		return "hotel/hotelpage";
+	} */
+	
+	  
+	@RequestMapping("hotelpage")
+	public String hotelpage(
+		@RequestParam(value="no", required = false)String n, Model model) {
+		
+		HotelDTO hotel = hotelService.stayContent(n);
+		List<HotelRoomDTO> hotelrooms = hotelService.stayRoomContent(n);
+		
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("hotelrooms", hotelrooms);
+		return "hotel/hotelpage";
 	}
-	
-	
 
 }

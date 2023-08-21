@@ -624,22 +624,24 @@ public class HotelService {
 		    return Arrays.asList(hcomfortList);
 		}
 	  */
+	  	
+	  	
 	  
 
 
-	public HotelRoomDTO roomContent(String rc) {
-		int hroomcode = 0;
-		try{
-			hroomcode = Integer.parseInt(rc);
-		}catch(Exception e){
-			return null;
+		public HotelRoomDTO roomContent(String rc) {
+			int hroomcode = 0;
+			try{
+				hroomcode = Integer.parseInt(rc);
+			}catch(Exception e){
+				return null;
+			}
+			
+			HotelRoomDTO hotelroom = hotelMapper.roomContent(hroomcode);
+			if(hotelroom == null)
+				return null;
+			return hotelroom;
 		}
-		
-		HotelRoomDTO hotelroom = hotelMapper.roomContent(hroomcode);
-		if(hotelroom == null)
-			return null;
-		return hotelroom;
-	}
 
 	  
 

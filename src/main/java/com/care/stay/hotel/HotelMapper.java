@@ -59,6 +59,8 @@ public interface HotelMapper {
 	 ArrayList<HotelDTO> MainCheck_hpeople(String selectedText, int hpeople, @Param("begin")int begin, @Param("end")int end); 
 
 */
+	 
+
 }
 
 

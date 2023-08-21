@@ -279,11 +279,11 @@
 							<br> <strong>호텔·리조트 유형</strong><br>
 							<br>
 							<ul>
-								<li><input type="checkbox" id="grade_0" name="grade[]" class="inp_chk" value="STAR5" /> 
+								<li><input type="checkbox" id="grade_0" name="grade[]" class="inp_chk" value="5성급" /> 
 									<label for="grade_0" class="label_chk">5성급</label></li>
-								<li><input type="checkbox" id="grade_1" name="grade[]" class="inp_chk" value="S1" /> 
+								<li><input type="checkbox" id="grade_1" name="grade[]" class="inp_chk" value="특1급" /> 
 								<label for="grade_1" class="label_chk">특1급</label></li>
-								<li><input type="checkbox" id="grade_2" name="grade[]" class="inp_chk" value="S" /> 
+								<li><input type="checkbox" id="grade_2" name="grade[]" class="inp_chk" value="특급" /> 
 								<label for="grade_2" class="label_chk">특급</label></li>
 							</ul>
 						</section>
@@ -556,9 +556,7 @@
 
 						<c:forEach var="hotel" items="${ hotels}">
 
-							<%--   <% for(int i=0; i<=5; i++){   %>  --%>
-
-							<a href="#" class="thumb">
+							<a href="/motelpage?no=${hotel.no }" class="thumb">
 								<table>
 									<tr>
 										<td width="300px" height="250px"><img
