@@ -4,7 +4,8 @@
 
 <link rel="stylesheet" href="../../resource/css/alert.css">
 <link rel="stylesheet" href="../../resource/css/header.css">
-    <link rel="stylesheet preload" href="../../resource/css/font.css" as="style" type="text/css" crossorigin="">
+<link rel="stylesheet preload" href="../../resource/css/font.css"
+	as="style" type="text/css" crossorigin="">
 <header>
 
 	<section>
@@ -22,6 +23,16 @@
 				</c:when>
 				<c:otherwise>
 					<li><a href="/reservationList">예약내역</a></li>					
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${empty sessionScope.id }">
+					<li><a href="/login">예약내역</a></li>
+				</c:when>
+				<c:when test="${'admin' == sessionScope.authority }">
+				</c:when>
+				<c:otherwise>
+					<li><a href="/reservationList">예약내역</a></li>
 				</c:otherwise>
 			</c:choose>
 			<li class="over">
@@ -45,21 +56,19 @@
 						<ul class="list_04">
 							<li><b>${sessionScope.nickname}</b></li>
 							<li><a href="/stayIndex">관리하는거 어때</a></li>
-							<li><button type="button" class="pop_logout_open"
+							<li><button type="button" class="poplogoutopen"
 									onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button></li>
 						</ul></li>
 				</c:when>
 				<c:otherwise>
-					<li class="user"><a href="#"><img
+					<li class="user"><a href="/myPage"><img
 							src="../../resource/img/loginUser.png" alt=""></a>
 						<ul class="list_04">
 							<li><b>${sessionScope.nickname}</b></li>
-							<li><a href="#">내정보</a></li>
-							<!--<li><a href="#" data-point="0">포인트<!-- span>0P</span ></a></li>-->
-							<!--<li><a href="#">쿠폰함<!-- span>0장</span ></a></li>-->
-							<li><a href="#">예약내역<!-- span>0건</span --></a></li>
-							<!--<li><a href="#">알림설정</a></li>-->
-							<li><button type="button" class="pop_logout_open"
+
+							<li><a href="/myPage">내정보</a></li>
+							<li><a href="/reservationList">예약내역<!-- span>0건</span --></a></li>
+							<li><button type="button" class="poplogoutopen"
 									onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button></li>
 						</ul></li>
 				</c:otherwise>
@@ -78,7 +87,7 @@
 			</div>
 			<!-- Bg Dimm -->
 			<div class="bgDimm" onclick="closeLayer();">&nbsp;</div>
-			
+
 		</div>
 		<!-- Search 
 		<div class="srch_bar">

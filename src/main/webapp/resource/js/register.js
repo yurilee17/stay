@@ -302,7 +302,7 @@ function sendDigitProc() {
 
 				window.location.href = url;
 			} else if (xhr.responseText === '인증 실패') {
-				alert("인증번호와 다르게 입력되었습니다. 재입력해 주시기 바랍니다.");
+				alert("인증번호와 다르게 입력되었습니다. \n재입력해 주시기 바랍니다.");
 				console.log("test 결과: " + xhr.responseText);
 			}
 		}

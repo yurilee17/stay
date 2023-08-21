@@ -22,7 +22,8 @@
 		<result column="paymethod" property="paymethod" />
 		<result column="status" property="status" />	
 	</resultMap>
-	
+
+
 	<select id="reservationcount">
 		SELECT COALESCE(nvl(max(no),0) + 1, 0) FROM reservation
 	</select>
@@ -34,5 +35,28 @@
 		INSERT INTO reservation (no, stayno, stayname, roomname, code, roomcode, roomimage, checkindate, checkoutdate, checkouttime, id, name, price, paymethod, status)
 		VALUES(#{no}, #{stayno}, #{stayname}, #{roomname}, #{code}, #{roomcode}, #{roomimage}, #{checkindate}, #{checkoutdate}, #{checkouttime}, #{id}, #{name}, #{price}, #{paymethod}, #{status})
 	</insert>
+	
+	<select id="resConfirmed" resultMap="ReservationDto">
+		SELECT * FROM reservation
+		WHERE
+		id=#{id} AND status='예약확정' ORDER BY checkindate DESC
+	</select>
+
+	<select id="resCompleted" resultMap="ReservationDto">
+		SELECT * FROM reservation
+		WHERE
+		id=#{id} AND status='이용완료' ORDER BY checkindate DESC
+	</select>
+
+	<select id="resCancellation" resultMap="ReservationDto">
+		SELECT * FROM reservation
+		WHERE
+		id=#{id} AND status='예약취소' ORDER BY checkindate DESC
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM reservation WHERE no=#{no}
+	</delete>
 
 </mapper>
+

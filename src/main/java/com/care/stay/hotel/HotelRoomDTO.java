@@ -11,7 +11,6 @@ public class HotelRoomDTO {
 	private int hprice;
 	private int hpeople;
 	private String hcomfort;
-	
 	public int getNo() {
 		return no;
 	}
@@ -24,6 +23,7 @@ public class HotelRoomDTO {
 	public void setHcode(String hcode) {
 		this.hcode = hcode;
 	}
+
 	public int getHroomcode() {
 		return hroomcode;
 	}

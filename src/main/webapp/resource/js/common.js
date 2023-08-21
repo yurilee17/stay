@@ -786,6 +786,8 @@ function pop_licence(){
 	window.open(url, "communicationViewPopup", "width=750, height=700;");
 }
 
+
+
 /* Jquery */
 $(function(){
 
@@ -1309,9 +1311,6 @@ $(function () {
 
 //    toastPop('일치하는 회원이 없습니다.');
 
-function logoutPro() {
-	window.location.href = '/my/logout';
-}
 
 function shuffle(array) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
