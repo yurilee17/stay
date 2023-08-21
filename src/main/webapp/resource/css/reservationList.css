@@ -599,22 +599,23 @@ img {
 }
 
 .resDetail div {
-	padding: 15px px 0;
+	padding: 15px 0;
 	border: none;
 }
 
-.reserve_detail div p {
+.resDetail div p {
 	position: relative;
 	margin: 0 0 13px 0;
 	font-size: 18px;
 	color: rgba(0, 0, 0, 0.87);
 	text-align: left;
 }
-.reserve_detail div p:last-child {
+
+.resDetail div p:last-child {
     margin-bottom: 0;
 }
 
-.reserve_detail div p strong {
+.resDetail div p strong {
     display: inline-block;
     position: relative;
     top: 0;

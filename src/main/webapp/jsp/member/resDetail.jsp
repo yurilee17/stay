@@ -103,9 +103,6 @@
 							<strong>예약번호</strong>2212051400DCA5YE1
 						</p>
 						<p>
-							<strong></strong>(112356406)
-						</p>
-						<p>
 							<strong>예약자 이름</strong>이*리
 						</p>
 						<p>
