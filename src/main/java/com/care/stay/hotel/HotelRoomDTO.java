@@ -3,7 +3,7 @@ package com.care.stay.hotel;
 public class HotelRoomDTO {
 	private int no;
 	private String hcode;
-	private String hroomcode;
+	private int hroomcode;
 	private String hroomname;
 	private String hbedtype;
 	private String hroomimage;
@@ -11,7 +11,6 @@ public class HotelRoomDTO {
 	private int hprice;
 	private int hpeople;
 	private String hcomfort;
-	
 	public int getNo() {
 		return no;
 	}
@@ -24,10 +23,11 @@ public class HotelRoomDTO {
 	public void setHcode(String hcode) {
 		this.hcode = hcode;
 	}
-	public String getHroomcode() {
+
+	public int getHroomcode() {
 		return hroomcode;
 	}
-	public void setHroomcode(String hroomcode) {
+	public void setHroomcode(int hroomcode) {
 		this.hroomcode = hroomcode;
 	}
 	public String getHroomname() {
