@@ -32,7 +32,7 @@
 
 			<!-- 등록 양식 -->
 			<div class="stay_modify">
-				<form id="stayForm" action="staymodifyProc" method="post" enctype="multipart/form-data">
+				<form id="stayForm" action="stayModifyProc" method="post" enctype="multipart/form-data">
 					<table class="stay_table">
 						<colgroup>
 							<col width="25%"></col>
@@ -226,40 +226,73 @@
 						<tr>
 							<th>대실체크인</th>
 							<td>
-								<select id="mdaesilcheckin" name="mdaesilcheckin" class="form_25 right-menu select2">
-									 <option disabled selected value="">시간을 선택하세요</option>
-									 <option value="10:00" <c:if test="${'10:00' eq mdaesilcheckin}">selected</c:if>>10:00</option>
-									 <option value="11:00" <c:if test="${'11:00' eq mdaesilcheckin}">selected</c:if>>11:00</option>
-									 <option value="12:00" <c:if test="${'12:00' eq mdaesilcheckin}">selected</c:if>>12:00</option>
-									 <option value="13:00" <c:if test="${'13:00' eq mdaesilcheckin}">selected</c:if>>13:00</option>
-									 <option value="14:00" <c:if test="${'14:00' eq mdaesilcheckin}">selected</c:if>>14:00</option>
-									 <option value="15:00" <c:if test="${'15:00' eq mdaesilcheckin}">selected</c:if>>15:00</option>
-									 <option value="16:00" <c:if test="${'16:00' eq mdaesilcheckin}">selected</c:if>>16:00</option>
-									 <option value="17:00" <c:if test="${'17:00' eq mdaesilcheckin}">selected</c:if>>17:00</option>
-									 <option value="18:00" <c:if test="${'18:00' eq mdaesilcheckin}">selected</c:if>>18:00</option>
-									 <option value="19:00" <c:if test="${'19:00' eq mdaesilcheckin}">selected</c:if>>19:00</option>
-									 <option value="20:00" <c:if test="${'20:00' eq mdaesilcheckin}">selected</c:if>>20:00</option>
-									 <option value="21:00" <c:if test="${'21:00' eq mdaesilcheckin}">selected</c:if>>21:00</option>
+								<select id="daesilcheckin" name="mdaesilcheckin" class="form_25 right-menu select2">
+								    <c:set var="daesilcheckinValue" value="${motel.mdaesilcheckin}" />
+								    <option disabled selected value="">시간을 선택하세요</option>
+								    <c:forEach var="hour" begin="10" end="21">
+								        <c:set var="optionValue" value="${hour}:00" />
+								        <option value="${optionValue}" <c:if test="${optionValue eq daesilcheckinValue}">selected</c:if>>${optionValue}</option>
+								    </c:forEach>
 								</select>
-							<input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder="" value="${motel.mdaesilcheckin}">
+							<%-- <input type="text" class="form_w30" name="mdaesilcheckin" id="mdaesilcheckin" placeholder="" value="${motel.mdaesilcheckin}"> --%>
 							
 							</td>
 						</tr>
 						<tr>
 							<th>대실체크아웃</th>
-							<td><input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder="" value="${motel.mdaesilcheckout}"></td>
+							<td>
+								<select id="mdaesilcheckout" name="mdaesilcheckout" class="form_25 right-menu select2">
+								    <c:set var="daesilcheckout" value="${motel.mdaesilcheckout}" />
+								    <option disabled selected value="">시간을 선택하세요</option>
+								    <c:forEach var="hour" begin="14" end="24">
+								        <c:set var="optionValue" value="${hour}:00" />
+								        <option value="${optionValue}" <c:if test="${optionValue eq daesilcheckout}">selected</c:if>>${optionValue}</option>
+								    </c:forEach>
+								</select>
+								<%-- <input type="text" class="form_w30" name="mdaesilcheckout" id="mdaesilcheckout" placeholder="" value="${motel.mdaesilcheckout}"> --%>
+							</td>
 						</tr>
 						<tr>
 							<th>대실시간</th>
-							<td><input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder="" value="${motel.mdaesiltime}"></td>
+							<td>
+								<select id="mdaesiltime" name="mdaesiltime" class="form_25 select2">
+								    <c:set var="daesiltimeValue" value="${motel.mdaesiltime}" />
+								    <option disabled selected value="">시간을 선택하세요</option>
+								    <c:forEach var="hour" begin="3" end="6">
+								        <c:set var="optionValue" value="${hour}" />
+								        <option value="${optionValue}" <c:if test="${optionValue eq daesiltimeValue}">selected</c:if>>${optionValue}시간</option>
+								    </c:forEach>
+								</select>
+								<%-- <input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder="" value="${motel.mdaesiltime}"> --%>
+							</td>
 						</tr>
 						<tr>
 							<th>숙박체크인</th>
-							<td><input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder="" value="${motel.mstaycheckin}"></td>
+							<td>
+								<select id="mstaycheckin" name="mstaycheckin" class="form_25 right-menu select2">
+								    <c:set var="staycheckinValue" value="${motel.mstaycheckin}" />
+								    <option disabled selected value="">시간을 선택하세요</option>
+								    <c:forEach var="hour" begin="13" end="24">
+								        <c:set var="optionValue" value="${hour}:00" />
+								        <option value="${optionValue}" <c:if test="${optionValue eq staycheckinValue}">selected</c:if>>${optionValue}</option>
+								    </c:forEach>
+								</select>
+								<%-- <input type="text" class="form_w30" name="mstaycheckin" id="mstaycheckin" placeholder="" value="${motel.mstaycheckin}"> --%>
+							</td>
 						</tr>		
 						<tr>
 							<th>숙박체크아웃</th>
-							<td><input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder="" value="${motel.mstaycheckout}"></td>
+							<td>
+								<select id="mstaycheckout" name="mstaycheckout" class="form_25 right-menu select2">
+								    <c:set var="staycheckoutValue" value="${motel.mstaycheckout}" />
+								    <option disabled selected value="">시간을 선택하세요</option>
+								    <c:forEach var="hour" begin="10" end="14">
+								        <c:set var="optionValue" value="${hour}:00" />
+								        <option value="${optionValue}" <c:if test="${optionValue eq staycheckoutValue}">selected</c:if>>${optionValue}</option>
+								    </c:forEach>
+								</select>						
+								<%-- <input type="text" class="form_w30" name="mstaycheckout" id="mstaycheckout" placeholder="" value="${motel.mstaycheckout}"> --%>
+							</td>
 						</tr>
 					</table>
 					

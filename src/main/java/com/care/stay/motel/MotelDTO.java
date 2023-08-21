@@ -13,7 +13,7 @@ public class MotelDTO {
 	private String minfo;
 	private String mdaesilcheckin;
 	private String mdaesilcheckout;
-	private String mdaesiltime;
+	private int mdaesiltime;
 	private String mstaycheckin;
 	private String mstaycheckout;
 	private int mindaesilprice;
@@ -91,10 +91,10 @@ public class MotelDTO {
 	public void setMdaesilcheckout(String mdaesilcheckout) {
 		this.mdaesilcheckout = mdaesilcheckout;
 	}
-	public String getMdaesiltime() {
+	public int getMdaesiltime() {
 		return mdaesiltime;
 	}
-	public void setMdaesiltime(String mdaesiltime) {
+	public void setMdaesiltime(int mdaesiltime) {
 		this.mdaesiltime = mdaesiltime;
 	}
 	public String getMstaycheckin() {

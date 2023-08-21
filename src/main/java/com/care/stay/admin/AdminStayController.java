@@ -388,7 +388,7 @@ public class AdminStayController {
 
 	
 	@PostMapping("stayModifyProc")
-	public String staymodifyProc(MultipartHttpServletRequest multi, 
+	public String stayModifyProc(MultipartHttpServletRequest multi, 
 			@RequestParam("stayType") String stayType, Model model) {
 		String result = "";
 		if (stayType == null) {
@@ -415,7 +415,7 @@ public class AdminStayController {
 	}
 	
 	
-	@GetMapping("stayDeleteProc")
+	@RequestMapping("stayDeleteProc")
 	public String stayDeleteProc(@RequestParam(value="no", required = false)String n,
 			@RequestParam(value="stayType", required = false)String stayType) {
 		String result = "";

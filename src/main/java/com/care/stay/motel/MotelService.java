@@ -40,7 +40,7 @@ public class MotelService {
 		motel.setMinfo(multi.getParameter("info"));
 		motel.setMdaesilcheckin(multi.getParameter("mdaesilcheckin"));
 		motel.setMdaesilcheckout(multi.getParameter("mdaesilcheckout"));
-		motel.setMdaesiltime(multi.getParameter("mdaesiltime"));
+		motel.setMdaesiltime(getIntParameter(multi, "mdaesiltime"));
 		motel.setMstaycheckin(multi.getParameter("mstaycheckin"));
 		motel.setMstaycheckout(multi.getParameter("mstaycheckout"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -253,45 +253,52 @@ public class MotelService {
 	
 	public String stayModifyProc(MultipartHttpServletRequest multi) {
 	    String stayType = multi.getParameter("stayType");
-		
-		MotelDTO motel = new MotelDTO();
-		motel.setMname(multi.getParameter("name"));
-		motel.setMregion(multi.getParameter("region"));
-		motel.setMdetailregion(multi.getParameter("detailregion"));
-		motel.setMaddress(multi.getParameter("address"));
-		motel.setMdetailaddress(multi.getParameter("detailaddress"));
-		motel.setMinfo(multi.getParameter("info"));
-		motel.setMdaesilcheckin(multi.getParameter("mdaesilcheckin"));
-		motel.setMdaesilcheckout(multi.getParameter("mdaesilcheckout"));
-		motel.setMdaesiltime(multi.getParameter("mdaesiltime"));
-		motel.setMstaycheckin(multi.getParameter("mstaycheckin"));
-		motel.setMstaycheckout(multi.getParameter("mstaycheckout"));
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		motel.setMimage("");
-		MultipartFile file = multi.getFile("imageupload");
-		String fileName = file.getOriginalFilename();
-		if(file.getSize() != 0 && file != null) {
-			
-			// 새로운 사진 파일을 업로드시 기존 파일을 지우는 과정이 필요
-			
-			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
-			Calendar cal = Calendar.getInstance();
-			fileName = sdf.format(cal.getTime()) + fileName;
-			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
-			motel.setMimage(fileLocation + fileName);
-			File save = new File(fileLocation + fileName);
-			
-			try {
-				file.transferTo(save);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 
+	    MotelDTO motel = new MotelDTO();
+	    motel.setMname(multi.getParameter("name"));
+	    motel.setMregion(multi.getParameter("region"));
+	    motel.setMdetailregion(multi.getParameter("detailregion"));
+	    motel.setMaddress(multi.getParameter("address"));
+	    motel.setMdetailaddress(multi.getParameter("detailaddress"));
+	    motel.setMinfo(multi.getParameter("info"));
+	    motel.setMdaesilcheckin(multi.getParameter("mdaesilcheckin"));
+	    motel.setMdaesilcheckout(multi.getParameter("mdaesilcheckout"));
+	    motel.setMdaesiltime(getIntParameter(multi, "mdaesiltime"));
+	    motel.setMstaycheckin(multi.getParameter("mstaycheckin"));
+	    motel.setMstaycheckout(multi.getParameter("mstaycheckout"));
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		motelMapper.stayModifyProc(motel);
-		return "숙소 DB 수정 완료";
+	    MultipartFile file = multi.getFile("imageupload");
+	    String fileName = file.getOriginalFilename();
+	    String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
+
+	    // 기존 이미지 파일 삭제
+	    String existingImagePath = motel.getMimage();
+	    if (existingImagePath != null && !existingImagePath.isEmpty()) {
+	        File existingFile = new File(existingImagePath);
+	        if (existingFile.exists()) {
+	            existingFile.delete();  // 기존 파일 삭제
+	        }
+	    }
+
+	    // 새 이미지 파일 업로드
+	    if (file.getSize() != 0 && file != null) {
+	        // 이미지 업로드 로직
+	        sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
+	        Calendar cal = Calendar.getInstance();
+	        fileName = sdf.format(cal.getTime()) + fileName;
+	        motel.setMimage(fileLocation + fileName);
+	        File save = new File(fileLocation + fileName);
+
+	        try {
+	            file.transferTo(save);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    motelMapper.stayModifyProc(motel);
+	    return "숙소 DB 수정 완료";
 	}
 	
 	public String stayDeleteProc(String n) {
