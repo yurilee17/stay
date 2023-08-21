@@ -68,7 +68,7 @@ public class MemberController {
 	@RequestMapping("logout")
 	public String logout() {
 		session.invalidate();
-		return "forward:index";
+		return "redirect:index";
 	}
 
 	/* ======================== 문자 인증 ======================== */

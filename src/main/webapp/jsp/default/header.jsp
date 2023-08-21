@@ -58,7 +58,7 @@
 
 							<li><a href="/myPage">내정보</a></li>
 							<li><a href="/reservationList">예약내역<!-- span>0건</span --></a></li>
-							<li><button type="button" class="pop_logout_open"
+							<li><button type="button" class="poplogoutopen"
 									onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button></li>
 						</ul></li>
 				</c:otherwise>
