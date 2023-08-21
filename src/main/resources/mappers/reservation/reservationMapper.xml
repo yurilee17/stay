@@ -44,7 +44,7 @@
 	<select id="resConfirmed" resultMap="ReservationDto">
 		SELECT * FROM reservation
 		WHERE
-		id=#{id} AND status='예약확정' ORDER BY checkindate DESC
+		id=#{id} AND status='예약확정' ORDER BY checkindate ASC
 	</select>
 
 	<select id="resCompleted" resultMap="ReservationDto">
