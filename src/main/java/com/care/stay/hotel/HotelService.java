@@ -415,6 +415,7 @@ public class HotelService {
 	  System.out.println("service typeList에서 " + selectedText );
 	  System.out.println("service typeList에서 pageBlock " + pageBlock);
 	  System.out.println("service typeList에서 totalCount " + totalCount);
+	  System.out.println("service typeList에서 htype " + htype);
 	  System.out.println("----여기는 서비스 Main.typeList  // -----" );
 	  
 	  
@@ -452,6 +453,7 @@ public class HotelService {
 		  System.out.println("service bedtypeList에서 " + selectedText );
 		  System.out.println("service bedtypeList에서 pageBlock " + pageBlock);
 		  System.out.println("service bedtypeList에서 totalCount " + totalCount);
+		  System.out.println("service bedtypeList에서 hbedtype " + hbedtype);
 		  System.out.println("----여기는 서비스 Main.bedtypeList  // -----" );
 		  
 		  
@@ -487,6 +489,7 @@ public class HotelService {
 		  System.out.println("service bedtypeList에서 " + selectedText );
 		  System.out.println("service bedtypeList에서 pageBlock " + pageBlock);
 		  System.out.println("service bedtypeList에서 totalCount " + totalCount);
+		  System.out.println("service bedtypeList에서 hcomfort " + hcomfort);
 		  System.out.println("----여기는 서비스 Main.comfortList  // -----" );
 		  
 		  
