@@ -12,6 +12,9 @@ public interface ReservationMapper {
 
 	void reservationProc(ReservationDTO reservation);
 
+	// 리스트 가져오기 전 업데이트
+	void listUp();
+	
 	// 예약확정 가져오기
 	ArrayList<ReservationDTO> resConfirmed(String id);
 

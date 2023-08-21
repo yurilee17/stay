@@ -37,6 +37,10 @@
 		VALUES(#{no}, #{stayno}, #{stayname}, #{roomname}, #{code}, #{roomcode}, #{roomimage}, #{checkindate}, #{checkoutdate}, #{checkouttime}, #{id}, #{name}, #{price}, #{paymethod}, #{status})
 	</insert>
 	
+	<update id="listUp">
+		UPDATE reservation SET status='이용완료' WHERE  TO_CHAR(SYSDATE, 'YYYY-MM-DD') >= checkindate AND TO_CHAR(SYSTIMESTAMP, 'HH24:MI') >= checkintime AND status='예약확정'
+	</update>
+	
 	<select id="resConfirmed" resultMap="ReservationDto">
 		SELECT * FROM reservation
 		WHERE
@@ -71,6 +75,8 @@
 		WHERE no=#{no}
 	</update>
 	
+	
+
 
 </mapper>
 

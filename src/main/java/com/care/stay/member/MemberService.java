@@ -223,6 +223,8 @@ public class MemberService {
 	// 예약 내역 리스트
 	public void reservationList(String id, Model model) {
 
+		reservationMapper.listUp();
+		
 		ArrayList<ReservationDTO> resConfirmeds = reservationMapper.resConfirmed(id);
 		ArrayList<ReservationDTO> resCompleteds = reservationMapper.resCompleted(id);
 		ArrayList<ReservationDTO> resCancellations = reservationMapper.resCancellation(id);
