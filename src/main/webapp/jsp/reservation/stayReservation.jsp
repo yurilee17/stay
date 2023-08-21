@@ -27,20 +27,7 @@
 		<script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
 		<script data-n-head="ssr" src="../../resource/js/owl.carousel.min.js"></script>
-		
-   <!-- 
-		<script data-n-head="ssr" src="./숙박예약_files/nicepay_tr_utf.js.다운로드"></script>
-		<script src="./숙박예약_files/niceUtil.js.다운로드" language="javascript"></script>
-		<link rel="preload" href="./숙박예약_files/fca2520.js.다운로드" as="script">
-		<link rel="preload" href="./숙박예약_files/8cdc020.js.다운로드" as="script">
-		<link rel="preload" href="./숙박예약_files/13b946d.js.다운로드" as="script">
-		<link rel="preload" href="./숙박예약_files/9fc1863.js.다운로드" as="script">
-		<link rel="preload" href="./숙박예약_files/dde963b.js.다운로드" as="script">
-		<link rel="preload" href="./숙박예약_files/a75c032.js.다운로드" as="script">
-		<link rel="preload" href="./숙박예약_files/23e777a.js.다운로드" as="script">
-		<link rel="preload" href="./숙박예약_files/71f8331.js.다운로드" as="script">
-		<link rel="preload" href="./숙박예약_files/271632e.js.다운로드" as="script"> -->
-		
+	
 		<!-- 결제 관련 JS 라이브러리, 함수 모음 -->
 		<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	    <!-- jQuery -->
@@ -61,7 +48,7 @@
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${motel.mname}</span></p> 
 				<p><strong>객실타입/기간</strong><span class="roomname">${motelroom.mroomname}</span><span> / </span></p> 
-				<p><strong>체크인</strong><span>${motel.mstaycheckin}</span></p> 
+				<p><strong>체크인</strong><span name="checkindate">${motel.mstaycheckin}</span></p> 
 				<p><strong>체크아웃</strong><span>${motel.mstaycheckout}</span></p>
 			</section> 	
 			<section class="total_price_pc">
@@ -78,7 +65,7 @@
 					<input type="hidden" name="roomimage" value="${motelroom.mroomimage }">
 					<input type="hidden" name="stayname" value="${motel.mname}">
 					<input type="hidden" name="roomname" value="${motelroom.mroomname}">
-					<input type="hidden" name="checkindate" value="${motel.mstaycheckin}">
+<%-- 					<input type="hidden" name="checkindate" value="${motel.mstaycheckin}"> --%>
 					<input type="hidden" name="checkoutdate" value="${motel.mstaycheckout}">
 					<input type="hidden" name="checkintime" value="">
 					<input type="hidden" name="checkouttime" value="">

@@ -96,7 +96,7 @@ public class MotelService {
 
 		motelroom.setNo(no);
 		motelroom.setMcode(mCode);
-        motelroom.setMroomcode(String.valueOf(roomcount));
+        motelroom.setMroomcode(getIntParameter(multi, "roomcount"));
 		motelroom.setMroomname(multi.getParameter("roomname"));
 		motelroom.setMroomnumber(getIntParameter(multi, "roomnumber"));
 		motelroom.setMdaesilprice(getIntParameter(multi, "mdaesilprice"));

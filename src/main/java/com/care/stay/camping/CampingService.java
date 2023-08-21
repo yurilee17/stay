@@ -99,7 +99,7 @@ public class CampingService {
         
         campingroom.setNo(no);
         campingroom.setCcode(cCode);
-        campingroom.setCroomcode(String.valueOf(roomcount));
+        campingroom.setCroomcode(getIntParameter(multi, "roomcount"));
         campingroom.setCroomname(multi.getParameter("roomname"));
         campingroom.setCroomnumber(getIntParameter(multi, "roomnumber"));
         campingroom.setCprice(multi.getParameter("cprice"));

@@ -4,7 +4,7 @@ public class CampingRoomDTO {
 	
 	private int no;
 	private String ccode;
-	private String croomcode;
+	private int croomcode;
 	private String croomname;
 	private String croomimage;
 	private int croomnumber;
@@ -25,10 +25,10 @@ public class CampingRoomDTO {
 	public void setCcode(String ccode) {
 		this.ccode = ccode;
 	}
-	public String getCroomcode() {
+	public int getCroomcode() {
 		return croomcode;
 	}
-	public void setCroomcode(String croomcode) {
+	public void setCroomcode(int croomcode) {
 		this.croomcode = croomcode;
 	}
 	public String getCroomname() {
