@@ -15,7 +15,7 @@
 
 	<section>
 		<h1>
-			<a class="" href="index" title="여기어때">여기어때</a>
+			<a class="" href="index" title="여기어때">저기어때</a>
 		</h1>
 		<button type="button" class="btn_srch srch_open ">검색</button>
 		<ul class="gnb">
@@ -860,118 +860,7 @@
 	<script type="text/javascript" src="/resource/js/submitHandler.js"></script>
 		<!--  -->
 
-<script>
 
-	/* axios.get('/api/ques/qlist/'+ sessionId,{
-	}).then(function (response){
-		console.log(response);
-		for(let i in response.data){
-		let $qid = response.data[i].id;
-		let $qadate = response.data[i].qadate.substr(0,10);
-		console.log($qadate);
-
-		let $qischeck = response.data[i].qischeck;
-		console.log($qischeck);
-
-		let $qcontent = response.data[i].qcontent.substr(0,20);
-
-		console.log($qcontent);
-
-		let st = `<div class="ahn_di_span" style="width: 100px; color: #5872d2">미답변</div>`
-
-		if($qischeck == "y"){
-			st =  `<div class="ahn_di_span" style="width: 100px; color: red">답변</div>`
-		}
-
-			let quelist = $(`<div id = "qid_`+$qid+`"class="ahn_zzim_content ahn_qid1" onclick="siteOn(this)" value="`+$qid+`">`).append(
-					`<div class="ahn_zzim_info1" href="">`+
-					`<input type="hidden" class="ahn_qid2" value="`+$qid+`">`+
-								`<div class="ahn_x "></div>`+
-								`<div class="ahn_zzim_info3">
-								 <div class="ahn_zzim_title">`+
-									`문의 내역 확인</div>`+
-									`<div class="ahn_x"></div>`+
-									`<div class="ahn_zzim_btn ahn_re_btn1" style="display: flex;justify-content: center">`+
-											`<div class="ahn_di_span" style="width: 100px;">문의일 |</div><div>`+ $qadate +`</div>` +
-											st+
-										`</div>`+
-										`<div class="ahn_zzim_btn2" style="display: flex;justify-content: center">`+
-									`<div class="ahn_di_span" style="width: 100px;">문의내용</div>`+
-									`<div class="ahn_di_span" style="white-space: nowrap; margin-bottom: 16px">`+$qcontent+`...</div>`+
-									`</div>`+
-								`</div>`+
-							`</div></div>`
-			)
-
-		$('.kim_quelist').append(quelist);
-		}
-	}).catch(function (err){
-		console.log(err);
-	});
-
-	function siteOn(e){
-			$('.ahn_tab_each1').click();
-			console.log('무야')
-			let qid = $(e).attr('id').substr(4);
-			console.log(qid);
-			console.log('qid : '+qid);
-			axios.get('/api/ques/qulist/'+ qid,{
-
-			}).then(function (response){
-				console.log(response);
-
-				let qid = response.data.data.id; //q id
-				let qregdate = response.data.data.qregdate.substr(0,10); //문의등록일
-				let qadate = response.data.data.qadate.substr(0,10); // 문의답변일
-				let qcategory = response.data.data.qcategory; //카테고리유형
-				let qemail = response.data.data.qemail; //이메일
-				let qcontent = response.data.data.qcontent; //문의내용
-				let qhp = response.data.data.qhp; //전화번호
-				let qischeck = response.data.data.qischeck; //문의답변여부
-				let qanswer = response.data.data.qanswer; //문의답변여부
-				if(qischeck == "n"){
-					console.log('null입니다.')
-					qanswer="아직 답변이 오지 않았습니다.";
-					$('.qanswer').attr('style','color: rgba(0,0,0,0.56);border: 1px solid rgba(0,0,0,0.08);height: 400px; border-radius: 0.2rem;word-break: break-all;padding: 8px 14px 8px 16px; ' +
-							'box-shadow:rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px');
-					$('.qanswer').text(qanswer);
-				}
-				let qname = response.data.data.qname; // 이름
-
-				$('.qid').attr('value', qid);
-				$('.qcategory').text(qcategory);
-				$('.qcategory').attr('style', ' overflow: auto;' + 'border: 1px solid rgba(0,0,0,0.08);' + 'border-radius: 0.2rem;'+ 'padding: 8px 14px 8px 16px;' + '    background: none;' + '    width: 100%;' + '    margin-top: 5px;' + '    font-size: 18px;');
-				$('.qname').text(qname);
-				$('.qname').attr('style', ' overflow: auto;' + 'border: 1px solid rgba(0,0,0,0.08);' + 'border-radius: 0.2rem;'+ 'padding: 8px 14px 8px 16px;' + '    background: none;' + '    width: 100%;' + '    margin-top: 5px;' + '    font-size: 18px;');
-				$('.qhp').text(qhp);
-				$('.qhp').attr('style', ' overflow: auto;' + 'border: 1px solid rgba(0,0,0,0.08);' + 'border-radius: 0.2rem;'+ 'padding: 8px 14px 8px 16px;' + '    background: none;' + '    width: 100%;' + '    margin-top: 5px;' + '    font-size: 18px;');
-				$('.qemail').text(qemail);
-				$('.qemail').attr('style', ' overflow: auto;' + 'border: 1px solid rgba(0,0,0,0.08);' + 'border-radius: 0.2rem;'+ 'padding: 8px 14px 8px 16px;' + '    background: none;' + '    width: 100%;' + '    margin-top: 5px;' + '    font-size: 18px;');
-				$('.qcontent').attr('style','border: 1px solid rgba(0,0,0,0.08);height: 400px; border-radius: 0.2rem;word-break: break-all;padding: 8px 14px 8px 16px; ' +
-						'box-shadow:rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px');
-				$('.qcontent').text(qcontent);
-				if(qischeck == "y"){
-					console.log('null이아닙니다.')
-				$('.qanswer').attr('style','border: 1px solid rgba(0,0,0,0.08);height: 400px; border-radius: 0.2rem;word-break: break-all;padding: 8px 14px 8px 16px; ' +
-						'box-shadow:rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px');
-					$('.qanswer').text(qanswer);
-				}
-
-
-
-
-			}).catch(function (err){
-				console.log(err);
-
-			})
-	}
-
-
-
-	function ahnCloseDetail(){
-		$('.kim_quelist1').click();
-	} */
-</script>
 </body>
 
 </html>
