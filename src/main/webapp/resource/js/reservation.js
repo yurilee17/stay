@@ -1,15 +1,105 @@
 let timer = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
-
 	inputEvent();
 })
+
+
+$(document).ready(function() {
+	$("input[name=checkAll]").click(function() {
+		if($("input[name=checkAll]").is(":checked")) $("input[name=checkone]").prop("checked", true);
+		else $("input[name=checkone]").prop("checked", false);
+	});
+	
+	$("input[name=checkone]").click(function() {
+		var total = $("input[name=checkOne]").length;
+		var checked = $("input[name=checkOne]:checked").length;
+		
+		if(total != checked) $("input[name=checkAll]").prop("checked", false);
+		else $("input[name=checkAll]").prop("checked", true); 
+	});
+});
+
+
+
+/* 예약내역 팝업 공통 */
+function pop_reserve(el){
+	var $el = $('.' + el);
+	prevent_scroll();
+	$('.bg_dimm').fadeIn(150);
+	$el.fadeIn(150);
+	align_verticalAll(el);
+}
+
+/* 숙소이용규칙 및 취소/환불규정 Iscroll */
+var iscroll_policy; // 지역카테고리
+
+function iscroll_run_policy01 () {
+	iscroll_policy = new IScroll('.pop_agree_01 .fix_cont',{
+		mouseWheel:true,
+		interactiveScrollbars:true,
+		shrinkScrollbars:'scale',
+		fadeScrollbars:true,
+		click:true
+	});
+}
+
+function pop_agree_01(){ // 숙소이용규칙 및 취소/환불규정 동의
+	prevent_on();
+	prevent_scroll();
+	$('.pop_agree_01').fadeIn(150);
+	$('.bg_dimm').fadeIn(150);
+	iscroll_run_policy01(); // iscroll
+	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
+}
+
+/* 개인정보 제 3자 제공 Iscroll */
+var iscroll_policy_02; // 지역카테고리
+
+function iscroll_run_policy02 () {
+	iscroll_policy_02 = new IScroll('.pop_agree_02 .fix_cont',{
+		mouseWheel:true,
+		interactiveScrollbars:true,
+		shrinkScrollbars:'scale',
+		fadeScrollbars:true,
+		click:true
+	});
+}
+
+function pop_agree_02(){ // 개인정보 수집 및 이용동의 팝업
+	prevent_on();
+	prevent_scroll();
+	$('.pop_agree_02').fadeIn(150);
+	$('.bg_dimm').fadeIn(150);
+	iscroll_run_policy02(); // iscroll
+	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
+}
+
+function pop_agree_03(){ // 개인정보 제 3자 제공 동의 팝업
+	prevent_on();
+	prevent_scroll();
+	$('.pop_agree_03').fadeIn(150);
+	$('.bg_dimm').fadeIn(150);
+	// iscroll_run_policy02(); // iscroll
+	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
+}
+
+function pop_agree_04(){ // 만 14세 이상 확인
+	prevent_on();
+	prevent_scroll();
+	$('.pop_agree_04').fadeIn(150);
+	$('.bg_dimm').fadeIn(150);
+	// iscroll_run_policy02(); // iscroll
+	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
+}
+
+
 
 /*input 예외 처리*/
 function inputEvent() {
 
 	//문자 인증
-	let mobile = document.getElementById("mobile");
+	let mobile = document.getElementById("userPhone");
 	let digit = document.getElementById("digit");
 
 	if (mobile != null && digit != null) {
@@ -57,121 +147,6 @@ function inputEvent() {
 		});
 	}
 
-	//회원가입
-	let id = document.getElementById("id");
-	let password = document.getElementById("password");
-	let newPwRe = document.getElementById("newPwRe");
-
-	let joinBtn = document.getElementById("joinBtn");
-
-
-	if (id != null && password != null) {
-		let idMsg = document.getElementById("userId_msg");
-		let newPwMsg = document.getElementById("new_pw_msg")
-		let newPwReMsg = document.getElementById("new_pw_re_msg")
-
-		const pattern = /^(?=.*[a-zA-Z])(?=.*\d)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d])|(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
-
-
-		id.addEventListener("blur", function() {
-			var message = "";
-			if (id.value === '') {
-				message = "아이디를 입력해주세요.";
-			}
-			idMsg.innerHTML = message;
-
-		});
-
-		id.addEventListener("input", function() {
-			
-			if (id.value.includes('kakao')) {
-				idMsg.innerHTML = "kakao 입력 불가";
-			}
-
-			if (!id.value.includes('kakao') &&
-				id.value != '' &&
-				password.value.length >= 8 &&
-				pattern.test(password.value) &&
-				newPwRe.value === password.value) {
-				joinBtn.classList.add("active");
-			} else {
-				joinBtn.classList.remove("active");
-			}
-
-		});
-
-
-
-		password.addEventListener("blur", function() {
-			if (pattern.test(password.value)) {
-				newPwMsg.innerHTML = "";
-
-			}
-
-			if (!id.value.includes('kakao') &&
-				id.value != '' &&
-				password.value.length >= 8 &&
-				pattern.test(password.value) &&
-				newPwRe.value === password.value) {
-				joinBtn.classList.add("active");
-			} else {
-				joinBtn.classList.remove("active");
-			}
-
-		});
-
-		password.addEventListener("input", function() {
-			var message = "";
-			if (password.value === '') {
-				newPwMsg.style.color = 'red';
-				message = "비밀번호를 입력해주세요.";
-			} else if (password.value.length <= 7) {
-				newPwMsg.style.color = 'red';
-				message = "사용불가 : 최소 8자 이상 입력해주세요.";
-			} else if (!pattern.test(password.value)) {
-				newPwMsg.style.color = 'red';
-				message = "사용불가 : 영문,숫자,특수문자 중 2가지 이상을 조합해주세요.";
-			} else if (pattern.test(password.value)) {
-				newPwMsg.style.color = 'blue';
-				message = "사용가능 : 안전한 비밀번호입니다.";
-
-			}
-			newPwMsg.innerHTML = message;
-
-			if (!id.value.includes('kakao') &&
-				id.value != '' &&
-				password.value.length >= 8 &&
-				pattern.test(password.value) &&
-				newPwRe.value === password.value) {
-				joinBtn.classList.add("active");
-			} else {
-				joinBtn.classList.remove("active");
-			}
-		});
-
-		newPwRe.addEventListener("input", function() {
-			var message = "";
-			if (newPwRe.value === '') {
-				message = "비밀번호를 한번 더 입력해 주세요.";
-			} else if (newPwRe.value != password.value) {
-				message = "비밀번호가 일치하지 않습니다.";
-			} else {
-				message = '';
-			}
-			newPwReMsg.innerHTML = message;
-
-			if (!id.value.includes('kakao') &&
-				id.value != '' &&
-				password.value.length >= 8 &&
-				pattern.test(password.value) &&
-				newPwRe.value === password.value) {
-				joinBtn.classList.add("active");
-			} else {
-				joinBtn.classList.remove("active");
-			}
-		});
-
-	}
 
 }
 
@@ -214,7 +189,7 @@ function btnOk() {
 
 	if (digit.value.length >= 4 && btnOk.classList.contains('active')) {
 		digit.classList.remove("active");
-
+	
 		sendDigit();
 
 	} else if (digit.value.length <= 3 && digit.value.length >= 1) {
@@ -266,7 +241,7 @@ var pro;
 function sendMsg() {
 	xhr = new XMLHttpRequest();
 	xhr.open('post', 'sendMsg')
-	xhr.send(document.getElementById('mobile').value)
+	xhr.send(document.getElementById('userPhone').value)
 	xhr.onreadystatechange = resProc
 }
 
@@ -292,16 +267,7 @@ function sendDigitProc() {
 			// 응답을 이미 처리했으면 두 번째 호출 무시
 			pro = true;
 			if (xhr.responseText === '인증 성공') {
-				let mobile = document.getElementById('mobile').value; // 전송하고자 하는 값
-				let id = document.getElementById('id').value; // 전송하고자 하는 값
-				let url = '';
-				if (id != "") {
-					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile) + "&id=" + encodeURIComponent(id);
-				} else {
-					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile);
-				}
-
-				window.location.href = url;
+				buyer_phone.data('phoneverify')
 			} else if (xhr.responseText === '인증 실패') {
 				alert("인증번호와 다르게 입력되었습니다. 재입력해 주시기 바랍니다.");
 				console.log("test 결과: " + xhr.responseText);
@@ -309,3 +275,70 @@ function sendDigitProc() {
 		}
 	}
 }
+
+
+
+
+
+// Main ---------------------------------------------------------------------------------------------------------------E
+
+// #1.결제하기
+function payment_confirm(){
+    var regName = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/;
+    var regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+    var buyer = $('input[name=userName]');
+    var buyer_phone = $('input[name=userPhone]');
+
+    if(!buyer.val()) {
+        alert_Msg('예약자 이름을 입력해주세요.');
+        return false;
+    }
+    if(regName.test(buyer.val())==false){
+        alert_Msg('예약자 이름은 한글,영문,숫자만 입력이 가능합니다.');
+        return false;
+    }
+    if(Number(buyer.val().length)>20){
+        $('.inp_info_02 .from_name').show();
+        alert_Msg('예약자 이름은 20자 이하로 입력해주세요.');
+        return false;
+    }
+    if(!buyer_phone.val()){
+        alert_Msg('휴대폰 번호를 입력해 주세요.');
+        return false;
+    }
+
+    if(regPhone.test(buyer_phone.val())==false){
+        alert_Msg('휴대폰 번호를 확인해 주세요.');
+        return false;
+    }
+
+    if ($('#verificationCode').length > 0) {
+        if(buyer_phone.data('phoneverify') != 'Y'
+            || buyer_phone.data('phoneverify') === undefined) {
+            alert_Msg('휴대폰 번호 미인증 되었습니다.');
+            return false;
+        }
+    }
+
+    if($('#order_form').find('input[name=checkin_type]').val()==1){
+        if($('input[name=dayuse_select]').val()=="N"){
+            alert_Msg('이용시간을 선택해주세요.');
+            return false;
+        }
+    }
+
+    buyer_phone.val(buyer_phone.val().replace(/\-/ig, ''));
+
+
+    // 약관 체크
+	if($('.agree input[name=checkOne]:checked').length !== 3){
+            alert_Msg('필수 이용 동의 항목에 동의(체크)해주세요.');
+            return false;
+		}
+
+
+    // 예약내역 확인 팝업
+    pop_reserve('reserve_chk');
+}
+
+

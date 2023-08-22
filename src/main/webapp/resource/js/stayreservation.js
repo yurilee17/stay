@@ -1,77 +1,3 @@
-/* 예약내역 팝업 공통 */
-function pop_reserve(el){
-	var $el = $('.' + el);
-	prevent_scroll();
-	$('.bg_dimm').fadeIn(150);
-	$el.fadeIn(150);
-	align_verticalAll(el);
-}
-
-/* 숙소이용규칙 및 취소/환불규정 Iscroll */
-var iscroll_policy; // 지역카테고리
-
-function iscroll_run_policy01 () {
-	iscroll_policy = new IScroll('.pop_agree_01 .fix_cont',{
-		mouseWheel:true,
-		interactiveScrollbars:true,
-		shrinkScrollbars:'scale',
-		fadeScrollbars:true,
-		click:true
-	});
-}
-
-function pop_agree_01(){ // 숙소이용규칙 및 취소/환불규정 동의
-	prevent_on();
-	prevent_scroll();
-	$('.pop_agree_01').fadeIn(150);
-	$('.bg_dimm').fadeIn(150);
-	iscroll_run_policy01(); // iscroll
-	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
-}
-
-/* 개인정보 제 3자 제공 Iscroll */
-var iscroll_policy_02; // 지역카테고리
-
-function iscroll_run_policy02 () {
-	iscroll_policy_02 = new IScroll('.pop_agree_02 .fix_cont',{
-		mouseWheel:true,
-		interactiveScrollbars:true,
-		shrinkScrollbars:'scale',
-		fadeScrollbars:true,
-		click:true
-	});
-}
-
-function pop_agree_02(){ // 개인정보 수집 및 이용동의 팝업
-	prevent_on();
-	prevent_scroll();
-	$('.pop_agree_02').fadeIn(150);
-	$('.bg_dimm').fadeIn(150);
-	iscroll_run_policy02(); // iscroll
-	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
-}
-
-function pop_agree_03(){ // 개인정보 제 3자 제공 동의 팝업
-	prevent_on();
-	prevent_scroll();
-	$('.pop_agree_03').fadeIn(150);
-	$('.bg_dimm').fadeIn(150);
-	// iscroll_run_policy02(); // iscroll
-	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
-}
-
-function pop_agree_04(){ // 만 14세 이상 확인
-	prevent_on();
-	prevent_scroll();
-	$('.pop_agree_04').fadeIn(150);
-	$('.bg_dimm').fadeIn(150);
-	// iscroll_run_policy02(); // iscroll
-	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
-}
-
-
-
-
 /* 연박구매총액 팝업 */
 var iscroll_price;
 
@@ -327,24 +253,13 @@ function payment_confirm(){
 
     buyer_phone.val(buyer_phone.val().replace(/\-/ig, ''));
 
-    if(!categorySaleTimeCheck()){
-        return false;
-    }
 
     // 약관 체크
-	if($('.guest_chk_area').length == 1){
-		// 비회원
-		if($('.agree input[name=checkOne]:checked').length !== 4){
+	if($('.agree input[name=checkOne]:checked').length !== 3){
             alert_Msg('필수 이용 동의 항목에 동의(체크)해주세요.');
             return false;
 		}
-	}else{
-		// 회원
-		if($('.agree input[name=checkOne]:checked').length !== 3){
-            alert_Msg('필수 이용 동의 항목에 동의(체크)해주세요.');
-            return false;
-		}
-	}
+
 
     // 예약내역 확인 팝업
     pop_reserve('reserve_chk');
@@ -534,19 +449,10 @@ function validate(){
 	}
 
 	// 약관 체크
-	if($('.guest_chk_area').length == 1){
-		// 비회원
-		if($('.agree input[name=checkOne]:checked').length !== 4){
+	if($('.agree input[name=checkOne]:checked').length !== 3){
 			alert_Msg('필수 이용 동의 항목에 동의(체크)해주세요.');
 			return false;
 		}
-	}else{
-		// 회원
-		if($('.agree input[name=checkOne]:checked').length !== 3){
-			alert_Msg('필수 이용 동의 항목에 동의(체크)해주세요.');
-			return false;
-		}
-	}
 
 	$("#reqUser_phone").val(buyer_phone.val());
 
@@ -926,195 +832,12 @@ function str_pad(n, width, z) {
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-// 할인 정보 사용시 포인트,마일리지
-function sales_use(type){
-    var typeObj = {'point':'point','mileage':'mileage','coupon':'coupon'};
-    var type_str = {'point':'포인트','mileage':'숙소 마일리지','coupon':'쿠폰'};
-    var min_mileage = $('input[name=min_mileage]').val();						// 마일리지
-    var min_point = 1000;														// 포인트
-    var minimum = typeObj[type]=='point' ? min_point : min_mileage;				// 최소 할인 금액
-    var sales_button = $('#'+typeObj[type]+'Btn');								// 할인 버튼
-    var sales_val = $('#'+typeObj[type]+'Val');									// 할인 금액 노출 element
-    var payment_value_view = $('.in_price');									// 총 결제 금액/ 구매 총액 element
-    var sales_price = $('#order_form input[name=fix_do_use_'+typeObj[type]+']').val();		// 결제 폼 - 할인 금액 input
-    var payment_price = $('#order_form input[name=payment_price]').val();					// 결제 폼 - 결제금액 input
-    var fix_payment_price = $('#order_form input[name=fix_payment_price]').val();			// 고정 결제금액 ( 취소시 사용 )
-    var fix_sales_price = $('#order_form input[name=fix_do_use_'+typeObj[type]+']').val();	// 고정 할인금액 ( 취소시 사용 )
-	var os_type = $('input[name=escrow_os_type]').val();
-
-	if(os_type){
-		payment_value_view = $('.in_price_app');
-	}
-    // 쿠폰할인 으로 이미 사용일 경우 처리
-    var alreadyUseChk = Object.keys(typeObj);
-    var alreadyState = false;
-    for(var i = 0; i<alreadyUseChk.length;i++){
-        if($('#order_config_form input[name=use_'+alreadyUseChk[i]+']').val() && Number(payment_price)==0 && sales_button.text()!='사용취소'){
-            alreadyState = true;
-        }
-    }
-
-    if(alreadyState)return false;
-
-    // 할인금액 제한 체크
-    if(Number(sales_price) > 0 && Number(sales_price) < Number(minimum)){
-        alert_Msg(type_str[type]+'는 '+minimum+'원 이상부터 사용가능합니다.');
-        return false;
-    }
-
-    // 사용 취소
-    if(sales_button.text()=='사용취소'){
-        var buymoney = $('#order_form input[name=do_use_'+typeObj[type]+']').val();
-        var viewmoney = payment_value_view.text().replace("원","").replace(",","");
-        sales_val.text("-");																// 할인금액 사용 text "-" 으로 초기화
-        sales_button.html(type_str[type]+" 사용 "+cust_number_format(fix_sales_price));		// 할인 버튼 변경
-        $('#order_form input[name=payment_price]').val(Number(buymoney)+Number(viewmoney));					//결제 폼 결제금액 복구
-        $('#order_form input[name=do_use_'+typeObj[type]+']').val(0);						//결제 폼 포인트 복구
-        payment_value_view.text(cust_number_format(Number(buymoney)+Number(viewmoney))+"원");				//결제금액 노출 text 복구
-        $('#order_form input[name=pay_type]').val(11);										//결제수단 초기화 포인트/마일리지/쿠폰(6) -> 신용카드-nicepay(11)
-        $('.pay_select').show();
-        $('#order_config_form input[name=use_'+typeObj[type]+']').val(false);
-
-        // 사용
-    }else{
-        // 결제금액 이상일경우
-        if(Number(payment_price)<=Number(sales_price)){
-            sales_price = Number(payment_price);
-            payment_price = 0;
-            $('#order_form input[name=pay_type]').val(6);
-            $('.pay_select').hide();
-            // 할인금액이 결제금액 미만일경우
-        }else if(Number(payment_price)>Number(sales_price)){
-            payment_price = Number(payment_price)-Number(sales_price);
-        }
-
-        sales_val.text("-"+cust_number_format(sales_price)+"P");
-        $('#order_form input[name=payment_price]').val(payment_price);
-        $('#order_form input[name=do_use_'+typeObj[type]+']').val(sales_price);
-        payment_value_view.text(cust_number_format(payment_price)+"원");
-        sales_button.text('사용취소');
-
-        $('#order_config_form input[name=use_'+typeObj[type]+']').val(true);
-    }
-}
 
 //3자리 콤마
 function cust_number_format(x){
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-var couponButtonTitle = "";
-//#5 팝업 - 쿠폰선택
-function coupon(){
-		if(couponButtonTitle == ""){
-				couponButtonTitle = $('#couponBtn').text();
-		}
-		if($("#reqCoupon_couponIssueId").val() > 0){
-				$("#couponVal").text("-");
-				$('#couponBtn').text(couponButtonTitle);
-				$("#reqCoupon_couponIssueId").val('0');
-				$("#reqCoupon_couponType").val('');
-				$("#reqCoupon_couponDiscountType").val('');
-				$("#reqCoupon_amount").val('0');
-				$("#reqAmount_paymentAmount").val(parseInt($("#reqAmount_paymentAmount").val()) + parseInt($("#reqAmount_couponAmount").val()));
-				$("#reqAmount_couponAmount").val('0');
-				$("span.in_price").text(numberWithCommas($("#reqAmount_paymentAmount").val()) + "원");
-				$("span.in_price_app").text(numberWithCommas($("#reqAmount_paymentAmount").val()) + "원");
-				if(parseInt($("#reqAmount_point").val()) > 0) {
-						use_point(true);
-				}
-				paymentCheck();
-        return false;
-    }
-
-    pop_coupon();
-
-    var btn_Target = $('.gra_coupon li button[data-cpn-use]');
-    btn_Target.each(function(){
-        $(this).click(function(){
-            btn_Target.removeClass('on');
-            $(this).addClass('on');
-        });
-    });
-}
-
-function use_point(force_use) {
-		var amount = parseInt($("#havePoint").val());
-		if(amount == 0) return false;
-
-		if(force_use) {
-				$("#reqAmount_paymentAmount").val(parseInt($("#originalTotalPrice").val()) - parseInt($("#reqAmount_couponAmount").val()));
-				$("#reqAmount_point").val(0);
-		}
-
-		if(parseInt($("#reqAmount_point").val()) == 0) {
-				var paymentAmount = parseInt($("#reqAmount_paymentAmount").val());
-				if(paymentAmount == 0) {
-					$("#pointBtn").text("포인트 사용 " + numberWithCommas(amount) + "P");
-					$("#pointVal").text("-");
-					return false;
-				}
-
-				var usePoint = 0;
-				if(amount >= paymentAmount) {
-						usePoint = paymentAmount;
-						paymentAmount = 0;
-				} else {
-						usePoint = amount;
-						paymentAmount = paymentAmount - amount;
-				}
-
-				$("#reqAmount_paymentAmount").val(paymentAmount)
-				$("#reqAmount_point").val(usePoint)
-
-				$("span.in_price").text(numberWithCommas(paymentAmount) + "원");
-				$("span.in_price_app").text(numberWithCommas(paymentAmount) + "원");
-				$("#pointBtn").text("사용취소");
-				$("#pointVal").text("-" + numberWithCommas(usePoint) + "P");
-		} else {
-				var paymentAmount = parseInt($("#reqAmount_paymentAmount").val());
-				var usePoint = parseInt($("#reqAmount_point").val());
-				paymentAmount = paymentAmount + usePoint;
-				usePoint = 0;
-				$("#reqAmount_paymentAmount").val(paymentAmount)
-				$("#reqAmount_point").val(usePoint)
-
-				$("span.in_price").text(numberWithCommas(paymentAmount) + "원");
-				$("span.in_price_app").text(numberWithCommas(paymentAmount) + "원");
-				$("#pointBtn").text("포인트 사용 " + numberWithCommas(amount) + "P");
-				$("#pointVal").text("-");
-		}
-		paymentCheck();
-
-}
-
-function coupon_item_select_new(cpnis_no, couponAmount, couponType, couponDiscountType){
-		if($("#reqCoupon_couponIssueId").val() == 0) {
-				$('#couponBtn').text('사용취소');
-		}
-		var paymentAmount = parseInt($("#originalTotalPrice").val());
-		if(paymentAmount < couponAmount) {
-				couponAmount = paymentAmount;
-				paymentAmount = 0;
-		} else {
-				paymentAmount = paymentAmount - couponAmount;
-		}
-		$("span.in_price").text(numberWithCommas(paymentAmount ) + "원");
-		$("span.in_price_app").text(numberWithCommas(paymentAmount ) + "원");
-
-		$("#couponVal").text("-" + numberWithCommas(couponAmount) + 'P');
-		$("#reqCoupon_couponIssueId").val(cpnis_no);
-		$("#reqCoupon_couponType").val(couponType);
-		$("#reqCoupon_couponDiscountType").val(couponDiscountType);
-		$("#reqCoupon_amount").val(couponAmount);
-		$("#reqAmount_paymentAmount").val(paymentAmount);
-		$("#reqAmount_couponAmount").val(couponAmount);
-		if(parseInt($("#reqAmount_point").val()) > 0) {
-				use_point(true);
-		}
-		close_layer();
-		paymentCheck();
-}
 
 function paymentCheck() {
 		if($("#reqAmount_paymentAmount").val() == '0') {
@@ -1210,48 +933,13 @@ function cnspay() {
     }
 }
 
-
-
-
-/* 네이버페이 결제  */
-function naverPaySubmit(mode){
-    var serviceRealDomain = isWebMobile()=='W' ? "https://pay.naver.com/payments/" : "https://m.pay.naver.com/payments/";
-    //var serviceRealDomain = "https://test-m.pay.naver.com/payments/"; // TODO: 개발모드 (모바일)
-    //var serviceRealDomain = "https://test-pay.naver.com/payments/"; // TODO: 개발모드 (PC)
-    var domain = serviceRealDomain;
-
-    $.support.cors = true;
-    $.ajax({
-        type: "POST",
-        url: "/reservation/naverPayReady_non",
-        data: $("#naver_pay_form").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        success:function(data){
-            var rs = JSON.parse(data);
-            if(rs.code=="Success"){
-                if(rs.body.reserveId){
-                    document.location=domain+rs.body.reserveId;
-                }
-                else alert_Msg("code:<br>"+"message:reserveId를 못 받았습니다.\n");
-            }else{
-                alert_Msg("code:"+rs.code+"<br>"+"message:"+rs.message+"<br>");
-            }
-        },
-        error: function(request,status,error) {
-            //에러코드
-            alert_Msg("code:"+request.status+"<br>"+"message:"+request.responseText+"<br>"+"error:"+error);
-            return false;
-        }
-    });
-}
-
 // 약관 동의 전체 체크
 function allCheckFunc( obj ) {
     $("[name=checkOne]").prop("checked", $(obj).prop("checked") );
 }
 
 // 체크박스 체크시 전체선택 체크 여부
-function oneCheckFunc( obj ){
+/*function oneCheckFunc( obj ){
 
     var allObj = $("[name=checkAll]");
     var objName = $(obj).attr("name");
@@ -1281,7 +969,7 @@ $(function(){
             oneCheckFunc( $(this) );
         });
     });
-});
+});*/
 function reserveVerify() {
     clearTimecount();
     cencelSend();

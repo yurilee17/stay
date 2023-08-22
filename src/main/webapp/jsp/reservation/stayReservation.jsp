@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="../../resource/css/common.css">
 		<link data-n-head="ssr" rel="stylesheet" href="../../resource/js/owl.carousel.css">
 		
-		<!-- <script src="../../resource/js/reservation.js"></script> 
-		<script data-n-head="ssr" src="../../resource/js/stayreservation.js"></script> -->
+
+		<!--<script data-n-head="ssr" src="../../resource/js/stayreservation.js"></script> -->
 		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/common.js" defer=""></script>
 		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/iscroll.js" defer=""></script>
 		<script type="text/javascript" async="" src="../../resource/js"></script>
@@ -223,38 +223,31 @@
 			<h3 style="margin-top:0;">예약자 정보</h3> 
 			<strong>예약자 이름</strong> 
 			<p class="inp_wrap remove">
-				<input type="text" name="userName" placeholder="체크인시 필요한 정보입니다." maxlength="20" value="${sessionScope.name}">
+				<input type="text" class="userName" name="userName" placeholder="체크인시 필요한 정보입니다." maxlength="20" value="${sessionScope.name}">
 			</p> 
 			<p data-show="name" class="alert_txt" style="visibility: hidden">한글, 영문, 숫자만 입력 가능. (문자 사이 공백은 1칸만 입력 가능)</p> 
 			<div>
 				<strong class="mt_09">휴대폰 번호</strong> 
 				<span class="safety_txt">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span> 
 				<div class="phone_confirm guest-phone">
-					<div class="input-box">
-						<input type="tel" id="userPhone" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="${sessionScope.mobile}" class="input validation-required-input">
+					<div class="input-box remove">
+						<input type="tel" id="userPhone" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="${sessionScope.mobile}" class="input validation-required-input userPhone">
 					</div> 
 					<button type="button" class="btn_send btn_confirm phone-auth-btn" onclick="btnSend()">인증번호 전송</button>
 					<p data-show="tel" class="alert_txt error-message" style="">휴대폰 번호를 확인해 주세요.</p>
 					<div id="verificationCode" style="display:none; height:48px">
-						<strong class="mt_09">인증 번호</strong> 
+						<strong class="mt_09">인증번호</strong> 
 						<section>
-							<div class="input-box">
-								<input id="digit" type="tel" name="userPhone" minlength="4" maxlength="4" value="" class="input validation-required-input">
+							<div class="input-box remove">
+								<input id="digit" type="tel" minlength="4" maxlength="4" class="input validation-required-input">
 								<span class="timer">03:00</span>								
 							</div> 
-							<button type="button" class="btn_ok btn_confirm phone-auth-btn">확인</button>
+							<button type="button" onclick="btnOk()" class="btn_ok btn_confirm phone-auth-btn">확인</button>
 						</section>
 					</div>
 				</div>
 			</div> 
 		</section>
-		<!--  <section class="price_wrap total_price">
-			<p><strong><b>총 결제 금액</b>(VAT포함)</strong><span class="in_price_app">${hotelroom.hprice}</span></p>  
-			<ul> 
-				 <li>해당 객실가는 세금, 봉사료가 포함된 금액입니다 </li>
-				 <li>결제완료 후 <span>예약자 이름</span>으로 바로<span>체크인</span> 하시면 됩니다</li>
-			</ul> 
-		 </section> -->
 		 
 		 <section class="pay_select"><h3>결제수단 선택</h3> 
 			 <select id="payment-select" class="select_type_1">
@@ -296,13 +289,6 @@
 					<b> (필수)</b>
 				</span>
 			</p> 
-			<p class="guest_chk_area">
-				<input type="checkbox" name="checkOne" class="inp_chk_02">
-				<span onclick="pop_agree_04();">
-					<i>만 14세 이상 확인</i>
-					<b>(필수)</b>
-				</span>
-			</p>
 		</section> 
 
 	</div>
@@ -368,7 +354,7 @@
 					
 				<div class="btn">
 					<button onclick="close_layer();">취소</button> 
-					<button class="payment" onclick="requestPay">동의 후 결제</button>
+					<button class="agreePayment" onclick="requestKakao()">동의 후 결제</button>
 				</div>
 			</div> 
 				
@@ -486,7 +472,25 @@
 								<th style="width: 25%;">제공받는 자의 개인정보 보유 및 이용기간</th>
 							</tr> 
 							<tr>
-								<td><b>${hotel.hname}</b></td> 
+							<td><b>
+							<c:choose>
+								<c:when test="${'motel' eq stayType }">
+									${motel.mname}
+								</c:when>
+								<c:when test="${'hotel' eq stayType }">
+									${hotel.hname}
+								</c:when>
+								<c:when test="${'pension' eq stayType }">
+									${pension.pname}
+								</c:when>
+								<c:when test="${'gh' eq stayType }">
+									${gh.gname}
+								</c:when>
+								<c:when test="${'camping' eq stayType }">
+									${camping.cname}
+								</c:when>
+							</c:choose>
+							</b></td> 							
 								<td><b>숙박예약서비스 이용계약 이행<br>(서비스 제공, 확인, 이용자 정보 확인)</b></td> 
 								<td>예약한 숙박서비스의 이용자 정보(예약자 이름, 휴대폰번호, 예약번호, 예약한 업체명, 예약한 객실명, 결제금액)</td> 
 								<td><b>예약서비스 제공 완료 후 6개월</b></td>
@@ -501,42 +505,11 @@
 					</div>
 				</div>
 			</div> 
-				
-			<div class="layer pop_fix pop_agree_04">
-				<div class="fix_title"> 만 14세 이상 확인(필수)
-					<button onclick="close_layer();">닫기</button>
-				</div> 
-				<div class="fix_cont">
-					<div class="scroller">
-						<div class="txt">
-							<strong>만 14세 이상 확인</strong> 
-							<p class="subtitle">저기어때는 <b>만 14세 미만 아동</b>의 <b>서비스 이용을 제한</b>하고 있습니다.</p> 
-							<p>정보통신망 이용촉진 및 정보보호 등에 관한 법률에는 만 14세 미만 아동의 개인정보 수집 시 법정대리인 동의를 받도록 규정하고 있으며,
-							<i>만 14세 미만 아동이 법정대리인 동의없이 서비스 이용이 확인된 경우 서비스 이용이 제한될 수 있음을 알려드립니다.</i></p>
-						</div>
-					</div>
-				</div>
-			</div> 
-				
-			<div class="layer pop_fix pop_agree_05">
-				<div class="fix_title">만 14세 이상 확인(필수)
-				   <button onclick="close_layer();">닫기</button>
-				</div> 
-				<div class="fix_cont">
-					<div class="scroller">
-						<div class="txt">
-							<strong>만 14세 이상 확인</strong> 
-							<p class="subtitle">저기어때는 <b>만 14세 미만 아동</b>의 <b>서비스 이용을 제한</b>하고 있습니다.</p> 
-							<p>정보통신망 이용촉진 및 정보보호 등에 관한 법률에는 만 14세 미만 아동의 개인정보 수집 시 법정대리인 동의를 받도록 규정하고 있으며,
-							<i>만 14세 미만 아동이 법정대리인 동의없이 서비스이용이 확인된 경우 서비스 이용이 제한될 수 있음을 알려드립니다.</i></p>
-						</div>
-					</div>
-				</div>
-			</div> 
 		</div>
 	</div>
 </div>
 			<script src="../../resource/js/payment.js"></script>
+			<script src="../../resource/js/reservation.js"></script> 
 
  </body>
 </html>

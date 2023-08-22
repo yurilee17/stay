@@ -81,7 +81,7 @@
             <h3 style="margin-top:0">이용 정보</h3>
             <div class="title">
               <strong>이용시간 <em class="use_time"></em>
-                <span>최대 <b class="dayuse">4</b> 시간 이용가능 </span>
+                <span>최대 <b class="dayuse">${motel.mdaesiltime }</b> 시간 이용가능 </span>
               </strong>
             </div>
             <div id="usetime" class="owl-carousel owl-loaded owl-drag">
@@ -415,5 +415,6 @@
       <!---->
     </div>
 	<script src="../../resource/js/payment.js"></script>    
+	<script src="../../resource/js/reservation.js"></script> 	
   </body>
 </html>

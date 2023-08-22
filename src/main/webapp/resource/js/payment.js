@@ -14,16 +14,18 @@
 		var stayname = document.querySelector('.stayname').textContent;
 		var roomname = document.querySelector('.roomname').textContent;
 		var stayprice = parseInt(document.querySelector('.in_price').textContent);
+		var userName = document.querySelector('.userName').textContent;
+		var userPhone = document.querySelector('.userPhone').textContent;
 			
             IMP.request_pay({
 				pg: "kakaopay.{TC0ONETIME}",
                 pay_method : 'card',
-                merchant_uid: "IMP"+makeMerchantUid, 
-                name : stayname + " " + roomname,
-                amount : stayprice,
-                buyer_email : 'Iamport@chai.finance',
-                buyer_name : '아임포트 기술지원팀',
-                buyer_tel : '010-1234-5678',
+                merchant_uid: "IMP"+makeMerchantUid, // 주문일련번호? 환불시 필요
+                name : stayname + " " + roomname, // 상품명
+                amount : stayprice, // 가격
+/*                buyer_email : userName,*/
+                buyer_name : userName,
+                buyer_tel : userPhone,
            
                 
             }, function (rsp) { // callback
@@ -36,7 +38,10 @@
             	        headers: { "Content-Type": "application/json" },
             	        data: {
             	          imp_uid: rsp.imp_uid,            // 결제 고유번호
-            	          merchant_uid: rsp.merchant_uid   // 주문번호
+            	          merchant_uid: rsp.merchant_uid,   // 주문번호
+            	          amount: rsp.amount,				// 가격
+            	          buyer_name: rsp.buyer_name,		// 결제자 이름
+            	          buyer_tel : rsp.buyer_tel			// 결제자 연락처
             	        }
             	      }).done(function (data) {
             	        // 가맹점 서버 결제 API 성공시 로직
@@ -47,11 +52,29 @@
             	    }
             });
         }
+        
+        
+        function refundKakao() {
+				jQuery.ajax({
+	      // 예: http://www.myservice.com/payments/cancel
+	      url: "reservation/paymentCancel", 
+	      type: "POST",
+	      contentType: "application/json",
+	      data: JSON.stringify({
+	        merchant_uid: rsp.merchant_uid, // 예: ORD20180131-0000011
+	        cancel_request_amount: rsp.amount, // 환불금액
+	        reason: "테스트 결제 환불", // 환불사유
+	      }),
+	      dataType: "json"
+	    });
+	  }
+
+        
 		
 		/* 카카오페이가 아니면 requestPay 함수가 실행되지 않도록.... 해야되는데 안 됨*/
         document.addEventListener("DOMContentLoaded", function() {
             const paymentSelect = document.getElementById("payment-select");
-            const payButton = document.querySelector(".btn_pay");
+            const payButton = document.querySelector(".agreePayment");
 
             payButton.addEventListener("click", function() {
                 const selectedPayment = paymentSelect.value;

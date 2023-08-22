@@ -129,10 +129,13 @@ public class ReservationController {
 	
 	@PostMapping("reservationProc")
 	public String stayreservationProc(HttpServletRequest request) {
-		
 		rservice.stayReservationProc(request);
-		
 		return "reservation/paymentComplete";
+	}
+	
+	@RequestMapping("paymentCancel")
+	public String paymentCancel() {
+		return "reservation/paymentCancel";
 	}
 	
 }
