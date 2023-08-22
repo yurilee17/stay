@@ -18,7 +18,7 @@
 		<result column="hcheckintime" property="hcheckintime"/>
 		<result column="hcheckouttime" property="hcheckouttime"/>
 		<result column="htype" property="htype"/>
-
+<collection property="rooms" resultMap="HotelRoomDto" />
 	</resultMap> 
 	
  	 <resultMap type="com.care.stay.hotel.HotelRoomDTO" id="HotelRoomDto">
@@ -150,18 +150,87 @@
 	
 
  <!-- 2차시도  이거! -->	
-	 <select id="MainCheck">
-  	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-			hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
-	 FROM hotel h 
-	 JOIN hotelroom hr  ON hr.hcode = h.hcode
-	   WHERE (h.hdetailregion = #{selectedText} OR 	h.htype = #{htype})
-        AND hr.hbedtype in (#{hbedtype})
-        AND hr.hcomfort LIKE CONCAT('%'|| #{hcomfort}, '%')
-        OR hr.hpeople = #{hpeople}
  
-	</select>   
+   <select id="MainCheck" resultMap="HotelDto">
+  	 SELECT h.*,
+			hr.*
+	 FROM hotel h 
+	 JOIN hotelroom hr  ON hr.hcode = h.hcode and hr.no = h.no
+  	WHERE h.hdetailregion = #{selectedText}
+		  	 <if test="htype != ''">
+		  	 AND h.htype = #{htype}
+		  	  </if>
+         <if test="hbedtype != ''">
+	   		AND(
+	       <bind name="hbedtypeArray" value="hbedtype.split(',')" />
+            hr.hbedtype IN
+            <foreach item="bedtype" collection="hbedtypeArray" open="(" separator="," close=")">
+                #{bedtype}
+          	</foreach>)
+	    </if>
+	    <if test="hcomfort != ''">
+	    AND 
+	      <bind name="hcomfortArray" value="hcomfort.split(',')" />
+	      <foreach item="comfort" collection="hcomfortArray" open="(" separator="or" close=")">
+       		 hr.hcomfort LIKE CONCAT('%'|| #{comfort}, '%')
+        </foreach>
+        </if>
+        AND hr.hpeople >= #{hpeople}
+ 
+	</select>    
 	
+	<select id="resNum">
+	SELECT count(*) FROM reservation WHERE code = #{hcode} AND stayno = #{no} AND roomcode = #{hroomcode} AND ((checkindate >= #{checkindate} AND #{checkoutdate} >= checkoutdate) OR ( #{checkindate} >= checkindate AND checkoutdate >= #{checkindate}) OR (#{checkoutdate} >= checkindate  AND checkoutdate >= #{checkoutdate}))
+	</select> 
+	
+	<!--   <select id="MainCheck">
+  	 SELECT h.*,
+			hr.*,
+			rs.*
+	 FROM hotel h 
+	 JOIN hotelroom hr  ON hr.hcode = h.hcode 
+	  JOIN reservation rs ON hr.hroomcode = rs.roomcode 
+  	WHERE (h.hdetailregion = #{selectedText} OR h.htype = #{htype})
+	   	AND( rs.checkindate = #{checkindate}
+	 	OR rs.checkoutdate = #{checkoutdate}) 
+         <if test="hbedtype != null">
+	   		AND(
+	       <bind name="hbedtypeArray" value="hbedtype.split(',')" />
+            hr.hbedtype IN
+            <foreach item="bedtype" collection="hbedtypeArray" open="(" separator="," close=")">
+                #{bedtype}
+          	</foreach>
+          	
+	    </if>
+	    <if test="hcomfort != null">
+        AND hr.hcomfort LIKE CONCAT('%'|| #{hcomfort}, '%')
+        </if>
+        OR hr.hpeople = #{hpeople})
+ 
+	</select>    
+	 -->
+	
+ 	<!-- 2차시도  이거! -->	
+	<!--  <select id="MainCheck">
+	  	 SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
+				hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
+		 FROM hotel h 
+		 JOIN hotelroom hr  ON hr.hcode = h.hcode
+		   WHERE (h.hdetailregion = #{selectedText} OR h.htype = #{htype})
+		   	 <if test="hbedtype != null ">
+		        AND(
+		        <bind name="hbedtypeArray" value="hbedtype.split(',')" />
+		            hr.hbedtype IN
+		            <foreach item="bedtype" collection="hbedtypeArray" open="(" separator="," close=")">
+		                #{bedtype}
+		          </foreach>
+		          )
+			   </if>
+	        OR(hr.hcomfort LIKE CONCAT('%'|| #{hcomfort}, '%')
+	       	OR hr.hpeople = #{hpeople})
+	 
+	</select>   
+ -->
 
 	
 	
@@ -286,9 +355,10 @@
 
 	
 		 <!-- hcomfort 처리 -->
-  <!-- 	<select id="MainCheck_hcomfort"  >
-	    SELECT h.no, h.hcode, h.hname, h.hregion, h.hdetailregion, h.hrating, h.haddress, h.hdetailaddress, h.himage, h.hinfo, h.hcheckintime, h.hcheckouttime, h.htype,
-	           hr.no, hr.hcode, hr.hroomcode, hr.hroomname, hr.hbedtype, hr.hroomimage, hr.hroomnumber, hr.hprice, hr.hpeople, hr.hcomfort
+ 	<select id="MainCheck_hcomfort"  >
+	    SELECT h.*,
+	           hr.*
+	           rs.*
 	    FROM hotel h 
 	    JOIN hotelroom hr ON hr.hcode = h.hcode
 	    WHERE (h.hdetailregion = #{selectedText})
@@ -301,7 +371,7 @@
           	</foreach>
           	)
 	    </if>
-	</select>   -->
+	</select>  
 		
 		 <!-- hpeople 처리 -->
  <!-- 	<select id="MainCheck_hpeople"  >
@@ -392,7 +462,7 @@
 
 
 
-	<!-- <resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
+	 <resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
 		<id column="no" property="no"/>																		
 	</resultMap>
 	
@@ -451,5 +521,5 @@
 		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hbedtype, hroomimage, hroomnumber, hprice, hpeople, hcomfort)
 		VALUES(#{no}, #{hcode}, #{hroomcode}, #{hroomname}, #{hbedtype}, #{hroomimage}, #{hroomnumber}, #{hprice}, #{hpeople}, #{hcomfort})
 	</insert>	
- -->
+
 </mapper>

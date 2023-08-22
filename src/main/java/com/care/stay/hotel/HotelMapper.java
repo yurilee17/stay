@@ -28,6 +28,8 @@ public interface HotelMapper {
 	 
 	 // 지역선택
 	 ArrayList<HotelDTO> Main(String selectedText, @Param("begin")int begin, @Param("end")int end); 
+	 
+	
 	 // 날짜선택
 	// ArrayList<ReservationDTO> MainDate(String selectedText, String checkindate, String checkoutdate, @Param("begin")int begin, @Param("end")int end); 
 	 // 지역날짜 선택
@@ -35,23 +37,25 @@ public interface HotelMapper {
 	 
 	 
 	 
-	// ArrayList<HotelDTO> MainCheck(String selectedText, String checkindate, String checkoutdate, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
-	 ArrayList<HotelDTO> MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
+//	 ArrayList<HotelDTO> MainCheck(String selectedText, String checkindate, String checkoutdate, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
+ 	 ArrayList<HotelDTO> MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 	// ArrayList<HotelDTO> MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 	// ArrayList<HotelDTO> MainCheck(String selectedText, String htype, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 	// ArrayList<HotelDTO> MainCheck(String selectedText, String htype, @Param("begin")int begin, @Param("end")int end);
 	// ArrayList<HotelDTO> MainCheck(String selectedText, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
 
-	 
+
+	int resNum(String hcode, int no, int hroomcode, String checkindate, String checkoutdate);
+ 	 
 	 
 	 // mapper 나눠서 하기 !!!!!!!!!!!!!!!!
 	 
 /*	 ArrayList<HotelDTO> MainCheck_htype(String selectedText,String htype, @Param("begin")int begin, @Param("end")int end);
-	 ArrayList<HotelDTO> MainCheck_hbedtype(String selectedText,String hbedtype, @Param("begin")int begin, @Param("end")int end);
-	 ArrayList<HotelDTO> MainCheck_hcomfort(String selectedText, String hcomfort, @Param("begin")int begin, @Param("end")int end);
-	 ArrayList<HotelDTO> MainCheck_hpeople(String selectedText, int hpeople, @Param("begin")int begin, @Param("end")int end);
+	 ArrayList<HotelDTO> MainCheck_hbedtype(String selectedText,String hbedtype, @Param("begin")int begin, @Param("end")int end);*/
+	 //ArrayList<HotelDTO> MainCheck_hcomfort(String selectedText, String hcomfort, @Param("begin")int begin, @Param("end")int end);
+	// ArrayList<HotelDTO> MainCheck_hpeople(String selectedText, int hpeople, @Param("begin")int begin, @Param("end")int end);
 
-*/	 
+	 
 	
 /*	 ArrayList<HotelDTO> MainCheck_htype(String selectedText, List<String> htype, @Param("begin")int begin, @Param("end")int end);
 	 ArrayList<HotelDTO> MainCheck_hbedtype(String selectedText,List<String> hbedtype, @Param("begin")int begin, @Param("end")int end);
@@ -59,6 +63,10 @@ public interface HotelMapper {
 	 ArrayList<HotelDTO> MainCheck_hpeople(String selectedText, int hpeople, @Param("begin")int begin, @Param("end")int end); 
 
 */
+	 
+	 
+	// ArrayList<HotelDTO> MainCheck(String selectedText, String hbedtype, String hcomfort, String hpeople, @Param("begin")int begin, @Param("end")int end);
+	 
 }
 
 

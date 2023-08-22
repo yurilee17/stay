@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>test</title>
+<title>호텔</title>
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,7 +49,7 @@
 	<div class="wrap main_wrap show">
 
 		<!-- Header -->
-		<c:import url="/header" /> 
+		<c:import url="/header" />
 		<!-- CSS -->
 		<link rel="stylesheet" href="../../resource/css/reset.css">
 		<link rel="stylesheet" href="../../resource/css/hotel.css">
@@ -95,11 +95,10 @@
 
 				<!-- 지역필터 / 메인지역 -->
 
-
 				<div class="menu-wrapper">
 
 					<select id="mainMenu" name="mainMenu" onchange="showSubMenu()">
-						<option value="">지역을 선택하세요</option>
+						<!-- <option value="">지역을 선택하세요</option> -->
 						<option value="Main1">서울</option>
 						<option value="Main2">경기/인천</option>
 						<option value="Main3">충청/강원/제주</option>
@@ -112,31 +111,31 @@
 					<select id="subMenu" name="subMenu" class="subMenu right-menu"
 						onchange="getSelectedOption(this.id)" style="display: none;">
 						<option value="">상세지역을 선택하세요</option>
-						<option value="Main1_1" name="강동"   >강동</option>
-						<option value="Main1_2" name="강서" >강서</option>
-						<option value="Main1_3" name="강남" >강남</option>
-						<option value="Main1_4" name="강북" >강북</option>
+						<option value="Main1_3" name="강남">강남</option>
+						<option value="Main1_1" name="강동">강동</option>
+						<option value="Main1_2" name="강서">강서</option>
+						<option value="Main1_4" name="강북">강북</option>
 					</select> <select id="subMenu2" class="subMenu right-menu"
 						onchange="getSelectedOption(this.id)" style="display: none;">
 						<option value="">상세지역을 선택하세요</option>
-						<option value="Main2_1" name="경기" >경기</option>
-						<option value="Main2_2" name="인천" >인천</option>
+						<option value="Main2_1" name="경기">경기</option>
+						<option value="Main2_2" name="인천">인천</option>
 					</select> <select id="subMenu3" class="subMenu right-menu"
 						onchange="getSelectedOption(this.id)" style="display: none;">
 						<option value="">상세지역을 선택하세요</option>
-						<option value="Main3_1" name="충청" >충청</option>
-						<option value="Main3_2" name="강원" >강원</option>
-						<option value="Main3_3" name="제주" >제주</option>
+						<option value="Main3_1" name="충청">충청</option>
+						<option value="Main3_2" name="강원">강원</option>
+						<option value="Main3_3" name="제주">제주</option>
 					</select> <select id="subMenu4" class="subMenu right-menu"
 						onchange="getSelectedOption(this.id)" style="display: none;">
 						<option value="">상세지역을 선택하세요</option>
-						<option value="Main4_1" name="경남" >경남</option>
-						<option value="Main4_2" name="경북" >경북</option>
+						<option value="Main4_1" name="경남">경남</option>
+						<option value="Main4_2" name="경북">경북</option>
 					</select> <select id="subMenu5" class="subMenu right-menu"
 						onchange="getSelectedOption(this.id)" style="display: none;">
 						<option value="">상세지역을 선택하세요</option>
-						<option value="Main5_1" name="전남" >전남</option>
-						<option value="Main5_2" name="전북" >전북</option>
+						<option value="Main5_1" name="전남">전남</option>
+						<option value="Main5_2" name="전북">전북</option>
 					</select>
 				</div>
 
@@ -144,12 +143,20 @@
 		</div>
 
 		<script type="text/javascript">
-		
-		 		var selectedText = "";		
+		showSubMenu();
+		 		var selectedText = "";
+		 		
 		
 				function getSelectedOption(selectId) {
 					var subMenu = document.getElementById(selectId);
 					var selectedValue = subMenu.value;
+					subMenuSelectId = selectId;
+					
+					var mainMenu = document.getElementById("mainMenu");
+					 sessionStorage.setItem('subMenuId', selectId);
+					 sessionStorage.setItem('mainMenuValue', mainMenu.value);
+					 sessionStorage.setItem('subMenuValue', subMenu.value);
+					 
 					selectedText = subMenu.options[subMenu.selectedIndex].text;
 					
 					alert(selectId);
@@ -160,9 +167,40 @@
 					selectedTextUrl = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText);
 					window.location.href = selectedTextUrl;
 				}
-								
+				// 페이지 로드 시 세션 스토리지에서 값을 가져와 선택합니다.
+				window.onload = function() {
+					
+				
+					var subMenuId = sessionStorage.getItem('subMenuId');
+				    var mainMenuValue = sessionStorage.getItem('mainMenuValue');
+				    var subMenuValue = sessionStorage.getItem('subMenuValue');
+				    
+		/* 		 // 현재 URL에서 쿼리 문자열 가져오기
+				    var queryString = window.location.search; */
+
+				    // URLSearchParams 객체 생성
+				    var urlParams = new URLSearchParams(window.location.search);
+				    var hdetailregionV = urlParams.get('hdetailregion');
+				    
+				if(hdetailregionV === '강남'){
+					
+					 document.getElementById('mainMenu').value = "Main1";
+					 showSubMenu();
+					 document.getElementById('subMenu').value = "Main1_3";
+				}else{
+					 if (mainMenuValue && subMenuValue) {
+					        document.getElementById('mainMenu').value = mainMenuValue;
+					        showSubMenu();
+					    }
+					    if (subMenuValue) {
+					        document.getElementById(subMenuId).value = subMenuValue;
+					    }
+				}
+				   
+				};
+			
 		</script>
-		
+
 
 		<!-- //Area -->
 		<!-- //hotelheader -->
@@ -180,8 +218,8 @@
 
 
 								<input type="text" id="calendars" name="calendars" value="" />
-				
-		<script>
+
+								<script>
 				
 				var checkindate ;
 			    var checkoutdate ;	
@@ -248,9 +286,10 @@
 				        
 				        localStorage.setItem("checkindate", checkindate);
 				        localStorage.setItem("checkoutdate", checkoutdate);
+				   var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
 				        
-				         var updatedURL =  "http://localhost/Main?checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
-				      
+				        
+				         var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
 				        // 페이지 새로고침
 				        window.location.href = updatedURL;
 				    }
@@ -267,8 +306,8 @@
 
 						<h3>상세조건</h3>
 						<br>
-						
-			<!-- 초기화, 적용 버튼  -->
+
+						<!-- 초기화, 적용 버튼  -->
 						<div class="btn_wrap">
 							<button type="button" onclick="location.href='hotellist'">초기화</button>
 							<button type="button" onclick="comfort()">적용</button>
@@ -276,15 +315,17 @@
 						<br>
 
 						<section>
-							<br> <strong>호텔·리조트 유형</strong><br>
-							<br>
+							<br> <strong>호텔·리조트 유형</strong><br> <br>
 							<ul>
-								<li><input type="checkbox" id="grade_0" name="grade[]" class="inp_chk" value="STAR5" /> 
-									<label for="grade_0" class="label_chk">5성급</label></li>
-								<li><input type="checkbox" id="grade_1" name="grade[]" class="inp_chk" value="S1" /> 
-								<label for="grade_1" class="label_chk">특1급</label></li>
-								<li><input type="checkbox" id="grade_2" name="grade[]" class="inp_chk" value="S" /> 
-								<label for="grade_2" class="label_chk">특급</label></li>
+								<li><input type="checkbox" id="grade_0" name="grade[]"
+									class="inp_chk" value="5성급" /> <label for="grade_0"
+									class="label_chk">5성급</label></li>
+								<li><input type="checkbox" id="grade_1" name="grade[]"
+									class="inp_chk" value="특1급" /> <label for="grade_1"
+									class="label_chk">특1급</label></li>
+								<li><input type="checkbox" id="grade_2" name="grade[]"
+									class="inp_chk" value="특급" /> <label for="grade_2"
+									class="label_chk">특급</label></li>
 							</ul>
 						</section>
 						<br>
@@ -295,8 +336,7 @@
 						<!-- 인원 버튼 증가,감소  -->
 						<section>
 							<input type="hidden" id="persons" name="persons" value="">
-							<strong>인원</strong><br>
-							<br>
+							<strong>인원</strong><br> <br>
 							<div class="cnt_people" data-min="2" data-max="10" data-def="2">
 								<button type="button" class="down" onclick="btndown()">-</button>
 								<span>2</span>
@@ -331,82 +371,93 @@
 
 
 						<section>
-							<strong>베드 타입</strong><br>
-							<br>
+							<strong>베드 타입</strong><br> <br>
 							<div class="room_type">
 								<p>
-									<input type="checkbox" class="inp_room_01" name="bedtype[]" id="bed_type_S" value="싱글" /> 
-										<label for="bed_type_S" class="label_room_01">싱글</label>
+									<input type="checkbox" class="inp_room_01" name="bedtype[]"
+										id="bed_type_S" value="싱글" /> <label for="bed_type_S"
+										class="label_room_01">싱글</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_02" name="bedtype[]" id="bed_type_D" value="더블" /> 
-										<label for="bed_type_D" class="label_room_02">더블</label>
+									<input type="checkbox" class="inp_room_02" name="bedtype[]"
+										id="bed_type_D" value="더블" /> <label for="bed_type_D"
+										class="label_room_02">더블</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_03" name="bedtype[]" id="bed_type_T" value="트윈" /> 
-									<label for="bed_type_T" class="label_room_03">트윈</label>
+									<input type="checkbox" class="inp_room_03" name="bedtype[]"
+										id="bed_type_T" value="트윈" /> <label for="bed_type_T"
+										class="label_room_03">트윈</label>
 								</p>
 								<p>
-									<input type="checkbox" class="inp_room_04" name="bedtype[]" id="bed_type_O" value="온돌" /> 
-										<label for="bed_type_O" class="label_room_04">온돌</label>
+									<input type="checkbox" class="inp_room_04" name="bedtype[]"
+										id="bed_type_O" value="온돌" /> <label for="bed_type_O"
+										class="label_room_04">온돌</label>
 								</p>
 							</div>
-		
-							
+
+
 						</section>
 						<br>
 
 						<section>
-							<strong>공용시설</strong><br>
-							<br>
+							<strong>공용시설</strong><br> <br>
 							<ul class="hide_type half">
-								<li><input type="checkbox" id="tmino_0" name="tmino[]" class="inp_chk" value="피트니스" /> 
-									<label for="tmino_0" class="label_chk">피트니스</label></li>
-								<li><input type="checkbox" id="tmino_1" name="tmino[]" class="inp_chk" value="수영장" /> 
-									<label for="tmino_1" class="label_chk">수영장</label></li>
-								<li><input type="checkbox" id="tmino_2" name="tmino[]" class="inp_chk" value="사우나" />
-									 <label for="tmino_2" class="label_chk">사우나</label></li>
-								<li><input type="checkbox" id="tmino_3" name="tmino[]" class="inp_chk" value="골프장" /> 
-									<label for="tmino_3" class="label_chk">골프장</label></li>
+								<li><input type="checkbox" id="tmino_0" name="tmino[]"
+									class="inp_chk" value="피트니스" /> <label for="tmino_0"
+									class="label_chk">피트니스</label></li>
+								<li><input type="checkbox" id="tmino_1" name="tmino[]"
+									class="inp_chk" value="수영장" /> <label for="tmino_1"
+									class="label_chk">수영장</label></li>
+								<li><input type="checkbox" id="tmino_2" name="tmino[]"
+									class="inp_chk" value="사우나" /> <label for="tmino_2"
+									class="label_chk">사우나</label></li>
+								<li><input type="checkbox" id="tmino_3" name="tmino[]"
+									class="inp_chk" value="골프장" /> <label for="tmino_3"
+									class="label_chk">골프장</label></li>
 							</ul>
 						</section>
 						<br>
 
 						<section>
-							<strong>객실 내 시설</strong><br>
-							<br>
+							<strong>객실 내 시설</strong><br> <br>
 							<ul class="hide_type half">
-								<li><input type="checkbox" id="tmino_24" name="tmino[]" class="inp_chk" value="객실스파" /> 
-									<label for="tmino_24" class="label_chk">객실스파</label></li>
-								<li><input type="checkbox" id="tmino_25" name="tmino[]" class="inp_chk" value="미니바" /> 
-									<label for="tmino_25" class="label_chk">미니바</label></li>
-								<li><input type="checkbox" id="tmino_26" name="tmino[]" class="inp_chk" value="와이파이" /> 
-									<label for="tmino_26" class="label_chk">와이파이</label></li>
-								<li><input type="checkbox" id="tmino_27" name="tmino[]" class="inp_chk" value="욕실용품" /> 
-									<label for="tmino_27" class="label_chk">욕실용품</label></li>
+								<li><input type="checkbox" id="tmino_24" name="tmino[]"
+									class="inp_chk" value="객실스파" /> <label for="tmino_24"
+									class="label_chk">객실스파</label></li>
+								<li><input type="checkbox" id="tmino_25" name="tmino[]"
+									class="inp_chk" value="미니바" /> <label for="tmino_25"
+									class="label_chk">미니바</label></li>
+								<li><input type="checkbox" id="tmino_26" name="tmino[]"
+									class="inp_chk" value="와이파이" /> <label for="tmino_26"
+									class="label_chk">와이파이</label></li>
+								<li><input type="checkbox" id="tmino_27" name="tmino[]"
+									class="inp_chk" value="욕실용품" /> <label for="tmino_27"
+									class="label_chk">욕실용품</label></li>
 							</ul>
 						</section>
 						<br>
 
 						<section>
-							<strong>기타</strong><br>
-							<br>
+							<strong>기타</strong><br> <br>
 							<ul class="hide_type half">
-								<li><input type="checkbox" id="tmino_36" name="tmino[]" class="inp_chk" value="반려견동반" /> 
-									<label for="tmino_36" class="label_chk">반려견동반</label></li>
-								<li><input type="checkbox" id="tmino_37" name="tmino[]" class="inp_chk" value="조식포함" /> 
-									<label for="tmino_37" class="label_chk">조식포함</label></li>
-								<li><input type="checkbox" id="tmino_38" name="tmino[]" class="inp_chk" value="객실내흡연" /> 
-									<label for="tmino_38" class="label_chk">객실내흡연</label></li>
-								<li><input type="checkbox" id="tmino_39" name="tmino[]" class="inp_chk" value="발렛파킹" /> 
-									<label for="tmino_39" class="label_chk">발렛파킹</label></li>
+								<li><input type="checkbox" id="tmino_36" name="tmino[]"
+									class="inp_chk" value="반려견동반" /> <label for="tmino_36"
+									class="label_chk">반려견동반</label></li>
+								<li><input type="checkbox" id="tmino_37" name="tmino[]"
+									class="inp_chk" value="조식포함" /> <label for="tmino_37"
+									class="label_chk">조식포함</label></li>
+								<li><input type="checkbox" id="tmino_38" name="tmino[]"
+									class="inp_chk" value="객실내흡연" /> <label for="tmino_38"
+									class="label_chk">객실내흡연</label></li>
+								<li><input type="checkbox" id="tmino_39" name="tmino[]"
+									class="inp_chk" value="발렛파킹" /> <label for="tmino_39"
+									class="label_chk">발렛파킹</label></li>
 							</ul>
 						</section>
-						<br>
-						<br>
-					
-				
-			 	 <script type="text/javascript">
+						<br> <br>
+
+
+						<script type="text/javascript">
    					  		
    					  // 중복파라미터를 자동으로 제거 
 	   					 function removeDuplicateParams(url) {
@@ -468,6 +519,8 @@
 							       
 						          var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
 						     	  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
+						     	  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
+					     		  var checkoutdate = localStorage.getItem("checkoutdate"); // checkoutdate  체크아웃 값을 가져옴 
 						     	  
 						    }  
  
@@ -476,6 +529,8 @@
 						     		   
 						     		  var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
 						     		  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴 
+						     		  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
+						     		  var checkoutdate = localStorage.getItem("checkoutdate"); // checkoutdate  체크아웃 값을 가져옴 
 						       
 							   
 						     		  // 현재 페이지 URL 가져오기
@@ -486,7 +541,8 @@
 								        
 								        
 								        
-							 	        var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText);
+							 	        var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
+							 	      
 							 	        
 							 	        
 							 	       htype = htype.map(function(value) {
@@ -535,12 +591,12 @@
 								        window.location.href = updatedURL;
 								    
 								    }  */
-		     	  </script> 
+		     	  </script>
 
-			</div>
-		</div>
-		<!-- //Filter -->
-	</aside>
+					</div>
+				</div>
+				<!-- //Filter -->
+			</aside>
 
 
 
@@ -558,7 +614,7 @@
 
 							<%--   <% for(int i=0; i<=5; i++){   %>  --%>
 
-							<a href="#" class="thumb">
+							<a href="/motelpage?no=${hotel.no}" class="thumb">
 								<table>
 									<tr>
 										<td width="300px" height="250px"><img
