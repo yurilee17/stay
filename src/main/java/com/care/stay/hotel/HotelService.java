@@ -646,6 +646,17 @@ public class HotelService {
 	}
 
 	  
+	
+	 public List<HotelDTO> getAllHotelsWithMinPrices() {
+	        List<HotelDTO> hotels = hotelMapper.getAllHotels();
+	        
+	        for (HotelDTO hotel : hotels) {
+	            int minPrice = hotelMapper.findMinPriceByHotel(hotel.getNo());
+
+	            hotel.setMinprice(minPrice);
+	        }
+	        return hotels;
+	    }
 
 }
 

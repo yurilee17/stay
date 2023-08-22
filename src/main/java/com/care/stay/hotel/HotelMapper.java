@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.care.stay.reservation.ReservationDTO;
-
 @Mapper
 public interface HotelMapper {
 	
@@ -57,7 +55,10 @@ public interface HotelMapper {
 	 ArrayList<HotelDTO> MainCheck_htype(String selectedText,ArrayList<String> htype, @Param("begin")int begin, @Param("end")int end);
 	 ArrayList<HotelDTO> MainCheck_hbedtype(String selectedText,ArrayList<String> hbedtype, @Param("begin")int begin, @Param("end")int end);
 	 ArrayList<HotelDTO> MainCheck_hcomfort(String selectedText,ArrayList<String> hcomfort, @Param("begin")int begin, @Param("end")int end);
-	 ArrayList<HotelDTO> MainCheck_hpeople(String selectedText, int hpeople, @Param("begin")int begin, @Param("end")int end); 
+	 ArrayList<HotelDTO> MainCheck_hpeople(String selectedText, int hpeople, @Param("begin")int begin, @Param("end")int end);
+
+	List<HotelDTO> getAllHotels();
+	int findMinPriceByHotel(int no);
 	 
 	 
 

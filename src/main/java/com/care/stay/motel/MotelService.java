@@ -385,6 +385,21 @@ public class MotelService {
 		
 		return motelroom;
 	}
+	
+	
+	 public List<MotelDTO> getAllMotelsWithMinPrices() {
+	        List<MotelDTO> motels = motelMapper.getAllMotels();
+
+	        for (MotelDTO motel : motels) {
+	            int minPrice = motelMapper.findMinPriceByMotel(motel.getNo());
+	            int minDaesilPrice = motelMapper.findMinDaesilPriceByMotel(motel.getNo());
+
+	            motel.setMinprice(minPrice);
+	            motel.setMindaesilprice(minDaesilPrice);
+	        }
+
+	        return motels;
+	    }
 
 	
 }

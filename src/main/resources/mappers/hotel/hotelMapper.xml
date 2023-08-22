@@ -381,6 +381,14 @@
 	<insert id="staydetailregisterProc" parameterType="com.care.stay.hotel.HotelRoomDTO">
 		INSERT INTO hotelroom (no, hcode, hroomcode, hroomname, hbedtype, hroomimage, hroomnumber, hprice, hpeople, hcomfort)
 		VALUES(#{no}, #{hcode}, #{hroomcode}, #{hroomname}, #{hbedtype}, #{hroomimage}, #{hroomnumber}, #{hprice}, #{hpeople}, #{hcomfort})
-	</insert>	
+	</insert>
+	
+	<select id="findMinPriceByHotel" resultType="java.lang.Integer">
+		SELECT COALESCE(MIN(hprice), 0) FROM hotelroom WHERE no = #{no}
+	</select>	
+	
+	<select id="getAllHotels" resultType="com.care.stay.hotel.HotelDTO">
+		SELECT * FROM hotel
+	</select>
 
 </mapper>

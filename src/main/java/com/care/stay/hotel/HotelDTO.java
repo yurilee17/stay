@@ -17,7 +17,14 @@ public class HotelDTO {
 	private String hcheckintime;
 	private String hcheckouttime;
 	private String htype;
+	private int minprice;
 	
+	public int getMinprice() {
+		return minprice;
+	}
+	public void setMinprice(int minprice) {
+		this.minprice = minprice;
+	}
 	public int getNo() {
 		return no;
 	}

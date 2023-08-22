@@ -96,4 +96,16 @@
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  	
 	
+	<select id="findMinPriceByMotel" resultType="java.lang.Integer">
+   		SELECT COALESCE(MIN(mstayprice), 0) FROM motelroom WHERE no = #{no}
+	</select>
+
+	<select id="findMinDaesilPriceByMotel" resultType="java.lang.Integer">
+	    SELECT COALESCE(MIN(mdaesilprice), 0) FROM motelroom WHERE no = #{no}
+	</select>
+	
+    <select id="getAllMotels" resultType="com.care.stay.motel.MotelDTO">
+        SELECT * FROM motel
+    </select>	
+	
 </mapper>

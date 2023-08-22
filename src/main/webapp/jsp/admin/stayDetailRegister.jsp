@@ -14,45 +14,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
  </head>
- <script>
-	 /* function showSubMenu() {
-		  var stayType = document.getElementById("stayType");
-		  var showDetail = document.getElementsByClassName("showDetail");
-
-		  // 모든 서브 메뉴 감추기
-		  for (var i = 0; i < showDetail.length; i++) {
-		    showDetail[i].style.display = "none";
-		  }
-
-		  // 선택된 값에 따라 해당 서브 메뉴 표시
-		  if (stayType.value === "motel") {
-		    document.getElementById("showDetail").style.display = "table";
-		  } else if (stayType.value === "hotel") {
-		    document.getElementById("showDetail2").style.display = "table";
-		  } else if (stayType.value === "pension") {
-		    document.getElementById("showDetail3").style.display = "table";
-		  } else if (stayType.value === "gh") {
-		    document.getElementById("showDetail4").style.display = "table";
-		  } else if (stayType.value === "camping") {
-		    document.getElementById("showDetail5").style.display = "table";
-		  }
-		}
-	 	
-	 
-	 	document.addEventListener('DOMContentLoaded', function() {
-		    var stayCodeElement = document.getElementById('mroomcode');
-
-		    var xhr = new XMLHttpRequest();
-		    xhr.open('GET', '/getMotelRoomCount', true);
-		    xhr.onreadystatechange = function() {
-		        if (xhr.readyState === 4 && xhr.status === 200) {
-		            var dataCount = xhr.responseText;
-		            stayCodeElement.textContent = dataCount;
-		        }
-		    };
-		    xhr.send();
-		}); */
-</script>
  
  <body>
 	<div id ="wrap">
@@ -515,7 +476,7 @@
 				<ul>
 
 <!-- 					<li><a href="#">등록</a></li> -->
-					<li><input type="submit" value="등록"></li>
+					<li><input type="submit" class="submit_button" value="등록"></li>
 					<li><a href="${context }stayContent">뒤로가기</a></li>
 				</ul>
 			</div>

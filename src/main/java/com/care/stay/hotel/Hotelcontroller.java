@@ -2,6 +2,7 @@
 package com.care.stay.hotel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,16 +20,24 @@ public class Hotelcontroller {
 	@Autowired private HttpSession session;
 	
 	  //hotellist 첫화면 
-	  @RequestMapping("hotellist") 
-	  	public String hotellist(
+//	  @RequestMapping("hotellist") 
+//	  	public String hotellist(
+//	  
+//	  @RequestParam(value="currentPage", required = false)String cp, Model model) {
+//	  
+//	  System.out.println("hotellist나오는지 알려주세요");
+//	  
+//	  service.hotellist(cp,model); 
+//	  	return "hotel/hotellist"; 
+//	  	}
 	  
-	  @RequestParam(value="currentPage", required = false)String cp, Model model) {
 	  
-	  System.out.println("hotellist나오는지 알려주세요");
-	  
-	  service.hotellist(cp,model); 
-	  	return "hotel/hotellist"; 
-	  	}
+	    @RequestMapping("hotellist")
+	    public String hotelsList(Model model) {
+	        List<HotelDTO> hotels = service.getAllHotelsWithMinPrices();
+	        model.addAttribute("hotels", hotels);
+	        return "hotel/hotellist";
+	    }
 	  
 	  // 뭔가를 선택했을 때 나오는 화면 
 	  @RequestMapping("Main") 
