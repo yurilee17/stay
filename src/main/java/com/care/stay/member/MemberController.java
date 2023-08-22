@@ -286,7 +286,7 @@ public class MemberController {
 			return "member/index";
 		}
 	}
-	
+
 	@GetMapping("resDetail")
 	public String resDetail(@RequestParam int no, Model model) {
 		if (session.getAttribute("id") != null) {
@@ -296,17 +296,22 @@ public class MemberController {
 			return "member/index";
 		}
 	}
-	
+
 	@GetMapping("resUpdate")
 	public String resUpdate(@RequestParam int no, Model model) {
-		System.out.println(no +"test");
+		System.out.println(no + "test");
 		if (session.getAttribute("id") != null) {
 			service.resUpdate(no);
-			return "redirect:resDetail?no="+no;
+			return "redirect:resDetail?no=" + no;
 		} else {
 			return "member/index";
 		}
 	}
-	
+
+	// 메인 화면
+	@RequestMapping("map")
+	public String map() {
+		return "default/map";
+	}
 
 }
