@@ -61,9 +61,7 @@ public class Hotelcontroller {
 		  		 hotelService.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
 		  	    } 
 		  	   else if(selectedText != null || checkindate != null && checkoutdate != null ) {
-		  		 if (selectedText == "강남") {
-		  			return "redirect:hotellist";
-			  		}
+
 		  		 hotelService.Main(selectedText, cp ,model);
 		  	    }
 		  	   

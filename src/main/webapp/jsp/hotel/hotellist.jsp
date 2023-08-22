@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -40,7 +40,10 @@
 <script type="text/javascript" src="../../resource/js/hotel.js"></script>
 </head>
 
-
+<!-- 파라미터에 넣을 현재 날짜 -->
+	<c:set var="currentDate" value="<%= new java.util.Date() %>" />
+    <c:set var="dateFormat" value="yyyy-MM-dd" />
+    <fmt:formatDate var="formattedDate" pattern="yyyy-MM-dd" value="${currentDate}" />
 
 <body class="pc">
 
@@ -161,10 +164,11 @@
 					
 					alert(selectId);
 					alert(selectedText);
-					
+					 localStorage.setItem("checkindate", "${formattedDate}");
+				     localStorage.setItem("checkoutdate", "${formattedDate}");
 					 localStorage.setItem("selectedText", selectedText); //selectedText 값 저장해서 넘겨줌 
 					
-					selectedTextUrl = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText);
+					selectedTextUrl = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText)+ "&checkindate=${formattedDate}&checkoutdate=${formattedDate}" + encodeURIComponent("");
 					window.location.href = selectedTextUrl;
 				}
 				// 페이지 로드 시 세션 스토리지에서 값을 가져와 선택합니다.
@@ -187,6 +191,9 @@
 					 document.getElementById('mainMenu').value = "Main1";
 					 showSubMenu();
 					 document.getElementById('subMenu').value = "Main1_3";
+					 sessionStorage.setItem('subMenuId', 'subMenu');
+					 sessionStorage.setItem('mainMenuValue', 'Main1');
+					 sessionStorage.setItem('subMenuValue', 'Main1_3');
 				}else{
 					 if (mainMenuValue && subMenuValue) {
 					        document.getElementById('mainMenu').value = mainMenuValue;
@@ -231,7 +238,10 @@
 
 	         var checkindate = storedStartDate || new Date().toISOString().split('T')[0];
 		     var checkoutdate = storedEndDate || moment().add(7, 'days').toISOString().split('T')[0];
-						
+		     
+		     var urlParams = new URLSearchParams(window.location.search);
+			    var checkindateV = urlParams.get('checkindate');
+			    var checkoutdateV = urlParams.get('checkoutdate');
 		     
 	         	   $('#calendars').daterangepicker({
 	         		  "maxSpan": {"days": 6 },
@@ -250,8 +260,8 @@
 		                },
 		               	"minDate":  new Date(),
 		                "maxDate": moment().add(3, 'months').toDate(), 
-		                "startDate": new Date(),
-		                "endDate":new Date(),
+		                "startDate": checkindateV,
+		                "endDate":checkoutdateV,
 		                "drops": "down"
 			            }, function (start, end, label) {
 			                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
@@ -526,9 +536,12 @@
  
 						   	<!--  선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침하는 함수 -->
 						     	    function addDataToURL(htype, hbedtype, hcomfort, hpeople) {
+						     	    	
+						     	    	 var urlParams = new URLSearchParams(window.location.search);
+										    var hdetailregionV = urlParams.get('hdetailregion');
 						     		   
 						     		  var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
-						     		  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴 
+						     	/* 	  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴  */
 						     		  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
 						     		  var checkoutdate = localStorage.getItem("checkoutdate"); // checkoutdate  체크아웃 값을 가져옴 
 						       
@@ -541,7 +554,7 @@
 								        
 								        
 								        
-							 	        var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
+							 	        var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(hdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
 							 	      
 							 	        
 							 	        

@@ -371,6 +371,7 @@ public class HotelService {
 
 		ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin,
 				end); // 지금가능! checkin,out 빠진거
+		
 		// ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, checkindate,
 		// checkoutdate, htype, hbedtype, hcomfort, hpeople, begin, end); // 전부 다 있는거
 
