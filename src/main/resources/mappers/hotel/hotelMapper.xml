@@ -156,7 +156,7 @@
 	 FROM hotel h 
 	 JOIN hotelroom hr  ON hr.hcode = h.hcode
 	   WHERE (h.hdetailregion = #{selectedText} OR 	h.htype = #{htype})
-        AND hr.hbedtype in #{hbedtype}
+        AND hr.hbedtype in (#{hbedtype})
         AND hr.hcomfort LIKE CONCAT('%'|| #{hcomfort}, '%')
         OR hr.hpeople = #{hpeople}
  
