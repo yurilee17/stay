@@ -27,6 +27,7 @@ import com.care.stay.hotel.HotelDTO;
 import com.care.stay.hotel.HotelMapper;
 import com.care.stay.hotel.HotelRoomDTO;
 import com.care.stay.hotel.HotelService;
+import com.care.stay.inquiry.InquiryMapper;
 import com.care.stay.motel.MotelDTO;
 import com.care.stay.motel.MotelMapper;
 import com.care.stay.motel.MotelRoomDTO;
@@ -40,7 +41,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminStayController {
-
+	
 	@Autowired private AdminStayService service;
 	@Autowired private MotelService mservice;
 	@Autowired private HotelService hservice;
@@ -53,7 +54,8 @@ public class AdminStayController {
 	@Autowired private GHMapper ghMapper;
 	@Autowired private CampingMapper campingMapper;
 	@Autowired private HttpSession session;
-
+	@Autowired private InquiryMapper inquiryMapper;	
+	
 	@GetMapping("stayRegister")
 	public String stayRegister(Model model,
 		@RequestParam(value="stayType", required = false)String stayType) {

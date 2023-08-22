@@ -18,6 +18,19 @@ import java.util.List;
     content CLOB,
     created_at TIMESTAMP
 	);
+	
+	
+	CREATE TABLE inquiryForm (
+  inquiryno INT(10000) AUTO_INCREMENT,
+  id VARCHAR(100),
+  phone_number VARCHAR(20),
+  category_type VARCHAR(100),
+  content VARCHAR(500),
+  created_at TIMESTAMP,
+  PRIMARY KEY (inquiryno),
+  FOREIGN KEY (id) REFERENCES {참조할_테이블명}({참조할_컬럼명})
+  );
+  
 */
 
 @Service
@@ -34,7 +47,7 @@ public class InquiryService {
         inquiryMapper.insertInquiry(inquiry);
     }
 
-    public InquiryDTO getInquiryById(Long id) {
+    public InquiryDTO getInquiryById(int id) {
         return inquiryMapper.selectInquiryById(id);
     }
 

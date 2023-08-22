@@ -2,24 +2,26 @@ package com.care.stay.inquiry;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 @Mapper
-@Repository
 public interface InquiryMapper {
+	// 문의사항 데이터를 추가하는 메서드
+    int insertInquiry(InquiryDTO inquiry);
 
-    @Insert("INSERT INTO inquiryForm(category_type, name, phone_number, email, content, created_at) " +
-            "VALUES (#{categoryType}, #{name}, #{phoneNumber}, #{email}, #{content}, #{created_At})")
-    void insertInquiry(InquiryDTO inquiry);
+    // 주어진 id에 해당하는 문의사항 데이터를 조회하는 메서드
+    InquiryDTO selectInquiryById(int id);
 
-    @Select("SELECT ROW_NUMBER() OVER (ORDER BY created_at DESC) AS rno,content,id,created_at FROM inquiryForm WHERE id = #{id} ORDER BY created_at DESC")
-    InquiryDTO selectInquiryById(@Param("id") Long id);
-
-    @Select("SELECT * FROM inquiryForm")
+    // 모든 문의사항 데이터를 조회하는 메서드
     List<InquiryDTO> selectAllInquiries();
-}
 
+    // 문의사항 데이터를 수정하는 메서드
+    int updateInquiry(InquiryDTO inquiry);
+    
+    // 주어진 id에 해당하는 문의사항 데이터를 삭제하는 메서드
+    int deleteInquiry(int id);
+    
+    // 주어진 categoryType에 해당하는 문의사항 데이터를 조회하는 메서드
+    List<InquiryDTO> selectInquiriesByCategoryType(int categoryType);
+}
+	

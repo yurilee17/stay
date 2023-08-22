@@ -28,3 +28,20 @@ $.ajax({
 });
     });
 });
+function validateForm() {
+    // 여기에 폼 데이터의 유효성을 검사하는 로직을 추가하세요.
+    // 필요한 유효성 검사를 수행하고, 유효하지 않은 경우 false를 반환하고, 유효한 경우 true를 반환합니다.
+
+    // 예시: 폼 데이터의 필드 중 하나라도 비어있으면 유효하지 않음으로 처리
+    const inputFields = document.querySelectorAll(".js-validate-input");
+    for (const inputField of inputFields) {
+        if (inputField.value.trim() === "") {
+            alert("모든 필드를 입력해주세요.");
+            return false;
+        }
+    }
+
+    // 추가적인 유효성 검사 로직을 추가할 수 있습니다.
+
+    return true;  // 모든 유효성 검사가 통과하면 true 반환
+    }
