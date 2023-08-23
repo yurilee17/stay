@@ -53,7 +53,7 @@
 
 		<!-- Header -->
 		<c:import url="/header" /> 
-		<%-- <c:import url="/map" />  --%>
+		<c:import url="/map" />
 		<c:import url="/header" />
 		<!-- CSS -->
 		<link rel="stylesheet" href="../../resource/css/reset.css">
@@ -619,7 +619,7 @@
 				<ul class="sort">
 					<li><a href="#">낮은 가격 순</a></li>
 					<li><a href="#">높은 가격 순</a></li>
-					<li><a href="#">지도</a></li>
+					<li><a href="#" onclick="openMap()">지도</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${not empty hotels}">

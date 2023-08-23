@@ -310,13 +310,13 @@ public class MemberController {
 		}
 	}
 	
-	@Autowired
-	private HotelService hotelService;
+//	@Autowired
+//	private HotelService hotelService;
 	// 메인 화면
 	@RequestMapping("map")
 	public String map(Model model) {
 //		hdetailregion=강남&checkindate=2023-08-23&checkoutdate=2023-08-23
-		hotelService.Main("강남", "" ,model);  		   	
+//		hotelService.Main("강남", "" ,model);  		   	
 		return "default/map";
 	}
 

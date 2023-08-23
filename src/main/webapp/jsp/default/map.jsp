@@ -22,7 +22,7 @@
 </head>
 
 <body>
-	${hotels}
+	
 	<!-- Bg Dimm -->
 	<div class="bgDimmMap" onclick="closeMap();">&nbsp;</div>
 
@@ -30,7 +30,7 @@
 
 	<script>
 		// 주소-좌표 변환 객체를 생성합니다
-		
+		alert('${param.hdetailregion}');
 		var mapContainer = document.getElementById('map'), mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667),
 			level : 7
@@ -40,31 +40,15 @@
 		
 		var geocoder = new kakao.maps.services.Geocoder();
 		
-		geocoder.addressSearch('강남', function(result, status) {
+		geocoder.addressSearch('${param.hdetailregion}', function(result, status) {
 			// 정상적으로 검색이 완료됐으면 
 			if (status === kakao.maps.services.Status.OK) {
-				mapCenter = new kakao.maps.LatLng(result[0].y, result[0].x);
+				mapCenter = new kakao.maps.LatLng(result[0].y-(-0.05), result[0].x-0.1);
 			} 
+			alert('mapCenter');
 			map.setCenter(mapCenter);
 			
 		});
-		
-		
-	/* 	<c:forEach var="hotel" items="${hotels}">
-		geocoder.addressSearch('${hotel.haddress}', function(result, status) {
-
-			// 정상적으로 검색이 완료됐으면 
-			if (status === kakao.maps.services.Status.OK) {
-
-				let thisAdd = new kakao.maps.LatLng(result[0].y, result[0].x);
-			}
-			thisAdds.push(thisAdd);
-		});
-		
-		</c:forEach> */
-		
-		
-		
 		
 		let positions = [];
 		
@@ -143,7 +127,19 @@
 		});
 		</c:forEach>
 
-		
+
+		// 지도 열기
+		function openMap() {
+			let bgDimmMap = document.querySelector(".bgDimmMap");
+			let mapL = document.getElementById("map");
+
+			if (bgDimmMap != null && mapL != null) {
+				bgDimmMap.style.display = 'block';
+				mapL.style.display = 'block';
+				map.relayout();
+			}
+			
+		}
 	</script>
 
 
