@@ -53,7 +53,7 @@
 
 		<!-- Header -->
 		<c:import url="/header" /> 
-		<c:import url="/map" /> 
+		<%-- <c:import url="/map" />  --%>
 		<c:import url="/header" />
 		<!-- CSS -->
 		<link rel="stylesheet" href="../../resource/css/reset.css">
