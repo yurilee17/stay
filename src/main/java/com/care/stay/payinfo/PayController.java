@@ -20,15 +20,14 @@ public class PayController {
 	@Autowired private HttpSession session;
 	@Autowired private PayService payservice;
 
-	@PostMapping("paymentComplete")
-	public ResponseEntity<String> paymentComplete(@RequestBody PayInfoDTO payInfoDTO) {
-        payservice.payInfoProc(payInfoDTO);
-        return ResponseEntity.ok("Payment data saved successfully.");
+    @PostMapping("/reservation/paymentComplete")
+    public ResponseEntity<String> paymentComplete(@RequestBody PayInfoDTO payinfoDto) {
+        try {
+            payservice.payInfoProc(payinfoDto);
+            return ResponseEntity.ok("결제 정보가 성공적으로 저장되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("결제 정보 저장 중 오류가 발생하였습니다.");
+        }
     }
-	
-	
-	
-	
-	
 } 
 

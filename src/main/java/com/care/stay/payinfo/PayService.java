@@ -10,7 +10,6 @@ public class PayService {
 	@Autowired private PayMapper payMapper;
 	@Autowired private HttpSession session;
 
-	
 	public void payInfoProc(PayInfoDTO payInfoDTO) {
 		payMapper.payInfoProc(payInfoDTO);
 		System.out.println("Saving payment data: " + payInfoDTO);

@@ -16,8 +16,6 @@
         <link rel="stylesheet" href="../../resource/css/common.css">
 		<link data-n-head="ssr" rel="stylesheet" href="../../resource/js/owl.carousel.css">
 		
-
-		<!--<script data-n-head="ssr" src="../../resource/js/stayreservation.js"></script> -->
 		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/common.js" defer=""></script>
 		<script data-n-head="ssr" rel="text/javascript" src="../../resource/js/iscroll.js" defer=""></script>
 		<script type="text/javascript" async="" src="../../resource/js"></script>

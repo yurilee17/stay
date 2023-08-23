@@ -10,8 +10,8 @@
   	</resultMap>
   	
   	<insert id="payInfoProc" parameterType="com.care.stay.payinfo.PayInfoDTO">
-  		INSERT INTO payinfo (id, mobile, name, totalprice, cid, tid) 
-  		VALUES(#{id}, #{mobile}, #{name}, #{totalprice}, #{cid}, #{tid})
+  		INSERT INTO payinfo (id, mobile, name, totalprice, impuid, merchantuid) 
+  		VALUES(#{id}, #{mobile}, #{name}, #{totalprice}, #{impUid}, #{merchantUid})
   	</insert>
   	
 </mapper>

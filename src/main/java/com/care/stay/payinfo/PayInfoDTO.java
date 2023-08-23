@@ -2,36 +2,29 @@ package com.care.stay.payinfo;
 
 public class PayInfoDTO {
 
-	private int totalprice;
-	private String cid;
-	private String tid;
-	private String id;
-	private String name;
-	private String mobile;
-	
+	private String impUid;
+    private String merchantUid;
+    private int totalprice;
+    private String name;
+    private String mobile;
+    
+	public String getImpUid() {
+		return impUid;
+	}
+	public void setImpUid(String impUid) {
+		this.impUid = impUid;
+	}
+	public String getMerchantUid() {
+		return merchantUid;
+	}
+	public void setMerchantUid(String merchantUid) {
+		this.merchantUid = merchantUid;
+	}
 	public int getTotalprice() {
 		return totalprice;
 	}
 	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
-	}
-	public String getCid() {
-		return cid;
-	}
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
-	public String getTid() {
-		return tid;
-	}
-	public void setTid(String tid) {
-		this.tid = tid;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 	public String getName() {
 		return name;

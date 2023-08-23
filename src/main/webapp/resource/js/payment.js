@@ -34,8 +34,8 @@
             	      // jQuery로 HTTP 요청
             	      var msg = '결제가 완료되었습니다';
             	      var result = {
-            	          "imp_uid": rsp.imp_uid,            // 결제 고유번호
-            	          "merchant_uid": rsp.merchant_uid,   // 주문번호
+            	          "impUid": rsp.imp_uid,            // 결제 고유번호
+            	          "merchantUid": rsp.merchant_uid,   // 주문번호
             	          "totalprice": rsp.amount,				// 가격
             	          "name": rsp.buyer_name,		// 결제자 이름
             	          "mobile" : rsp.buyer_tel			// 결제자 연락처
