@@ -239,26 +239,35 @@
 	       		 });
 				
 				</script>	
-				
-			
-			<%   for(int i =0; i<5; i++){     %>
+	<c:choose>
+		<c:when test="${not empty hotelrooms}">
+			<c:forEach var="hotelroom" items="${ hotelrooms}">
+			<%--   for(int i =0; i<5; i++){     --%>
                 <table>
                 	<tr>
                         <td  width="300px" height="250px"><a href="#" class="thumb">
-                            <img src="	https://via.placeholder.com/300x230" alt="상품이미지">
+                            <img src="${hotelrooms.hroomimage}" alt="객실이미지">
                         </a></td>
                         <td>
                            <div class=room>
-                             <h2 class="name">[넷플릭스]스탠다드 더블</h2>
+                             <h2 class="name">${hotelroom.hroomname}</h2>
 	                            <br><br>
-	                           <b><span>가격 178,000</span></b>
+	                           <b><span>${hotelroom.hpriceS}</span></b>
                            	</div>
-                           	<button type="button">예약하기</button>
+                           	<button type="button" onclick ="#'" >예약하기</button>
                         </td>
                        
                     </tr>
                 </table>
-             <%   } %>
+             <%--   } --%>
+             </c:forEach>
+           </c:when>
+			<c:otherwise>
+				<!-- hotelrooms 변수가 비어있을 때의 처리 -->
+				<p>No hotelroom information available.</p>
+			</c:otherwise>
+		</c:choose>
+		
 		</div>
 		<div id="informationP" style="display:none;">
 		
