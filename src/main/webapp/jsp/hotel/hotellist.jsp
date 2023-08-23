@@ -541,7 +541,6 @@
 										    var hdetailregionV = urlParams.get('hdetailregion');
 						     		   
 						     		  var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
-						     	/* 	  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴  */
 						     		  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
 						     		  var checkoutdate = localStorage.getItem("checkoutdate"); // checkoutdate  체크아웃 값을 가져옴 
 						       
@@ -641,11 +640,7 @@
 										</td>
 										<td>
 											<ul>
-												<!-- 	<li>
-                                    <del class="org-price">30,000</del>
-                                    <span class="discount">10%</span>
-                                </li> -->
-												<li class="dis-price">27,000</li>
+												<li class="dis-price">${hotel.minprice }</li>
 
 
 											</ul>

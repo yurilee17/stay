@@ -31,6 +31,8 @@ public class Hotelcontroller {
 	  	return "hotel/hotellist"; 
 	  	}
 	  
+
+	  
 	  // 뭔가를 선택했을 때 나오는 화면 
 	  @RequestMapping("Main") 
 	  	public String MainCheck(
