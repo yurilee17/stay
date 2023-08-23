@@ -50,6 +50,7 @@
 
 		<!-- Header -->
 		<c:import url="/header" /> 
+		<c:import url="/map" /> 
 		<!-- CSS -->
 		<link rel="stylesheet" href="../../resource/css/reset.css">
 		<link rel="stylesheet" href="../../resource/css/hotel.css">

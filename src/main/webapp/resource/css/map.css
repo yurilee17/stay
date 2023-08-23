@@ -1,5 +1,34 @@
 @charset "UTF-8";
 
+/* 배경 bgDimmMap */
+.bgDimmMap {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 410;
+	background: rgba(0, 0, 0, 0.78);
+	touch-action: none;
+}
+
+/* mapStyle */
+.mapStyle {
+	display: none;
+	position: fixed;
+	z-index: 430 !important;
+	display: none;
+	width: 50%;
+	height: 50%;
+	margin-left: -184px;
+	border-radius: 4px;
+	top: 40%;
+	left: 50%;
+	background: #fff;
+}
+
+
 .wrap {
 	position: absolute;
 	left: 0;
@@ -105,3 +134,5 @@
 .info .link {
 	color: #5085BB;
 }
+
+
