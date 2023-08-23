@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.care.stay.hotel.HotelService;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -307,10 +309,14 @@ public class MemberController {
 			return "member/index";
 		}
 	}
-
+	
+	@Autowired
+	private HotelService hotelService;
 	// 메인 화면
 	@RequestMapping("map")
-	public String map() {
+	public String map(Model model) {
+//		hdetailregion=강남&checkindate=2023-08-23&checkoutdate=2023-08-23
+		hotelService.Main("강남", "" ,model);  		   	
 		return "default/map";
 	}
 

@@ -2,7 +2,7 @@
 
 /* 배경 bgDimmMap */
 .bgDimmMap {
-	display: none;
+	display: block;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -15,21 +15,17 @@
 
 /* mapStyle */
 .mapStyle {
-	display: none;
+	display: block;
 	position: fixed;
 	z-index: 430 !important;
-	display: none;
 	width: 50%;
-	height: 50%;
-	margin-left: -184px;
-	border-radius: 4px;
-	top: 40%;
-	left: 50%;
-	background: #fff;
+	height: 740px;
+	top: 10%;
+	left: 25%;
 }
 
 
-.wrap {
+.mapWrap {
 	position: absolute;
 	left: 0;
 	bottom: 40px;
@@ -43,12 +39,12 @@
 	line-height: 1.5;
 }
 
-.wrap * {
+.mapWrap * {
 	padding: 0;
 	margin: 0;
 }
 
-.wrap .info {
+.mapWrap .info {
 	width: 286px;
 	height: 120px;
 	border-radius: 5px;
@@ -58,12 +54,12 @@
 	background: #fff;
 }
 
-.wrap .info:nth-child(1) {
+.mapWrap .info:nth-child(1) {
 	border: 0;
 	box-shadow: 0px 1px 2px #888;
 }
 
-.info .title {
+.mapWrap .info .title {
 	padding: 5px 0 0 10px;
 	height: 30px;
 	background: #eee;
@@ -72,7 +68,7 @@
 	font-weight: bold;
 }
 
-.info .close {
+.mapWrap .info .close {
 	position: absolute;
 	top: 10px;
 	right: 10px;
@@ -82,34 +78,29 @@
 	background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
 }
 
-.info .close:hover {
+.mapWrap .info .close:hover {
 	cursor: pointer;
 }
 
-.info .body {
+.mapWrap .info .body {
 	position: relative;
 	overflow: hidden;
 }
 
-.info .desc {
+.mapWrap .info .desc {
 	position: relative;
 	margin: 13px 0 0 90px;
 	height: 75px;
 }
 
-.desc .ellipsis {
+.mapWrap .desc .ellipsis {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
-.desc .jibun {
-	font-size: 11px;
-	color: #888;
-	margin-top: -2px;
-}
 
-.info .img {
+.mapWrap .info .img {
 	position: absolute;
 	top: 6px;
 	left: 5px;
@@ -120,7 +111,7 @@
 	overflow: hidden;
 }
 
-.info:after {
+.mapWrap .info:after {
 	content: '';
 	position: absolute;
 	margin-left: -12px;
@@ -131,8 +122,6 @@
 	background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
 }
 
-.info .link {
+.mapWrap .info .link {
 	color: #5085BB;
 }
-
-
