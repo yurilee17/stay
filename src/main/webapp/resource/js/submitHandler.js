@@ -20,6 +20,9 @@ $.ajax({
     success: function(response) {  // 서버 응답 성공 시 호출되는 콜백 함수
         console.log(response);
         alert("제출이 완료되었습니다.");
+        
+        // 폼 재설정
+        $("#submitForm")[0].reset();
     },
     error: function(xhr, status, error) {  // 서버 응답 실패 시 호출되는 콜백 함수
         console.error(xhr.statusText);

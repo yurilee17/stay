@@ -329,7 +329,7 @@
 
 			<!-- 작성 -->
 			<div class="tab_each" >
-				<form name="inq-form" method="post" action="/more/inquiry_submit">
+				<form id="submitForm" name="inq-form" method="post" action="/more/inquiry_submit">
 					<div class="alert_top">
 						<p>여기어때 이용 중 불편하신 점을 문의주시면 <em>최대한 빠른 시일내에 답변 드리겠습니다.</em></p>
 					</div>
@@ -440,9 +440,9 @@
 					</section>
 
 					<section class="btn_wrap ">
+					</form>
 						<button id="submitBtn" class="btn_red_fill" type="button">작성 완료</button>
 					</section>
-				</form>
 			</div>
 
 			<!-- 개인정보처리방침동의 팝업 -->

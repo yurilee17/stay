@@ -10,7 +10,7 @@
 
 	<section>
 		<h1>
-			<a class="" href="index" title="여기어때">여기어때</a>
+			<a class="" href="index" title="여기어때">저기어때</a>
 		</h1>
 		<button type="button" class="btn_srch srch_open ">검색</button>
 		<ul class="gnb">

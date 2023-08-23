@@ -5,7 +5,7 @@
 
 <mapper namespace="com.care.stay.inquiry.InquiryMapper">
 
-     <resultMap type="com.care.stay.inquiry.InquiryDTO" id="inquiryDto">
+     <resultMap type="com.care.stay.inquiry.InquiryDTO" id="inquiryResultMap">
         <id column="id" property="id"/>
         <result column="category_type" property="categoryType"/>
         <result column="name" property="name"/>
@@ -19,11 +19,13 @@
         INSERT INTO inquiry(category_type, name, phone_number, email, content, created_at)
         VALUES (#{categoryType}, #{name}, #{phoneNumber}, #{email}, #{content}, #{createdAt})
     </insert>
-
+	
+	<!-- 
     <select id="selectInquiryById" resultMap="inquiryResultMap">
         SELECT * FROM inquiry WHERE id = #{id}
     </select>
-
+	 -->
+	 
     <select id="selectAllInquiries" resultMap="inquiryResultMap">
         SELECT * FROM inquiry
     </select>
