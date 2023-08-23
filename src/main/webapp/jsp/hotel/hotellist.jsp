@@ -298,8 +298,11 @@
 				        localStorage.setItem("checkoutdate", checkoutdate);
 				   var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
 				        
+				   
+				   	 var urlParams = new URLSearchParams(window.location.search);
+					 var hdetailregionV = urlParams.get('hdetailregion');
 				        
-				         var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(selectedText) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
+				         var updatedURL = "http://localhost/Main?hdetailregion=" + encodeURIComponent(hdetailregionV) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
 				        // 페이지 새로고침
 				        window.location.href = updatedURL;
 				    }
@@ -538,7 +541,7 @@
 						     	    function addDataToURL(htype, hbedtype, hcomfort, hpeople) {
 						     	    	
 						     	    	 var urlParams = new URLSearchParams(window.location.search);
-										    var hdetailregionV = urlParams.get('hdetailregion');
+										 var hdetailregionV = urlParams.get('hdetailregion');
 						     		   
 						     		  var hpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
 						     		  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
@@ -626,7 +629,7 @@
 
 							<%--   <% for(int i=0; i<=5; i++){   %>  --%>
 
-							<a href="/motelpage?no=${hotel.no}" class="thumb">
+							<a href="/hotelpage?no=${hotel.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate} " class="thumb">
 								<table>
 									<tr>
 										<td width="300px" height="250px"><img
@@ -661,5 +664,7 @@
 		</div>
 
 	</main>
+	
+<%-- 	<c:import url="/footer" /> --%>
 </body>
 </html>
