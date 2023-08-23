@@ -28,13 +28,13 @@ public class HotelDTO {
 	private String hcheckintime;
 	private String hcheckouttime;
 	private String htype;
-	private List<HotelRoomDTO> rooms;
+	private HotelRoomDTO rooms;
 
 	
-	public List<HotelRoomDTO> getRooms() {
+	public HotelRoomDTO getRooms() {
 		return rooms;
 	}
-	public void setRooms(List<HotelRoomDTO> rooms) {
+	public void setRooms(HotelRoomDTO rooms) {
 		this.rooms = rooms;
 	}
 	

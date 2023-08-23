@@ -3,6 +3,7 @@ function showSubMenu() {
 	var subMenu = document.getElementsByClassName("subMenu");
 
 
+
 	// 모든 서브 메뉴 감추기
 	for (var i = 0; i < subMenu.length; i++) {
 		subMenu[i].style.display = "none";

@@ -25,12 +25,13 @@ button {
 
 .pc > .visual{
 	margin: 0 auto;
+	padding-left: 300px;
 }
 
 
 .pc > .visual .hpTop{
 	width: 1024px;
-	height: 450px;
+	height: 550px;
 	padding: 150px 0 0 319px;
 }
 
