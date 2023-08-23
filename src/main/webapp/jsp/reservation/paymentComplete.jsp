@@ -9,7 +9,7 @@
 <body>
 	결제가 완료되었습니다.
 	<div class="btns">
-		<input type="button" id="refund" value="환불">
+		<input type="button" id="refund" onclick="refundKakao" value="환불">
 	</div>
 </body>
 </html>

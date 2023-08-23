@@ -1,8 +1,30 @@
 let timer = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
-	inputEvent();
+/*	inputEvent();
+
+
+	const checkAll = document.querySelector('input[name="checkAll"]');
+	
+	const checkOneList = document.querySelectorAll('input[name="checkOne"]');
+	
+	checkAll.addEventListener("click", function() {
+		checkOneList.forEach(function(checkOne) {
+			checkOne.checked = checkAll.checked;
+		});
+	});
+	
+	checkOneList.forEach(function(checkOne) {
+		checkOne.addEventListener("click", function() {
+			const allChecked = Array.from(checkOneList).every(function(checkOne) {
+				return checkOne.checked;
+			});
+			checkAll.checked = allChecked;
+		});
+	});*/
 })
+
+
 
 
 $(document).ready(function() {
@@ -312,14 +334,14 @@ function payment_confirm(){
         return false;
     }
 
-    if ($('#verificationCode').length > 0) {
+/*    if ($('#verificationCode').length > 0) {
         if(buyer_phone.data('phoneverify') != 'Y'
             || buyer_phone.data('phoneverify') === undefined) {
             alert_Msg('휴대폰 번호 미인증 되었습니다.');
             return false;
         }
     }
-
+*/
     if($('#order_form').find('input[name=checkin_type]').val()==1){
         if($('input[name=dayuse_select]').val()=="N"){
             alert_Msg('이용시간을 선택해주세요.');

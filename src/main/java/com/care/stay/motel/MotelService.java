@@ -45,25 +45,6 @@ public class MotelService {
 		motel.setMstaycheckout(multi.getParameter("mstaycheckout"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-//		if(motel.getMname() == null || motel.getMname().isEmpty()) {
-//			return "숙소 이름을 입력하세요.";
-//		}
-//		if(motel.getMregion() == null || motel.getMregion().isEmpty()) {
-//			return "지역을 선택하세요.";
-//		}
-//		if(motel.getMdetailRegion() == null || motel.getMdetailRegion().isEmpty()) {
-//			return "세부지역을 선택하세요.";
-//		}		
-//		if(motel.getMaddress() == null || motel.getMaddress().isEmpty()) {
-//			return "주소를 입력하세요.";
-//		}
-//		if(motel.getMdetailAddress() == null || motel.getMdetailAddress().isEmpty()) {
-//			return "상세주소를 입력하세요.";
-//		}
-//		if(motel.getMinfo() == null || motel.getMinfo().isEmpty()) {
-//			return "숙소의 정보를 입력하세요.";
-//		}
-		
 		motel.setMimage("");
 		MultipartFile file = multi.getFile("imageupload");
 		String fileName = file.getOriginalFilename();

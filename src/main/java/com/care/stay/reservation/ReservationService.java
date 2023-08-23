@@ -1,8 +1,18 @@
 package com.care.stay.reservation;
 
+import java.util.List;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import com.care.stay.camping.CampingDTO;
 import com.care.stay.camping.CampingRoomDTO;
@@ -113,5 +123,48 @@ public class ReservationService {
     
     	return "예약 DB 등록 완료";
 	}
+    
+    
+    public <T> JSONObject requestPost(T body, String url, HttpHeaders headers) {
+    	HttpEntity<T>entity = new HttpEntity<>(body, headers);
+    	RestTemplate restTemplate = new RestTemplate();
+    	return restTemplate.postForObject(url, entity, JSONObject.class);
+    }
+    
+    public <T> JSONObject requestGet(T body, String url, HttpHeaders headers) {
+    	RestTemplate restTemplate = new RestTemplate();
+    	HttpEntity<T>entity = new HttpEntity<>(body, headers);
+    	ResponseEntity<JSONObject>responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, JSONObject.class);
+    	return responseEntity.getBody();
+    }
  
+    
+//    public JSONObject requestPay(String stayname, PayDTO PayDTO, List<ReservationDTO> Reservations, int totalCount) {
+//    	String OrderId = PayDTO.getNo();
+//    	
+//    	//header
+//    	HttpHeaders httpHeaders = new HttpHeaders();
+//    	httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//    	httpHeaders.add("Authorization", "KakaoAK " + kakaoAdminKey);
+//    	
+//    	//body
+//    	MultiValueMap<String, Object> multiValueBody = new LinkedMultiValueMap<>();
+//    	multiValueBody.add("cid", cid);
+//    	multiValueBody.add("orderid", cid);
+//    	multiValueBody.add("userid", session.getAttribute("id"));
+//    	multiValueBody.add("stayname", stayname);
+//    	multiValueBody.add("totalprice", PayDTO.getTotalprice());
+//    	multiValueBody.add("taxfreeaprice", 0);
+//    	multiValueBody.add("approval_url", approvalUrl);
+//    	multiValueBody.add("cancel_url", cancelUrl);
+//    	multiValueBody.add("fail_url", failUrl);
+//    	JSONObject respon = requestPost(multiValueBody, "https://kapi.kakao.com/v1/mayment/ready", httpHeaders);
+//    	JSONObject urls = new JSONObject();
+//    	urls.put("pc", respon.get("next_redirect_pc_url"));
+//    	urls.put("flag", true);
+//    	
+//    	return urls;
+//    }
+//    
+    
 }

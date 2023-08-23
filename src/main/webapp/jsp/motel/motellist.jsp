@@ -315,8 +315,8 @@
                       <td>
                         <ul>
                           <!-- 	<li><del class="org-price">30,000</del><span class="discount">10%</span></li> -->
-                          <li class="dis-price">대실 : ${motel.mindaesilprice }원</li>
-                          <li class="dis-price">숙박 : ${motel.minprice }원</li>
+                          <li class="dis-price">대실 : ${motel.mindaesilprice }원부터</li>
+                          <li class="dis-price">숙박 : ${motel.minprice }원부터</li>
                         </ul>
                       </td>
                     </tr>
@@ -324,7 +324,6 @@
                 </a><%--     <%  }  %> --%> </c:forEach>
             </c:when>
             <c:otherwise>
-              <!-- hotels 변수가 비어있을 때의 처리 -->
               <p>No motel information available.</p>
             </c:otherwise>
           </c:choose>

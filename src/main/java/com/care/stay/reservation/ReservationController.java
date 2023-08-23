@@ -3,12 +3,16 @@ package com.care.stay.reservation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.stay.hotel.HotelDTO;
 import com.care.stay.hotel.HotelRoomDTO;
@@ -126,6 +130,10 @@ public class ReservationController {
 		return "reservation/paymentPractice";
 	}
 	
+	@RequestMapping("paymentComplete")
+	public String paymentComplete() {
+		return "reservation/paymentComplete";
+	}
 	
 	@PostMapping("reservationProc")
 	public String stayreservationProc(HttpServletRequest request) {
@@ -136,6 +144,13 @@ public class ReservationController {
 	@RequestMapping("paymentCancel")
 	public String paymentCancel() {
 		return "reservation/paymentCancel";
+	}
+	
+	@RequestMapping(value = "getUserId", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<String> getUserId(HttpServletRequest request) {
+	    String id = (String) request.getSession().getAttribute("id");
+	    return new ResponseEntity<>(id, HttpStatus.OK);
 	}
 	
 }

@@ -35,6 +35,31 @@
 	    <!-- iamport.payment.js -->
 	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 		<!-- 결제 관련 JS 라이브러리 모음 -->		
+		
+<script>
+	// 페이지가 로드되면 실행될 함수
+	document.addEventListener("DOMContentLoaded", function() {
+		
+		const checkAll = document.querySelector('input[name="checkAll"]');
+		
+		const checkOneList = document.querySelectorAll('input[name="checkOne"]');
+		
+		checkAll.addEventListener("click", function() {
+			checkOneList.forEach(function(checkOne) {
+				checkOne.checked = checkAll.checked;
+			});
+		});
+
+		checkOneList.forEach(function(checkOne) {
+			checkOne.addEventListener("click", function() {
+				const allChecked = Array.from(checkOneList).every(function(checkOne) {
+					return checkOne.checked;
+				});
+				checkAll.checked = allChecked;
+			});
+		});
+	});
+</script>
 
  </head>
  <body>
