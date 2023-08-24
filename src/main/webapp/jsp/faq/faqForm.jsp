@@ -132,7 +132,7 @@
             <!-- Nav -->
             <nav>
                 <ul>
-                    <!-- <li><a class="" href="/userindex/notice">공지사항</a></li> -->
+                    <li><a class="" href="${context }noticeForm">공지사항</a></li>
                     <li><a class="active" href="faqForm">자주 묻는 질문</a></li>
                     <li><a class="" href="${context }inquiryForm">1:1 문의</a></li>
                 </ul>

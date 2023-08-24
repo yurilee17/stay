@@ -2,10 +2,93 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!doctype html>
 <html lang="ko">
 	<link rel="stylesheet" href="resource/css/common.css" />
 	<c:import url="/header" />
+	<script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
+
+
+<link rel="stylesheet" href="../../resource/css/alert.css">
+<link rel="stylesheet" href="../../resource/css/header.css">
+    <link rel="stylesheet preload" href="../../resource/css/font.css" as="style" type="text/css" crossorigin="">
+<header>
+
+	<section>
+		<h1>
+			<a class="" href="index" title="여기어때">저기어때</a>
+		</h1>
+		<button type="button" class="btn_srch srch_open ">검색</button>
+		<ul class="gnb">
+			<li><a href="#">내주변</a></li>
+			<li><a href="#">예약내역</a></li>
+			<li class="over">
+				<button type="button" id="more">
+					<span>더보기</span>
+				</button>
+				<ul class="list_03">
+					<li><a href="noticeForm">공지사항</a></li>
+					<li><a href="faqForm">자주 묻는 질문</a></li>
+					<li><a href="inquiryForm">1:1 문의</a></li>
+					<li><a href="#">약관 및 정책</a></li>
+				</ul>
+			</li>
+			
+				
+					<li><a href="/login"><span>로그인</span></a></li>
+				
+				
+				
+			
+
+		</ul>
+		<!-- 알림 -->
+		<div class="alert">
+			<!-- alert -->
+			<div class="popTwobtn">
+				<div class="btnText"></div>
+				<div class="btn_wrap">
+					<button onclick="closeLayer()">취소</button>
+					<button onclick="logoutProc()" class="colMint"></button>
+				</div>
+			</div>
+			<!-- Bg Dimm -->
+			<div class="bgDimm" onclick="closeLayer();">&nbsp;</div>
+			
+		</div>
+		<!-- Search 
+		<div class="srch_bar">
+			<div class="wrap_inp">
+				<input type="text" id="keyword" placeholder="지역, 숙소명"
+					autocomplete="off">
+				<button type="button" class="btn_srch">검색</button>
+			</div>
+			<button class="btn_cancel" onclick="srch_close()">취소</button>
+		</div>-->
+	</section>
+	<!-- //Search -->
+</header>
+
+<!-- alert -->
+
+
+
+<!-- 추천검색어 
+<div class="recommend_srch">
+	<div class="scroll_srch">
+		<div class="scroller">
+			<div class="default" style="display: block">
+				<strong>추천 검색어</strong>
+				<ul></ul>
+			</div>
+			<!-- 연관검색어 
+			<div class="chain">
+				<ul></ul>
+			</div>
+		</div>
+	</div>
+</div>-->
+<script src="../../resource/js/header.js"></script>
+<script src="../../resource/js/alert.js"></script>
 	<script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
 <head>
     <meta charset="UTF-8">
@@ -17,7 +100,7 @@
 
     <meta name="description" content="여기어때 회원 가입 | 전국 호텔, 펜션, 모텔부터 워터파크, 놀이공원, 아쿠아리움까지 최저가 할인 예약">
 
-    <link rel="shortcut icon" href="/img/images/web_v3/favicon_170822.ico" type="image/x-icon">
+   <!-- <link rel="shortcut icon" href="/img/images/web_v3/favicon_170822.ico" type="image/x-icon"> --> 
 
 	<!-- CSS -->
 	<title>저기어때</title>
@@ -217,231 +300,195 @@
 			<!-- Nav -->
             <nav>
                 <ul>
-                    <li><a class="" href="${context }noticeForm">공지사항</a></li>                    
-                    <li><a class="" href="${context }faqForm">자주 묻는 질문</a></li>
-                    <li><a class="active" href="${context }inquiryForm">1:1 문의</a></li>
+                    <li><a class="" href="noticeForm">공지사항</a></li>                    
+                    <li><a class="" href="faqForm">자주 묻는 질문</a></li>
+                    <li><a class="active" href="inquiryForm">1:1 문의</a></li>
                 </ul>
             </nav>
 			<div class="align_rt">
-				<!-- Inquiry -->
-				<div class="inquiry">
+		<!-- Inquiry -->
+		<div class="inquiry">
 
-					<div class="mobile_top">1:1문의<button class="top_btn"
-							onclick="$('.tab .tab_btn').eq(1).trigger('click');">새 문의 작성</button></div>
+			<div class="mobile_top">1:1문의<button class="top_btn" onclick="$('.tab .tab_btn').eq(1).trigger('click');">새 문의 작성</button></div>
 
-					<!-- Tab -->
-					<div class="tab">
-						<span class="tab_btn active ahn_quelist1">나의 문의 내역</span>
-						<span class="tab_btn ahn_tab_each1">세부 문의 내역</span>
-						<span class="tab_btn ">새 문의 작성</span>
-					</div>
-
-					<!-- 리스트 -->
-					<div class="tab_each quelist" style="display:block; margin-bottom: 2rem">
-						<div style="margin-bottom: 2rem" class="userli_add"></div>
-					<!--  -->
-					</div>
-
-
-					<!--문의디테일-->
-					<div class="tab_each tab_each1">
-						<h2 onclick="CloseDetail()" style="display: flex;justify-content: flex-end;font-size: 36px;color: rgb(0 0 0 / 35%);"> x </h2>
-							<input type="hidden" class="qid" alt="문의 id">
-							<div class="alert_top">
-								<p>여기어때 이용 중 불편하신 점을 문의주시면 <em>최대한 빠른 시일내에 답변 드리겠습니다.</em></p>
-							</div>
-
-							<section class="info_wrap">
-								<b>카테고리유형</b>
-								<b class="qcategory"></b>
-								<div class="name-block" style="margin-bottom: 20px;">
-									<b>이름</b>
-									<b class="qname"></b>
-								</div>
-
-								<div class="phone-block">
-									<b>휴대폰 번호</b>
-									<b class="qhp"></b>
-								</div>
-
-								<div class="email-block">
-									<b>이메일</b>
-									<b class="qemail"></b>
-
-								</div>
-
-
-							</section>
-
-							<section class="text_wrap">
-								<b>문의내용</b>
-								<div class=" qcontent">
-								</div>
-							</section>
-						<br>
-						<br>
-						<br>
-
-							<section class="text_wrap">
-								<b>문의답변</b>
-								<div class=" qanswer">
-								</div>
-							</section>
-					</div>
-					<!-- 작성 -->
-					<div class="tab_each">
-						<form name="inq-form" method="post" >
-							<!--							<div class="alert_top">-->
-							<!--								<p>여기어때 이용 중 불편하신 점을 문의주시면 <em>최대한 빠른 시일내에 답변 드리겠습니다.</em></p>-->
-							<!--							</div>-->
-
-							<section class="info_wrap">
-								<b>카테고리유형</b>
-								<select name="room_type"  class="select_type_2">
-									<option value="">카테고리유형을 선택하세요</option>
-									<option value="모텔">모텔</option>
-									<option value="호텔">호텔</option>
-									<option value="리조트">리조트</option>
-									<option value="펜션">펜션</option>
-									<option value="게스트하우스">게스트하우스</option>
-									<option value="캠핑">캠핑/글램핑</option>
-									<option value="한옥">한옥</option>
-								</select>
-
-								<!--								<b>문의유형</b>-->
-								<!--								<select name="inq_type" id="inq_type" class="select_type_2">-->
-								<!--									<option value="">문의유형을 선택하세요</option>-->
-								<!--									<option value="8">이벤트</option>-->
-								<!--									<option value="7">예약/결제</option>-->
-								<!--									<option value="9">취소/환불</option>-->
-								<!--									<option value="2">혜택받기</option>-->
-								<!--									<option value="1">이용문의</option>-->
-								<!--									<option value="4">회원정보</option>-->
-								<!--									<option value="3">리뷰</option>-->
-								<!--									<option value="10">환불신청</option>-->
-								<!--									<option value="99">기타</option>-->
-								<!--								</select>-->
-
-
-								<div class="name-block" style="margin-bottom: 20px;">
-									<b>이름</b>
-									<p class="inp_wrap"><input class="js-name qName" data-type="name"
-															   type="tel" maxlength="11" name="name" value="" placeholder="필수사항입니다." />
-									</p>
-								</div>
-
-								<div class="phone-block">
-									<b>휴대폰 번호</b>
-									<p class="inp_wrap"><input class="js-phone-number qHp" data-type="phoneNumber"
-															   type="tel" maxlength="11" name="uphone" value="" placeholder="선택사항입니다." />
-									</p>
-								</div>
-
-							<!-- 	<div class="email-block">
-									<b>이메일</b>
-									<p class="inp_wrap"><input data-email-validate class="js-email-string qEmail q_emailcheck" type="email"
-															   value="" name="uemail" placeholder="선택사항입니다." /></p>
-								</div>  -->
-
-								<!-- 환불받을 계좌정보 등록 -->
-								<!--								<div class="account-block" data-account-select>-->
-								<!--									<b>환불받을 계좌정보 등록</b>-->
-								<!--									<select name="accountBank" data-account-bank class="select_type_2">-->
-								<!--										<option value="none">은행선택</option>-->
-								<!--										<option value="우리은행">우리은행</option>-->
-								<!--										<option value="국민은행">국민은행</option>-->
-								<!--										<option value="기업은행">기업은행</option>-->
-								<!--										<option value="농협은행">농협은행</option>-->
-								<!--										<option value="신한은행">신한은행</option>-->
-								<!--										<option value="하나은행">하나은행</option>-->
-								<!--										<option value="한국씨티은행">한국씨티은행</option>-->
-								<!--										<option value="SC제일은행">SC제일은행</option>-->
-								<!--										<option value="경남은행">경남은행</option>-->
-								<!--										<option value="광주은행">광주은행</option>-->
-								<!--										<option value="대구은행">대구은행</option>-->
-								<!--										<option value="도이치은행">도이치은행</option>-->
-								<!--										<option value="부산은행">부산은행</option>-->
-								<!--										<option value="비엔피파리바은행">비엔피파리바은행</option>-->
-								<!--										<option value="산림조합">산림조합</option>-->
-								<!--										<option value="산업은행">산업은행</option>-->
-								<!--										<option value="새마을금고">새마을금고</option>-->
-								<!--										<option value="수출입은행">수출입은행</option>-->
-								<!--										<option value="수협은행">수협은행</option>-->
-								<!--										<option value="신협">신협</option>-->
-								<!--										<option value="우체국">우체국</option>-->
-								<!--										<option value="저축은행">저축은행</option>-->
-								<!--										<option value="전북은행">전북은행</option>-->
-								<!--										<option value="제주은행">제주은행</option>-->
-								<!--										<option value="중국건설은행">중국건설은행</option>-->
-								<!--										<option value="중국공상은행">중국공상은행</option>-->
-								<!--										<option value="카카오뱅크">카카오뱅크</option>-->
-								<!--										<option value="케이뱅크">케이뱅크</option>-->
-								<!--										<option value="BOA(뱅크오브아프리카)">BOA(뱅크오브아프리카)</option>-->
-								<!--										<option value="HSBC은행">HSBC은행</option>-->
-								<!--										<option value="JP모간체이스은행">JP모간체이스은행</option>-->
-								<!--									</select>-->
-								<!--									<p class="inp_wrap">-->
-								<!--										<input name="accountNumber" data-account-number type="number"-->
-								<!--											placeholder="계좌번호를 입력하세요.">-->
-								<!--									</p>-->
-								<!--									<p class="inp_wrap">-->
-								<!--										<input name="accountName" data-account-name type="text"-->
-								<!--											placeholder="예금주를 입력하세요." maxlength="10">-->
-								<!--									</p>-->
-								<!--								</div>-->
-								<!-- //환불받을 계좌정보 등록 -->
-							</section>
-
-							<section class="text_wrap">
-								<b>문의내용</b>
-								<div>
-									<textarea name="content" id="questionTextarea" class="getqContent"></textarea>
-									<ul class="placeholder_txt" style="display: block;">
-										<li>문의하실 내용을 10자 이상 입력해 주세요.</li>
-										<li>문의하시는 제휴점 이름과 예약정보를 남겨주시면 보다 빠른 상담이 가능합니다.</li>
-										<li>문의 내용 작성 시 개인정보가 입력되지 않도록 주의 부탁드립니다.</li>
-									</ul>
-								</div>
-
-							</section>
-
-							
-
-							<section class="btn_wrap ">
-								<button class="btn_red_fill" type="button" onclick="$.inqSubmit(); quesendit(); ">작성 완료</button>
-							</section>
-						</form>
-					</div>
-					
-					<!--// 개인정보처리방침동의 팝업 -->
-
-					<!-- 개인정보처리방침동의 팝업2 -->
-					<div class="box_shadow" id="common_popup_agree2">
-						<div class="msg popup_cont">
-							<div class="text">
-								<div class="privacy-bill">
-									작성하신 문의를 여기어때 고객센터로<br />
-									보내시겠습니까?
-								</div>
-							</div>
-							<div class="btns-wrap">
-								<button class="btn disagree2">취소</button>
-								<button class="btn send-form" data-type="privacyAgree">보내기</button>
-							</div>
-						</div>
-					</div>
-					<!--// 개인정보처리방침동의 팝업2 -->
-
-				</div>
-				<!-- //Notice -->
-
+			<!-- Tab -->
+			<div class="tab">
+				<span class="tab_btn active">나의 문의 내역</span>
+				<span class="tab_btn ">새 문의 작성</span>
 			</div>
 
+			<!-- 리스트 -->
+			<div class="tab_each" style="display:block">
+
+									<!-- 리스트 없을때 -->
+					<div class="list_none" style="display: block;">
+						등록된 1:1 문의가 없습니다.
+						<b>여기어때는 회원님들의 소중한 의견에 귀기울여<br/>신속하고 정확하게 답변드리도록 하겠습니다.</b>
+					</div>
+							</div>
+
+			<!-- 작성 -->
+			<div class="tab_each" >
+				<form id="submitForm" name="inq-form" method="post" action="/more/inquiry_submit">
+					<div class="alert_top">
+						<p>여기어때 이용 중 불편하신 점을 문의주시면 <em>최대한 빠른 시일내에 답변 드리겠습니다.</em></p>
+					</div>
+
+					<section class="info_wrap">
+						<b>카테고리유형</b>
+						<select name="room_type" id="" class="select_type_2"  >
+							<option value="">카테고리유형을 선택하세요</option>
+															<option value="1"  >모텔</option>
+															<option value="2"  >호텔·리조트</option>
+															<option value="3"  >펜션</option>
+															<option value="6"  >게스트하우스</option>
+															<option value="5"  >캠핑/글램핑</option>
+															<option value="7"  >한옥</option>
+													</select>
+
+						<!-- <b>문의유형</b>
+						<select name="inq_type" id="inq_type" class="select_type_2"  >
+							<option value="">문의유형을 선택하세요</option>
+															<option value="8"  >이벤트</option>
+															<option value="7"  >예약/결제</option>
+															<option value="9"  >취소/환불</option>
+															<option value="2"  >혜택받기</option>
+															<option value="1"  >이용문의</option>
+															<option value="4"  >회원정보</option>
+															<option value="3"  >리뷰</option>
+															<option value="10"  >환불신청</option>
+															<option value="99"  >기타</option>
+													</select> -->
+	
+						<div class="phone-block">
+							<b>휴대폰 번호</b>
+							<p class="inp_wrap"><input class="js-phone-number" data-type="phoneNumber" type="tel" maxlength="11" name="uphone" value="" placeholder="선택사항입니다."/></p>
+						</div>
+
+						<div class="email-block">
+							<b>이메일</b>
+							<p class="inp_wrap"><input data-email-validate class="js-email-string" type="email" value="" name="uemail" placeholder="선택사항입니다."/></p>
+						</div>
+
+						<!-- 환불받을 계좌정보 등록 -->
+						<!-- <div class="account-block" data-account-select  >
+							<b>환불받을 계좌정보 등록</b>
+							<select name="accountBank" data-account-bank class="select_type_2" >
+								<option value="none">은행선택</option>
+																	<option value="우리은행">우리은행</option>
+																	<option value="국민은행">국민은행</option>
+																	<option value="기업은행">기업은행</option>
+																	<option value="농협은행">농협은행</option>
+																	<option value="신한은행">신한은행</option>
+																	<option value="하나은행">하나은행</option>
+																	<option value="한국씨티은행">한국씨티은행</option>
+																	<option value="SC제일은행">SC제일은행</option>
+																	<option value="경남은행">경남은행</option>
+																	<option value="광주은행">광주은행</option>
+																	<option value="대구은행">대구은행</option>
+																	<option value="도이치은행">도이치은행</option>
+																	<option value="부산은행">부산은행</option>
+																	<option value="비엔피파리바은행">비엔피파리바은행</option>
+																	<option value="산림조합">산림조합</option>
+																	<option value="산업은행">산업은행</option>
+																	<option value="새마을금고">새마을금고</option>
+																	<option value="수출입은행">수출입은행</option>
+																	<option value="수협은행">수협은행</option>
+																	<option value="신협">신협</option>
+																	<option value="우체국">우체국</option>
+																	<option value="저축은행">저축은행</option>
+																	<option value="전북은행">전북은행</option>
+																	<option value="제주은행">제주은행</option>
+																	<option value="중국건설은행">중국건설은행</option>
+																	<option value="중국공상은행">중국공상은행</option>
+																	<option value="카카오뱅크">카카오뱅크</option>
+																	<option value="케이뱅크">케이뱅크</option>
+																	<option value="BOA(뱅크오브아프리카)">BOA(뱅크오브아프리카)</option>
+																	<option value="HSBC은행">HSBC은행</option>
+																	<option value="JP모간체이스은행">JP모간체이스은행</option>
+															</select>
+							<p class="inp_wrap">
+								<input name="accountNumber" data-account-number type="number" placeholder="계좌번호를 입력하세요.">
+							</p>
+							<p class="inp_wrap">
+								<input name="accountName" data-account-name type="text" placeholder="예금주를 입력하세요." maxlength="10">
+							</p>
+						</div> -->
+						<!-- //환불받을 계좌정보 등록 -->
+					</section>
+
+					<section class="text_wrap">
+						<b>문의내용</b>
+						<div>
+							<textarea name="content" id="questionTextarea"></textarea>
+							<ul class="placeholder_txt">
+								<li>문의하실 내용을 10자 이상 입력해 주세요.</li>
+								<li>문의하시는 제휴점 이름과 예약정보를 남겨주시면 보다 빠른 상담이 가능합니다.</li>
+								<li>문의 내용 작성 시 개인정보가 입력되지 않도록 주의 부탁드립니다.</li>
+							</ul>
+						</div>
+					</section>
+
+					<section class="agree_wrap">
+						<div>
+							<input type="checkbox" id="info_agree" name="checkOne" class="inp_chk_04" disabled>
+							<label for="info_agree">개인정보수집. 이용동의</label>
+							<btn class="view_contents">[내용보기]</btn>
+						</div>
+					</section>
+
+					<section class="btn_wrap ">
+					</form>
+						<button id="submitBtn" class="btn_red_fill" type="button">작성 완료</button>
+					</section>
+			</div>
+
+			<!-- 개인정보처리방침동의 팝업 -->
+			<div class="box_shadow" id="common_popup_agree">
+				<div class="msg popup_cont">
+					<div class="text">
+						<div><strong class="privacy_title">개인정보 수집&middot;이용 동의하십니까? </strong></div>
+						<div class="privacy-bill">
+							<p>동의 하세요!!!</p>
+							
+						</div>
+					</div>
+					<div class="btns-wrap">
+						<button class="btn disagree">닫기</button>
+					</div>
+				</div>
+			</div>
+			<!--// 개인정보처리방침동의 팝업 -->
+
+			<!-- 개인정보처리방침동의 팝업2 -->
+			<div class="box_shadow" id="common_popup_agree2">
+				<div class="msg popup_cont">
+					<div class="text">
+						<div class="privacy-bill">
+							작성하신 문의를 여기어때 고객행복센터로<br/>
+							보내시겠습니까?
+						</div>
+					</div>
+					<div class="btns-wrap">
+						<button class="btn disagree2">취소</button>
+						<button class="btn send-form" data-type="privacyAgree">보내기</button>
+					</div>
+				</div>
+			</div>
+			<!--// 개인정보처리방침동의 팝업2 -->
+
 		</div>
+		<!-- //Notice -->
+
+	</div>
+
+</div>
+
+
 		<!-- //Content  -->
 
 		<script>
-			var phoneInput = document.querySelector('input[data-type="phoneNumber"]');
+/*			var phoneInput = document.querySelector('input[data-type="phoneNumber"]');
 			var inquiryText = document.querySelector('textarea[name=content]');
 			var emailInput = $('.q_emailcheck');
 			var speed_fade = 150;
@@ -600,7 +647,7 @@
 					return false;
 				}
 
-				if (emailInput.value().length > 0 && !emailValidate(emailInput.value())) {
+				if (emailInput.value().length > 0 && !emailValueIdate(emailInput.value())) {
 					alert_Msg("이메일주소를 확인해주세요");
 					return false;
 				}
@@ -640,10 +687,10 @@
 				$('#common_popup_agree2').fadeIn(speed_fade);
 				//$('form[name=inq-form]').submit(); //폼전송
 			};
-
+*/
 
 			//axios 보내기 (팝업창 수락시뜸)
-			$('.send-form').click(function () {
+			/* $('.send-form').click(function () {
 				// $('form[name=inq-form]').submit(); //폼전송
 				const qCategory = $("select[name=room_type]").val();
 				console.log('카테고리 유형:' + qCategory);
@@ -758,8 +805,8 @@
 				}
 
 				if (!$('select[name=inq_type] option:selected').val()) {
-					return false;
-				}
+					return false; 
+				}*/
 
 
 
@@ -770,7 +817,7 @@
 
 
 
-			}
+			//}
 
 		</script>
 
@@ -804,124 +851,14 @@
 
 	<!-- Body Spinner -->
 	<div class="spinner show"><span></span></div>
+	
 
+	<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+	<script type="text/javascript" src="/resource/js/submitHandler.js"></script>
 		<!--  -->
 
-<script>
 
-	axios.get('/api/ques/qlist/'+ sessionId,{
-	}).then(function (response){
-		console.log(response);
-		for(let i in response.data){
-		let $qid = response.data[i].id;
-		let $qadate = response.data[i].qadate.substr(0,10);
-		console.log($qadate);
-
-		let $qischeck = response.data[i].qischeck;
-		console.log($qischeck);
-
-		let $qcontent = response.data[i].qcontent.substr(0,20);
-
-		console.log($qcontent);
-
-		let st = `<div class="ahn_di_span" style="width: 100px; color: #5872d2">미답변</div>`
-
-		if($qischeck == "y"){
-			st =  `<div class="ahn_di_span" style="width: 100px; color: red">답변</div>`
-		}
-
-			let quelist = $(`<div id = "qid_`+$qid+`"class="ahn_zzim_content ahn_qid1" onclick="siteOn(this)" value="`+$qid+`">`).append(
-					`<div class="ahn_zzim_info1" href="">`+
-					`<input type="hidden" class="ahn_qid2" value="`+$qid+`">`+
-								`<div class="ahn_x "></div>`+
-								`<div class="ahn_zzim_info3">
-								 <div class="ahn_zzim_title">`+
-									`문의 내역 확인</div>`+
-									`<div class="ahn_x"></div>`+
-									`<div class="ahn_zzim_btn ahn_re_btn1" style="display: flex;justify-content: center">`+
-											`<div class="ahn_di_span" style="width: 100px;">문의일 |</div><div>`+ $qadate +`</div>` +
-											st+
-										`</div>`+
-										`<div class="ahn_zzim_btn2" style="display: flex;justify-content: center">`+
-									`<div class="ahn_di_span" style="width: 100px;">문의내용</div>`+
-									`<div class="ahn_di_span" style="white-space: nowrap; margin-bottom: 16px">`+$qcontent+`...</div>`+
-									`</div>`+
-								`</div>`+
-							`</div></div>`
-			)
-
-		$('.kim_quelist').append(quelist);
-		}
-	}).catch(function (err){
-		console.log(err);
-	});
-
-	function siteOn(e){
-			$('.ahn_tab_each1').click();
-			console.log('무야')
-			let qid = $(e).attr('id').substr(4);
-			console.log(qid);
-			console.log('qid : '+qid);
-			axios.get('/api/ques/qulist/'+ qid,{
-
-			}).then(function (response){
-				console.log(response);
-
-				let qid = response.data.data.id; //q id
-				let qregdate = response.data.data.qregdate.substr(0,10); //문의등록일
-				let qadate = response.data.data.qadate.substr(0,10); // 문의답변일
-				let qcategory = response.data.data.qcategory; //카테고리유형
-				let qemail = response.data.data.qemail; //이메일
-				let qcontent = response.data.data.qcontent; //문의내용
-				let qhp = response.data.data.qhp; //전화번호
-				let qischeck = response.data.data.qischeck; //문의답변여부
-				let qanswer = response.data.data.qanswer; //문의답변여부
-				if(qischeck == "n"){
-					console.log('null입니다.')
-					qanswer="아직 답변이 오지 않았습니다.";
-					$('.qanswer').attr('style','color: rgba(0,0,0,0.56);border: 1px solid rgba(0,0,0,0.08);height: 400px; border-radius: 0.2rem;word-break: break-all;padding: 8px 14px 8px 16px; ' +
-							'box-shadow:rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px');
-					$('.qanswer').text(qanswer);
-				}
-				let qname = response.data.data.qname; // 이름
-
-				$('.qid').attr('value', qid);
-				$('.qcategory').text(qcategory);
-				$('.qcategory').attr('style', ' overflow: auto;' + 'border: 1px solid rgba(0,0,0,0.08);' + 'border-radius: 0.2rem;'+ 'padding: 8px 14px 8px 16px;' + '    background: none;' + '    width: 100%;' + '    margin-top: 5px;' + '    font-size: 18px;');
-				$('.qname').text(qname);
-				$('.qname').attr('style', ' overflow: auto;' + 'border: 1px solid rgba(0,0,0,0.08);' + 'border-radius: 0.2rem;'+ 'padding: 8px 14px 8px 16px;' + '    background: none;' + '    width: 100%;' + '    margin-top: 5px;' + '    font-size: 18px;');
-				$('.qhp').text(qhp);
-				$('.qhp').attr('style', ' overflow: auto;' + 'border: 1px solid rgba(0,0,0,0.08);' + 'border-radius: 0.2rem;'+ 'padding: 8px 14px 8px 16px;' + '    background: none;' + '    width: 100%;' + '    margin-top: 5px;' + '    font-size: 18px;');
-				$('.qemail').text(qemail);
-				$('.qemail').attr('style', ' overflow: auto;' + 'border: 1px solid rgba(0,0,0,0.08);' + 'border-radius: 0.2rem;'+ 'padding: 8px 14px 8px 16px;' + '    background: none;' + '    width: 100%;' + '    margin-top: 5px;' + '    font-size: 18px;');
-				$('.qcontent').attr('style','border: 1px solid rgba(0,0,0,0.08);height: 400px; border-radius: 0.2rem;word-break: break-all;padding: 8px 14px 8px 16px; ' +
-						'box-shadow:rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px');
-				$('.qcontent').text(qcontent);
-				if(qischeck == "y"){
-					console.log('null이아닙니다.')
-				$('.qanswer').attr('style','border: 1px solid rgba(0,0,0,0.08);height: 400px; border-radius: 0.2rem;word-break: break-all;padding: 8px 14px 8px 16px; ' +
-						'box-shadow:rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px');
-					$('.qanswer').text(qanswer);
-				}
-
-
-
-
-			}).catch(function (err){
-				console.log(err);
-
-			})
-	}
-
-
-
-	function ahnCloseDetail(){
-		$('.kim_quelist1').click();
-	}
-</script>
 </body>
 
 </html>

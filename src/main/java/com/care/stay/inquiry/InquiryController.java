@@ -7,23 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.care.boot.board.BoardService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class InquiryController {
 	@Autowired private InquiryService service;
-//	@Autowired private HttpSession session;
-	
-//	private final NoticeRepository noticeRepository;
-//
-//    @Autowired
-//    public NoticeController(NoticeRepository noticeRepository) {
-//        this.noticeRepository = noticeRepository;
-//    }
-
+	@Autowired private HttpSession session;
 	
 	@RequestMapping("/inquiryForm")
     public String inquiryForm(
@@ -34,33 +30,23 @@ public class InquiryController {
         return "inquiry/inquiryForm";
     }
 	
-//	@RequestMapping("noticeForm")
-//	 public String noticeForm(Model model) {
-//	        List<NoticeDTO> list = new ArrayList<>();
-//
-//	        // 데이터베이스에서 공지사항 목록을 가져와서 noticeItems에 추가하는 로직을 구현
-//	        // 예시로 여기서는 임의의 데이터를 추가
-//	        list.add(new NoticeDTO());
-//	        list.add(new NoticeDTO());
-//	        // ...
-//
-//	        model.addAttribute("result", list);
-//	        return "notice/noticeForm"; // 반환되는 문자열은 JSP 파일의 이름입니다.
-//	    }
+	@GetMapping("inquiryForm")
+	public String inquiryForm() {
+		String id = (String)session.getAttribute("id");
+		if(id == null || id.isEmpty()) {
+			return"redirection:login";
+		}
+		return"inquiry/inquiryForm";
+	}
+	
+	@PostMapping("inquiryForm")
+	public String inquiryForm(Model model, MultipartHttpServletRequest multi) {
+		String msg = service.inquiryForm(multi);;
+		if(msg.equals("게시글 작성 완료")) {
+			
+		}
+		return "redirect:inquiryForm";
+		
+	}
 }
 	
-//	@RequestMapping("noticeContent")
-//	public String noticeContent(
-//			@RequestParam(value="no", required = false = false)String n, Model model) {
-//		NoticeDTO notice = service.noticeContent(n);
-//		if(notice == null) {
-//		System.out.println("noticContent 공지사항 번호 : " + n);
-//		return "redirect:noticeForm";
-//		}
-//	model.addAttribute("notice", notice);
-//	return "notice/noticeContent";
-//		}
-//	
-	
-	
-//}

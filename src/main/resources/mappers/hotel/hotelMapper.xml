@@ -18,8 +18,11 @@
 		<result column="hcheckintime" property="hcheckintime"/>
 		<result column="hcheckouttime" property="hcheckouttime"/>
 		<result column="htype" property="htype"/>
+
+	
 		<collection property="rooms" resultMap="HotelRoomDto" />
 	</resultMap> 
+
 	
 	
  	 <resultMap type="com.care.stay.hotel.HotelRoomDTO" id="HotelRoomDto">
@@ -35,6 +38,7 @@
         <result  column="hcomfort" property="hcomfort" />
     </resultMap>
     
+
 
 	 
 	 
@@ -57,6 +61,7 @@
         <result  column="status" property="status" />
     </resultMap>
 	 
+
 
 <!--  전체 다 나오는 코드인데 처음부터 지역 지정해서 하는 코드로 바꿔보려함! (아래) -->
   	<!-- <select id="hotellist" resultMap="HotelDto">
