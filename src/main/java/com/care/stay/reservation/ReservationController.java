@@ -3,12 +3,16 @@ package com.care.stay.reservation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.stay.hotel.HotelDTO;
 import com.care.stay.hotel.HotelRoomDTO;
@@ -38,12 +42,7 @@ public class ReservationController {
 //			Model model) {
 //		/*
 //
-//		String loginId = (String) session.getAttribute("id");
-//		
-//		if (loginId == null || loginId.isEmpty()) {
-//			return "redirect:login";
-//		} 
-//		*/
+
 //		System.out.println("");
 //		System.out.println(rc + "는 객실 번호입니다.");
 //		
@@ -65,6 +64,13 @@ public class ReservationController {
         @RequestParam(value = "croomcode", required = false) String croomcode,
         Model model) {
 
+		String loginId = (String) session.getAttribute("id");
+		
+		if (loginId == null || loginId.isEmpty()) {
+			return "redirect:login";
+		} 
+
+		
         model.addAttribute("stayType", stayType);
 
         if ("motel".equals(stayType)) {
@@ -92,11 +98,10 @@ public class ReservationController {
 	@RequestMapping("daesilReservation")
 	public String daesilReservation(
 			/*임시로 연결만 해놓은거라 정보 없이도 넘어갈 수 있게*/
-			@RequestParam(value="no", required = false)String n,
-			@RequestParam(value="stayType", required = false)String stayType,
-			@RequestParam(value="mroomcode", required = false)String rc,
-			@RequestParam(value="mprice", required = false)String price,
-			Model model) {
+	        @RequestParam(value = "no", required = false) String n,
+	        @RequestParam(value = "stayType", required = false) String stayType,
+	        @RequestParam(value = "mroomcode", required = false) String mroomcode,
+	        Model model) {
 		/*
 
 		String loginId = (String) session.getAttribute("id");
@@ -105,15 +110,18 @@ public class ReservationController {
 			return "redirect:login";
 		} 
 		*/
-		System.out.println("");
-		System.out.println(rc + "는 객실 번호입니다.");
 		
-		MotelDTO motel = mservice.stayContent(n);
-		MotelRoomDTO motelroom = mservice.daesilReservation(rc);
+        model.addAttribute("stayType", stayType);
+        rservice.stayAndRoomInfo(stayType, n, mroomcode, model);
+        rservice.getmroomCode(mroomcode, model);
+        
 		
-		model.addAttribute("stayType", stayType);
-		model.addAttribute("motel", motel);
-		model.addAttribute("motelroom", motelroom);
+//		MotelDTO motel = mservice.stayContent(n);
+//		MotelRoomDTO motelroom = mservice.daesilReservation(mroomcode);
+//		
+//		model.addAttribute("stayType", stayType);
+//		model.addAttribute("motel", motel);
+//		model.addAttribute("motelroom", motelroom);
 
 		return "reservation/daesilReservation";
 	}	
@@ -124,12 +132,27 @@ public class ReservationController {
 		return "reservation/paymentPractice";
 	}
 	
+	@RequestMapping("paymentComplete")
+	public String paymentComplete() {
+		return "reservation/paymentComplete";
+	}
 	
 	@PostMapping("reservationProc")
 	public String stayreservationProc(HttpServletRequest request) {
-		
 		rservice.stayReservationProc(request);
-		
-		return "reservation/paymentComplete";
+		return "member/reservationList";
 	}
+	
+	@RequestMapping("paymentCancel")
+	public String paymentCancel() {
+		return "reservation/paymentCancel";
+	}
+	
+	@RequestMapping(value = "getUserId", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<String> getUserId(HttpServletRequest request) {
+	    String id = (String) request.getSession().getAttribute("id");
+	    return new ResponseEntity<>(id, HttpStatus.OK);
+	}
+	
 }

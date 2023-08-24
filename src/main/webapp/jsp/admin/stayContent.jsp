@@ -95,8 +95,11 @@
                         <p class="pic_view ">
                           <img class="lazy" src="">
                         </p>
-                        <strong class="title">${motelroom.mroomname }</strong>
-                        <h4>객실 코드 : ${motelroom.mroomcode }</h4>
+                        <strong class="title">
+	                        ${motelroom.mroomname } &nbsp; &nbsp;
+	                        <span>객실 코드 : ${motelroom.mroomcode }</span>
+                        </strong>
+                        
                         <div class="info">
                           <div class="half ended">
                             <div class="price">
@@ -112,7 +115,7 @@
                                   <span>마감시간</span>${motel.mdaesilcheckout }시까지&nbsp;
                                 </li>
                                 <li>
-                                  <span>이용시간</span>${motel.mdaesiltime }&nbsp;
+                                  <span>이용시간</span>${motel.mdaesiltime }시간&nbsp;
                                 </li>
                               </ul>
                             </div>
@@ -136,14 +139,14 @@
                               </ul>
                             </div>
                           </div>
+                        </div>
                           <div class="option">
                             <ul>
                               <li>
                                 <span>부대시설 : </span>${motelroom.moption }
                               </li>
                             </ul>
-                          </div>
-                        </div>
+                          </div>                        
                       </div>
                     </a>
                     </c:forEach>
@@ -391,19 +394,19 @@
               <li>
                 <c:choose>
                   <c:when test="${'motel' eq stayType}">
-                    <button type="button" onclick="location.href='stayDetailRegister?no=${motel.no }&stayType=motel'">상세 DB 등록</button>
+                    <button class="submit_button" type="button" onclick="location.href='stayDetailRegister?no=${motel.no }&stayType=motel'">상세 DB 등록</button>
                   </c:when>
                   <c:when test="${'hotel' eq stayType}">
-                    <button type="button" onclick="location.href='stayDetailRegister?no=${hotel.no }&stayType=hotel'">상세 DB 등록</button>
+                    <button class="submit_button" type="button" onclick="location.href='stayDetailRegister?no=${hotel.no }&stayType=hotel'">상세 DB 등록</button>
                   </c:when>
                   <c:when test="${'pension' eq stayType}">
-                    <button type="button" onclick="location.href='stayDetailRegister?no=${pension.no }&stayType=pension'">상세 DB 등록</button>
+                    <button class="submit_button" type="button" onclick="location.href='stayDetailRegister?no=${pension.no }&stayType=pension'">상세 DB 등록</button>
                   </c:when>
                   <c:when test="${'gh' eq stayType}">
-                    <button type="button" onclick="location.href='stayDetailRegister?no=${gh.no }&stayType=gh'">상세 DB 등록</button>
+                    <button class="submit_button" type="button" onclick="location.href='stayDetailRegister?no=${gh.no }&stayType=gh'">상세 DB 등록</button>
                   </c:when>
                   <c:when test="${'camping' eq stayType}">
-                    <button type="button" onclick="location.href='stayDetailRegister?no=${camping.no }&stayType=camping'">상세 DB 등록</button>
+                    <button class="submit_button" type="button" onclick="location.href='stayDetailRegister?no=${camping.no }&stayType=camping'">상세 DB 등록</button>
                   </c:when>
                 </c:choose>
               </li>

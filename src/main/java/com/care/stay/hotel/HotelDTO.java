@@ -18,15 +18,17 @@ public class HotelDTO {
 	private String hcheckouttime;
 	private String htype;
 	private int minprice;
+
 	private HotelRoomDTO rooms;
 
 	public HotelRoomDTO getRooms() {
 		return rooms;
+
 	}
+
 	public void setRooms(HotelRoomDTO rooms) {
 		this.rooms = rooms;
 	}
-	
 	public int getNo() {
 		return no;
 	}

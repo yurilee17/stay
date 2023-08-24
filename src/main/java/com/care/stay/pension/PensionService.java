@@ -107,7 +107,7 @@ public class PensionService {
         
         pensionroom.setNo(no);
         pensionroom.setPcode(pCode);
-        pensionroom.setProomcode(getIntParameter(multi, "roomcount"));
+        pensionroom.setProomcode(roomcount);
         pensionroom.setProomname(multi.getParameter("roomname"));
         pensionroom.setProomnumber(getIntParameter(multi, "roomnumber"));
         pensionroom.setPprice(multi.getParameter("pprice"));

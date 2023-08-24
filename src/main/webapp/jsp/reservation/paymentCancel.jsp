@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	결제가 완료되었습니다.
-	<div class="btns">
-		<input type="button" id="refund" onclick="refundKakao" value="환불">
-	</div>
+	결제가 취소되었습니다.
+
 </body>
 </html>

@@ -33,7 +33,7 @@
 	  	SELECT count(no) FROM camping
 	</select>		
 	
-	<select id="campingroomcount">
+	<select id="campingroomcount" resultType="int">
 		SELECT COALESCE(nvl(max(croomcode),0) + 1, 0) FROM campingroom
 	</select>	
 	

@@ -27,7 +27,7 @@
 	
 	<select id="stayModifyProc" parameterType="com.care.stay.motel.MotelDTO">
 		UPDATE motel SET mname=#{mname}, mregion=#{mregion}, mdetailregion=#{mdetailregion}, maddress=#{maddress}, mdetailaddress=#{mdetailaddress}, 
-		mimage=#{mimage}, minfo=#{minfo}, mdaesilcheckin=#{mdaesilcheckin}, mdaesilcheckout=#{mdaesilcheckout}, mdaeesiltime=#{mdaesiltime}, 
+		mimage=#{mimage}, minfo=#{minfo}, mdaesilcheckin=#{mdaesilcheckin}, mdaesilcheckout=#{mdaesilcheckout}, mdaesiltime=#{mdaesiltime}, 
 		mstaycheckin=#{mstaycheckin}, mstaycheckout=#{mstaycheckout} WHERE no=#{no}
 	</select>
 	
@@ -59,7 +59,7 @@
 	  	SELECT count(no) FROM motel
 	</select>
 	
-	<select id="motelroomcount">
+	<select id="motelroomcount" resultType="int">
 		SELECT COALESCE(nvl(max(mroomcode),0) + 1, 0) FROM motelroom
 	</select>
 	
@@ -71,8 +71,8 @@
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM motel
 		</selectKey>
-		INSERT INTO motel (no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout ) 
-		VALUES(#{no}, 'M', #{mname}, #{mregion}, #{mdetailregion}, 0, #{maddress}, #{mdetailaddress}, #{mimage}, #{minfo}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout} )
+		INSERT INTO motel (no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, minprice, mindaesilprice ) 
+		VALUES(#{no}, 'M', #{mname}, #{mregion}, #{mdetailregion}, 0, #{maddress}, #{mdetailaddress}, #{mimage}, #{minfo}, #{mdaesilcheckin}, #{mdaesilcheckout}, #{mdaesiltime}, #{mstaycheckin}, #{mstaycheckout}, 0, 0)
 	</insert>
 	
 	<select id="stayInfo" resultMap="motelDto">
@@ -91,9 +91,21 @@
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, 
-		mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout
+		mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, minprice, mindaesilprice
 		FROM motel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  	
+	
+	<select id="findMinPriceByMotel" resultType="java.lang.Integer">
+   		SELECT COALESCE(MIN(mstayprice), 0) FROM motelroom WHERE no = #{no}
+	</select>
+
+	<select id="findMinDaesilPriceByMotel" resultType="java.lang.Integer">
+	    SELECT COALESCE(MIN(mdaesilprice), 0) FROM motelroom WHERE no = #{no}
+	</select>
+	
+    <select id="getAllMotels" resultType="com.care.stay.motel.MotelDTO">
+        SELECT * FROM motel
+    </select>	
 	
 </mapper>

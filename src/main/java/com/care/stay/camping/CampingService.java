@@ -99,7 +99,7 @@ public class CampingService {
         
         campingroom.setNo(no);
         campingroom.setCcode(cCode);
-        campingroom.setCroomcode(getIntParameter(multi, "roomcount"));
+        campingroom.setCroomcode(roomcount);
         campingroom.setCroomname(multi.getParameter("roomname"));
         campingroom.setCroomnumber(getIntParameter(multi, "roomnumber"));
         campingroom.setCprice(multi.getParameter("cprice"));
@@ -160,7 +160,6 @@ public class CampingService {
 		return "객실 DB 작성 완료";
         
 	}
-	
 	
 	/*Multipart~~로 받아오는 일부 값들을 int형으로 변환하기 위해서*/
 	private int getIntParameter(MultipartHttpServletRequest multi, String paramName) {
@@ -229,7 +228,6 @@ public class CampingService {
 		
 		return camping;
 	}
-
 
 	public String stayModifyProc(MultipartHttpServletRequest multi) {
 		// TODO Auto-generated method stub

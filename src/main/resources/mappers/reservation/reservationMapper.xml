@@ -22,6 +22,25 @@
 		<result column="price" property="price" />
 		<result column="paymethod" property="paymethod" />
 		<result column="status" property="status" />	
+
+<!-- 	<resultMap type="com.care.stay.reservation.ReservationDTO" id="ReservationDto">
+		<id column="no" property="no"/>
+		<result column="stayno" property="stayno" />
+		<result column="stayname" property="stayname" />
+		<result column="roomname" property="roomname" />
+		<result column="code" property="code" />
+		<result column="roomcode" property="roomcode" />
+		<result column="roomimage" property="roomimage" />
+		<result column="checkindate" property="checkindate" />
+		<result column="checkoutdate" property="checkoutdate" />
+		<result column="checkintime" property="checkintime" />
+		<result column="checkouttime" property="checkouttime" />
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="mobile" property="mobile" />
+		<result column="price" property="price" />
+		<result column="paymethod" property="paymethod" />
+		<result column="status" property="status" />	 -->
 	</resultMap>
 
 
@@ -33,8 +52,9 @@
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM reservation
 		</selectKey>
-		INSERT INTO reservation (no, stayno, stayname, roomname, code, roomcode, roomimage, checkindate, checkoutdate, checkouttime, id, name, price, paymethod, status)
-		VALUES(#{no}, #{stayno}, #{stayname}, #{roomname}, #{code}, #{roomcode}, #{roomimage}, #{checkindate}, #{checkoutdate}, #{checkouttime}, #{id}, #{name}, #{price}, #{paymethod}, #{status})
+
+		INSERT INTO reservation (no, stayno, stayname, roomname, code, roomcode, roomimage, checkindate, checkoutdate, checkintime, checkouttime, id, name, mobile, price, paymethod, status)
+		VALUES(#{no}, #{stayno}, #{stayname}, #{roomname}, #{code}, #{roomcode}, #{roomimage}, #{checkindate}, #{checkoutdate}, #{checkintime}, #{checkouttime}, #{id}, #{name}, #{mobile}, #{price}, #{paymethod}, '예약확정')
 	</insert>
 	
 	<update id="listUp">

@@ -6,8 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.care.stay.hotel.HotelDTO;
-
 @Mapper
 public interface MotelMapper {
 	ArrayList<MotelDTO> stayInfo(@Param("begin")int begin, @Param("end")int end);
@@ -25,6 +23,9 @@ public interface MotelMapper {
 	MotelRoomDTO stayReservation(int mroomcode);
 	MotelRoomDTO roomContent(int mroomcode);
 	void stayDeleteProc(int no);
+	int findMinPriceByMotel(int no);
+	int findMinDaesilPriceByMotel(int no);
+	List<MotelDTO> getAllMotels();
 	
 	
 }

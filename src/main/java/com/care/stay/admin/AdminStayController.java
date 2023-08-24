@@ -351,46 +351,37 @@ public class AdminStayController {
 	public String stayInfo(
 			@RequestParam(value="currentPage", required = false) String cp,
 			@RequestParam(value="stayType", required = false) String stayType, 
-			String stayName, String region, String address,
 			Model model) {
 		
 		System.out.println("현재 stayType은 : " + stayType + "입니다.");
-		
-		stayType = "motel";
-		
+
 		if (stayType == null) {
-		service.stayInfo(cp, stayType, stayName, region, address, model);		
-		} else {
-			model.addAttribute("stayType", stayType);
-			service.stayInfo(cp, stayType, stayName, region, address, model);			
-		}
+	    	model.addAttribute("stayType", "motel");
+			mservice.stayInfo(cp, stayType, model);
+	    } else if (stayType.equals("motel")) {
+	    	model.addAttribute("stayType", stayType);
+	    	mservice.stayInfo(cp, stayType, model);
+	    } else if (stayType.equals("hotel")) {
+	    	model.addAttribute("stayType", stayType);
+	    	hservice.stayInfo(cp, stayType, model);
+	    } else if (stayType.equals("pension")) {
+	    	model.addAttribute("stayType", stayType);
+	    	pservice.stayInfo(cp, stayType, model);
+	    } else if (stayType.equals("gh")) {
+	    	model.addAttribute("stayType", stayType);
+	    	gservice.stayInfo(cp, stayType, model);
+	    } else if (stayType.equals("camping")) {
+	    	model.addAttribute("stayType", stayType);
+	    	cservice.stayInfo(cp, stayType, model);
+	    } 
 		
-		
-//		if (stayType == null) {
-//			mservice.stayInfo(cp, stayType, model);
-//	    } else if (stayType.equals("motel")) {
-//	    	model.addAttribute("stayType", stayType);
-//	    	mservice.stayInfo(cp, stayType, model);
-//	    } else if (stayType.equals("hotel")) {
-//	    	model.addAttribute("stayType", stayType);
-//	    	hservice.stayInfo(cp, stayType, model);
-//	    } else if (stayType.equals("pension")) {
-//	    	model.addAttribute("stayType", stayType);
-//	    	pservice.stayInfo(cp, stayType, model);
-//	    } else if (stayType.equals("gh")) {
-//	    	model.addAttribute("stayType", stayType);
-//	    	gservice.stayInfo(cp, stayType, model);
-//	    } else if (stayType.equals("camping")) {
-//	    	model.addAttribute("stayType", stayType);
-//	    	cservice.stayInfo(cp, stayType, model);
-//	    } 
 		return "admin/stayInfo";
 
 	}
 
 	
 	@PostMapping("stayModifyProc")
-	public String staymodifyProc(MultipartHttpServletRequest multi, 
+	public String stayModifyProc(MultipartHttpServletRequest multi, 
 			@RequestParam("stayType") String stayType, Model model) {
 		String result = "";
 		if (stayType == null) {
@@ -417,7 +408,7 @@ public class AdminStayController {
 	}
 	
 	
-	@GetMapping("stayDeleteProc")
+	@RequestMapping("stayDeleteProc")
 	public String stayDeleteProc(@RequestParam(value="no", required = false)String n,
 			@RequestParam(value="stayType", required = false)String stayType) {
 		String result = "";

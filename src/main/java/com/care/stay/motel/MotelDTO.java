@@ -13,9 +13,11 @@ public class MotelDTO {
 	private String minfo;
 	private String mdaesilcheckin;
 	private String mdaesilcheckout;
-	private String mdaesiltime;
+	private int mdaesiltime;
 	private String mstaycheckin;
 	private String mstaycheckout;
+	private int mindaesilprice;
+	private int minprice;
 	
 	public int getNo() {
 		return no;
@@ -89,10 +91,10 @@ public class MotelDTO {
 	public void setMdaesilcheckout(String mdaesilcheckout) {
 		this.mdaesilcheckout = mdaesilcheckout;
 	}
-	public String getMdaesiltime() {
+	public int getMdaesiltime() {
 		return mdaesiltime;
 	}
-	public void setMdaesiltime(String mdaesiltime) {
+	public void setMdaesiltime(int mdaesiltime) {
 		this.mdaesiltime = mdaesiltime;
 	}
 	public String getMstaycheckin() {
@@ -107,5 +109,19 @@ public class MotelDTO {
 	public void setMstaycheckout(String mstaycheckout) {
 		this.mstaycheckout = mstaycheckout;
 	}
+	public int getMindaesilprice() {
+		return mindaesilprice;
+	}
+	public void setMindaesilprice(int mindaesilprice) {
+		this.mindaesilprice = mindaesilprice;
+	}
+	public int getMinprice() {
+		return minprice;
+	}
+	public void setMinprice(int minprice) {
+		this.minprice = minprice;
+	}
+	
+	
 	
 }

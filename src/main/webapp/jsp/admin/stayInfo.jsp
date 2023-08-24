@@ -43,7 +43,173 @@
 			<br>
 			<br>
 			
-		<table id="stayList" class="stayList stayTable" data-stay-type="motel">
+			<table class="db_search">
+					<colgroup>
+						<col width="10%"></col>
+						<col width="10%"></col>					
+						<col width="30%"></col>
+						<col width="10%"></col>	
+						<col width="*"></col>
+						<col width="10%"></col>						
+					</colgroup>
+					<tr>
+						<th>No.</th>
+						<th>숙소 코드</th>
+						<th>숙소 이름</th>
+						<th>지역</th>
+						<th>주소</th>
+						<th></th>					
+					</tr>
+				<c:choose>
+					<c:when test="${stayType eq 'motel'}">
+					<c:choose>
+						<c:when test="${empty motels }">
+							<tr>
+								<td colspan="6">등록된 숙소 DB가 없습니다.</td>							
+							</tr>
+						</c:when>
+						<c:otherwise>			
+							<c:forEach var="motel" items="${ motels}">
+								<tr>
+									<td>${motel.no }</td>
+									<td>${motel.mcode }${motel.no }</td>
+									<td onclick="location.href='stayContent?no=${motel.no }&stayType=motel'">
+										${motel.mname }
+									</td>
+									<td>${motel.mregion }</td>
+									<td>${motel.maddress }</td>
+									<td>
+										<button type="button" onclick="location.href='stayModify?no=${motel.no}&stayType=motel'">수정</button>  
+										<button type="button" onclick="staydeleteCheck()">삭제</button>
+									</td>						
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>	
+					</c:when>
+				</c:choose>
+				<c:choose>	
+					<c:when test="${stayType eq 'hotel'}">
+					<c:choose>
+						<c:when test="${empty hotels }">
+							<tr>
+								<td colspan="6">등록된 숙소 DB가 없습니다.</td>							
+							</tr>
+						</c:when>
+						<c:otherwise>
+						<c:forEach var="hotel" items="${ hotels}">
+							<tr>
+								<td>${hotel.no }</td>
+								<td>${hotel.hcode }${hotel.no }</td>
+								<td onclick="location.href='stayContent?no=${hotel.no }&stayType=hotel'">
+									${hotel.hname }
+								</td>
+								<td>${hotel.hregion }</td>
+								<td>${hotel.haddress }</td>
+								<td>
+									<button type="button" onclick="location.href='stayModify?no=${hotel.no}&stayType=hotel'">수정</button>  
+									<button type="button" onclick="staydeleteCheck()">삭제</button>
+								</td>						
+							</tr>
+						</c:forEach>
+						</c:otherwise>	
+					</c:choose>
+					</c:when>
+				</c:choose>
+				<c:choose>	
+					<c:when test="${stayType eq 'pension'}">
+					<c:choose>
+						<c:when test="${empty pensions }">
+							<tr>
+								<td colspan="6">등록된 숙소 DB가 없습니다.</td>							
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="pension" items="${ pensions}">
+								<tr>
+									<td>${pension.no }</td>
+									<td>${pension.pcode }${pension.no }</td>
+									<td onclick="location.href='stayContent?no=${pension.no }&stayType=pension'">
+										${pension.pname }
+									</td>
+									<td>${pension.pregion }</td>
+									<td>${pension.paddress }</td>
+									<td>
+										<button type="button" onclick="location.href='stayModify?no=${pension.no}&stayType=pension'">수정</button>  
+										<button type="button" onclick="staydeleteCheck()">삭제</button>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>	
+					</c:choose>
+					</c:when>
+				</c:choose>
+				<c:choose>	
+					<c:when test="${stayType eq 'gh'}">
+					<c:choose>
+						<c:when test="${empty ghs }">
+							<tr>
+								<td colspan="6">등록된 숙소 DB가 없습니다.</td>							
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="gh" items="${ ghs}">
+								<tr>
+									<td>${gh.no }</td>
+									<td>${gh.gcode }${gh.no }</td>
+									<td onclick="location.href='stayContent?no=${gh.no }&stayType=gh'">
+										${gh.gname }
+									</td>
+									<td>${gh.gregion }</td>
+									<td>${gh.gaddress }</td>
+									<td>
+										<button type="button" onclick="location.href='stayModify?no=${gh.no}&stayType=gh'">수정</button>  
+										<button type="button" onclick="staydeleteCheck()">삭제</button>
+									</td>						
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+					</c:when>
+				</c:choose>
+				<c:choose>	
+					<c:when test="${stayType eq 'camping'}">
+					<c:choose>
+						<c:when test="${empty campings }">
+							<tr>
+								<td colspan="6">등록된 숙소 DB가 없습니다.</td>							
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="camping" items="${ campings}">
+								<tr>
+									<td>${camping.no }</td>
+									<td>${camping.ccode }${camping.no }</td>
+									<td onclick="location.href='stayContent?no=${camping.no }&stayType=camping'">
+										${camping.cname }
+									</td>
+									<td>${camping.cregion }</td>
+									<td>${camping.caddress }</td>
+									<td>
+										<button type="button" onclick="location.href='stayModify?no=${camping.no}&stayType=camping'">수정</button>  
+										<button type="button" onclick="staydeleteCheck()">삭제</button>
+									</td>						
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+					</c:when>
+				</c:choose>	
+				<c:choose>
+					<c:when test="${stayType eq null }">
+						<tr>
+							<td colspan="6">등록된 숙소 DB가 없습니다.</td>							
+						</tr>					
+					</c:when>
+				</c:choose>
+				</table>
+				<div class="pageNum">${result }</div>	
+		<%-- <table id="stayList" class="stayList stayTable" data-stay-type="motel">
 			<c:choose>
 				<c:when test="${empty motels }">
 					<h3>등록된 숙소 DB가 없습니다. </h3>
@@ -274,7 +440,7 @@
 			</table>
 			</c:otherwise>
 		</c:choose>			
-		</table>	
+		</table>	 --%>
 			<div class="submit">
 				<ul>
 					<li><a href="${context }stayRegister">숙소 등록하기</a></li>
@@ -285,27 +451,26 @@
  </body>
  
   <script>
- 	  	  document.addEventListener("DOMContentLoaded", function() {
- 	  	    var stayTypeSelect = document.getElementById("stayType");
- 	  	    stayTypeSelect.addEventListener("change", showStayInfo); // "stayType" -> "stayTypeSelect"
- 	  	  });
- 	  	  
- 	 function showStayInfo() {
-	
-		  const stayType = document.getElementById('stayType').value;
-		  const stayTables = document.querySelectorAll('.stayTable');
+//페이지가 로드될 때 실행되는 함수
+  window.onload = function() {
+      // 현재 stayType 파라미터 값 가져오기
+      var currentStayType = new URLSearchParams(window.location.search).get('stayType');
 
-		  stayTables.forEach((table) => {
-		    table.style.display = 'none'; // 모든 테이블을 숨김
-		  });
+      // 기본값으로 "motel"을 선택하되, 기존 파라미터 값이 있는 경우 그 값을 선택
+      document.getElementById("stayType").value = currentStayType || "motel";
 
-		  const targetTable = document.querySelector(`.stayTable[data-stay-type="${stayType}"]`);
+      // 페이지 이동 함수 호출
+  };
 
-		  if (targetTable) {
-		    targetTable.style.display = 'table'; // 선택된 숙소 유형의 테이블을 보이게 함
-		  }
+  function showStayInfo() {
+      var selectedStayType = document.getElementById("stayType").value;
 
-		}  
+      // 페이지 이동을 위한 URL 생성
+      var url = "stayInfo?currentPage=1&stayType=" + selectedStayType;
+
+      // URL로 페이지 이동
+      window.location.href = url;
+  }
 	
  	 
  	function staydeleteCheck(){

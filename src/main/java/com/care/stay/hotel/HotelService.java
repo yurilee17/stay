@@ -97,20 +97,22 @@ public class HotelService {
 	/* 호텔 객실 DB(숙소 상세 DB) 등록 */
 	public String staydetailregisterProc(MultipartHttpServletRequest multi) {
 		HotelRoomDTO hotelroom = new HotelRoomDTO();
-		int no = (int) session.getAttribute("no");
-		String Hcode = (String) session.getAttribute("code");
-		int roomcount = hotelMapper.hotelroomcount();
 
-		hotelroom.setNo(no);
-		hotelroom.setHcode(Hcode);
-		hotelroom.setHroomcode(getIntParameter(multi, "roomcount"));
-		hotelroom.setHroomname(multi.getParameter("roomname"));
-		hotelroom.setHbedtype(multi.getParameter("hbedtype"));
-		hotelroom.setHroomnumber(getIntParameter(multi, "roomnumber"));
-		hotelroom.setHprice(getIntParameter(multi, "hprice"));
-		hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
+        int no = (int) session.getAttribute("no");
+        String Hcode = (String) session.getAttribute("code");
+        int roomcount = hotelMapper.hotelroomcount();
+        
+        hotelroom.setNo(no);
+        hotelroom.setHcode(Hcode);
+        hotelroom.setHroomcode(roomcount);
+        hotelroom.setHroomname(multi.getParameter("roomname"));
+        hotelroom.setHbedtype(multi.getParameter("hbedtype"));
+        hotelroom.setHroomnumber(getIntParameter(multi, "roomnumber"));
+        hotelroom.setHprice(getIntParameter(multi, "hprice"));
+        hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
+        
+        /* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 
-		/* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 		String[] check1 = multi.getParameterValues("check1");
 		String[] check2 = multi.getParameterValues("check2");
 		String[] check3 = multi.getParameterValues("check3");
@@ -380,5 +382,19 @@ public class HotelService {
 			return null;
 		return hotelroom;
 	}
+
+
+	
+	 public void getAllHotelsWithMinPrices() {
+	        List<HotelDTO> hotels = hotelMapper.getAllHotels();
+	        
+	        for (HotelDTO hotel : hotels) {
+	            int minPrice = hotelMapper.findMinPriceByHotel(hotel.getNo());
+
+	            hotel.setMinprice(minPrice);
+	        }
+
+	    }
+
 
 }

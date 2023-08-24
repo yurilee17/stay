@@ -147,19 +147,10 @@
 							<th>대실체크인</th>
 							<td>
 								<select id="mdaesilcheckin" name="mdaesilcheckin" class="form_25 right-menu select2">
-									 <option disabled selected value="">시간을 선택하세요</option>
-									 <option value="10:00">10:00</option>
-									 <option value="11:00">11:00</option>
-									 <option value="12:00">12:00</option>
-									 <option value="13:00">13:00</option>
-									 <option value="14:00">14:00</option>
-									 <option value="15:00">15:00</option>
-									 <option value="16:00">16:00</option>
-									 <option value="17:00">17:00</option>
-									 <option value="18:00">18:00</option>
-									 <option value="19:00">19:00</option>
-									 <option value="20:00">20:00</option>
-									 <option value="21:00">21:00</option>
+								    <option disabled selected value="">시간을 선택하세요</option>
+								    <c:forEach begin="10" end="21" var="hour">
+								        <option value="${hour}:00">${hour}:00</option>
+								    </c:forEach>
 								</select>
 							</td>
 						</tr>
@@ -167,18 +158,10 @@
 							<th>대실체크아웃</th>
 							<td>
 								<select id="mdaesilcheckout" name="mdaesilcheckout" class="form_25 right-menu select2">
-									 <option disabled selected value="">시간을 선택하세요</option>
-									 <option value="14:00">14:00</option>
-									 <option value="15:00">15:00</option>
-									 <option value="16:00">16:00</option>
-									 <option value="17:00">17:00</option>
-									 <option value="18:00">18:00</option>
-									 <option value="19:00">19:00</option>
-									 <option value="20:00">20:00</option>
-									 <option value="21:00">21:00</option>
-									 <option value="22:00">22:00</option>
-									 <option value="23:00">23:00</option>
-									 <option value="24:00">24:00</option>
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="14" end="24" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
 								</select>
 							</td>
 						</tr>
@@ -186,11 +169,10 @@
 							<th>대실시간</th>
 							<td>
 								<select id="mdaesiltime" name="mdaesiltime" class="form_25 select2">
-									 <option disabled selected value="">시간을 선택하세요</option>
-									 <option value="3">3시간</option>
-									 <option value="4">4시간</option>
-									 <option value="5">5시간</option>
-									 <option value="6">6시간</option>
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="3" end="6" var="hour">
+									    <option value="${hour}">${hour}시간</option>
+									</c:forEach>
 								</select>
 								<!-- <input type="text" class="form_w30" name="mdaesiltime" id="mdaesiltime" placeholder=""> -->
 							</td>
@@ -199,19 +181,10 @@
 							<th>숙박체크인</th>
 							<td>
 								<select id="mstaycheckin" name="mstaycheckin" class="form_25 right-menu select2">
-									 <option disabled selected value="">시간을 선택하세요</option>
-									 <option value="13:00">13:00</option>
-									 <option value="14:00">14:00</option>
-									 <option value="15:00">15:00</option>
-									 <option value="16:00">16:00</option>
-									 <option value="17:00">17:00</option>
-									 <option value="18:00">18:00</option>
-									 <option value="19:00">19:00</option>
-									 <option value="20:00">20:00</option>
-									 <option value="21:00">21:00</option>
-									 <option value="22:00">22:00</option>
-									 <option value="23:00">23:00</option>
-									 <option value="24:00">24:00</option>
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="13" end="24" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
 								</select>
 							</td>
 						</tr>		
@@ -219,12 +192,10 @@
 							<th>숙박체크아웃</th>
 							<td>
 								<select id="mstaycheckout" name="mstaycheckout" class="form_25 right-menu select2">
-									 <option disabled selected value="">시간을 선택하세요</option>
-									 <option value="10:00">10:00</option>
-									 <option value="11:00">11:00</option>
-									 <option value="12:00">12:00</option>
-									 <option value="13:00">13:00</option>
-									 <option value="14:00">14:00</option>
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="10" end="14" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
 								</select>
 							</td>
 						</tr>
@@ -237,11 +208,26 @@
 						</colgroup>
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="hcheckintime" name="hcheckintime"></td>
+							<td>
+								<select id="hcheckintime" name="hcheckintime" class="form_25 right-menu select2">
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="13" end="24" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
+								</select>
+							
+							</td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="hcheckouttime" name="hcheckouttime"></td>
+							<td>
+								<select id="hcheckouttime" name="hcheckouttime" class="form_25 right-menu select2">
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="10" end="14" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
+								</select>							
+							</td>
 						</tr>
 						<tr>
 							<th>호텔·리조트 유형</th>
@@ -261,11 +247,25 @@
 						</colgroup>
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="pcheckintime" name="pcheckintime"></td>
+							<td>
+								<select id="pcheckintime" name="pcheckintime" class="form_25 right-menu select2">
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="13" end="24" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="pcheckouttime" name="pcheckouttime"></td>
+							<td>
+								<select id="pcheckouttime" name="pcheckouttime" class="form_25 right-menu select2">
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="10" end="14" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
+								</select>							
+							</td>
 						</tr>
 						<tr>
 							<th>펜션 유형</th>
@@ -283,11 +283,25 @@
 						</colgroup>	
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="gcheckintime" name="gcheckintime"></td>
+							<td>
+								<select id="gcheckintime" name="gcheckintime" class="form_25 right-menu select2">
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="13" end="24" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
+								</select>						
+							</td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="gcheckouttime" name="gcheckouttime"></td>
+							<td>
+								<select id="gcheckouttime" name="gcheckouttime" class="form_25 right-menu select2">
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="10" end="14" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
+								</select>							
+							</td>
 						</tr>																		
 					</table>
 					
@@ -298,11 +312,25 @@
 						</colgroup>
 						<tr>
 							<th>체크인시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="ccheckintime" name="ccheckintime"></td>
+							<td>
+								<select id="ccheckintime" name="ccheckintime" class="form_25 right-menu select2">
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="13" end="24" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
+								</select>							
+							</td>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<td><input type="text" class="form_w50" placeholder="" id="ccheckouttime" name="ccheckouttime"></td>
+							<td>
+								<select id="ccheckouttime" name="ccheckouttime" class="form_25 right-menu select2">
+									<option disabled selected value="">시간을 선택하세요</option>
+									<c:forEach begin="10" end="14" var="hour">
+									    <option value="${hour}:00">${hour}:00</option>
+									</c:forEach>
+								</select>								
+							</td>
 						</tr>
 						<tr>
 							<th>캠핑 유형</th>

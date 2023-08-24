@@ -253,6 +253,10 @@
     font-size: 15px;
     color: #fff;
 	}
+	
+.phone_confirm .btn_send.active {
+	background: #ff0055;	
+}	
 
 .alert_txt.error-message {
     height: 46px;

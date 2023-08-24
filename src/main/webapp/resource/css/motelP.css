@@ -1,0 +1,368 @@
+/* 상품목록 */
+
+
+input[type="text"]{width:250px; height:35px; border:1px solid #ddd; padding:0 20px; box-sizing:border-box; -webkit-box-sizing:border-box; font-size:16px; color:#222;}
+input[type="text"]::-webkit-input-placeholder {color:#7e7c7c;}
+input[type="text"]:-input-placeholder {color:#7e7c7c;}
+input[type="text"]:-ms-input-placeholder {color:#7e7c7c;}
+input[type="text"]::-moz-input-placeholder {color:#7e7c7c;}
+
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor:pointer;
+}
+
+
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #f7323f;
+  border-color: transparent;
+  color: #fff;
+}
+
+
+
+.pc > .visual{
+	margin: 0 auto;
+	padding-left: 200px;
+}
+
+
+.pc > .visual .hpTop{
+	width: 1024px;
+	height: 500px;
+	padding: 150px 0 0 319px;
+}
+
+.pc > .visual > .hpTop > .hpTLeft,
+.pc > .visual > .hpTop > .hpTRight{
+	overflow:hidden;
+	line-height: 200%;
+}
+
+.pc > .visual > .hpTop  > .hpTLeft {
+	float:left;
+	width:45%;
+	
+}
+
+.pc > .visual > .hpTop  > .hpTRight{
+	float:right;
+	width:45%;
+}
+
+.pc > .visual .hpNav{
+	width: 1024px;
+	height: 55px;
+	margin: 0 0 0 319px;
+	
+}
+
+
+/* 아래는 hpNav detail  */
+
+.hpNav .inner {
+	overflow:hidden;
+	position:relative;
+	border-bottom:1px solid #c4c4c4;
+}
+.hpNav .inner button{
+	/*float:left;*/
+	/*line-height: 40px; */
+	margin-right:30px;	
+}
+
+.hpNav .inner button.selected{
+	font-weight:700; 
+	color: #f7323f;
+	border-bottom:3px solid #f7323f;
+}
+
+
+/* hpNav  (서브메뉴) */
+
+
+.reserBtn{
+	/*cursor:pointer; */
+	width:150px; 
+	height:55px; 
+	font-size:20px; 
+	color:#111; 
+	background-color: transparent;
+	border-color:transparent; 
+	padding:0 10px;
+}
+.reserBtn.clicked {
+	font-weight:700;
+	color:#f7323f; 
+	border-bottom:3px solid #f7323f;
+}
+
+
+.infoBtn{
+	/*cursor:pointer;*/ 
+	width:120px; 
+	height:55px; 
+	font-size:20px; 
+	color:#111; 
+	background-color: transparent;
+	border-color:transparent; 
+	padding:0 10px;
+}
+.infoBtn.clicked {
+	font-weight:700;
+	color:#f7323f; 
+	border-bottom:3px solid #f7323f;
+}
+
+
+.revBtn{
+	/*cursor:pointer; */
+	width:100px; 
+	height:55px; 
+	font-size:20px; 
+	color:#111; 
+	background-color: transparent;
+	border-color:transparent; 
+	padding:0 10px;
+}
+.revBtn.clicked {
+	font-weight:700;
+	color:#f7323f; 
+	border-bottom:3px solid #f7323f;
+}
+
+
+/* 서브메뉴페이지들 */
+
+main {
+	margin:0 auto;
+	padding-left:320px;
+}
+
+
+
+/* 첫번쨰페이지 예약 css */
+
+main .resPage #calendars{
+	margin:30px 0 ;
+}
+
+ table {
+    width: 1024px;
+    height: 270px;
+  	margin-bottom: 20px;
+}
+
+
+ table> tbody> tr {
+    border-width:2px;
+  	border-style:solid;
+  	border-color:#E6E6E6;
+  	padding-left: 50px;
+  	font-size: 20px;
+}
+
+table> tbody> tr > td:nth-child(1) img{
+	margin: 0 20px;
+}
+
+table> tbody> tr > td:nth-child(2) {
+   padding-bottom:40px;
+   line-height: 145%;
+   position: relative;
+ 
+}
+
+ table> tbody> tr > td:nth-child(2) .room{
+	 height: 120px;
+	 border-bottom:1px solid #ddd;
+	 margin-right:30px;
+	 position: relative;
+ }
+
+ table> tbody> tr > td:nth-child(2) .room > h2 {
+   font-size:27px;
+}
+
+ table> tbody> tr > td:nth-child(2) .room > b > span {
+	 display: inline-block;
+	position:absolute;
+	bottom: 5px;
+    right: 5px;
+	font-size: 22px;
+	padding-bottom:15px;
+ }
+ 
+  table> tbody> tr > td:nth-child(2) button {
+	 width: 500px;
+	 height:40px;
+	 font-size:20px; 
+	color:#fff; 
+	background-color: #f7323f;
+	border-color:transparent; 
+	border-radius: 5px;
+	padding:0 10px;
+	position: absolute;
+	left:85px;
+	bottom:25px;
+	
+ }
+
+
+/* 두번째페이지 정보 css  */
+
+#informationP{
+	position: relative;
+}
+
+
+
+#informationP .opened{
+	width:1024px;
+	height:80px;
+	line-height: 80px;
+	padding-left: 16px;
+	border-top:1px solid #ddd;
+	
+}
+	
+
+
+#informationP .basicInfo, .serviceInfo, .emptyInfo{
+	width:1024px;
+	height:80px;
+	line-height: 80px;
+	padding-left: 16px;
+	border-top:1px solid #ddd;
+	margin-right:0;
+}
+
+#informationP #infoStory, #serviceStory {
+	padding: 15px 5px 15px 20px;
+	margin-bottom:20px;
+	width:1020px;
+	background-color: #F2F2F2;
+}
+
+
+/* 세번째페이지 리뷰css */
+
+
+	/*------- 리뷰내용*/
+	
+.review-con{
+	width:1024px;
+	padding:30px 0 15px 30px;
+	border-top: 1px solid #ddd;
+	line-height: 30px;
+}
+
+.review-con:last-child{
+	border-bottom: 1px solid #ddd;
+	margin-bottom:20px; /*아래에 밑줄생기는지 확인하려고 넣어놓음 필요없음 지워도됨*/
+}
+
+.review-con strong{
+	display: inline-block;
+	font-size: 25px;
+}
+
+	/*------- 별점넣기*/
+.star-rating {
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:25px;
+  justify-content:space-around;
+  padding-bottom: 15px;
+  width:6em;
+}
+
+
+.star-rating input {  /*라디오단추안보이게*/
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
+}
+
+.nicname {
+	color:#c4c4c4;
+}
+
+.roomname_review{
+	color:#c4c4c4;
+	padding-bottom: 20px;
+}
+
+
+
+/* ---------------------------------------------------------------------------------------------- */	
+
+.room_info {width:962px; margin:0 100px 0 0;}
+.room_info .room{overflow:hidden; position:relative; margin:0 0 24px 0; padding:24px 24px 24px 424px; border:1px solid rgba(0,0,0,0.08); border-radius:4px; background:#fff; box-sizing:border-box}
+.room_info .room .on{height:826px}
+.room_info .room .on .cal_bg,	.room_info .room.on .pic_wrap{display:block; opacity:0; transition:0.4s}
+.room_info .room .on .cal_bg.visible,.room_info .room.on .pic_wrap.visible{opacity:1}
+.room_info{background:#fff}
+.room_info .pic_wrap{display:none; position:absolute; bottom:79px; left:111px; margin:0 !important}
+
+.room_info .room{overflow:hidden; position:relative; margin:0 0 24px 0; background:#fff}
+.room_info .pic_view{display:inline-block;position:absolute;top:23px;left:23px;width:376px;height:226px;cursor:pointer}
+.room_info .pic_view img{width:376px;height:226px}
+.room_info .pic_view:after{display:inline-block; content:""; position:absolute; bottom:16px; right:16px; z-index:10; width:24px; height:24px; background:url('//image.goodchoice.kr/images/web_v3/ico_picview.png') 0 0 no-repeat; background-size:24px auto}
+.room_info .pic_view .pic_empty:after {display: none;}
+.room_info .room .title{display:block;height:37px;padding:0;font-size:20px;font-weight:bold;line-height:1}
+.room_info .room .info{overflow:hidden;margin:0; min-height: 188px}
+.room_info .info .half{float:left;width:233px}
+.room_info .info .half:last-child{float:left;width:233px;margin-left:46px}
+.room_info .info .half:after{display:inline-block;content:"";position:absolute;top:63px;right:280px;width:1px;height:187px;background:rgba(0,0,0,0.08)}
+.room_info .info .half .price{padding:0;border:none;border-radius:0;border-bottom:none;box-sizing:border-box}
+.room_info .info .half .price strong{display:block;height:20px;font-size:18px;font-weight: bold;line-height:1.4}
+.room_info .info .half .price strong span{display:inline-block;position:relative;top:2px;margin-left:0;padding:1px 3px;border:1px solid rgb(255,43,92);font-size:13px;line-height:normal;color:rgb(255,43,92);vertical-align:top;letter-spacing: -1px}
+.room_info .info .half .price div{height:64px;padding:0 0 0 0;border-bottom:1px solid rgba(0,0,0,0.08);font-size:20px;color:rgb(230,28,81);text-align:right}
+.room_info .info .half .price button{background-color: #f2074c;}
+.room_info .info .price div .through{margin-bottom:3px;height:29px;padding-top:13px;text-decoration:line-through;font-size:16px;font-weight:normal;color:rgba(0,0,0,0.56)}
+.room_info .info .price div .through_none{margin-bottom:3px;height:29px;padding-top:13px;font-size:16px;color:rgba(0,0,0,0.56)}
+.room_info .info .price div p span{display:inline-block;position:relative;top:-2px;margin-right:4px;padding:2px 2px 1px 2px;background:rgb(255,43,92);font-size:14px;line-height:normal;color:#fff}
+.room_info .info .half .price ul{height:64px;padding:11px 0 0 0}
+.room_info .info .half .price ul li{position:relative;margin-bottom:7px;font-size:16px;text-align:right}
+.room_info .info .half .price ul li span{position:absolute;top:0;left:0;color:rgba(0,0,0,0.56)}
+.room_info .info button{display:block; width:100%; height:40px; border:none; border-radius:4px; font-size:16px; font-weight:normal; color:#fff; text-align:center}
+.room_info .info .none ul,.room_info .info .none div .through{visibility:hidden}
+.room_info .info .none div p,	.room_info .info .ended p{color:rgba(0,0,0,0.87); font-weight:bold}	
+
+.room_info .info .room_info_null .price{position:relative; padding:0; border:none; border-radius:0; border-bottom:none; box-sizing:border-box}
+.room_info .info .room_info_null .price strong{display:block; border-bottom:1px solid rgba(0,0,0,0.08); height:147px; font-size:18px; line-height:1}
+.room_info .info .room_info_null .price div{position:absolute; top:76px; right:0; font-size:18px; text-align:right}
+.room_info .info .room_info_null .price div p b{font-size:20px; color:rgb(255,43,92)}
+.room_info .info .room_info_null .through{margin-bottom:6px !important;padding-top:14px !important}
+.room_info .info .room_info_null ul{overflow:hidden; position:relative; height:65px}
+.room_info .info .room_info_null ul:after{display:inline-block; content:""; position:absolute; top:12px; left:50%; width:1px; height:16px; margin-top:0; background:rgba(0,0,0,0.08)}
+.room_info .info .room_info_null ul li{position:relative; float:left; width:50%; padding:11px 24px 13px 24px; font-size:16px; text-align:right}
+.room_info .info .room_info_null ul li:last-child{padding-right:0}
+.room_info .info .room_info_null ul li:last-child span{left:24px}
+.room_info .info .room_info_null ul li span{display:inline-block; position:absolute; top:11px; left:0; padding-right:0; color:rgba(0,0,0,0.56)}
+.room_info .info .hotel .price{position:relative; padding:0; border:none; border-radius:0; border-bottom:none; box-sizing:border-box}
+.room_info .info .hotel .price strong{display:block; padding-top:41px; border-bottom:1px solid rgba(0,0,0,0.08); height:76px; font-size:16px; line-height:1}
+.room_info .info .hotel .price div{position:absolute;top:10px;right:0;font-size:18px;text-align:right}
+.room_info .info .hotel .price div p b{font-size:20px}
+.room_info .info .hotel .price button{height:48px; margin:12px 0; font-size:16px; line-height:48px}
+.room_info .info .hotel .through{margin-bottom:6px !important; padding-top:14px !important}
+
+
+
