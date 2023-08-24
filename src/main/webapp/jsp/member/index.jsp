@@ -80,4 +80,6 @@
 <script type="text/javascript" src="../../resource/js/main.js"></script>
 <script type="text/javascript" src="../../resource/js/reservation.js"></script>
 
+
+<c:import url="/footer" /> 
 </body></html>
