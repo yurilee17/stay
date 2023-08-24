@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <title>호텔이름 | 저기어때</title>
+    <title> ${hotel.hname} | 저기어때</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,14 +80,14 @@
 
 		<div class="hpTLeft">
 			<img alt="호텔이름 | 전경" class="swiper-lazy swiper-lazy-loaded"
-			 src="//image.goodchoice.kr/resize_490x348/affiliate/2020/07/28/5f1fef8232c3e.jpg">
+			 src="${hotel.himage}"  width="490px" height="348px">
 		</div>
 		<div class="hpTRight">
 			  <td>
-               	<h2 class="name">호텔 인 강남</h2>
-                <p>서울 강남구 삼성동 91-28 (상세주소)</p>
+               	<h2 class="name">${hotel.hname}</h2>
+                <p>${hotel.haddress}</p>
                	<br>
-               	<span>***** (별점평균이 들어가야함)</span>
+               <!-- 	<span>***** (별점평균이 들어가야함)</span> -->
               </td>
 		</div>
 	</div>
@@ -200,10 +200,26 @@
 	<main class=content>
 		<div class="resPage" id="reservationP" >
 			
-			<input type="text" id="calendars" name="calendars" value="" />
+	
+	<input type="text" id="calendar" name="calendar" value="" >
+			
+		<script type="text/javascript">	
+			$(function() {
+		        // 로컬 스토리지에서 저장된 값을 가져옵니다.
+		        var checkindate = localStorage.getItem("checkindate");
+		        var checkoutdate = localStorage.getItem("checkoutdate");
+		       
+		        
+		        // 가져온 값을 <input> 요소의 value에 설정합니다.
+		        if (${param.checkindate} && ${param.checkoutdate}) {
+		            var combinedValue = "${param.checkindate}" + " ~ " + "${param.checkoutdate}";
+		            $('#calendar').val(combinedValue);
+		        }
+		    });
+			
+			</script>
 				
-				
-			<script>
+			<!-- <script>
 
 				$(function () {
 	         	   $('#calendars').daterangepicker({
@@ -238,27 +254,35 @@
 	         	   
 	       		 });
 				
-				</script>	
-				
-			
-			<%   for(int i =0; i<5; i++){     %>
+				</script>	 -->
+	<c:choose>
+		<c:when test="${not empty hotelrooms}">
+			<c:forEach var="hotelroom" items="${ hotelrooms}">					
                 <table>
                 	<tr>
-                        <td  width="300px" height="250px"><a href="#" class="thumb">
-                            <img src="	https://via.placeholder.com/300x230" alt="상품이미지">
+                        <td  width="300px" height="250px">
+                            <img src="${hotelroom.hroomimage}" alt="객실이미지">
                         </a></td>
                         <td>
                            <div class=room>
-                             <h2 class="name">[넷플릭스]스탠다드 더블</h2>
+                             <h2 class="name">${hotelroom.hroomname}</h2>                            
 	                            <br><br>
-	                           <b><span>가격 178,000</span></b>
+	                           <b><span>${hotelroom.hprice}</span></b>	                
                            	</div>
-                           	<button type="button">예약하기</button>
+                           <%-- 	<button type="button" onclick ="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}'" >예약하기</button> --%>
+                           	<button type="button"  onclick="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}'" >예약하기</button>
                         </td>
                        
                     </tr>
                 </table>
-             <%   } %>
+             </c:forEach>
+           </c:when>
+			<c:otherwise>
+				<!-- hotelrooms 변수가 비어있을 때의 처리 -->
+				<p>No hotelroom information available.</p>
+			</c:otherwise>
+		</c:choose>
+		
 		</div>
 		<div id="informationP" style="display:none;">
 		
@@ -407,9 +431,9 @@ Bath Amenity (치약, 칫솔 무료)<br>
 				바로 뷔페 이용까지 가능하니까 넘 편하더라구요. 저녁도 그렇고 조식도 뷔페 메뉴들이 정말 맛있었어요. 룸 컨디션도 엄청 좋았는데<br> 
 				숙소 예약할때 항상 걱정이었던 머리카락이나 먼지들이 눈에 띄지않아서 마음 편하게 잘잤네요.<br> 
 				서비스도 좋고 기억에 남을만한 여행이었어요^^</div>
-				<div class="gallery_review"> 
+				<!-- <div class="gallery_review"> 
 					<img src="'//image.goodchoice.kr'+ aepimg.aep_imgpath"  alt="item.epilrate_textinfo" />
-				 </div>
+				 </div> -->
 			 </div>
 			 
 			 <% } %>

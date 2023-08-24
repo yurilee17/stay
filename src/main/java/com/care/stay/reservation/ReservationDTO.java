@@ -14,6 +14,7 @@ public class ReservationDTO {
 	private String checkouttime;
 	private String id;
 	private String name;
+	private String mobile;
 	private int price;
 	private String paymethod;
 	private String status;
@@ -95,6 +96,12 @@ public class ReservationDTO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	public int getPrice() {
 		return price;

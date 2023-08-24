@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.care.stay.hotel.HotelService;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -279,7 +281,6 @@ public class MemberController {
 
 	@GetMapping("reserDeleteProc")
 	public String reserDeleteProc(@RequestParam int no) {
-		System.out.println(no);
 		if (session.getAttribute("id") != null) {
 			service.reserDeleteProc(no);
 			return "redirect:reservationList";
@@ -287,15 +288,36 @@ public class MemberController {
 			return "member/index";
 		}
 	}
-	
+
 	@GetMapping("resDetail")
-	public String resDetail() {
+	public String resDetail(@RequestParam int no, Model model) {
 		if (session.getAttribute("id") != null) {
+			service.resDetail(no, model);
 			return "member/resDetail";
 		} else {
 			return "member/index";
 		}
 	}
+
+	@GetMapping("resUpdate")
+	public String resUpdate(@RequestParam int no, Model model) {
+		System.out.println(no + "test");
+		if (session.getAttribute("id") != null) {
+			service.resUpdate(no);
+			return "redirect:resDetail?no=" + no;
+		} else {
+			return "member/index";
+		}
+	}
 	
+//	@Autowired
+//	private HotelService hotelService;
+	// 메인 화면
+	@RequestMapping("map")
+	public String map(Model model) {
+//		hdetailregion=강남&checkindate=2023-08-23&checkoutdate=2023-08-23
+//		hotelService.Main("강남", "" ,model);  		   	
+		return "default/map";
+	}
 
 }
