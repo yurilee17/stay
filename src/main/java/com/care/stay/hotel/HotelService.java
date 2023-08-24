@@ -98,20 +98,20 @@ public class HotelService {
 	public String staydetailregisterProc(MultipartHttpServletRequest multi) {
 		HotelRoomDTO hotelroom = new HotelRoomDTO();
 
-        int no = (int) session.getAttribute("no");
-        String Hcode = (String) session.getAttribute("code");
-        int roomcount = hotelMapper.hotelroomcount();
-        
-        hotelroom.setNo(no);
-        hotelroom.setHcode(Hcode);
-        hotelroom.setHroomcode(roomcount);
-        hotelroom.setHroomname(multi.getParameter("roomname"));
-        hotelroom.setHbedtype(multi.getParameter("hbedtype"));
-        hotelroom.setHroomnumber(getIntParameter(multi, "roomnumber"));
-        hotelroom.setHprice(getIntParameter(multi, "hprice"));
-        hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
-        
-        /* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
+		int no = (int) session.getAttribute("no");
+		String Hcode = (String) session.getAttribute("code");
+		int roomcount = hotelMapper.hotelroomcount();
+
+		hotelroom.setNo(no);
+		hotelroom.setHcode(Hcode);
+		hotelroom.setHroomcode(roomcount);
+		hotelroom.setHroomname(multi.getParameter("roomname"));
+		hotelroom.setHbedtype(multi.getParameter("hbedtype"));
+		hotelroom.setHroomnumber(getIntParameter(multi, "roomnumber"));
+		hotelroom.setHprice(getIntParameter(multi, "hprice"));
+		hotelroom.setHpeople(getIntParameter(multi, "hpeople"));
+
+		/* option값들을 배열로 가져온 다음 문자열로 변환시킨 후 db에 추가하는 과정 */
 
 		String[] check1 = multi.getParameterValues("check1");
 		String[] check2 = multi.getParameterValues("check2");
@@ -236,35 +236,35 @@ public class HotelService {
 		return null;
 	}
 
-	public void hotellist(String cp, Model model) {
-
-		int currentPage = 1;
-
-		try {
-			currentPage = Integer.parseInt(cp);
-		} catch (Exception e) {
-			currentPage = 1;
-		}
-
-		int pageBlock = 6; // 한 페이지에 보일 데이터의 수
-		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
-		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
-
-		ArrayList<HotelDTO> hotels = hotelMapper.hotellist(begin, end);
-		
-		int totalCount = hotelMapper.count();
-		String url = "hotellist?currentPage=";
-		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
-
-		System.out.println("SHageBlock " + pageBlock);
-		System.out.println("SHtotalCount " + totalCount);
-
-
-		model.addAttribute("hotels", hotels);
-		model.addAttribute("result", result);
-		model.addAttribute("currentPage", currentPage);
-
-	}
+//	public void hotellist(String cp, Model model) {
+//
+//		int currentPage = 1;
+//
+//		try {
+//			currentPage = Integer.parseInt(cp);
+//		} catch (Exception e) {
+//			currentPage = 1;
+//		}
+//
+//		int pageBlock = 6; // 한 페이지에 보일 데이터의 수
+//		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
+//		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+//
+//		ArrayList<HotelDTO> hotels = hotelMapper.hotellist(begin, end);
+//		
+//		int totalCount = hotelMapper.count();
+//		String url = "hotellist?currentPage=";
+//		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+//
+//		System.out.println("SHageBlock " + pageBlock);
+//		System.out.println("SHtotalCount " + totalCount);
+//
+//
+//		model.addAttribute("hotels", hotels);
+//		model.addAttribute("result", result);
+//		model.addAttribute("currentPage", currentPage);
+//
+//	}
 
 	// 지역별 호텔리스트 나오게
 	public void Main(String selectedText, String cp, Model model) {
@@ -293,17 +293,16 @@ public class HotelService {
 
 		if (selectedText != null) {
 			ArrayList<HotelDTO> hotels = hotelMapper.Main(selectedText, begin, end);
+			
 			model.addAttribute("hotels", hotels);
 			model.addAttribute("result", result);
 			model.addAttribute("currentPage", currentPage);
 		}
 	}
 
-
 	// 체크박스 선택시 조건에 맞게 호텔리스트 나오게
 	public void MainCheck(String selectedText, String checkindate, String checkoutdate, String htype, String hbedtype,
 			String hcomfort, String hpeople, String cp, Model model) {
-
 
 		int currentPage = 1;
 
@@ -317,8 +316,8 @@ public class HotelService {
 		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
 		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
 
-		ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin, end); 
-		
+		ArrayList<HotelDTO> hotels = hotelMapper.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, begin,
+				end);
 
 		int totalCount = hotelMapper.count();
 		String url = "hotellist?currentPage=";
@@ -335,7 +334,7 @@ public class HotelService {
 		for (HotelDTO hotel : hotels) {
 			HotelRoomDTO rooms = hotel.getRooms();
 			System.out.println("Hroomnumber" + rooms.getHroomnumber());
-			
+
 			resNum = hotelMapper.resNum(rooms.getHcode(), rooms.getNo(), rooms.getHroomcode(), checkindate,
 					checkoutdate);
 			System.out.println("resNum" + resNum);
@@ -360,14 +359,11 @@ public class HotelService {
 
 		System.out.println("----여기는 서비스 MainCheck  // -----");
 
-
 		model.addAttribute("hotels", hotelResult);
 		model.addAttribute("result", result);
 		model.addAttribute("currentPage", currentPage);
 
 	}
-
-	
 
 	public HotelRoomDTO roomContent(String rc) {
 		int hroomcode = 0;
@@ -383,18 +379,18 @@ public class HotelService {
 		return hotelroom;
 	}
 
+	public void getAllHotelsWithMinPrices() {
 
-	
-	 public void getAllHotelsWithMinPrices() {
-	        List<HotelDTO> hotels = hotelMapper.getAllHotels();
-	        
-	        for (HotelDTO hotel : hotels) {
-	            int minPrice = hotelMapper.findMinPriceByHotel(hotel.getNo());
+		List<HotelDTO> hotels = hotelMapper.getAllHotels();
 
-	            hotel.setMinprice(minPrice);
-	        }
+		for (HotelDTO hotel : hotels) {
+			int minPrice = hotelMapper.findMinPriceByHotel(hotel.getNo());
 
-	    }
+			hotel.setMinprice(minPrice);
+			hotelMapper.updatePrices(hotel);
 
+		}
+
+	}
 
 }

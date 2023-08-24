@@ -46,8 +46,8 @@ public class Hotelcontroller {
   @RequestParam(value="currentPage", required = false)String cp, Model model) {
 	
 	  System.out.println("hotellist나오는지 알려주세요");
-	  hotelService.getAllHotelsWithMinPrices();
-	  hotelService.hotellist(cp,model); 
+	 
+//	  hotelService.hotellist(cp,model); 
 	  	return "hotel/hotellist"; 
 	  	}
 
@@ -76,7 +76,7 @@ public class Hotelcontroller {
 		  		System.out.println("checkindate: " + checkindate);
 		  		System.out.println("checkoutdate: " + checkoutdate);
 		  		
-		  	
+		  		 hotelService.getAllHotelsWithMinPrices();
 		  		
 		  		
 		  	   if (htype != null || hbedtype != null || hcomfort != null ) {

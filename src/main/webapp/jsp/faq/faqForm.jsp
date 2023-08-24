@@ -4,7 +4,8 @@
 
 <!doctype html>
 <html lang="ko">
- 	<link rel="stylesheet" href="resource/css/common.css" />
+		<link rel="stylesheet" href="resource/css/common.css" />
+ 	    <link rel="stylesheet" href="/resource/css/more.css" />
 	<c:import url="/header" />
 	<script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
 <head>
@@ -21,7 +22,7 @@
 
     <!-- CSS -->
     <title>TOP7 - 자주 묻는 질문 | 여기어때</title>
-    <link rel="stylesheet" href="/resource/css/common.css" />
+<!--     <link rel="stylesheet" href="/resource/css/common.css" /> -->
     <!-- <link rel="canonical" href="https://www.goodchoice.kr/faq"> -->
    <script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
 
