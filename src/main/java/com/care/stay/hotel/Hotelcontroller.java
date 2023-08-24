@@ -62,9 +62,8 @@ public class Hotelcontroller {
 		  		   	
 		  		 hotelService.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
 		  	    } 
-		  	   else if(selectedText != null || checkindate != null && checkoutdate != null ) {
-
-		  		 hotelService.Main(selectedText, cp ,model);
+		  	   else {
+		  		   	hotelService.Main(selectedText, cp ,model);
 		  	    }
 		  	   
 
@@ -81,6 +80,7 @@ public class Hotelcontroller {
 				
 				HotelDTO hotel = hotelService.stayContent(n);
 				List<HotelRoomDTO> hotelrooms = hotelService.stayRoomContent(n);
+			
 				
 				model.addAttribute("hotel", hotel);
 				model.addAttribute("hotelrooms", hotelrooms);

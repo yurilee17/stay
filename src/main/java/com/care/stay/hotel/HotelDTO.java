@@ -8,17 +8,6 @@ public class HotelDTO {
 	private String hcode;
 	private String hname;
 	private String hregion;
-
-//	private String hdetailRegion;
-//	private int hrating;
-//	private String haddress;
-//	private String hdetailAddress;
-//	private String himage;
-//	private String hinfo;
-//	private String hcheckInTime;
-//	private String hcheckOutTime;
-//	private String htype;
-
 	private String hdetailregion;
 	private int hrating;
 	private String haddress;
@@ -28,16 +17,9 @@ public class HotelDTO {
 	private String hcheckintime;
 	private String hcheckouttime;
 	private String htype;
-	private HotelRoomDTO rooms;
 	private int minprice;
+	private HotelRoomDTO rooms;
 
-	
-	public int getMinprice() {
-		return minprice;
-	}
-	public void setMinprice(int minprice) {
-		this.minprice = minprice;
-	}
 	public HotelRoomDTO getRooms() {
 		return rooms;
 	}
@@ -138,6 +120,13 @@ public class HotelDTO {
 	}
 	public void setHtype(String htype) {
 		this.htype = htype;
+	}
+	
+	public int getMinprice() {
+		return minprice;
+	}
+	public void setMinprice(int minprice) {
+		this.minprice = minprice;
 	}
 
 
