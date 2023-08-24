@@ -578,6 +578,11 @@ img {
 	font-style: normal;
 }
 
+.resDetail .info div .bg_w {
+	background: rgb(235, 235, 235);
+	color: rgba(0, 0, 0, 0.87);
+}
+
 .resDetail .info div strong {
 	display: block;
 	margin-bottom: 9px;
@@ -603,6 +608,8 @@ img {
 	border: none;
 }
 
+
+
 .resDetail div p {
 	position: relative;
 	margin: 0 0 13px 0;
@@ -611,17 +618,100 @@ img {
 	text-align: left;
 }
 
+
 .resDetail div p:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .resDetail div p strong {
-    display: inline-block;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 150px;
-    font-weight: normal;
-    line-height: normal;
-    color: rgba(0, 0, 0, 0.56);
+	display: inline-block;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 150px;
+	font-weight: normal;
+	line-height: normal;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.resDetail .safety_txt_2 {
+	margin-top: 5px;
+	padding: 0 0 0 20px;
+	border-radius: 0;
+	background: #fff url(https://image.goodchoice.kr/images/web_v3/ico_info.png) 0 3px no-repeat;
+	background-size: 15px auto;
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.56);
+	display: block;
+	overflow: hidden;
+	line-height: 1.5;
+	text-align: left;
+}
+
+.resDetail .total {
+	padding: 10px 0;
+	border-bottom: none;
+	margin-top: 20px;
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.resDetail .payment-info-pc {
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 15px;
+}
+
+
+.resDetail .payment-info-pc__bottom,
+.payment-info-pc__top {
+	display: flex;
+}
+
+.resDetail .payment-info-pc__top {
+	align-items: center;
+}
+
+.resDetail .payment-info-pc .title-container {
+	margin-right: 70px;
+}
+
+.resDetail .payment-info-pc__title {
+	margin: 0 16px 0 0;
+}
+
+/*영수증 버튼*/
+.resDetail .base-button {
+	width: auto;
+	height: 40px;
+	padding: 0 12px;
+	border: 1px solid rgba(0, 0, 0, .08);
+	border-radius: 4px;
+	background: #fafafa;
+	color: rgba(0, 0, 0, .56);
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.resDetail .total b {
+	color: rgb(230, 28, 81);
+	font-weight: bold;
+}
+
+.resDetail .reservationCancel{
+	display: block;
+	margin-top: 25px;
+	font-size: 14px;
+	color: rgb(230, 28, 81);
+}
+
+.resDetail .reservationCancelBT{
+	display: block;
+    margin-top: 10px;
+    width: 100%;
+    border-width: 0;
+    background-color: #feeeee;
+    color: rgb(230, 28, 81);
+    height: 50px;
+    border-radius: 10px;
 }

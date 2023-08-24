@@ -8,3 +8,10 @@ function reserDeleteProc() {
 	let num =  document.getElementById("value1");
 	window.location.href = "http://localhost/reserDeleteProc?no=" + num.value;
 }
+
+
+/*예약 취소 페이지*/
+function resUpdateProc() {
+	let num =  document.getElementById("noValue");
+	window.location.href = "http://localhost/resUpdate?no=" + num.value;
+}

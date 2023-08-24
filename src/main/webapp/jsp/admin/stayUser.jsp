@@ -30,18 +30,33 @@
 			<c:import url="${adminHeaderUrl}" />
 			<!-- 문구 -->
 			<h3>회원 조회</h3>
-			<!-- <!-- 회원 검색 
+			<!-- 회원 검색 -->
 			<div class="userSearch">
-				<select class="userAuth" id="userAuth"
+				<!-- <select class="userAuth" id="userAuth"
 					onchange="selectAuth(this.value)">
 					<option value="">전체</option>
 					<option value="user">사용자</option>
 					<option value="admin">관리자</option>
-				</select>
-				<form id="userSearchForm" class="searchForm">
-					<input type="text" id="userSearchInput" placeholder="">
-					<button type="button" onclick="searchButton()">검색</button>
-				</form>
+				</select> -->
+				<c:set var="option2Name" value="${param.option2Name}" />
+				<c:set var="option2" value="${param.option2}" />
+				<c:choose>
+					<c:when test="${empty option2Name}">
+						<form id="userSearchForm" class="searchForm">
+							<input type="text" id="userSearchInput" placeholder="">
+							<button type="button" onclick="searchButton()">검색</button>
+						</form>
+
+					</c:when>
+					<c:otherwise>
+						<input type="hidden" id="paramOption2Name" value="${param.option2Name}">
+						<form id="userSearchForm" class="searchForm">
+							<input type="text" id="userSearchInput" placeholder=""
+								value="${option2}">
+							<button type="button" onclick="searchButton()">검색</button>
+						</form>
+					</c:otherwise>
+				</c:choose>
 				<select class="userSelet" id="userSelet"
 					onchange="infoName(this.value)">
 					<option disabled selected value="">검색 조건</option>
@@ -50,8 +65,7 @@
 					<option value="name">이름</option>
 					<option value="nickname">닉네임</option>
 				</select>
-
-			</div> -->
+			</div>
 			<div clss="list">
 				<table class="userInfo">
 					<colgroup>

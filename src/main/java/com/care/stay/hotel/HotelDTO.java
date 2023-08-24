@@ -20,7 +20,6 @@ public class HotelDTO {
 	private int minprice;
 	private HotelRoomDTO rooms;
 
-	
 	public HotelRoomDTO getRooms() {
 		return rooms;
 	}

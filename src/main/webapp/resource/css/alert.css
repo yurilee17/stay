@@ -136,3 +136,111 @@
 .colMint2 {
 	color: rgb(2, 134, 118) !important;
 }
+
+
+/* reserUpdateBtn */
+.alert>.resUpDimm {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 410;
+	background: rgba(0, 0, 0, 0.78);
+	touch-action: none;
+}
+
+
+.alert>.reserUpdateBtn {
+	display: none;
+	width: 480px;
+	margin: 0px 0 0 -180px;
+	position: fixed !important;
+	top: 33% !important;
+	left: 47%;
+	z-index: 430 !important;
+	bottom: inherit !important;
+	background: #fff;
+	border-radius: 4px;
+	margin-top: -67.5px;
+}
+
+.alert>.reserUpdateBtn .resUpBtnText {
+	padding: 25px;
+}
+
+.alert>.reserUpdateBtn .resUpBtnText h1 {
+	display: block;
+	width: 100%;
+	font-size: 19px;
+	text-align: center;
+	margin-bottom: 15px;
+	color: rgba(0, 0, 0, 0.56);
+
+}
+
+.alert>.reserUpdateBtn .resUpBtnText p {
+	display: block;
+	padding: 12px 15px;
+	background-color: #fa736f;
+	border-radius: 10px;
+	font-size: 13px;
+	color: #fff;
+	line-height: 125%;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_wrap {
+	background-color: #fa736f;
+	padding: 20px 25px;
+	color: #fff;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_wrap h2 {
+	color: #fff;
+	font-size: 18px;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_wrap p {
+	margin-bottom: 25px;
+	overflow: hidden;
+	font-size: 16px;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_wrap p b {
+	display: block;
+	float: left;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_wrap p span {
+	display: block;
+	float: right;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_wrap p.reserUpRe {
+	font-weight: bold;
+	font-size: 18px;
+	margin-bottom: 0;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_btn {
+	text-align: center;
+	padding: 20px;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_btn button {
+	margin: 0 30px;
+	width: 148px;
+	padding: 12px 0;
+	border: 0;
+	background: none;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.56);
+	font-weight: bold;
+}
+
+.alert>.reserUpdateBtn .resUpBtn_btn button.colMint2 {
+	color: #fa736f !important;
+}
