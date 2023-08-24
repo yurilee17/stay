@@ -46,12 +46,27 @@ function alerOneBtn(text) {
 	}
 }
 
+// 예약 취소 알림
+function resUpdateBtn() {
+	let resUpDimm = document.querySelector(".resUpDimm");
+	let resUpBtnBtn = document.querySelector(".reserUpdateBtn");
+
+
+	if (resUpDimm != null && resUpBtnBtn != null) {
+		resUpDimm.style.display = 'block';
+		resUpBtnBtn.style.display = 'block';
+	}
+}
+
+
 
 // 알림 창 닫기
 function closeLayer() {
 	let bgDimm = document.querySelector(".bgDimm");
+	let resUpDimm = document.querySelector(".resUpDimm");
 	let popTwobtn = document.querySelector(".popTwobtn");
 	let popTwobtn2 = document.querySelector(".popTwobtn2");
+	let resUpBtnBtn = document.querySelector(".reserUpdateBtn");
 
 	if (bgDimm != null && popTwobtn != null) {
 		bgDimm.style.display = 'none';
@@ -61,5 +76,10 @@ function closeLayer() {
 	if (bgDimm != null && popTwobtn2 != null) {
 		bgDimm.style.display = 'none';
 		popTwobtn2.style.display = 'none';
-	} s
+	}
+
+	if (resUpDimm != null && resUpBtnBtn != null) {
+		resUpDimm.style.display = 'none';
+		resUpBtnBtn.style.display = 'none';
+	}
 }

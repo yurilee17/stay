@@ -10,7 +10,7 @@
 
 	<section>
 		<h1>
-			<a class="" href="index" title="여기어때">여기어때</a>
+			<a class="" href="index" title="여기어때">저기어때</a>
 		</h1>
 		<button type="button" class="btn_srch srch_open ">검색</button>
 		<ul class="gnb">
@@ -23,16 +23,6 @@
 				</c:when>
 				<c:otherwise>
 					<li><a href="/reservationList">예약내역</a></li>					
-				</c:otherwise>
-			</c:choose>
-			<c:choose>
-				<c:when test="${empty sessionScope.id }">
-					<li><a href="/login">예약내역</a></li>
-				</c:when>
-				<c:when test="${'admin' == sessionScope.authority }">
-				</c:when>
-				<c:otherwise>
-					<li><a href="/reservationList">예약내역</a></li>
 				</c:otherwise>
 			</c:choose>
 			<li class="over">

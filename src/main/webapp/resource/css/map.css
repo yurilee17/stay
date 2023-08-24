@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+/* 배경 bgDimmMap */
+.bgDimmMap {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 410;
+	background: rgba(0, 0, 0, 0.78);
+	touch-action: none;
+}
+
+/* mapStyle */
+.mapStyle {
+	display: none;
+	position: fixed;
+	z-index: 430 !important;
+	width: 50%;
+	height: 740px;
+	top: 10%;
+	left: 25%;
+}
+
+
+.mapWrap {
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	width: 288px;
+	height: 132px;
+	margin-left: -144px;
+	text-align: left;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	line-height: 1.5;
+}
+
+.mapWrap * {
+	padding: 0;
+	margin: 0;
+}
+
+.mapWrap .info {
+	width: 286px;
+	height: 120px;
+	border-radius: 5px;
+	border-bottom: 2px solid #ccc;
+	border-right: 1px solid #ccc;
+	overflow: hidden;
+	background: #fff;
+}
+
+.mapWrap .info:nth-child(1) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.mapWrap .info .title {
+	padding: 5px 0 0 10px;
+	height: 30px;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.mapWrap .info .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #888;
+	width: 17px;
+	height: 17px;
+	background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+}
+
+.mapWrap .info .close:hover {
+	cursor: pointer;
+}
+
+.mapWrap .info .body {
+	position: relative;
+	overflow: hidden;
+}
+
+.mapWrap .info .desc {
+	position: relative;
+	margin: 13px 0 0 90px;
+	height: 75px;
+}
+
+.mapWrap .desc .ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+.mapWrap .info .img {
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 73px;
+	height: 71px;
+	border: 1px solid #ddd;
+	color: #888;
+	overflow: hidden;
+}
+
+.mapWrap .info:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 50%;
+	bottom: 0;
+	width: 22px;
+	height: 12px;
+	background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.mapWrap .info .link {
+	color: #5085BB;
+}

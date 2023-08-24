@@ -22,6 +22,25 @@
 		<result column="price" property="price" />
 		<result column="paymethod" property="paymethod" />
 		<result column="status" property="status" />	
+
+<!-- 	<resultMap type="com.care.stay.reservation.ReservationDTO" id="ReservationDto">
+		<id column="no" property="no"/>
+		<result column="stayno" property="stayno" />
+		<result column="stayname" property="stayname" />
+		<result column="roomname" property="roomname" />
+		<result column="code" property="code" />
+		<result column="roomcode" property="roomcode" />
+		<result column="roomimage" property="roomimage" />
+		<result column="checkindate" property="checkindate" />
+		<result column="checkoutdate" property="checkoutdate" />
+		<result column="checkintime" property="checkintime" />
+		<result column="checkouttime" property="checkouttime" />
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="mobile" property="mobile" />
+		<result column="price" property="price" />
+		<result column="paymethod" property="paymethod" />
+		<result column="status" property="status" />	 -->
 	</resultMap>
 
 
@@ -33,14 +52,19 @@
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
 			SELECT nvl(max(no),0) + 1 FROM reservation
 		</selectKey>
+
 		INSERT INTO reservation (no, stayno, stayname, roomname, code, roomcode, roomimage, checkindate, checkoutdate, checkintime, checkouttime, id, name, mobile, price, paymethod, status)
 		VALUES(#{no}, #{stayno}, #{stayname}, #{roomname}, #{code}, #{roomcode}, #{roomimage}, #{checkindate}, #{checkoutdate}, #{checkintime}, #{checkouttime}, #{id}, #{name}, #{mobile}, #{price}, #{paymethod}, '예약확정')
 	</insert>
 	
+	<update id="listUp">
+		UPDATE reservation SET status='이용완료' WHERE  TO_CHAR(SYSDATE, 'YYYY-MM-DD') >= checkindate AND TO_CHAR(SYSTIMESTAMP, 'HH24:MI') >= checkintime AND status='예약확정'
+	</update>
+	
 	<select id="resConfirmed" resultMap="ReservationDto">
 		SELECT * FROM reservation
 		WHERE
-		id=#{id} AND status='예약확정' ORDER BY checkindate DESC
+		id=#{id} AND status='예약확정' ORDER BY checkindate ASC
 	</select>
 
 	<select id="resCompleted" resultMap="ReservationDto">
@@ -58,6 +82,21 @@
 	<delete id="delete">
 		DELETE FROM reservation WHERE no=#{no}
 	</delete>
+	
+	<select id="resDetail" resultMap="ReservationDto">
+		SELECT * FROM reservation
+		WHERE
+		no=#{no}
+	</select>
+	
+	<update id="resUpdate">
+		UPDATE reservation
+		SET status='예약취소'
+		WHERE no=#{no}
+	</update>
+	
+	
+
 
 </mapper>
 

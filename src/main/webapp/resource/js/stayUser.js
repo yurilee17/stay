@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	let userSearchInput = document.getElementById("userSearchInput")
 
-	loadSelectedValue();
+	/*loadSelectedValue();*/
+	userSeletNext();
 	userSearchInput.addEventListener('keydown', handleEnterKey);
 })
 
@@ -18,7 +19,7 @@ function handleEnterKey(event) {
 }
 
 /* 기존에 선택 된 값 유지 */
-function loadSelectedValue() {
+/*function loadSelectedValue() {
 	let userAuth = document.getElementById('userAuth'); // 권한
 	let userAuthValue = localStorage.getItem('userAuthValue');
 
@@ -38,7 +39,24 @@ function loadSelectedValue() {
 		userSelet.value = userSeletValue;
 	}
 }
+*/
 
+/* 기존에 선택 된 옵션2이름 유지 */
+function userSeletNext() {
+	let paramOption2Name = document.getElementById('paramOption2Name'); // 검색어 종류 = "${param.option2Name}";
+	let userSelet = document.getElementById('userSelet'); // 검색어 종류
+	
+	if (paramOption2Name != null) {
+		if (paramOption2Name.value != "") {
+			for (var i = 0; i < userSelet.options.length; i++) {
+				if (userSelet.options[i].value === paramOption2Name.value) {
+					userSelet.selectedIndex = i; // 해당 옵션 선택
+					infoNmae = paramOption2Name.value;
+				}
+			}
+		}
+	}
+}
 
 function selectAuth(value) {
 
@@ -67,13 +85,14 @@ function searchButton() {
 	/*infoName(userSeletValue)*/
 	let userSearchInput = document.getElementById("userSearchInput")
 	info = userSearchInput.value;
-	
+
 	localStorage.setItem('userSearchValue', info);
 	searchUser()
 }
 
 /*selectElement.selectedIndex = i;*/
 function searchUser() {
+	
 	let url = "";
 	if (auth != "" && info != "") {
 		url = "stayUser?option1Name=authority" + "&option1=" + auth + "&option2Name=" + infoNmae

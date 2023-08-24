@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <!-- saved from url=(0026)https://www.goodchoice.kr/ -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,7 +21,12 @@
     
     </head>
 <body class="pc">
-
+ 	<c:set var="currentDate" value="<%= new java.util.Date() %>" />
+    <c:set var="dateFormat" value="yyyy-MM-dd" />
+    <fmt:formatDate var="formattedDate" pattern="yyyy-MM-dd" value="${currentDate}" />
+    
+   
+</body>
 <!-- Wrap -->
 <div class="wrap main_wrap show">
     <!-- Header -->
@@ -37,8 +43,13 @@
 		<!-- Link -->
 		<div class="main_link">
 			<ul>
+<<<<<<< HEAD
 				<li><a href="${context }motellist" menu-link="1"><span class="ico_01">&nbsp;</span><p>모텔</p></a></li>
 				<li><a href="${context }hotellist" menu-link="2"><span class="ico_02">&nbsp;</span><p>호텔·리조트</p></a></li>
+=======
+				<li><a href="${context }motel" menu-link="1"><span class="ico_01">&nbsp;</span><p>모텔</p></a></li>
+				<li><a href="${context }Main?hdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="2"><span class="ico_02">&nbsp;</span><p>호텔·리조트</p></a></li>
+>>>>>>> branch 'master' of https://github.com/yurilee17/stay/
 				<li><a href="#" menu-link="3"><span class="ico_03">&nbsp;</span><p>펜션</p></a></li>
 				<li><a href="#" menu-link="6"><span class="ico_04">&nbsp;</span><p>게스트하우스</p></a></li>
 				<li><a href="#" menu-link="5"><span class="ico_05">&nbsp;</span><p>캠핑·글램핑</p></a></li>
@@ -74,4 +85,6 @@
 <script type="text/javascript" src="../../resource/js/main.js"></script>
 <script type="text/javascript" src="../../resource/js/reservation.js"></script>
 
+
+<c:import url="/footer" /> 
 </body></html>
