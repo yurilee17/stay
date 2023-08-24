@@ -32,7 +32,6 @@
     <!-- Header -->
     
 	<c:import url="/header"/>
-		<c:import url="/map" />
         <!-- CSS -->
     <link rel="stylesheet" href="../../resource/css/swiper.css">
 	<link rel="stylesheet" href="../../resource/css/main.css">
@@ -44,7 +43,6 @@
 		<!-- Link -->
 		<div class="main_link">
 			<ul>
-				<li><a href="#" onclick="openMap()">지도</a></li>
 				<li><a href="${context }Motel?mdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="1"><span class="ico_01">&nbsp;</span><p>모텔</p></a></li>
 				<li><a href="${context }Main?hdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="2"><span class="ico_02">&nbsp;</span><p>호텔·리조트</p></a></li>
 

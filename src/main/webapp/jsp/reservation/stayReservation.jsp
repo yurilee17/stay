@@ -70,7 +70,7 @@
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${motel.mname}</span></p> 
 				<p><strong>객실타입/기간</strong><span class="roomname">${motelroom.mroomname}</span> / </p> 
-				<p><strong>체크인</strong>${param.checkindate}${motel.mstaycheckin}</p> 
+				<p><strong>체크인</strong>${param.checkindate} ${motel.mstaycheckin}</p> 
 				<p><strong>체크아웃</strong>${param.checkoutdate} ${motel.mstaycheckout}</p>
 			</section> 	
 			<section class="total_price_pc">
@@ -186,7 +186,7 @@
 					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
 					<input type="hidden" name="stayno" value="${gh.no }">					
 					<input type="hidden" name="code" value="${gh.gcode }">
-					<input type="hidden" name="roomcode" value="${gh.groomcode }">
+					<input type="hidden" name="roomcode" value="${ghroom.groomcode }">
 					<input type="hidden" name="roomimage" value="${ghroom.groomimage }">
 					<input type="hidden" name="stayname" value="${gh.gname}">
 					<input type="hidden" name="roomname" value="${ghroom.groomname}">

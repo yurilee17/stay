@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <title>호텔이름 | 저기어때</title>
+    <title> ${motel.mname} | 저기어때</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,15 +79,15 @@
 	<div class="hpTop">
 
 		<div class="hpTLeft">
-			<img alt="호텔이름 | 전경" class="swiper-lazy swiper-lazy-loaded"
-			 src="//image.goodchoice.kr/resize_490x348/affiliate/2020/07/28/5f1fef8232c3e.jpg">
+			<img alt="모텔이름 | 전경" class="swiper-lazy swiper-lazy-loaded"
+			 src="${motel.mimage}">
 		</div>
 		<div class="hpTRight">
 			  <td>
                	<h2 class="name">${motel.mname }</h2>
                 <p>${motel.maddress } ${motel.mdetailaddress }</p>
                	<br>
-               	<span>***** ${motel.mrating }</span>
+               	<%-- <span>***** ${motel.mrating }</span> --%>
               </td>
 		</div>
 	</div>
@@ -201,9 +201,24 @@
 		<div class="resPage" id="reservationP" >
 			
 			<input type="text" id="calendars" name="calendars" value="" />
+			
+			<script type="text/javascript">	
+				$(function() {
+			        // 로컬 스토리지에서 저장된 값을 가져옵니다.
+			        var checkindate = localStorage.getItem("checkindate");
+			        var checkoutdate = localStorage.getItem("checkoutdate");
+			       
+			        
+			        // 가져온 값을 <input> 요소의 value에 설정합니다.
+			        if (${param.checkindate} && ${param.checkoutdate}) {
+			            var combinedValue = "${param.checkindate}" + " ~ " + "${param.checkoutdate}";
+			            $('#calendar').val(combinedValue);
+			        }
+			    });
+			
+			</script>				
 				
-				
-			<script>
+			<!-- <script>
 
 				$(function () {
 	         	   $('#calendars').daterangepicker({
@@ -238,11 +253,11 @@
 	         	   
 	       		 });
 				
-				</script>	
+				</script> -->	
           <article class="room_info">             
              <c:choose>
                   <c:when test="${empty motelrooms }">
-                    <h3>해당 숙소에 등록된 객실 DB가 없습니다.</h3>
+                    <h3>No motelroom information available.</h3>
                   </c:when>
                   <c:otherwise>
                     <c:forEach var="motelroom" items="${ motelrooms}">
@@ -290,7 +305,7 @@
                                   <span>퇴실시간</span>익일 ${motel.mstaycheckout }시까지&nbsp;
                                 </li>
                               </ul>
-								<button type="button" onclick="location.href='stayReservation?no=${motel.no}&stayType=motel&mroomcode=${motelroom.mroomcode}&price=${motelroom.mstayprice}'">숙박 예약</button>                          
+								<button type="button" onclick="location.href='stayReservation?no=${motel.no}&stayType=motel&mroomcode=${motelroom.mroomcode}&price=${motelroom.mstayprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'">숙박 예약</button>                          
                             </div>
                           </div>
                         </div>                      

@@ -140,7 +140,7 @@
   	 SELECT m.*,
 			mr.*
 	 FROM motel m 
-	 JOIN motelroom mr  ON mr.mcode = m.gmcode and mr.no = m.no
+	 JOIN motelroom mr  ON mr.mcode = m.mcode and mr.no = m.no
   	WHERE m.mdetailregion = #{selectedText}
 
 	    <if test="moption != ''">
@@ -150,7 +150,7 @@
        		 mr.moption LIKE CONCAT('%'|| #{option}, '%')
         </foreach>
         </if>
-        AND mr.mpeople >= #{mpeople}
+
 	</select>    
 	
 	<select id="resNum">

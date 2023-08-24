@@ -129,7 +129,7 @@
 
 
 		// 지도 열기
-		function openMap() {
+		function openGmap() {
 			let bgDimmMap = document.querySelector(".bgDimmMap");
 			let mapL = document.getElementById("map");
 
@@ -141,8 +141,6 @@
 			
 		}
 	</script>
-
-
 
 </body>
 </html>

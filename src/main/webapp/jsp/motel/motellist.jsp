@@ -53,14 +53,12 @@
 
 		<!-- Header -->
 		<c:import url="/header" /> 
-		<c:import url="/map" />
+		<c:import url="/motelmap" />
 		<!-- CSS -->
 		<link rel="stylesheet" href="../../resource/css/reset.css">
 		<link rel="stylesheet" href="../../resource/css/hotel.css">
 
 	</div>
-
-	<!-- //Wrap   여기에서 검색버튼빼고 지우는게 좋겠지?  -->
 
 	<!-- Script -->
 	<!-- Library -->
@@ -451,10 +449,10 @@
 
 						        
 						         /* 선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침 */
-						            addDataToURL(moption, mpeople);
+						            addDataToURL(moption);
 						         
 							       
-						          var mpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
+						          /* var mpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴   */  
 						     	  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
 						     	  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
 					     		  var checkoutdate = localStorage.getItem("checkoutdate"); // checkoutdate  체크아웃 값을 가져옴 
@@ -462,12 +460,12 @@
 						    }  
  
 						   	<!--  선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침하는 함수 -->
-						     	    function addDataToURL(moption, mpeople) {
+						     	    function addDataToURL(moption) {
 						     	    	
 						     	    	 var urlParams = new URLSearchParams(window.location.search);
-										 var hdetailregionV = urlParams.get('mdetailregion');
+										 var mdetailregionV = urlParams.get('mdetailregion');
 						     		   
-						     		  var mpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
+						     		  /* var mpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴     */
 						     		  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
 						     		  var checkoutdate = localStorage.getItem("checkoutdate"); // checkoutdate  체크아웃 값을 가져옴 
 						       
@@ -500,13 +498,13 @@
 							 	        /* var htypeParam = htype.length > 0 ? encodeURIComponent(htype.join(',')) : "";
 							 	        var hbedtypeParam = hbedtype.length > 0 ? encodeURIComponent(hbedtype.join(',')) : ""; */
 							 	        var moptionParam = moption.length > 0 ? encodeURIComponent(moption.join(',')) : "";
-							 	        var mpeopleParam = mpeople !== null && mpeople !== "" ? encodeURIComponent(mpeople) : "";
+							 	        /* var mpeopleParam = mpeople !== null && mpeople !== "" ? encodeURIComponent(mpeople) : ""; */
 
 							 	        // 각 파라미터에 대한 값을 할당하여 URL에 추가
 							 	        /* updatedURL += "&htype=" + htypeParam;
 							 	        updatedURL += "&hbedtype=" + hbedtypeParam; */
-							 	        updatedURL += "&mcomfort=" + mcomfortParam;
-							 	        updatedURL += "&mpeople=" + mpeopleParam;
+							 	        updatedURL += "&moption=" + moptionParam;
+							 	        /* updatedURL += "&mpeople=" + mpeopleParam; */
 
 							 	        // 페이지 새로고침
 							 	        window.location.href = updatedURL;
@@ -545,7 +543,7 @@
 
 					<!-- <li><a href="#">낮은 가격 순</a></li>
 					<li><a href="#">높은 가격 순</a></li> -->
-					<li><a href="#" onclick="openMap()">지도</a></li>
+					<li><a href="#" onclick="openMmap()">지도</a></li>
 
 				</ul>
 				<c:choose>

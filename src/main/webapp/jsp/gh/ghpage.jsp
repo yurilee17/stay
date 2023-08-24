@@ -85,7 +85,7 @@
 		<div class="hpTRight">
 			  <td>
                	<h2 class="name">${gh.gname}</h2>
-                <p>${gh.gaddress}</p>
+                <p>${gh.gaddress} ${gh.gdetailaddress }</p>
                	<br>
                <!-- 	<span>***** (별점평균이 들어가야함)</span> -->
               </td>
@@ -269,7 +269,7 @@
 	                           <b><span>${ghroom.gprice}</span></b>	                
                            	</div>
                            <%-- 	<button type="button" onclick ="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}'" >예약하기</button> --%>
-                           	<button type="button"  onclick="location.href='stayReservation?no=${gh.no}&stayType=guesthouse&groomcode=${ghroom.groomcode}&gprice=${ghroom.gprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
+                           	<button type="button"  onclick="location.href='stayReservation?no=${gh.no}&stayType=gh&groomcode=${ghroom.groomcode}&gprice=${ghroom.gprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
                         </td>
                        
                     </tr>
