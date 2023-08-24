@@ -5,6 +5,130 @@
   
 <mapper namespace="com.care.stay.camping.CampingMapper">
 
+	<resultMap type="com.care.stay.camping.CampingDTO" id="CampingDto">
+		<id column="no" property="no"/>
+		<result column="ccode" property="ccode"/>
+		<result column="cname" property="cname"/>
+		<result column="cregion" property="cregion"/>
+		<result column="cdetailregion" property="cdetailregion"/>
+		<result column="crating" property="crating"/>
+		<result column="caddress" property="caddress"/>
+		<result column="cdetailaddress" property="cdetailaddress"/>
+		<result column="cimage" property="cimage"/>
+		<result column="cinfo" property="cinfo"/>
+		<result column="ccheckintime" property="ccheckintime"/>
+		<result column="ccheckouttime" property="ccheckouttime"/>
+		<result column="ctype" property="ctype"/>
+		<result column="minprice" property="minprice"/>
+		<collection property="rooms" resultMap="CampingRoomDto" />
+	</resultMap> 
+
+	
+	
+ 	 <resultMap type="com.care.stay.camping.CampingRoomDTO" id="CampingRoomDto">
+        <result  column="no" property="no" />
+        <result  column="ccode" property="ccode" />
+        <result  column="croomcode" property="croomcode" />
+        <result  column="croomname" property="croomname" />
+        <result  column="croomimage" property="croomimage" />
+        <result  column="croomnumber" property="croomnumber" />
+        <result  column="cprice" property="cprice" />
+        <result  column="cpeople" property="cpeople" />
+        <result  column="ccomfort" property="ccomfort" />
+    </resultMap>
+    
+
+
+	 
+	 
+	  <resultMap type="com.care.stay.reservation.ReservationDTO" id= "ReservationDto">
+        <result  column="no" property="no" />
+        <result  column="stayno" property="stayno" />
+        <result  column="stayname" property="stayname" />
+        <result  column="roomname" property="roomname" />
+        <result  column="code" property="code" />
+        <result  column="roomcode" property="roomcode" />
+        <result  column="roomimage" property="roomimage" />
+        <result  column="checkindate" property="checkindate" />
+        <result  column="checkoutdate" property="checkoutdate" />
+        <result  column="checkintime" property="checkintime" />
+        <result  column="checkouttime" property="checkouttime" />
+        <result  column="id" property="id" />
+        <result  column="name" property="name" />
+        <result  column="price" property="price" />
+        <result  column="paymethod" property="paymethod" />
+        <result  column="status" property="status" />
+    </resultMap>
+	 
+
+
+<!--  전체 다 나오는 코드인데 처음부터 지역 지정해서 하는 코드로 바꿔보려함! (아래) -->
+  	<!-- <select id="hotellist" resultMap="HotelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
+		himage, hinfo, hcheckintime, hcheckouttime, htype
+		FROM hotel ORDER BY no DESC)AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>   -->
+	
+		<!-- 지역별로 나오게하기  -->
+ 	<select id="Main" resultMap="CampingDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, ccode, cname, cregion, cdetailregion, crating, caddress, cdetailaddress, 
+		cimage, cinfo, ccheckintime, ccheckouttime, ctype, minprice
+		FROM camping WHERE cdetailregion = #{selectedText})AAA)BBB
+		 WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
+
+ 
+   <select id="MainCheck" resultMap="CampingDto">
+  	 SELECT c.*,
+			cr.*
+	 FROM camping c 
+	 JOIN campingroom cr  ON cr.ccode = c.ccode and cr.no = c.no
+  	WHERE c.cdetailregion = #{selectedText}
+		  	 <if test="ctype != ''">
+		  	 AND c.ctype = #{ctype}
+		  	  </if>
+  <!--     <if test="cbedtype != ''">
+	   		AND(
+	       <bind name="cbedtypeArray" value="cbedtype.split(',')" />
+            cr.cbedtype IN
+            <foreach item="bedtype" collection="cbedtypeArray" open="(" separator="," close=")">
+                #{bedtype}
+          	</foreach>)
+	    </if>  -->
+	    <if test="ccomfort != ''">
+	    AND 
+	      <bind name="ccomfortArray" value="ccomfort.split(',')" />
+	      <foreach item="comfort" collection="ccomfortArray" open="(" separator="or" close=")">
+       		 cr.ccomfort LIKE CONCAT('%'|| #{comfort}, '%')
+        </foreach>
+        </if>
+        AND cr.cpeople >= #{cpeople}
+ 
+	</select>    
+	
+	<select id="resNum">
+	SELECT count(*) FROM reservation WHERE code = #{ccode} AND stayno = #{no} AND roomcode = #{croomcode} AND ((checkindate >= #{checkindate} AND #{checkoutdate} >= checkoutdate) OR ( #{checkindate} >= checkindate AND checkoutdate >= #{checkindate}) OR (#{checkoutdate} >= checkindate  AND checkoutdate >= #{checkoutdate}))
+	</select> 
+	
+	<select id="getAllCampings" resultType="com.care.stay.camping.CampingDTO">
+		SELECT * FROM camping
+	</select>
+	
+	<select id="findMinPriceByCamping" resultType="java.lang.Integer">
+		SELECT COALESCE(MIN(cprice), 0) FROM campingroom WHERE no = #{no}
+	</select>
+	
+	<update id="updatePrices" parameterType="com.care.stay.camping.CampingDTO">
+		UPDATE camping
+		SET minprice=#{minprice}
+		WHERE no=#{no}
+	</update>
+	
 	<resultMap type="com.care.stay.camping.CampingDTO" id="campingDto">
 		<id column="no" property="no"/>																		
 	</resultMap>
@@ -60,5 +184,6 @@
 		INSERT INTO campingroom (no, ccode, croomcode, croomname, croomimage, croomnumber, cprice, cpeople, ccomfort)
 		VALUES(#{no}, #{ccode}, #{croomcode}, #{croomname}, #{croomimage}, #{croomnumber}, #{cprice}, #{cpeople}, #{ccomfort})
 	</insert>	
+	
 	
 </mapper>

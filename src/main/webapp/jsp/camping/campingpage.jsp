@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <title> ${hotel.hname} | 저기어때</title>
+    <title> ${camping.cname} | 저기어때</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,12 +80,12 @@
 
 		<div class="hpTLeft">
 			<img alt="호텔이름 | 전경" class="swiper-lazy swiper-lazy-loaded"
-			 src="${hotel.himage}"  width="490px" height="348px">
+			 src="${camping.cimage}"  width="490px" height="348px">
 		</div>
 		<div class="hpTRight">
 			  <td>
-               	<h2 class="name">${hotel.hname}</h2>
-                <p>${hotel.haddress}</p>
+               	<h2 class="name">${camping.cname}</h2>
+                <p>${camping.caddress}</p>
                	<br>
                <!-- 	<span>***** (별점평균이 들어가야함)</span> -->
               </td>
@@ -256,20 +256,20 @@
 				
 				</script>	 -->
 	<c:choose>
-		<c:when test="${not empty hotelrooms}">
-			<c:forEach var="hotelroom" items="${ hotelrooms}">					
+		<c:when test="${not empty compingrooms}">
+			<c:forEach var="compingroom" items="${ compingrooms}">					
                 <table>
                 	<tr>
                         <td  width="300px" height="250px">
-                            <img src="${hotelroom.hroomimage}" alt="객실이미지">
+                            <img src="${compingroom.croomimage}" alt="객실이미지">
                         </a></td>
                         <td>
                            <div class=room>
-                             <h2 class="name">${hotelroom.hroomname}</h2>                            
+                             <h2 class="name">${compingroom.croomname}</h2>                            
 	                            <br><br>
-	                           <b><span>${hotelroom.hprice}</span></b>	                
+	                           <b><span>${compingroom.cprice}</span></b>	                
                            	</div>
-                           	<button type="button"  onclick="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
+                           	<button type="button"  onclick="location.href='stayReservation?no=${camping.no}&stayType=camping&croomcode=${campingroom.croomcode}&cprice=${campingroom.cprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
                         </td>
                        
                     </tr>
@@ -278,7 +278,7 @@
            </c:when>
 			<c:otherwise>
 				<!-- hotelrooms 변수가 비어있을 때의 처리 -->
-				<p>No hotelroom information available.</p>
+				<p>No campingroom information available.</p>
 			</c:otherwise>
 		</c:choose>
 		
@@ -356,7 +356,7 @@ Bath Amenity (치약, 칫솔 무료)<br>
 호텔은 고객과 맹인 안내견(보조견)이 호텔을 이용함에 있어 불편함이 없도록 세심한 배려를 제공합니다</div>
    			
    			<div class="serviceInfo" onclick="clickshow(this,'serviceStory')">편의시설 및 서비스</div>
-   			<div id="serviceStory" style="display: none;"> 편의시설 및 서비스 내용이 들어가야겠지.... 이거 할 수 있을까나..... 흑흑</div>
+   			<div id="serviceStory" style="display: none;"> 편의시설내용입니다 </div>
    			
    			<div class="emptyInfo"></div>
    			
