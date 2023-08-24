@@ -5,6 +5,7 @@ package com.care.stay.inquiry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 
@@ -58,6 +59,11 @@ public class InquiryService {
 	public void inquiryForm(String cp, Model model) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String inquiryForm(MultipartHttpServletRequest multi) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

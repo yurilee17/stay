@@ -26,7 +26,7 @@ $.ajax({
     },
     error: function(xhr, status, error) {  // 서버 응답 실패 시 호출되는 콜백 함수
         console.error(xhr.statusText);
-        alert("제출에 실패하였습니다. 관리자에게 문의하세요.");
+        alert("문의 등록에 실패 하였습니다.");
     }
 });
     });
@@ -39,7 +39,7 @@ function validateForm() {
     const inputFields = document.querySelectorAll(".js-validate-input");
     for (const inputField of inputFields) {
         if (inputField.value.trim() === "") {
-            alert("모든 필드를 입력해주세요.");
+            alert("모든 문의사항을 입력해주세요.");
             return false;
         }
     }

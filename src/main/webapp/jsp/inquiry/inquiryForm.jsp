@@ -344,8 +344,6 @@
 															<option value="6"  >게스트하우스</option>
 															<option value="5"  >캠핑/글램핑</option>
 															<option value="7"  >한옥</option>
-															<option value="10"  >액티비티</option>
-															<option value="11"  >현금성(유상)포인트</option>
 													</select>
 
 						<!-- <b>문의유형</b>
