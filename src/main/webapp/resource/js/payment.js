@@ -91,21 +91,17 @@
 
         
 		
-		/* 카카오페이가 아니면 requestPay 함수가 실행되지 않도록.... 해야되는데 안 됨*/
-        document.addEventListener("DOMContentLoaded", function() {
-            const paymentSelect = document.getElementById("payment-select");
-            const payButton = document.querySelector(".agreePayment");
-
-            payButton.addEventListener("click", function() {
-                const selectedPayment = paymentSelect.value;
-                if (selectedPayment === "KAKAO") {
-                    requestKakao(); // 결제 수단이 "KAKAO"인 경우에만 requestKakao() 함수 실행
-                } else {
-                    // 다른 결제 수단에 대한 처리를 추가할 수 있습니다.
-                    console.log("선택한 결제 수단이 KAKAO가 아닙니다.");
-                }
-            });
-        });
+		document.addEventListener("DOMContentLoaded", function() {
+	    const paymentSelect = document.getElementById("payment-select");
+	
+	    paymentSelect.addEventListener("change", function() {
+	        const selectedPayment = paymentSelect.value;
+	        if (selectedPayment !== "KAKAO") {
+	            alert("현재 지원중인 결제수단이 아닙니다.");
+	            paymentSelect.value = "KAKAO"; // 카카오페이 선택으로 되돌림
+	        }
+	    });
+		});
 
 
 

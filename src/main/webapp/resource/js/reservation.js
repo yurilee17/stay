@@ -2,27 +2,23 @@ let timer = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
 	inputEvent();
+})
 
-
-/*	const checkAll = document.querySelector('input[name="checkAll"]');
-	
-	const checkOneList = document.querySelectorAll('input[name="checkOne"]');
-	
-	checkAll.addEventListener("click", function() {
-		checkOneList.forEach(function(checkOne) {
-			checkOne.checked = checkAll.checked;
-		});
+$(document).ready(function() {
+	$("input[name=checkAll]").click(function() {
+		if($("input[name=checkAll]").is(":checked")) $("input[name=checkone]").prop("checked", true);
+		else $("input[name=checkone]").prop("checked", false);
 	});
 	
-	checkOneList.forEach(function(checkOne) {
-		checkOne.addEventListener("click", function() {
-			const allChecked = Array.from(checkOneList).every(function(checkOne) {
-				return checkOne.checked;
-			});
-			checkAll.checked = allChecked;
-		});
-	});*/
-})
+	$("input[name=checkone]").click(function() {
+		var total = $("input[name=checkOne]").length;
+		var checked = $("input[name=checkOne]:checked").length;
+		
+		if(total != checked) $("input[name=checkAll]").prop("checked", false);
+		else $("input[name=checkAll]").prop("checked", true); 
+	});
+});
+
 
 
 /* 예약내역 팝업 공통 */
@@ -86,16 +82,6 @@ function pop_agree_03(){ // 개인정보 제 3자 제공 동의 팝업
 	// iscroll_run_policy02(); // iscroll
 	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
 }
-
-function pop_agree_04(){ // 만 14세 이상 확인
-	prevent_on();
-	prevent_scroll();
-	$('.pop_agree_04').fadeIn(150);
-	$('.bg_dimm').fadeIn(150);
-	// iscroll_run_policy02(); // iscroll
-	$('.fix_title').bind('touchmove',function(i){i.preventDefault()}); // 타이틀 터치 방지
-}
-
 
 
 /*input 예외 처리*/
@@ -176,11 +162,11 @@ function btnSend() {
 			timer = 180;
 		}
 	} else if (mobile.value.length <= 9 && mobile.value.length >= 1) {
-		alert_Msg("휴대폰 번호 형식이 아닙니다.");
+		alert("휴대폰 번호 형식이 아닙니다.");
 	} else if (btnSend.classList.contains('send')) {
-		alert_Msg("1분 후에 다시 시도해주세요.");
+		alert("1분 후에 다시 시도해주세요.");
 	} else {
-		alert_Msg("휴대폰 번호를 입력하세요.");
+		alert("휴대폰 번호를 입력하세요.");
 	}
 
 	sendMsg();
@@ -196,9 +182,9 @@ function btnOk() {
 		sendDigit();
 
 	} else if (digit.value.length <= 3 && digit.value.length >= 1) {
-		alert_Msg("인증 번호 형식이 아닙니다.");
+		alert("인증 번호 형식이 아닙니다.");
 	} else {
-		alert_Msg("인증 번호를 입력하세요.");
+		alert("인증 번호를 입력하세요.");
 	}
 
 }
@@ -269,17 +255,17 @@ function sendDigitProc() {
 		if (!pro) {
 			// 응답을 이미 처리했으면 두 번째 호출 무시
 			pro = true;
-			
 			var buyer_phone = $('#buyer_phone'); // 휴대폰 번호 엘리먼트 (가정)
 			var phoneVerify = buyer_phone.data('phoneverify'); // 휴대폰 번호 인증 여부
-
 			
 			if (xhr.responseText === '인증 성공') {
 				buyer_phone.data('phoneverify', 'Y');
 				alert_Msg("인증에 성공하였습니다.");
-				document.getElementById('verificationCode').style.display = 'none';
+				document.querySelector('.btn_send.btn_confirm.phone-auth-btn').style.display = 'none';
+			    document.querySelector('.alert_txt.error-message').style.display = 'none';
+			    document.getElementById('verificationCode').style.display = 'none';
 			} else if (xhr.responseText === '인증 실패') {
-				alert_Msg("인증번호와 다르게 입력되었습니다. 재입력해 주시기 바랍니다.");
+				alert("인증번호와 다르게 입력되었습니다. 재입력해 주시기 바랍니다.");
 				console.log("test 결과: " + xhr.responseText);
 			}
 		}
@@ -323,19 +309,15 @@ function payment_confirm(){
     }
 
     if ($('#verificationCode').length > 0) {
-        if(buyer_phone.data('phoneverify') != 'Y'
-            || buyer_phone.data('phoneverify') === undefined) {
+        if(xhr.responseText !== '인증 성공') {
             alert_Msg('휴대폰 번호 미인증 되었습니다.');
             return false;
         }
     }
 
-/*    if($('#order_form').find('input[name=checkin_type]').val()==1){
-        if($('input[name=dayuse_select]').val()=="N"){
-            alert_Msg('이용시간을 선택해주세요.');
-            return false;
-        }
-    }*/
+    if($('#order_form').find('input[name=checkin_type]').val()==1){
+
+    }
 
     buyer_phone.val(buyer_phone.val().replace(/\-/ig, ''));
 

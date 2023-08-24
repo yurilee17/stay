@@ -42,12 +42,7 @@ public class ReservationController {
 //			Model model) {
 //		/*
 //
-//		String loginId = (String) session.getAttribute("id");
-//		
-//		if (loginId == null || loginId.isEmpty()) {
-//			return "redirect:login";
-//		} 
-//		*/
+
 //		System.out.println("");
 //		System.out.println(rc + "는 객실 번호입니다.");
 //		
@@ -69,6 +64,13 @@ public class ReservationController {
         @RequestParam(value = "croomcode", required = false) String croomcode,
         Model model) {
 
+		String loginId = (String) session.getAttribute("id");
+		
+		if (loginId == null || loginId.isEmpty()) {
+			return "redirect:login";
+		} 
+
+		
         model.addAttribute("stayType", stayType);
 
         if ("motel".equals(stayType)) {
@@ -138,7 +140,7 @@ public class ReservationController {
 	@PostMapping("reservationProc")
 	public String stayreservationProc(HttpServletRequest request) {
 		rservice.stayReservationProc(request);
-		return "reservation/paymentComplete";
+		return "member/reservationList";
 	}
 	
 	@RequestMapping("paymentCancel")

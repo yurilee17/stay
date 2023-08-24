@@ -316,13 +316,6 @@
 
 	</div>
 	</form>
-		
-<!-- 		<div id="pay_background">
-			<div id="pay_box">
-				<a href="https://reservation.goodchoice.kr/checkout/535ce80a-a6ec-4238-9795-3015a628a40b#">X</a> 
-				<iframe id="pay_frame" style="position: relative; background: #fff; overflow: auto" src="./숙박예약_files/saved_resource.html"></iframe>
-			</div>
-		</div>  -->
 			
 		<div>
 			<div class="layer pop_title reserve_chk">
