@@ -91,20 +91,6 @@ public class AdminStayController {
 	/* 숙소 상세 DB 페이지로 넘어가는 과정. 각 숙소별로 상세페이지가 조금씩 다른데다 
 	   숙소 DB와 달리 종류는 정해진 상태이므로 If를 주고 페이지를 고정된 상태로 출력함 */
 
-//	@GetMapping("stayDetailRegister")
-//	public String stayDetailRegister(
-//			@RequestParam(value="no", required = false)String n, 
-//			Model model) {
-//			
-//		MotelDTO motel = service.stayContent(n);
-//		if(motel == null)
-//			return "redirect:stayInfo";
-//		
-//		model.addAttribute("motel", motel);
-//		return "admin/stayDetailRegister";
-//	}
-
-
 	@RequestMapping("stayDetailRegister")
 	public String stayDetailRegister(
 			@RequestParam(value="no", required = false)String n,

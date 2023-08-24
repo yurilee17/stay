@@ -18,42 +18,15 @@ import jakarta.servlet.http.HttpSession;
 public class Hotelcontroller {
 	@Autowired private HotelService hotelService;
 	@Autowired private HttpSession session;
-	
-	  //hotellist 첫화면 
-//	  @RequestMapping("hotellist") 
-//	  	public String hotellist(
-//	  
-//	  @RequestParam(value="currentPage", required = false)String cp, Model model) {
-//	  
-//	  System.out.println("hotellist나오는지 알려주세요");
-//	  
-//	  service.hotellist(cp,model); 
-//	  	return "hotel/hotellist"; 
-//	  	}
-	  
-/* 최저가.. */	  
 
-//	    @RequestMapping("hotellist")
-//	    public String hotelsList(Model model) {
-//	        List<HotelDTO> hotels = service.getAllHotelsWithMinPrices();
-//	        model.addAttribute("hotels", hotels);
-//	        return "hotel/hotellist";
-//	    }
 	
-	  @RequestMapping("hotellist") 
+	@RequestMapping("hotellist") 
   	public String hotellist(
-  
   @RequestParam(value="currentPage", required = false)String cp, Model model) {
-	
 	  System.out.println("hotellist나오는지 알려주세요");
-	 
-//	  hotelService.hotellist(cp,model); 
 	  	return "hotel/hotellist"; 
 	  	}
 
-	  
-
-	  
 	  // 뭔가를 선택했을 때 나오는 화면 
 	  @RequestMapping("Main") 
 	  	public String MainCheck(

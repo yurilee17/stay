@@ -231,41 +231,6 @@ public class HotelService {
 		return hotel;
 	}
 
-	public String stayModifyProc(MultipartHttpServletRequest multi) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-//	public void hotellist(String cp, Model model) {
-//
-//		int currentPage = 1;
-//
-//		try {
-//			currentPage = Integer.parseInt(cp);
-//		} catch (Exception e) {
-//			currentPage = 1;
-//		}
-//
-//		int pageBlock = 6; // 한 페이지에 보일 데이터의 수
-//		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
-//		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
-//
-//		ArrayList<HotelDTO> hotels = hotelMapper.hotellist(begin, end);
-//		
-//		int totalCount = hotelMapper.count();
-//		String url = "hotellist?currentPage=";
-//		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
-//
-//		System.out.println("SHageBlock " + pageBlock);
-//		System.out.println("SHtotalCount " + totalCount);
-//
-//
-//		model.addAttribute("hotels", hotels);
-//		model.addAttribute("result", result);
-//		model.addAttribute("currentPage", currentPage);
-//
-//	}
-
 	// 지역별 호텔리스트 나오게
 	public void Main(String selectedText, String cp, Model model) {
 
@@ -391,6 +356,11 @@ public class HotelService {
 
 		}
 
+	}
+
+	public String stayModifyProc(MultipartHttpServletRequest multi) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

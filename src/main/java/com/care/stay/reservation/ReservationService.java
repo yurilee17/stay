@@ -138,33 +138,4 @@ public class ReservationService {
     	return responseEntity.getBody();
     }
  
-    
-//    public JSONObject requestPay(String stayname, PayDTO PayDTO, List<ReservationDTO> Reservations, int totalCount) {
-//    	String OrderId = PayDTO.getNo();
-//    	
-//    	//header
-//    	HttpHeaders httpHeaders = new HttpHeaders();
-//    	httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//    	httpHeaders.add("Authorization", "KakaoAK " + kakaoAdminKey);
-//    	
-//    	//body
-//    	MultiValueMap<String, Object> multiValueBody = new LinkedMultiValueMap<>();
-//    	multiValueBody.add("cid", cid);
-//    	multiValueBody.add("orderid", cid);
-//    	multiValueBody.add("userid", session.getAttribute("id"));
-//    	multiValueBody.add("stayname", stayname);
-//    	multiValueBody.add("totalprice", PayDTO.getTotalprice());
-//    	multiValueBody.add("taxfreeaprice", 0);
-//    	multiValueBody.add("approval_url", approvalUrl);
-//    	multiValueBody.add("cancel_url", cancelUrl);
-//    	multiValueBody.add("fail_url", failUrl);
-//    	JSONObject respon = requestPost(multiValueBody, "https://kapi.kakao.com/v1/mayment/ready", httpHeaders);
-//    	JSONObject urls = new JSONObject();
-//    	urls.put("pc", respon.get("next_redirect_pc_url"));
-//    	urls.put("flag", true);
-//    	
-//    	return urls;
-//    }
-//    
-    
 }

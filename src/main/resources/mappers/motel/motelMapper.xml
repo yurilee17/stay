@@ -4,6 +4,37 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.care.stay.motel.MotelMapper">
+	<resultMap type="com.care.stay.motel.MotelDTO" id="MotelDto">
+		<id column="no" property="no" />
+		<result column="mcode" property="mcode" />
+		<result column="mname" property="mname" />
+		<result column="mregion" property="mregion" />
+		<result column="mdetailregion" property="mdetailregion" />
+		<result column="mrating" property="mrating" />
+		<result column="maddress" property="maddress" />
+		<result column="mdetailaddress" property="mdetailaddress" />
+		<result column="mimage" property="mimage" />
+		<result column="minfo" property="minfo" />
+		<result column="mdaesilcheckin" property="mdaesilcheckin" />
+		<result column="mdaesilcheckout" property="mdaesilcheckout" />
+		<result column="mstaycheckin" property="mstaycheckin" />
+		<result column="mstaycheckout" property="mstaycheckout" />
+		<result column="minprice" property="minprice" />
+		<result column="mindaesilprice" property="mindaesilprice" />
+		<collection property="rooms" resultMap="MotelRoomDto" />
+	</resultMap>
+	
+	<resultMap type="com.care.stay.motel.MotelRoomDTO" id="MotelRoomDto">
+		<result column="no" property="no" />
+		<result column="mcode" property="mcode" />
+		<result column="mroomname" property="mroomname" />
+		<result column="mroomcode" property="mroomcode" />
+		<result column="mroomimage" property="mroomimage" />
+		<result column="mroomnumber" property="mroomnumber" />
+		<result column="mdaesilprice" property="mdaesilprice" />
+		<result column="mstayprice" property="mstayprice" />
+		<result column="moption" property="moption" />
+	</resultMap>
 
 	<resultMap type="com.care.stay.motel.MotelDTO" id="motelDto">
 		<id column="no" property="no"/>																		
@@ -95,17 +126,53 @@
 		FROM motel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  	
+    
+    <select id="Main" resultMap="MotelDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, 
+		mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, minprice, mindaesilprice
+		FROM motel WHERE mdetailregion = #{selectedText})AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
+
+   <select id="MainCheck" resultMap="MotelDto">
+  	 SELECT m.*,
+			mr.*
+	 FROM motel m 
+	 JOIN motelroom mr  ON mr.mcode = m.gmcode and mr.no = m.no
+  	WHERE m.mdetailregion = #{selectedText}
+
+	    <if test="moption != ''">
+	    AND 
+	      <bind name="moptionArray" value="moption.split(',')" />
+	      <foreach item="option" collection="moptionArray" open="(" separator="or" close=")">
+       		 mr.moption LIKE CONCAT('%'|| #{option}, '%')
+        </foreach>
+        </if>
+        AND mr.mpeople >= #{mpeople}
+	</select>    
+	
+	<select id="resNum">
+	SELECT count(*) FROM reservation WHERE code = #{mcode} AND stayno = #{no} AND roomcode = #{mroomcode} AND ((checkindate >= #{checkindate} AND #{checkoutdate} >= checkoutdate) OR ( #{checkindate} >= checkindate AND checkoutdate >= #{checkindate}) OR (#{checkoutdate} >= checkindate  AND checkoutdate >= #{checkoutdate}))
+	</select> 
 	
 	<select id="findMinPriceByMotel" resultType="java.lang.Integer">
-   		SELECT COALESCE(MIN(mstayprice), 0) FROM motelroom WHERE no = #{no}
-	</select>
+		SELECT COALESCE(MIN(mstayprice), 0) FROM motelroom WHERE no = #{no}
+	</select>	
 
 	<select id="findMinDaesilPriceByMotel" resultType="java.lang.Integer">
-	    SELECT COALESCE(MIN(mdaesilprice), 0) FROM motelroom WHERE no = #{no}
+		SELECT COALESCE(MIN(mdaesilprice), 0) FROM motelroom WHERE no = #{no}
 	</select>
 	
-    <select id="getAllMotels" resultType="com.care.stay.motel.MotelDTO">
-        SELECT * FROM motel
-    </select>	
+	<select id="getAllMotels" resultType="com.care.stay.motel.MotelDTO">
+		SELECT * FROM motel
+	</select>
+	
+	<update id="updatePrices" parameterType="com.care.stay.motel.MotelDTO">
+		UPDATE motel
+		SET minprice=#{minprice}, mindaesilprice=#{mindaesilprice}
+		WHERE no=#{no}
+	</update>
 	
 </mapper>

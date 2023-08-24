@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>모텔</title>
+<title>게스트하우스</title>
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,20 +40,142 @@
 <script type="text/javascript" src="../../resource/js/hotel.js"></script>
 </head>
 
+<link rel="stylesheet" href="../../resource/css/map.css">
+<script src="../../resource/js/map.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=11cc932694fd38ffbe4f68b35d6b9427&libraries=services"></script>
+
 <!-- 파라미터에 넣을 현재 날짜 -->
 	<c:set var="currentDate" value="<%= new java.util.Date() %>" />
     <c:set var="dateFormat" value="yyyy-MM-dd" />
     <fmt:formatDate var="formattedDate" pattern="yyyy-MM-dd" value="${currentDate}" />
 
 <body class="pc">
+	<!-- Bg Dimm -->
+	<div class="bgDimmMap" onclick="closeMap();">&nbsp;</div>
 
+	<div id="map" class="mapStyle"></div>
+
+	<script>
+		// 주소-좌표 변환 객체를 생성합니다
+		
+		var mapContainer = document.getElementById('map'), mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667),
+			level : 7
+		};
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		geocoder.addressSearch('${param.gdetailregion}', function(result, status) {
+			// 정상적으로 검색이 완료됐으면 
+			if (status === kakao.maps.services.Status.OK) {
+				mapCenter = new kakao.maps.LatLng(result[0].y-(-0.05), result[0].x-0.1);
+			} 
+			
+			map.setCenter(mapCenter);
+			
+		});
+		
+		let positions = [];
+		
+		var closeElements = document.querySelectorAll(".close");
+		var markers = [];
+		var overlays = [];
+		
+		let thisAdd;
+		
+		<c:forEach var="gh" items="${ghs}" varStatus="status">
+		geocoder.addressSearch('${gh.gaddress}', function(result, status) {
+
+			// 정상적으로 검색이 완료됐으면 
+			if (status === kakao.maps.services.Status.OK) {
+
+				thisAdd = new kakao.maps.LatLng(result[0].y, result[0].x);
+			}
+			
+			var content = '<div class="mapWrap">'
+				+ '    <div class="info">'
+				+ '        <div class="title">'
+				+ '            '
+				+ "${gh.gname}" // JSTL 변수를 JavaScript 변수로 사용
+				+ '        </div>'
+				+ '        <div class="body">'
+				+ '            <div class="img">'
+				+ '                <img src="' + "${gh.gimage}" + '" width="73" height="70">'
+				+ '           </div>'
+				+ '            <div class="desc">'
+				+ '                <div class="ellipsis">'
+				+ "${gh.gaddress}"
+				+ '</div>'
+				+ '                <div><a href="/ghpage?no=${gh.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}" class="link">자세히 보기</a></div>'
+				+ '            </div>' + '        </div>' + '    </div>'
+				+ '</div>';
+
+		positions.push({
+			content : content,
+			latlng : thisAdd
+		});
+		if(positions.length === ${ghs.size()}){
+			for (var i = 0; i < positions.length; i++) {
+
+				// 마커를 생성합니다
+				var marker = new kakao.maps.Marker({
+					map : map,
+					position : positions[i].latlng
+				});
+				markers.push(marker);
+
+				// 마커에 표시할 오버레이를 생성합니다 
+				var overlay = new kakao.maps.CustomOverlay({
+					content : positions[i].content,
+					map : map,
+					position : positions[i].latlng
+				});
+				overlays.push(overlay);
+				overlay.setMap(null);
+			}
+			// 마커 선택시 오버레이 나타내며 나머지 닫기
+			for (var i = 0; i < markers.length; i++) {
+				(function(index) {
+					kakao.maps.event.addListener(markers[index], 'click',
+							function() {
+								for (var j = 0; j < overlays.length; j++) {
+									overlays[j].setMap(null);
+								}
+								overlays[index].setMap(map);
+							});
+				})(i);
+			}
+		}
+		
+	
+		// thisAdd 배열에서 해당 위치를 가져옴
+		});
+		</c:forEach>
+
+
+		// 지도 열기
+		function openMap() {
+			let bgDimmMap = document.querySelector(".bgDimmMap");
+			let mapL = document.getElementById("map");
+
+			if (bgDimmMap != null && mapL != null) {
+				bgDimmMap.style.display = 'block';
+				mapL.style.display = 'block';
+				map.relayout();
+			}
+			
+		}
+	</script>
 
 	<!-- Wrap -->
 	<div class="wrap main_wrap show">
 
 		<!-- Header -->
 		<c:import url="/header" /> 
-		<c:import url="/map" />
+		<c:import url="/ghmap" />
 		<!-- CSS -->
 		<link rel="stylesheet" href="../../resource/css/reset.css">
 		<link rel="stylesheet" href="../../resource/css/hotel.css">
@@ -95,7 +217,7 @@
 
 		<div class="Hheader">
 			<div class="area_wrap ">
-				<h3>모텔</h3>
+				<h3>게스트하우스</h3>
 
 				<!-- 지역필터 / 메인지역 -->
 
@@ -169,11 +291,12 @@
 				     localStorage.setItem("checkoutdate", "${formattedDate}");
 					 localStorage.setItem("selectedText", selectedText); //selectedText 값 저장해서 넘겨줌 
 					
-					selectedTextUrl = "http://localhost/Motel?mdetailregion=" + encodeURIComponent(selectedText)+ "&checkindate=${formattedDate}&checkoutdate=${formattedDate}" + encodeURIComponent("");
+					selectedTextUrl = "http://localhost/GuestHouse?gdetailregion=" + encodeURIComponent(selectedText)+ "&checkindate=${formattedDate}&checkoutdate=${formattedDate}" + encodeURIComponent("");
 					window.location.href = selectedTextUrl;
 				}
 				// 페이지 로드 시 세션 스토리지에서 값을 가져와 선택합니다.
 				window.onload = function() {
+					
 				
 					var subMenuId = sessionStorage.getItem('subMenuId');
 				    var mainMenuValue = sessionStorage.getItem('mainMenuValue');
@@ -184,9 +307,9 @@
 
 				    // URLSearchParams 객체 생성
 				    var urlParams = new URLSearchParams(window.location.search);
-				    var mdetailregionV = urlParams.get('mdetailregion');
+				    var gdetailregionV = urlParams.get('gdetailregion');
 				    
-				if(mdetailregionV === '강남'){
+				if(gdetailregionV === '강남'){
 					
 					 document.getElementById('mainMenu').value = "Main1";
 					 showSubMenu();
@@ -300,9 +423,9 @@
 				        
 				   
 				   	 var urlParams = new URLSearchParams(window.location.search);
-					 var mdetailregionV = urlParams.get('mdetailregion');
+					 var gdetailregionV = urlParams.get('gdetailregion');
 				        
-				         var updatedURL = "http://localhost/Motel?mdetailregion=" + encodeURIComponent(mdetailregionV) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
+				         var updatedURL = "http://localhost/GuestHouse?gdetailregion=" + encodeURIComponent(gdetailregionV) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
 				        // 페이지 새로고침
 				        window.location.href = updatedURL;
 				    }
@@ -319,57 +442,130 @@
 
 						<!-- 초기화, 적용 버튼  -->
 						<div class="btn_wrap">
-							<button type="button" onclick="location.href='/Motel?mdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}'">초기화</button>
+							<button type="button" onclick="location.href='/GuestHouse?gdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}'">초기화</button>
 							<button type="button" onclick="comfort()">적용</button>
 						</div>
 						<br>
 
-						<section>
+						<!-- <section>
+							<br> <strong>호텔·리조트 유형</strong><br> <br>
 							<ul>
 								<li><input type="checkbox" id="grade_0" name="grade[]"
-									class="inp_chk" value="대실 예약" /> <label for="grade_0"
-									class="label_chk">대실 예약</label></li>
+									class="inp_chk" value="5성급" /> <label for="grade_0"
+									class="label_chk">5성급</label></li>
 								<li><input type="checkbox" id="grade_1" name="grade[]"
-									class="inp_chk" value="숙박 예약" /> <label for="grade_1"
-									class="label_chk">숙박 예약</label></li>
+									class="inp_chk" value="특1급" /> <label for="grade_1"
+									class="label_chk">특1급</label></li>
+								<li><input type="checkbox" id="grade_2" name="grade[]"
+									class="inp_chk" value="특급" /> <label for="grade_2"
+									class="label_chk">특급</label></li>
 							</ul>
+						</section> -->
+						<br>
+
+
+
+
+						<!-- 인원 버튼 증가,감소  -->
+						<section>
+							<input type="hidden" id="persons" name="persons" value="">
+							<strong>인원</strong><br> <br>
+							<div class="cnt_people" data-min="2" data-max="10" data-def="2">
+								<button type="button" class="down" onclick="btndown()">-</button>
+								<span>2</span>
+								<button type="button" class=" up" onclick="btnup()">+</button>
+							</div>
 						</section>
 						<br>
-						
+
+						<script>
+			        function btndown() {
+			            var span = document.querySelector('.cnt_people span'); // span 요소 선택
+			            var currentValue = parseInt(span.textContent); // 현재 값 가져오기
+			            var minValue = parseInt(span.parentElement.getAttribute('data-min')); // 최소 값 가져오기
+			
+			            if (currentValue > minValue) {
+			                span.textContent = currentValue - 1; // 값 1 감소
+			            }
+			        }
+			
+			        function btnup() {
+			            var span = document.querySelector('.cnt_people span'); // span 요소 선택
+			            var currentValue = parseInt(span.textContent); // 현재 값 가져오기
+			            var maxValue = parseInt(span.parentElement.getAttribute('data-max')); // 최대 값 가져오기
+			
+			            if (currentValue < maxValue) {
+			                span.textContent = currentValue + 1; // 값 1 증가
+			            }
+			        }
+			    </script>
+
+
+
+
 						<section>
-							<strong>이색테마</strong><br> <br>
+							<strong>베드 타입</strong><br> <br>
+							<div class="room_type">
+								<p>
+									<input type="checkbox" class="inp_room_01" name="bedtype[]"
+										id="bed_type_S" value="싱글" /> <label for="bed_type_S"
+										class="label_room_01">싱글</label>
+								</p>
+								<p>
+									<input type="checkbox" class="inp_room_02" name="bedtype[]"
+										id="bed_type_D" value="더블" /> <label for="bed_type_D"
+										class="label_room_02">더블</label>
+								</p>
+								<p>
+									<input type="checkbox" class="inp_room_03" name="bedtype[]"
+										id="bed_type_T" value="트윈" /> <label for="bed_type_T"
+										class="label_room_03">트윈</label>
+								</p>
+								<p>
+									<input type="checkbox" class="inp_room_04" name="bedtype[]"
+										id="bed_type_O" value="온돌" /> <label for="bed_type_O"
+										class="label_room_04">온돌</label>
+								</p>
+							</div>
+
+
+						</section>
+						<br>
+
+						<section>
+							<strong>공용시설</strong><br> <br>
 							<ul class="hide_type half">
 								<li><input type="checkbox" id="tmino_0" name="tmino[]"
-									class="inp_chk" value="무인텔" /> <label for="tmino_0"
-									class="label_chk">무인텔</label></li>
+									class="inp_chk" value="BBQ" /> <label for="tmino_0"
+									class="label_chk">BBQ</label></li>
 								<li><input type="checkbox" id="tmino_1" name="tmino[]"
-									class="inp_chk" value="복층룸" /> <label for="tmino_1"
-									class="label_chk">복층룸</label></li>
+									class="inp_chk" value="공용PC" /> <label for="tmino_1"
+									class="label_chk">공용PC</label></li>
 								<li><input type="checkbox" id="tmino_2" name="tmino[]"
-									class="inp_chk" value="트윈베드" /> <label for="tmino_2"
-									class="label_chk">트윈베드</label></li>
+									class="inp_chk" value="주차장" /> <label for="tmino_2"
+									class="label_chk">주차장</label></li>
 								<li><input type="checkbox" id="tmino_3" name="tmino[]"
-									class="inp_chk" value="야외테라스" /> <label for="tmino_3"
-									class="label_chk">야외테라스</label></li>
+									class="inp_chk" value="취사" /> <label for="tmino_3"
+									class="label_chk">취사</label></li>
 							</ul>
 						</section>
 						<br>
 
 						<section>
-							<strong>스파시설</strong><br> <br>
+							<strong>객실 내 시설</strong><br> <br>
 							<ul class="hide_type half">
 								<li><input type="checkbox" id="tmino_24" name="tmino[]"
-									class="inp_chk" value="스파" /> <label for="tmino_24"
-									class="label_chk">스파</label></li>
+									class="inp_chk" value="와이파이" /> <label for="tmino_24"
+									class="label_chk">와이파이</label></li>
 								<li><input type="checkbox" id="tmino_25" name="tmino[]"
-									class="inp_chk" value="사우나" /> <label for="tmino_25"
-									class="label_chk">사우나</label></li>
+									class="inp_chk" value="개인콘센트" /> <label for="tmino_25"
+									class="label_chk">개인콘센트</label></li>
 								<li><input type="checkbox" id="tmino_26" name="tmino[]"
-									class="inp_chk" value="마사지베드" /> <label for="tmino_26"
-									class="label_chk">마사지베드</label></li>
+									class="inp_chk" value="에어컨" /> <label for="tmino_26"
+									class="label_chk">에어컨</label></li>
 								<li><input type="checkbox" id="tmino_27" name="tmino[]"
-									class="inp_chk" value="히노끼탕" /> <label for="tmino_27"
-									class="label_chk">히노끼탕</label></li>
+									class="inp_chk" value="냉장고" /> <label for="tmino_27"
+									class="label_chk">냉장고</label></li>
 							</ul>
 						</section>
 						<br>
@@ -378,17 +574,17 @@
 							<strong>기타</strong><br> <br>
 							<ul class="hide_type half">
 								<li><input type="checkbox" id="tmino_36" name="tmino[]"
-									class="inp_chk" value="수영장" /> <label for="tmino_36"
-									class="label_chk">수영장</label></li>
+									class="inp_chk" value="조식포함" /> <label for="tmino_36"
+									class="label_chk">조식포함</label></li>
 								<li><input type="checkbox" id="tmino_37" name="tmino[]"
-									class="inp_chk" value="노래방" /> <label for="tmino_37"
-									class="label_chk">노래방</label></li>
+									class="inp_chk" value="사물함" /> <label for="tmino_37"
+									class="label_chk">사물함</label></li>
 								<li><input type="checkbox" id="tmino_38" name="tmino[]"
-									class="inp_chk" value="당구장" /> <label for="tmino_38"
-									class="label_chk">당구장</label></li>
+									class="inp_chk" value="반려견동반" /> <label for="tmino_38"
+									class="label_chk">반려견동반</label></li>
 								<li><input type="checkbox" id="tmino_39" name="tmino[]"
-									class="inp_chk" value="게임기" /> <label for="tmino_39"
-									class="label_chk">게임기</label></li>
+									class="inp_chk" value="무료주차" /> <label for="tmino_39"
+									class="label_chk">무료주차</label></li>
 							</ul>
 						</section>
 						<br> <br>
@@ -425,36 +621,37 @@
 						    	
 						    	
 						        /* var values1 = document.getElementsByName("grade[]");
-						        var htype = [];        
+						        var gtype = [];        
 						        for (var i = 0; i < values1.length; i++) {
 						            if (values1[i].checked) {
-						            	htype.push(values1[i].value);
+						            	gtype.push(values1[i].value);
 						            }
 						        } */
 						        
-						        /* var values2 = document.getElementsByName("bedtype[]");
-						        var hbedtype = [];        
+						        var values2 = document.getElementsByName("bedtype[]");
+						        var gbedtype = [];        
 						        for (var i = 0; i < values2.length; i++) {
 						            if (values2[i].checked) {
-						            	hbedtype.push(values2[i].value);
+						            	gbedtype.push(values2[i].value);
 						            }
-						        } */
+						        }
 	
 						        var values3 = document.getElementsByName("tmino[]");
-						        var moption = [];
+						        var gcomfort = [];
 						        
 						        for (var i = 0; i < values3.length; i++) {
 						            if (values3[i].checked) {
-						            	moption.push(values3[i].value);
+						            	gcomfort.push(values3[i].value);
 						            }
 						        }
 
 						        
 						         /* 선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침 */
-						            addDataToURL(moption, mpeople);
+						            addDataToURL(gbedtype, gcomfort, gpeople);
+						           /*  addDataToURL(gtype, gbedtype, gcomfort, gpeople); */
 						         
 							       
-						          var mpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
+						          var gpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
 						     	  var selectedText = localStorage.getItem("selectedText"); // selectedText  지역 값을 가져옴
 						     	  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
 					     		  var checkoutdate = localStorage.getItem("checkoutdate"); // checkoutdate  체크아웃 값을 가져옴 
@@ -462,12 +659,13 @@
 						    }  
  
 						   	<!--  선택한 날짜 값을 URL 파라미터로 추가하고 페이지 새로고침하는 함수 -->
-						     	    function addDataToURL(moption, mpeople) {
+						   			/* function addDataToURL(gtype, gbedtype, gcomfort, gpeople) */
+						     	    function addDataToURL(gbedtype, gcomfort, gpeople) {
 						     	    	
 						     	    	 var urlParams = new URLSearchParams(window.location.search);
-										 var hdetailregionV = urlParams.get('mdetailregion');
+										 var gdetailregionV = urlParams.get('gdetailregion');
 						     		   
-						     		  var mpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
+						     		  var gpeople = document.querySelector('.cnt_people span').textContent; // 인원 수 값을 가져옴    
 						     		  var checkindate = localStorage.getItem("checkindate"); // checkindate  체크인 값을 가져옴 
 						     		  var checkoutdate = localStorage.getItem("checkoutdate"); // checkoutdate  체크아웃 값을 가져옴 
 						       
@@ -480,33 +678,33 @@
 								        
 								        
 								        
-							 	        var updatedURL = "http://localhost/Motel?mdetailregion=" + encodeURIComponent(mdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
+							 	        var updatedURL = "http://localhost/GuestHouse?gdetailregion=" + encodeURIComponent(gdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
 							 	      
 							 	        
 							 	        
 							 	       /* htype = htype.map(function(value) {
 							 	            return value.trim();
-							 	        });
-
-							 	        hbedtype = hbedtype.map(function(value) {
-							 	            return value.trim();
 							 	        }); */
 
-							 	        moption = moption.map(function(value) {
+							 	        gbedtype = gbedtype.map(function(value) {
+							 	            return value.trim();
+							 	        });
+
+							 	        gcomfort = gcomfort.map(function(value) {
 							 	            return value.trim();
 							 	        });
 							 	        
 							 	       // 각 변수가 빈 문자열이 아니면 encodeURIComponent 적용
-							 	        /* var htypeParam = htype.length > 0 ? encodeURIComponent(htype.join(',')) : "";
-							 	        var hbedtypeParam = hbedtype.length > 0 ? encodeURIComponent(hbedtype.join(',')) : ""; */
-							 	        var moptionParam = moption.length > 0 ? encodeURIComponent(moption.join(',')) : "";
-							 	        var mpeopleParam = mpeople !== null && mpeople !== "" ? encodeURIComponent(mpeople) : "";
+							 	        /* var gtypeParam = gtype.length > 0 ? encodeURIComponent(gtype.join(',')) : ""; */
+							 	        var gbedtypeParam = gbedtype.length > 0 ? encodeURIComponent(gbedtype.join(',')) : "";
+							 	        var gcomfortParam = gcomfort.length > 0 ? encodeURIComponent(gcomfort.join(',')) : "";
+							 	        var gpeopleParam = gpeople !== null && gpeople !== "" ? encodeURIComponent(gpeople) : "";
 
 							 	        // 각 파라미터에 대한 값을 할당하여 URL에 추가
-							 	        /* updatedURL += "&htype=" + htypeParam;
-							 	        updatedURL += "&hbedtype=" + hbedtypeParam; */
-							 	        updatedURL += "&mcomfort=" + mcomfortParam;
-							 	        updatedURL += "&mpeople=" + mpeopleParam;
+							 	        /* updatedURL += "&gtype=" + gtypeParam; */
+							 	        updatedURL += "&gbedtype=" + gbedtypeParam;
+							 	        updatedURL += "&gcomfort=" + gcomfortParam;
+							 	        updatedURL += "&gpeople=" + gpeopleParam;
 
 							 	        // 페이지 새로고침
 							 	        window.location.href = updatedURL;
@@ -549,27 +747,26 @@
 
 				</ul>
 				<c:choose>
-					<c:when test="${not empty motels}">
+					<c:when test="${not empty ghs}">
 
-						<c:forEach var="motel" items="${ motels}">
+						<c:forEach var="gh" items="${ ghs}">
 
-							<a href="/motelpage?no=${motel.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate} " class="thumb">
+							<a href="/ghpage?no=${gh.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate} " class="thumb">
 								<table>
 									<tr>
 										<td width="300px" height="250px"><img
-											src="${motel.mimage} " alt="호텔이미지" width="250px"
+											src="${gh.gimage} " alt="게하이미지" width="250px"
 											height="230px"></td>
 
 										<td>
-											<h2 class="name">${motel.mname}</h2>
-											<p>${motel.mdetailregion }</p> 
+											<h2 class="name">${gh.gname}</h2>
+											<p>${gh.gdetailregion }</p> 
 											<!-- <br> <span>*****</span> -->
 
 										</td>
 										<td>
 											<ul>
-												<li class="dis-price">${motel.minprice }</li>
-												<li class="dis-price">${motel.mindaesilprice }</li>
+												<li class="dis-price">${gh.minprice }</li>
 											</ul>
 										</td>
 									</tr>
@@ -578,8 +775,8 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<!-- hotels 변수가 비어있을 때의 처리 -->
-						<p>No motel information available.</p>
+						<!-- guesthouses 변수가 비어있을 때의 처리 -->
+						<p>No GuestHouse information available.</p>
 					</c:otherwise>
 				</c:choose>
 

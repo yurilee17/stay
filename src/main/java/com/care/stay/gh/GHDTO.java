@@ -14,6 +14,15 @@ public class GHDTO {
 	private String ginfo;
 	private String gcheckintime;
 	private String gcheckouttime;
+	private int minprice;
+	private GHRoomDTO rooms;
+	
+	public GHRoomDTO getRooms() {
+		return rooms;
+	}
+	public void setRooms(GHRoomDTO rooms) {
+		this.rooms = rooms;
+	}
 	
 	public int getNo() {
 		return no;
@@ -87,5 +96,12 @@ public class GHDTO {
 	public void setGcheckouttime(String gcheckouttime) {
 		this.gcheckouttime = gcheckouttime;
 	}
+	public int getMinprice() {
+		return minprice;
+	}
+	public void setMinprice(int minprice) {
+		this.minprice = minprice;
+	}
 	
+
 }
