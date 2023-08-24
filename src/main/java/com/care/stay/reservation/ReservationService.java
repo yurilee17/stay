@@ -101,6 +101,8 @@ public class ReservationService {
     }
     
     
+    
+    
     public String stayReservationProc(HttpServletRequest request) {
     	ReservationDTO reservation = new ReservationDTO();
     	reservation.setStayno(Integer.parseInt(request.getParameter("stayno")));
