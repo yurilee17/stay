@@ -81,7 +81,7 @@
 				+ '                <div class="ellipsis">'
 				+ "${hotel.haddress}"
 				+ '</div>'
-				+ '                <div><a href="#" class="link">자세히 보기</a></div>'
+				+ '                <div><a href="/hotelpage?no=${hotel.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}" class="link">자세히 보기</a></div>'
 				+ '            </div>' + '        </div>' + '    </div>'
 				+ '</div>';
 
