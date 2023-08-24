@@ -40,7 +40,7 @@
 		
 		var geocoder = new kakao.maps.services.Geocoder();
 		
-		geocoder.addressSearch('${param.hdetailregion}', function(result, status) {
+		geocoder.addressSearch('${param.pdetailregion}', function(result, status) {
 			// 정상적으로 검색이 완료됐으면 
 			if (status === kakao.maps.services.Status.OK) {
 				mapCenter = new kakao.maps.LatLng(result[0].y-(-0.05), result[0].x-0.1);
@@ -58,8 +58,8 @@
 		
 		let thisAdd;
 		
-		<c:forEach var="hotel" items="${hotels}" varStatus="status">
-		geocoder.addressSearch('${hotel.haddress}', function(result, status) {
+		<c:forEach var="pension" items="${pensions}" varStatus="status">
+		geocoder.addressSearch('${pension.paddress}', function(result, status) {
 
 			// 정상적으로 검색이 완료됐으면 
 			if (status === kakao.maps.services.Status.OK) {
@@ -71,17 +71,17 @@
 				+ '    <div class="info">'
 				+ '        <div class="title">'
 				+ '            '
-				+ "${hotel.hname}" // JSTL 변수를 JavaScript 변수로 사용
+				+ "${pension.pname}" // JSTL 변수를 JavaScript 변수로 사용
 				+ '        </div>'
 				+ '        <div class="body">'
 				+ '            <div class="img">'
-				+ '                <img src="' + "${hotel.himage}" + '" width="73" height="70">'
+				+ '                <img src="' + "${pension.pimage}" + '" width="73" height="70">'
 				+ '           </div>'
 				+ '            <div class="desc">'
 				+ '                <div class="ellipsis">'
-				+ "${hotel.haddress}"
+				+ "${pension.paddress}"
 				+ '</div>'
-				+ '                <div><a href="/hotelpage?no=${hotel.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}" class="link">자세히 보기</a></div>'
+				+ '                <div><a href="/pensionpage?no=${pension.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}" class="link">자세히 보기</a></div>'
 				+ '            </div>' + '        </div>' + '    </div>'
 				+ '</div>';
 
