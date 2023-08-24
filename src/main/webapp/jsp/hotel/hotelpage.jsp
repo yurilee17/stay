@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <title>호텔이름 | 저기어때</title>
+    <title> ${hotel.hname} | 저기어때</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -87,7 +87,7 @@
                	<h2 class="name">${hotel.hname}</h2>
                 <p>${hotel.haddress}</p>
                	<br>
-               	<span>***** (별점평균이 들어가야함)</span>
+               <!-- 	<span>***** (별점평균이 들어가야함)</span> -->
               </td>
 		</div>
 	</div>
@@ -431,9 +431,9 @@ Bath Amenity (치약, 칫솔 무료)<br>
 				바로 뷔페 이용까지 가능하니까 넘 편하더라구요. 저녁도 그렇고 조식도 뷔페 메뉴들이 정말 맛있었어요. 룸 컨디션도 엄청 좋았는데<br> 
 				숙소 예약할때 항상 걱정이었던 머리카락이나 먼지들이 눈에 띄지않아서 마음 편하게 잘잤네요.<br> 
 				서비스도 좋고 기억에 남을만한 여행이었어요^^</div>
-				<div class="gallery_review"> 
+				<!-- <div class="gallery_review"> 
 					<img src="'//image.goodchoice.kr'+ aepimg.aep_imgpath"  alt="item.epilrate_textinfo" />
-				 </div>
+				 </div> -->
 			 </div>
 			 
 			 <% } %>

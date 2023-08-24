@@ -162,8 +162,8 @@
 					 
 					selectedText = subMenu.options[subMenu.selectedIndex].text;
 					
-					alert(selectId);
-					alert(selectedText);
+					/* alert(selectId);
+					alert(selectedText); */
 					 localStorage.setItem("checkindate", "${formattedDate}");
 				     localStorage.setItem("checkoutdate", "${formattedDate}");
 					 localStorage.setItem("selectedText", selectedText); //selectedText 값 저장해서 넘겨줌 
@@ -309,9 +309,6 @@
 
 		</script>
 
-
-
-								<!-- <em>&nbsp;·&nbsp;1박!!!!!!!!!!!!!!!!</em> -->
 							</div>
 						</section>
 						<br>
@@ -322,7 +319,7 @@
 
 						<!-- 초기화, 적용 버튼  -->
 						<div class="btn_wrap">
-							<button type="button" onclick="location.href='hotellist'">초기화</button>
+							<button type="button" onclick="location.href='/Main?hdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}'">초기화</button>
 							<button type="button" onclick="comfort()">적용</button>
 						</div>
 						<br>
@@ -618,16 +615,14 @@
 
 			<div class="right">
 				<ul class="sort">
-					<li><a href="#">낮은 가격 순</a></li>
-					<li><a href="#">높은 가격 순</a></li>
+					<!-- <li><a href="#">낮은 가격 순</a></li>
+					<li><a href="#">높은 가격 순</a></li> -->
 					<li><a href="#">지도</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${not empty hotels}">
 
 						<c:forEach var="hotel" items="${ hotels}">
-
-							<%--   <% for(int i=0; i<=5; i++){   %>  --%>
 
 							<a href="/hotelpage?no=${hotel.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate} " class="thumb">
 								<table>
@@ -638,20 +633,18 @@
 
 										<td>
 											<h2 class="name">${hotel.hname}</h2>
-											<p>${hotel.hdetailregion }</p> <br> <span>*****</span>
+											<p>${hotel.hdetailregion }</p> 
+											<!-- <br> <span>*****</span> -->
 
 										</td>
 										<td>
 											<ul>
 												<li class="dis-price">${hotel.minprice }</li>
-
-
 											</ul>
 										</td>
 									</tr>
 								</table>
 							</a>
-							<%--     <%  }  %>  --%>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>

@@ -111,27 +111,6 @@
 	SELECT count(*) FROM reservation WHERE code = #{hcode} AND stayno = #{no} AND roomcode = #{hroomcode} AND ((checkindate >= #{checkindate} AND #{checkoutdate} >= checkoutdate) OR ( #{checkindate} >= checkindate AND checkoutdate >= #{checkindate}) OR (#{checkoutdate} >= checkindate  AND checkoutdate >= #{checkoutdate}))
 	</select> 
 	
-	
-	
-		 <!-- hcomfort 처리 -->
- 	<!-- <select id="MainCheck_hcomfort"  >
-	    SELECT h.*,
-	           hr.*
-	           rs.*
-	    FROM hotel h 
-	    JOIN hotelroom hr ON hr.hcode = h.hcode
-	    WHERE (h.hdetailregion = #{selectedText})
-	    <if test="hcomfort != null">
-	   		 AND(
-	       <bind name="comfortArray" value="hcomfort.split(',')" />
-            hr.hcomfort IN
-            <foreach item="comfort" collection="comfortArray" open="(" separator="," close=")">
-                #{comfort}
-          	</foreach>
-          	)
-	    </if>
-	</select>   -->
-	
 	<select id="count">
 	  	SELECT count(no) FROM hotel
 	</select>

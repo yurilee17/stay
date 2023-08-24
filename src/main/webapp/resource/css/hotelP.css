@@ -30,7 +30,7 @@ button {
 
 
 .pc > .visual .hpTop{
-	width: 1024px;
+	width: 1410px;
 	height: 550px;
 	padding: 150px 0 0 319px;
 }
@@ -51,6 +51,20 @@ button {
 	float:right;
 	width:45%;
 }
+
+
+.pc > .visual > .hpTop  > .hpTRight > h2{
+	font-size: 50px;
+	color:#222;
+	padding-top:35px;
+	
+}
+
+.pc > .visual > .hpTop  > .hpTRight > p{
+	font-size: 25px;
+	padding-top:35px;
+}
+
 
 .pc > .visual .hpNav{
 	width: 1024px;
