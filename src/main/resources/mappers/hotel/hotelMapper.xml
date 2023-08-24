@@ -77,7 +77,7 @@
 		SELECT BBB.* FROM 
 		(SELECT ROWNUM as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
-		himage, hinfo, hcheckintime, hcheckouttime, htype
+		himage, hinfo, hcheckintime, hcheckouttime, htype, minprice
 		FROM hotel WHERE hdetailregion = #{selectedText})AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
@@ -186,5 +186,12 @@
 	<select id="getAllHotels" resultType="com.care.stay.hotel.HotelDTO">
 		SELECT * FROM hotel
 	</select>
+	
+	
+	<update id="updatePrices" parameterType="com.care.stay.hotel.HotelDTO">
+		UPDATE hotel
+		SET minprice=#{minprice}
+		WHERE no=#{no}
+	</update>
 
 </mapper>

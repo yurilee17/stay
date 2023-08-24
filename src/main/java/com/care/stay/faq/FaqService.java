@@ -8,15 +8,8 @@ import org.springframework.ui.Model;
 public class FaqService{
 
 	public void inquiryForm(String cp, Model model) {
-		// TODO Auto-generated method stub
-		
+
 	}
-//	private NoticeRepository NoticeRepository;
-//
-//	@Autowired
-//    	public NoticeService(NoticeRepository noticeRepository) {
-//		this.NoticeRepository = noticeRepository;
-//  }
 
 }
 

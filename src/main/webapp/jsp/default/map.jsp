@@ -30,7 +30,7 @@
 
 	<script>
 		// 주소-좌표 변환 객체를 생성합니다
-		alert('${param.hdetailregion}');
+		
 		var mapContainer = document.getElementById('map'), mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667),
 			level : 7
@@ -45,7 +45,7 @@
 			if (status === kakao.maps.services.Status.OK) {
 				mapCenter = new kakao.maps.LatLng(result[0].y-(-0.05), result[0].x-0.1);
 			} 
-			alert('mapCenter');
+			
 			map.setCenter(mapCenter);
 			
 		});

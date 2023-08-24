@@ -32,10 +32,10 @@ public interface HotelMapper {
 
 	List<HotelDTO> getAllHotels();
 	int findMinPriceByHotel(int no);
-	 
-	 
 
  	 int resNum(String hcode, int no, int hroomcode, String checkindate, String checkoutdate);
+
+	void updatePrices(HotelDTO hotel);
  	 
 
 }
