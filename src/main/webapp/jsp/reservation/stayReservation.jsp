@@ -70,8 +70,8 @@
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${motel.mname}</span></p> 
 				<p><strong>객실타입/기간</strong><span class="roomname">${motelroom.mroomname}</span> / </p> 
-				<p><strong>체크인</strong>${motel.mstaycheckin}</p> 
-				<p><strong>체크아웃</strong>${motel.mstaycheckout}</p>
+				<p><strong>체크인</strong>${param.checkindate}${motel.mstaycheckin}</p> 
+				<p><strong>체크아웃</strong>${param.checkoutdate} ${motel.mstaycheckout}</p>
 			</section> 	
 			<section class="total_price_pc">
 				<p>
@@ -87,8 +87,8 @@
 					<input type="hidden" name="roomimage" value="${motelroom.mroomimage }">
 					<input type="hidden" name="stayname" value="${motel.mname}">
 					<input type="hidden" name="roomname" value="${motelroom.mroomname}">
-					<input type="hidden" name="checkindate" value="">
-					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkindate" value="${param.checkindate}">
+					<input type="hidden" name="checkoutdate" value="${param.checkoutdate}">
 					<input type="hidden" name="checkintime" value="${motel.mstaycheckin}">
 					<input type="hidden" name="checkouttime" value="${motel.mstaycheckout}">
 					<input type="hidden" name="id" value="${sessionScope.id}">
@@ -103,8 +103,8 @@
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${hotel.hname}</p> 
 				<p><strong>객실타입/기간</strong><span class="roomname">${hotelroom.hbedtype}</span> / </p> 
-				<p><strong>체크인</strong>${hotel.hcheckintime}</p> 
-				<p><strong>체크아웃</strong>${hotel.hcheckouttime}</p>
+				<p><strong>체크인</strong>${param.checkindate} ${hotel.hcheckintime}</p> 
+				<p><strong>체크아웃</strong>${param.checkoutdate} ${hotel.hcheckouttime}</p>
 			</section> 	
 	
 			<section class="total_price_pc">
@@ -121,8 +121,8 @@
 					<input type="hidden" name="roomimage" value="${hotelroom.hroomimage }">
 					<input type="hidden" name="stayname" value="${hotel.hname}">
 					<input type="hidden" name="roomname" value="${hotelroom.hroomname}">
-					<input type="hidden" name="checkindate" value="">
-					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkindate" value="${param.checkindate}">
+					<input type="hidden" name="checkoutdate" value="${param.checkoutdate}">
 					<input type="hidden" name="checkintime" value="${hotel.hcheckintime}">
 					<input type="hidden" name="checkouttime" value="${hotel.hcheckouttime}">
 					<input type="hidden" name="id" value="${sessionScope.id}">
@@ -137,8 +137,8 @@
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${camping.cname}</p> 
 				<p><strong>객실타입/기간</strong><span class="roomname">${campingroom.croomname}</span> / </p> 
-				<p><strong>체크인</strong>${camping.ccheckintime}</p> 
-				<p><strong>체크아웃</strong>${camping.ccheckouttime}</p>
+				<p><strong>체크인</strong>${param.checkindate} ${camping.ccheckintime}</p> 
+				<p><strong>체크아웃</strong>${param.checkoutdate} ${camping.ccheckouttime}</p>
 			</section> 	
 	
 			<section class="total_price_pc">
@@ -155,8 +155,8 @@
 					<input type="hidden" name="roomimage" value="${campingroom.croomimage }">
 					<input type="hidden" name="stayname" value="${camping.cname}">
 					<input type="hidden" name="roomname" value="${campingroom.croomname}">
-					<input type="hidden" name="checkindate" value="">
-					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkindate" value="${param.checkindate}">
+					<input type="hidden" name="checkoutdate" value="${param.checkoutdate}">
 					<input type="hidden" name="checkintime" value="${camping.ccheckintime}">
 					<input type="hidden" name="checkouttime" value="${camping.ccheckouttime}">
 					<input type="hidden" name="id" value="${sessionScope.id}">
@@ -172,8 +172,8 @@
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${gh.gname}</p> 
 				<p><strong>객실타입/기간</strong><span class="roomname">${ghroom.gbedtype}</span> / </p> 
-				<p><strong>체크인</strong>${gh.gcheckintime}</p> 
-				<p><strong>체크아웃</strong>${gh.gcheckouttime}</p>
+				<p><strong>체크인</strong>${param.checkindate} ${gh.gcheckintime}</p> 
+				<p><strong>체크아웃</strong>${param.checkoutdate} ${gh.gcheckouttime}</p>
 			</section> 	
 	
 			<section class="total_price_pc">
@@ -190,8 +190,8 @@
 					<input type="hidden" name="roomimage" value="${ghroom.groomimage }">
 					<input type="hidden" name="stayname" value="${gh.gname}">
 					<input type="hidden" name="roomname" value="${ghroom.groomname}">
-					<input type="hidden" name="checkindate" value="">
-					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkindate" value="${param.checkindate}">
+					<input type="hidden" name="checkoutdate" value="${param.checkoutdate}">
 					<input type="hidden" name="checkintime" value="${gh.gcheckintime}">
 					<input type="hidden" name="checkouttime" value="${gh.gcheckouttime}">
 					<input type="hidden" name="id" value="${sessionScope.id}">
@@ -207,8 +207,8 @@
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${pension.pname}</p> 
 				<p><strong>객실타입/기간</strong><span class="roomname">${pentionroom.proomname}</span> / </p> 
-				<p><strong>체크인</strong>${pention.pcheckintime}</p> 
-				<p><strong>체크아웃</strong>${pention.pcheckouttime}</p>
+				<p><strong>체크인</strong>${param.checkindate} ${pention.pcheckintime}</p> 
+				<p><strong>체크아웃</strong>${param.checkoutdate} ${pention.pcheckouttime}</p>
 			</section> 	
 	
 			<section class="total_price_pc">
@@ -225,8 +225,8 @@
 					<input type="hidden" name="roomimage" value="${pensionroom.proomimage }">
 					<input type="hidden" name="stayname" value="${pension.pname}">
 					<input type="hidden" name="roomname" value="${pensionroom.proomname}">
-					<input type="hidden" name="checkindate" value="">
-					<input type="hidden" name="checkoutdate" value="">
+					<input type="hidden" name="checkindate" value="${param.checkindate}">
+					<input type="hidden" name="checkoutdate" value="${param.checkoutdate}">
 					<input type="hidden" name="checkintime" value="${pension.pcheckintime}">
 					<input type="hidden" name="checkouttime" value="${pension.pcheckouttime}">
 					<input type="hidden" name="id" value="${sessionScope.id}">
@@ -254,7 +254,7 @@
 				<span class="safety_txt">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span> 
 				<div class="phone_confirm guest-phone">
 					<div class="input-box remove">
-						<input type="tel" id="userPhone" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="${sessionScope.mobile}" class="input validation-required-input userPhone">
+						<input type="tel" id="userPhone" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="input validation-required-input userPhone">
 					</div> 
 					<button type="button" class="btn_send btn_confirm phone-auth-btn" onclick="btnSend()">인증번호 전송</button>
 					<p data-show="tel" class="alert_txt error-message" style="">휴대폰 번호를 확인해 주세요.</p>
@@ -345,8 +345,8 @@
 							</c:when>														
 						</c:choose>
 
-						<p id="chkin_print_date" class="date mt_align"><span>체크인</span><b>08.14</b></p> 
-						<p id="chkout_print_date" class="date"><span>체크아웃</span><b>08.15</b></p> 
+						<p id="chkin_print_date" class="date mt_align"><span>체크인</span><b>${param.checkindate}</b></p> 
+						<p id="chkout_print_date" class="date"><span>체크아웃</span><b>${param.checkoutdate}</b></p> 
 						<ul id="refund_policy" class="policy01">
 							<li class="dot_txt">
 								[취소 불가 업소]

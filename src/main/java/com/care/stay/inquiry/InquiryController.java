@@ -27,24 +27,24 @@ public class InquiryController {
         service.inquiryForm(cp, model);
         return "inquiry/inquiryForm";
     }
-	
-	@GetMapping("inquiryForm")
-	public String inquiryForm() {
-		String id = (String)session.getAttribute("id");
-		if(id == null || id.isEmpty()) {
-			return"redirection:login";
-		}
-		return"inquiry/inquiryForm";
-	}
-	
-	@PostMapping("inquiryForm")
-	public String inquiryForm(Model model, MultipartHttpServletRequest multi) {
-		String msg = service.inquiryForm(multi);;
-		if(msg.equals("게시글 작성 완료")) {
-			
-		}
-		return "redirect:inquiryForm";
-		
-	}
-}
+}	
+//	@GetMapping("inquiryForm")
+//	public String inquiryForm() {
+//		String id = (String)session.getAttribute("id");
+//		if(id == null || id.isEmpty()) {
+//			return"redirection:login";
+//		}
+//		return"inquiry/inquiryForm";
+//	}
+//	
+//	@PostMapping("inquiryForm")
+//	public String inquiryForm(Model model, MultipartHttpServletRequest multi) {
+//		String msg = service.inquiryForm(multi);;
+//		if(msg.equals("게시글 작성 완료")) {
+//			
+//		}
+//		return "redirect:inquiryForm";
+//		
+//	}
+//}
 	
