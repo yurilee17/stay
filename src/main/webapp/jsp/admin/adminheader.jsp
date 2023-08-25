@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-  <link rel="stylesheet" href="../../resource/css/reset.css" type="text/css">
+  <link rel="stylesheet" href="css/reset.css" type="text/css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">

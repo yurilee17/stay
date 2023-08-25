@@ -28,4 +28,4 @@
     </footer>
 
 
-<link rel="stylesheet" href="../../resource/css/footer.css">
+<link rel="stylesheet" href="css/footer.css">

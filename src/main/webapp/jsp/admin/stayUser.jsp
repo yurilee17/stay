@@ -10,9 +10,9 @@
 <meta name="Keywords" content="">
 <meta name="Description" content="">
 <title>회원 DB 조회</title>
-<link rel="stylesheet" href="../../resource/css/reset.css"
+<link rel="stylesheet" href="resource/css/reset.css"
 	type="text/css">
-<link rel="stylesheet" href="../../resource/css/stayUser.css">
+<link rel="stylesheet" href="resource/css/stayUser.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -107,6 +107,6 @@
 			<!-- //등록 양식 -->
 		</div>
 	</div>
-	<script src="../../resource/js/stayUser.js"></script>
+	<script src="resource/js/stayUser.js"></script>
 </body>
 </html>
