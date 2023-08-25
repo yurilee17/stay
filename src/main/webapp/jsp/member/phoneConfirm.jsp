@@ -12,13 +12,13 @@
 <meta http-equiv="Content-Type">
 
 
-<!-- <script src="../../resource/js/dbQuiz.js"></script> -->
+<!-- <script src="js/dbQuiz.js"></script> -->
 <title>회원가입 어때</title>
 
-<link rel="stylesheet preload" href="../../resource/css/font.css"
+<link rel="stylesheet preload" href="css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/register.css">
-<!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
+<link rel="stylesheet" href="css/register.css">
+<!-- <link rel="stylesheet" href="css/common.css"> -->
 </head>
 
 <body>
@@ -64,7 +64,7 @@
 		<!-- footer -->
 		<footer> </footer>
 	</div>
-	<script src="../../resource/js/register.js"></script>
+	<script src="js/register.js"></script>
 	<!-- //Wrap -->
 </body>
 </html>

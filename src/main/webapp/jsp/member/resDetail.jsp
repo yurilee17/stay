@@ -15,14 +15,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
 
-<script src="../../resource/js/reservationList.js"></script>
-<script src="../../resource/js/alert.js"></script>
+<script src="js/reservationList.js"></script>
+<script src="js/alert.js"></script>
 <title>예약 상세 어때</title>
 
-<link rel="stylesheet preload" href="../../resource/css/font.css"
+<link rel="stylesheet preload" href="css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/reservationList.css">
-<link rel="stylesheet" href="../../resource/css/alert.css">
+<link rel="stylesheet" href="css/reservationList.css">
+<link rel="stylesheet" href="css/alert.css">
 
 </head>
 <body>
@@ -52,8 +52,8 @@
 			<!-- Nav -->
 			<nav>
 				<ul>
-					<li><a class="active" href="/reservationList">예약 내역</a></li>
-					<li><a class="" href="/myPage">내 정보 관리</a></li>
+					<li><a class="active" href="reservationList">예약 내역</a></li>
+					<li><a class="" href="myPage">내 정보 관리</a></li>
 				</ul>
 			</nav>
 			<div class="align_rt">

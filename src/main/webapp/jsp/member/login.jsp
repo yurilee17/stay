@@ -11,14 +11,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
 
-<script src="../../resource/js/login.js"></script>
-<!-- <script src="../../resource/js/dbQuiz.js"></script> -->
+<script src="js/login.js"></script>
+<!-- <script src="js/dbQuiz.js"></script> -->
 <title>로그인 어때</title>
 
-<link rel="stylesheet preload" href="../../resource/css/font.css"
+<link rel="stylesheet preload" href="css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/login.css">
-<!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
+<link rel="stylesheet" href="css/login.css">
+<!-- <link rel="stylesheet" href="css/common.css"> -->
 </head>
 
 <body>
@@ -35,11 +35,11 @@
 			<section>
 				<form id="loginForm" action="loginProc" method="post">
 					<div class="fix_title">
-						<strong class="logo"><a href="/index">저기어때</a></strong>
+						<strong class="logo"><a href="index">저기어때</a></strong>
 					</div>
 					<button type="button" id="kakao-login-btn"
 						class="btn_start btn_kakao" onclick="goToKakao()">
-						<span><i><img src="../../resource/img/kakao.png"
+						<span><i><img src="img/kakao.png"
 								alt="kakao" width="20" height="20"
 								style="vertical-align: middle"></i>카카오톡으로 로그인</span>
 					</button>
@@ -70,10 +70,10 @@
 					</button>
 					<div class="link_half">
 						<div>
-							<a href="/passwdResetStart"><span>비밀번호 재설정</span></a>
+							<a href="passwdResetStart"><span>비밀번호 재설정</span></a>
 						</div>
 						<div>
-							<a href="/phoneConfirm"><span>회원가입</span></a>
+							<a href="phoneConfirm"><span>회원가입</span></a>
 						</div>
 					</div>
 				</form>

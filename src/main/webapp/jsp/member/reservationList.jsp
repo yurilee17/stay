@@ -18,14 +18,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
 
-<script src="../../resource/js/reservationList.js"></script>
-<script src="../../resource/js/alert.js"></script>
+<script src="js/reservationList.js"></script>
+<script src="js/alert.js"></script>
 <title>예약 어때</title>
 
-<link rel="stylesheet preload" href="../../resource/css/font.css"
+<link rel="stylesheet preload" href="css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/reservationList.css">
-<link rel="stylesheet" href="../../resource/css/alert.css">
+<link rel="stylesheet" href="css/reservationList.css">
+<link rel="stylesheet" href="css/alert.css">
 
 </head>
 <body>
@@ -53,8 +53,8 @@
 			<!-- Nav -->
 			<nav>
 				<ul>
-					<li><a class="active" href="/reservationList">예약 내역</a></li>
-					<li><a class="" href="/myPage">내 정보 관리</a></li>
+					<li><a class="active" href="reservationList">예약 내역</a></li>
+					<li><a class="" href="myPage">내 정보 관리</a></li>
 				</ul>
 			</nav>
 			<div class="align_rt">
@@ -65,7 +65,7 @@
 							예약 내역이 없습니다. <b>최저가로 예약 가능한<br>숙소들을 지금 만나세요!
 							</b>
 							<p>
-								<a href="/index" class="btn_red">다양한 숙소 보러가기</a>
+								<a href="index" class="btn_red">다양한 숙소 보러가기</a>
 							</p>
 						</div>
 					</c:when>
@@ -94,7 +94,7 @@
 															src="https://image.goodchoice.kr/resize_490x348/affiliate/2020/04/17/5e994464f3d0d.jpg"
 															alt="${resConfirmed.stayname}" class="align">
 													</p>
-													<a href="/resDetail?no=${resConfirmed.no}"
+													<a href="resDetail?no=${resConfirmed.no}"
 														class="product-title"><i>${resConfirmed.status}</i> <strong>${resConfirmed.stayname}</strong>
 														<c:choose>
 															<c:when
@@ -144,7 +144,7 @@
 															src="https://image.goodchoice.kr/resize_490x348/affiliate/2020/04/17/5e994464f3d0d.jpg"
 															alt="${resCompleted.stayname}" class="align">
 													</p>
-													<a href="/resDetail?no=${resCompleted.no}"
+													<a href="resDetail?no=${resCompleted.no}"
 														class="product-title"><i class="bg_w">${resCompleted.status}</i>
 														<strong>${resCompleted.stayname}</strong> <c:choose>
 															<c:when
@@ -194,7 +194,7 @@
 															src="https://image.goodchoice.kr/resize_490x348/affiliate/2020/04/17/5e994464f3d0d.jpg"
 															alt="${resCancellation.stayname}" class="align">
 													</p>
-													<a href="/resDetail?no=${resCancellation.no}"
+													<a href="resDetail?no=${resCancellation.no}"
 														class="product-title"><i class="bg_w">${resCancellation.status}</i>
 														<strong>${resCancellation.stayname}</strong> <c:choose>
 															<c:when

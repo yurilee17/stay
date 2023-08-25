@@ -13,14 +13,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
 
-<script src="../../resource/js/myPage.js"></script>
-<script src="../../resource/js/alert.js"></script>
+<script src="js/myPage.js"></script>
+<script src="js/alert.js"></script>
 <title>내정보 어때</title>
 
-<link rel="stylesheet preload" href="../../resource/css/font.css"
+<link rel="stylesheet preload" href="css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/myPage.css">
-<link rel="stylesheet" href="../../resource/css/alert.css">
+<link rel="stylesheet" href="css/myPage.css">
+<link rel="stylesheet" href="css/alert.css">
 
 </head>
 <body>
@@ -44,8 +44,8 @@
 			<!-- Nav -->
 			<nav>
 				<ul>
-					<li><a class="" href="/reservationList">예약 내역</a></li>
-					<li><a class="active" href="/myPage">내 정보 관리</a></li>
+					<li><a class="" href="reservationList">예약 내역</a></li>
+					<li><a class="active" href="myPage">내 정보 관리</a></li>
 				</ul>
 			</nav>
 			<div class="align_rt">
@@ -179,7 +179,7 @@
 						<c:when test="${fn:contains(sessionScope.id, 'kakao')}"></c:when>
 						<c:otherwise>
 							<p class="bot_link">
-								<a href="/myPagePwCh">비밀번호 변경</a> &gt;
+								<a href="myPagePwCh">비밀번호 변경</a> &gt;
 							</p>
 						</c:otherwise>
 					</c:choose>
@@ -188,7 +188,7 @@
 					<p>여기어때를 이용하고 싶지 않으신가요?</p>
 					<button type="button" onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button>
 					<button type="button">
-						<a href="/withdraw">회원탈퇴</a>
+						<a href="withdraw">회원탈퇴</a>
 					</button>
 				</div>
 			</div>
@@ -211,7 +211,7 @@
 
 		</div>
 	</div>
-	<script src="../../resource/js/myPage.js"></script>
+	<script src="js/myPage.js"></script>
 	<!-- //Wrap -->
 </body>
 </html>

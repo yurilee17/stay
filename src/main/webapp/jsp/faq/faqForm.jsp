@@ -18,7 +18,7 @@
 
     <meta name="description" content="여기어때 회원 가입 | 전국 호텔, 펜션, 모텔부터 워터파크, 놀이공원, 아쿠아리움까지 최저가 할인 예약">
 
-    <link rel="shortcut icon" href="/img/images/web_v3/favicon_170822.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/images/web_v3/favicon_170822.ico" type="image/x-icon">
 
     <!-- CSS -->
     <title>TOP7 - 자주 묻는 질문 | 여기어때</title>
@@ -77,31 +77,31 @@
                 <div class="scroll_nav">
                     <div class="scroller">
                         <ul>
-                            <li><a href="/index">홈</a></li>
+                            <li><a href="index">홈</a></li>
                             <li class="depth_2">
                                 <button type="button" class="has_ul"><span>숙소유형</span></button>
                                 <ul>
-                                    <li><a href="/userindex/1">모텔</a></li>
-                                    <li><a href="/userindex/2">호텔/리조트</a></li>
-                                    <li><a href="/userindex/3">펜션</a></li>
-                                    <li><a href="/userindex/4">리조트</a></li>
-                                    <li><a href="/userindex/5">캠핑·글램핑</a></li>
-                                    <li><a href="/userindex/6">게스트하우스</a></li>
-                                    <li><a href="/userindex/7">한옥 </a></li>
+                                    <li><a href="userindex/1">모텔</a></li>
+                                    <li><a href="userindex/2">호텔/리조트</a></li>
+                                    <li><a href="userindex/3">펜션</a></li>
+                                    <li><a href="userindex/4">리조트</a></li>
+                                    <li><a href="userindex/5">캠핑·글램핑</a></li>
+                                    <li><a href="userindex/6">게스트하우스</a></li>
+                                    <li><a href="userindex/7">한옥 </a></li>
                                 </ul>
                             </li>
-                            <li><a href="/userindex/8">내주변</a></li>
+                            <li><a href="userindex/8">내주변</a></li>
                         </ul>
                         <ul>
-                            <li><a href="/userindex/reservations">예약 내역</a></li>
-                            <li><a href="/userindex/mypage">내 정보 관리</a></li>
+                            <li><a href="userindex/reservations">예약 내역</a></li>
+                            <li><a href="userindex/mypage">내 정보 관리</a></li>
                         </ul>
                         <ul>
                             <li class="depth_2"><button type="button" class="has_ul"><span>더보기</span></button>
                                 <ul>
                                    <!-- <li><a href="/userindex/notice">공지사항</a></li> -->
                                     
-                                    <li><a href="/faqForm">고객문의</a></li>
+                                    <li><a href="faqForm">고객문의</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -133,9 +133,9 @@
             <!-- Nav -->
             <nav>
                 <ul>
-                    <li><a class="" href="${context }noticeForm">공지사항</a></li>
+                    <li><a class="" href="noticeForm">공지사항</a></li>
                     <li><a class="active" href="faqForm">자주 묻는 질문</a></li>
-                    <li><a class="" href="${context }inquiryForm">1:1 문의</a></li>
+                    <li><a class="" href="inquiryForm">1:1 문의</a></li>
                 </ul>
             </nav>
             <div class="align_rt">
@@ -143,12 +143,12 @@
                 <!-- Faq -->
                 <div class="faq">
 
-                    <div class="mobile_top">고객문의<a href="${context }inquiryForm" class="top_btn">1:1문의</a></div>
+                    <div class="mobile_top">고객문의<a href="inquiryForm" class="top_btn">1:1문의</a></div>
 
                     <!-- 상단 탭 버튼 -->
                     <div class="top_link">
                         <li>
-                            <a href="/userindex/faq" class="on">TOP7</a>
+                            <a href="userindex/faq" class="on">TOP7</a>
                         </li>
                     </div>
                     <!-- //상단 탭 버튼 -->

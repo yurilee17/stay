@@ -13,14 +13,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
 
-<script src="../../resource/js/myPage.js"></script>
-<script src="../../resource/js/alert.js"></script>
+<script src="js/myPage.js"></script>
+<script src="js/alert.js"></script>
 <title>탈퇴 안하는거 어때</title>
 
-<link rel="stylesheet preload" href="../../resource/css/font.css"
+<link rel="stylesheet preload" href="css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/myPage.css">
-<link rel="stylesheet" href="../../resource/css/alert.css">
+<link rel="stylesheet" href="css/myPage.css">
+<link rel="stylesheet" href="css/alert.css">
 
 </head>
 <body>
@@ -68,6 +68,6 @@
 
 		</div>
 	</div>
-	<script src="../../resource/js/myPage.js"></script>
+	<script src="js/myPage.js"></script>
 </body>
 </html>

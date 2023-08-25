@@ -11,13 +11,13 @@
     <meta http-equiv="Content-Type">
     <meta name="csrf-name" content="yeogi_token">
 
-    <link rel="shortcut icon" href="../../resource/img/favicon_170822.ico" type="image/x-icon">
-    <link rel="stylesheet preload" href="../../resource/css/font.css" as="style" type="text/css" crossorigin="">
+    <link rel="shortcut icon" href="img/favicon_170822.ico" type="image/x-icon">
+    <link rel="stylesheet preload" href="css/font.css" as="style" type="text/css" crossorigin="">
 
 	<!-- CSS -->
     <title>여행할때 여기어때</title>
-    <!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
-    <script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/common.css"> -->
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
     
     </head>
 <body class="pc">
@@ -33,8 +33,8 @@
     
 	<c:import url="/header"/>
         <!-- CSS -->
-    <link rel="stylesheet" href="../../resource/css/swiper.css">
-	<link rel="stylesheet" href="../../resource/css/main.css">
+    <link rel="stylesheet" href="css/swiper.css">
+	<link rel="stylesheet" href="css/main.css">
 
 	<!-- Content  -->
 	<div id="content">
@@ -43,11 +43,11 @@
 		<!-- Link -->
 		<div class="main_link">
 			<ul>
-				<li><a href="${context }Motel?mdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="1"><span class="ico_01">&nbsp;</span><p>모텔</p></a></li>
-				<li><a href="${context }Main?hdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="2"><span class="ico_02">&nbsp;</span><p>호텔·리조트</p></a></li>
-				<li><a href="${context }GuestHouse?gdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="6"><span class="ico_04">&nbsp;</span><p>게스트하우스</p></a></li>
-				<li><a href="${context }pensionMain?pdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="3"><span class="ico_03">&nbsp;</span><p>펜션</p></a></li>
-				<li><a href="${context }campinglist?cdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="5"><span class="ico_05">&nbsp;</span><p>캠핑·글램핑</p></a></li>
+				<li><a href="Motel?mdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="1"><span class="ico_01">&nbsp;</span><p>모텔</p></a></li>
+				<li><a href="Main?hdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="2"><span class="ico_02">&nbsp;</span><p>호텔·리조트</p></a></li>
+				<li><a href="GuestHouse?gdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="6"><span class="ico_04">&nbsp;</span><p>게스트하우스</p></a></li>
+				<li><a href="pensionMain?pdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="3"><span class="ico_03">&nbsp;</span><p>펜션</p></a></li>
+				<li><a href="campinglist?cdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="5"><span class="ico_05">&nbsp;</span><p>캠핑·글램핑</p></a></li>
 			</ul>
 		</div>
 		<!-- //Link -->
@@ -61,23 +61,23 @@
 
 <!-- Script -->
 <!-- Library -->
-<script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../../resource/js/jquery.lazyload.js"></script>
-<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
 
 <!-- Service -->
-<script type="text/javascript" src="../../resource/js/common.js"></script>
-<script type="text/javascript" src="../../resource/js/geolocation.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/geolocation.js"></script>
 
 <!-- Module -->
 <!-- <script type="text/javascript" src="./여행할때 여기어때_files/dialogPopup.js"></script> -->
 
 <!-- Page Script -->
-<script type="text/javascript" src="../../resource/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="../../resource/js/swiper.min.js"></script>
-<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
-<script type="text/javascript" src="../../resource/js/main.js"></script>
-<script type="text/javascript" src="../../resource/js/reservation.js"></script>
+<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/reservation.js"></script>
 
 
 <c:import url="/footer" /> 
