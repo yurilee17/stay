@@ -75,7 +75,7 @@
 		<!-- 지역별로 나오게하기  -->
  	<select id="Main" resultMap="CampingDto">
 		SELECT BBB.* FROM 
-		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, ccode, cname, cregion, cdetailregion, crating, caddress, cdetailaddress, 
 		cimage, cinfo, ccheckintime, ccheckouttime, ctype, minprice
 		FROM camping WHERE cdetailregion = #{selectedText})AAA)BBB
@@ -175,7 +175,7 @@
 	
 	<select id="stayInfo" resultMap="campingDto">
 		SELECT BBB.* FROM 
-		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, ccode, cname, cregion, caddress FROM camping ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>

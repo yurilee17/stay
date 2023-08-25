@@ -75,7 +75,7 @@
 		<!-- 지역별로 나오게하기  -->
  	<select id="Main" resultMap="HotelDto">
 		SELECT BBB.* FROM 
-		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, hdetailregion, hrating, haddress, hdetailaddress, 
 		himage, hinfo, hcheckintime, hcheckouttime, htype, minprice
 		FROM hotel WHERE hdetailregion = #{selectedText})AAA)BBB
@@ -169,7 +169,7 @@
 	
 	<select id="stayInfo" resultMap="hotelDto">
 		SELECT BBB.* FROM 
-		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, hcode, hname, hregion, haddress FROM hotel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>

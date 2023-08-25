@@ -87,7 +87,7 @@
 	
 	<select id="stayInfo" resultMap="pensionDto">
 		SELECT BBB.* FROM 
-		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, pcode, pname, pregion, paddress FROM pension ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>
@@ -113,7 +113,7 @@
 	
  	<select id="Main" resultMap="PensionDto">
 		SELECT BBB.* FROM 
-		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT * FROM pension WHERE pdetailregion = #{selectedText})AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>  
