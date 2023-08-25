@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="../../resource/css/swiper.css">
 	<link rel="stylesheet" href="../../resource/css/main.css">
 	<link rel="stylesheet" href="../../resource/css/reset.css">
-	<link rel="stylesheet" href="../../resource/css/pension.css">
+	<link rel="stylesheet" href="../../resource/css/hotel.css">
 	<link rel="stylesheet" href="../../resource/css/hotelP.css">
 
 </div>
@@ -270,7 +270,7 @@
 	                           <b><span>${pensionroom.pprice}</span></b>	                
                            	</div>
                            <%-- 	<button type="button" onclick ="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}'" >예약하기</button> --%>
-                           	<button type="button"  onclick="location.href='stayReservation?no=${pensionroom.no}&stayType=hotel&hroomcode=${pensionroom.proomcode}&hprice=${pensionroom.pprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
+                           	<button type="button"  onclick="location.href='stayReservation?no=${pensionroom.no}&stayType=pension&proomcode=${pensionroom.proomcode}&pprice=${pensionroom.pprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
                         </td>
                        
                     </tr>
