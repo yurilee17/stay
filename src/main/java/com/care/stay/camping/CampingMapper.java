@@ -27,7 +27,7 @@ public interface CampingMapper {
  	 List<CampingDTO> getAllCampings();
  	 int findMinPriceByCamping(int no);
 
-  	 int resNum(String code, int no, int croomcode, String checkindate, String checkoutdate);
+  	 int resNum(String ccode, int no, int croomcode, String checkindate, String checkoutdate);
 
  	void updatePrices(CampingDTO camping);
 	

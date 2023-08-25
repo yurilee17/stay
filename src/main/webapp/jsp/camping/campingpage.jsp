@@ -256,18 +256,18 @@
 				
 				</script>	 -->
 	<c:choose>
-		<c:when test="${not empty compingrooms}">
-			<c:forEach var="compingroom" items="${ compingrooms}">					
+		<c:when test="${not empty campingrooms}">
+			<c:forEach var="campingroom" items="${ campingrooms}">					
                 <table>
                 	<tr>
                         <td  width="300px" height="250px">
-                            <img src="${compingroom.croomimage}" alt="객실이미지">
+                            <img src="${campingroom.croomimage}" alt="객실이미지">
                         </a></td>
                         <td>
                            <div class=room>
-                             <h2 class="name">${compingroom.croomname}</h2>                            
+                             <h2 class="name">${campingroom.croomname}</h2>                            
 	                            <br><br>
-	                           <b><span>${compingroom.cprice}</span></b>	                
+	                           <b><span>${campingroom.cprice}</span></b>	                
                            	</div>
                            	<button type="button"  onclick="location.href='stayReservation?no=${camping.no}&stayType=camping&croomcode=${campingroom.croomcode}&cprice=${campingroom.cprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
                         </td>

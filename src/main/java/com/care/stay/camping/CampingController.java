@@ -45,7 +45,7 @@ public class CampingController {
 		  		System.out.println("checkindate: " + checkindate);
 		  		System.out.println("checkoutdate: " + checkoutdate);
 		  		
-		  		cservice.getAllHotelsWithMinPrices();
+		  		cservice.getAllCampingsWithMinPrices();
 		  		
 		  		
 		  	   if (ctype != null || ccomfort != null ) {

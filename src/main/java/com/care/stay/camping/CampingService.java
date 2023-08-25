@@ -343,7 +343,7 @@ public class CampingService {
 		}
 		
 		
-		public void getAllHotelsWithMinPrices() {
+		public void getAllCampingsWithMinPrices() {
 
 			List<CampingDTO> campings = campingMapper.getAllCampings();
 
