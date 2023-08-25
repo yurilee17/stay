@@ -552,7 +552,8 @@ function alerOne() {
 
 /* 알림 발생 후 리셋 */
 function reset() {
-	window.location.href = "http://localhost/myPage";
+	/*window.location.href = "http://localhost/myPage";*/
+	window.location.href = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/myPage";
 }
 
 
