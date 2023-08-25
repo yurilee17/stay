@@ -1,0 +1,484 @@
+@charset "utf-8";
+
+/*공통 스타일*/
+body,h1,h2,h3,h4,h5,h6,p,table,th,tr,td,ul,ol,li{font-family:"Noto Sans KR"; margin:0; padding:0;}
+img{border:0;}
+a{color:#454545; text-decoration:none;}
+table{border-collapse:collapse; border-spacing:0;}
+ul,ol,li{list-style:none;} 
+	#wrap{width:100%;}
+	.leftnav{width:15%; float:left;}
+	.content{width:1200px; margin:0 auto;}
+	.content h2{margin-top:40px; text-align:center;}
+	.content p{margin:30px 0; text-align:center;}
+
+	/* 상단 메뉴 */
+	.stay_register{margin-top:30px;}
+	.stay ul li{
+		float:left; 
+		background:#f6323e;
+		line-height:40px;
+		width:240px;
+		text-align:center;
+	}
+	.stay ul li a{
+		display:block; 
+		font-size:16px; 
+		font-weight:bold;
+		text-decoration:none;
+		padding:10px 30px;
+		color:#fff;
+	}
+	.stay li a:hover{color:#000;}
+	/* 상단 메뉴 */
+
+
+
+	.stay_table{border-collapse: separate;
+			 border-spacing: 0 15px; width:1000px;}
+	
+	.regcontent{border-collapse: separate;
+			 border-spacing: 0 15px; width:1000px;}		 
+			 
+	.stay_detailtable{border-collapse: separate;
+			 border-spacing: 0 15px; width:1000px;}
+			 
+	.showDetail{border-collapse: separate;
+			 border-spacing: 0 15px; width:1000px;}		 
+
+	.checks{position:relative;}
+	.checks input[type="checkbox"]{
+		/*실제 체크박스 숨기기*/
+		position:absolute;
+		width:1px;
+		height:1px;
+		padding:0;
+		margin:-1px;
+		overflow:hidden;
+		border:0;
+		clip:rect(0,0,0,0);/*x,y,z값-이미지의 일부만 보이게 하는 태그*/
+	}
+	.checks input[type="checkbox"] + label{
+		display:inline-block;
+		position:relative;
+		cursor:pointer;
+		user-select:none; /*브라우저에서 드래그나 더블 클릭으로 텍스트 선택 불가*/
+	}
+	.checks input[type="checkbox"] + label:before{
+		display:inline-block;
+		content:"";
+		width:24px;
+		height:24px;
+		line-height:20px;
+		text-align:center;
+		vertical-align:middle;
+		border:1px solid #ededed;
+		background:#fafafa;
+		border-radius:3px;
+		margin:-2px 8px 0 0;
+		box-shadow:0 1px 2px rgba(0,0,0,0.05), inset 0 -15px 10px -12px rgba(0,0,0,0.05);
+		/*inset -> 요소 안쪽의 그림자*/
+	}
+	.checks input[type="checkbox"] + label:active:before,
+	.checks input[type="checkbox"]:checked + label:active:before{
+		box-shadow:0 1px 2px rgba(0,0,0,0.05), inset 0 1px 3px rgba(0,0,0,0.1);
+	}
+	.checks input[type="checkbox"]:checked + label:before{
+		content:"\2713";
+		color:#99a1a7;
+		text-shadow:1px 1px #fff;
+		background:#e9ecee;
+		border-color:#adb8c0;
+		box-shadow:inset 15px 10px -12px rgba(255,255,255,0.1);
+	}
+	.checks.small input[type="checkbox"] + label:before{
+		width:15px;
+		height:15px;
+		line-height:15px;
+		font-size:10px;
+	}
+	
+	.submit{
+		margin:0 auto; 
+	}
+
+	.submit li a{
+		display:block;
+	}
+
+	.submit ul {
+		text-align:center;
+	}
+
+	.submit ul li {
+		background:#f6323e;
+		line-height:30px;
+		width:180px;
+		text-align:center;
+		margin:0 20px;
+		display:inline-block;
+		position:relative;
+	}
+	.submit ul li a {
+		font-size:16px; 
+		font-weight:bold;
+		text-decoration:none;
+		padding:10px 30px;
+		color:#fff;
+
+	}
+	.submit li a:hover{color:#000;}
+	
+	
+	.submit_button {
+		background:#f6323e;
+		width:180px;
+		text-align:center;
+		font-size:16px;
+		color:#fff;
+		font-weight:bold;
+		text-decoration:none;
+		padding:10px 30px;
+		line-height:30px;
+		display:inline-block;
+		position:relative;
+	}
+
+	.stay_search{margin-top:30px;}
+	.moteldetail{border-collapse: separate;
+		border-spacing: 0 15px;}
+
+	.stay_search.search{display:inline-block;}
+
+	.stay_search.search{position:relative; width:380px;}
+	.stay_search.search input{width:50%; height:50px; border:2px solid #640faf; border-radius:50px; -webkit-border-radius:50px; -moz-border-radius:50px; margin-bottom:53px;}
+	.stay_search.search span{position:absolute; right:20px; top:13px;}
+	.stay_search.search span button{background:url(../image/search.jpg) no-repeat; width:30px; height:23px; border:0; cursor:pointer;}
+
+
+
+form .stayType{
+	margin-top: 2.5px;
+	float: left;
+	width: 120px;
+	height: 30px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 0 10px;
+	background: url(../img/arrow.jpg) no-repeat 95% 50%;
+	background-color: #fafafa;
+	font-size: 16px;
+	color: #222;
+}
+
+.db_search{
+	width:1200px; border-collapse: separate;
+	border-spacing: 0 15px;
+}
+
+.db_search tr{
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #ddd;	
+}
+
+.db_search tr:first-child{
+	box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
+.db_search tr, th,
+.db_search tr, td{
+	position: relative;
+	height: 100%;
+}
+
+.db_search tr th{
+	padding-bottom:15px;
+}
+
+.db_search tr td::after {
+	content: "";
+	position: absolute;
+	bottom: 15px;
+	right: 0;
+	width: 1px;
+	height: 20px;
+	background-color: #eee;
+	/* 선의 색상 */
+}
+
+.db_search tr td:last-child:after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	/* 선의 색상 */
+}
+
+.db_search tr td {
+	text-align: center;
+    /* padding-left: 50px; */
+
+}
+
+
+.stayList .pageNum{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 20px;
+	text-align: center;
+}
+	
+	/* 서브 메뉴 기본적으로 감추기 */
+	.stay_table.tr.td.right-menu {
+	  position: absolute;
+	  top: 0;
+	  display: none;
+	}
+	
+	.wrap.content.stay_registerdetail.right-menu {
+	  position: absolute;
+	  top: 0;
+	  display: none;		
+	}
+	
+	/* 마우스가 메뉴 항목 위에 올라갔을 때 서브 메뉴 표시 */
+	#mainMenu:hover + .right-menu {
+	  display: block;
+	}		 
+		 
+	
+	.select1, .select2, .select3{
+		outline: 0;
+		font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', '맑은고딕', 'Malgun Gothic', sans-serif;
+		box-sizing: border-box;
+		padding: 8px 14px 8px 16px;
+		height: 48px;
+		border: 1px solid rgba(0,0,0,.08);
+		border-radius: 4px;
+		font-weight: 400;
+		font-size: 18px;
+		color: rgba(0,0,0,.56);
+		margin-right: 12px;
+/*		width: calc(100% - 110px);	*/
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* ---------------------------------------------------------------------------------------------- */	
+
+	/* stayContent의 CSS부분 */	
+
+	.stayContent_head {
+		display:block;
+		box-sizing:border-box;
+		overflow:hidden;
+		width:1024px;
+		height:520px;
+		padding:0 31px 0 31px;
+	}
+
+	.stayContent_head .left .pic_view {
+		width:490px;
+		height:348px;
+		text-align:center;
+		position:relative;
+		vertical-align:top;
+	}
+	
+	.stayContent_head .left .detail_submit {
+		width:490px;
+		height:120px;
+		text-align:center;
+		display:inline-block;
+		float:left;
+		position:relative;
+		vertical-align:top;
+	}
+
+	.stayContent_head .right {
+		display:inline-block;
+		float:right;
+		width:424px;
+		height:341px;
+	}
+
+	.stayContent_head .left {
+		display:inline-block;
+	}
+
+
+	.stayContent_head .right .info{padding:0; display:inline-block; margin-top:60px;}
+	.stayContent_head .right .info h2{display:inline; margin:9px 0 0 0; font-size:28px}
+	.stayContent_head .right .info .score{position:relative; clear:both; margin:9px 0 6px 0; font-size:18px}
+	.stayContent_head .right .info .score span{display:inline-block; position:relative; top:-3px; height:18px; margin-right:7px; padding:0 4px; border-radius:4px; background:rgb(255,167,38); font-size:14px; line-height:17px; color:#fff}
+	.stayContent_head .right .info .score b{font-weight:normal; color:rgba(0,0,0,0.38)}
+	.stayContent_head .right .info .score .call{display:none}
+	.stayContent_head .right .info .address{text-align:left; margin:6px 0 8px 0; font-size:18px}
+
+	.room_info {width:962px; margin:0 auto}
+	.room_info .room{overflow:hidden; position:relative; margin:0 0 24px 0; padding:24px 24px 24px 424px; border:1px solid rgba(0,0,0,0.08); border-radius:4px; background:#fff; box-sizing:border-box}
+	.room_info .room .on{height:826px}
+	.room_info .room .on .cal_bg,	.room_info .room.on .pic_wrap{display:block; opacity:0; transition:0.4s}
+	.room_info .room .on .cal_bg.visible,.room_info .room.on .pic_wrap.visible{opacity:1}
+	.room_info{background:#fff}
+	.room_info .pic_wrap{display:none; position:absolute; bottom:79px; left:111px; margin:0 !important}
+
+	.room_info .room{overflow:hidden; position:relative; margin:0 0 24px 0; background:#fff}
+	.room_info .pic_view{display:inline-block;position:absolute;top:23px;left:23px;width:376px;height:226px;cursor:pointer}
+	.room_info .pic_view img{width:376px;height:226px}
+	.room_info .pic_view:after{display:inline-block; content:""; position:absolute; bottom:16px; right:16px; z-index:10; width:24px; height:24px; background:url('//image.goodchoice.kr/images/web_v3/ico_picview.png') 0 0 no-repeat; background-size:24px auto}
+	.room_info .pic_view .pic_empty:after {display: none;}
+	.room_info .room .title{display:block;height:37px;padding:0;font-size:20px;font-weight:bold;line-height:1}
+	.room_info .room .info{overflow:hidden;margin:0; min-height: 188px}
+	.room_info .info .half{float:left;width:233px}
+	.room_info .info .half:last-child{float:left;width:233px;margin-left:46px}
+	.room_info .info .half:after{display:inline-block;content:"";position:absolute;top:63px;right:280px;width:1px;height:187px;background:rgba(0,0,0,0.08)}
+	.room_info .info .half .price{padding:0;border:none;border-radius:0;border-bottom:none;box-sizing:border-box}
+	.room_info .info .half .price strong{display:block;height:20px;font-size:18px;font-weight: bold;line-height:1.4}
+	.room_info .info .half .price strong span{display:inline-block;position:relative;top:2px;margin-left:0;padding:1px 3px;border:1px solid rgb(255,43,92);font-size:13px;line-height:normal;color:rgb(255,43,92);vertical-align:top;letter-spacing: -1px}
+	.room_info .info .half .price div{height:64px;padding:0 0 0 0;border-bottom:1px solid rgba(0,0,0,0.08);font-size:20px;color:rgb(230,28,81);text-align:right}
+	.room_info .info .price div .through{margin-bottom:3px;height:29px;padding-top:13px;text-decoration:line-through;font-size:16px;font-weight:normal;color:rgba(0,0,0,0.56)}
+	.room_info .info .price div .through_none{margin-bottom:3px;height:29px;padding-top:13px;font-size:16px;color:rgba(0,0,0,0.56)}
+	.room_info .info .price div p span{display:inline-block;position:relative;top:-2px;margin-right:4px;padding:2px 2px 1px 2px;background:rgb(255,43,92);font-size:14px;line-height:normal;color:#fff}
+	.room_info .info .half .price ul{height:64px;padding:11px 0 0 0}
+	.room_info .info .half .price ul li{position:relative;margin-bottom:7px;font-size:16px;text-align:right}
+	.room_info .info .half .price ul li span{position:absolute;top:0;left:0;color:rgba(0,0,0,0.56)}
+	.room_info .info button{display:block; width:100%; height:40px; border:none; border-radius:4px; font-size:16px; font-weight:normal; color:#fff; text-align:center}
+	.room_info .info .none ul,.room_info .info .none div .through{visibility:hidden}
+	.room_info .info .none div p,	.room_info .info .ended p{color:rgba(0,0,0,0.87); font-weight:bold}	
+
+	.room_info .info .room_info_null .price{position:relative; padding:0; border:none; border-radius:0; border-bottom:none; box-sizing:border-box}
+	.room_info .info .room_info_null .price strong{display:block; border-bottom:1px solid rgba(0,0,0,0.08); height:147px; font-size:18px; line-height:1}
+	.room_info .info .room_info_null .price div{position:absolute; top:76px; right:0; font-size:18px; text-align:right}
+	.room_info .info .room_info_null .price div p b{font-size:20px; color:rgb(255,43,92)}
+	.room_info .info .room_info_null .through{margin-bottom:6px !important;padding-top:14px !important}
+	.room_info .info .room_info_null ul{overflow:hidden; position:relative; height:65px}
+	.room_info .info .room_info_null ul:after{display:inline-block; content:""; position:absolute; top:12px; left:50%; width:1px; height:16px; margin-top:0; background:rgba(0,0,0,0.08)}
+	.room_info .info .room_info_null ul li{position:relative; float:left; width:50%; padding:11px 24px 13px 24px; font-size:16px; text-align:right}
+	.room_info .info .room_info_null ul li:last-child{padding-right:0}
+	.room_info .info .room_info_null ul li:last-child span{left:24px}
+	.room_info .info .room_info_null ul li span{display:inline-block; position:absolute; top:11px; left:0; padding-right:0; color:rgba(0,0,0,0.56)}
+	.room_info .info .hotel .price{position:relative; padding:0; border:none; border-radius:0; border-bottom:none; box-sizing:border-box}
+	.room_info .info .hotel .price strong{display:block; padding-top:41px; border-bottom:1px solid rgba(0,0,0,0.08); height:76px; font-size:16px; line-height:1}
+	.room_info .info .hotel .price div{position:absolute;top:10px;right:0;font-size:18px;text-align:right}
+	.room_info .info .hotel .price div p b{font-size:20px}
+	.room_info .info .hotel .price button{height:48px; margin:12px 0; font-size:16px; line-height:48px}
+	.room_info .info .hotel .through{margin-bottom:6px !important; padding-top:14px !important}
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
