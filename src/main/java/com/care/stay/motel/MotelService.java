@@ -382,5 +382,89 @@ public class MotelService {
 	        return motels;
 	    }
 
+	 
+	public void getAllHotelsWithMinPrices() {
+		List<MotelDTO> motels = motelMapper.getAllMotels();
+		
+		for (MotelDTO motel : motels) {
+			int minPrice = motelMapper.findMinPriceByMotel(motel.getNo());
+			int minDaesilPrice = motelMapper.findMinDaesilPriceByMotel(motel.getNo());
+			
+			motel.setMinprice(minPrice);
+			motel.setMindaesilprice(minDaesilPrice);
+			motelMapper.updatePrices(motel);
+		}
+		
+	}
+
+	
+	public void MainCheck(String selectedText, String checkindate, String checkoutdate, String moption, String mpeople,
+			String cp, Model model) {
+		
+		int currentPage = 1;
+
+		try {
+			currentPage = Integer.parseInt(cp);
+		} catch (Exception e) {
+			currentPage = 1;
+		}
+
+		int pageBlock = 6; // 한 페이지에 보일 데이터의 수
+		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
+		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+		
+		ArrayList<MotelDTO> motels = motelMapper.MainCheck(selectedText, moption, mpeople, begin, end);
+		int totalCount = motelMapper.count();
+		String url = "motellist?currentPage=";
+		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+		
+		for (MotelDTO motel : motels) {
+			MotelRoomDTO rooms = motel.getRooms();
+		}
+		
+		ArrayList<MotelDTO> motelResult = new ArrayList<MotelDTO>();
+		int resNum = 0;
+		for (MotelDTO motel : motels) {
+			MotelRoomDTO rooms = motel.getRooms();
+			resNum = motelMapper.resNum(rooms.getMcode(), rooms.getNo(), rooms.getMroomcode(), checkindate, checkoutdate);
+			if (resNum < rooms.getMroomcode()) {
+				motelResult.add(motel);
+			}
+		}
+		
+		model.addAttribute("motels", motelResult);
+		model.addAttribute("result", result);
+		model.addAttribute("currentPage", currentPage);
+		
+	}
+
+	
+	public void Main(String selectedText, String cp, Model model) {
+		int currentPage = 1;
+
+		try {
+			currentPage = Integer.parseInt(cp);
+		} catch (Exception e) {
+			currentPage = 1;
+		}
+
+		int pageBlock = 6; // 한 페이지에 보일 데이터의 수
+		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
+		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+		
+		int totalCount = motelMapper.count();
+		String url = "motellist?currentPage=";
+		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+		
+		if (selectedText != null) {
+			ArrayList<MotelDTO> motels = motelMapper.Main(selectedText, begin, end);
+			
+			model.addAttribute("motels", motels);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);
+		}
+		
+	}
+
 	
 }

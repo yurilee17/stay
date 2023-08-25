@@ -23,18 +23,10 @@ public class MotelController {
 		mservice.motelform(model);
 		return "board/motel";
 	}
-	
-//	@RequestMapping("motellist")
-//	public String motellist(
-//		@RequestParam(value="currentPage", required = false)String cp, Model model) { 
-//		  mservice.motellist(cp, model); 
-//		  return "motel/motellist";  
-//	}
-	
+
     @GetMapping("motellist")
-    public String motelsList(Model model) {
-        List<MotelDTO> motelsWithMinPrices = mservice.getAllMotelsWithMinPrices();
-        model.addAttribute("motels", motelsWithMinPrices);
+    public String motelsList(
+    		@RequestParam(value="currentPage", required = false)String cp, Model model) {
         return "motel/motellist";
     }
 	
@@ -49,6 +41,26 @@ public class MotelController {
 		model.addAttribute("motel", motel);
 		model.addAttribute("motelrooms", motelrooms);
 		return "motel/motelpage";
+	}
+	
+	@RequestMapping("Motel")
+	public String MainCheck(
+			@RequestParam(value="currentPage", required = false)String cp,
+			@RequestParam(value="mdetailregion", required = false)String selectedText,
+			@RequestParam(value="checkindate", required = false)String checkindate,
+			@RequestParam(value="checkoutdate", required = false)String checkoutdate,
+			@RequestParam(value="moption", required = false)String moption,
+			@RequestParam(value="mpeople", required = false)String mpeople, Model model) {
+		
+		mservice.getAllHotelsWithMinPrices();
+		
+		if (moption != null) {
+			mservice.MainCheck(selectedText, checkindate, checkoutdate, moption, mpeople, cp, model);
+		} else {
+			mservice.Main(selectedText, cp, model);
+		}
+		
+		return "motel/motellist";
 	}
 		  
 		

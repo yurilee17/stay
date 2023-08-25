@@ -91,20 +91,6 @@ public class AdminStayController {
 	/* 숙소 상세 DB 페이지로 넘어가는 과정. 각 숙소별로 상세페이지가 조금씩 다른데다 
 	   숙소 DB와 달리 종류는 정해진 상태이므로 If를 주고 페이지를 고정된 상태로 출력함 */
 
-//	@GetMapping("stayDetailRegister")
-//	public String stayDetailRegister(
-//			@RequestParam(value="no", required = false)String n, 
-//			Model model) {
-//			
-//		MotelDTO motel = service.stayContent(n);
-//		if(motel == null)
-//			return "redirect:stayInfo";
-//		
-//		model.addAttribute("motel", motel);
-//		return "admin/stayDetailRegister";
-//	}
-
-
 	@RequestMapping("stayDetailRegister")
 	public String stayDetailRegister(
 			@RequestParam(value="no", required = false)String n,
@@ -431,16 +417,6 @@ public class AdminStayController {
 		service.stayUser(cp, option1Name, option1, option2Name, option2, model);
 		return "admin/stayUser";
 	}
-
-//	@ResponseBody
-//	@PostMapping(value = "searchUser", produces = "text/plain; charset=utf-8")
-//	public String searchUser(@RequestBody(required = false) String cp,
-//			@RequestBody(required = false) String option1Name, @RequestBody(required = false) String option1,
-//			@RequestBody(required = false) String option2Name, @RequestBody(required = false) String option2,
-//			Model model) {
-//
-//		return service.searchUser(cp, option1Name, option1, option2Name, option2, model);
-//	}
 
 
 }

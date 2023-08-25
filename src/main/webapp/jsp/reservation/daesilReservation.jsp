@@ -9,11 +9,9 @@
     <meta name="Description" content="">
     <title>취향대로 머물다 저기어때</title>
     <link rel="stylesheet" href="../../resource/css/daesil.css">
-    <script src="../../resource/js/stayreservation.js"></script>
     <link rel="preload" href="../../resource/css/common.css" as="style">
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link data-n-head="ssr" rel="stylesheet" href="../../resource/js/owl.carousel.css">
-    <script data-n-head="ssr" src="../../resource/js/stayreservation.js"></script>
     <script data-n-head="ssr" rel="text/javascript" src="../../resource/js/common.js" defer=""></script>
     <script data-n-head="ssr" rel="text/javascript" src="../../resource/js/iscroll.js" defer=""></script>
     <script type="text/javascript" async="" src="../../resource/js"></script>
@@ -45,7 +43,7 @@
               <span class="stayname">${motel.mname}</span>
             </p>
             <p>
-              <strong>객실타입/기간</strong>
+              <strong>객실타입</strong>
               <span class="roomname">${motelroom.mroomname}</span> /
             </p>
           </section>
@@ -159,7 +157,7 @@
                 <span class="safety_txt">개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</span>
                 <div class="phone_confirm guest-phone">
                   <div class="input-box">
-                    <input type="tel" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="${sessionScope.mobile}" class="input validation-required-input">
+                    <input type="tel" name="userPhone" placeholder="체크인시 필요한 정보입니다." maxlength="13" value="" class="input validation-required-input">
                   </div>
                   <button type="button" class="btn_send btn_confirm phone-auth-btn">인증번호 전송</button>
                   <p data-show="tel" class="alert_txt error-message" style="">휴대폰 번호를 확인해 주세요.</p>

@@ -18,6 +18,7 @@ public class MotelDTO {
 	private String mstaycheckout;
 	private int mindaesilprice;
 	private int minprice;
+	private MotelRoomDTO rooms;
 	
 	public int getNo() {
 		return no;
@@ -121,7 +122,13 @@ public class MotelDTO {
 	public void setMinprice(int minprice) {
 		this.minprice = minprice;
 	}
-	
+	public MotelRoomDTO getRooms() {
+		return rooms;
+	}
+	public void setRooms(MotelRoomDTO rooms) {
+		this.rooms = rooms;
+	}
+
 	
 	
 }

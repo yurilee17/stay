@@ -69,8 +69,8 @@
 			<c:when test="${'motel' eq stayType }">
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${motel.mname}</span></p> 
-				<p><strong>객실타입/기간</strong><span class="roomname">${motelroom.mroomname}</span> / </p> 
-				<p><strong>체크인</strong>${param.checkindate}${motel.mstaycheckin}</p> 
+				<p><strong>객실타입</strong><span class="roomname">${motelroom.mroomname}</span></p> 
+				<p><strong>체크인</strong>${param.checkindate} ${motel.mstaycheckin}</p> 
 				<p><strong>체크아웃</strong>${param.checkoutdate} ${motel.mstaycheckout}</p>
 			</section> 	
 			<section class="total_price_pc">
@@ -102,7 +102,7 @@
 			<c:when test="${'hotel' eq stayType }">
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${hotel.hname}</p> 
-				<p><strong>객실타입/기간</strong><span class="roomname">${hotelroom.hbedtype}</span> / </p> 
+				<p><strong>객실타입</strong><span class="roomname">${hotelroom.hbedtype}</span></p> 
 				<p><strong>체크인</strong>${param.checkindate} ${hotel.hcheckintime}</p> 
 				<p><strong>체크아웃</strong>${param.checkoutdate} ${hotel.hcheckouttime}</p>
 			</section> 	
@@ -136,7 +136,7 @@
 			<c:when test="${'camping' eq stayType }">
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${camping.cname}</p> 
-				<p><strong>객실타입/기간</strong><span class="roomname">${campingroom.croomname}</span> / </p> 
+				<p><strong>객실타입</strong><span class="roomname">${campingroom.croomname}</span></p> 
 				<p><strong>체크인</strong>${param.checkindate} ${camping.ccheckintime}</p> 
 				<p><strong>체크아웃</strong>${param.checkoutdate} ${camping.ccheckouttime}</p>
 			</section> 	
@@ -171,7 +171,7 @@
 			<c:when test="${'gh' eq stayType }">
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${gh.gname}</p> 
-				<p><strong>객실타입/기간</strong><span class="roomname">${ghroom.gbedtype}</span> / </p> 
+				<p><strong>객실타입</strong><span class="roomname">${ghroom.gbedtype}</span> / </p> 
 				<p><strong>체크인</strong>${param.checkindate} ${gh.gcheckintime}</p> 
 				<p><strong>체크아웃</strong>${param.checkoutdate} ${gh.gcheckouttime}</p>
 			</section> 	
@@ -186,7 +186,7 @@
 					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
 					<input type="hidden" name="stayno" value="${gh.no }">					
 					<input type="hidden" name="code" value="${gh.gcode }">
-					<input type="hidden" name="roomcode" value="${gh.groomcode }">
+					<input type="hidden" name="roomcode" value="${ghroom.groomcode }">
 					<input type="hidden" name="roomimage" value="${ghroom.groomimage }">
 					<input type="hidden" name="stayname" value="${gh.gname}">
 					<input type="hidden" name="roomname" value="${ghroom.groomname}">
@@ -206,15 +206,15 @@
 			<c:when test="${'pension' eq stayType }">
 			<section class="info">
 				<p class="name"><strong>숙소이름</strong><span class="stayname">${pension.pname}</p> 
-				<p><strong>객실타입/기간</strong><span class="roomname">${pentionroom.proomname}</span> / </p> 
-				<p><strong>체크인</strong>${param.checkindate} ${pention.pcheckintime}</p> 
-				<p><strong>체크아웃</strong>${param.checkoutdate} ${pention.pcheckouttime}</p>
+				<p><strong>객실타입</strong><span class="roomname">${pensionroom.proomname}</span></p> 
+				<p><strong>체크인</strong>${param.checkindate} ${pension.pcheckintime}</p> 
+				<p><strong>체크아웃</strong>${param.checkoutdate} $pension.pcheckouttime}</p>
 			</section> 	
 	
 			<section class="total_price_pc">
 				<p>
 					<strong><b>총 결제 금액</b>(VAT포함)</strong>
-					<span class="in_price">${pentionroom.pprice}</span>
+					<span class="in_price">${pensionroom.pprice}</span>
 				</p> 
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
