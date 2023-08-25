@@ -76,7 +76,7 @@ public class ReservationService {
 			CampingDTO camping = cservice.stayContent(n);
 			CampingRoomDTO campingroom = cservice.roomContent(rc);
 			model.addAttribute("camping", camping);
-	        model.addAttribute("campingroom", camping);			
+	        model.addAttribute("campingroom", campingroom);			
 		}
 	}
 
@@ -123,19 +123,5 @@ public class ReservationService {
     
     	return "예약 DB 등록 완료";
 	}
-    
-    
-    public <T> JSONObject requestPost(T body, String url, HttpHeaders headers) {
-    	HttpEntity<T>entity = new HttpEntity<>(body, headers);
-    	RestTemplate restTemplate = new RestTemplate();
-    	return restTemplate.postForObject(url, entity, JSONObject.class);
-    }
-    
-    public <T> JSONObject requestGet(T body, String url, HttpHeaders headers) {
-    	RestTemplate restTemplate = new RestTemplate();
-    	HttpEntity<T>entity = new HttpEntity<>(body, headers);
-    	ResponseEntity<JSONObject>responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, JSONObject.class);
-    	return responseEntity.getBody();
-    }
  
 }

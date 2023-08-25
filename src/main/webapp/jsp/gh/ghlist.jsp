@@ -40,6 +40,12 @@
 <script type="text/javascript" src="../../resource/js/hotel.js"></script>
 </head>
 
+<link rel="stylesheet" href="../../resource/css/map.css">
+<script src="../../resource/js/map.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=11cc932694fd38ffbe4f68b35d6b9427&libraries=services"></script>
+</head>
+
 <!-- 파라미터에 넣을 현재 날짜 -->
 	<c:set var="currentDate" value="<%= new java.util.Date() %>" />
     <c:set var="dateFormat" value="yyyy-MM-dd" />
@@ -53,6 +59,120 @@
 
 	<!-- Wrap -->
 	<div class="wrap main_wrap show">
+	
+	<script>
+		// 주소-좌표 변환 객체를 생성합니다
+		
+		var mapContainer = document.getElementById('map'), mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667),
+			level : 7
+		};
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		geocoder.addressSearch('${param.gdetailregion}', function(result, status) {
+			// 정상적으로 검색이 완료됐으면 
+			if (status === kakao.maps.services.Status.OK) {
+				mapCenter = new kakao.maps.LatLng(result[0].y-(-0.05), result[0].x-0.1);
+			} 
+			
+			map.setCenter(mapCenter);
+			
+		});
+		
+		let positions = [];
+		
+		var closeElements = document.querySelectorAll(".close");
+		var markers = [];
+		var overlays = [];
+		
+		let thisAdd;
+		
+		<c:forEach var="gh" items="${ghs}" varStatus="status">
+		geocoder.addressSearch('${gh.gaddress}', function(result, status) {
+
+			// 정상적으로 검색이 완료됐으면 
+			if (status === kakao.maps.services.Status.OK) {
+
+				thisAdd = new kakao.maps.LatLng(result[0].y, result[0].x);
+			}
+			
+			var content = '<div class="mapWrap">'
+				+ '    <div class="info">'
+				+ '        <div class="title">'
+				+ '            '
+				+ "${gh.gname}" // JSTL 변수를 JavaScript 변수로 사용
+				+ '        </div>'
+				+ '        <div class="body">'
+				+ '            <div class="img">'
+				+ '                <img src="' + "${gh.gimage}" + '" width="73" height="70">'
+				+ '           </div>'
+				+ '            <div class="desc">'
+				+ '                <div class="ellipsis">'
+				+ "${gh.gaddress}"
+				+ '</div>'
+				+ '                <div><a href="/ghpage?no=${gh.no}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}" class="link">자세히 보기</a></div>'
+				+ '            </div>' + '        </div>' + '    </div>'
+				+ '</div>';
+
+		positions.push({
+			content : content,
+			latlng : thisAdd
+		});
+		if(positions.length === ${ghs.size()}){
+			for (var i = 0; i < positions.length; i++) {
+
+				// 마커를 생성합니다
+				var marker = new kakao.maps.Marker({
+					map : map,
+					position : positions[i].latlng
+				});
+				markers.push(marker);
+
+				// 마커에 표시할 오버레이를 생성합니다 
+				var overlay = new kakao.maps.CustomOverlay({
+					content : positions[i].content,
+					map : map,
+					position : positions[i].latlng
+				});
+				overlays.push(overlay);
+				overlay.setMap(null);
+			}
+			// 마커 선택시 오버레이 나타내며 나머지 닫기
+			for (var i = 0; i < markers.length; i++) {
+				(function(index) {
+					kakao.maps.event.addListener(markers[index], 'click',
+							function() {
+								for (var j = 0; j < overlays.length; j++) {
+									overlays[j].setMap(null);
+								}
+								overlays[index].setMap(map);
+							});
+				})(i);
+			}
+		}
+		
+	
+		// thisAdd 배열에서 해당 위치를 가져옴
+		});
+		</c:forEach>
+
+
+		// 지도 열기
+		function openGmap() {
+			let bgDimmMap = document.querySelector(".bgDimmMap");
+			let mapL = document.getElementById("map");
+
+			if (bgDimmMap != null && mapL != null) {
+				bgDimmMap.style.display = 'block';
+				mapL.style.display = 'block';
+				map.relayout();
+			}
+			
+		}
+	</script>
 
 		<!-- Header -->
 		<c:import url="/header" /> 

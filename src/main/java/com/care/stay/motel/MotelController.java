@@ -23,19 +23,10 @@ public class MotelController {
 		mservice.motelform(model);
 		return "board/motel";
 	}
-	
-//	@RequestMapping("motellist")
-//	public String motellist(
-//		@RequestParam(value="currentPage", required = false)String cp, Model model) { 
-//		  mservice.motellist(cp, model); 
-//		  return "motel/motellist";  
-//	}
-	
+
     @GetMapping("motellist")
     public String motelsList(
     		@RequestParam(value="currentPage", required = false)String cp, Model model) {
-//        List<MotelDTO> motelsWithMinPrices = mservice.getAllMotelsWithMinPrices();
-//        model.addAttribute("motels", motelsWithMinPrices);
         return "motel/motellist";
     }
 	

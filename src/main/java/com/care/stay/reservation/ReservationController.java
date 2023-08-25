@@ -76,12 +76,10 @@ public class ReservationController {
 
 	@RequestMapping("daesilReservation")
 	public String daesilReservation(
-			/*임시로 연결만 해놓은거라 정보 없이도 넘어갈 수 있게*/
 	        @RequestParam(value = "no", required = false) String n,
 	        @RequestParam(value = "stayType", required = false) String stayType,
 	        @RequestParam(value = "mroomcode", required = false) String mroomcode,
 	        Model model) {
-
 
 		String loginId = (String) session.getAttribute("id");
 		
@@ -89,49 +87,17 @@ public class ReservationController {
 			return "redirect:login";
 		} 
 
-		
         model.addAttribute("stayType", stayType);
         rservice.stayAndRoomInfo(stayType, n, mroomcode, model);
         rservice.getmroomCode(mroomcode, model);
-        
-		
-//		MotelDTO motel = mservice.stayContent(n);
-//		MotelRoomDTO motelroom = mservice.daesilReservation(mroomcode);
-//		
-//		model.addAttribute("stayType", stayType);
-//		model.addAttribute("motel", motel);
-//		model.addAttribute("motelroom", motelroom);
 
 		return "reservation/daesilReservation";
 	}	
-	
-	
-	@RequestMapping("paymentPractice")
-	public String paymentPractice() {
-		return "reservation/paymentPractice";
-	}
-	
-	@RequestMapping("paymentComplete")
-	public String paymentComplete() {
-		return "reservation/paymentComplete";
-	}
-	
+
 	@PostMapping("reservationProc")
 	public String stayreservationProc(HttpServletRequest request) {
 		rservice.stayReservationProc(request);
 		return "redirect:reservationList";
 	}
-	
-	@RequestMapping("paymentCancel")
-	public String paymentCancel() {
-		return "reservation/paymentCancel";
-	}
-	
-	@RequestMapping(value = "getUserId", method = RequestMethod.GET)
-	@ResponseBody
-	public ResponseEntity<String> getUserId(HttpServletRequest request) {
-	    String id = (String) request.getSession().getAttribute("id");
-	    return new ResponseEntity<>(id, HttpStatus.OK);
-	}
-	
+
 }

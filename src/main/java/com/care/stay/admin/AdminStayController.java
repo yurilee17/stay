@@ -418,15 +418,5 @@ public class AdminStayController {
 		return "admin/stayUser";
 	}
 
-//	@ResponseBody
-//	@PostMapping(value = "searchUser", produces = "text/plain; charset=utf-8")
-//	public String searchUser(@RequestBody(required = false) String cp,
-//			@RequestBody(required = false) String option1Name, @RequestBody(required = false) String option1,
-//			@RequestBody(required = false) String option2Name, @RequestBody(required = false) String option2,
-//			Model model) {
-//
-//		return service.searchUser(cp, option1Name, option1, option2Name, option2, model);
-//	}
-
 
 }
