@@ -76,7 +76,7 @@ public class ReservationService {
 			CampingDTO camping = cservice.stayContent(n);
 			CampingRoomDTO campingroom = cservice.roomContent(rc);
 			model.addAttribute("camping", camping);
-	        model.addAttribute("campingroom", camping);			
+	        model.addAttribute("campingroom", campingroom);			
 		}
 	}
 
