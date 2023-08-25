@@ -11,12 +11,12 @@
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
-<script src="../../resource/js/map.js"></script>
+<script src="js/map.js"></script>
 
 <title>지도로 보는거 어때</title>
 
-<link rel="stylesheet" href="../../resource/css/map.css">
-<script src="../../resource/js/map.js"></script>
+<link rel="stylesheet" href="css/map.css">
+<script src="js/map.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=11cc932694fd38ffbe4f68b35d6b9427&libraries=services"></script>
 </head>

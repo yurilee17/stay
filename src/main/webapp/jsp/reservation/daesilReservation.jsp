@@ -8,19 +8,19 @@
     <meta name="Keywords" content="">
     <meta name="Description" content="">
     <title>취향대로 머물다 저기어때</title>
-    <link rel="stylesheet" href="../../resource/css/daesil.css">
-    <link rel="preload" href="../../resource/css/common.css" as="style">
-    <link rel="stylesheet" href="../../resource/css/common.css">
-    <link data-n-head="ssr" rel="stylesheet" href="../../resource/js/owl.carousel.css">
-    <script data-n-head="ssr" rel="text/javascript" src="../../resource/js/common.js" defer=""></script>
-    <script data-n-head="ssr" rel="text/javascript" src="../../resource/js/iscroll.js" defer=""></script>
-    <script type="text/javascript" async="" src="../../resource/js"></script>
-    <script type="text/javascript" async="" src="../../resource/js/analytics.js"></script>
-    <script type="text/javascript" async="" src="../../resource/js/js(1)"></script>
-    <script async="" src="../../resource/js/gtm.js"></script>
-    <script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
-    <script data-n-head="ssr" src="../../resource/js/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="css/daesil.css">
+    <link rel="preload" href="css/common.css" as="style">
+    <link rel="stylesheet" href="css/common.css">
+    <link data-n-head="ssr" rel="stylesheet" href="js/owl.carousel.css">
+    <script data-n-head="ssr" rel="text/javascript" src="js/common.js" defer=""></script>
+    <script data-n-head="ssr" rel="text/javascript" src="js/iscroll.js" defer=""></script>
+    <script type="text/javascript" async="" src="js"></script>
+    <script type="text/javascript" async="" src="js/analytics.js"></script>
+    <script type="text/javascript" async="" src="js/js(1)"></script>
+    <script async="" src="js/gtm.js"></script>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script data-n-head="ssr" src="js/owl.carousel.min.js"></script>
     
     <!-- 결제 관련 JS 라이브러리, 함수 모음 -->
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
@@ -412,7 +412,7 @@
       <!---->
       <!---->
     </div>
-	<script src="../../resource/js/payment.js"></script>    
-	<script src="../../resource/js/reservation.js"></script> 	
+	<script src="js/payment.js"></script>    
+	<script src="js/reservation.js"></script> 	
   </body>
 </html>

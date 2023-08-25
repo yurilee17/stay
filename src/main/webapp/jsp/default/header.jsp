@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link rel="stylesheet" href="../../resource/css/alert.css">
-<link rel="stylesheet" href="../../resource/css/header.css">
-<link rel="stylesheet preload" href="../../resource/css/font.css"
+<link rel="stylesheet" href="css/alert.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet preload" href="${context }css/font.css"
 	as="style" type="text/css" crossorigin="">
 <header>
 
@@ -17,12 +17,12 @@
 			<li><a href="#">내주변</a></li>
 			<c:choose>
 				<c:when test="${empty sessionScope.id }">
-					<li><a href="/login">예약내역</a></li>
+					<li><a href="login">예약내역</a></li>
 				</c:when>
 				<c:when test="${'admin' == sessionScope.authority }">
 				</c:when>
 				<c:otherwise>
-					<li><a href="/reservationList">예약내역</a></li>					
+					<li><a href="reservationList">예약내역</a></li>					
 				</c:otherwise>
 			</c:choose>
 			<li class="over">
@@ -30,33 +30,33 @@
 					<span>더보기</span>
 				</button>
 				<ul class="list_03">
-					<li><a href="${context }noticeForm">공지사항</a></li>
-					<li><a href="${context }faqForm">자주 묻는 질문</a></li>
-					<li><a href="${context }inquiryForm">1:1 문의</a></li>
+					<li><a href="noticeForm">공지사항</a></li>
+					<li><a href="faqForm">자주 묻는 질문</a></li>
+					<li><a href="inquiryForm">1:1 문의</a></li>
 				</ul>
 			</li>
 			<c:choose>
 				<c:when test="${empty sessionScope.id }">
-					<li><a href="/login"><span>로그인</span></a></li>
+					<li><a href="login"><span>로그인</span></a></li>
 				</c:when>
 				<c:when test="${'admin' == sessionScope.authority }">
 					<li class="user"><a href="#"><img
-							src="../../resource/img/loginUser.png" alt=""></a>
+							src="img/loginUser.png" alt=""></a>
 						<ul class="list_04">
 							<li><b>${sessionScope.nickname}</b></li>
-							<li><a href="/stayIndex">관리하는거 어때</a></li>
+							<li><a href="stayIndex">관리하는거 어때</a></li>
 							<li><button type="button" class="poplogoutopen"
 									onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button></li>
 						</ul></li>
 				</c:when>
 				<c:otherwise>
-					<li class="user"><a href="/myPage"><img
-							src="../../resource/img/loginUser.png" alt=""></a>
+					<li class="user"><a href="myPage"><img
+							src="img/loginUser.png" alt=""></a>
 						<ul class="list_04">
 							<li><b>${sessionScope.nickname}</b></li>
 
-							<li><a href="/myPage">내정보</a></li>
-							<li><a href="/reservationList">예약내역<!-- span>0건</span --></a></li>
+							<li><a href="myPage">내정보</a></li>
+							<li><a href="reservationList">예약내역<!-- span>0건</span --></a></li>
 							<li><button type="button" class="poplogoutopen"
 									onclick="alerTwoBtn('로그아웃 하시겠습니까?','로그아웃');">로그아웃</button></li>
 						</ul></li>
@@ -110,5 +110,5 @@
 		</div>
 	</div>
 </div>-->
-<script src="../../resource/js/header.js"></script>
-<script src="../../resource/js/alert.js"></script>
+<script src="js/header.js"></script>
+<script src="js/alert.js"></script>

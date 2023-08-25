@@ -8,9 +8,9 @@
   <meta name="Author" content="">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
-  <script src="../../resource/js/admin.js"></script>
+  <script src="resource/js/admin.js"></script>
   <title>숙소 DB 등록</title>
-  <link rel="stylesheet" href="../../resource/css/reset.css" type="text/css">
+  <link rel="stylesheet" href="resource/css/reset.css" type="text/css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
