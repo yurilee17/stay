@@ -11,14 +11,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type">
 
-<script src="../../resource/js/passwdReset.js"></script>
-<!-- <script src="../../resource/js/dbQuiz.js"></script> -->
+<script src="js/passwdReset.js"></script>
+<!-- <script src="js/dbQuiz.js"></script> -->
 <title>비밀번호 재설정 어때</title>
 
-<link rel="stylesheet preload" href="../../resource/css/font.css"
+<link rel="stylesheet preload" href="css/font.css"
 	as="style" type="text/css" crossorigin="">
-<link rel="stylesheet" href="../../resource/css/passwdReset.css">
-<!-- <link rel="stylesheet" href="../../resource/css/common.css"> -->
+<link rel="stylesheet" href="css/passwdReset.css">
+<!-- <link rel="stylesheet" href="css/common.css"> -->
 </head>
 
 <body>
@@ -63,7 +63,7 @@
 		</div>
 		<!-- Footer -->
 		<footer></footer>
-		<script src="../../resource/js/passwdReset.js"></script>
+		<script src="js/passwdReset.js"></script>
 	</div>
 	<!-- //Wrap -->
 </body>
