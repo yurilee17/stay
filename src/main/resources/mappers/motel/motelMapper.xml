@@ -108,7 +108,7 @@
 	
 	<select id="stayInfo" resultMap="motelDto">
 		SELECT BBB.* FROM 
-		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, mcode, mname, mregion, maddress FROM motel ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>
@@ -120,7 +120,7 @@
 	
   	<select id="motellist" resultMap="motelDto">
 		SELECT BBB.* FROM 
-		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, 
 		mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, minprice, mindaesilprice
 		FROM motel ORDER BY no DESC)AAA)BBB
@@ -129,7 +129,7 @@
     
     <select id="Main" resultMap="MotelDto">
 		SELECT BBB.* FROM 
-		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, mcode, mname, mregion, mdetailregion, mrating, maddress, mdetailaddress, 
 		mimage, minfo, mdaesilcheckin, mdaesilcheckout, mdaesiltime, mstaycheckin, mstaycheckout, minprice, mindaesilprice
 		FROM motel WHERE mdetailregion = #{selectedText})AAA)BBB
