@@ -100,7 +100,7 @@
 	
 	<select id="stayInfo" resultMap="ghDto">
 		SELECT BBB.* FROM 
-		(SELECT rownum as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, gcode, gname, gregion, gaddress FROM gh ORDER BY no DESC)AAA)BBB
 		WHERE BBB.rn BETWEEN #{begin} AND #{end}
 	</select>
@@ -113,7 +113,7 @@
 		<!-- 지역별로 나오게하기  -->
  	<select id="Main" resultMap="GhDto">
 		SELECT BBB.* FROM 
-		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT ROWNUM() as rn, AAA.* FROM 
 		(SELECT no, gcode, gname, gregion, gdetailregion, grating, gaddress, gdetailaddress, 
 		gimage, ginfo, gcheckintime, gcheckouttime, minprice
 		FROM gh WHERE gdetailregion = #{selectedText})AAA)BBB

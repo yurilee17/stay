@@ -33,7 +33,6 @@
 					<li><a href="${context }noticeForm">공지사항</a></li>
 					<li><a href="${context }faqForm">자주 묻는 질문</a></li>
 					<li><a href="${context }inquiryForm">1:1 문의</a></li>
-					<li><a href="#">약관 및 정책</a></li>
 				</ul>
 			</li>
 			<c:choose>
