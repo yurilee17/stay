@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.stay.common.AdminPageService;
 import com.care.stay.motel.MotelRoomDTO;
-
+import com.care.stay.common.PageService;
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -227,6 +227,92 @@ public class GHService {
 			return null;
 		
 		return gh;
+	}
+
+
+	public void getAllHotelsWithMinPrices() {
+		List<GHDTO> ghs = ghMapper.getAllGHs();
+		for (GHDTO gh : ghs) {
+			int minPrice = ghMapper.findMinPriceByGuestHouse(gh.getNo());
+			
+			gh.setMinprice(minPrice);
+			ghMapper.updatePrices(gh);
+		}
+		
+	}
+
+	public void MainCheck(String selectedText, String checkindate, String checkoutdate, String gbedtype,
+			String gcomfort, String gpeople, String cp, Model model) {
+
+		int currentPage = 1;
+		
+		try {
+			currentPage = Integer.parseInt(cp);
+		} catch (Exception e) {
+			currentPage = 1;
+		}
+		System.out.println("1");
+		int pageBlock = 6; // 한 페이지에 보일 데이터의 수
+		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
+		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+		System.out.println("2");
+		ArrayList<GHDTO> ghs = ghMapper.MainCheck(selectedText, gbedtype, gcomfort, gpeople, begin, end);
+		System.out.println("3");
+		int totalCount = ghMapper.count();
+		String url = "ghlist?currentPage=";
+		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+		
+		for (GHDTO gh : ghs) {
+			GHRoomDTO rooms = gh.getRooms();
+			System.out.println(rooms.getGroomnumber());
+		}
+		
+		ArrayList<GHDTO> ghResult = new ArrayList<GHDTO>();
+		int resNum = 0;
+		for (GHDTO gh : ghs) {
+			GHRoomDTO rooms = gh.getRooms();
+			System.out.println("Groomnumber" + rooms.getGroomnumber());
+			
+			resNum = ghMapper.resNum(rooms.getGcode(), rooms.getNo(), rooms.getGroomcode(), checkindate, checkoutdate);
+			System.out.println("resNum" + resNum);
+			if (resNum < rooms.getGroomnumber()) {
+				ghResult.add(gh);
+			}
+			
+		}
+		
+		model.addAttribute("ghs", ghResult);
+		model.addAttribute("result", result);
+		model.addAttribute("currentPage", currentPage);
+		
+	}
+
+	public void Main(String selectedText, String cp, Model model) {
+
+		int currentPage = 1;
+		
+		try {
+			currentPage = Integer.parseInt(cp);
+		} catch (Exception e) {
+			currentPage = 1;
+		}
+		
+		int pageBlock = 6; // 한 페이지에 보일 데이터의 수
+		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
+		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+		
+		int totalCount = ghMapper.count();
+		String url = "ghlist?currentPage=";
+		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+
+		if (selectedText != null) {
+			ArrayList<GHDTO> ghs = ghMapper.Main(selectedText, begin, end);
+			
+			model.addAttribute("ghs", ghs);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);
+		}
+		
 	}
 
 	public String stayModifyProc(MultipartHttpServletRequest multi) {

@@ -5,14 +5,63 @@
   
 <mapper namespace="com.care.stay.gh.GHMapper">
 
+	<resultMap type="com.care.stay.gh.GHDTO" id="GhDto">
+		<id column="no" property="no"/>
+		<result column="gcode" property="gcode" />
+		<result column="gname" property="gname" />
+		<result column="gregion" property="gregion" />
+		<result column="gdetailregion" property="gdetailregion" />
+		<result column="grating" property="grating" />
+		<result column="gaddress" property="gaddress" />
+		<result column="gdetailaddress" property="gdetailaddress" />
+		<result column="gimage" property="gimage" />
+		<result column="ginfo" property="ginfo" />
+		<result column="gcheckintime" property="gcheckintime" />
+		<result column="gcheckouttime" property="gcheckouttime" />
+		<result column="minprice" property="minprice" />
+		<collection property="rooms" resultMap="GhRoomDto" />															
+	</resultMap>
+	
+	<resultMap type="com.care.stay.gh.GHRoomDTO" id="GhRoomDto">
+		<result column="no" property="no" />
+		<result column="gcode" property="gcode" />
+		<result column="groomcode" property="groomcode"/>
+		<result column="groomname" property="groomname" />
+		<result column="gbedtype" property="gbedtype" />
+		<result column="groomimage" property="groomimage" />
+		<result column="groomnumber" property="groomnumber" />
+		<result column="gprice" property="gprice" />
+		<result column="gpeople" property="gpeople" />
+		<result column="gcomfort" property="gcomfort" />
+	</resultMap>
+	
+	<resultMap type="com.care.stay.reservation.ReservationDTO" id="ReservationDto">
+        <result column="no" property="no" />
+        <result column="stayno" property="stayno" />
+        <result column="stayname" property="stayname" />
+        <result column="roomname" property="roomname" />
+        <result column="code" property="code" />
+        <result column="roomcode" property="roomcode" />
+        <result column="roomimage" property="roomimage" />
+        <result column="checkindate" property="checkindate" />
+        <result column="checkoutdate" property="checkoutdate" />
+        <result column="checkintime" property="checkintime" />
+        <result column="checkouttime" property="checkouttime" />
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="price" property="price" />
+        <result column="paymethod" property="paymethod" />
+        <result column="status" property="status" />	
+	</resultMap>
+	
 	<resultMap type="com.care.stay.gh.GHDTO" id="ghDto">
-		<id column="no" property="no"/>																		
+		<id column="no" property="no"/>
 	</resultMap>
 	
 	<resultMap type="com.care.stay.gh.GHRoomDTO" id="ghroomDto">
 		<id column="groomcode" property="groomcode"/>
 	</resultMap>
-
+	
 	<select id="stayContent" resultMap="ghDto">
 		SELECT * FROM gh WHERE no=#{no}
 	</select>
@@ -60,5 +109,59 @@
 		INSERT INTO ghroom (no, gcode, groomcode, groomname, gbedtype, groomimage, groomnumber, gprice, gpeople, gcomfort)
 		VALUES(#{no}, #{gcode}, #{groomcode}, #{groomname}, #{gbedtype}, #{groomimage}, #{groomnumber}, #{gprice}, #{gpeople}, #{gcomfort})
 	</insert>	
+	
+		<!-- 지역별로 나오게하기  -->
+ 	<select id="Main" resultMap="GhDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT no, gcode, gname, gregion, gdetailregion, grating, gaddress, gdetailaddress, 
+		gimage, ginfo, gcheckintime, gcheckouttime, minprice
+		FROM gh WHERE gdetailregion = #{selectedText})AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
+
+ 
+   <select id="MainCheck" resultMap="GhDto">
+  	 SELECT g.*,
+			gr.*
+	 FROM gh g 
+	 JOIN ghroom gr  ON gr.gcode = g.gcode and gr.no = g.no
+  	WHERE g.gdetailregion = #{selectedText}
+  	
+         <if test="gbedtype != ''">
+	   		AND(
+	       <bind name="gbedtypeArray" value="gbedtype.split(',')" />
+            gr.gbedtype IN
+            <foreach item="bedtype" collection="gbedtypeArray" open="(" separator="," close=")">
+                #{bedtype}
+          	</foreach>)
+	    </if>
+	    <if test="gcomfort != ''">
+	    AND 
+	      <bind name="gcomfortArray" value="gcomfort.split(',')" />
+	      <foreach item="comfort" collection="gcomfortArray" open="(" separator="or" close=")">
+       		 gr.gcomfort LIKE CONCAT('%'|| #{comfort}, '%')
+        </foreach>
+        </if>
+        AND gr.gpeople >= #{gpeople}
+	</select>    
+	
+	<select id="resNum">
+	SELECT count(*) FROM reservation WHERE code = #{gcode} AND stayno = #{no} AND roomcode = #{groomcode} AND ((checkindate >= #{checkindate} AND #{checkoutdate} >= checkoutdate) OR ( #{checkindate} >= checkindate AND checkoutdate >= #{checkindate}) OR (#{checkoutdate} >= checkindate  AND checkoutdate >= #{checkoutdate}))
+	</select> 
+	
+	<select id="findMinPriceByGuestHouse" resultType="java.lang.Integer">
+		SELECT COALESCE(MIN(gprice), 0) FROM ghroom WHERE no = #{no}
+	</select>	
+	
+	<select id="getAllGHs" resultType="com.care.stay.gh.GHDTO">
+		SELECT * FROM gh
+	</select>
+	
+	<update id="updatePrices" parameterType="com.care.stay.gh.GHDTO">
+		UPDATE gh
+		SET minprice=#{minprice}
+		WHERE no=#{no}
+	</update>
 	
 </mapper>

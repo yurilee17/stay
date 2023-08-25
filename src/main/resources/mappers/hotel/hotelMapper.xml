@@ -119,7 +119,7 @@
 	  	SELECT count(no) FROM hotel
 	</select>
 
-	 <resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
+	<resultMap type="com.care.stay.hotel.HotelDTO" id="hotelDto">
 		<id column="no" property="no"/>																		
 	</resultMap>
 	
@@ -186,7 +186,6 @@
 	<select id="getAllHotels" resultType="com.care.stay.hotel.HotelDTO">
 		SELECT * FROM hotel
 	</select>
-	
 	
 	<update id="updatePrices" parameterType="com.care.stay.hotel.HotelDTO">
 		UPDATE hotel
