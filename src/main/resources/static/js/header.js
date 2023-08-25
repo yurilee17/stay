@@ -10,5 +10,6 @@ window.addEventListener('scroll', function() {
 
 
 function logoutProc() {
-	window.location.href = "http://localhost/logout";
+	/*window.location.href = "http://localhost/logout";*/
+	window.location.href = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/logout";
 }

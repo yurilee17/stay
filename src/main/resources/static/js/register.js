@@ -295,9 +295,11 @@ function sendDigitProc() {
 				let id = document.getElementById('id').value; // 전송하고자 하는 값
 				let url = '';
 				if (id != "") {
-					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile) + "&id=" + encodeURIComponent(id);
+					/*url = "http://localhost/register?mobile=" + encodeURIComponent(mobile) + "&id=" + encodeURIComponent(id);*/
+					url = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/register?mobile=" + encodeURIComponent(mobile) + "&id=" + encodeURIComponent(id);
 				} else {
-					url = "http://localhost/register?mobile=" + encodeURIComponent(mobile);
+					/*url = "http://localhost/register?mobile=" + encodeURIComponent(mobile);*/
+					url = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/register?mobile=" + encodeURIComponent(mobile);
 				}
 
 				window.location.href = url;
