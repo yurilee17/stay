@@ -30,6 +30,7 @@
 					<span>더보기</span>
 				</button>
 				<ul class="list_03">
+
 					<li><a href="noticeForm">공지사항</a></li>
 					<li><a href="faqForm">자주 묻는 질문</a></li>
 					<li><a href="inquiryForm">1:1 문의</a></li>
