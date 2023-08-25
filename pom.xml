@@ -98,11 +98,11 @@
 			<version>20230618</version>
 		</dependency>
 
-		<dependency>
+<!--		<dependency>
 			<groupId>com.care</groupId>
 			<artifactId>boot</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<build>

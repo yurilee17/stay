@@ -25,9 +25,9 @@
    <script>(function (a, b, c) { if (c in b && b[c]) { var d, e = a.location, f = /^(a|html)$/i; a.addEventListener("click", function (a) { d = a.target; while (!f.test(d.nodeName)) d = d.parentNode; "href" in d && (d.href.indexOf("http") || ~d.href.indexOf(e.host)) && (a.preventDefault(), e.href = d.href) }, !1) } })(document, window.navigator, "standalone")</script>
    
 </head>
-<!-- <link rel="stylesheet" href="../../resource/css/alert.css">
-<link rel="stylesheet" href="../../resource/css/header.css"> -->
-    <link rel="stylesheet preload" href="../../resource/css/font.css" as="style" type="text/css" crossorigin="">
+<!-- <link rel="stylesheet" href="css/alert.css">
+<link rel="stylesheet" href="css/header.css"> -->
+    <link rel="stylesheet preload" href="css/font.css" as="style" type="text/css" crossorigin="">
 <header>
 
    <section>
@@ -104,8 +104,8 @@
       </div>
    </div>
 </div>-->
-<script src="../../resource/js/header.js"></script>
-<script src="../../resource/js/alert.js"></script>
+<script src="js/header.js"></script>
+<script src="js/alert.js"></script>
    <script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
 
 <!-- 오른쪽 예약 내역  -->
