@@ -14,6 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.stay.common.AdminPageService;
+import com.care.stay.common.PageService;
+import com.care.stay.hotel.HotelDTO;
+import com.care.stay.hotel.HotelRoomDTO;
 import com.care.stay.motel.MotelRoomDTO;
 
 import jakarta.servlet.http.HttpSession;
@@ -233,4 +236,125 @@ public class CampingService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	//여기부터 수정하는거 ---------------------------------
+	
+	// 지역별 호텔리스트 나오게
+		public void Main(String selectedText, String cp, Model model) {
+
+			
+			int currentPage = 1;
+
+			try {
+				currentPage = Integer.parseInt(cp);
+			} catch (Exception e) {
+				currentPage = 1;
+			}
+
+			int pageBlock = 6; // 한 페이지에 보일 데이터의 수
+			int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
+			int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+
+			int totalCount = campingMapper.count();
+			String url = "hotellist?currentPage=";
+			String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+			
+
+			System.out.println("----여기는 서비스 Main -----");
+			System.out.println("service에서 " + selectedText);
+			System.out.println("pageBlock " + pageBlock);
+			System.out.println("totalCount " + totalCount);
+			System.out.println("----여기는 서비스 Main  // -----");
+
+			if (selectedText != null) {
+				ArrayList<CampingDTO> campings = campingMapper.Main(selectedText, begin, end);
+				
+				model.addAttribute("campings", campings);
+				model.addAttribute("result", result);
+				model.addAttribute("currentPage", currentPage);
+
+			}
+		}
+		
+		
+
+		// 체크박스 선택시 조건에 맞게 호텔리스트 나오게
+		public void MainCheck(String selectedText, String checkindate, String checkoutdate, String ctype, 
+				String ccomfort, String cpeople, String cp, Model model) {
+
+			int currentPage = 1;
+
+			try {
+				currentPage = Integer.parseInt(cp);
+			} catch (Exception e) {
+				currentPage = 1;
+			}
+
+			int pageBlock = 6; // 한 페이지에 보일 데이터의 수
+			int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
+			int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
+
+			ArrayList<CampingDTO> campings = campingMapper.MainCheck(selectedText, ctype, ccomfort, cpeople, begin,
+					end);
+
+			int totalCount = campingMapper.count();
+			String url = "hotellist?currentPage=";
+			String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
+
+			for (CampingDTO camping : campings) {
+				CampingRoomDTO rooms = camping.getRooms();
+				System.out.println(rooms.getCroomnumber());
+			}
+
+			ArrayList<CampingDTO> campingResult = new ArrayList<CampingDTO>();
+			int resNum = 0;
+			for (CampingDTO camping : campings) {
+				CampingRoomDTO rooms = camping.getRooms();
+				System.out.println("Croomnumber" + rooms.getCroomnumber());
+
+				resNum = campingMapper.resNum(rooms.getCcode(), rooms.getNo(), rooms.getCroomcode(), checkindate,
+						checkoutdate);
+				System.out.println("resNum" + resNum);
+				if (resNum < rooms.getCroomnumber()) {
+					campingResult.add(camping);
+				}
+
+			}
+
+			/*
+			 * if (hotelResult == null) { hotelResult == ""; }
+			 */
+			System.out.println("----여기는 서비스 MainCheck -----");
+			System.out.println("service에서 " + selectedText);
+			System.out.println("pageBlock " + pageBlock);
+			System.out.println("service에서 ctype " + ctype);
+			System.out.println("service에서 ccomfort " + ccomfort);
+			System.out.println("service에서 cpeople " + cpeople);
+			System.out.println("service에서 checkindate " + checkindate);
+			System.out.println("service에서 checkoutdate " + checkoutdate);
+
+			System.out.println("----여기는 서비스 MainCheck  // -----");
+
+			model.addAttribute("campings", campingResult);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);
+
+		}
+		
+		
+		public void getAllCampingsWithMinPrices() {
+
+			List<CampingDTO> campings = campingMapper.getAllCampings();
+
+			for (CampingDTO camping : campings) {
+				int minPrice = campingMapper.findMinPriceByCamping(camping.getNo());
+
+				camping.setMinprice(minPrice);
+				campingMapper.updatePrices(camping);
+
+			}
+
+		}
+	
 }

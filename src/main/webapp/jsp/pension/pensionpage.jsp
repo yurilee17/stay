@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <title> ${hotel.hname} | 저기어때</title>
+    <title> ${pension.pname} | 저기어때</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,13 +79,13 @@
 	<div class="hpTop">
 
 		<div class="hpTLeft">
-			<img alt="호텔이름 | 전경" class="swiper-lazy swiper-lazy-loaded"
-			 src="${hotel.himage}"  width="490px" height="348px">
+			<img alt="펜션이름 | 전경" class="swiper-lazy swiper-lazy-loaded"
+			 src="${pension.pimage}"  width="490px" height="348px">
 		</div>
 		<div class="hpTRight">
 			  <td>
-               	<h2 class="name">${hotel.hname}</h2>
-                <p>${hotel.haddress}</p>
+               	<h2 class="name">${pension.pname}</h2>
+                <p>${pension.paddress}</p>
                	<br>
                <!-- 	<span>***** (별점평균이 들어가야함)</span> -->
               </td>
@@ -256,20 +256,21 @@
 				
 				</script>	 -->
 	<c:choose>
-		<c:when test="${not empty hotelrooms}">
-			<c:forEach var="hotelroom" items="${ hotelrooms}">					
+		<c:when test="${not empty pensionrooms}">
+			<c:forEach var="pensionroom" items="${ pensionrooms}">					
                 <table>
                 	<tr>
                         <td  width="300px" height="250px">
-                            <img src="${hotelroom.hroomimage}" alt="객실이미지">
+                            <img src="${pensionroom.proomimage}" alt="객실이미지">
                         </a></td>
                         <td>
                            <div class=room>
-                             <h2 class="name">${hotelroom.hroomname}</h2>                            
+                             <h2 class="name">${pensionroom.proomname}</h2>                            
 	                            <br><br>
-	                           <b><span>${hotelroom.hprice}</span></b>	                
+	                           <b><span>${pensionroom.pprice}</span></b>	                
                            	</div>
-                           	<button type="button"  onclick="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
+                           <%-- 	<button type="button" onclick ="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}'" >예약하기</button> --%>
+                           	<button type="button"  onclick="location.href='stayReservation?no=${pensionroom.no}&stayType=pension&proomcode=${pensionroom.proomcode}&pprice=${pensionroom.pprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
                         </td>
                        
                     </tr>
@@ -278,7 +279,7 @@
            </c:when>
 			<c:otherwise>
 				<!-- hotelrooms 변수가 비어있을 때의 처리 -->
-				<p>No hotelroom information available.</p>
+				<p>No pensionroom information available.</p>
 			</c:otherwise>
 		</c:choose>
 		

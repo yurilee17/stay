@@ -1,5 +1,7 @@
 package com.care.stay.camping;
 
+import com.care.stay.hotel.HotelRoomDTO;
+
 public class CampingDTO {
 	
 	private int no;
@@ -15,8 +17,18 @@ public class CampingDTO {
 	private String ccheckintime;
 	private String ccheckouttime;
 	private String ctype;
+	private int minprice;
+	private CampingRoomDTO rooms;
 
 	
+
+
+	public CampingRoomDTO getRooms() {
+		return rooms;
+	}
+	public void setRooms(CampingRoomDTO rooms) {
+		this.rooms = rooms;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -94,6 +106,13 @@ public class CampingDTO {
 	}
 	public void setCtype(String ctype) {
 		this.ctype = ctype;
+	}
+	
+	public int getMinprice() {
+		return minprice;
+	}
+	public void setMinprice(int minprice) {
+		this.minprice = minprice;
 	}
 
 }
