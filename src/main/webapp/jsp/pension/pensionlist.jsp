@@ -180,7 +180,7 @@
 		<c:import url="/header" />
 		<!-- CSS -->
 		<link rel="stylesheet" href="../../resource/css/reset.css">
-		<link rel="stylesheet" href="../../resource/css/pension.css">
+		<link rel="stylesheet" href="../../resource/css/hotel.css">
 
 	</div>
 
