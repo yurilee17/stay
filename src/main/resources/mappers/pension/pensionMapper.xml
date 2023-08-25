@@ -6,14 +6,50 @@
 <mapper namespace="com.care.stay.pension.PensionMapper">
 
 	<resultMap type="com.care.stay.pension.PensionDTO" id="pensionDto">
-		<id column="no" property="no"/>																		
+		<id column="no" property="no"/>																	
 	</resultMap>
 	
 	<resultMap type="com.care.stay.pension.PensionRoomDTO" id="pensionroomDto">
 		<id column="proomcode" property="proomcode"/>
 	</resultMap>
 	
+	<resultMap type="com.care.stay.pension.PensionDTO" id="PensionDto">
+		<id column="no" property="no"/>
+		<result column="pcode" property="pcode"/>
+		<result column="pname" property="pname"/>
+		<result column="pregion" property="pregion"/>
+		<result column="pdetailregion" property="pdetailregion"/>
+		<result column="prating" property="prating"/>
+		<result column="paddress" property="paddress"/>
+		<result column="pdetailaddress" property="pdetailaddress"/>
+		<result column="pimage" property="pimage"/>
+		<result column="pinfo" property="pinfo"/>
+		<result column="pcheckintime" property="pcheckintime"/>
+		<result column="pcheckouttime" property="pcheckouttime"/>
+		<result column="ptype" property="ptype"/>
+		<result column="minprice" property="minprice"/>
+		<collection property="rooms" resultMap="PensionroomDto" />
+	</resultMap> 
+
+	
+	
+ 	 <resultMap type="com.care.stay.pension.PensionRoomDTO" id="PensionroomDto">
+        <result  column="no" property="no" />
+        <result  column="pcode" property="pcode" />
+        <result  column="proomcode" property="proomcode" />
+        <result  column="proomname" property="proomname" />
+        <result  column="proomimage" property="proomimage" />
+        <result  column="proomnumber" property="proomnumber" />
+        <result  column="pprice" property="pprice" />
+        <result  column="ppeople" property="ppeople" />
+        <result  column="pcomfort" property="pcomfort" />
+    </resultMap>
+	
 	<select id="stayContent" resultMap="pensionDto">
+		SELECT * FROM pension WHERE no=#{no}
+	</select>
+	
+	<select id="stayContent2" resultMap="PensionDto">
 		SELECT * FROM pension WHERE no=#{no}
 	</select>
 	
@@ -60,5 +96,51 @@
 		INSERT INTO pensionroom (no, pcode, proomcode, proomname, proomimage, proomnumber, pprice, ppeople, pcomfort)
 		VALUES(#{no}, #{pcode}, #{proomcode}, #{proomname}, #{proomimage}, #{proomnumber}, #{pprice}, #{ppeople}, #{pcomfort})
 	</insert>
+	
+	<select id="getAllpensions" resultType="com.care.stay.pension.PensionDTO">
+		SELECT * FROM pension
+	</select>
+	
+	<select id="findMinPriceByPension" resultType="java.lang.Integer">
+		SELECT COALESCE(MIN(pprice), 0) FROM pensionroom WHERE no = #{no}
+	</select>	
+	
+	<update id="updatePrices" parameterType="com.care.stay.pension.PensionDTO">
+		UPDATE pension
+		SET minprice=#{minprice}
+		WHERE no=#{no}
+	</update>
+	
+ 	<select id="Main" resultMap="PensionDto">
+		SELECT BBB.* FROM 
+		(SELECT ROWNUM as rn, AAA.* FROM 
+		(SELECT * FROM pension WHERE pdetailregion = #{selectedText})AAA)BBB
+		WHERE BBB.rn BETWEEN #{begin} AND #{end}
+	</select>  
+	
+	<select id="MainCheck" resultMap="PensionDto">
+  	 SELECT p.*,
+			pr.*
+	 FROM pension p 
+	 JOIN pensionroom pr  ON pr.pcode = p.pcode and pr.no = p.no
+  	WHERE p.pdetailregion = #{selectedText}
+	  	<if test="ptype != ''">
+	  	 AND p.ptype = #{ptype}
+	  	</if>
+	    <if test="pcomfort != ''">
+	    AND 
+	      <bind name="pcomfortArray" value="pcomfort.split(',')" />
+	      <foreach item="comfort" collection="pcomfortArray" open="(" separator="or" close=")">
+       		 pr.pcomfort LIKE CONCAT('%'|| #{comfort}, '%')
+        </foreach> 
+        </if>
+        AND pr.ppeople >= #{ppeople}
+ 
+	</select>    
+	
+	<select id="resNum">
+	SELECT count(*) FROM reservation WHERE code = #{pcode} AND stayno = #{no} AND roomcode = #{proomcode} AND ((checkindate >= #{checkindate} AND #{checkoutdate} >= checkoutdate) OR ( #{checkindate} >= checkindate AND checkoutdate >= #{checkindate}) OR (#{checkoutdate} >= checkindate  AND checkoutdate >= #{checkoutdate}))
+	</select>
+	
 
 </mapper>

@@ -47,7 +47,7 @@
 				<li><a href="${context }motellist" menu-link="1"><span class="ico_01">&nbsp;</span><p>모텔</p></a></li>
 				<li><a href="${context }Main?hdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="2"><span class="ico_02">&nbsp;</span><p>호텔·리조트</p></a></li>
 
-				<li><a href="#" menu-link="3"><span class="ico_03">&nbsp;</span><p>펜션</p></a></li>
+				<li><a href="${context }pensionMain?pdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="3"><span class="ico_03">&nbsp;</span><p>펜션</p></a></li>
 				<li><a href="#" menu-link="6"><span class="ico_04">&nbsp;</span><p>게스트하우스</p></a></li>
 				<li><a href="${context }campinglist?cdetailregion=강남&checkindate=${formattedDate}&checkoutdate=${formattedDate}" menu-link="5"><span class="ico_05">&nbsp;</span><p>캠핑·글램핑</p></a></li>
 				<li><a href="#"><span class="ico_09">&nbsp;</span><p>지역별 관광정보</p></a></li>
