@@ -76,7 +76,7 @@
 			<section class="total_price_pc">
 				<p>
 					<strong><b>총 결제 금액</b>(VAT포함)</strong>
-					<span class="in_price" name="price">${motelroom.mstayprice}</span>
+					<span class="in_price" name="price">${motelroom.mstayprice}원</span>
 				</p> 
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
@@ -110,7 +110,7 @@
 			<section class="total_price_pc">
 				<p>
 					<strong><b>총 결제 금액</b>(VAT포함)</strong>
-					<span class="in_price">${hotelroom.hprice}</span>
+					<span class="in_price">${hotelroom.hprice}원</span>
 				</p> 
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
@@ -144,7 +144,7 @@
 			<section class="total_price_pc">
 				<p>
 					<strong><b>총 결제 금액</b>(VAT포함)</strong>
-					<span class="in_price">${campingroom.cprice}</span>
+					<span class="in_price">${campingroom.cprice}원</span>
 				</p> 
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
@@ -179,7 +179,7 @@
 			<section class="total_price_pc">
 				<p>
 					<strong><b>총 결제 금액</b>(VAT포함)</strong>
-					<span class="in_price">${ghroom.gprice}</span>
+					<span class="in_price">${ghroom.gprice}원</span>
 				</p> 
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 
@@ -214,7 +214,7 @@
 			<section class="total_price_pc">
 				<p>
 					<strong><b>총 결제 금액</b>(VAT포함)</strong>
-					<span class="in_price">${pensionroom.pprice}</span>
+					<span class="in_price">${pensionroom.pprice}원</span>
 				</p> 
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li> 

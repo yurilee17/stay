@@ -36,11 +36,11 @@
               <p class="pic_view">
                 <img class="" src="${motel.mimage }">
                 <c:choose>
-                    <c:when test="${'motel' eq stayType}"><img class="" src="${motel.mimage }"></c:when>
-                    <c:when test="${'hotel' eq stayType}"><img class="" src="${hotel.himage }"></c:when>
-                    <c:when test="${'pension' eq stayType}"><img class="" src="${pension.pimage }}"></c:when>
-                    <c:when test="${'gh' eq stayType}"><img class="" src="${gh.gimage }"></c:when>
-                    <c:when test="${'camping' eq stayType}"><img class="" src="${camping.cimage }"></c:when>
+                    <c:when test="${'motel' eq stayType}"><img class="" src="${motel.mimage }" width="480px" height="390px"></c:when>
+                    <c:when test="${'hotel' eq stayType}"><img class="" src="${hotel.himage }" width="480px" height="390px"></c:when>
+                    <c:when test="${'pension' eq stayType}"><img class="" src="${pension.pimage }" width="480px" height="390px" ></c:when>
+                    <c:when test="${'gh' eq stayType}"><img class="" src="${gh.gimage }" width="480px" height="390px"></c:when>
+                    <c:when test="${'camping' eq stayType}"><img class="" src="${camping.cimage }" width="480px" height="390px"></c:when>
                   </c:choose>
               </p><%-- 						
 				<div class="detail_submit">
