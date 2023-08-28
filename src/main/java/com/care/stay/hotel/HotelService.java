@@ -54,7 +54,7 @@ public class HotelService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 
-			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/hotel/";
 			hotel.setHimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 

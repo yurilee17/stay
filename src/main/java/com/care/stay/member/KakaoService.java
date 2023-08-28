@@ -35,7 +35,7 @@ public class KakaoService {
 		 * -sample
 		 */
 		
-		String redirectUrl = "http://localhost/kakaoLogin";
+		String redirectUrl = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/kakaoLogin";
 		String reqUrl = "https://kauth.kakao.com/oauth/token";
 		String reqParam = "grant_type=authorization_code";
 		reqParam += "&client_id=dca763bc3428cc888c8dba870629cb39";

@@ -64,7 +64,7 @@ public class PensionService {
 			System.out.println();
 
 			// 업로드 파일 저장 경로
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\pension\\";
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/pension/";
 			pension.setPimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 
@@ -154,7 +154,7 @@ public class PensionService {
 			fileName = sdf.format(cal.getTime()) + fileName;
 
 			// 업로드 파일 저장 경로
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\pension\\room\\";
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/pension/room/";
 			pensionroom.setProomimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 

@@ -51,7 +51,7 @@ public class GHService {
 			fileName = sdf.format(cal.getTime()) + fileName;
 
 			// 업로드 파일 저장 경로
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\gh\\";
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/gh/";
 			gh.setGimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 
@@ -143,7 +143,7 @@ public class GHService {
 
 
 			// 업로드 파일 저장 경로
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\gh\\room\\";
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/gh/room/";
 			ghroom.setGroomimage(fileLocation + fileName);			
 			File save = new File(fileLocation + fileName);
 			

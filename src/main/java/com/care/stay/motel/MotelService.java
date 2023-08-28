@@ -52,7 +52,8 @@ public class MotelService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\";
+			
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/motel/";
 			motel.setMimage(fileLocation + fileName);
 			File save = new File(fileLocation + fileName);
 			
@@ -119,8 +120,9 @@ public class MotelService {
 			sdf = new SimpleDateFormat("yyyyMMddHHmmss-");
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
+
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/motel/room/";
 			motelroom.setMroomimage(fileName);
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\motel\\room\\";
 			File save = new File(fileLocation + fileName);
 			
 			try {

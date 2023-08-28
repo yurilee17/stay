@@ -292,7 +292,7 @@
 				     localStorage.setItem("checkoutdate", "${formattedDate}");
 					 localStorage.setItem("selectedText", selectedText); //selectedText 값 저장해서 넘겨줌 
 					
-					selectedTextUrl = "http://localhost/campinglist?cdetailregion=" + encodeURIComponent(selectedText)+ "&checkindate=${formattedDate}&checkoutdate=${formattedDate}" + encodeURIComponent("");
+					selectedTextUrl = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/campinglist?cdetailregion=" + encodeURIComponent(selectedText)+ "&checkindate=${formattedDate}&checkoutdate=${formattedDate}" + encodeURIComponent("");
 					window.location.href = selectedTextUrl;
 				}
 				// 페이지 로드 시 세션 스토리지에서 값을 가져와 선택합니다.
@@ -426,7 +426,7 @@
 				   	 var urlParams = new URLSearchParams(window.location.search);
 					 var cdetailregionV = urlParams.get('cdetailregion');
 				        
-				         var updatedURL = "http://localhost/campinglist?cdetailregion=" + encodeURIComponent(cdetailregionV) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
+				         var updatedURL = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/Campinglist?cdetailregion=" + encodeURIComponent(cdetailregionV) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
 				        // 페이지 새로고침
 				        window.location.href = updatedURL;
 				    }
@@ -678,7 +678,7 @@
 								        
 								        
 								        
-							 	        var updatedURL = "http://localhost/campinglist?cdetailregion=" + encodeURIComponent(cdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
+							 	        var updatedURL = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/Campinglist?cdetailregion=" + encodeURIComponent(cdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
 							 	      
 							 	        
 							 	        
