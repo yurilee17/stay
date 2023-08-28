@@ -147,7 +147,7 @@
 	    AND 
 	      <bind name="moptionArray" value="moption.split(',')" />
 	      <foreach item="option" collection="moptionArray" open="(" separator="or" close=")">
-       		 mr.moption LIKE CONCAT('%'|| #{option}, '%')
+       		 mr.moption LIKE CONCAT('%', #{option}, '%')
         </foreach>
         </if>
 
