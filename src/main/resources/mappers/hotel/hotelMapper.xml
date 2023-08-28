@@ -84,7 +84,7 @@
 
  
    <select id="MainCheck" resultMap="HotelDto">
-  	 SELECT h.*,
+<!--   	 SELECT h.*,
 			hr.*
 	 FROM hotel h 
 	 JOIN hotelroom hr  ON hr.hcode = h.hcode and hr.no = h.no
@@ -107,7 +107,34 @@
        		 hr.hcomfort LIKE CONCAT('%'|| #{comfort}, '%')
         </foreach>
         </if>
+        AND hr.hpeople >= #{hpeople} -->
+        
+		SELECT h.*,
+			hr.*
+	 FROM hotel h 
+	 JOIN hotelroom hr  ON hr.hcode = h.hcode and hr.no = h.no
+  	WHERE h.hdetailregion = #{selectedText}
+		  	 <if test="htype != ''">
+		  	 AND h.htype = #{htype}
+		  	  </if>
+         <if test="hbedtype != ''">
+	   		AND(
+	       <bind name="hbedtypeArray" value="hbedtype.split(',')" />
+            hr.hbedtype IN
+            <foreach item="bedtype" collection="hbedtypeArray" open="(" separator="," close=")">
+                #{bedtype}
+          	</foreach>)
+	    </if>
+	    <if test="hcomfort != ''">
+	    AND 
+	      <bind name="hcomfortArray" value="hcomfort.split(',')" />
+	      <foreach item="comfort" collection="hcomfortArray" open="(" separator="or" close=")">
+       		 hr.hcomfort LIKE CONCAT('%', #{comfort}, '%')
+        </foreach>
+        </if>
         AND hr.hpeople >= #{hpeople}
+		
+		
  
 	</select>    
 	

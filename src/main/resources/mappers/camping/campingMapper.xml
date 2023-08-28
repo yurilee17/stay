@@ -104,7 +104,7 @@
 	    AND 
 	      <bind name="ccomfortArray" value="ccomfort.split(',')" />
 	      <foreach item="comfort" collection="ccomfortArray" open="(" separator="or" close=")">
-       		 cr.ccomfort LIKE CONCAT('%'|| #{comfort}, '%')
+       		 cr.ccomfort LIKE CONCAT('%', #{comfort}, '%')
         </foreach>
         </if>
         AND cr.cpeople >= #{cpeople}

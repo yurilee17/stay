@@ -140,7 +140,7 @@
 	    AND 
 	      <bind name="gcomfortArray" value="gcomfort.split(',')" />
 	      <foreach item="comfort" collection="gcomfortArray" open="(" separator="or" close=")">
-       		 gr.gcomfort LIKE CONCAT('%'|| #{comfort}, '%')
+       		 gr.gcomfort LIKE CONCAT('%', #{comfort}, '%')
         </foreach>
         </if>
         AND gr.gpeople >= #{gpeople}

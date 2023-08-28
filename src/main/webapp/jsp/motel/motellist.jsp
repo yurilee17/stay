@@ -608,8 +608,7 @@
 								        
 								        
 								        
-							 	        var updatedURL = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/
-							 	        Motel?mdetailregion=" + encodeURIComponent(mdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
+							 	        var updatedURL = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/Motel?mdetailregion=" + encodeURIComponent(mdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
 							 	      
 							 	        
 							 	        
@@ -697,8 +696,8 @@
 										</td>
 										<td>
 											<ul>
-												<li class="dis-price">${motel.minprice }</li>
-												<li class="dis-price">${motel.mindaesilprice }</li>
+												<li class="dis-price">숙박 : ${motel.minprice }원부터</li>
+												<li class="dis-price">대실 : ${motel.mindaesilprice }원부터</li>
 											</ul>
 										</td>
 									</tr>

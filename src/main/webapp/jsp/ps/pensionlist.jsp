@@ -767,7 +767,7 @@
                               </td>
                               <td>
                                  <ul>
-                                    <li class="dis-price">${pension.minprice }</li>
+                                    <li class="dis-price">${pension.minprice } 원부터</li>
                                  </ul>
                               </td>
                            </tr>

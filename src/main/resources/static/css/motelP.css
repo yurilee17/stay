@@ -54,6 +54,13 @@ button {
 	width:45%;
 }
 
+.pc > .visual > .hpTop  > .hpTRight > .name{
+	font-size: 35px;
+	color:#222;
+	padding-top:25px;
+	
+}
+
 .pc > .visual .hpNav{
 	width: 1024px;
 	height: 55px;

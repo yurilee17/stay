@@ -56,7 +56,6 @@ public class HotelService {
 
 			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/hotel/";
 			String imagesrc = "/upload/hotel/";
-			
 			hotel.setHimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 
@@ -325,7 +324,7 @@ public class HotelService {
 		System.out.println("service에서 checkindate " + checkindate);
 		System.out.println("service에서 checkoutdate " + checkoutdate);
 
-		System.out.println("----여기는 서비스 MainCheck  // -----");
+		System.out.println(hotels);
 
 		model.addAttribute("hotels", hotelResult);
 		model.addAttribute("result", result);

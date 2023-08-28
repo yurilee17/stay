@@ -642,7 +642,7 @@
 										</td>
 										<td>
 											<ul>
-												<li class="dis-price">${hotel.minprice }</li>
+												<li class="dis-price">${hotel.minprice }원부터</li>
 											</ul>
 										</td>
 									</tr>
