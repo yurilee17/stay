@@ -80,7 +80,7 @@
 
 		<div class="hpTLeft">
 			<img alt="모텔이름 | 전경" class="swiper-lazy swiper-lazy-loaded"
-			 src="${motel.mimage}">
+			 src="${motel.mimage}" width="490px" height="348px">
 		</div>
 		<div class="hpTRight">
 			  <td>
@@ -263,7 +263,7 @@
                     <c:forEach var="motelroom" items="${ motelrooms}">
                       <div class="room">
                         <p class="pic_view ">
-                          <img class="lazy" src="">
+                          <img class="lazy" src="${motelroom.mroomimage}" alt="객실이미지" width="300px" height="250px">
                         </p>
                         <strong class="title">${motelroom.mroomname } &nbsp; &nbsp;</strong>
                         

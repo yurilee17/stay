@@ -4,10 +4,10 @@
 
 <!doctype html>
 <html lang="ko">
-   <link rel="stylesheet" href="/resource/css/common.css" />
-   <link rel="stylesheet" href="/resource/css/more.css" />
-   <c:import url="/header" />
-   <script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
+   <link rel="stylesheet" href="css/common.css" />
+   <link rel="stylesheet" href="css/more.css" />
+  
+   <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
 
 
 <head>
@@ -21,68 +21,15 @@
     <meta name="description" content="여기어때 회원 가입 | 전국 호텔, 펜션, 모텔부터 워터파크, 놀이공원, 아쿠아리움까지 최저가 할인 예약">
 
     <link rel="shortcut icon" href="/img/images/web_v3/favicon_170822.ico" type="image/x-icon">
-   <script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
+   <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
    <script>(function (a, b, c) { if (c in b && b[c]) { var d, e = a.location, f = /^(a|html)$/i; a.addEventListener("click", function (a) { d = a.target; while (!f.test(d.nodeName)) d = d.parentNode; "href" in d && (d.href.indexOf("http") || ~d.href.indexOf(e.host)) && (a.preventDefault(), e.href = d.href) }, !1) } })(document, window.navigator, "standalone")</script>
    
 </head>
-<!-- <link rel="stylesheet" href="css/alert.css">
-<link rel="stylesheet" href="css/header.css"> -->
-    <link rel="stylesheet preload" href="css/font.css" as="style" type="text/css" crossorigin="">
+<!-- <link rel="stylesheet" href="../../resource/css/alert.css">
+<link rel="stylesheet" href="../../resource/css/header.css"> -->
+    <link rel="stylesheet preload" href="../../resource/css/font.css" as="style" type="text/css" crossorigin="">
 <header>
-
-   <section>
-      <h1>
-         <a class="" href="index" title="여기어때">저기어때</a>
-      </h1>
-      <button type="button" class="btn_srch srch_open ">검색</button>
-      <ul class="gnb">
-         <li><a href="#">내주변</a></li>
-         <li><a href="#">예약내역</a></li>
-         <li class="over">
-            <button type="button" id="more">
-               <span>더보기</span>
-            </button>
-            <ul class="list_03">
-               <li><a href="noticeForm">공지사항</a></li>
-               <li><a href="faqForm">자주 묻는 질문</a></li>
-               <li><a href="inquiryForm">1:1 문의</a></li>
-               <li><a href="#">약관 및 정책</a></li>
-            </ul>
-         </li>
-         
-            
-               <li><a href="/login"><span>로그인</span></a></li>
-            
-            
-            
-         
-
-      </ul>
-      <!-- 알림 -->
-      <div class="alert">
-         <!-- alert -->
-         <div class="popTwobtn">
-            <div class="btnText"></div>
-            <div class="btn_wrap">
-               <button onclick="closeLayer()">취소</button>
-               <button onclick="logoutProc()" class="colMint"></button>
-            </div>
-         </div>
-         <!-- Bg Dimm -->
-         <div class="bgDimm" onclick="closeLayer();">&nbsp;</div>
-         
-      </div>
-      <!-- Search 
-      <div class="srch_bar">
-         <div class="wrap_inp">
-            <input type="text" id="keyword" placeholder="지역, 숙소명"
-               autocomplete="off">
-            <button type="button" class="btn_srch">검색</button>
-         </div>
-         <button class="btn_cancel" onclick="srch_close()">취소</button>
-      </div>-->
-   </section>
-   <!-- //Search -->
+ <c:import url="/header" />
 </header>
 
 <!-- alert -->
@@ -106,7 +53,7 @@
 </div>-->
 <script src="js/header.js"></script>
 <script src="js/alert.js"></script>
-   <script type="text/javascript" src="/resource/js/jquery-1.12.4.min.js"></script>
+   <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
 
 <!-- 오른쪽 예약 내역  -->
 <style>
@@ -199,9 +146,9 @@
 
 </style>
 <body>
-   <link rel="stylesheet" href="resource/css/more.css" />
+   <link rel="stylesheet" href="css/more.css" />
    <!-- Wrap -->
-   <div class="wrap">
+   <div class="wrap show">
 
       <!-- Header -->
              <!-- 헤더 -->
@@ -228,61 +175,9 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div class="gnb_opacity"><button class="btn_close">닫기</button></div>
-        <div class="menu_wrap">
-
-            <div class="menu">
-                <div class="top">
-                    <!-- 회원 -->
-                    <div class="member">
-                        <div class="mem">
-                            <span class="pic"
-                                style="background:url('/img/profile/ico/ico_22.png') 50% 50% no-repeat;"></span>
-                            <p class="info">사과색깔</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Iscroll -->
-                <div class="scroll_nav">
-                    <div class="scroller">
-                        <ul>
-                            <li><a href="/index">홈</a></li>
-                            <li class="depth_2">
-                                <button type="button" class="has_ul"><span>숙소유형</span></button>
-                                <ul>
-                                    <li><a href="/motel">모텔</a></li>
-                                    <li><a href="/hotel">호텔/리조트</a></li>
-                                    <li><a href="/pension">펜션</a></li>
-                                    <li><a href="/resort">리조트</a></li>
-                                    <li><a href="/camp">캠핑·글램핑</a></li>
-                                    <li><a href="/gestHouse">게스트하우스</a></li>
-                                    <li><a href="/koreanHouse">한옥 </a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/userindex/8">내주변</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="/userindex/reservations">예약 내역</a></li>
-                            <li><a href="/userindex/mypage">내 정보 관리</a></li>
-                        </ul>
-                        <ul>
-                            <li class="depth_2"><button type="button" class="has_ul"><span>더보기</span></button>
-                                <ul>
-                                   <!-- <li><a href="/userindex/notice">공지사항</a></li> -->
-                                    <li><a href="/userindex/faq">고객문의</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //Mobile Menu -->
 
       <!-- CSS -->
-      <link rel="stylesheet" href="resource/css/more.css" />
+      <link rel="stylesheet" href="css/more.css" />
 
       <!-- Sub Top -->
       <div class="sub_top_wrap">
@@ -486,337 +381,8 @@
       <!-- //Content  -->
 
       <script>
-/*         var phoneInput = document.querySelector('input[data-type="phoneNumber"]');
-         var inquiryText = document.querySelector('textarea[name=content]');
-         var emailInput = $('.q_emailcheck');
-         var speed_fade = 150;
-         var phoneReg = /^(01[0-1,6-9][0-9]{6,7}[0-9]$)/;
-         var privacyAgreeButton = document.querySelector('button[data-type="privacyAgree"]');
-         var emailFlag = null;
 
-         $(document).ready(function () {
-
-            $('select[name=room_type]').change(function () {// 카테고리유형 선택
-               var key = $(this).find('option:selected').val();
-
-               switch (key) {
-                  case '1':
-                     $('select[name=inq_type] option[value=2]').show();
-                     $('select[name=inq_type] option[value=99]').hide();
-                     break;
-                  case '10':
-                     $('select[name=inq_type] option[value=2]').hide();
-                     $('select[name=inq_type] option[value=99]').show();
-                     break;
-
-                  default:
-                     $('select[name=inq_type] option[value=2]').hide();
-                     $('select[name=inq_type] option[value=99]').hide();
-               }
-               checkFormComplete();
-            });
-
-            // $('select[name=inq_type]').change(function () { // 문의유형
-            //    var key = $(this).find('option:selected').val();
-            //
-            //    if ($('[data-account-select]').is(':visible')) $('.account-block').hide();
-            //
-            //    switch (key) {
-            //       case '2':
-            //          $('select[name=room_type] option:not(:first)').hide();
-            //          $('select[name=room_type] option[value=1]').show();
-            //          break;
-            //       case '9':
-            //          $('.account-block').show();
-            //          break;
-            //       case '10':
-            //          $('.account-block').show();
-            //          break;
-            //       case '99':
-            //          $('select[name=room_type] option:not(:first)').hide();
-            //          $('select[name=room_type] option[value=10]').show();
-            //          break;
-            //
-            //       default:
-            //          $('select[name=room_type] option').show();
-            //    }
-            //    checkFormComplete();
-            // });
-
-            // 계좌번호 Max Length
-            var accountNumberMaxLength = 20;
-            $('[data-account-number]').on('input', function (e) {
-               if (e.target.value.length >= accountNumberMaxLength) {
-                  var sliceString = e.target.value.slice(0, 20);
-                  e.target.value = sliceString;
-                  $('[accountNumber]').val(sliceString);
-               }
-            });
-
-
-            setTimeout(function () {// 엘리먼트가 붙고 난 다음 이벤트리스너를 추가시켜주기 위해 3초 후 실행됨.
-               $('.reset_val').on('click', function () {
-                  checkTelNumber($('input[data-type="phoneNumber"]').val())
-               });
-            }, 3000);
-
-         });
-
-         function openPrivacyAgreeModal(e) {
-            $(e.target).blur();
-            $('#common_popup_agree').fadeIn(speed_fade);
-         }
-
-         $('.view_contents').click(function () {
-            var checkFag = $(this).parent('div').hasClass('active');
-            if (checkFag == true) {
-               $('#common_popup_agree').fadeIn(speed_fade);
-
-            }
-
-         });
-
-         $('.disagree', '#common_popup_agree').click(function () {
-            $('#common_popup_agree').fadeOut(speed_fade);
-         });
-
-         $('.disagree2', '#common_popup_agree2').click(function () {
-            $('#common_popup_agree2').fadeOut(speed_fade);
-            //카테고리 유형
-
-
-
-
-         });
-
-         privacyAgreeButton.addEventListener('click', function () {
-            $('#common_popup_agree').fadeOut(speed_fade);
-            phoneInput.removeEventListener('click', openPrivacyAgreeModal);
-            setTimeout(function () {
-               phoneInput.focus();
-            }, speed_fade);
-         });
-
-         $('.js-phone-number').blur(function () {
-
-            var thisValue = $(this).val();
-            var mailValue = $('.js-email-string').val();
-
-            if (thisValue == "" && mailValue == "") {
-               $('.agree_wrap > div').removeClass('active');
-               $('.agree_wrap > div input').attr('disabled', true);
-            } else {
-               $('.agree_wrap > div').addClass('active');
-               $('.agree_wrap > div input').attr('disabled', false);
-            }
-         });
-
-         $('.js-email-string').blur(function () {
-
-            var thisValue = $(this).val();
-            var phoneValue = $('.js-phone-number').val();
-
-            if (thisValue == "" && phoneValue == "") {
-               $('.agree_wrap > div').removeClass('active');
-               $('.agree_wrap > div input').attr('disabled', true);
-            } else {
-               $('.agree_wrap > div').addClass('active');
-               $('.agree_wrap > div input').attr('disabled', false);
-            }
-         });
-
-         $.inqSubmit = function () {
-
-            $("select[name=room_type]").removeAttr('disabled');
-            $("select[name=inq_type]").removeAttr('disabled');
-
-            if ($('select[name=room_type] option:selected').val() === '') {
-               alert_Msg("숙소유형을 선택해주세요.");
-               return false;
-            }
-
-            // if ($('select[name=inq_type] option:selected').val() === '') {
-            //    alert_Msg("문의유형을 선택해주세요.");
-            //    return false;
-            // }
-
-            if (phoneInput.value.length > 0 && !phoneReg.test(phoneInput.value)) {
-               alert_Msg("휴대폰 번호를 확인해주세요");
-               return false;
-            }
-
-            if (emailInput.value().length > 0 && !emailValueIdate(emailInput.value())) {
-               alert_Msg("이메일주소를 확인해주세요");
-               return false;
-            }
-
-            // 계좌 정보 validate
-            if ($('[data-account-select]').is(':visible')) {
-               var isSelected = $('[data-account-bank] option:selected').val();
-               var accountArr = ['data-account-number', 'data-account-name'];
-               var isCount = 0;
-
-               for (var i = 0; i < accountArr.length; i++) {
-                  var targetValue = $('[' + accountArr[i] + ']').val();
-                  if (targetValue !== '') isCount++;
-               }
-
-               if (isSelected !== 'none' && isCount !== 2) {
-                  alert_Msg("환불받을 계좌정보를 확인해주세요");
-                  return false;
-               }
-
-               if (isSelected === 'none' && isCount !== 0) {
-                  alert_Msg("환불받을 계좌정보를 확인해주세요");
-                  return false;
-               }
-            }
-
-            if ($('textarea[name=content]').val().length <= 10) {
-               alert_Msg("문의내용은 10자 이상 입력해주세요.");
-               return false;
-            }
-
-            if ($('input[name=checkOne]').is(":checked") === false && (phoneInput.value.length > 0 || emailInput.val().length > 0)) {
-               alert_Msg("휴대폰번호 또는 이메일 입력 시<br>개인정보수집 이용에 동의해주셔야<br>문의 가능 합니다.");
-               return false;
-            }
-
-            $('#common_popup_agree2').fadeIn(speed_fade);
-            //$('form[name=inq-form]').submit(); //폼전송
-         };
-*/
-
-         //axios 보내기 (팝업창 수락시뜸)
-         /* $('.send-form').click(function () {
-            // $('form[name=inq-form]').submit(); //폼전송
-            const qCategory = $("select[name=room_type]").val();
-            console.log('카테고리 유형:' + qCategory);
-            //문의 이름
-            const qName = $('.qName').val();
-            console.log('이름:' + qName);
-            //문의 휴대폰번호
-            const qHp = $('.qHp').val();
-            console.log('휴대폰번호:' + qHp);
-            //문의 이메일
-            const qEmail = $('.qEmail').val();
-            console.log('이메일:' + qEmail);
-            //문의내용
-            const qContent = $('.getqContent').val();
-            console.log('문의내용:' + qContent);
-
-            console.log("memid : "+ sessionId)
-
-
-            axios.request({
-               method: 'POST',
-               url: '/api/ques/regi/',
-               headers: {'Content-type':'application/json'},
-               data: {
-                  transaction_time:"2019-10-01",
-                  resultCode:"OK",
-                  description:"OK",
-                  data:{
-                     qcategory: qCategory,
-                     qname: qName,
-                     qhp: qHp,
-                     qemail: qEmail,
-                     qcontent: qContent,
-                     //이게 미답변이란 값이 나오면 값을숨길까?
-                     // qanswer: "미답변",
-                     tbMemId: sessionId
-                  }
-               }
-            }).then(
-                  alert('문의가 등록되었습니다')
-
-            )
-            location.href='/userindex/inquiry'
-
-
-         });
-
-         $.inqReadPro = function (uiqno) {// 문의내역 읽음처리
-            $.ajax({
-               type: 'POST',
-               async: false,
-               cache: false,
-               url: '/more/inquiry_showpro_non',
-               dataType: 'json',
-               data: { 'uiqno': uiqno },
-               success: function (data) {
-                  console.log(data);
-               },
-               error: function (request, status, error) {
-                  alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-               }
-            });
-         };
-
-         $('input[data-type="phoneNumber"]').on('input', function () {//번호 입력시 동의구하기
-            var this_val = $(this).val();
-            checkTelNumber(this_val);
-         });
-
-         function checkTelNumber(target) { //휴대폰번호 길이 체크
-            switch (true) {
-               case (target.length == 0):
-                  $('.privacy_agree').removeClass("show");
-                  $('.privacy-bill').removeClass('show');
-                  break;
-               case (target.length < 10 || !phoneReg.test(target)):
-                  $('.privacy_agree').removeClass("show");
-                  $('.privacy-bill').removeClass('show');
-                  break;
-               default:  // this_val.length >= 10
-                  $('.privacy_agree').addClass("show");
-                  checkFormComplete();
-                  break;
-            }
-         }
-
-         $('.q_emailcheck').on('keyup paste copy', function (e) { //이메일 체크
-            var inputValue = e.currentTarget.value;
-            var isEmailCheck = emailValidate(inputValue);
-            if (isEmailCheck === true) {
-               emailFlag = true;
-            } else {
-               emailFlag = false;
-            }
-         });
-
-         function emailValidate(value) { //이메일 체크 정규식
-            var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-            return regExp.test(value);
-         }
-
-         function checkFormComplete() { // 전체 폼 체크해서 버튼 활성화
-            if (phoneInput.value.length >= 10 && !phoneReg.test(phoneInput.value)) {
-               return false;
-            }
-
-            if ($('textarea[name=content]').val().length < 10) {
-               return false;
-            }
-            if (!$('select[name=room_type] option:selected').val()) {
-               return false;
-            }
-
-            if (!$('select[name=inq_type] option:selected').val()) {
-               return false; 
-            }*/
-
-
-
-
-
-
-
-
-
-
-         //}
-
+  
       </script>
 
 
@@ -827,31 +393,25 @@
 
    </div>
 
-   <!-- 상단으로 -->
-   <button class="btn_go_top" onclick="moveTop();">상단으로</button>
-
    <!-- //Wrap -->
 
    <!-- Script -->
    <!-- Library -->
-    <script type="text/javascript" src="/resource/js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="/resource/js/jquery.lazyload.js"></script>
-    <script type="text/javascript" src="/resource/js/iscroll.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.lazyload.js"></script>
+    <script type="text/javascript" src="js/iscroll.js"></script>
 
     <!-- Service -->
-    <script type="text/javascript" src="/resource/js/common.js"></script>
-    <script type="text/javascript" src="/resource/js/geolocation.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/geolocation.js"></script>
 
 
     <!-- Page Script -->
-    <script type="text/javascript" src="/resource/js/vue.js"></script>
-    <script type="text/javascript" src="/resource/js/more.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/more.js"></script>
 
-   <!-- Body Spinner -->
-   <div class="spinner show"><span></span></div>
-   
 
-   <script type="text/javascript" src="/resource/js/submitHandler.js"></script>
+   <script type="text/javascript" src="js/submitHandler.js"></script>
       <!--  -->
 
 

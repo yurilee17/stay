@@ -19,14 +19,14 @@ public class PensionController {
 	private HttpSession session;
 
 	@RequestMapping("pensionlist")
-	public String pensionllist(
+	public String pensionlist(
 
 			@RequestParam(value = "currentPage", required = false) String cp, Model model) {
 
 		System.out.println("pensionlist나오는지 알려주세요");
 
 //	  hotelService.hotellist(cp,model); 
-		return "pension/pensionlist";
+		return "ps/pensionlist";
 	}
 
 	// 뭔가를 선택했을 때 나오는 화면
@@ -60,7 +60,7 @@ public class PensionController {
 			pservice.Main(selectedText, cp, model);
 		}
 
-		return "pension/pensionlist";
+		return "ps/pensionlist";
 	}
 
 	@RequestMapping("pensionpage")
@@ -72,7 +72,7 @@ public class PensionController {
 		System.out.println(pension.getPimage());
 		model.addAttribute("pension", pension);
 		model.addAttribute("pensionrooms", pensionrooms);
-		return "pension/pensionpage";
+		return "ps/pensionpage";
 	}
 
 //	@RequestMapping("pension")

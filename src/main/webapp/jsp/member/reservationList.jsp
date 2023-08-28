@@ -91,7 +91,7 @@
 													<p class="pic">
 														<!-- src="${resConfirmed.roomimage}" -->
 														<img loading="lazy"
-															src="https://image.goodchoice.kr/resize_490x348/affiliate/2020/04/17/5e994464f3d0d.jpg"
+															src="${resConfirmed.roomimage}"
 															alt="${resConfirmed.stayname}" class="align">
 													</p>
 													<a href="resDetail?no=${resConfirmed.no}"
@@ -141,7 +141,7 @@
 													<p class="pic">
 														<!-- src="${resCompleted.roomimage}" -->
 														<img loading="lazy"
-															src="https://image.goodchoice.kr/resize_490x348/affiliate/2020/04/17/5e994464f3d0d.jpg"
+															src="${resCompleted.roomimage}"
 															alt="${resCompleted.stayname}" class="align">
 													</p>
 													<a href="resDetail?no=${resCompleted.no}"
@@ -191,7 +191,7 @@
 													<p class="pic">
 														<!-- src="${resCancellation.roomimage}" -->
 														<img loading="lazy"
-															src="https://image.goodchoice.kr/resize_490x348/affiliate/2020/04/17/5e994464f3d0d.jpg"
+															src="${resCancellation.roomimage}"
 															alt="${resCancellation.stayname}" class="align">
 													</p>
 													<a href="resDetail?no=${resCancellation.no}"

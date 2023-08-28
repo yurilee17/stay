@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>        
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>        
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -18,8 +19,7 @@
  <body>
 	<div id ="wrap">
 		<div class="content">
-			<c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" />
-			<c:import url="${adminHeaderUrl}" />
+			<c:import url="/jsp/admin/adminheader.jsp" />
 			<br>
 			<!-- //숙소 탭 -->
 			<br>

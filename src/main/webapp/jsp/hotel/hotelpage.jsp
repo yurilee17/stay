@@ -260,14 +260,14 @@
 			<c:forEach var="hotelroom" items="${ hotelrooms}">					
                 <table>
                 	<tr>
-                        <td  width="300px" height="250px">
-                            <img src="${hotelroom.hroomimage}" alt="객실이미지">
+                        <td width="300px" height="250px">
+                            <img src="${hotelroom.hroomimage}" alt="객실이미지" width="300px" height="250px">>
                         </a></td>
                         <td>
                            <div class=room>
                              <h2 class="name">${hotelroom.hroomname}</h2>                            
 	                            <br><br>
-	                           <b><span>${hotelroom.hprice}</span></b>	                
+	                           <b><span>${hotelroom.hprice}원</span></b>	                
                            	</div>
                            	<button type="button"  onclick="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
                         </td>

@@ -131,7 +131,7 @@
 	    AND 
 	      <bind name="pcomfortArray" value="pcomfort.split(',')" />
 	      <foreach item="comfort" collection="pcomfortArray" open="(" separator="or" close=")">
-       		 pr.pcomfort LIKE CONCAT('%'|| #{comfort}, '%')
+       		 pr.pcomfort LIKE CONCAT('%', #{comfort}, '%')
         </foreach> 
         </if>
         AND pr.ppeople >= #{ppeople}

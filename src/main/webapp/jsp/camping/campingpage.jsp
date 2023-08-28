@@ -261,13 +261,13 @@
                 <table>
                 	<tr>
                         <td  width="300px" height="250px">
-                            <img src="${campingroom.croomimage}" alt="객실이미지">
+                            <img src="${campingroom.croomimage}" alt="객실이미지" width="300px" height="250px">>
                         </a></td>
                         <td>
                            <div class=room>
                              <h2 class="name">${campingroom.croomname}</h2>                            
 	                            <br><br>
-	                           <b><span>${campingroom.cprice}</span></b>	                
+	                           <b><span>${campingroom.cprice}원</span></b>	                
                            	</div>
                            	<button type="button"  onclick="location.href='stayReservation?no=${camping.no}&stayType=camping&croomcode=${campingroom.croomcode}&cprice=${campingroom.cprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
                         </td>

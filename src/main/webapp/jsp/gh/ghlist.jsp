@@ -292,7 +292,7 @@
 				     localStorage.setItem("checkoutdate", "${formattedDate}");
 					 localStorage.setItem("selectedText", selectedText); //selectedText 값 저장해서 넘겨줌 
 					
-					selectedTextUrl = "http://localhost/GuestHouse?gdetailregion=" + encodeURIComponent(selectedText)+ "&checkindate=${formattedDate}&checkoutdate=${formattedDate}" + encodeURIComponent("");
+					selectedTextUrl = "GuestHouse?gdetailregion=" + encodeURIComponent(selectedText)+ "&checkindate=${formattedDate}&checkoutdate=${formattedDate}" + encodeURIComponent("");
 					window.location.href = selectedTextUrl;
 				}
 				// 페이지 로드 시 세션 스토리지에서 값을 가져와 선택합니다.
@@ -426,7 +426,7 @@
 				   	 var urlParams = new URLSearchParams(window.location.search);
 					 var gdetailregionV = urlParams.get('gdetailregion');
 				        
-				         var updatedURL = "http://localhost/GuestHouse?gdetailregion=" + encodeURIComponent(gdetailregionV) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
+				         var updatedURL = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/GuestHouse?gdetailregion=" + encodeURIComponent(gdetailregionV) + "&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate); 
 				        // 페이지 새로고침
 				        window.location.href = updatedURL;
 				    }
@@ -679,7 +679,7 @@
 								        
 								        
 								        
-							 	        var updatedURL = "http://localhost/GuestHouse?gdetailregion=" + encodeURIComponent(gdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
+							 	        var updatedURL = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/GuestHouse?gdetailregion=" + encodeURIComponent(gdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
 							 	      
 							 	        
 							 	        
@@ -767,7 +767,7 @@
 										</td>
 										<td>
 											<ul>
-												<li class="dis-price">${gh.minprice }</li>
+												<li class="dis-price">${gh.minprice }원부터</li>
 											</ul>
 										</td>
 									</tr>

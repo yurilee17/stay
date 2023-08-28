@@ -54,8 +54,9 @@ public class HotelService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 
-			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
-			hotel.setHimage(fileLocation + fileName);
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/hotel/";
+			String imagesrc = "/upload/hotel/";
+			hotel.setHimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 
 			try {
@@ -147,8 +148,9 @@ public class HotelService {
 			Calendar cal = Calendar.getInstance();
 			fileName = sdf.format(cal.getTime()) + fileName;
 
-			String fileLocation = "C:\\Users\\niceh\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\room\\";
-			hotelroom.setHroomimage(fileLocation + fileName);
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/hotel/room/";
+			String imagesrc = "/upload/hotel/room/";
+			hotelroom.setHroomimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 
 			try {
@@ -322,7 +324,7 @@ public class HotelService {
 		System.out.println("service에서 checkindate " + checkindate);
 		System.out.println("service에서 checkoutdate " + checkoutdate);
 
-		System.out.println("----여기는 서비스 MainCheck  // -----");
+		System.out.println(hotels);
 
 		model.addAttribute("hotels", hotelResult);
 		model.addAttribute("result", result);

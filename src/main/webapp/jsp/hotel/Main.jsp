@@ -17,21 +17,21 @@
     <meta http-equiv="Content-Type">
     <meta name="csrf-name" content="yeogi_token">
 
-    <link rel="shortcut icon" href="../../resource/img/favicon_170822.ico" type="image/x-icon">
-    <link rel="stylesheet preload" href="../../resource/css/font.css" as="style" type="text/css" crossorigin="">
+    <link rel="shortcut icon" href="resource/img/favicon_170822.ico" type="image/x-icon">
+    <link rel="stylesheet preload" href="resource/css/font.css" as="style" type="text/css" crossorigin="">
 
 	<!-- CSS -->
     <title>여행할때 여기어때</title>
-    <link rel="stylesheet" href="../../resource/css/common.css">
+    <link rel="stylesheet" href="resource/css/common.css">
     <link rel="canonical" href="#">
-    <script type="text/javascript" src="../../resource/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="resource/js/jquery-1.12.4.min.js"></script>
     
     <!-- 달력 외부 css -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  	<script type="text/javascript" src="../../resource/js/hotel.js"></script>
+  	<script type="text/javascript" src="resource/js/hotel.js"></script>
 </head>
 
 
@@ -45,10 +45,10 @@
     <!-- Header -->
     <c:import url="/header"/>
     <!-- CSS -->
-    <link rel="stylesheet" href="../../resource/css/swiper.css">
-	<link rel="stylesheet" href="../../resource/css/main.css">
-	<link rel="stylesheet" href="../../resource/css/reset.css">
-	<link rel="stylesheet" href="../../resource/css/hotel.css">
+    <link rel="stylesheet" href="resource/css/swiper.css">
+	<link rel="stylesheet" href="resource/css/main.css">
+	<link rel="stylesheet" href="resource/css/reset.css">
+	<link rel="stylesheet" href="resource/css/hotel.css">
 
 </div>
 
@@ -56,23 +56,23 @@
 
 <!-- Script -->
 <!-- Library -->
-<script type="text/javascript" src="../../resource/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../../resource/js/jquery.lazyload.js"></script>
-<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
+<script type="text/javascript" src="resource/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="resource/js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="resource/js/iscroll.js"></script>
 
 <!-- Service -->
-<script type="text/javascript" src="../../resource/js/common.js"></script>
-<script type="text/javascript" src="../../resource/js/geolocation.js"></script>
+<script type="text/javascript" src="resource/js/common.js"></script>
+<script type="text/javascript" src="resource/js/geolocation.js"></script>
 
 <!-- Module -->
 <!-- <script type="text/javascript" src="./여행할때 여기어때_files/dialogPopup.js"></script> -->
 
 <!-- Page Script -->
-<script type="text/javascript" src="../../resource/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="../../resource/js/swiper.min.js"></script>
-<script type="text/javascript" src="../../resource/js/iscroll.js"></script>
-<script type="text/javascript" src="../../resource/js/main.js"></script>
-<script type="text/javascript" src="../../resource/js/reservation.js"></script>
+<script type="text/javascript" src="resource/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="resource/js/swiper.min.js"></script>
+<script type="text/javascript" src="resource/js/iscroll.js"></script>
+<script type="text/javascript" src="resource/js/main.js"></script>
+<script type="text/javascript" src="resource/js/reservation.js"></script>
 
 
 

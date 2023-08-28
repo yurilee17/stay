@@ -55,8 +55,9 @@ public class CampingService {
 			fileName = sdf.format(cal.getTime()) + fileName;
 			
 			// 업로드 파일 저장 경로
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\hotel\\";
-			camping.setCimage(fileLocation + fileName);
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/camping/";
+			String imagesrc = "/upload/camping/";
+			camping.setCimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 
 			try {
@@ -147,8 +148,9 @@ public class CampingService {
 
 
 			// 업로드 파일 저장 경로
-			String fileLocation = "C:\\Users\\hi\\git\\stay\\src\\main\\webapp\\resource\\img\\camping\\room\\";
-			campingroom.setCroomimage(fileLocation + fileName);
+			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/camping/room/";
+			String imagesrc = "/upload/camping/room/";
+			campingroom.setCroomimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 			
 			try {

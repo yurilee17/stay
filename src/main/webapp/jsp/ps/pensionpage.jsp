@@ -261,13 +261,13 @@
                 <table>
                 	<tr>
                         <td  width="300px" height="250px">
-                            <img src="${pensionroom.proomimage}" alt="객실이미지">
+                            <img src="${pensionroom.proomimage}" alt="객실이미지" width="300px" height="250px">
                         </a></td>
                         <td>
                            <div class=room>
                              <h2 class="name">${pensionroom.proomname}</h2>                            
 	                            <br><br>
-	                           <b><span>${pensionroom.pprice}</span></b>	                
+	                           <b><span>${pensionroom.pprice}원</span></b>	                
                            	</div>
                            <%-- 	<button type="button" onclick ="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}'" >예약하기</button> --%>
                            	<button type="button"  onclick="location.href='stayReservation?no=${pensionroom.no}&stayType=pension&proomcode=${pensionroom.proomcode}&pprice=${pensionroom.pprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
