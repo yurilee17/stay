@@ -767,7 +767,7 @@
 										</td>
 										<td>
 											<ul>
-												<li class="dis-price">${gh.minprice }</li>
+												<li class="dis-price">${gh.minprice }원부터</li>
 											</ul>
 										</td>
 									</tr>

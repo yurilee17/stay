@@ -749,7 +749,7 @@
 										</td>
 										<td>
 											<ul>
-												<li class="dis-price">${camping.minprice }</li>
+												<li class="dis-price">${camping.minprice }원부터</li>
 											</ul>
 										</td>
 									</tr>

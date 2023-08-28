@@ -267,7 +267,7 @@
                            <div class=room>
                              <h2 class="name">${hotelroom.hroomname}</h2>                            
 	                            <br><br>
-	                           <b><span>${hotelroom.hprice}</span></b>	                
+	                           <b><span>${hotelroom.hprice}원</span></b>	                
                            	</div>
                            	<button type="button"  onclick="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&hprice=${hotelroom.hprice}&checkindate=${param.checkindate}&checkoutdate=${param.checkoutdate}'" >예약하기</button>
                         </td>

@@ -697,8 +697,8 @@
 										</td>
 										<td>
 											<ul>
-												<li class="dis-price">${motel.minprice }</li>
-												<li class="dis-price">${motel.mindaesilprice }</li>
+												<li class="dis-price">숙박 : ${motel.minprice }원부터</li>
+												<li class="dis-price">대실 : ${motel.mindaesilprice }원부터</li>
 											</ul>
 										</td>
 									</tr>

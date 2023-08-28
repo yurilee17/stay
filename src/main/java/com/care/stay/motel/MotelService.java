@@ -124,6 +124,7 @@ public class MotelService {
 
 			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/motel/room/";
 			String imagesrc = "/upload/motel/room/";
+			
 			motelroom.setMroomimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 			
