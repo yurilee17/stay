@@ -64,6 +64,6 @@ function showAlert(message) {
 
 /*카카오톡 로그인*/
 function goToKakao() {
-	var urlToGo = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dca763bc3428cc888c8dba870629cb39&redirect_uri=http://localhost/kakaoLogin";
+	var urlToGo = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=dca763bc3428cc888c8dba870629cb39&redirect_uri=http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/kakaoLogin";
 	window.location.href = urlToGo;
 }
