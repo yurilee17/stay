@@ -30,79 +30,79 @@ public class PhoneConfirmService {
 	public String sendMsg(String to, String content) {
 
 		// 문자 인증 우선 닫아둘 예정
-//		String timestamp = Long.toString(System.currentTimeMillis());
-//
-//		String accessKey = "rCQTAfK1rBX3Jncf1ihj";
-//		String secretKey = "0QJlyuAYBun4y8bT17TN976MXxoFxUWAnEx1SEHz";
-//		String serviceId = "ncp:sms:kr:312620649512:stay";
-//		String from = "01091278625";
-//
-//		String reqUrl = "https://sens.apigw.ntruss.com";
-//		String rurl = "/sms/v2/services/" + serviceId + "/messages";
-//		String apiUrl = reqUrl + rurl;
-//		
-//
-//		// 문자 내용 JSON
-//		JSONObject bodyJson = new JSONObject();
-//		JSONObject toJson = new JSONObject();
-//		JSONArray toArr = new JSONArray();
-//
-//		toJson.put("to", to);
-//		toJson.put("content", content);
-//		toArr.put(toJson);
-//
-//		bodyJson.put("type", "SMS");
-//		bodyJson.put("contentType", "COMM");
-//		bodyJson.put("countryCode", "82");
-//		bodyJson.put("from", from);
-//		bodyJson.put("content", "test");
-//		bodyJson.put("messages", toArr);
-//		String body = bodyJson.toString();
-//		System.out.println(body);
-//
-//		HttpURLConnection conn;
-//		try {
-//			URL url = new URL(apiUrl); // POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
-//			conn = (HttpURLConnection) url.openConnection();
-//			conn.setUseCaches(false);// 캐시 미사용
-//			conn.setDoInput(true);
-//			conn.setRequestMethod("POST"); // POST 요청을 위해 기본값 false에서 setDoOutput을 true로 변경
-//			conn.setDoOutput(true); // POST 메소드를 이용해서 데이터를 전달하기 위한 설정
-//			conn.setRequestProperty("Content-Type", "application/json");
-//			conn.setRequestProperty("x-ncp-apigw-timestamp", timestamp);
-//			conn.setRequestProperty("x-ncp-iam-access-key", accessKey);
-//			conn.setRequestProperty("x-ncp-apigw-signature-v2", makeSignature(rurl, timestamp, "POST", accessKey, secretKey));
-//			
-//			DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-//			
-//			wr.write(body.getBytes());
-//			wr.flush();
-//			wr.close();
-//			
-//			int responseCode = conn.getResponseCode(); // 결과 코드가 200이라면 성공
-//			System.out.println("responseCode : " + responseCode);
-//			
-//			BufferedReader br;
-//			if(responseCode==202) {
-//				br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//			} else {
-//				br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-//			}
-//			
-//			String inputLine;
-//			StringBuffer response = new StringBuffer();
-//			while((inputLine = br.readLine()) != null) {
-//				response.append(inputLine);
-//			}
-//			br.close();
-//			
-//			System.out.println(response.toString());	
+		String timestamp = Long.toString(System.currentTimeMillis());
+
+		String accessKey = "rCQTAfK1rBX3Jncf1ihj";
+		String secretKey = "0QJlyuAYBun4y8bT17TN976MXxoFxUWAnEx1SEHz";
+		String serviceId = "ncp:sms:kr:312620649512:stay";
+		String from = "01091278625";
+
+		String reqUrl = "https://sens.apigw.ntruss.com";
+		String rurl = "/sms/v2/services/" + serviceId + "/messages";
+		String apiUrl = reqUrl + rurl;
+		
+
+		// 문자 내용 JSON
+		JSONObject bodyJson = new JSONObject();
+		JSONObject toJson = new JSONObject();
+		JSONArray toArr = new JSONArray();
+
+		toJson.put("to", to);
+		toJson.put("content", content);
+		toArr.put(toJson);
+
+		bodyJson.put("type", "SMS");
+		bodyJson.put("contentType", "COMM");
+		bodyJson.put("countryCode", "82");
+		bodyJson.put("from", from);
+		bodyJson.put("content", "test");
+		bodyJson.put("messages", toArr);
+		String body = bodyJson.toString();
+		System.out.println(body);
+
+		HttpURLConnection conn;
+		try {
+			URL url = new URL(apiUrl); // POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setUseCaches(false);// 캐시 미사용
+			conn.setDoInput(true);
+			conn.setRequestMethod("POST"); // POST 요청을 위해 기본값 false에서 setDoOutput을 true로 변경
+			conn.setDoOutput(true); // POST 메소드를 이용해서 데이터를 전달하기 위한 설정
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("x-ncp-apigw-timestamp", timestamp);
+			conn.setRequestProperty("x-ncp-iam-access-key", accessKey);
+			conn.setRequestProperty("x-ncp-apigw-signature-v2", makeSignature(rurl, timestamp, "POST", accessKey, secretKey));
+			
+			DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+			
+			wr.write(body.getBytes());
+			wr.flush();
+			wr.close();
+			
+			int responseCode = conn.getResponseCode(); // 결과 코드가 200이라면 성공
+			System.out.println("responseCode : " + responseCode);
+			
+			BufferedReader br;
+			if(responseCode==202) {
+				br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			} else {
+				br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			}
+			
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine = br.readLine()) != null) {
+				response.append(inputLine);
+			}
+			br.close();
+			
+			System.out.println(response.toString());	
 
 			return "전송 완료";
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return "전송 실패";
-//		}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "전송 실패";
+		}
 
 	}
 
