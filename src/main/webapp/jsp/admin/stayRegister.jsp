@@ -22,8 +22,8 @@
 	<div id ="wrap">
 		<div class="content">
 			<!-- 숙소 탭 -->
-			<c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" />
-			<c:import url="${adminHeaderUrl}" />
+<%-- 			<c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" /> --%>
+			<c:import url="/adminheader"/>
 			<br>
 			<!-- //숙소 탭 -->
 			<br>
