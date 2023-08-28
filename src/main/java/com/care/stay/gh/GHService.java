@@ -52,7 +52,8 @@ public class GHService {
 
 			// 업로드 파일 저장 경로
 			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/gh/";
-			gh.setGimage(fileLocation + fileName);
+			String imagesrc = "/upload/gh/";
+			gh.setGimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 
 			try {
@@ -144,7 +145,8 @@ public class GHService {
 
 			// 업로드 파일 저장 경로
 			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/gh/room/";
-			ghroom.setGroomimage(fileLocation + fileName);			
+			String imagesrc = "/upload/gh/room/";
+			ghroom.setGroomimage(imagesrc + fileName);			
 			File save = new File(fileLocation + fileName);
 			
 			try {

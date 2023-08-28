@@ -261,7 +261,7 @@
                 <table>
                 	<tr>
                         <td  width="300px" height="250px">
-                            <img src="${pensionroom.proomimage}" alt="객실이미지">
+                            <img src="${pensionroom.proomimage}" alt="객실이미지" width="300px" height="250px">
                         </a></td>
                         <td>
                            <div class=room>

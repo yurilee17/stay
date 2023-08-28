@@ -128,7 +128,7 @@
 		<choose>
 			<when test="option1Name == '' and option2Name == ''">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name, nickname, authority FROM
 				member)AAA)BBB
@@ -136,7 +136,7 @@
 			</when>
 			<when test="option1Name == '' and option2Name == 'id'">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM
@@ -147,7 +147,7 @@
 			</when>
 			<when test="option1Name == '' and option2Name == 'mobile'">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM
@@ -158,7 +158,7 @@
 			</when>
 			<when test="option1Name == '' and option2Name == 'name'">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM
@@ -170,7 +170,7 @@
 			</when>
 			<when test="option1Name == '' and option2Name == 'nickname'">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM
@@ -182,7 +182,7 @@
 			</when>
 			<when test="option1Name != '' and option2Name == ''">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM
@@ -193,7 +193,7 @@
 			</when>
 			<when test="option1Name != '' and option2Name == 'id'">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM
@@ -207,7 +207,7 @@
 			</when>
 			<when test="option1Name != '' and option2Name == 'mobile'">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM
@@ -221,7 +221,7 @@
 			</when>
 			<when test="option1Name != '' and option2Name == 'name'">
 				SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM
@@ -235,7 +235,7 @@
 			</when>
 			<otherwise>
 			SELECT BBB.* FROM
-				(SELECT ROWNUM
+				(SELECT ROWNUM()
 				as rn, AAA.* FROM
 				(SELECT id, mobile, name,
 				nickname, authority FROM

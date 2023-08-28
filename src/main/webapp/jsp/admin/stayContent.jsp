@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,8 +21,8 @@
     <div id="wrap">
       <div class="content">
         <!-- 숙소 탭 -->
-<%--         <c:url var="adminHeaderUrl" value="/jsp/admin/adminheader.jsp" /> --%>
-        <c:import url="/adminheader"/>
+		<c:import url="/jsp/admin/adminheader.jsp" />
+
         <br>
         <!-- //숙소 탭 -->
         <br>
@@ -31,7 +34,14 @@
           <div class="stayContent_head">
             <div class="left">
               <p class="pic_view">
-                <img class="" src="">
+                <img class="" src="${motel.mimage }">
+                <c:choose>
+                    <c:when test="${'motel' eq stayType}"><img class="" src="${motel.mimage }"></c:when>
+                    <c:when test="${'hotel' eq stayType}"><img class="" src="${hotel.himage }"></c:when>
+                    <c:when test="${'pension' eq stayType}"><img class="" src="${pension.pimage }}"></c:when>
+                    <c:when test="${'gh' eq stayType}"><img class="" src="${gh.gimage }"></c:when>
+                    <c:when test="${'camping' eq stayType}"><img class="" src="${camping.cimage }"></c:when>
+                  </c:choose>
               </p><%-- 						
 				<div class="detail_submit">
 					<ul>
@@ -90,10 +100,9 @@
                   </c:when>
                   <c:otherwise>
                     <c:forEach var="motelroom" items="${ motelrooms}">
-                    <a href="#" onclick="location.href='stayReservation?no=${motel.no}&stayType=motel&mroomcode=${motelroom.mroomcode}&price=${motelroom.mstayprice}'">
                       <div class="room">
                         <p class="pic_view ">
-                          <img class="lazy" src="">
+                          <img class="lazy" src="${motelroom.mroomimage }">
                         </p>
                         <strong class="title">
 	                        ${motelroom.mroomname } &nbsp; &nbsp;
@@ -148,7 +157,6 @@
                             </ul>
                           </div>                        
                       </div>
-                    </a>
                     </c:forEach>
                   </c:otherwise>
                 </c:choose>
@@ -160,10 +168,9 @@
                   </c:when>
                   <c:otherwise>
                     <c:forEach var="hotelroom" items="${hotelrooms}">
-                      <a href="#" onclick="location.href='stayReservation?no=${hotel.no}&stayType=hotel&hroomcode=${hotelroom.hroomcode}&price=${hotelroom.hprice}'">
                         <div class="room">
                           <p class="pic_view ">
-                            <img class="lazy" src="">
+                            <img class="lazy" src="${hotelroom.hroomimage }">
                           </p>
                           <strong class="title">${hotelroom.hroomname }</strong>
                           <h4>객실 코드 : ${hotelroom.hroomcode }</h4>
@@ -208,7 +215,6 @@
                             </div>
                           </div>
                         </div>
-                      </a>
                     </c:forEach>
                   </c:otherwise>
                 </c:choose>
@@ -222,7 +228,7 @@
                     <c:forEach var="pensionroom" items="${ pensionrooms}">
                       <div class="room">
                         <p class="pic_view ">
-                          <img class="lazy" src="">
+                          <img class="lazy" src="${pensionroom.proomimage }">
                         </p>
                         <strong class="title">${pensionroom.proomname }</strong>
                         <h4>객실 코드 : ${pensionroom.proomcode }</h4>
@@ -280,7 +286,7 @@
                     <c:forEach var="ghroom" items="${ ghrooms}">
                       <div class="room">
                         <p class="pic_view ">
-                          <img class="lazy" src="">
+                          <img class="lazy" src="${ghroom.groomimage }">
                         </p>
                         <strong class="title">${ghroom.groomname }</strong>
                         <h4>객실 코드 : ${ghroom.groomcode }</h4>
@@ -338,7 +344,7 @@
                     <c:forEach var="campingroom" items="${ campingrooms}">
                       <div class="room">
                         <p class="pic_view ">
-                          <img class="lazy" src="">
+                          <img class="lazy" src="${campingroom.croomimage }">
                         </p>
                         <strong class="title">${campingroom.croomname }</strong>
                         <h4>객실 코드 : ${campingroom.croomcode }</h4>

@@ -263,7 +263,7 @@
                     <c:forEach var="motelroom" items="${ motelrooms}">
                       <div class="room">
                         <p class="pic_view ">
-                          <img class="lazy" src="">
+                          <img class="lazy" src="${motelroom.mroomimage}" width="300px" height="250px">
                         </p>
                         <strong class="title">${motelroom.mroomname } &nbsp; &nbsp;</strong>
                         

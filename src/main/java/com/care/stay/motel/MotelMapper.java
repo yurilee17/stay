@@ -28,7 +28,7 @@ public interface MotelMapper {
 	int findMinDaesilPriceByMotel(int no);
 	List<MotelDTO> getAllMotels();
 	void updatePrices(MotelDTO motel);
-	ArrayList<MotelDTO> MainCheck(String selectedText, String moption, String mpeople, @Param("begin")int begin, @Param("end")int end);
+	ArrayList<MotelDTO> MainCheck(String selectedText, String moption, @Param("begin")int begin, @Param("end")int end);
 	int resNum(String mcode, int no, int mroomcode, String checkindate, String checkoutdate);
 	ArrayList<MotelDTO> Main(String selectedText, int begin, int end);
 	

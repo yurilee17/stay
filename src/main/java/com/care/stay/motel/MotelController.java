@@ -50,12 +50,12 @@ public class MotelController {
 			@RequestParam(value="checkindate", required = false)String checkindate,
 			@RequestParam(value="checkoutdate", required = false)String checkoutdate,
 			@RequestParam(value="moption", required = false)String moption,
-			@RequestParam(value="mpeople", required = false)String mpeople, Model model) {
+			Model model) {
 		
 		mservice.getAllHotelsWithMinPrices();
 		
 		if (moption != null) {
-			mservice.MainCheck(selectedText, checkindate, checkoutdate, moption, mpeople, cp, model);
+			mservice.MainCheck(selectedText, checkindate, checkoutdate, moption, cp, model);
 		} else {
 			mservice.Main(selectedText, cp, model);
 		}
