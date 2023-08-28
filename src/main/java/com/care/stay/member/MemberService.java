@@ -97,8 +97,8 @@ public class MemberService {
 		// 1,000,000
 		// 100 000 , 001234
 		content = String.format("%04d", r.nextInt(10000));
-//		System.out.println("인증번호 : " + content);
-		JOptionPane.showMessageDialog(null, "알림 메시지", "알림", JOptionPane.INFORMATION_MESSAGE);
+		System.out.println("인증번호 : " + content);
+//		JOptionPane.showMessageDialog(null, "알림 메시지", "알림", JOptionPane.INFORMATION_MESSAGE);
 
 		//
 		String msg = confirmService.sendMsg(phone, "[저기어때]인증번호 [" + content + "]를 입력해주세요");
@@ -106,7 +106,7 @@ public class MemberService {
 			content = "";
 			return "문자 전송 실패 : 관리자에게 문의하세요.";
 		}
-		return msg;
+		return msg+content;
 	}
 
 	// 인증번호 확인

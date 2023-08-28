@@ -65,7 +65,8 @@ public class PensionService {
 
 			// 업로드 파일 저장 경로
 			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/pension/";
-			pension.setPimage(fileLocation + fileName);
+			String imagesrc = "/upload/pension/";
+			pension.setPimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 
 			try {
@@ -155,7 +156,8 @@ public class PensionService {
 
 			// 업로드 파일 저장 경로
 			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/pension/room/";
-			pensionroom.setProomimage(fileLocation + fileName);
+			String imagesrc = "/upload/pension/room/";
+			pensionroom.setProomimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 
 			try {

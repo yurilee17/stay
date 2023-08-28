@@ -260,8 +260,8 @@
 			<c:forEach var="hotelroom" items="${ hotelrooms}">					
                 <table>
                 	<tr>
-                        <td  width="300px" height="250px">
-                            <img src="${hotelroom.hroomimage}" alt="객실이미지">
+                        <td width="300px" height="250px">
+                            <img src="${hotelroom.hroomimage}" alt="객실이미지" width="300px" height="250px">>
                         </a></td>
                         <td>
                            <div class=room>

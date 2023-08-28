@@ -20,7 +20,7 @@
     <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
     
     </head>
-<body class="pc">
+	<body class="pc">
  	<c:set var="currentDate" value="<%= new java.util.Date() %>" />
     <c:set var="dateFormat" value="yyyy-MM-dd" />
     <fmt:formatDate var="formattedDate" pattern="yyyy-MM-dd" value="${currentDate}" />

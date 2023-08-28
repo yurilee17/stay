@@ -608,7 +608,8 @@
 								        
 								        
 								        
-							 	        var updatedURL = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/Motel?mdetailregion=" + encodeURIComponent(mdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
+							 	        var updatedURL = "http://ec2-54-180-94-214.ap-northeast-2.compute.amazonaws.com:8888/stay/
+							 	        Motel?mdetailregion=" + encodeURIComponent(mdetailregionV) +"&checkindate=" + encodeURIComponent(checkindate) + "&checkoutdate=" + encodeURIComponent(checkoutdate);
 							 	      
 							 	        
 							 	        

@@ -54,7 +54,8 @@ public class MotelService {
 			fileName = sdf.format(cal.getTime()) + fileName;
 			
 			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/motel/";
-			motel.setMimage(fileLocation + fileName);
+			String imagesrc = "/upload/motel/";
+			motel.setMimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -122,7 +123,8 @@ public class MotelService {
 			fileName = sdf.format(cal.getTime()) + fileName;
 
 			String fileLocation = "/opt/tomcat/tomcat-10/webapps/upload/motel/room/";
-			motelroom.setMroomimage(fileName);
+			String imagesrc = "/upload/motel/room/";
+			motelroom.setMroomimage(imagesrc + fileName);
 			File save = new File(fileLocation + fileName);
 			
 			try {
@@ -400,7 +402,7 @@ public class MotelService {
 	}
 
 	
-	public void MainCheck(String selectedText, String checkindate, String checkoutdate, String moption, String mpeople,
+	public void MainCheck(String selectedText, String checkindate, String checkoutdate, String moption,
 			String cp, Model model) {
 		
 		int currentPage = 1;
@@ -415,7 +417,7 @@ public class MotelService {
 		int end = pageBlock * currentPage; // 테이블에서 가져올 마지막 행번호
 		int begin = end - pageBlock + 1; // 테이블에서 가져올 시작 행번호
 		
-		ArrayList<MotelDTO> motels = motelMapper.MainCheck(selectedText, moption, mpeople, begin, end);
+		ArrayList<MotelDTO> motels = motelMapper.MainCheck(selectedText, moption, begin, end);
 		int totalCount = motelMapper.count();
 		String url = "motellist?currentPage=";
 		String result = PageService.printPage(url, currentPage, totalCount, pageBlock);
