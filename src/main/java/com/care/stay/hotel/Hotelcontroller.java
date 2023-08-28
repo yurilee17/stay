@@ -31,17 +31,16 @@ public class Hotelcontroller {
 	  	return "hotel/hotellist"; 
 	  	}
 	  
+
+	  
 	  // 뭔가를 선택했을 때 나오는 화면 
 	  @RequestMapping("Main") 
 	  	public String MainCheck(
-			  
+	  		
 			  @RequestParam(value="currentPage", required = false)  String cp, 
 	  		  @RequestParam(value="hdetailregion" , required = false) String selectedText, 
 	  		  @RequestParam(value="checkindate", required = false) String checkindate,
 	  		  @RequestParam(value="checkoutdate", required = false) String checkoutdate,
-	  		/*  @RequestParam(value="htype", required = false) List<String> htype,
-	  		  @RequestParam(value="hbedtype", required = false) List<String> hbedtype,
-	  		  @RequestParam(value="hcomfort", required = false) List<String> hcomfort, */
 	  		  @RequestParam(value="htype", required = false) String htype,
 	  		  @RequestParam(value="hbedtype", required = false) String hbedtype,
 	  		  @RequestParam(value="hcomfort", required = false) String hcomfort, 
@@ -57,65 +56,37 @@ public class Hotelcontroller {
 		  		System.out.println("checkoutdate: " + checkoutdate);
 		  		
 		  	
-		        
 		  		
-//		  	   if (checkindate != null || htype != null || hbedtype != null || hcomfort != null ) {
+		  		
+		  	   if (htype != null || hbedtype != null || hcomfort != null ) {
 		  		   	
-//		  		   service.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
-//		  	    } 
-//		  	   else if(selectedText != null || checkindate != null && checkoutdate != null ) {
-//		  	        service.Main(selectedText, checkindate, checkoutdate, cp ,model);
-//		  	    }
-		  	   
-		  	  //아래내용을 변경하기 
-			   if (checkindate != null || htype != null || hbedtype != null || hcomfort != null ) {
-		  		   	
-				 hotelService.MainCheck(selectedText, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
+		  		 hotelService.MainCheck(selectedText, checkindate, checkoutdate, htype, hbedtype, hcomfort, hpeople, cp ,model); 		  		   	
 		  	    } 
-		  	   else if(selectedText != null ) {
-		  		 hotelService.Main(selectedText, cp ,model);
-		  	    }   
-		  		
-		  		
-		/*  	if(selectedText != null) {
-		  			hotelService.Main(selectedText, cp ,model);
-		  		}
-		  		if(htype != null) {
-		  			hotelService.typeList(selectedText,htype,cp ,model);
-		  		}
-		  		if(hbedtype != null) {
-		  			hotelService.bedtypeList(selectedText,hbedtype,cp ,model);
-		  		}
-		  		if(hcomfort != null) {
-		  			hotelService.comfortList(selectedText,hcomfort,cp ,model);
-		  		}
-		  		if(hpeopleString != null) {
-		  			hotelService.MainCheck_hpeople(selectedText,hpeopleString,cp ,model);
-		  		}
-		  		*/
-		  		
+		  	   else {
+		  		   	hotelService.Main(selectedText, cp ,model);
+		  	    }
+		  	   
 
 		  		return "hotel/hotellist";
 			  	}
 	
 	  
-	  
-/*	@RequestMapping("hotelpage")
-	public String hotelpage() {
-		return "hotel/hotelpage";
-	} */
+			
 	
-	  
-	@RequestMapping("hotelpage")
-	public String hotelpage(
-		@RequestParam(value="no", required = false)String n, Model model) {
-		
-		HotelDTO hotel = hotelService.stayContent(n);
-		List<HotelRoomDTO> hotelrooms = hotelService.stayRoomContent(n);
-		
-		model.addAttribute("hotel", hotel);
-		model.addAttribute("hotelrooms", hotelrooms);
-		return "hotel/hotelpage";
-	}
+			@RequestMapping("hotelpage")
+			public String hotelpage(
+				@RequestParam(value="no", required = false)String n,
+				Model model) {
+				
+				HotelDTO hotel = hotelService.stayContent(n);
+				List<HotelRoomDTO> hotelrooms = hotelService.stayRoomContent(n);
+			
+				
+				model.addAttribute("hotel", hotel);
+				model.addAttribute("hotelrooms", hotelrooms);
+				return "hotel/hotelpage";
+			}
+	
+	
 
 }
