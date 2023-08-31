@@ -350,7 +350,7 @@
 					</div>
 				</form>
 			</div>
-
+			<br><br><br><br>
 			<!-- //등록 양식 -->
 		</div>
 	</div>

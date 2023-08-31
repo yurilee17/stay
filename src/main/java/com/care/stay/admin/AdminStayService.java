@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.care.stay.camping.CampingDTO;
 import com.care.stay.camping.CampingMapper;
 import com.care.stay.common.AdminPageService;
 import com.care.stay.common.PageService;
+import com.care.stay.gh.GHDTO;
 import com.care.stay.gh.GHMapper;
 import com.care.stay.hotel.HotelDTO;
 
@@ -26,6 +28,7 @@ import com.care.stay.member.MemberMapper;
 import com.care.stay.motel.MotelDTO;
 import com.care.stay.motel.MotelMapper;
 import com.care.stay.motel.MotelRoomDTO;
+import com.care.stay.pension.PensionDTO;
 import com.care.stay.pension.PensionMapper;
 
 import jakarta.servlet.http.HttpSession;
@@ -98,7 +101,6 @@ public class AdminStayService {
 	}
 
 	public void stayInfo(String cp, String stayType, String stayName, String region, String address, Model model) {
-		// TODO Auto-generated method stub
 		
 		int currentPage = 1;
 		try{
@@ -132,10 +134,34 @@ public class AdminStayService {
 			model.addAttribute("currentPage", currentPage);
 			
 		} else if (stayType.equals("pension")) {
+			ArrayList<PensionDTO> pensions = pensionMapper.stayInfo(begin, end);
+			int totalCount = pensionMapper.count();
+			String url = "stayInfo?currentPage=";
+			String result = AdminPageService.printPage(url, currentPage, totalCount, pageBlock, stayType);
+			
+			model.addAttribute("pensions", pensions);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);
 			
 		} else if (stayType.equals("gh")) {
+			ArrayList<GHDTO> ghs = ghMapper.stayInfo(begin, end);
+			int totalCount = ghMapper.count();
+			String url = "stayInfo?currentPage=";
+			String result = AdminPageService.printPage(url, currentPage, totalCount, pageBlock, stayType);
+			
+			model.addAttribute("ghs", ghs);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);
 			
 		} else if (stayType.equals("camping")) {
+			ArrayList<CampingDTO> campings = campingMapper.stayInfo(begin, end);
+			int totalCount = campingMapper.count();
+			String url = "stayInfo?currentPage=";
+			String result = AdminPageService.printPage(url, currentPage, totalCount, pageBlock, stayType);
+			
+			model.addAttribute("campings", campings);
+			model.addAttribute("result", result);
+			model.addAttribute("currentPage", currentPage);
 			
 		} else {
 			ArrayList<MotelDTO> motels = motelMapper.stayInfo(begin, end);
